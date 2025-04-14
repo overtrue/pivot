@@ -1,3 +1,5 @@
+'use client';
+
 import React, { createContext, useContext, useState } from 'react';
 import en from './locales/en';
 import zh from './locales/zh';

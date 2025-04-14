@@ -1,3 +1,5 @@
+'use client';
+
 import ExpandCollapse from '@/components/interactive/ExpandCollapse';
 import React, { useState } from 'react';
 import ObjectProperties from './ObjectProperties';

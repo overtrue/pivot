@@ -6,58 +6,58 @@ const Navigation: React.FC = () => {
     <nav className="bg-gray-100 p-4 border-b">
       <ul className="flex space-x-4 flex-wrap">
         <li>
-          <Link href="/">
-            <a className="text-blue-600 hover:underline">Home</a>
+          <Link href="/" className="text-blue-600 hover:underline">
+            Home
           </Link>
         </li>
         <li>
-          <Link href="/documentation">
-            <a className="text-blue-600 hover:underline">Documentation</a>
+          <Link href="/documentation" className="text-blue-600 hover:underline">
+            Documentation
           </Link>
         </li>
         <li>
-          <Link href="/api-info">
-            <a className="text-blue-600 hover:underline">API Info</a>
+          <Link href="/api/info" className="text-blue-600 hover:underline">
+            API Info
           </Link>
         </li>
         <li>
-          <Link href="/schema-viewer">
-            <a className="text-blue-600 hover:underline">Schema</a>
+          <Link href="/schema/viewer" className="text-blue-600 hover:underline">
+            Schema
           </Link>
         </li>
         <li>
-          <Link href="/response-viewer">
-            <a className="text-blue-600 hover:underline">Responses</a>
+          <Link href="/response/viewer" className="text-blue-600 hover:underline">
+            Responses
           </Link>
         </li>
         <li>
-          <Link href="/parameter-viewer">
-            <a className="text-blue-600 hover:underline">Parameters</a>
+          <Link href="/parameter/viewer" className="text-blue-600 hover:underline">
+            Parameters
           </Link>
         </li>
         <li>
-          <Link href="/security-schemes">
-            <a className="text-blue-600 hover:underline">Security</a>
+          <Link href="/security-schemes" className="text-blue-600 hover:underline">
+            Security
           </Link>
         </li>
         <li>
-          <Link href="/servers">
-            <a className="text-blue-600 hover:underline">Servers</a>
+          <Link href="/servers" className="text-blue-600 hover:underline">
+            Servers
           </Link>
         </li>
         <li>
-          <Link href="/response-examples">
-            <a className="text-blue-600 hover:underline">Response Examples</a>
+          <Link href="/response/examples" className="text-blue-600 hover:underline">
+            Response Examples
           </Link>
         </li>
         <li>
-          <Link href="/codegen">
-            <a className="text-blue-600 hover:underline">Code Gen</a>
+          <Link href="/codegen" className="text-blue-600 hover:underline">
+            Code Gen
           </Link>
         </li>
         <li>
-          <Link href="/tools">
-            <a className="text-blue-600 hover:underline">Tools</a>
+          <Link href="/tools" className="text-blue-600 hover:underline">
+            Tools
           </Link>
         </li>
       </ul>

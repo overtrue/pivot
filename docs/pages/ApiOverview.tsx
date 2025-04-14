@@ -1,3 +1,5 @@
+'use client';
+
 import DeprecatedBadge from '@/components/docs/DeprecatedBadge';
 import ExternalDocs from '@/components/docs/ExternalDocs';
 import TermsOfService from '@/components/docs/TermsOfService';

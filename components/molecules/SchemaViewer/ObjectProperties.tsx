@@ -1,27 +1,48 @@
-import React from 'react';
+'use client'; // Because it might render SchemaRenderer which could be client
 
-interface ObjectPropertiesProps {
-  properties: { name: string; type: string; description?: string }[];
+import React from 'react';
+import { OpenApiComponents } from '../../../types/openapi'; // Import shared types
+import SchemaRenderer from '../SchemaRenderer'; // Import SchemaRenderer
+
+// Define more accurate property schema type (or import)
+interface PropertySchema {
+  type?: string;
+  description?: string;
+  // ... other schema fields
 }
 
-const ObjectProperties: React.FC<ObjectPropertiesProps> = ({ properties }) => {
+interface ObjectPropertiesProps {
+  properties: Record<string, PropertySchema>; // Changed to Record<string, any> or specific type
+  components?: OpenApiComponents; // Needed for SchemaRenderer
+  requiredProps?: string[]; // Add prop for required properties list
+}
+
+const ObjectProperties: React.FC<ObjectPropertiesProps> = ({ properties, components, requiredProps = [] }) => {
+  if (!properties || Object.keys(properties).length === 0) {
+    return <div className="text-sm text-gray-500 italic">无属性</div>;
+  }
+
   return (
-    <table className="w-full border-collapse border border-gray-300">
-      <thead>
-        <tr className="bg-gray-100">
-          <th className="border border-gray-300 px-4 py-2 text-left">Name</th>
-          <th className="border border-gray-300 px-4 py-2 text-left">Type</th>
-          <th className="border border-gray-300 px-4 py-2 text-left">Description</th>
-        </tr>
-      </thead>
+    <table className="w-full text-sm border-collapse my-2">
       <tbody>
-        {properties.map((prop) => (
-          <tr key={prop.name}>
-            <td className="border border-gray-300 px-4 py-2 font-mono">{prop.name}</td>
-            <td className="border border-gray-300 px-4 py-2 font-mono text-sm text-gray-600">{prop.type}</td>
-            <td className="border border-gray-300 px-4 py-2 text-sm text-gray-700">{prop.description || '-'}</td>
-          </tr>
-        ))}
+        {Object.entries(properties).map(([propName, propSchema]) => {
+          const isRequired = requiredProps.includes(propName);
+          return (
+            <tr key={propName} className="border-b border-gray-200">
+              <td className="px-2 py-1.5 align-top">
+                <div className="flex items-center">
+                  <span className="font-mono font-medium">{propName}</span>
+                  {isRequired && (
+                    <span className="ml-1 text-red-600" title="Required">*</span>
+                  )}
+                </div>
+              </td>
+              <td className="px-2 py-1.5 align-top">
+                <SchemaRenderer schema={propSchema} components={components} />
+              </td>
+            </tr>
+          );
+        })}
       </tbody>
     </table>
   );

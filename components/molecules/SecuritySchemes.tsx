@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState } from 'react';
 import OAuthFlow from '../atoms/security/OAuthFlow';
 import SchemeType from '../atoms/security/SchemeType';

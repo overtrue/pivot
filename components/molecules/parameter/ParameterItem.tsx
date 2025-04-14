@@ -1,5 +1,10 @@
+'use client';
+
 import React, { useState } from 'react';
+import DeprecatedBadge from '../../atoms/parameter/DeprecatedBadge';
 import InLabel from '../../atoms/parameter/InLabel';
+import ParameterDescription from '../../atoms/parameter/ParameterDescription';
+import ParameterName from '../../atoms/parameter/ParameterName';
 import StyleBadge from '../../atoms/parameter/StyleBadge';
 import FormatBadge from '../../atoms/schema/FormatBadge';
 import TypeIndicator from '../../atoms/schema/TypeIndicator';
@@ -43,27 +48,18 @@ const ParameterItem: React.FC<ParameterItemProps> = ({
   className
 }) => {
   const [isExpanded, setIsExpanded] = useState(false);
-  const hasDetails = description || schema.default !== undefined || schema.enum || examples;
+  const hasDetails = schema.default !== undefined || schema.enum || examples || description ||
+    schema.minimum !== undefined || schema.maximum !== undefined ||
+    schema.minLength !== undefined || schema.maxLength !== undefined ||
+    schema.pattern;
 
   return (
     <div className={`border rounded-md overflow-hidden ${deprecated ? 'border-red-300' : 'border-gray-300'} ${className}`}>
       <div className="p-3 bg-gray-50 flex flex-wrap items-center justify-between gap-2">
         <div className="flex flex-wrap items-center gap-2">
-          <span className={`font-mono font-medium ${deprecated ? 'line-through text-red-500' : ''}`}>
-            {name}
-          </span>
+          <ParameterName name={name} required={required} deprecated={deprecated} />
 
-          {required && (
-            <span className="bg-red-100 text-red-800 px-2 py-0.5 text-xs rounded">
-              required
-            </span>
-          )}
-
-          {deprecated && (
-            <span className="bg-red-100 text-red-800 px-2 py-0.5 text-xs rounded">
-              deprecated
-            </span>
-          )}
+          {deprecated && <DeprecatedBadge />}
 
           <InLabel type={paramIn} />
 
@@ -100,7 +96,7 @@ const ParameterItem: React.FC<ParameterItemProps> = ({
           {description && (
             <div className="mb-3">
               <h4 className="text-sm font-semibold mb-1">Description</h4>
-              <p className="text-sm text-gray-700">{description}</p>
+              <ParameterDescription description={description} />
             </div>
           )}
 

@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 
 const CopyButton: React.FC<{ text: string }> = ({ text }) => {

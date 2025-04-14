@@ -1,3 +1,5 @@
+'use client';
+
 import ExpandCollapse from '@/components/interactive/ExpandCollapse';
 import React from 'react';
 
