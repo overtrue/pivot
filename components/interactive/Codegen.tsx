@@ -1,25 +1,101 @@
 'use client';
 
+import { ComponentsObject, HttpMethod, ParameterObject, ReferenceObject, RequestBodyObject } from '@/types/openapi';
 import React, { useState } from 'react';
+import { resolveRef } from '../../utils/resolveRef';
 
 interface CodegenProps {
   endpoint: string;
-  method: 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH';
-  parameters?: { name: string; in: string; required: boolean; type: string }[];
-  requestBody?: { type: string; properties: { name: string; type: string }[] };
+  method: HttpMethod;
+  parameters?: (ParameterObject | ReferenceObject)[];
+  requestBody?: RequestBodyObject | ReferenceObject;
+  components?: ComponentsObject;
 }
 
-const Codegen: React.FC<CodegenProps> = ({ endpoint, method, parameters = [], requestBody }) => {
+const Codegen: React.FC<CodegenProps> = ({ endpoint, method, parameters = [], requestBody, components }) => {
   const [language, setLanguage] = useState<'typescript' | 'python' | 'curl'>('curl');
+
+  // 解析请求体
+  const resolvedRequestBody = requestBody ? resolveRef<RequestBodyObject>(requestBody, components, 'requestBodies') : undefined;
+
+  // 解析参数
+  const resolvedParameters = parameters.map(param =>
+    resolveRef<ParameterObject>(param, components, 'parameters')
+  ).filter(Boolean) as ParameterObject[];
+
+  // 生成请求体示例数据
+  const getRequestBodyExample = () => {
+    if (!resolvedRequestBody || !resolvedRequestBody.content) return { example: "data" };
+
+    // 获取内容类型，优先使用application/json
+    const contentType =
+      resolvedRequestBody.content['application/json'] ?
+        'application/json' :
+        Object.keys(resolvedRequestBody.content)[0];
+
+    if (!contentType || !resolvedRequestBody.content[contentType].schema) return { example: "data" };
+
+    const schema = resolvedRequestBody.content[contentType].schema;
+    if (!schema) return { example: "data" };
+
+    // 解析可能存在的schema引用
+    const resolvedSchema = resolveRef(schema, components, 'schemas');
+    if (!resolvedSchema) return { example: "data" };
+
+    // 根据schema类型生成示例
+    const example: Record<string, any> = {};
+    if (typeof resolvedSchema === 'object' && 'properties' in resolvedSchema && resolvedSchema.properties) {
+      Object.entries(resolvedSchema.properties).forEach(([propName, propSchema]) => {
+        // 尝试获取属性类型
+        let propType = 'string';
+        if (typeof propSchema === 'object') {
+          if ('type' in propSchema) {
+            propType = propSchema.type as string;
+          } else if ('$ref' in propSchema) {
+            const resolvedProp = resolveRef(propSchema, components, 'schemas');
+            if (resolvedProp && typeof resolvedProp === 'object' && 'type' in resolvedProp) {
+              propType = resolvedProp.type as string;
+            }
+          }
+        }
+
+        // 根据类型生成示例值
+        switch (propType) {
+          case 'string':
+            example[propName] = `example_${propName}`;
+            break;
+          case 'number':
+          case 'integer':
+            example[propName] = 123;
+            break;
+          case 'boolean':
+            example[propName] = true;
+            break;
+          case 'array':
+            example[propName] = [];
+            break;
+          case 'object':
+            example[propName] = {};
+            break;
+          default:
+            example[propName] = null;
+        }
+      });
+    }
+
+    return Object.keys(example).length > 0 ? example : { example: "data" };
+  };
+
+  const requestBodyExample = getRequestBodyExample();
 
   const generateCurlCode = () => {
     let code = `curl -X ${method} "${endpoint}"`;
 
     // Add headers
-    code += ' -H "Content-Type: application/json"';
+    code += '    \n -H "Content-Type: application/json"';
 
     // Add query parameters
-    const queryParams = parameters.filter(p => p.in === 'query');
+    const queryParams = resolvedParameters.filter(p => p.in === 'query');
     if (queryParams.length > 0) {
       const queryString = queryParams
         .map(p => `${p.name}=value`)
@@ -28,8 +104,8 @@ const Codegen: React.FC<CodegenProps> = ({ endpoint, method, parameters = [], re
     }
 
     // Add request body
-    if (['POST', 'PUT', 'PATCH'].includes(method) && requestBody) {
-      code += ` -d '${JSON.stringify({ example: "data" }, null, 2)}'`;
+    if (['POST', 'PUT', 'PATCH'].includes(method) && resolvedRequestBody) {
+      code += `    \n -d '${JSON.stringify(requestBodyExample, null, 2)}'`;
     }
 
     return code;
@@ -42,10 +118,10 @@ async function call${method}() {
     method: "${method}",
     headers: {
       "Content-Type": "application/json"
-    }${['POST', 'PUT', 'PATCH'].includes(method) && requestBody ? `,
-    body: JSON.stringify({
-      example: "data"
-    })` : ''}
+    }${['POST', 'PUT', 'PATCH'].includes(method) && resolvedRequestBody ? `,
+    body: JSON.stringify(
+${JSON.stringify(requestBodyExample, null, 4).split('\n').map(line => '      ' + line).join('\n')}
+    )` : ''}
   });
 
   const data = await response.json();
@@ -62,10 +138,9 @@ def call_${method.toLowerCase()}():
     headers = {
         "Content-Type": "application/json"
     }
-    ${['POST', 'PUT', 'PATCH'].includes(method) && requestBody ? `
-    payload = {
-        "example": "data"
-    }
+    ${['POST', 'PUT', 'PATCH'].includes(method) && resolvedRequestBody ? `
+    payload = ${JSON.stringify(requestBodyExample, null, 4).split('\n').map(line => '    ' + line).join('\n')}
+
     response = requests.${method.toLowerCase()}(url, json=payload, headers=headers)
     ` : `
     response = requests.${method.toLowerCase()}(url, headers=headers)
@@ -111,7 +186,7 @@ def call_${method.toLowerCase()}():
           </button>
         </div>
       </div>
-      <pre className="bg-gray-800 text-white p-4 rounded overflow-x-auto">
+      <pre className="bg-gray-800 text-white text-xs p-4 rounded overflow-x-auto">
         <code>{getCode()}</code>
       </pre>
     </div>

@@ -1,11 +1,11 @@
-import { OpenApiComponents, ReferenceObject } from '../types/openapi'; // Adjust path if needed
+import { ComponentsObject, ReferenceObject } from '@/types/openapi'; // Adjust path if needed
 
 // Function to resolve a JSON Pointer $ref within the OpenAPI document
 // Handles basic cycle detection for the CURRENT ref being resolved.
 // Does NOT recursively resolve refs within the target object.
 export function resolveRef<T = any>(
   refOrObj: T | ReferenceObject,
-  components: OpenApiComponents | undefined,
+  components: ComponentsObject | undefined,
   visitedRefs: Set<string> = new Set() // Still useful for immediate cycle detection
 ): T | null {
   if (typeof refOrObj !== 'object' || refOrObj === null) {
@@ -32,7 +32,7 @@ export function resolveRef<T = any>(
   let result: any = null;
 
   if (refPath[0] === '#' && refPath[1] === 'components' && components) {
-    const componentType = refPath[2] as keyof OpenApiComponents;
+    const componentType = refPath[2] as keyof ComponentsObject;
     const componentName = refPath[3];
     console.log(`[resolveRef] Parsed path: type=${componentType}, name=${componentName}`); // Log parsed path
 

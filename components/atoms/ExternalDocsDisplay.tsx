@@ -1,7 +1,7 @@
 'use client';
 
+import { ExternalDocumentationObject } from '@/types/openapi'; // Adjust path
 import React from 'react';
-import { ExternalDocumentationObject } from '../../types/openapi'; // Adjust path
 
 interface ExternalDocsDisplayProps {
   externalDocs: ExternalDocumentationObject;

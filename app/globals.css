@@ -2,9 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
-/* 在这里添加其他全局样式 */
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-rgb: 255, 255, 255;
+}
+
 body {
-  /* 示例: 添加一些默认的背景色或字体 */
-  /* background-color: #f8f9fa; */
-  /* font-family: sans-serif; */
+  color: rgb(var(--foreground-rgb));
+  background: rgb(var(--background-rgb));
 }

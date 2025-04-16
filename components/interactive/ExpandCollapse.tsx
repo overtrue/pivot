@@ -14,21 +14,16 @@ interface ExpandCollapseProps {
 const ExpandCollapse: React.FC<ExpandCollapseProps> = ({
   isExpanded,
   onToggle,
-  label,
-  expandedLabel = 'Hide',
-  collapsedLabel = 'Show',
   className,
 }) => {
-  const displayLabel = label || (isExpanded ? expandedLabel : collapsedLabel);
-
   return (
     <button
       type="button"
       onClick={onToggle}
-      className={`flex items-center text-xs font-medium text-blue-600 hover:text-blue-800 ${className || ''}`}
+      className={`flex items-center text-xs font-medium text-gray-500 hover:text-gray-700 ${className || ''}`}
       aria-expanded={isExpanded}
     >
-      <span>{displayLabel}</span>
+      {/* <span>{displayLabel}</span> */}
       <svg
         className={`ml-1 h-4 w-4 transition-transform duration-200 ${isExpanded ? 'rotate-180' : ''}`}
         fill="none"
