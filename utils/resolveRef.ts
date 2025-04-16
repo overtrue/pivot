@@ -1,56 +1,61 @@
 'use client'; // Keep client directive if utils might be used in client components
 
-import { ComponentsObject } from '@/types/openapi'; // Adjust path as needed
-
-// Defines the possible keys within the ComponentsObject
-export type ComponentType = keyof ComponentsObject;
+import { ComponentsObject, ReferenceObject } from '@/types/openapi';
 
 /**
- * 解析 OpenAPI 引用
- * @param ref 引用对象
- * @param components 组件定义
- * @param componentType 组件类型 (如 'schemas', 'requestBodies' 等)
- * @returns 解析后的对象，如果无法解析则返回 null
+ * 解析OpenAPI中的引用对象
+ * @param obj 可能是引用对象的数据
+ * @param components OpenAPI组件定义
+ * @param category 可选的组件类别(schemas, parameters等)
+ * @returns 解析后的对象或原始对象
  */
 export function resolveRef<T>(
-  ref: any,
+  obj: T | ReferenceObject | undefined,
   components?: ComponentsObject,
-  componentType?: string
+  category?: string
 ): T | null {
-  // 如果不是引用对象，直接返回
-  if (!ref || typeof ref !== 'object' || !('$ref' in ref)) {
-    return ref as T;
-  }
+  if (!obj) return null;
 
-  if (!components) {
-    return null;
-  }
+  // 检查是否是引用对象
+  if (typeof obj === 'object' && obj !== null && '$ref' in obj) {
+    const refObj = obj as ReferenceObject;
+    const refPath = refObj.$ref;
 
-  try {
-    // 从 $ref 字符串中提取组件类型和名称
-    // 典型的 $ref 格式: '#/components/schemas/Pet'
-    const refParts = ref.$ref.split('/');
+    // 处理标准格式的引用 #/components/{category}/{name}
+    const refMatch = refPath.match(/^#\/components\/([^/]+)\/(.+)$/);
 
-    // 如果提供了组件类型，直接使用它
-    const type = componentType || refParts[2];
-    const name = refParts[refParts.length - 1];
+    if (refMatch && components) {
+      const [, refCategory, refName] = refMatch;
 
-    // 确保组件类型存在
-    if (!components[type]) {
+      // 如果指定了类别，并且与引用类别不一致，则发出警告
+      if (category && refCategory !== category) {
+        console.warn(`引用类别 ${refCategory} 与期望类别 ${category} 不一致`);
+      }
+
+      // 根据类别获取组件集合
+      const componentCollection = components[refCategory as keyof ComponentsObject];
+
+      if (componentCollection && typeof componentCollection === 'object') {
+        // 解析引用对象
+        const resolved = componentCollection[refName];
+
+        if (resolved) {
+          // 检查是否是嵌套引用，如果是则递归解析
+          if (typeof resolved === 'object' && resolved !== null && '$ref' in resolved) {
+            return resolveRef<T>(resolved as ReferenceObject, components, category);
+          }
+          return resolved as unknown as T;
+        }
+      }
+
+      console.warn(`找不到引用 ${refPath}`);
       return null;
     }
 
-    // 获取引用的对象
-    const resolved = components[type][name];
-
-    // 如果解析的对象本身也是一个引用，则递归解析
-    if (resolved && typeof resolved === 'object' && '$ref' in resolved) {
-      return resolveRef<T>(resolved, components, type);
-    }
-
-    return resolved as T;
-  } catch (error) {
-    console.error('解析 $ref 失败:', error);
+    console.warn(`不支持的引用格式 ${refPath}`);
     return null;
   }
+
+  // 如果不是引用对象，则返回原始对象
+  return obj as T;
 }

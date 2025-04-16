@@ -1,16 +1,12 @@
 'use client';
 
+import { useOpenApi } from '@/hooks/useOpenApi';
 import {
-  ComponentsObject,
   HttpMethod,
   OpenApiSpec as OpenApiObject,
   OperationObject,
-  PathItemObject,
-  ReferenceObject,
-  RequestBodyObject
 } from '@/types/openapi';
-import React, { useMemo, useState } from 'react';
-import { resolveRef } from '../../utils/resolveRef'; // Need resolveRef for PathItem
+import React, { useState } from 'react';
 import ExternalDocsDisplay from '../atoms/ExternalDocsDisplay';
 import SectionTitle from '../atoms/SectionTitle';
 import ComponentsSection from '../ComponentsSection';
@@ -26,85 +22,22 @@ interface OpenApiLayoutProps {
   className?: string;
 }
 
-// Codegen组件支持的方法类型（从CodegenProps中提取）
-type CodegenMethod = 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH';
-
-// 辅助函数：转换requestBody为Codegen组件需要的格式
-const transformRequestBody = (
-  requestBody: ReferenceObject | RequestBodyObject | undefined,
-  components?: ComponentsObject
-) => {
-  if (!requestBody) return undefined;
-
-  // 解析引用
-  const resolvedRequestBody = resolveRef<RequestBodyObject>(requestBody, components, 'requestBodies');
-  if (!resolvedRequestBody || !resolvedRequestBody.content) return undefined;
-
-  // 获取content类型，优先使用application/json
-  const contentType =
-    resolvedRequestBody.content['application/json'] ?
-      'application/json' :
-      Object.keys(resolvedRequestBody.content)[0];
-
-  if (!contentType || !resolvedRequestBody.content[contentType].schema) return undefined;
-
-  const schema = resolvedRequestBody.content[contentType].schema;
-  // 解析可能存在的schema引用
-  const resolvedSchema = resolveRef(schema, components, 'schemas');
-  if (!resolvedSchema) return undefined;
-
-  // 提取类型信息
-  const type = typeof resolvedSchema === 'object' && 'type' in resolvedSchema ? resolvedSchema.type : 'object';
-
-  // 提取属性
-  const properties: { name: string; type: string }[] = [];
-  if (typeof resolvedSchema === 'object' && 'properties' in resolvedSchema && resolvedSchema.properties) {
-    Object.entries(resolvedSchema.properties).forEach(([propName, propSchema]) => {
-      const propType = typeof propSchema === 'object' && 'type' in propSchema ?
-        propSchema.type as string : 'object';
-      properties.push({ name: propName, type: propType });
-    });
-  }
-
-  return {
-    type: type as string,
-    properties
-  };
-};
-
 const OpenApiLayout: React.FC<OpenApiLayoutProps> = ({ spec, className }) => {
   const [activeTag, setActiveTag] = useState<string | null>(null);
   const [selectedOperationId, setSelectedOperationId] = useState<string | null>(null);
   const [selectedOperation, setSelectedOperation] = useState<{ path: string; method: string; operation: OperationObject } | null>(null);
 
-  // Memoize filtered operations based on activeTag
-  const filteredPaths = useMemo(() => {
-    if (!spec.paths) return {};
-    if (activeTag === null) return spec.paths; // Show all if null
+  // 使用自定义钩子处理OpenAPI规范
+  const {
+    getOperationsByTag,
+    components,
+    resolve
+  } = useOpenApi(spec);
 
-    const filtered: typeof spec.paths = {};
-    for (const path in spec.paths) {
-      const pathItem = spec.paths[path];
-      if (!pathItem) continue;
-
-      // Resolve PathItem if it's a $ref
-      const resolvedPathItem = resolveRef<PathItemObject>(pathItem, spec.components, 'pathItems');
-      if (!resolvedPathItem) continue; // Skip if path item ref fails
-
-      const operationsInPath = Object.entries(resolvedPathItem)
-        .filter(([method]) => [
-          'get', 'put', 'post', 'delete', 'options', 'head', 'patch', 'trace'
-        ].includes(method.toLowerCase()))
-        .map(([_, operation]) => resolveRef<OperationObject>(operation, spec.components, 'operations')) // Resolve operation refs
-        .filter(op => op && op.tags && op.tags.includes(activeTag)); // Filter by tag
-
-      if (operationsInPath.length > 0) {
-        // Include the path if any of its operations match the active tag
-        filtered[path] = pathItem; // Keep original pathItem
-      }
-    }
-    return filtered;
-  }, [spec.paths, spec.components, activeTag]);
+  // 按标签过滤的操作
+  const taggedOperations = activeTag
+    ? { [activeTag]: getOperationsByTag()[activeTag] || [] }
+    : getOperationsByTag();
 
   // 更新选择的操作
   const handleSelectOperation = (operationId: string, path: string, method: string, operation: OperationObject) => {
@@ -148,73 +81,60 @@ const OpenApiLayout: React.FC<OpenApiLayoutProps> = ({ spec, className }) => {
         )}
 
         {/* 3. Operations Section (Filtered) */}
-        {Object.keys(filteredPaths).length > 0 && (
-          <div className="">
+        {Object.keys(taggedOperations).length > 0 ? (
+          <div className="mt-12">
             {/* Title reflects filtering */}
             <SectionTitle
               title={activeTag ? `Operations tagged "${activeTag}"` : "All Operations"}
               className="text-2xl mb-6" />
-            <div className="space-y-4">
-              {Object.entries(filteredPaths).map(([path, pathItemOrRef]) => {
-                // Resolve PathItem ref again here for rendering path params
-                const resolvedPathItem = resolveRef<PathItemObject>(pathItemOrRef, spec.components, 'pathItems');
-                if (!resolvedPathItem) return null; // Skip if ref resolution fails
 
-                return (
-                  <div key={path} className="space-y-4">
-                    {/* Render each operation within the resolved path item */}
-                    {Object.entries(resolvedPathItem).map(([method, operationOrRef]) => {
-                      // Resolve operation ref
-                      const operation = resolveRef<OperationObject>(operationOrRef, spec.components, 'operations');
-                      if (!operation) return null; // Skip if op ref fails
+            <div className="space-y-8">
+              {Object.entries(taggedOperations).map(([tag, operations]) => (
+                <div key={tag} className="space-y-4">
+                  {tag !== activeTag && (
+                    <h3 className="text-xl font-medium text-gray-700">{tag}</h3>
+                  )}
 
-                      // Render only if 'All' is selected or operation has the active tag
-                      if (activeTag === null || (operation.tags && operation.tags.includes(activeTag))) {
-                        const operationId = operation.operationId || `${method}-${path}`;
-                        return (
-                          <div key={`${method}-${path}`} id={`operation-${operationId}`}>
-                            <OperationBox
-                              onSelectOperation={() => handleSelectOperation(operationId, path, method, operation)}
-                              path={path}
-                              method={method.toUpperCase()}
-                              operation={operation}
-                              components={spec.components}
-                            />
-                          </div>
-                        );
-                      }
-                    })}
-                  </div>
-                );
-              })}
+                  {operations.map(({ path, method, operation }) => {
+                    const operationId = operation.operationId || `${method}-${path}`;
+                    return (
+                      <div key={`${method}-${path}`} id={`operation-${operationId}`}>
+                        <OperationBox
+                          onSelectOperation={() => handleSelectOperation(operationId, path, method, operation)}
+                          path={path}
+                          method={method.toUpperCase()}
+                          operation={operation}
+                          components={components}
+                        />
+                      </div>
+                    );
+                  })}
+                </div>
+              ))}
             </div>
           </div>
-        )}
-        {Object.keys(filteredPaths).length === 0 && activeTag !== null && (
-          <div className="mt-12 text-gray-500 italic">No operations found for tag "{activeTag}".</div>
+        ) : (
+          activeTag && (
+            <div className="mt-12 text-gray-500 italic">没有找到标签为 "{activeTag}" 的操作。</div>
+          )
         )}
 
         {/* 4. Components Section */}
-        {spec.components && Object.keys(spec.components).length > 0 && (
-          <ComponentsSection components={spec.components as any} className="mt-12" />
+        {components && Object.keys(components).length > 0 && (
+          <ComponentsSection components={components} className="mt-12" />
         )}
 
         {/* 5. Security Section */}
-        {(spec.security || spec.components?.securitySchemes) && (
+        {(spec.security || components?.securitySchemes) && (
           <SecuritySection
             security={spec.security}
-            securitySchemes={spec.components?.securitySchemes}
-            components={spec.components}
+            securitySchemes={components?.securitySchemes}
+            components={components}
             className="mt-12"
           />
         )}
 
-        {/* 6. Tags Section - Removed, handled by Sidebar */}
-        {/* {spec.tags && spec.tags.length > 0 && (
-          <TagsSection tags={spec.tags} className="mt-12" />
-        )} */}
-
-        {/* 7. External Docs Section (Root Level) */}
+        {/* 6. External Docs Section (Root Level) */}
         {spec.externalDocs && (
           <div className="mt-12 py-4 border-t">
             <ExternalDocsDisplay externalDocs={spec.externalDocs} />
@@ -229,7 +149,7 @@ const OpenApiLayout: React.FC<OpenApiLayoutProps> = ({ spec, className }) => {
             <Codegen
               endpoint={selectedOperation.path}
               method={selectedOperation.method as HttpMethod}
-              components={spec.components}
+              components={components}
               requestBody={selectedOperation.operation.requestBody}
               parameters={selectedOperation.operation.parameters || []}
             />

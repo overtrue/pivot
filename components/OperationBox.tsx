@@ -2,8 +2,10 @@
 
 import MethodLabel from '@/components/atoms/MethodLabel';
 import OperationPath from '@/components/atoms/OperationPath';
+import { useOpenApi } from '@/hooks/useOpenApi';
 import {
   ComponentsObject,
+  OpenApiSpec,
   OperationObject
 } from '@/types/openapi';
 import React, { useState } from 'react';
@@ -24,6 +26,7 @@ interface OperationBoxProps {
   components?: ComponentsObject;
   className?: string;
   onSelectOperation?: () => void;
+  spec?: OpenApiSpec; // 可选，如果提供则优先使用
 }
 
 const OperationBox: React.FC<OperationBoxProps> = ({
@@ -32,10 +35,17 @@ const OperationBox: React.FC<OperationBoxProps> = ({
   operation,
   components,
   className,
-  onSelectOperation
+  onSelectOperation,
+  spec
 }) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [isTryItOutVisible, setIsTryItOutVisible] = useState(false);
+
+  // 如果提供了完整规范，使用useOpenApi处理数据
+  const openApi = spec ? useOpenApi(spec) : null;
+
+  // 使用openApi钩子或直接从props获取组件
+  const resolvedComponents = openApi?.components || components;
 
   const parameters = operation.parameters;
   const requestBody = operation.requestBody;
@@ -58,10 +68,10 @@ const OperationBox: React.FC<OperationBoxProps> = ({
     <div className={`border rounded overflow-hidden shadow-sm ${operation.deprecated ? 'border-red-300' : 'border-gray-300'} ${className}`}>
       {/* Header Section */}
       <div
-        className={`p-3 flex justify-between items-center`}
+        className={`p-3 flex justify-between items-center cursor-pointer ${operation.deprecated ? 'bg-red-50' : ''}`}
         onClick={handleHeaderClick}
       >
-        <div className="flex items-center space-x-3 flex-wrap cursor-pointer">
+        <div className="flex items-center space-x-3 flex-wrap">
           <MethodLabel method={method.toUpperCase() as any} />
           <OperationPath path={path} className="break-all" />
           {operation.summary && <span className="text-sm text-gray-700 hidden md:inline">- {operation.summary}</span>}
@@ -84,48 +94,48 @@ const OperationBox: React.FC<OperationBoxProps> = ({
                   <DescriptionDisplay description={operation.description} />
                 </div>
               )}
-              {/* Render externalDocs correctly using ExternalDocsDisplay */}
               {externalDocs && <ExternalDocsDisplay externalDocs={externalDocs} className="mt-2" />}
             </div>
           )}
 
-          {/* Try it out Button and Panel */}
-          {/* <div className="p-4">
+          {/* Try it out Button */}
+          <div className="p-4">
             <button
               onClick={toggleTryItOut}
               className="px-3 py-1.5 text-sm font-medium rounded bg-blue-600 text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
             >
-              {isTryItOutVisible ? 'Cancel' : 'Try it out'}
+              {isTryItOutVisible ? '关闭' : '尝试执行'}
             </button>
-          </div> */}
+          </div>
 
+          {/* Try it out Panel */}
           {isTryItOutVisible && (
             <TryItOutPanel
               path={path}
               method={method}
               operation={operation}
-              components={components}
+              components={resolvedComponents}
             />
           )}
 
           {/* Parameters Section */}
           {parameters && parameters.length > 0 && (
             <div className="p-4">
-              <ParametersSection parameters={parameters} components={components} />
+              <ParametersSection parameters={parameters} components={resolvedComponents} />
             </div>
           )}
 
           {/* Request Body Section */}
           {requestBody && (
             <div className="p-4">
-              <RequestBodySection requestBody={requestBody} components={components} />
+              <RequestBodySection requestBody={requestBody} components={resolvedComponents} />
             </div>
           )}
 
           {/* Responses Section */}
           {responses && (
             <div className="p-4">
-              <ResponsesSection responses={responses} components={components} />
+              <ResponsesSection responses={responses} components={resolvedComponents} />
             </div>
           )}
 
