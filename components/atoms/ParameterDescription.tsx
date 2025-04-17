@@ -9,7 +9,7 @@ interface ParameterDescriptionProps {
 
 const ParameterDescription: React.FC<ParameterDescriptionProps> = ({ description }) => {
   return (
-    <div className="text-sm text-gray-700 prose max-w-none">
+    <div className="text-sm text-gray-500 prose max-w-none">
       <ReactMarkdown>{description}</ReactMarkdown>
     </div>
   );
