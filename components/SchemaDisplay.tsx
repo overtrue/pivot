@@ -7,6 +7,7 @@ import {
   ReferenceObject,
   SchemaObject,
 } from '@/types/openapi'; // Adjust path
+import clsx from 'clsx';
 import React, { useState } from 'react';
 import { resolveRef } from '../utils/resolveRef';
 import DefaultValueDisplay from './atoms/DefaultValueDisplay';
@@ -66,7 +67,8 @@ const PropertyDisplay: React.FC<{
   isRequired: boolean;
   components?: ComponentsObject;
   currentDepth: number;
-}> = ({ propName, propSchemaOrRef, isRequired, components, currentDepth }) => {
+  className?: string | string[];
+}> = ({ propName, propSchemaOrRef, isRequired, components, currentDepth, className }) => {
   const [isExpanded, setIsExpanded] = useState(true);
   const toggleExpansion = () => setIsExpanded(!isExpanded);
 
@@ -78,7 +80,7 @@ const PropertyDisplay: React.FC<{
       : '[invalid schema]';
     return (
       <div className="pl-3 my-2 border-l-2 border-gray-200">
-        <div className="font-mono font-medium text-sm mb-1">{propName} <span className="text-red-500 text-xs">Error resolving {refString}</span></div>
+        <div className="font-mono font-medium text-sm mb-1 text-black">{propName} <span className="text-red-500 text-xs">Error resolving {refString}</span></div>
       </div>
     )
   }
@@ -123,69 +125,76 @@ const PropertyDisplay: React.FC<{
   const iconSpanWidthClass = isCollapsible ? 'w-4' : 'w-0'; // Fixed width for the icon span when it exists
 
   return (
-    <div className="flex justify-between items-center pr-2 py-2 group">
-      {/* Left section: Connector + Content + Hover Line */}
-      <div className="flex items-start flex-grow mr-4">
-        {/* Connector Line - Conditional width */}
-        <div className={`${connectorWidthClass} mt-[9px] border-t border-gray-200 group-hover:border-gray-300 flex-shrink-0`}></div>
+    <div className={clsx('py-1', className)} role='property-item'>
+      {/* Property Name Row */}
+      <div
+        className={`group flex items-center flex-wrap gap-x-1 mb-0.5 ${isCollapsible ? 'cursor-pointer' : ''}`}
+        onClick={isCollapsible ? toggleExpansion : undefined}
+        role='property-item-header'
+      >
+        {/* Prefix Connector Line - Conditional width */}
+        <div className={`${connectorWidthClass} border-t border-gray-200 group-hover:border-gray-300 flex-shrink-0`}></div>
 
-        {/* Content Area */}
-        <div className="flex-grow pt-0">
-          {/* Property Name Row */}
-          <div
-            className={`flex items-center flex-wrap gap-x-1 mb-0.5 ${isCollapsible ? 'cursor-pointer' : ''}`}
-            onClick={isCollapsible ? toggleExpansion : undefined}
-          >
-            {/* Icon Span - RENDERED ONLY IF COLLAPSIBLE */}
-            {/* This span provides the space and contains the centered icon */}
-            <span className={`${iconSpanWidthClass} inline-flex items-center justify-center h-5`}>
-              {isCollapsible && (
-                <span className="text-gray-400"><ChevronIcon isExpanded={isExpanded} /></span>
-              )}
-            </span>
-            {/* Text content follows. Starts at same effective indent */}
-            <span className="font-mono font-semibold text-sm text-gray-800 group-hover:text-gray-900">{propName}</span>
-            {/* ... rest of header ... */}
-            <TypeIndicator type={displayTypeString as DataType}>{displayTypeString}</TypeIndicator>
-            {format && <FormatBadge format={format as FormatType} className='text-gray-400' />}
-            {deprecated && <DeprecatedBadge />}
+        {/* Icon Span - RENDERED ONLY IF COLLAPSIBLE */}
+        {/* This span provides the space and contains the centered icon */}
+        <span className={`${iconSpanWidthClass} inline-flex items-center justify-center h-5`}>
+          {isCollapsible && (
+            <span className="text-gray-400"><ChevronIcon isExpanded={isExpanded} /></span>
+          )}
+        </span>
+        {/* Text content follows. Starts at same effective indent */}
+        <span className="font-mono text-sm text-black group-hover:text-gray-900">{propName}</span>
+        {/* ... rest of header ... */}
+        <TypeIndicator type={displayTypeString as DataType}>{displayTypeString}</TypeIndicator>
+        {format && <FormatBadge format={format as FormatType} className='text-gray-400' />}
+        {deprecated && <DeprecatedBadge />}
 
-            {/* Hover Trailing Line */}
-            {isRequired && (
-              <div className="h-px self-center ml-1 flex-grow border-t border-transparent group-hover:border-gray-300 transition-colors duration-150"></div>
-            )}
-          </div>
+        {/* Hover Trailing Line */}
+        {isRequired && (
+          <>
+            {/* hover line */}
+            <div className="h-px self-center ml-1 flex-grow border-t border-transparent group-hover:border-gray-300 transition-colors duration-150"></div>
 
-          {/* Collapsible Section */}
-          {/* Adjusted pl based on consistent total indent (w-8) */}
-          <div className={`pl-4 transition-all duration-300 ease-in-out overflow-hidden ${isExpanded ? 'max-h-[1000px] opacity-100' : 'max-h-0 opacity-0'}`}>
-            {/* ... description, default, enum, constraints ... */}
-            {description && <DescriptionDisplay description={description} className="text-sm text-gray-500 mb-1 pt-0.5" />}
-            <DefaultValueDisplay value={defaultValue} className="text-xs text-gray-500 mb-0.5" />
-            <EnumValuesDisplay values={enumValues || []} className="text-xs text-gray-500 mb-0.5" />
-            <SchemaConstraints schema={{ ...resolvedPropSchema, default: undefined, enum: undefined }} className="text-xs text-gray-500" />
-
-            {/* Recursive call */}
-            {shouldRecurse && (
-              <div className="mt-1 pb-0.5">
-                <SchemaDisplay
-                  schema={resolvedPropSchema}
-                  components={components}
-                  _currentDepth={currentDepth + 1}
-                  className="border-none p-0"
-                />
-              </div>
-            )}
-          </div>
-        </div>
+            {/* required badge */}
+            <div className="flex-shrink-0 flex items-center">
+              <RequiredBadge />
+            </div>
+          </>
+        )}
       </div>
 
-      {/* ... Required Badge ... */}
-      {isRequired && (
-        <div className="flex-shrink-0 flex items-center">
-          <RequiredBadge />
-        </div>
-      )}
+      {/* Collapsible Section */}
+      {/* Adjusted pl based on consistent total indent (w-8) */}
+      <div className={`pl-10 transition-all duration-300 ease-in-out overflow-hidden ${isExpanded ? 'max-h-[1000px] opacity-100' : 'max-h-0 opacity-0'}`} role='property-item-content'>
+        {/* ... description, default, enum, constraints ... */}
+        {description && (
+          <DescriptionDisplay description={description} className="text-sm text-gray-500 mb-1 pt-0.5" />
+        )}
+
+        {defaultValue && (
+          <DefaultValueDisplay value={defaultValue} className="text-xs text-gray-500 mb-0.5" />
+        )}
+
+        {enumValues && (
+          <EnumValuesDisplay values={enumValues || []} className="text-xs text-gray-500 mb-0.5" />
+        )}
+
+        {Object.keys(otherConstraints).length > 0 && (
+          <SchemaConstraints schema={{ ...resolvedPropSchema, default: undefined, enum: undefined }} className="text-xs text-gray-500" />
+        )}
+
+        {/* Recursive call */}
+        {shouldRecurse && (
+          <div className="mt-1 pb-0.5" role='property-item-content-children'>
+            <SchemaDisplay
+              schema={resolvedPropSchema}
+              components={components}
+              _currentDepth={currentDepth + 1}
+              className="border-none p-0"
+            />
+          </div>
+        )}
+      </div>
     </div>
   );
 };
@@ -196,6 +205,9 @@ const SchemaDisplay: React.FC<SchemaDisplayProps & { _currentDepth?: number }> =
   _currentDepth = 0,
   className,
 }) => {
+  const isRef = typeof schemaOrRef === 'object' && '$ref' in schemaOrRef;
+  const refName = isRef ? (schemaOrRef as ReferenceObject).$ref : null;
+
   const resolvedSchema = resolveRef<SchemaObject>(schemaOrRef, components, 'schemas');
 
   if (!resolvedSchema) {
@@ -326,6 +338,9 @@ const SchemaDisplay: React.FC<SchemaDisplayProps & { _currentDepth?: number }> =
           {_currentDepth === 0 && (
             <>
               <div className="flex items-center gap-2 mb-1 flex-wrap">
+                {isRef && refName && (
+                  <span className="text-xs text-gray-500 italic">{refName}</span>
+                )}
                 <TypeIndicator type="array" />
                 {deprecated && <DeprecatedBadge />}
               </div>

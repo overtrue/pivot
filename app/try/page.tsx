@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import OpenApiLayout from '../../components/layouts/OpenApiLayout';
 
 // 默认的 Swagger Petstore URL
-const DEFAULT_URL = 'https://petstore3.swagger.io/api/v3/openapi.json';
+const DEFAULT_URL = 'https://raw.githubusercontent.com/box/box-openapi/main/openapi.json';
 
 export default function TryPage() {
   const [url, setUrl] = useState<string>(DEFAULT_URL);

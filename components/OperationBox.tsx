@@ -11,7 +11,6 @@ import {
 import React, { useState } from 'react';
 import ParametersSection from './/ParametersSection';
 import ResponsesSection from './/ResponsesSection';
-import TryItOutPanel from './/TryItOutPanel';
 import DeprecatedBadge from './atoms/DeprecatedBadge';
 import DescriptionDisplay from './atoms/DescriptionDisplay';
 import ExternalDocsDisplay from './atoms/ExternalDocsDisplay';
@@ -96,26 +95,6 @@ const OperationBox: React.FC<OperationBoxProps> = ({
               )}
               {externalDocs && <ExternalDocsDisplay externalDocs={externalDocs} className="mt-2" />}
             </div>
-          )}
-
-          {/* Try it out Button */}
-          <div className="p-4">
-            <button
-              onClick={toggleTryItOut}
-              className="px-3 py-1.5 text-sm font-medium rounded bg-blue-600 text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-            >
-              {isTryItOutVisible ? '关闭' : '尝试执行'}
-            </button>
-          </div>
-
-          {/* Try it out Panel */}
-          {isTryItOutVisible && (
-            <TryItOutPanel
-              path={path}
-              method={method}
-              operation={operation}
-              components={resolvedComponents}
-            />
           )}
 
           {/* Parameters Section */}

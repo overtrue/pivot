@@ -24,6 +24,15 @@ const keywordTitles = {
   not: 'Not',
 };
 
+// 辅助函数：从引用路径中提取引用名称
+const extractRefName = (ref: string): string | null => {
+  const refMatch = ref.match(/^#\/components\/([^/]+)\/(.+)$/);
+  if (refMatch) {
+    return refMatch[2]; // 返回引用名称
+  }
+  return null;
+};
+
 const SchemaCompositionDisplay: React.FC<SchemaCompositionDisplayProps> = ({
   keyword,
   subschemas,
@@ -47,14 +56,24 @@ const SchemaCompositionDisplay: React.FC<SchemaCompositionDisplayProps> = ({
     <div className={`mt-3 p-3 border rounded ${borderColor} ${className}`}>
       <h4 className="text-sm font-semibold mb-2 text-gray-700">{title}</h4>
       <div className="space-y-3">
-        {subschemas.map((subschema, index) => (
-          <SchemaDisplay
-            key={index}
-            schema={subschema}
-            components={components}
-            currentDepth={currentDepth + 1}
-          />
-        ))}
+        {subschemas.map((subschema, index) => {
+          // 检查是否是引用对象并提取引用名称
+          const isRef = typeof subschema === 'object' && subschema !== null && '$ref' in subschema;
+          const refName = isRef ? extractRefName((subschema as ReferenceObject).$ref) : null;
+
+          return (
+            <div key={index}>
+              {refName && (
+                <div className="text-xs font-medium text-gray-500 mb-1">引用: {refName}</div>
+              )}
+              <SchemaDisplay
+                schema={subschema}
+                components={components}
+                currentDepth={currentDepth + 1}
+              />
+            </div>
+          );
+        })}
       </div>
     </div>
   );
