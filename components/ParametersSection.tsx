@@ -7,7 +7,7 @@ import {
 } from '@/types/openapi'; // Adjust path
 import React from 'react';
 import { resolveRef } from '../utils/resolveRef';
-import ParameterItem, { StyleType } from './ParameterItem'; // Import ParameterItem and StyleType
+import ParameterItem from './ParameterItem'; // Import ParameterItem and StyleType
 
 interface ParametersSectionProps {
   parameters: (ParameterObject | ReferenceObject)[];
@@ -51,7 +51,7 @@ const ParametersSection: React.FC<ParametersSectionProps> = ({ parameters, compo
               // 确保schema是SchemaObject类型并提供默认空对象
               schema={parameter.schema && 'type' in parameter.schema ? parameter.schema : {}}
               // 处理style的类型问题
-              style={parameter.style as StyleType}
+              style={parameter.style}
             />
           );
         })}
