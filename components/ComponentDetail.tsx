@@ -7,6 +7,7 @@ import {
   HeaderObject,
   LinkObject,
   ParameterObject,
+  PathItemObject,
   ReferenceObject,
   RequestBodyObject,
   ResponseObject,
@@ -25,6 +26,7 @@ import RequestBodySection from './RequestBodySection';
 import ResponseItem from './ResponseItem';
 import SchemaDisplay from './SchemaDisplay';
 import SecuritySchemeDisplay from './SecuritySchemeDisplay';
+import { WebhookDisplay } from './WebhookDisplay';
 
 interface ComponentDetailProps {
   activeType: ComponentType | null;
@@ -84,6 +86,13 @@ const ComponentDetail: React.FC<ComponentDetailProps> = ({ activeType, selectedI
 
     case 'callbacks':
       return <CallbackDisplay name={selectedItemName} callback={item as CallbackObject | ReferenceObject} components={components} />;
+
+    case 'webhooks':
+      return <WebhookDisplay
+        name={selectedItemName}
+        pathItem={item as PathItemObject}
+        components={components}
+      />;
 
     default:
       return <div className="text-red-500 p-4">错误：未知组件类型 '{activeType}'。</div>;
