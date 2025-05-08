@@ -1,6 +1,5 @@
-
 import { OpenApiSpec, PathItemObject } from '@/types/openapi';
-import { ChevronDown, ChevronRight, Info, Search } from 'lucide-react';
+import { ChevronDown, ChevronRight, ChevronsDown, ChevronsUp, Info, Search } from 'lucide-react';
 import React, { useState } from 'react';
 import MethodLabel from '../atoms/MethodLabel';
 
@@ -21,12 +20,45 @@ const NavigationSidebar: React.FC<NavigationSidebarProps> = ({
 }) => {
   const [collapsedTags, setCollapsedTags] = useState<Record<string, boolean>>({});
   const [searchQuery, setSearchQuery] = useState('');
+  const [isAllCollapsed, setIsAllCollapsed] = useState(false);
 
   const toggleTagCollapse = (tagName: string) => {
     setCollapsedTags(prev => ({
       ...prev,
       [tagName]: !prev[tagName],
     }));
+  };
+
+  const expandAll = () => {
+    const tags = openapi.tags || [];
+    const newCollapsedState: Record<string, boolean> = {};
+
+    tags.forEach(tag => {
+      newCollapsedState[tag.name] = false;
+    });
+
+    setCollapsedTags(newCollapsedState);
+    setIsAllCollapsed(false);
+  };
+
+  const collapseAll = () => {
+    const tags = openapi.tags || [];
+    const newCollapsedState: Record<string, boolean> = {};
+
+    tags.forEach(tag => {
+      newCollapsedState[tag.name] = true;
+    });
+
+    setCollapsedTags(newCollapsedState);
+    setIsAllCollapsed(true);
+  };
+
+  const toggleAllTags = () => {
+    if (isAllCollapsed) {
+      expandAll();
+    } else {
+      collapseAll();
+    }
   };
 
   // 过滤路径
@@ -64,7 +96,7 @@ const NavigationSidebar: React.FC<NavigationSidebarProps> = ({
             placeholder="搜索API..."
             className="w-full pl-8 pr-3 py-1.5 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-slate-500 focus:border-slate-500"
           />
-          <Search className="absolute left-2.5 top-2 h-3.5 w-3.5 text-gray-400" />
+          <Search className="absolute left-2.5 top-1/2 transform -translate-y-1/2 h-3.5 w-3.5 text-gray-400" />
         </div>
       </div>
 
@@ -73,7 +105,26 @@ const NavigationSidebar: React.FC<NavigationSidebarProps> = ({
         {hasCustomTags ? (
           // 有标签时的渲染
           <>
-            <h3 className="text-xs font-semibold uppercase tracking-wider text-gray-500 mb-3">接口</h3>
+            <div className="flex items-center justify-between mb-3">
+              <h3 className="text-xs font-semibold uppercase tracking-wider text-gray-500">接口</h3>
+              <button
+                onClick={toggleAllTags}
+                className="flex items-center text-xs text-gray-500 hover:text-gray-700 transition-colors"
+                title={isAllCollapsed ? "全部展开" : "全部折叠"}
+              >
+                {isAllCollapsed ? (
+                  <>
+                    <ChevronsDown className="h-3.5 w-3.5 mr-1" />
+                    <span>展开</span>
+                  </>
+                ) : (
+                  <>
+                    <ChevronsUp className="h-3.5 w-3.5 mr-1" />
+                    <span>折叠</span>
+                  </>
+                )}
+              </button>
+            </div>
             <ul className="space-y-3">
               {tags.map(tag => {
                 const isCollapsed = collapsedTags[tag.name];

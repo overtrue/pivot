@@ -22,7 +22,7 @@ interface OpenApiLayoutProps {
   className?: string;
 }
 
-const MIN_SIDEBAR_WIDTH = 200; // 最小宽度
+const MIN_SIDEBAR_WIDTH = 280; // 最小宽度
 const MAX_SIDEBAR_WIDTH = 350; // 最大宽度
 const DEFAULT_SIDEBAR_WIDTH = 280; // 默认宽度
 
