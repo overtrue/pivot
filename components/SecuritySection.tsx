@@ -1,4 +1,6 @@
 import {
+  ComponentsObject,
+  ReferenceObject,
   SecurityRequirementObject,
   SecuritySchemeObject
 } from '@/types/openapi';
@@ -10,7 +12,7 @@ import SecuritySchemeDisplay from './SecuritySchemeDisplay';
 interface SecuritySectionProps {
   security?: SecurityRequirementObject[];
   securitySchemes?: Record<string, SecuritySchemeObject | ReferenceObject>;
-  components?: OpenApiComponents; // Pass down if resolving refs
+  components?: ComponentsObject; // Pass down if resolving refs
   className?: string;
 }
 

@@ -30,6 +30,7 @@
     "react-markdown": "^10.1.0"
   },
   "devDependencies": {
+    "@storybook/experimental-addon-test": "^8.6.12",
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
     "@vitejs/plugin-react": "^4.0.0",
@@ -38,7 +39,8 @@
     "tailwindcss": "^3.3.3",
     "typescript": "^5.0.0",
     "vite": "^6.3.5",
-    "vite-plugin-dts": "^3.0.0"
+    "vite-plugin-dts": "^3.0.0",
+    "vitest": "^3.1.3"
   },
   "keywords": [
     "pivot",

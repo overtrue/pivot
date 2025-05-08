@@ -1,4 +1,4 @@
-import { OpenApiSpec } from '@/types/openapi';
+import { ComponentsObject, OpenApiSpec } from '@/types/openapi';
 
 /**
  * 合并多个 OpenAPI 规范文件
@@ -87,32 +87,7 @@ export function mergeOpenApiSpecs(
   }
 
   // 合并组件
-  result.components = {};
-  const componentTypes = [
-    'schemas', 'responses', 'parameters', 'examples',
-    'requestBodies', 'headers', 'securitySchemes',
-    'links', 'callbacks'
-  ];
-
-  componentTypes.forEach(type => {
-    const mergedComponents: Record<string, any> = {};
-
-    specs.forEach(spec => {
-      if (spec.components && spec.components[type]) {
-        Object.entries(spec.components[type]).forEach(([key, value]) => {
-          if (mergedComponents[key] && JSON.stringify(mergedComponents[key]) !== JSON.stringify(value)) {
-            console.warn(`组件 ${type}.${key} 在多个规范中定义不同`);
-          }
-          mergedComponents[key] = value;
-        });
-      }
-    });
-
-    if (Object.keys(mergedComponents).length > 0) {
-      if (!result.components) result.components = {};
-      result.components[type] = mergedComponents;
-    }
-  });
+  result.components = mergeComponents(specs);
 
   // 合并路径
   specs.forEach(spec => {
@@ -135,6 +110,45 @@ export function mergeOpenApiSpecs(
       });
     }
   });
+
+  return result;
+}
+
+const componentTypes = [
+  'schemas',
+  'responses',
+  'parameters',
+  'examples',
+  'requestBodies',
+  'headers',
+  'securitySchemes',
+  'links',
+  'callbacks'
+];
+
+// 合并组件
+function mergeComponents(specs: OpenApiSpec[]): ComponentsObject {
+  const result: ComponentsObject = {};
+
+  for (const type of componentTypes) {
+    const mergedComponents: Record<string, any> = {};
+
+    for (const spec of specs) {
+      if (spec.components && (spec.components as any)[type]) {
+        Object.entries((spec.components as any)[type]).forEach(([key, value]) => {
+          if (mergedComponents[key]) {
+            console.warn(`重复的组件: ${type}.${key}，使用第一个定义`);
+          } else {
+            mergedComponents[key] = value;
+          }
+        });
+      }
+    }
+
+    if (Object.keys(mergedComponents).length > 0) {
+      (result as any)[type] = mergedComponents;
+    }
+  }
 
   return result;
 }

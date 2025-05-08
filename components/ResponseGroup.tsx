@@ -1,6 +1,6 @@
-
-import { ComponentsObject, ResponseObject } from '@/types/openapi';
+import { ComponentsObject, HeaderObject, ReferenceObject, ResponseObject } from '@/types/openapi';
 import React from 'react';
+import { resolveRef } from '../utils/resolveRef';
 import DescriptionDisplay from './atoms/DescriptionDisplay';
 import StatusCode from './atoms/StatusCode';
 import SchemaDisplay from './SchemaDisplay';
@@ -76,9 +76,10 @@ const ResponseGroup: React.FC<ResponseGroupProps> = ({ status, response, compone
               </thead>
               <tbody className="bg-white divide-y divide-gray-200">
                 {Object.entries(response.headers).map(([name, header]) => {
-                  const headerObj = typeof header === 'object' && '$ref' in header
-                    ? { description: '引用对象' } // 简化处理
-                    : header;
+                  const headerRef = header as HeaderObject | ReferenceObject;
+                  const headerObj = '$ref' in headerRef
+                    ? resolveRef<HeaderObject>(headerRef, components, 'headers') || { description: '引用对象' }
+                    : headerRef as HeaderObject;
 
                   return (
                     <tr key={name}>
@@ -87,7 +88,7 @@ const ResponseGroup: React.FC<ResponseGroupProps> = ({ status, response, compone
                         {headerObj.description && <DescriptionDisplay description={headerObj.description} />}
                       </td>
                       <td className="px-3 py-2 text-sm">
-                        {headerObj.schema?.type || '未知'}
+                        {headerObj.schema && 'type' in headerObj.schema ? headerObj.schema.type : '未知'}
                       </td>
                     </tr>
                   );

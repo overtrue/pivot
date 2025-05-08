@@ -1,4 +1,3 @@
-
 import { ComponentsObject, ReferenceObject, SchemaObject } from '@/types/openapi';
 import { resolveRef } from './resolveRef';
 
@@ -106,7 +105,9 @@ export function generateExample(
         return 'user@example.com';
       } else if (format === 'uuid') {
         return '123e4567-e89b-12d3-a456-426614174000';
-      } else if (format === 'uri' || format === 'url') {
+      } else if (format === 'uri') {
+        return 'https://example.com';
+      } else if (format === 'url') {
         return 'https://example.com';
       } else if (format === 'hostname') {
         return 'example.com';

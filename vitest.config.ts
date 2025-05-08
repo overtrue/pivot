@@ -1,35 +1,36 @@
-import path from 'node:path';
-import { fileURLToPath } from 'node:url';
+import react from '@vitejs/plugin-react';
+import { resolve } from 'path';
+import { defineConfig } from 'vite';
+import dts from 'vite-plugin-dts';
 
-import { defineConfig } from 'vitest/config';
-
-import { storybookTest } from '@storybook/experimental-addon-test/vitest-plugin';
-
-const dirname =
-  typeof __dirname !== 'undefined' ? __dirname : path.dirname(fileURLToPath(import.meta.url));
-
-// More info at: https://storybook.js.org/docs/writing-tests/test-addon
 export default defineConfig({
-  test: {
-    workspace: [
-      {
-        extends: true,
-        plugins: [
-          // The plugin will run tests for the stories defined in your Storybook config
-          // See options at: https://storybook.js.org/docs/writing-tests/test-addon#storybooktest
-          storybookTest({ configDir: path.join(dirname, '.storybook') }),
-        ],
-        test: {
-          name: 'storybook',
-          browser: {
-        enabled: true,
-        headless: true,
-        name: 'chromium',
-        provider: 'playwright'
-      },
-          setupFiles: ['.storybook/vitest.setup.ts'],
+  plugins: [
+    react(),
+    dts({
+      include: ['./src/**/*', './components/**/*', './hooks/**/*', './types/**/*'],
+      rollupTypes: true,
+    }),
+  ],
+  build: {
+    lib: {
+      entry: resolve(__dirname, 'src/index.ts'),
+      formats: ['es', 'umd'],
+      name: 'pivot',
+      fileName: (format) => `pivot.${format}.js`,
+    },
+    rollupOptions: {
+      external: ['react', 'react-dom'],
+      output: {
+        globals: {
+          react: 'React',
+          'react-dom': 'ReactDOM',
         },
       },
-    ],
+    },
+  },
+  resolve: {
+    alias: {
+      '@': resolve(__dirname, '.'),
+    },
   },
 });

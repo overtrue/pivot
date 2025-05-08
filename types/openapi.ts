@@ -10,7 +10,7 @@ export type HttpMethod = 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH' | 'OPTIONS'
 
 // 格式类型定义，用于schema.format
 export type FormatType = 'int32' | 'int64' | 'float' | 'double' | 'byte' | 'binary' |
-  'date' | 'date-time' | 'password' | 'email' | 'uuid' | 'uri' |
+  'date' | 'date-time' | 'password' | 'email' | 'uuid' | 'uri' | 'url' |
   'hostname' | 'ipv4' | 'ipv6';
 
 // JSON Schema 组合关键字
@@ -230,6 +230,7 @@ export interface ComponentsObject {
   securitySchemes?: Record<string, SecuritySchemeObject | ReferenceObject>;
   links?: Record<string, LinkObject | ReferenceObject>;
   callbacks?: Record<string, CallbackObject | ReferenceObject>;
+  webhooks?: Record<string, PathItemObject | ReferenceObject>;
 }
 
 export interface ContactObject {

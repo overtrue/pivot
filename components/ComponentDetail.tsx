@@ -1,4 +1,3 @@
-
 import {
   CallbackObject,
   ComponentsObject,
@@ -25,7 +24,7 @@ import RequestBodySection from './RequestBodySection';
 import ResponseItem from './ResponseItem';
 import SchemaDisplay from './SchemaDisplay';
 import SecuritySchemeDisplay from './SecuritySchemeDisplay';
-import { WebhookDisplay } from './WebhookDisplay';
+import WebhookDisplay from './WebhookDisplay';
 
 interface ComponentDetailProps {
   activeType: ComponentType | null;
