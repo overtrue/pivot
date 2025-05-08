@@ -9,7 +9,7 @@ export interface PathItemDisplayProps {
   className?: string;
 }
 
-export const PathItemDisplay: React.FC<PathItemDisplayProps> = ({
+const PathItemDisplay: React.FC<PathItemDisplayProps> = ({
   path,
   pathItem,
   components,
@@ -47,3 +47,5 @@ export const PathItemDisplay: React.FC<PathItemDisplayProps> = ({
     </div>
   );
 };
+
+export default PathItemDisplay;

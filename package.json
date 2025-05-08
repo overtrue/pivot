@@ -18,7 +18,13 @@
     "react-dom": "^18.0.0"
   },
   "dependencies": {
+    "@codemirror/lang-css": "^6.3.1",
+    "@codemirror/lang-html": "^6.4.9",
+    "@codemirror/lang-javascript": "^6.2.3",
     "@codemirror/lang-json": "^6.0.1",
+    "@codemirror/lang-markdown": "^6.3.2",
+    "@codemirror/lang-xml": "^6.1.0",
+    "@uiw/react-codemirror": "^4.23.12",
     "clsx": "^2.1.1",
     "lucide-react": "^0.264.0",
     "react-markdown": "^10.1.0"

@@ -1,18 +1,9 @@
-
 import {
-  OpenApiComponents // Needed for resolving scheme refs?
-  ,
-
-
-
-
-
-  ReferenceObject,
   SecurityRequirementObject,
   SecuritySchemeObject
 } from '@/types/openapi';
 import React from 'react';
-import { resolveRef } from '../utils/resolveRef'; // If schemes can be refs
+import { resolveRef } from '../utils/resolveRef';
 import SectionTitle from './atoms/SectionTitle';
 import SecuritySchemeDisplay from './SecuritySchemeDisplay';
 

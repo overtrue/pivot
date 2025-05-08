@@ -1,4 +1,4 @@
-import { PathItemObject } from '@/types/openapi';
+import { ComponentsObject, PathItemObject } from '@/types/openapi';
 import React from 'react';
 import OperationBox from './OperationBox';
 
@@ -9,7 +9,7 @@ export interface WebhookDisplayProps {
   className?: string;
 }
 
-export const WebhookDisplay: React.FC<WebhookDisplayProps> = ({
+const WebhookDisplay: React.FC<WebhookDisplayProps> = ({
   name,
   pathItem,
   components,
@@ -47,3 +47,5 @@ export const WebhookDisplay: React.FC<WebhookDisplayProps> = ({
     </div>
   );
 };
+
+export default WebhookDisplay;
