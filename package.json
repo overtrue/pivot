@@ -11,6 +11,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "build:app": "vite build --mode app",
     "prepublishOnly": "npm run build"
   },
   "peerDependencies": {
