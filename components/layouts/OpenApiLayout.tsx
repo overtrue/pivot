@@ -15,6 +15,7 @@ import Codegen from '../interactive/Codegen';
 import OperationBox from '../OperationBox';
 import SecuritySection from '../SecuritySection';
 import ServersSection from '../ServersSection';
+import TryItOutPanel from '../TryItOutPanel';
 import NavigationSidebar from './NavigationSidebar';
 
 interface OpenApiLayoutProps {
@@ -291,7 +292,21 @@ const OpenApiLayout: React.FC<OpenApiLayoutProps> = ({ spec, className }) => {
               components={components}
               requestBody={selectedOperation.operation.requestBody}
               parameters={selectedOperation.operation.parameters || []}
+              collapsible={true}
+              defaultCollapsed={false}
             />
+
+            <div className="mt-6">
+              <TryItOutPanel
+                operation={selectedOperation.operation}
+                method={selectedOperation.method}
+                path={selectedOperation.path}
+                baseUrl={spec.servers && spec.servers.length > 0 ? spec.servers[0].url : ''}
+                components={components}
+                collapsible={true}
+                defaultCollapsed={true}
+              />
+            </div>
           </div>
         </aside>
       )}

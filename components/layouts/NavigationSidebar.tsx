@@ -103,7 +103,7 @@ const NavigationSidebar: React.FC<NavigationSidebarProps> = ({
                     </div>
 
                     {!isCollapsed && (
-                      <ul className="pl-0 mt-1.5 space-y-1">
+                      <ul className="pl-0 mt-1.5 space-y-0.5">
                         {Object.entries(openapi.paths).map(([path, pathItem]) => {
                           const operations = Object.entries(pathItem as PathItemObject)
                             .filter(([method]) => ['get', 'post', 'put', 'delete', 'patch'].includes(method));
@@ -119,14 +119,14 @@ const NavigationSidebar: React.FC<NavigationSidebarProps> = ({
                               <li key={`${method}-${path}`}>
                                 <button
                                   onClick={() => onSelectOperation(path, method, operation)}
-                                  className={`w-full text-left px-2.5 flex items-center gap-2 py-1.5 rounded-md text-sm transition-colors
+                                  className={`w-full text-left px-2.5 flex items-center gap-2 py-1 rounded-md text-sm transition-colors
                                     ${isActive
                                       ? 'bg-slate-200 text-slate-800'
                                       : 'text-gray-700 hover:bg-gray-100'}`}
                                   title={operation.summary || path}
                                 >
                                   <span className="font-mono text-xs truncate flex-1">{path}</span>
-                                  <MethodLabel method={method.toUpperCase() as any} className="flex-shrink-0" />
+                                  <MethodLabel method={method.toUpperCase() as any} variant="compact" className="flex-shrink-0" />
                                 </button>
                               </li>
                             );
@@ -143,7 +143,7 @@ const NavigationSidebar: React.FC<NavigationSidebarProps> = ({
           // 无标签时直接显示所有路径
           <>
             <h3 className="text-xs font-semibold uppercase tracking-wider text-gray-500 mb-3">接口</h3>
-            <ul className="space-y-1">
+            <ul className="space-y-0.5">
               {Object.entries(openapi.paths).map(([path, pathItem]) => {
                 const operations = Object.entries(pathItem as PathItemObject)
                   .filter(([method]) => ['get', 'post', 'put', 'delete', 'patch'].includes(method));
@@ -156,14 +156,14 @@ const NavigationSidebar: React.FC<NavigationSidebarProps> = ({
                     <li key={`${method}-${path}`}>
                       <button
                         onClick={() => onSelectOperation(path, method, operation)}
-                        className={`w-full text-left px-2.5 flex items-center gap-2 py-1.5 rounded-md text-sm
+                        className={`w-full text-left px-2.5 flex items-center gap-2 py-1 rounded-md text-sm
                           ${isActive
                             ? 'bg-slate-200 text-slate-800'
                             : 'text-gray-700 hover:bg-gray-100'}`}
                         title={operation.summary || path}
                       >
                         <span className="font-mono text-xs truncate flex-1">{path}</span>
-                        <MethodLabel method={method.toUpperCase() as any} className="flex-shrink-0" />
+                        <MethodLabel method={method.toUpperCase() as any} variant="compact" className="flex-shrink-0" />
                       </button>
                     </li>
                   );
@@ -177,13 +177,13 @@ const NavigationSidebar: React.FC<NavigationSidebarProps> = ({
         {openapi.components?.schemas && Object.keys(openapi.components.schemas).length > 0 && (
           <div className="mt-6">
             <h3 className="text-xs font-semibold uppercase tracking-wider text-gray-500 mb-3">数据模型</h3>
-            <ul className="space-y-1 pl-2">
+            <ul className="space-y-0.5 pl-2">
               {Object.keys(openapi.components.schemas)
                 .filter(name => !searchQuery || name.toLowerCase().includes(searchQuery.toLowerCase()))
                 .map(schemaName => (
                   <li key={schemaName} className="group">
                     <div
-                      className="flex items-center py-1 px-2 rounded-md hover:bg-gray-100 cursor-pointer text-gray-700"
+                      className="flex items-center py-0.5 px-2 rounded-md hover:bg-gray-100 cursor-pointer text-gray-700"
                       onClick={() => onSelectSchema?.(schemaName)}
                     >
                       <span className="h-2 w-2 rounded-full bg-slate-500 mr-2 flex-shrink-0"></span>

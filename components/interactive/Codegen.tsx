@@ -1,9 +1,10 @@
 'use client';
 
 import { ComponentsObject, HttpMethod, ParameterObject, ReferenceObject, RequestBodyObject } from '@/types/openapi';
-import { Braces, Check, Code2, Copy, Terminal } from 'lucide-react';
+import { Braces, Check, ChevronDown, ChevronUp, Code2, Copy, Terminal } from 'lucide-react';
 import React, { useState } from 'react';
 import { resolveRef } from '../../utils/resolveRef';
+import MethodLabel from '../atoms/MethodLabel';
 
 interface CodegenProps {
   endpoint: string;
@@ -11,13 +12,22 @@ interface CodegenProps {
   parameters?: (ParameterObject | ReferenceObject)[];
   requestBody?: RequestBodyObject | ReferenceObject;
   components?: ComponentsObject;
+  collapsible?: boolean;
+  defaultCollapsed?: boolean;
 }
 
 type CodeLanguage = 'curl' | 'typescript' | 'python';
 
-const Codegen: React.FC<CodegenProps> = ({ endpoint, method, parameters = [], requestBody, components }) => {
+const Codegen: React.FC<CodegenProps> = ({ endpoint, method, parameters = [], requestBody, components, collapsible = false, defaultCollapsed = false }) => {
   const [language, setLanguage] = useState<CodeLanguage>('curl');
   const [copied, setCopied] = useState(false);
+  const [collapsed, setCollapsed] = useState(defaultCollapsed);
+
+  const toggleCollapse = () => {
+    if (collapsible) {
+      setCollapsed(!collapsed);
+    }
+  };
 
   // 解析请求体
   const resolvedRequestBody = requestBody ? resolveRef<RequestBodyObject>(requestBody, components, 'requestBodies') : undefined;
@@ -190,42 +200,56 @@ def call_${method.toLowerCase()}():
 
   return (
     <div className="border rounded-lg overflow-hidden shadow-sm bg-white transition-all">
-      <div className="border-b bg-gray-50 px-4 py-3 flex justify-between items-center">
-        <h3 className="text-base font-medium text-gray-800">代码示例</h3>
-        <div className="text-xs text-gray-500 font-mono">{method.toUpperCase()} {endpoint}</div>
-      </div>
-
-      <div className="px-4 py-3 border-b bg-gray-50">
-        <div className="flex space-x-1 p-1 bg-gray-100 rounded-md">
-          {languageOptions.map((option) => (
-            <button
-              key={option.id}
-              onClick={() => setLanguage(option.id)}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md text-sm font-medium transition-colors ${language === option.id
-                ? 'bg-white text-blue-700 shadow-sm'
-                : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
-                }`}
-            >
-              {getLanguageIcon(option.id)}
-              {option.label}
-            </button>
-          ))}
+      <div
+        className={`border-b bg-gray-50 px-4 py-3 flex items-center ${collapsible ? 'cursor-pointer' : ''}`}
+        onClick={collapsible ? toggleCollapse : undefined}
+      >
+        <MethodLabel method={method.toUpperCase() as 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH' | 'OPTIONS' | 'HEAD'} className="mr-2" />
+        <div className="text-sm text-gray-800 font-mono truncate overflow-hidden flex-grow">
+          {endpoint}
         </div>
+        {collapsible && (
+          <div className="text-gray-500 ml-2">
+            {collapsed ? <ChevronDown size={18} /> : <ChevronUp size={18} />}
+          </div>
+        )}
       </div>
 
-      <div className="relative">
-        <pre className="bg-gray-900 text-gray-100 text-xs p-4 overflow-x-auto max-h-[400px] whitespace-pre-wrap break-words scrollbar-thin scrollbar-thumb-gray-700 scrollbar-track-gray-950">
-          <code>{getCode()}</code>
-        </pre>
+      {!collapsed && (
+        <>
+          <div className="px-4 py-3 border-b bg-gray-50">
+            <div className="flex space-x-1 p-1 bg-gray-100 rounded-md">
+              {languageOptions.map((option) => (
+                <button
+                  key={option.id}
+                  onClick={() => setLanguage(option.id)}
+                  className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md text-sm font-medium transition-colors ${language === option.id
+                    ? 'bg-white text-blue-700 shadow-sm'
+                    : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
+                    }`}
+                >
+                  {getLanguageIcon(option.id)}
+                  {option.label}
+                </button>
+              ))}
+            </div>
+          </div>
 
-        <button
-          onClick={copyToClipboard}
-          className="absolute top-3 right-3 p-1.5 rounded-md bg-gray-800 hover:bg-gray-700 text-gray-300 transition-colors"
-          title="复制代码"
-        >
-          {copied ? <Check size={16} className="text-green-400" /> : <Copy size={16} />}
-        </button>
-      </div>
+          <div className="relative">
+            <pre className="bg-gray-900 text-gray-100 text-xs p-4 overflow-x-auto max-h-[400px] whitespace-pre-wrap break-words scrollbar-thin scrollbar-thumb-gray-700 scrollbar-track-gray-950">
+              <code>{getCode()}</code>
+            </pre>
+
+            <button
+              onClick={copyToClipboard}
+              className="absolute top-3 right-3 p-1.5 rounded-md bg-gray-800 hover:bg-gray-700 text-gray-300 transition-colors"
+              title="复制代码"
+            >
+              {copied ? <Check size={16} className="text-green-400" /> : <Copy size={16} />}
+            </button>
+          </div>
+        </>
+      )}
     </div>
   );
 };
