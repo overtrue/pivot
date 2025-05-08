@@ -1,4 +1,3 @@
-'use client';
 
 import { useOpenApi } from '@/hooks/useOpenApi';
 import {
@@ -24,7 +23,7 @@ interface OpenApiLayoutProps {
 }
 
 const MIN_SIDEBAR_WIDTH = 200; // 最小宽度
-const MAX_SIDEBAR_WIDTH = 600; // 最大宽度
+const MAX_SIDEBAR_WIDTH = 350; // 最大宽度
 const DEFAULT_SIDEBAR_WIDTH = 280; // 默认宽度
 
 const OpenApiLayout: React.FC<OpenApiLayoutProps> = ({ spec, className }) => {
@@ -284,7 +283,7 @@ const OpenApiLayout: React.FC<OpenApiLayoutProps> = ({ spec, className }) => {
 
       {/* Right Sidebar (Code Samples Placeholder) */}
       {selectedOperation && (
-        <aside className="w-1/4 flex-shrink-0 p-4 border-l bg-gray-50">
+        <aside className="w-1/3 max-w-screen-md flex-shrink-0 p-4 border-l bg-gray-50">
           <div className="sticky top-4">
             <Codegen
               endpoint={selectedOperation.path}

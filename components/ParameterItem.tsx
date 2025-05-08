@@ -1,4 +1,3 @@
-'use client';
 
 import EnumValuesDisplay from '@/components/atoms/EnumValuesDisplay';
 import { ComponentsObject, ExampleObject, ParameterObject, ReferenceObject, SchemaObject, StyleType } from '@/types/openapi';

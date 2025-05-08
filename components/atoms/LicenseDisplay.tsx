@@ -1,4 +1,3 @@
-'use client';
 
 import { LicenseObject } from '@/types/openapi'; // Adjust path
 import React from 'react';

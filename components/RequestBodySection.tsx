@@ -1,4 +1,3 @@
-'use client'; // May need client features for tabs or schema viewer interaction
 
 import { useOpenApi } from '@/hooks/useOpenApi';
 import {

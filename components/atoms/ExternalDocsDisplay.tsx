@@ -1,4 +1,3 @@
-'use client';
 
 import { ExternalDocumentationObject } from '@/types/openapi'; // Adjust path
 import React from 'react';

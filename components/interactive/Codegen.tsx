@@ -1,4 +1,3 @@
-'use client';
 
 import { ComponentsObject, HttpMethod, ParameterObject, ReferenceObject, RequestBodyObject } from '@/types/openapi';
 import { Braces, Check, ChevronDown, ChevronUp, Code2, Copy, Terminal } from 'lucide-react';

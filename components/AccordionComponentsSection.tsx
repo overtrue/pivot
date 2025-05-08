@@ -1,4 +1,3 @@
-'use client';
 
 import { ComponentsObject } from '@/types/openapi';
 import { ChevronDown, ChevronRight } from 'lucide-react';

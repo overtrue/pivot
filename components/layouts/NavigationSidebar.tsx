@@ -1,4 +1,3 @@
-'use client';
 
 import { OpenApiSpec, PathItemObject } from '@/types/openapi';
 import { ChevronDown, ChevronRight, Info, Search } from 'lucide-react';

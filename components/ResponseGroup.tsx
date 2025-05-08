@@ -1,4 +1,3 @@
-'use client';
 
 import { ComponentsObject, ResponseObject } from '@/types/openapi';
 import React from 'react';

@@ -1,4 +1,3 @@
-'use client';
 
 import MethodLabel from '@/components/atoms/MethodLabel';
 import OperationPath from '@/components/atoms/OperationPath';

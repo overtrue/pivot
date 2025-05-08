@@ -1,4 +1,3 @@
-'use client';
 
 import { useOpenApi } from '@/hooks/useOpenApi';
 import {

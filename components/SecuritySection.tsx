@@ -1,4 +1,3 @@
-'use client';
 
 import {
   OpenApiComponents // Needed for resolving scheme refs?

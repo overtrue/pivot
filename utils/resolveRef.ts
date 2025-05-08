@@ -1,4 +1,3 @@
-'use client'; // Keep client directive if utils might be used in client components
 
 import { ComponentsObject, ReferenceObject } from '@/types/openapi';
 

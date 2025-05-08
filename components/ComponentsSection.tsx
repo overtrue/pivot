@@ -1,4 +1,3 @@
-'use client';
 
 import { ComponentsObject } from '@/types/openapi';
 import React, { useMemo, useState } from 'react';

@@ -1,4 +1,3 @@
-'use client';
 
 import { ComponentsObject, ReferenceObject, SchemaObject } from '@/types/openapi';
 import { resolveRef } from './resolveRef';

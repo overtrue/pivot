@@ -1,4 +1,3 @@
-'use client';
 
 import { LinkObject } from '@/types/openapi';
 import React, { useState } from 'react';

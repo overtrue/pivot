@@ -1,5 +1,3 @@
-'use client';
-
 import {
   ComponentsObject,
   OperationObject,
@@ -265,20 +263,26 @@ const TryItOutPanel: React.FC<TryItOutPanelProps> = ({
               <div className="flex items-center justify-between">
                 <h3 className="text-sm font-medium text-gray-700">请求参数</h3>
               </div>
-              <div className="space-y-2">
+              <div className="space-y-3">
                 {resolveParameters().map(param => (
-                  <div key={param.name} className="flex items-center gap-2">
-                    <span className={`text-sm ${param.required ? 'font-semibold' : ''}`}>
-                      {param.name} {param.required && <span className="text-red-500">*</span>}
-                    </span>
-                    <span className="text-xs bg-gray-100 px-1 py-0.5 rounded">{param.in}</span>
-                    <input
-                      type="text"
-                      value={paramValues[param.name] || ''}
-                      onChange={(e) => handleParamChange(param.name, e.target.value)}
-                      className="flex-1 px-2 py-1 border rounded text-sm"
-                      placeholder={param.description || ''}
-                    />
+                  <div key={param.name} className="grid grid-cols-12 gap-2 items-start">
+                    <div className="col-span-4">
+                      <div className="flex items-center gap-1">
+                        <span className={`text-sm ${param.required ? 'font-semibold' : ''}`}>
+                          {param.name} {param.required && <span className="text-red-500">*</span>}
+                        </span>
+                        <span className="text-xs bg-gray-100 px-1 py-0.5 rounded">{param.in}</span>
+                      </div>
+                    </div>
+                    <div className="col-span-8">
+                      <input
+                        type="text"
+                        value={paramValues[param.name] || ''}
+                        onChange={(e) => handleParamChange(param.name, e.target.value)}
+                        className="w-full px-2 py-1 border rounded text-sm"
+                        placeholder={`输入${param.name}值`}
+                      />
+                    </div>
                   </div>
                 ))}
               </div>
@@ -319,37 +323,43 @@ const TryItOutPanel: React.FC<TryItOutPanelProps> = ({
             </div>
             <div className="space-y-2">
               {Object.entries(headers).map(([key, value]) => (
-                <div key={key} className="flex space-x-2">
-                  <input
-                    type="text"
-                    value={key}
-                    onChange={(e) => {
-                      const newHeaders = { ...headers };
-                      const oldValue = newHeaders[key];
-                      delete newHeaders[key];
-                      newHeaders[e.target.value] = oldValue;
-                      setHeaders(newHeaders);
-                    }}
-                    className="w-1/3 px-2 py-1 border rounded text-sm"
-                    placeholder="请求头名称"
-                  />
-                  <input
-                    type="text"
-                    value={value}
-                    onChange={(e) => handleHeaderChange(key, e.target.value)}
-                    className="flex-1 px-2 py-1 border rounded text-sm"
-                    placeholder="值"
-                  />
-                  <button
-                    onClick={() => {
-                      const newHeaders = { ...headers };
-                      delete newHeaders[key];
-                      setHeaders(newHeaders);
-                    }}
-                    className="px-2 py-1 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded text-sm transition-colors"
-                  >
-                    删除
-                  </button>
+                <div key={key} className="grid grid-cols-12 gap-2 items-center">
+                  <div className="col-span-4">
+                    <input
+                      type="text"
+                      value={key}
+                      onChange={(e) => {
+                        const newHeaders = { ...headers };
+                        const oldValue = newHeaders[key];
+                        delete newHeaders[key];
+                        newHeaders[e.target.value] = oldValue;
+                        setHeaders(newHeaders);
+                      }}
+                      className="w-full px-2 py-1 border rounded text-sm"
+                      placeholder="请求头名称"
+                    />
+                  </div>
+                  <div className="col-span-6">
+                    <input
+                      type="text"
+                      value={value}
+                      onChange={(e) => handleHeaderChange(key, e.target.value)}
+                      className="w-full px-2 py-1 border rounded text-sm"
+                      placeholder="值"
+                    />
+                  </div>
+                  <div className="col-span-2 flex justify-end">
+                    <button
+                      onClick={() => {
+                        const newHeaders = { ...headers };
+                        delete newHeaders[key];
+                        setHeaders(newHeaders);
+                      }}
+                      className="px-2 py-1 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded text-sm transition-colors"
+                    >
+                      删除
+                    </button>
+                  </div>
                 </div>
               ))}
               <button
