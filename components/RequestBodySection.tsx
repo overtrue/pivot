@@ -82,7 +82,6 @@ const RequestBodySection: React.FC<RequestBodySectionProps> = ({
 
       {/* 内容类型 */}
       <div className="mb-3">
-        <h4 className="text-sm font-medium text-gray-700">内容类型: </h4>
         <div className="flex flex-wrap gap-1 mt-1">
           {contentTypes.map(type => (
             <span
@@ -98,7 +97,6 @@ const RequestBodySection: React.FC<RequestBodySectionProps> = ({
 
       {/* 模式显示 */}
       <div className="mt-4">
-        <h4 className="text-sm font-medium text-gray-700 mb-1">Schema:</h4>
         <SchemaDisplay
           schema={schema}
           components={openApi.components}
@@ -109,7 +107,6 @@ const RequestBodySection: React.FC<RequestBodySectionProps> = ({
       {/* 示例显示，如果有的话 */}
       {mediaType.example && (
         <div className="mt-4">
-          <h4 className="text-sm font-medium text-gray-700 mb-1">示例:</h4>
           <pre className="bg-gray-50 rounded p-3 text-xs overflow-x-auto border">
             <code>{JSON.stringify(mediaType.example, null, 2)}</code>
           </pre>

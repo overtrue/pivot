@@ -6,7 +6,7 @@ import {
   OpenApiSpec as OpenApiObject,
   OperationObject,
 } from '@/types/openapi';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import AccordionComponentsSection from '../AccordionComponentsSection';
 import ExternalDocsDisplay from '../atoms/ExternalDocsDisplay';
 import SectionTitle from '../atoms/SectionTitle';
@@ -33,6 +33,8 @@ const OpenApiLayout: React.FC<OpenApiLayoutProps> = ({ spec, className }) => {
   const [sidebarWidth, setSidebarWidth] = useState(DEFAULT_SIDEBAR_WIDTH);
   const [isDragging, setIsDragging] = useState(false);
   const sidebarRef = useRef<HTMLDivElement>(null);
+  // 用于直接操作DOM的引用
+  const rootRef = useRef<HTMLDivElement>(null);
 
   // 添加选中的schema状态
   const [selectedSchema, setSelectedSchema] = useState<string | null>(null);
@@ -45,6 +47,13 @@ const OpenApiLayout: React.FC<OpenApiLayoutProps> = ({ spec, className }) => {
     resolve
   } = useOpenApi(spec);
 
+  // 初始化CSS变量
+  useEffect(() => {
+    if (rootRef.current) {
+      rootRef.current.style.setProperty('--sidebar-width', `${sidebarWidth}px`);
+    }
+  }, [sidebarWidth]);
+
   // 开始拖动
   const startDragging = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -54,7 +63,7 @@ const OpenApiLayout: React.FC<OpenApiLayoutProps> = ({ spec, className }) => {
   // 处理拖动过程
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
-      if (!isDragging) return;
+      if (!isDragging || !rootRef.current) return;
 
       // 计算新宽度
       let newWidth = e.clientX;
@@ -63,10 +72,19 @@ const OpenApiLayout: React.FC<OpenApiLayoutProps> = ({ spec, className }) => {
       if (newWidth < MIN_SIDEBAR_WIDTH) newWidth = MIN_SIDEBAR_WIDTH;
       if (newWidth > MAX_SIDEBAR_WIDTH) newWidth = MAX_SIDEBAR_WIDTH;
 
-      setSidebarWidth(newWidth);
+      // 直接更新CSS变量，避免React状态更新导致的重新渲染
+      rootRef.current.style.setProperty('--sidebar-width', `${newWidth}px`);
     };
 
     const handleMouseUp = () => {
+      if (isDragging && rootRef.current) {
+        // 获取当前CSS变量值，更新React状态
+        const currentWidth = rootRef.current.style.getPropertyValue('--sidebar-width');
+        const numWidth = parseInt(currentWidth, 10);
+        if (!isNaN(numWidth)) {
+          setSidebarWidth(numWidth);
+        }
+      }
       setIsDragging(false);
     };
 
@@ -87,7 +105,7 @@ const OpenApiLayout: React.FC<OpenApiLayoutProps> = ({ spec, className }) => {
     : getOperationsByTag();
 
   // 更新选择的操作
-  const handleSelectOperation = (operationId: string, path: string, method: string, operation: OperationObject) => {
+  const handleSelectOperation = useCallback((operationId: string, path: string, method: string, operation: OperationObject) => {
     setSelectedOperationId(operationId);
     setSelectedOperation({
       path,
@@ -102,7 +120,7 @@ const OpenApiLayout: React.FC<OpenApiLayoutProps> = ({ spec, className }) => {
         element.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
     }, 100);
-  };
+  }, []);
 
   // 处理选择schema的事件
   const handleSelectSchema = (schemaName: string) => {
@@ -123,13 +141,42 @@ const OpenApiLayout: React.FC<OpenApiLayoutProps> = ({ spec, className }) => {
     }, 300);
   };
 
+  // 自动选择第一个操作，使页面加载时默认显示内容
+  useEffect(() => {
+    // 延迟执行，确保组件完全渲染和数据已加载
+    const timer = setTimeout(() => {
+      if (selectedOperation) return;
+
+      try {
+        const operationsByTag = getOperationsByTag();
+        const tags = Object.keys(operationsByTag);
+
+        if (tags.length > 0) {
+          const firstTag = tags[0];
+          const operations = operationsByTag[firstTag];
+
+          if (operations && operations.length > 0) {
+            const { path, method, operation } = operations[0];
+            const operationId = operation.operationId || `${method}-${path}`;
+            handleSelectOperation(operationId, path, method, operation);
+            console.log('Auto-selected operation:', operationId);
+          }
+        }
+      } catch (error) {
+        console.error('Error auto-selecting operation:', error);
+      }
+    }, 300); // 给页面渲染预留时间
+
+    return () => clearTimeout(timer);
+  }, [spec, handleSelectOperation]); // 只依赖于spec和处理函数
+
   return (
-    <div className={`flex min-h-screen ${className} ${isDragging ? 'select-none cursor-ew-resize' : ''}`}>
+    <div ref={rootRef} className={`flex min-h-screen ${className} ${isDragging ? 'select-none cursor-ew-resize' : ''}`}>
       {/* Left Sidebar (Navigation) */}
       <div
         ref={sidebarRef}
         className="flex-shrink-0 relative"
-        style={{ width: `${sidebarWidth}px` }}
+        style={{ width: 'var(--sidebar-width)' }}
       >
         <NavigationSidebar
           openapi={spec}
@@ -142,7 +189,7 @@ const OpenApiLayout: React.FC<OpenApiLayoutProps> = ({ spec, className }) => {
 
         {/* 拖动调整手柄 */}
         <div
-          className="absolute top-0 right-0 bottom-0 w-1 bg-transparent hover:bg-blue-400 cursor-ew-resize z-10"
+          className="absolute top-0 right-0 bottom-0 w-1 bg-transparent hover:bg-slate-400 cursor-ew-resize z-10"
           onMouseDown={startDragging}
         />
       </div>
@@ -236,7 +283,7 @@ const OpenApiLayout: React.FC<OpenApiLayoutProps> = ({ spec, className }) => {
 
       {/* Right Sidebar (Code Samples Placeholder) */}
       {selectedOperation && (
-        <aside className="w-1/3 flex-shrink-0 p-4 border-l bg-gray-50">
+        <aside className="w-1/4 flex-shrink-0 p-4 border-l bg-gray-50">
           <div className="sticky top-4">
             <Codegen
               endpoint={selectedOperation.path}

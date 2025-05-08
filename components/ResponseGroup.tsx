@@ -30,7 +30,6 @@ const ResponseGroup: React.FC<ResponseGroupProps> = ({ status, response, compone
       {contentTypes.length > 0 && (
         <div className="space-y-3">
           <div>
-            <h4 className="text-sm font-medium text-gray-700 mb-1">内容类型:</h4>
             <div className="flex flex-wrap gap-1">
               {contentTypes.map(type => (
                 <span
@@ -46,7 +45,6 @@ const ResponseGroup: React.FC<ResponseGroupProps> = ({ status, response, compone
 
           {jsonContentType && response.content?.[jsonContentType].schema && (
             <div>
-              <h4 className="text-sm font-medium text-gray-700 mb-1">Schema:</h4>
               <SchemaDisplay
                 schema={response.content[jsonContentType].schema}
                 components={components}
@@ -57,7 +55,6 @@ const ResponseGroup: React.FC<ResponseGroupProps> = ({ status, response, compone
 
           {jsonContentType && response.content?.[jsonContentType].example && (
             <div>
-              <h4 className="text-sm font-medium text-gray-700 mb-1">示例:</h4>
               <pre className="bg-white rounded p-3 text-xs overflow-x-auto border">
                 <code>{JSON.stringify(response.content[jsonContentType].example, null, 2)}</code>
               </pre>
@@ -69,7 +66,6 @@ const ResponseGroup: React.FC<ResponseGroupProps> = ({ status, response, compone
       {/* 头部信息 */}
       {response.headers && Object.keys(response.headers).length > 0 && (
         <div>
-          <h4 className="text-sm font-medium text-gray-700 mb-1">Headers:</h4>
           <div className="border rounded overflow-hidden">
             <table className="min-w-full divide-y divide-gray-200">
               <thead className="bg-gray-50">

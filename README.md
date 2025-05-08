@@ -1,4 +1,4 @@
-# OpenAPI UI
+# Pivot
 
 A modern React component library for visualizing and interacting with OpenAPI specifications.
 
@@ -12,15 +12,15 @@ A modern React component library for visualizing and interacting with OpenAPI sp
 ## Installation
 
 ```bash
-npm install openapi-ui
+npm install @overtrue/pivot
 # or
-yarn add openapi-ui
+yarn add @overtrue/pivot
 ```
 
 ## Basic Usage
 
 ```tsx
-import { OpenApiLayout } from 'openapi-ui';
+import { OpenApiLayout } from '@overtrue/pivot';
 import spec from './openapi-spec.json';
 
 function App() {
@@ -39,7 +39,7 @@ The main layout component that renders the complete OpenAPI documentation.
 Standalone component for making API requests:
 
 ```tsx
-import { TryItOutPanel } from 'openapi-ui';
+import { TryItOutPanel } from '@overtrue/pivot';
 
 function TestPage() {
   return (

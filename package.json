@@ -1,9 +1,9 @@
 {
-  "name": "openapi-ui",
+  "name": "@overtrue/pivot",
   "version": "1.0.0",
-  "description": "A modern React UI library for OpenAPI specifications",
-  "main": "./dist/openapi-ui.umd.js",
-  "module": "./dist/openapi-ui.es.js",
+  "description": "Pivot - A modern React UI library for OpenAPI specifications",
+  "main": "./dist/pivot.umd.js",
+  "module": "./dist/pivot.es.js",
   "types": "./dist/index.d.ts",
   "files": [
     "dist"
@@ -35,6 +35,7 @@
     "vite-plugin-dts": "^3.0.0"
   },
   "keywords": [
+    "pivot",
     "openapi",
     "swagger",
     "react",

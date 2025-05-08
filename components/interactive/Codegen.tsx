@@ -1,6 +1,7 @@
 'use client';
 
 import { ComponentsObject, HttpMethod, ParameterObject, ReferenceObject, RequestBodyObject } from '@/types/openapi';
+import { Braces, Check, Code2, Copy, Terminal } from 'lucide-react';
 import React, { useState } from 'react';
 import { resolveRef } from '../../utils/resolveRef';
 
@@ -12,8 +13,11 @@ interface CodegenProps {
   components?: ComponentsObject;
 }
 
+type CodeLanguage = 'curl' | 'typescript' | 'python';
+
 const Codegen: React.FC<CodegenProps> = ({ endpoint, method, parameters = [], requestBody, components }) => {
-  const [language, setLanguage] = useState<'typescript' | 'python' | 'curl'>('curl');
+  const [language, setLanguage] = useState<CodeLanguage>('curl');
+  const [copied, setCopied] = useState(false);
 
   // 解析请求体
   const resolvedRequestBody = requestBody ? resolveRef<RequestBodyObject>(requestBody, components, 'requestBodies') : undefined;
@@ -161,34 +165,67 @@ def call_${method.toLowerCase()}():
     }
   };
 
+  const copyToClipboard = () => {
+    navigator.clipboard.writeText(getCode());
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
+  const getLanguageIcon = (lang: CodeLanguage) => {
+    switch (lang) {
+      case 'curl':
+        return <Terminal size={16} />;
+      case 'typescript':
+        return <Braces size={16} />;
+      case 'python':
+        return <Code2 size={16} />;
+    }
+  };
+
+  const languageOptions: { id: CodeLanguage; label: string }[] = [
+    { id: 'curl', label: 'cURL' },
+    { id: 'typescript', label: 'TypeScript' },
+    { id: 'python', label: 'Python' },
+  ];
+
   return (
-    <div className="border rounded-md p-4 bg-gray-50">
-      <div className="mb-4">
-        <h3 className="text-lg font-semibold mb-2">Code Samples</h3>
-        <div className="flex space-x-2">
-          <button
-            onClick={() => setLanguage('curl')}
-            className={`px-3 py-1 rounded ${language === 'curl' ? 'bg-blue-600 text-white' : 'bg-gray-200'}`}
-          >
-            cURL
-          </button>
-          <button
-            onClick={() => setLanguage('typescript')}
-            className={`px-3 py-1 rounded ${language === 'typescript' ? 'bg-blue-600 text-white' : 'bg-gray-200'}`}
-          >
-            TypeScript
-          </button>
-          <button
-            onClick={() => setLanguage('python')}
-            className={`px-3 py-1 rounded ${language === 'python' ? 'bg-blue-600 text-white' : 'bg-gray-200'}`}
-          >
-            Python
-          </button>
+    <div className="border rounded-lg overflow-hidden shadow-sm bg-white transition-all">
+      <div className="border-b bg-gray-50 px-4 py-3 flex justify-between items-center">
+        <h3 className="text-base font-medium text-gray-800">代码示例</h3>
+        <div className="text-xs text-gray-500 font-mono">{method.toUpperCase()} {endpoint}</div>
+      </div>
+
+      <div className="px-4 py-3 border-b bg-gray-50">
+        <div className="flex space-x-1 p-1 bg-gray-100 rounded-md">
+          {languageOptions.map((option) => (
+            <button
+              key={option.id}
+              onClick={() => setLanguage(option.id)}
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md text-sm font-medium transition-colors ${language === option.id
+                ? 'bg-white text-blue-700 shadow-sm'
+                : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
+                }`}
+            >
+              {getLanguageIcon(option.id)}
+              {option.label}
+            </button>
+          ))}
         </div>
       </div>
-      <pre className="bg-gray-800 text-white text-xs p-4 rounded overflow-x-auto">
-        <code>{getCode()}</code>
-      </pre>
+
+      <div className="relative">
+        <pre className="bg-gray-900 text-gray-100 text-xs p-4 overflow-x-auto max-h-[400px] whitespace-pre-wrap break-words scrollbar-thin scrollbar-thumb-gray-700 scrollbar-track-gray-950">
+          <code>{getCode()}</code>
+        </pre>
+
+        <button
+          onClick={copyToClipboard}
+          className="absolute top-3 right-3 p-1.5 rounded-md bg-gray-800 hover:bg-gray-700 text-gray-300 transition-colors"
+          title="复制代码"
+        >
+          {copied ? <Check size={16} className="text-green-400" /> : <Copy size={16} />}
+        </button>
+      </div>
     </div>
   );
 };

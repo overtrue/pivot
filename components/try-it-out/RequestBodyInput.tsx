@@ -17,9 +17,16 @@ export const RequestBodyInput: React.FC<RequestBodyInputProps> = ({
 }) => {
   if (!requestBody) return null;
 
+  // 获取请求体类型
+  const contentTypes = requestBody?.content ? Object.keys(requestBody.content) : [];
+  const contentType = contentTypes.find(type => type.includes('json')) || contentTypes[0] || 'application/json';
+
   return (
     <div className="mt-4">
-      <h3 className="text-base font-medium mb-2">请求体</h3>
+      <div className="flex justify-between items-center mb-2">
+        <h3 className="text-base font-medium">请求体</h3>
+        <span className="text-xs font-mono bg-gray-100 px-2 py-1 rounded">{contentType}</span>
+      </div>
       <div className="border rounded-md p-3 bg-gray-50">
         <CodeMirrorEditor
           value={value}

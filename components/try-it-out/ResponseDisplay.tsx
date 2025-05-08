@@ -1,7 +1,7 @@
-import { ResponseData } from '@/types/openapi';
 import { Check, Clipboard } from 'lucide-react';
 import React, { useState } from 'react';
 import { CodeMirrorEditor } from '../atoms/CodeMirrorEditor';
+import { ResponseData } from '@/types/openapi';
 
 export interface ResponseDisplayProps {
   response: ResponseData;

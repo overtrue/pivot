@@ -37,6 +37,21 @@ export interface ExternalDocumentationObject {
   url: string;
 }
 
+// XML对象定义
+export interface XMLObject {
+  name?: string;
+  namespace?: string;
+  prefix?: string;
+  attribute?: boolean;
+  wrapped?: boolean;
+}
+
+// 鉴别器对象定义
+export interface DiscriminatorObject {
+  propertyName: string;
+  mapping?: Record<string, string>;
+}
+
 // SchemaObject 定义
 export interface SchemaObject {
   type?: DataType;
@@ -70,6 +85,8 @@ export interface SchemaObject {
   multipleOf?: number;
   exclusiveMinimum?: boolean | number;
   exclusiveMaximum?: boolean | number;
+  discriminator?: DiscriminatorObject;
+  xml?: XMLObject;
 }
 
 export interface BaseParameterObject {
@@ -178,8 +195,8 @@ export interface CallbackObject {
 }
 
 export interface OAuthFlow {
-  authorizationUrl?: string;
-  tokenUrl?: string;
+  authorizationUrl?: string; // 对于implicit和authorizationCode流程是必需的
+  tokenUrl?: string; // 对于password、clientCredentials和authorizationCode流程是必需的
   refreshUrl?: string;
   scopes: Record<string, string>;
 }
@@ -257,10 +274,21 @@ export interface TagObject {
 export interface OpenApiSpec {
   openapi: string;
   info: InfoObject;
+  jsonSchemaDialect?: string; // OpenAPI 3.1 新增
   servers?: ServerObject[];
   paths: PathsObject;
+  webhooks?: Record<string, PathItemObject | ReferenceObject>; // OpenAPI 3.1 新增
   components?: ComponentsObject;
   security?: SecurityRequirementObject[];
   tags?: TagObject[];
   externalDocs?: ExternalDocumentationObject;
+}
+
+// API响应数据类型定义
+export interface ResponseData {
+  status: number;
+  statusText: string;
+  headers: Record<string, string>;
+  body: string;
+  time: number;
 }

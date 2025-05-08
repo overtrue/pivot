@@ -98,7 +98,6 @@ const HeaderItem: React.FC<HeaderItemProps> = ({
 
           {examples && Object.keys(examples).length > 0 && (
             <div>
-              <h4 className="text-xs font-semibold mb-1">Examples</h4>
               <ExamplesDisplay examples={examples} components={components} />
             </div>
           )}

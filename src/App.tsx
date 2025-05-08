@@ -1,11 +1,44 @@
 import OpenApiLayout from '@/components/layouts/OpenApiLayout';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 export default function App() {
   const [specUrl, setSpecUrl] = useState('https://raw.githubusercontent.com/box/box-openapi/main/openapi.json');
   const [spec, setSpec] = useState<any>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const prevUrlRef = useRef<string>('');
+  const debounceTimerRef = useRef<NodeJS.Timeout | null>(null);
+
+  // 组件加载时自动加载默认规范
+  useEffect(() => {
+    loadSpec();
+  }, []);
+
+  // 监听 URL 变化，自动加载
+  useEffect(() => {
+    // 跳过初始加载和相同 URL 的重复加载
+    if (specUrl === prevUrlRef.current) {
+      return;
+    }
+
+    prevUrlRef.current = specUrl;
+
+    // 清除之前的定时器
+    if (debounceTimerRef.current) {
+      clearTimeout(debounceTimerRef.current);
+    }
+
+    // 设置防抖定时器，避免频繁请求
+    debounceTimerRef.current = setTimeout(() => {
+      loadSpec();
+    }, 800);
+
+    return () => {
+      if (debounceTimerRef.current) {
+        clearTimeout(debounceTimerRef.current);
+      }
+    };
+  }, [specUrl]);
 
   const loadSpec = async () => {
     if (!specUrl) return;
@@ -31,25 +64,40 @@ export default function App() {
 
   return (
     <div className="min-h-screen flex flex-col">
-      <header className="bg-white border-b border-gray-200 py-4 px-6 shadow-sm">
-        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
-          <h1 className="text-xl sm:text-2xl font-bold text-blue-600">OpenAPI UI</h1>
-
-          <div className="w-full sm:w-auto flex-1 max-w-2xl flex flex-col sm:flex-row gap-2">
-            <input
-              type="text"
-              value={specUrl}
-              onChange={(e) => setSpecUrl(e.target.value)}
-              placeholder="输入OpenAPI规范URL"
-              className="flex-1 px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
-            <button
-              onClick={loadSpec}
-              disabled={!specUrl || loading}
-              className="px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed"
+      <header className="bg-gradient-to-r from-slate-600 to-slate-800 text-white py-2 px-6 shadow-lg">
+        <div className="w-full flex flex-col sm:flex-row items-center justify-between gap-2">
+          <div className="flex items-center">
+            <svg
+              className="w-7 h-7 mr-2 text-white"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             >
-              {loading ? '加载中...' : '加载'}
-            </button>
+              <polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5 12 2"></polygon>
+              <line x1="12" y1="22" x2="12" y2="15.5"></line>
+              <polyline points="22 8.5 12 15.5 2 8.5"></polyline>
+            </svg>
+            <h1 className="text-lg sm:text-xl font-bold text-white tracking-wide">Pivot</h1>
+          </div>
+
+          <div className="w-full sm:w-auto flex-1 max-w-2xl">
+            <div className="relative">
+              <input
+                type="text"
+                value={specUrl}
+                onChange={(e) => setSpecUrl(e.target.value)}
+                placeholder="输入OpenAPI规范URL"
+                className="block w-full px-4 py-2 text-sm border border-slate-400 bg-slate-700 bg-opacity-20 rounded-md text-white placeholder-slate-300 focus:outline-none focus:ring-2 focus:ring-white focus:border-transparent"
+              />
+              {loading && (
+                <div className="absolute inset-y-0 right-0 flex items-center pr-3">
+                  <div className="animate-spin rounded-full h-4 w-4 border-2 border-white border-t-transparent"></div>
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </header>
@@ -66,22 +114,14 @@ export default function App() {
 
         {!spec && !loading && !error ? (
           <div className="max-w-3xl mx-auto mt-12 text-center px-4">
-            <h2 className="text-xl font-medium text-gray-700 mb-4">输入OpenAPI规范URL并点击加载按钮</h2>
+            <h2 className="text-xl font-medium text-gray-700 mb-4">输入OpenAPI规范URL</h2>
             <p className="text-gray-500">
-              您可以使用上方的输入框输入任何有效的OpenAPI规范URL，或者使用默认提供的示例。
+              您可以使用上方的输入框输入任何有效的OpenAPI规范URL，系统会自动加载。
             </p>
-            <div className="mt-8">
-              <button
-                onClick={loadSpec}
-                className="px-6 py-3 bg-blue-600 text-white rounded-md hover:bg-blue-700"
-              >
-                加载默认示例
-              </button>
-            </div>
           </div>
         ) : loading ? (
           <div className="flex justify-center items-center min-h-[60vh]">
-            <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
+            <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-slate-500"></div>
           </div>
         ) : spec ? (
           <OpenApiLayout spec={spec} />

@@ -50,7 +50,6 @@ const ExamplesDisplay: React.FC<ExamplesDisplayProps> = ({ examples, components 
           )}
           {example.value !== undefined && (
             <div>
-              <h6 className="text-xs font-medium text-gray-500 mb-1">Value:</h6>
               <pre className="bg-gray-100 p-2 rounded font-mono text-xs overflow-x-auto">
                 <code>{JSON.stringify(example.value, null, 2)}</code>
               </pre>
