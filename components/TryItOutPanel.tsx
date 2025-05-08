@@ -3,28 +3,12 @@
 import {
   ComponentsObject,
   OperationObject,
-  ParameterObject,
-  RequestBodyObject
+  ParameterObject
 } from '@/types/openapi';
 import { ChevronDown, ChevronUp, Send } from 'lucide-react';
 import React, { useState } from 'react';
 import { resolveRef } from '../utils/resolveRef';
 import MethodLabel from './atoms/MethodLabel';
-
-// 因为模块可能不存在，我们在这里定义接口
-interface ParameterInputListProps {
-  parameters: ParameterObject[];
-  values: Record<string, string>;
-  onChange: (name: string, value: string) => void;
-  components?: ComponentsObject;
-}
-
-interface RequestBodyInputProps {
-  requestBody: RequestBodyObject;
-  components?: ComponentsObject;
-  value: string;
-  onChange: (value: string) => void;
-}
 
 interface TryItOutPanelProps {
   operation: OperationObject;
@@ -42,21 +26,6 @@ interface ResponseData {
   headers: Record<string, string>;
   body: string;
   time: number;
-}
-
-// 因为导入路径有问题，这些类型可能需要直接用于组件
-interface ParameterInputProps {
-  parameters: ParameterObject[];
-  values: Record<string, string>;
-  onChange: (name: string, value: string) => void;
-  components?: ComponentsObject;
-}
-
-interface RequestBodyProps {
-  requestBody: RequestBodyObject;
-  components?: ComponentsObject;
-  value: string;
-  onChange: (value: string) => void;
 }
 
 const TryItOutPanel: React.FC<TryItOutPanelProps> = ({
