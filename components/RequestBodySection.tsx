@@ -1,4 +1,3 @@
-
 import { useOpenApi } from '@/hooks/useOpenApi';
 import {
   ComponentsObject,
@@ -7,22 +6,23 @@ import {
   RequestBodyObject
 } from '@/types/openapi';
 import React from 'react';
-import DescriptionDisplay from './atoms/DescriptionDisplay';
 import SectionTitle from './atoms/SectionTitle';
-import SchemaDisplay from './SchemaDisplay';
+import SchemaWithExampleViewer from './SchemaWithExampleViewer';
 
 interface RequestBodySectionProps {
   requestBody: RequestBodyObject | ReferenceObject;
   components?: ComponentsObject;
   spec?: OpenApiSpec; // 可选，如果提供则使用完整的OpenAPI规范
   className?: string;
+  titleClassName?: string;
 }
 
 const RequestBodySection: React.FC<RequestBodySectionProps> = ({
   requestBody,
   components,
   spec,
-  className = ''
+  className = '',
+  titleClassName = ''
 }) => {
   // 如果提供了完整规范，使用useOpenApi处理数据
   const openApi = spec
@@ -48,69 +48,32 @@ const RequestBodySection: React.FC<RequestBodySectionProps> = ({
     return <div className="text-yellow-500">请求体无内容定义</div>;
   }
 
-  // 优先使用application/json
-  const contentTypes = Object.keys(content);
-  const jsonContentType = contentTypes.find(type => type.includes('json')) || contentTypes[0];
-  const mediaType = content[jsonContentType];
-
-  if (!mediaType || !mediaType.schema) {
-    return <div className="text-yellow-500">请求体的内容类型未定义模式</div>;
-  }
-
-  const schema = mediaType.schema;
+  // 自定义头部渲染函数
+  const renderHeader = () => {
+    return (
+      <>
+        {/* 必填标记 */}
+        {resolvedBody.required && (
+          <div className="mb-2">
+            <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-red-100 text-red-800">
+              必填
+            </span>
+          </div>
+        )}
+      </>
+    );
+  };
 
   return (
     <div className={className}>
-      <SectionTitle title="请求体" className="text-lg font-medium mb-3" />
+      <SectionTitle title="请求体" className={`text-lg font-medium mb-3 ${titleClassName}`} />
 
-      {/* 必填标记 */}
-      {resolvedBody.required && (
-        <div className="mb-2">
-          <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-red-100 text-red-800">
-            必填
-          </span>
-        </div>
-      )}
-
-      {/* 描述信息 */}
-      {resolvedBody.description && (
-        <div className="mb-4">
-          <DescriptionDisplay description={resolvedBody.description} />
-        </div>
-      )}
-
-      {/* 内容类型 */}
-      <div className="mb-3">
-        <div className="flex flex-wrap gap-1 mt-1">
-          {contentTypes.map(type => (
-            <span
-              key={type}
-              className={`inline-block px-2 py-1 text-xs font-mono rounded ${type === jsonContentType ? 'bg-blue-100 text-blue-800' : 'bg-gray-100 text-gray-800'
-                }`}
-            >
-              {type}
-            </span>
-          ))}
-        </div>
-      </div>
-
-      {/* 模式显示 */}
-      <div className="mt-4">
-        <SchemaDisplay
-          schema={schema}
-          components={openApi.components}
-          className="border rounded p-3 bg-gray-50"
-        />
-      </div>
-
-      {/* 示例显示，如果有的话 */}
-      {mediaType.example && (
-        <div className="mt-4">
-          <pre className="bg-gray-50 rounded p-3 text-xs overflow-x-auto border">
-            <code>{JSON.stringify(mediaType.example, null, 2)}</code>
-          </pre>
-        </div>
-      )}
+      <SchemaWithExampleViewer
+        content={requestBody}
+        components={openApi.components}
+        contentType="requestBody"
+        renderHeader={renderHeader}
+      />
     </div>
   );
 };

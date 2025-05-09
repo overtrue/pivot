@@ -1,4 +1,3 @@
-
 import React from 'react';
 
 interface MediaTypeSelectorProps {
@@ -18,7 +17,7 @@ const MediaTypeSelector: React.FC<MediaTypeSelectorProps> = ({
 
   return (
     <div className="mb-2 border-b">
-      <ul className="flex flex-wrap -mb-px text-sm font-medium text-center">
+      <ul className="flex flex-wrap -mb-px text-sm font-medium text-center z-10">
         {mediaTypes.map(mediaType => (
           <li key={mediaType} className="mr-2">
             <button
@@ -27,6 +26,7 @@ const MediaTypeSelector: React.FC<MediaTypeSelectorProps> = ({
                 ? 'text-blue-600 border-blue-600'
                 : 'border-transparent hover:text-gray-600 hover:border-gray-300'
                 }`}
+              type="button"
             >
               {mediaType}
             </button>
