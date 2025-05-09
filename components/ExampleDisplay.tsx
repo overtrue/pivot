@@ -96,13 +96,17 @@ const ExampleDisplay: React.FC<ExampleDisplayProps> = ({
         language={language}
         style={vs}
         className="rounded text-xs overflow-x-auto"
+        codeTagProps={{
+          className: 'font-mono'
+        }}
         customStyle={{
           background: 'transparent',
           padding: '12px',
           margin: 0,
           border: 'none',
+          fontFamily: 'inherit',
           fontWeight: 'normal',
-          lineHeight: '1.5',
+          lineHeight: '1.4',
         }}
       >
         {exampleStr}

@@ -31,10 +31,13 @@ const CodeMarkdown: React.FC<CodeMarkdownProps> = ({
         <SyntaxHighlighter
           language={language}
           style={vs}
+          codeTagProps={{
+            className: 'font-mono'
+          }}
           customStyle={{
             margin: 0,
             padding: '1rem',
-            fontSize: '1rem',
+            fontSize: '0.75rem',
             lineHeight: 1.2,
             border: 'none'
           }}
