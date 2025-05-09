@@ -1,4 +1,5 @@
 import OpenApiLayout from '@/components/layouts/OpenApiLayout';
+import { Github } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 
 // 预定义的API示例列表
@@ -81,8 +82,8 @@ export default function App() {
 
   return (
     <div className="min-h-screen flex flex-col">
-      <header className="bg-gradient-to-r from-slate-600 to-slate-800 text-white py-2 px-6 shadow-lg">
-        <div className="w-full flex flex-col sm:flex-row items-center justify-between gap-2">
+      <header className="bg-gradient-to-r from-slate-600 to-slate-800 text-white py-3 px-6 shadow-lg">
+        <div className="w-full flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center">
             <svg
               className="w-7 h-7 mr-2 text-white"
@@ -100,45 +101,59 @@ export default function App() {
             <h1 className="text-lg sm:text-xl font-bold text-white tracking-wide">Pivot</h1>
           </div>
 
-          <div className="w-full sm:w-auto flex-1 max-w-2xl">
-            <div className="flex flex-col sm:flex-row gap-2">
-              {/* 示例选择器 */}
-              <div className="sm:w-1/3">
-                <select
-                  onChange={(e) => {
-                    const selectedExample = API_EXAMPLES.find(ex => ex.url === e.target.value);
-                    if (selectedExample) {
-                      setSpecUrl(selectedExample.url);
-                    }
-                  }}
-                  className="w-full px-4 py-2 text-sm border border-slate-400 bg-slate-700 bg-opacity-20 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-white focus:border-transparent"
-                  value={API_EXAMPLES.find(ex => ex.url === specUrl)?.url || ''}
-                >
-                  <option value="" disabled>选择示例API</option>
-                  {API_EXAMPLES.map((example) => (
-                    <option key={example.url} value={example.url}>
-                      {example.name}
-                    </option>
-                  ))}
-                </select>
-              </div>
-
-              {/* URL输入框 */}
-              <div className="relative sm:w-2/3">
-                <input
-                  type="text"
-                  value={specUrl}
-                  onChange={(e) => setSpecUrl(e.target.value)}
-                  placeholder="输入OpenAPI规范URL"
-                  className="block w-full px-4 py-2 text-sm border border-slate-400 bg-slate-700 bg-opacity-20 rounded-md text-white placeholder-slate-300 focus:outline-none focus:ring-2 focus:ring-white focus:border-transparent"
-                />
-                {loading && (
-                  <div className="absolute inset-y-0 right-0 flex items-center pr-3">
-                    <div className="animate-spin rounded-full h-4 w-4 border-2 border-white"></div>
-                  </div>
-                )}
+          <div className="w-full max-w-3xl flex items-center gap-4">
+            {/* 示例选择器 */}
+            <div className="relative w-44">
+              <select
+                onChange={(e) => {
+                  const selectedExample = API_EXAMPLES.find(ex => ex.url === e.target.value);
+                  if (selectedExample) {
+                    setSpecUrl(selectedExample.url);
+                  }
+                }}
+                className="w-full appearance-none pl-4 pr-10 py-2 text-sm border border-slate-400 bg-slate-700 bg-opacity-20 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-white focus:border-transparent"
+                value={API_EXAMPLES.find(ex => ex.url === specUrl)?.url || ''}
+              >
+                <option value="" disabled>选择示例API</option>
+                {API_EXAMPLES.map((example) => (
+                  <option key={example.url} value={example.url}>
+                    {example.name}
+                  </option>
+                ))}
+              </select>
+              <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-white">
+                <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                  <path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" />
+                </svg>
               </div>
             </div>
+
+            {/* URL输入框 */}
+            <div className="relative flex-1">
+              <input
+                type="text"
+                value={specUrl}
+                onChange={(e) => setSpecUrl(e.target.value)}
+                placeholder="输入OpenAPI规范URL"
+                className="block w-full px-4 py-2 text-sm border border-slate-400 bg-slate-700 bg-opacity-20 rounded-md text-white placeholder-slate-300 focus:outline-none focus:ring-2 focus:ring-white focus:border-transparent"
+              />
+              {loading && (
+                <div className="absolute inset-y-0 right-0 flex items-center pr-3">
+                  <div className="animate-spin rounded-full h-4 w-4 border-2 border-white"></div>
+                </div>
+              )}
+            </div>
+
+            {/* GitHub 链接 */}
+            <a
+              href="https://github.com/overtrue/pivot"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center text-white hover:text-slate-200 transition-colors"
+              title="GitHub 仓库"
+            >
+              <Github className="h-5 w-5" />
+            </a>
           </div>
         </div>
       </header>

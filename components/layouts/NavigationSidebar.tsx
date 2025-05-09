@@ -1,5 +1,5 @@
 import { OpenApiSpec, PathItemObject } from '@/types/openapi';
-import { ChevronDown, ChevronRight, ChevronsDown, ChevronsUp, Info, Search } from 'lucide-react';
+import { ChevronDown, ChevronRight, ChevronsDown, ChevronsUp, Github, Info, Search } from 'lucide-react';
 import React, { useState } from 'react';
 import MethodLabel from '../atoms/MethodLabel';
 
@@ -79,7 +79,7 @@ const NavigationSidebar: React.FC<NavigationSidebarProps> = ({
   const hasCustomTags = tags.length > 0;
 
   return (
-    <nav className={`sticky top-0 h-screen overflow-y-auto bg-gray-50 border-r border-gray-200 ${className}`}>
+    <nav className={`sticky top-0 h-screen overflow-y-auto bg-gray-50 border-r border-gray-200 flex flex-col ${className}`}>
       {/* 标题区域 */}
       <div className="sticky top-0 z-10 bg-slate-700 text-white px-4 py-2 shadow-md">
         <h2 className="text-base font-semibold truncate">{openapi.info?.title || 'API 文档'}</h2>
@@ -100,7 +100,7 @@ const NavigationSidebar: React.FC<NavigationSidebarProps> = ({
         </div>
       </div>
 
-      <div className="p-4">
+      <div className="p-4 flex-grow overflow-y-auto pb-16">
         {/* 标签和路径 */}
         {hasCustomTags ? (
           // 有标签时的渲染
@@ -244,6 +244,19 @@ const NavigationSidebar: React.FC<NavigationSidebarProps> = ({
             </ul>
           </div>
         )}
+      </div>
+
+      {/* GitHub 链接 - 固定在底部 */}
+      <div className="sticky bottom-0 mt-auto border-t border-gray-200 bg-gray-50 px-4 py-3">
+        <a
+          href="https://github.com/overtrue/pivot"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center text-gray-600 hover:text-gray-900 text-sm"
+        >
+          <Github className="h-4 w-4 mr-2" />
+          <span>GitHub</span>
+        </a>
       </div>
     </nav>
   );
