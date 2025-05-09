@@ -1,7 +1,9 @@
 import {
   ComponentsObject,
   OperationObject,
-  ParameterObject
+  ParameterObject,
+  SecurityRequirementObject,
+  SecuritySchemeObject,
 } from '@/types/openapi';
 import { ChevronDown, ChevronUp, Send } from 'lucide-react';
 import React, { useState } from 'react';
@@ -24,6 +26,14 @@ interface ResponseData {
   headers: Record<string, string>;
   body: string;
   time: number;
+}
+
+// 认证状态接口
+interface AuthState {
+  apiKey?: { [name: string]: string };
+  http?: { [scheme: string]: string };
+  oauth2?: { [flow: string]: { token: string; scopes: string[] } };
+  openIdConnect?: { token: string };
 }
 
 const TryItOutPanel: React.FC<TryItOutPanelProps> = ({
@@ -51,6 +61,10 @@ const TryItOutPanel: React.FC<TryItOutPanelProps> = ({
   const [error, setError] = useState<string | null>(null);
   // 折叠状态
   const [collapsed, setCollapsed] = useState<boolean>(defaultCollapsed);
+  // 认证状态
+  const [authState, setAuthState] = useState<AuthState>({});
+  // 活动的安全方案
+  const [activeSecurityScheme, setActiveSecurityScheme] = useState<string | null>(null);
 
   // 切换折叠状态
   const toggleCollapse = () => {
@@ -87,6 +101,40 @@ const TryItOutPanel: React.FC<TryItOutPanelProps> = ({
     return operation.requestBody;
   };
 
+  // 解析安全方案
+  const resolveSecuritySchemes = () => {
+    // 优先使用操作级别的安全要求，如果没有则使用全局安全要求
+    const securityRequirements: SecurityRequirementObject[] = operation.security ||
+      (components?.securitySchemes ? [Object.keys(components.securitySchemes).reduce((obj: SecurityRequirementObject, key) => {
+        obj[key] = [];
+        return obj;
+      }, {})] : []);
+
+    if (!securityRequirements.length || !components?.securitySchemes) return [];
+
+    const resolvedSchemes: { name: string; scheme: SecuritySchemeObject; scopes: string[] }[] = [];
+
+    // 处理每个安全要求（一般是OR关系）
+    securityRequirements.forEach(requirement => {
+      // 处理每个安全方案（一般是AND关系）
+      Object.entries(requirement).forEach(([schemeName, scopes]) => {
+        const schemeOrRef = components.securitySchemes?.[schemeName];
+        if (schemeOrRef) {
+          const scheme = resolveRef<SecuritySchemeObject>(schemeOrRef, components, 'securitySchemes');
+          if (scheme) {
+            resolvedSchemes.push({
+              name: schemeName,
+              scheme,
+              scopes
+            });
+          }
+        }
+      });
+    });
+
+    return resolvedSchemes;
+  };
+
   // 处理参数变化
   const handleParamChange = (name: string, value: string) => {
     setParamValues((prev) => ({
@@ -106,6 +154,40 @@ const TryItOutPanel: React.FC<TryItOutPanelProps> = ({
       ...prev,
       [name]: value,
     }));
+  };
+
+  // 处理认证信息变化
+  const handleAuthChange = (scheme: { name: string; scheme: SecuritySchemeObject; scopes: string[] }, value: string) => {
+    const { name, scheme: schemeObj } = scheme;
+
+    setAuthState(prev => {
+      const newState = { ...prev };
+
+      switch (schemeObj.type) {
+        case 'apiKey':
+          if (!newState.apiKey) newState.apiKey = {};
+          newState.apiKey[name] = value;
+          break;
+        case 'http':
+          if (!newState.http) newState.http = {};
+          newState.http[schemeObj.scheme || ''] = value;
+          break;
+        case 'oauth2':
+          if (!newState.oauth2) newState.oauth2 = {};
+          if (!newState.oauth2[name]) {
+            newState.oauth2[name] = { token: value, scopes: scheme.scopes };
+          } else {
+            newState.oauth2[name].token = value;
+            newState.oauth2[name].scopes = scheme.scopes;
+          }
+          break;
+        case 'openIdConnect':
+          newState.openIdConnect = { token: value };
+          break;
+      }
+
+      return newState;
+    });
   };
 
   // 构建请求URL
@@ -137,6 +219,7 @@ const TryItOutPanel: React.FC<TryItOutPanelProps> = ({
   const buildRequestHeaders = () => {
     const requestHeaders: Record<string, string> = { ...headers };
     const parameters = resolveParameters();
+    const securitySchemes = resolveSecuritySchemes();
 
     // 添加头部参数
     parameters
@@ -145,7 +228,54 @@ const TryItOutPanel: React.FC<TryItOutPanelProps> = ({
         requestHeaders[param.name] = paramValues[param.name] || '';
       });
 
+    // 添加认证头部
+    if (securitySchemes.length > 0) {
+      securitySchemes.forEach(({ name, scheme }) => {
+        switch (scheme.type) {
+          case 'apiKey':
+            if (scheme.in === 'header' && authState.apiKey?.[name]) {
+              requestHeaders[scheme.name || ''] = authState.apiKey[name];
+            }
+            break;
+          case 'http':
+            if (scheme.scheme === 'basic' && authState.http?.['basic']) {
+              // Basic 认证
+              requestHeaders['Authorization'] = `Basic ${authState.http['basic']}`;
+            } else if (scheme.scheme === 'bearer' && authState.http?.['bearer']) {
+              // Bearer 认证
+              requestHeaders['Authorization'] = `Bearer ${authState.http['bearer']}`;
+            }
+            break;
+          case 'oauth2':
+            if (authState.oauth2?.[name]?.token) {
+              requestHeaders['Authorization'] = `Bearer ${authState.oauth2[name].token}`;
+            }
+            break;
+          case 'openIdConnect':
+            if (authState.openIdConnect?.token) {
+              requestHeaders['Authorization'] = `Bearer ${authState.openIdConnect.token}`;
+            }
+            break;
+        }
+      });
+    }
+
     return requestHeaders;
+  };
+
+  // 添加认证查询参数
+  const addAuthQueryParams = (url: string) => {
+    const securitySchemes = resolveSecuritySchemes();
+    let updatedUrl = url;
+    const urlObj = new URL(updatedUrl, window.location.origin);
+
+    securitySchemes.forEach(({ name, scheme }) => {
+      if (scheme.type === 'apiKey' && scheme.in === 'query' && authState.apiKey?.[name]) {
+        urlObj.searchParams.set(scheme.name || '', authState.apiKey[name]);
+      }
+    });
+
+    return urlObj.pathname + urlObj.search;
   };
 
   // 发送请求
@@ -155,7 +285,10 @@ const TryItOutPanel: React.FC<TryItOutPanelProps> = ({
       setError(null);
       setResponse(null);
 
-      const url = buildRequestUrl();
+      let url = buildRequestUrl();
+      // 添加认证查询参数
+      url = addAuthQueryParams(url);
+
       const requestHeaders = buildRequestHeaders();
 
       // 获取解析后的请求体
@@ -236,6 +369,153 @@ const TryItOutPanel: React.FC<TryItOutPanelProps> = ({
     return 'bg-gray-100 text-gray-800';
   };
 
+  // 渲染安全认证输入表单
+  const renderAuthInputs = () => {
+    const securitySchemes = resolveSecuritySchemes();
+
+    if (!securitySchemes.length) return null;
+
+    return (
+      <div className="space-y-3">
+        <div className="flex items-center justify-between">
+          <h3 className="text-sm font-medium text-gray-700">认证</h3>
+        </div>
+        <div className="space-y-3">
+          {securitySchemes.length > 1 && (
+            <div className="mb-2">
+              <label className="text-xs text-gray-600 block mb-1">选择认证方式</label>
+              <select
+                className="w-full px-2 py-1 border rounded text-sm"
+                value={activeSecurityScheme || ''}
+                onChange={(e) => setActiveSecurityScheme(e.target.value || null)}
+              >
+                <option value="">不使用认证</option>
+                {securitySchemes.map((scheme, index) => (
+                  <option key={index} value={scheme.name}>
+                    {scheme.name} ({scheme.scheme.type})
+                  </option>
+                ))}
+              </select>
+            </div>
+          )}
+
+          {securitySchemes
+            .filter(scheme => !activeSecurityScheme || scheme.name === activeSecurityScheme)
+            .map((scheme, index) => {
+              const { name, scheme: schemeObj } = scheme;
+
+              switch (schemeObj.type) {
+                case 'apiKey':
+                  return (
+                    <div key={index} className="p-3 border rounded bg-blue-50">
+                      <div className="text-xs font-semibold text-blue-800 mb-2">API Key ({schemeObj.in})</div>
+                      <label className="text-xs text-gray-600 block mb-1">
+                        {schemeObj.name} {schemeObj.description && `- ${schemeObj.description}`}
+                      </label>
+                      <input
+                        type="text"
+                        className="w-full px-2 py-1 border rounded text-sm"
+                        placeholder={`输入 ${schemeObj.name} 值`}
+                        value={authState.apiKey?.[name] || ''}
+                        onChange={(e) => handleAuthChange(scheme, e.target.value)}
+                      />
+                    </div>
+                  );
+
+                case 'http':
+                  if (schemeObj.scheme === 'basic') {
+                    return (
+                      <div key={index} className="p-3 border rounded bg-green-50">
+                        <div className="text-xs font-semibold text-green-800 mb-2">HTTP Basic</div>
+                        <label className="text-xs text-gray-600 block mb-1">
+                          Base64 编码的用户名:密码
+                          {schemeObj.description && ` - ${schemeObj.description}`}
+                        </label>
+                        <input
+                          type="text"
+                          className="w-full px-2 py-1 border rounded text-sm"
+                          placeholder="输入 Base64 编码的认证信息"
+                          value={authState.http?.['basic'] || ''}
+                          onChange={(e) => handleAuthChange(scheme, e.target.value)}
+                        />
+                      </div>
+                    );
+                  } else if (schemeObj.scheme === 'bearer') {
+                    return (
+                      <div key={index} className="p-3 border rounded bg-purple-50">
+                        <div className="text-xs font-semibold text-purple-800 mb-2">
+                          Bearer Token {schemeObj.bearerFormat && `(${schemeObj.bearerFormat})`}
+                        </div>
+                        <label className="text-xs text-gray-600 block mb-1">
+                          Token {schemeObj.description && ` - ${schemeObj.description}`}
+                        </label>
+                        <input
+                          type="text"
+                          className="w-full px-2 py-1 border rounded text-sm"
+                          placeholder="输入 Bearer Token"
+                          value={authState.http?.['bearer'] || ''}
+                          onChange={(e) => handleAuthChange(scheme, e.target.value)}
+                        />
+                      </div>
+                    );
+                  }
+                  break;
+
+                case 'oauth2':
+                  return (
+                    <div key={index} className="p-3 border rounded bg-orange-50">
+                      <div className="text-xs font-semibold text-orange-800 mb-2">OAuth 2.0</div>
+                      {scheme.scopes.length > 0 && (
+                        <div className="text-xs text-gray-600 mb-2">
+                          <div className="font-medium mb-1">所需权限:</div>
+                          <ul className="list-disc list-inside space-y-0.5">
+                            {scheme.scopes.map((scope, i) => (
+                              <li key={i} className="text-gray-600">{scope}</li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+                      <label className="text-xs text-gray-600 block mb-1">
+                        Access Token
+                      </label>
+                      <input
+                        type="text"
+                        className="w-full px-2 py-1 border rounded text-sm"
+                        placeholder="输入 OAuth2 Access Token"
+                        value={authState.oauth2?.[name]?.token || ''}
+                        onChange={(e) => handleAuthChange(scheme, e.target.value)}
+                      />
+                    </div>
+                  );
+
+                case 'openIdConnect':
+                  return (
+                    <div key={index} className="p-3 border rounded bg-indigo-50">
+                      <div className="text-xs font-semibold text-indigo-800 mb-2">
+                        OpenID Connect ({schemeObj.openIdConnectUrl})
+                      </div>
+                      <label className="text-xs text-gray-600 block mb-1">
+                        ID Token
+                        {schemeObj.description && ` - ${schemeObj.description}`}
+                      </label>
+                      <input
+                        type="text"
+                        className="w-full px-2 py-1 border rounded text-sm"
+                        placeholder="输入 OpenID Token"
+                        value={authState.openIdConnect?.token || ''}
+                        onChange={(e) => handleAuthChange(scheme, e.target.value)}
+                      />
+                    </div>
+                  );
+              }
+
+              return null;
+            })}
+        </div>
+      </div>
+    );
+  };
+
   return (
     <div className="border rounded-lg overflow-hidden shadow-sm bg-white transition-all">
       <div
@@ -288,6 +568,9 @@ const TryItOutPanel: React.FC<TryItOutPanelProps> = ({
               </div>
             </div>
           )}
+
+          {/* 认证部分 */}
+          {renderAuthInputs()}
 
           {/* 请求体输入 */}
           {resolveRequestBody() && (

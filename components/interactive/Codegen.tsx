@@ -1,9 +1,10 @@
-
+// filepath: /workspaces/pivot/components/interactive/Codegen.tsx
 import { ComponentsObject, HttpMethod, ParameterObject, ReferenceObject, RequestBodyObject } from '@/types/openapi';
-import { Braces, Check, ChevronDown, ChevronUp, Code2, Copy, Terminal } from 'lucide-react';
+import { Check, ChevronDown, ChevronUp, Copy } from 'lucide-react';
 import React, { useState } from 'react';
 import { resolveRef } from '../../utils/resolveRef';
 import MethodLabel from '../atoms/MethodLabel';
+import { codeGenerators } from './codeGenerators';
 
 interface CodegenProps {
   endpoint: string;
@@ -15,10 +16,8 @@ interface CodegenProps {
   defaultCollapsed?: boolean;
 }
 
-type CodeLanguage = 'curl' | 'typescript' | 'python';
-
 const Codegen: React.FC<CodegenProps> = ({ endpoint, method, parameters = [], requestBody, components, collapsible = false, defaultCollapsed = false }) => {
-  const [language, setLanguage] = useState<CodeLanguage>('curl');
+  const [languageId, setLanguageId] = useState(codeGenerators[0]?.id || 'curl');
   const [copied, setCopied] = useState(false);
   const [collapsed, setCollapsed] = useState(defaultCollapsed);
 
@@ -101,77 +100,18 @@ const Codegen: React.FC<CodegenProps> = ({ endpoint, method, parameters = [], re
 
   const requestBodyExample = getRequestBodyExample();
 
-  const generateCurlCode = () => {
-    let code = `curl -X ${method} "${endpoint}"`;
-
-    // Add headers
-    code += '    \n -H "Content-Type: application/json"';
-
-    // Add query parameters
-    const queryParams = resolvedParameters.filter(p => p.in === 'query');
-    if (queryParams.length > 0) {
-      const queryString = queryParams
-        .map(p => `${p.name}=value`)
-        .join('&');
-      code += `?${queryString}`;
-    }
-
-    // Add request body
-    if (['POST', 'PUT', 'PATCH'].includes(method) && resolvedRequestBody) {
-      code += `    \n -d '${JSON.stringify(requestBodyExample, null, 2)}'`;
-    }
-
-    return code;
-  };
-
-  const generateTypeScriptCode = () => {
-    return `// Using fetch API
-async function call${method}() {
-  const response = await fetch("${endpoint}", {
-    method: "${method}",
-    headers: {
-      "Content-Type": "application/json"
-    }${['POST', 'PUT', 'PATCH'].includes(method) && resolvedRequestBody ? `,
-    body: JSON.stringify(
-${JSON.stringify(requestBodyExample, null, 4).split('\n').map(line => '      ' + line).join('\n')}
-    )` : ''}
-  });
-
-  const data = await response.json();
-  return data;
-}`;
-  };
-
-  const generatePythonCode = () => {
-    return `# Using requests library
-import requests
-
-def call_${method.toLowerCase()}():
-    url = "${endpoint}"
-    headers = {
-        "Content-Type": "application/json"
-    }
-    ${['POST', 'PUT', 'PATCH'].includes(method) && resolvedRequestBody ? `
-    payload = ${JSON.stringify(requestBodyExample, null, 4).split('\n').map(line => '    ' + line).join('\n')}
-
-    response = requests.${method.toLowerCase()}(url, json=payload, headers=headers)
-    ` : `
-    response = requests.${method.toLowerCase()}(url, headers=headers)
-    `}
-    return response.json()`;
-  };
-
   const getCode = () => {
-    switch (language) {
-      case 'curl':
-        return generateCurlCode();
-      case 'typescript':
-        return generateTypeScriptCode();
-      case 'python':
-        return generatePythonCode();
-      default:
-        return '';
-    }
+    // 使用模块化的代码生成器
+    const generator = codeGenerators.find(gen => gen.id === languageId);
+    if (!generator) return '';
+
+    return generator.generateCode({
+      endpoint,
+      method,
+      parameters: resolvedParameters,
+      requestBody: resolvedRequestBody || undefined,
+      requestBodyExample
+    });
   };
 
   const copyToClipboard = () => {
@@ -179,23 +119,6 @@ def call_${method.toLowerCase()}():
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
-
-  const getLanguageIcon = (lang: CodeLanguage) => {
-    switch (lang) {
-      case 'curl':
-        return <Terminal size={16} />;
-      case 'typescript':
-        return <Braces size={16} />;
-      case 'python':
-        return <Code2 size={16} />;
-    }
-  };
-
-  const languageOptions: { id: CodeLanguage; label: string }[] = [
-    { id: 'curl', label: 'cURL' },
-    { id: 'typescript', label: 'TypeScript' },
-    { id: 'python', label: 'Python' },
-  ];
 
   return (
     <div className="border rounded-lg overflow-hidden shadow-sm bg-white transition-all">
@@ -217,18 +140,18 @@ def call_${method.toLowerCase()}():
       {!collapsed && (
         <>
           <div className="px-4 py-3 border-b bg-gray-50">
-            <div className="flex space-x-1 p-1 bg-gray-100 rounded-md">
-              {languageOptions.map((option) => (
+            <div className="flex flex-wrap space-x-1 p-1 bg-gray-100 rounded-md">
+              {codeGenerators.map((generator) => (
                 <button
-                  key={option.id}
-                  onClick={() => setLanguage(option.id)}
-                  className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md text-sm font-medium transition-colors ${language === option.id
+                  key={generator.id}
+                  onClick={() => setLanguageId(generator.id)}
+                  className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md text-sm font-medium transition-colors mb-1 ${languageId === generator.id
                     ? 'bg-white text-blue-700 shadow-sm'
                     : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
                     }`}
                 >
-                  {getLanguageIcon(option.id)}
-                  {option.label}
+                  {generator.getIcon()}
+                  {generator.label}
                 </button>
               ))}
             </div>

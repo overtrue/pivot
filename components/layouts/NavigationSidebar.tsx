@@ -82,8 +82,8 @@ const NavigationSidebar: React.FC<NavigationSidebarProps> = ({
     <nav className={`sticky top-0 h-screen overflow-y-auto bg-gray-50 border-r border-gray-200 ${className}`}>
       {/* 标题区域 */}
       <div className="sticky top-0 z-10 bg-slate-700 text-white px-4 py-2 shadow-md">
-        <h2 className="text-base font-semibold truncate">{openapi.info.title}</h2>
-        <p className="text-xs text-slate-300 mt-0.5 truncate">{openapi.info.version}</p>
+        <h2 className="text-base font-semibold truncate">{openapi.info?.title || 'API 文档'}</h2>
+        <p className="text-xs text-slate-300 mt-0.5 truncate">{openapi.info?.version || ''}</p>
       </div>
 
       {/* 搜索框 */}
@@ -154,7 +154,7 @@ const NavigationSidebar: React.FC<NavigationSidebarProps> = ({
 
                     {!isCollapsed && (
                       <ul className="pl-0 mt-1.5 space-y-0.5">
-                        {Object.entries(openapi.paths).map(([path, pathItem]) => {
+                        {openapi.paths && Object.entries(openapi.paths).map(([path, pathItem]) => { // Ensure openapi.paths exists
                           const operations = Object.entries(pathItem as PathItemObject)
                             .filter(([method]) => ['get', 'post', 'put', 'delete', 'patch'].includes(method));
 
@@ -194,7 +194,7 @@ const NavigationSidebar: React.FC<NavigationSidebarProps> = ({
           <>
             <h3 className="text-xs font-semibold uppercase tracking-wider text-gray-500 mb-3">接口</h3>
             <ul className="space-y-0.5">
-              {Object.entries(openapi.paths).map(([path, pathItem]) => {
+              {openapi.paths && Object.entries(openapi.paths).map(([path, pathItem]) => {
                 const operations = Object.entries(pathItem as PathItemObject)
                   .filter(([method]) => ['get', 'post', 'put', 'delete', 'patch'].includes(method));
 
@@ -228,7 +228,7 @@ const NavigationSidebar: React.FC<NavigationSidebarProps> = ({
           <div className="mt-6">
             <h3 className="text-xs font-semibold uppercase tracking-wider text-gray-500 mb-3">数据模型</h3>
             <ul className="space-y-0.5 pl-2">
-              {Object.keys(openapi.components.schemas)
+              {openapi.components.schemas && Object.keys(openapi.components.schemas)
                 .filter(name => !searchQuery || name.toLowerCase().includes(searchQuery.toLowerCase()))
                 .map(schemaName => (
                   <li key={schemaName} className="group">

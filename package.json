@@ -27,11 +27,13 @@
     "@codemirror/lang-xml": "^6.1.0",
     "@uiw/react-codemirror": "^4.23.12",
     "clsx": "^2.1.1",
+    "js-yaml": "^4.1.0",
     "lucide-react": "^0.264.0",
     "react-markdown": "^10.1.0"
   },
   "devDependencies": {
     "@storybook/experimental-addon-test": "^8.6.12",
+    "@types/js-yaml": "^4.0.9",
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
     "@vitejs/plugin-react": "^4.0.0",

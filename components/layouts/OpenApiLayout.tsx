@@ -1,11 +1,11 @@
-
 import { useOpenApi } from '@/hooks/useOpenApi';
 import {
   HttpMethod,
   OpenApiSpec as OpenApiObject,
   OperationObject,
 } from '@/types/openapi';
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import * as yaml from 'js-yaml';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import AccordionComponentsSection from '../AccordionComponentsSection';
 import ExternalDocsDisplay from '../atoms/ExternalDocsDisplay';
 import SectionTitle from '../atoms/SectionTitle';
@@ -18,7 +18,7 @@ import TryItOutPanel from '../TryItOutPanel';
 import NavigationSidebar from './NavigationSidebar';
 
 interface OpenApiLayoutProps {
-  spec: OpenApiObject;
+  spec: OpenApiObject | string | null; // Allow spec to be null
   className?: string;
 }
 
@@ -26,26 +26,72 @@ const MIN_SIDEBAR_WIDTH = 280; // 最小宽度
 const MAX_SIDEBAR_WIDTH = 350; // 最大宽度
 const DEFAULT_SIDEBAR_WIDTH = 280; // 默认宽度
 
-const OpenApiLayout: React.FC<OpenApiLayoutProps> = ({ spec, className }) => {
+const OpenApiLayout: React.FC<OpenApiLayoutProps> = ({ spec: inputSpec, className }) => {
+  // 所有hooks都必须在组件顶层无条件调用
+  const [parsedSpec, setParsedSpec] = useState<OpenApiObject | null>(null);
+  const [parseError, setParseError] = useState<string | null>(null);
   const [activeTag, setActiveTag] = useState<string | null>(null);
   const [selectedOperationId, setSelectedOperationId] = useState<string | null>(null);
   const [selectedOperation, setSelectedOperation] = useState<{ path: string; method: string; operation: OperationObject } | null>(null);
   const [sidebarWidth, setSidebarWidth] = useState(DEFAULT_SIDEBAR_WIDTH);
   const [isDragging, setIsDragging] = useState(false);
-  const sidebarRef = useRef<HTMLDivElement>(null);
-  // 用于直接操作DOM的引用
-  const rootRef = useRef<HTMLDivElement>(null);
-
-  // 添加选中的schema状态
   const [selectedSchema, setSelectedSchema] = useState<string | null>(null);
+
+  const sidebarRef = useRef<HTMLDivElement>(null);
+  const rootRef = useRef<HTMLDivElement>(null);
   const componentsRef = useRef<HTMLDivElement>(null);
 
-  // 使用自定义钩子处理OpenAPI规范
+  // 解析字符串为OpenAPI对象
+  useEffect(() => {
+    if (typeof inputSpec === 'string') {
+      try {
+        // 尝试解析为JSON
+        try {
+          const jsonData = JSON.parse(inputSpec);
+          setParsedSpec(jsonData);
+          setParseError(null);
+          return;
+        } catch (jsonError) {
+          // JSON解析失败，尝试解析为YAML
+          try {
+            const yamlData = yaml.load(inputSpec);
+            if (typeof yamlData === 'object' && yamlData !== null) {
+              setParsedSpec(yamlData as OpenApiObject);
+              setParseError(null);
+              return;
+            } else {
+              throw new Error('解析后的YAML不是有效的对象');
+            }
+          } catch (yamlError) {
+            setParseError(`解析OpenAPI规范失败: ${yamlError instanceof Error ? yamlError.message : '未知错误'}`);
+            setParsedSpec(null);
+          }
+        }
+      } catch (error) {
+        setParseError(`解析OpenAPI规范失败: ${error instanceof Error ? error.message : '未知错误'}`);
+        setParsedSpec(null);
+      }
+    } else {
+      // 输入已经是对象
+      console.log('Parsed OpenAPI spec:', inputSpec);
+      setParsedSpec(inputSpec);
+      setParseError(null);
+    }
+  }, [inputSpec]);  // 创建一个空的规范对象，用于在 parsedSpec 为 null 时提供给 useOpenApi
+  const emptySpec = useMemo(() => ({
+    openapi: '3.0.0',
+    info: { title: '', version: '' },
+    paths: {},
+    components: {}
+  }), []);
+
+  // 无条件调用 useOpenApi，符合 React Hooks 规则
+  // 当 parsedSpec 为 null 时，使用 emptySpec
   const {
     getOperationsByTag,
     components,
     resolve
-  } = useOpenApi(spec);
+  } = useOpenApi(parsedSpec || emptySpec);
 
   // 初始化CSS变量
   useEffect(() => {
@@ -100,9 +146,10 @@ const OpenApiLayout: React.FC<OpenApiLayoutProps> = ({ spec, className }) => {
   }, [isDragging]);
 
   // 按标签过滤的操作
+  const currentOperationsByTag = getOperationsByTag();
   const taggedOperations = activeTag
-    ? { [activeTag]: getOperationsByTag()[activeTag] || [] }
-    : getOperationsByTag();
+    ? { [activeTag]: currentOperationsByTag[activeTag] || [] }
+    : currentOperationsByTag;
 
   // 更新选择的操作
   const handleSelectOperation = useCallback((operationId: string, path: string, method: string, operation: OperationObject) => {
@@ -145,10 +192,10 @@ const OpenApiLayout: React.FC<OpenApiLayoutProps> = ({ spec, className }) => {
   useEffect(() => {
     // 延迟执行，确保组件完全渲染和数据已加载
     const timer = setTimeout(() => {
-      if (selectedOperation) return;
+      if (selectedOperation || !parsedSpec) return;
 
       try {
-        const operationsByTag = getOperationsByTag();
+        const operationsByTag = getOperationsByTag(); // 直接调用从 hook 获取的函数
         const tags = Object.keys(operationsByTag);
 
         if (tags.length > 0) {
@@ -168,7 +215,29 @@ const OpenApiLayout: React.FC<OpenApiLayoutProps> = ({ spec, className }) => {
     }, 300); // 给页面渲染预留时间
 
     return () => clearTimeout(timer);
-  }, [spec, handleSelectOperation]); // 只依赖于spec和处理函数
+  }, [parsedSpec, handleSelectOperation, getOperationsByTag]);
+
+  // 如果解析出错，显示错误信息
+  if (parseError) {
+    return (
+      <div className="flex items-center justify-center h-screen bg-gray-100">
+        <div className="bg-white p-8 rounded-lg shadow-md text-center">
+          <h2 className="text-2xl font-semibold text-red-600 mb-4">规范解析错误</h2>
+          <p className="text-gray-700">{parseError}</p>
+        </div>
+      </div>
+    );
+  }
+
+  // 如果规范尚未解析，显示加载状态
+  if (!parsedSpec) {
+    return (
+      <div className="flex justify-center items-center min-h-[60vh]">
+        <div className="animate-spin rounded-full h-12 w-12 border-2 border-slate-500"></div>
+        <p className="ml-4 text-slate-500">正在解析规范...</p>
+      </div>
+    );
+  }
 
   return (
     <div ref={rootRef} className={`flex min-h-screen ${className} ${isDragging ? 'select-none cursor-ew-resize' : ''}`}>
@@ -179,7 +248,7 @@ const OpenApiLayout: React.FC<OpenApiLayoutProps> = ({ spec, className }) => {
         style={{ width: 'var(--sidebar-width)' }}
       >
         <NavigationSidebar
-          openapi={spec}
+          openapi={parsedSpec} // parsedSpec 已在前面进行了非空检查
           onSelectOperation={(path, method, operation) => {
             const operationId = operation.operationId || `${method}-${path}`;
             handleSelectOperation(operationId, path, method, operation);
@@ -199,14 +268,14 @@ const OpenApiLayout: React.FC<OpenApiLayoutProps> = ({ spec, className }) => {
         {/* 1. Info Section */}
         <div className="mb-10">
           <SectionTitle title="基本信息" className="text-2xl mb-6 pb-2 border-b" />
-          {spec.info && <InfoSection info={spec.info} />}
+          {parsedSpec?.info && <InfoSection info={parsedSpec.info} />} {/* 使用可选链确保安全访问 */}
         </div>
 
         {/* 2. Servers Section */}
-        {spec.servers && spec.servers.length > 0 && (
+        {parsedSpec?.servers && parsedSpec.servers.length > 0 && ( /* 使用可选链确保安全访问 */
           <div className="mb-10">
             <SectionTitle title="服务器" className="text-2xl mb-6 pb-2 border-b" />
-            <ServersSection servers={spec.servers} />
+            <ServersSection servers={parsedSpec.servers} /> {/* 已确保服务器存在 */}
           </div>
         )}
 
@@ -225,14 +294,14 @@ const OpenApiLayout: React.FC<OpenApiLayoutProps> = ({ spec, className }) => {
                     <h3 className="text-xl font-medium text-gray-700">{tag}</h3>
                   )}
 
-                  {operations.map(({ path, method, operation }) => {
+                  {operations.map(({ path, method, operation }: { path: string; method: string; operation: OperationObject }) => {
                     const operationId = operation.operationId || `${method}-${path}`;
                     return (
                       <div key={`${method}-${path}`} id={`operation-${operationId}`}>
                         <OperationBox
                           onSelectOperation={() => handleSelectOperation(operationId, path, method, operation)}
                           path={path}
-                          method={method.toUpperCase()}
+                          method={method.toUpperCase()} // 确保这里仍然是大写，因为 NavigationSidebar 可能期望大写
                           operation={operation}
                           components={components}
                         />
@@ -254,29 +323,29 @@ const OpenApiLayout: React.FC<OpenApiLayoutProps> = ({ spec, className }) => {
           <div ref={componentsRef} className="mb-10" id="components-section">
             <SectionTitle title="数据模型" className="text-2xl mb-6 pb-2 border-b" />
             <AccordionComponentsSection
-              components={components}
+              components={components} // This comes from useOpenApi(parsedSpec)
               selectedSchema={selectedSchema}
             />
           </div>
         )}
 
         {/* 5. Security Section */}
-        {(spec.security || components?.securitySchemes) && (
+        {(parsedSpec?.security || (components && 'securitySchemes' in components)) && ( /* 使用可选链确保安全访问 */
           <div className="mb-10">
             <SectionTitle title="安全设置" className="text-2xl mb-6 pb-2 border-b" />
             <SecuritySection
-              security={spec.security}
-              securitySchemes={components?.securitySchemes}
-              components={components}
+              security={parsedSpec?.security} /* 使用可选链确保安全访问 */
+              securitySchemes={components && 'securitySchemes' in components ? components.securitySchemes : undefined}
+              components={components} // This comes from useOpenApi(parsedSpec)
             />
           </div>
         )}
 
         {/* 6. External Docs Section (Root Level) */}
-        {spec.externalDocs && (
+        {parsedSpec?.externalDocs && ( /* 使用可选链确保安全访问 */
           <div className="mb-10">
             <SectionTitle title="外部文档" className="text-2xl mb-6 pb-2 border-b" />
-            <ExternalDocsDisplay externalDocs={spec.externalDocs} />
+            <ExternalDocsDisplay externalDocs={parsedSpec.externalDocs} /> {/* 已确保 externalDocs 存在 */}
           </div>
         )}
       </main>
@@ -288,7 +357,7 @@ const OpenApiLayout: React.FC<OpenApiLayoutProps> = ({ spec, className }) => {
             <Codegen
               endpoint={selectedOperation.path}
               method={selectedOperation.method as HttpMethod}
-              components={components}
+              components={components} // This comes from useOpenApi(parsedSpec)
               requestBody={selectedOperation.operation.requestBody}
               parameters={selectedOperation.operation.parameters || []}
               collapsible={true}
@@ -300,8 +369,8 @@ const OpenApiLayout: React.FC<OpenApiLayoutProps> = ({ spec, className }) => {
                 operation={selectedOperation.operation}
                 method={selectedOperation.method}
                 path={selectedOperation.path}
-                baseUrl={spec.servers && spec.servers.length > 0 ? spec.servers[0].url : ''}
-                components={components}
+                baseUrl={parsedSpec?.servers && parsedSpec.servers.length > 0 ? parsedSpec.servers[0].url : ''} // 使用可选链确保安全访问
+                components={components} // This comes from useOpenApi(parsedSpec)
                 collapsible={true}
                 defaultCollapsed={true}
               />

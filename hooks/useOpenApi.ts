@@ -1,4 +1,3 @@
-
 import {
   OpenApiSpec,
   OperationObject,
@@ -18,15 +17,16 @@ import { useMemo } from 'react';
  * @param spec OpenAPI规范对象
  * @returns 一组处理OpenAPI结构的工具函数
  */
-export function useOpenApi(spec: OpenApiSpec) {
-  const components = spec?.components;
+export function useOpenApi(spec: OpenApiSpec) { // spec 不再接受 null
+  const components = spec.components; // 直接访问，因为 spec 不为 null
 
   // 优化引用解析，避免重复计算
   const resolve = useMemo(() => {
     return function resolve<T>(obj: T | ReferenceObject | undefined, category?: string): T | null {
+      // 移除 !spec 检查，因为 spec 保证存在
       return resolveRef<T>(obj, components, category);
     };
-  }, [components]);
+  }, [components]); // spec 从依赖项中移除，因为 hook 的执行本身就依赖 spec
 
   /**
    * 获取模式的类型信息
@@ -276,58 +276,38 @@ export function useOpenApi(spec: OpenApiSpec) {
    * 按标签分组操作
    * @returns 按标签分组的操作
    */
-  const getOperationsByTag = () => {
-    if (!spec.paths) return {};
-
-    const result: Record<string, { path: string; method: string; operation: OperationObject }[]> = {};
-
-    // 初始化标签组
-    if (spec.tags) {
-      spec.tags.forEach(tag => {
-        result[tag.name] = [];
-      });
-    }
-
-    // 添加未标记的操作分组
-    result['未分类'] = [];
-
-    // 遍历所有路径和操作
-    Object.entries(spec.paths).forEach(([path, pathItemOrRef]) => {
-      const pathItem = resolve<PathItemObject>(pathItemOrRef, 'pathItems');
-      if (!pathItem) return;
-
-      const methods = ['get', 'post', 'put', 'delete', 'patch', 'options', 'head', 'trace'] as const;
-
-      methods.forEach(method => {
-        if (method in pathItem) {
-          const operation = resolve<OperationObject>(pathItem[method as keyof PathItemObject] as OperationObject, 'operations');
-          if (!operation) return;
-
-          if (operation.tags && operation.tags.length > 0) {
-            // 将操作添加到每个标签组
-            operation.tags.forEach(tag => {
-              if (!result[tag]) {
-                result[tag] = [];
+  const getOperationsByTag = useMemo(() => {
+    return () => {
+      if (!spec.paths) {
+        return {};
+      }
+      const operations: Record<string, { path: string; method: string; operation: OperationObject }[]> = {};
+      for (const path in spec.paths) {
+        const pathItem = spec.paths[path] as PathItemObject;
+        for (const method in pathItem) {
+          const httpMethod = method.toLowerCase() as keyof PathItemObject;
+          if (['get', 'put', 'post', 'delete', 'options', 'head', 'patch', 'trace'].includes(httpMethod)) {
+            const operation = pathItem[httpMethod] as OperationObject;
+            if (operation.tags && operation.tags.length > 0) {
+              operation.tags.forEach(tag => {
+                if (!operations[tag]) {
+                  operations[tag] = [];
+                }
+                operations[tag].push({ path, method: httpMethod, operation });
+              });
+            } else {
+              const defaultTag = 'default';
+              if (!operations[defaultTag]) {
+                operations[defaultTag] = [];
               }
-              result[tag].push({ path, method, operation });
-            });
-          } else {
-            // 将未标记的操作添加到"未分类"组
-            result['未分类'].push({ path, method, operation });
+              operations[defaultTag].push({ path, method: httpMethod, operation });
+            }
           }
         }
-      });
-    });
-
-    // 移除空标签组
-    Object.keys(result).forEach(tag => {
-      if (result[tag].length === 0) {
-        delete result[tag];
       }
-    });
-
-    return result;
-  };
+      return operations;
+    };
+  }, [spec]);
 
   return {
     spec,

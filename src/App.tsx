@@ -1,8 +1,24 @@
 import OpenApiLayout from '@/components/layouts/OpenApiLayout';
 import { useEffect, useRef, useState } from 'react';
 
+// 预定义的API示例列表
+interface ApiExample {
+  name: string;
+  url: string;
+  format: 'json' | 'yaml';
+}
+
+const API_EXAMPLES: ApiExample[] = [
+  { name: 'Swagger Petstore', url: 'https://petstore3.swagger.io/api/v3/openapi.json', format: 'json' },
+  { name: 'DigitalOcean', url: 'https://raw.githubusercontent.com/digitalocean/openapi/main/specification/DigitalOcean-public.v2.yaml', format: 'yaml' },
+  { name: 'Box', url: 'https://raw.githubusercontent.com/box/box-openapi/main/openapi.json', format: 'json' },
+  { name: 'GitHub', url: 'https://raw.githubusercontent.com/github/rest-api-description/main/descriptions/ghes-3.0/ghes-3.0.json', format: 'json' },
+  { name: 'Instagram', url: 'https://api.apis.guru/v2/specs/instagram.com/1.0.0/swagger.yaml', format: 'yaml' },
+  { name: 'Netlify', url: 'https://raw.githubusercontent.com/stoplightio/Public-APIs/master/reference/netlify/openapi.yaml', format: 'yaml' },
+];
+
 export default function App() {
-  const [specUrl, setSpecUrl] = useState('https://raw.githubusercontent.com/box/box-openapi/main/openapi.json');
+  const [specUrl, setSpecUrl] = useState('https://petstore3.swagger.io/api/v3/openapi.json');
   const [spec, setSpec] = useState<any>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
@@ -52,8 +68,9 @@ export default function App() {
         throw new Error(`请求失败: ${response.status} ${response.statusText}`);
       }
 
-      const data = await response.json();
-      setSpec(data);
+      // 获取响应文本，直接传递给OpenApiLayout组件处理
+      const text = await response.text();
+      setSpec(text);
     } catch (err) {
       setError(`加载OpenAPI规范失败: ${err instanceof Error ? err.message : '未知错误'}`);
       console.error('加载错误:', err);
@@ -84,19 +101,43 @@ export default function App() {
           </div>
 
           <div className="w-full sm:w-auto flex-1 max-w-2xl">
-            <div className="relative">
-              <input
-                type="text"
-                value={specUrl}
-                onChange={(e) => setSpecUrl(e.target.value)}
-                placeholder="输入OpenAPI规范URL"
-                className="block w-full px-4 py-2 text-sm border border-slate-400 bg-slate-700 bg-opacity-20 rounded-md text-white placeholder-slate-300 focus:outline-none focus:ring-2 focus:ring-white focus:border-transparent"
-              />
-              {loading && (
-                <div className="absolute inset-y-0 right-0 flex items-center pr-3">
-                  <div className="animate-spin rounded-full h-4 w-4 border-2 border-white border-t-transparent"></div>
-                </div>
-              )}
+            <div className="flex flex-col sm:flex-row gap-2">
+              {/* 示例选择器 */}
+              <div className="sm:w-1/3">
+                <select
+                  onChange={(e) => {
+                    const selectedExample = API_EXAMPLES.find(ex => ex.url === e.target.value);
+                    if (selectedExample) {
+                      setSpecUrl(selectedExample.url);
+                    }
+                  }}
+                  className="w-full px-4 py-2 text-sm border border-slate-400 bg-slate-700 bg-opacity-20 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-white focus:border-transparent"
+                  value={API_EXAMPLES.find(ex => ex.url === specUrl)?.url || ''}
+                >
+                  <option value="" disabled>选择示例API</option>
+                  {API_EXAMPLES.map((example) => (
+                    <option key={example.url} value={example.url}>
+                      {example.name}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              {/* URL输入框 */}
+              <div className="relative sm:w-2/3">
+                <input
+                  type="text"
+                  value={specUrl}
+                  onChange={(e) => setSpecUrl(e.target.value)}
+                  placeholder="输入OpenAPI规范URL"
+                  className="block w-full px-4 py-2 text-sm border border-slate-400 bg-slate-700 bg-opacity-20 rounded-md text-white placeholder-slate-300 focus:outline-none focus:ring-2 focus:ring-white focus:border-transparent"
+                />
+                {loading && (
+                  <div className="absolute inset-y-0 right-0 flex items-center pr-3">
+                    <div className="animate-spin rounded-full h-4 w-4 border-2 border-white border-t-transparent"></div>
+                  </div>
+                )}
+              </div>
             </div>
           </div>
         </div>
