@@ -68,7 +68,6 @@ const ResponseContentSection: React.FC<ResponseContentSectionProps> = ({
       content={content}
       components={components}
       contentType="mediaTypes"
-      title="Content"
       showTitle={true}
       className={className}
       renderFooter={renderMediaTypeEncoding}

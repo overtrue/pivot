@@ -15,13 +15,20 @@ const MediaTypeSelector: React.FC<MediaTypeSelectorProps> = ({
     return null; // Don't render tabs if only one or zero media types
   }
 
+  const handleClick = (e: React.MouseEvent, mediaType: string) => {
+    e.preventDefault();
+    e.stopPropagation();
+    console.log(`切换媒体类型到: ${mediaType}`);
+    onSelectMediaType(mediaType);
+  };
+
   return (
     <div className="mb-2 border-b">
       <ul className="flex flex-wrap -mb-px text-sm font-medium text-center z-10">
         {mediaTypes.map(mediaType => (
           <li key={mediaType} className="mr-2">
             <button
-              onClick={() => onSelectMediaType(mediaType)}
+              onClick={(e) => handleClick(e, mediaType)}
               className={`inline-block p-2 border-b-2 rounded-t-lg ${activeMediaType === mediaType
                 ? 'text-blue-600 border-blue-600'
                 : 'border-transparent hover:text-gray-600 hover:border-gray-300'

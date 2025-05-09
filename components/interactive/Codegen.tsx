@@ -1,8 +1,10 @@
 // filepath: /workspaces/pivot/components/interactive/Codegen.tsx
 import { ComponentsObject, HttpMethod, ParameterObject, ReferenceObject, RequestBodyObject } from '@/types/openapi';
-import { Check, ChevronDown, ChevronUp, Copy } from 'lucide-react';
+import { ChevronDown, ChevronUp } from 'lucide-react';
 import React, { useState } from 'react';
+import { generateExample } from '../../utils/generateExample';
 import { resolveRef } from '../../utils/resolveRef';
+import CodeMarkdown from '../atoms/CodeMarkdown';
 import MethodLabel from '../atoms/MethodLabel';
 import { codeGenerators } from './codeGenerators';
 
@@ -18,7 +20,6 @@ interface CodegenProps {
 
 const Codegen: React.FC<CodegenProps> = ({ endpoint, method, parameters = [], requestBody, components, collapsible = false, defaultCollapsed = false }) => {
   const [languageId, setLanguageId] = useState(codeGenerators[0]?.id || 'curl');
-  const [copied, setCopied] = useState(false);
   const [collapsed, setCollapsed] = useState(defaultCollapsed);
 
   const toggleCollapse = () => {
@@ -50,52 +51,13 @@ const Codegen: React.FC<CodegenProps> = ({ endpoint, method, parameters = [], re
     const schema = resolvedRequestBody.content[contentType].schema;
     if (!schema) return { example: "data" };
 
-    // 解析可能存在的schema引用
-    const resolvedSchema = resolveRef(schema, components, 'schemas');
-    if (!resolvedSchema) return { example: "data" };
-
-    // 根据schema类型生成示例
-    const example: Record<string, any> = {};
-    if (typeof resolvedSchema === 'object' && 'properties' in resolvedSchema && resolvedSchema.properties) {
-      Object.entries(resolvedSchema.properties).forEach(([propName, propSchema]) => {
-        // 尝试获取属性类型
-        let propType = 'string';
-        if (typeof propSchema === 'object') {
-          if ('type' in propSchema) {
-            propType = propSchema.type as string;
-          } else if ('$ref' in propSchema) {
-            const resolvedProp = resolveRef(propSchema, components, 'schemas');
-            if (resolvedProp && typeof resolvedProp === 'object' && 'type' in resolvedProp) {
-              propType = resolvedProp.type as string;
-            }
-          }
-        }
-
-        // 根据类型生成示例值
-        switch (propType) {
-          case 'string':
-            example[propName] = `example_${propName}`;
-            break;
-          case 'number':
-          case 'integer':
-            example[propName] = 123;
-            break;
-          case 'boolean':
-            example[propName] = true;
-            break;
-          case 'array':
-            example[propName] = [];
-            break;
-          case 'object':
-            example[propName] = {};
-            break;
-          default:
-            example[propName] = null;
-        }
+    // 使用通用的示例生成工具
+    return resolvedRequestBody.content[contentType].example ||
+      generateExample(schema, components, {
+        maxDepth: 2,
+        includeReadOnly: true,
+        includeWriteOnly: true
       });
-    }
-
-    return Object.keys(example).length > 0 ? example : { example: "data" };
   };
 
   const requestBodyExample = getRequestBodyExample();
@@ -114,10 +76,19 @@ const Codegen: React.FC<CodegenProps> = ({ endpoint, method, parameters = [], re
     });
   };
 
-  const copyToClipboard = () => {
-    navigator.clipboard.writeText(getCode());
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+  // 获取代码语言
+  const getCodeLanguage = () => {
+    const generator = codeGenerators.find(gen => gen.id === languageId);
+    if (!generator) return 'bash';
+
+    switch (languageId) {
+      case 'curl': return 'bash';
+      case 'python': return 'python';
+      case 'typescript':
+      case 'javascript': return 'javascript';
+      case 'php': return 'php';
+      default: return languageId;
+    }
   };
 
   return (
@@ -157,19 +128,11 @@ const Codegen: React.FC<CodegenProps> = ({ endpoint, method, parameters = [], re
             </div>
           </div>
 
-          <div className="relative">
-            <pre className="bg-gray-900 text-gray-100 text-xs p-4 overflow-x-auto max-h-[400px] whitespace-pre-wrap break-words scrollbar-thin scrollbar-thumb-gray-700 scrollbar-track-gray-950">
-              <code>{getCode()}</code>
-            </pre>
-
-            <button
-              onClick={copyToClipboard}
-              className="absolute top-3 right-3 p-1.5 rounded-md bg-gray-800 hover:bg-gray-700 text-gray-300 transition-colors"
-              title="复制代码"
-            >
-              {copied ? <Check size={16} className="text-green-400" /> : <Copy size={16} />}
-            </button>
-          </div>
+          <CodeMarkdown
+            code={getCode()}
+            language={getCodeLanguage()}
+            className="max-h-[400px] overflow-y-auto"
+          />
         </>
       )}
     </div>

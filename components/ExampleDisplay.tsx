@@ -7,6 +7,7 @@ interface ExampleDisplayProps {
   example: any;
   className?: string;
   language?: string; // 支持指定语言
+  title?: string; // 添加标题选项
 }
 
 /**
@@ -16,7 +17,8 @@ interface ExampleDisplayProps {
 const ExampleDisplay: React.FC<ExampleDisplayProps> = ({
   example,
   className = '',
-  language = 'json'
+  language = 'json',
+  title
 }) => {
   if (!example) {
     return (
@@ -26,20 +28,82 @@ const ExampleDisplay: React.FC<ExampleDisplayProps> = ({
     );
   }
 
-  const exampleStr = typeof example === 'string'
-    ? example
-    : JSON.stringify(example, null, 2);
+  // 根据不同的语言格式化示例数据
+  const formatExample = () => {
+    // 如果示例已经是字符串，直接返回
+    if (typeof example === 'string') {
+      return example;
+    }
+
+    // 根据语言选择格式化方式
+    switch (language) {
+      case 'json':
+        return JSON.stringify(example, null, 2);
+      case 'xml':
+        // 如果example是对象但需要显示为XML，尝试转换为XML格式字符串
+        try {
+          // 简单的对象到XML字符串转换
+          const objectToXml = (obj: any, rootName = 'root') => {
+            let xml = `<?xml version="1.0" encoding="UTF-8"?>\n<${rootName}>`;
+
+            for (const key in obj) {
+              const value = obj[key];
+              if (value === null || value === undefined) {
+                xml += `\n  <${key}/>`;
+              } else if (typeof value === 'object' && !Array.isArray(value)) {
+                xml += `\n  <${key}>${objectToXml(value, '')}</${key}>`;
+              } else if (Array.isArray(value)) {
+                xml += `\n  <${key}>`;
+                value.forEach(item => {
+                  if (typeof item === 'object') {
+                    xml += `\n    <item>${objectToXml(item, '')}</item>`;
+                  } else {
+                    xml += `\n    <item>${item}</item>`;
+                  }
+                });
+                xml += `\n  </${key}>`;
+              } else {
+                xml += `\n  <${key}>${value}</${key}>`;
+              }
+            }
+
+            return rootName ? `${xml}\n</${rootName}>` : xml;
+          };
+
+          return objectToXml(example, 'pet');
+        } catch (error) {
+          console.error('XML格式化失败:', error);
+          return JSON.stringify(example, null, 2); // 失败时回退到JSON
+        }
+      default:
+        return JSON.stringify(example, null, 2);
+    }
+  };
+
+  const exampleStr = formatExample();
 
   return (
     <div className={`relative ${className}`}>
+      {title && (
+        <div className="bg-gray-50 px-4 py-2 text-sm font-medium text-gray-700">
+          {title}
+        </div>
+      )}
       <div className="absolute top-2 right-2 z-10">
         <CopyButton text={exampleStr} />
       </div>
       <SyntaxHighlighter
         language={language}
         style={vs}
-        className="rounded p-3 text-xs overflow-x-auto"
-        customStyle={{ background: '#f9fafb', border: '1px solid #e5e7eb' }}
+        className="rounded text-xs overflow-x-auto"
+        customStyle={{
+          background: 'transparent',
+          padding: '12px',
+          margin: 0,
+          border: 'none',
+          fontWeight: 'normal',
+          lineHeight: '1.5',
+        }}
       >
         {exampleStr}
       </SyntaxHighlighter>

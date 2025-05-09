@@ -21,6 +21,7 @@ type ViewMode = 'schema' | 'example';
 
 interface SchemaExampleViewProps {
   mediaType: MediaTypeObject;
+  mediaTypeName?: string;
   components?: ComponentsObject;
   className?: string;
   buttonClassName?: string;
@@ -33,6 +34,7 @@ interface SchemaExampleViewProps {
  */
 const SchemaExampleView: React.FC<SchemaExampleViewProps> = ({
   mediaType,
+  mediaTypeName = 'application/json',
   components,
   className = '',
   buttonClassName = '',
@@ -146,7 +148,8 @@ const SchemaExampleView: React.FC<SchemaExampleViewProps> = ({
           /* 示例数据视图 */
           <ExampleDisplay
             example={exampleValue}
-            className="border rounded overflow-hidden"
+            className="border rounded overflow-hidden bg-gray-50"
+            language={getLanguageForMediaType()}
           />
         ) : (
           /* 数据结构视图 */
@@ -159,6 +162,19 @@ const SchemaExampleView: React.FC<SchemaExampleViewProps> = ({
       </div>
     </div>
   );
+
+  // 根据媒体类型获取语言
+  function getLanguageForMediaType(): string {
+    if (mediaTypeName.includes('json')) {
+      return 'json';
+    } else if (mediaTypeName.includes('xml')) {
+      return 'xml';
+    } else if (mediaTypeName.includes('yaml') || mediaTypeName.includes('yml')) {
+      return 'yaml';
+    } else {
+      return 'text';
+    }
+  }
 };
 
 // ===== SchemaWithExampleViewer 组件部分 =====
@@ -183,8 +199,6 @@ const SchemaWithExampleViewer: React.FC<SchemaWithExampleViewerProps> = ({
   content,
   components,
   className = '',
-  title,
-  showTitle = false,
   contentType = 'mediaTypes',
   renderHeader,
   renderFooter
@@ -214,15 +228,15 @@ const SchemaWithExampleViewer: React.FC<SchemaWithExampleViewerProps> = ({
 
   // 设置初始媒体类型，优先使用 application/json
   useEffect(() => {
-    if (mediaTypes.length > 0) {
+    if (mediaTypes.length > 0 && activeMediaType === null) {
       const jsonType = mediaTypes.find(type => type.includes('json'));
       setActiveMediaType(jsonType || mediaTypes[0]);
-    } else {
+    } else if (mediaTypes.length === 0) {
       setActiveMediaType(null);
     }
-  }, [mediaTypes]);
+  }, [mediaTypes, activeMediaType]);
 
-  // 当媒体类型列表变化时更新选中的媒体类型
+  // 当媒体类型列表变化时检查当前选择的媒体类型是否有效
   useEffect(() => {
     if (activeMediaType && !mediaTypes.includes(activeMediaType) && mediaTypes.length > 0) {
       const jsonType = mediaTypes.find(type => type.includes('json'));
@@ -267,11 +281,6 @@ const SchemaWithExampleViewer: React.FC<SchemaWithExampleViewerProps> = ({
 
   return (
     <div className={`mb-4 ${className}`}>
-      {/* 标题区域 */}
-      {showTitle && title && (
-        <h4 className="text-sm font-semibold uppercase text-gray-500 mb-2">{title}</h4>
-      )}
-
       {/* 自定义头部区域 */}
       {renderHeader && renderHeader()}
 
@@ -295,10 +304,12 @@ const SchemaWithExampleViewer: React.FC<SchemaWithExampleViewerProps> = ({
 
       {/* 内容显示区域 */}
       {activeMediaType && selectedMediaTypeObject && (
-        <div className="bg-gray-50/60 p-4 rounded space-y-4">
+        <div className="space-y-4">
           {/* 使用 SchemaExampleView 组件显示 schema 和示例数据 */}
           <SchemaExampleView
+            key={activeMediaType}
             mediaType={selectedMediaTypeObject}
+            mediaTypeName={activeMediaType}
             components={components}
             contentClassName="mt-2"
           />

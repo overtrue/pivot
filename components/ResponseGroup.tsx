@@ -3,7 +3,7 @@ import React from 'react';
 import { resolveRef } from '../utils/resolveRef';
 import DescriptionDisplay from './atoms/DescriptionDisplay';
 import StatusCode from './atoms/StatusCode';
-import SchemaDisplay from './SchemaDisplay';
+import ResponseContentSection from './ResponseContentSection';
 
 interface ResponseGroupProps {
   status: string;
@@ -14,7 +14,7 @@ interface ResponseGroupProps {
 const ResponseGroup: React.FC<ResponseGroupProps> = ({ status, response, components }) => {
   // 预处理内容类型
   const contentTypes = response.content ? Object.keys(response.content) : [];
-  const jsonContentType = contentTypes.find(type => type.includes('json')) || contentTypes[0];
+  const hasContent = contentTypes.length > 0;
 
   return (
     <div className="space-y-4">
@@ -25,46 +25,20 @@ const ResponseGroup: React.FC<ResponseGroupProps> = ({ status, response, compone
         )}
       </div>
 
-      {/* 内容类型和模式 */}
-      {contentTypes.length > 0 && (
+      {/* 使用ResponseContentSection展示内容和示例 */}
+      {hasContent && (
         <div className="space-y-3">
-          <div>
-            <div className="flex flex-wrap gap-1">
-              {contentTypes.map(type => (
-                <span
-                  key={type}
-                  className={`inline-block px-2 py-1 text-xs font-mono rounded ${type === jsonContentType ? 'bg-blue-100 text-blue-800' : 'bg-gray-100 text-gray-800'
-                    }`}
-                >
-                  {type}
-                </span>
-              ))}
-            </div>
-          </div>
-
-          {jsonContentType && response.content?.[jsonContentType].schema && (
-            <div>
-              <SchemaDisplay
-                schema={response.content[jsonContentType].schema}
-                components={components}
-                className="border bg-white p-3 rounded"
-              />
-            </div>
-          )}
-
-          {jsonContentType && response.content?.[jsonContentType].example && (
-            <div>
-              <pre className="bg-white rounded p-3 text-xs overflow-x-auto border">
-                <code>{JSON.stringify(response.content[jsonContentType].example, null, 2)}</code>
-              </pre>
-            </div>
-          )}
+          <ResponseContentSection
+            content={response.content!}
+            components={components}
+          />
         </div>
       )}
 
       {/* 头部信息 */}
       {response.headers && Object.keys(response.headers).length > 0 && (
         <div>
+          <h4 className="text-sm font-semibold uppercase text-gray-500 mb-2">响应头</h4>
           <div className="border rounded overflow-hidden">
             <table className="min-w-full divide-y divide-gray-200">
               <thead className="bg-gray-50">
