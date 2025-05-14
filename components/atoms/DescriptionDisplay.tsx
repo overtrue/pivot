@@ -1,4 +1,5 @@
 
+import { cn } from '@/utils/cn';
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
 
@@ -9,7 +10,7 @@ interface DescriptionDisplayProps {
 
 const DescriptionDisplay: React.FC<DescriptionDisplayProps> = ({ description, className }) => {
   return (
-    <div className={`text-sm text-gray-500 prose max-w-none ${className}`}>
+    <div className={cn(`text-sm text-gray-500 prose max-w-none`, className)}>
       <ReactMarkdown>{description}</ReactMarkdown>
     </div>
   );

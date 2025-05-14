@@ -385,7 +385,7 @@ const TryItOutPanel: React.FC<TryItOutPanelProps> = ({
             <div className="mb-2">
               <label className="text-xs text-gray-600 block mb-1">选择认证方式</label>
               <select
-                className="w-full px-2 py-1 border rounded text-sm"
+                className="w-full px-2 py-2 border rounded text-sm"
                 value={activeSecurityScheme || ''}
                 onChange={(e) => setActiveSecurityScheme(e.target.value || null)}
               >
@@ -519,7 +519,7 @@ const TryItOutPanel: React.FC<TryItOutPanelProps> = ({
   return (
     <div className="border rounded-lg overflow-hidden shadow-sm bg-white transition-all">
       <div
-        className={`border-b bg-gray-50 px-4 py-3 flex items-center justify-between ${collapsible ? 'cursor-pointer' : ''}`}
+        className={`bg-gray-50 px-4 py-3 flex items-center justify-between ${collapsible ? 'cursor-pointer' : ''}`}
         onClick={collapsible ? toggleCollapse : undefined}
       >
         <div className="flex items-center min-w-0">

@@ -2,9 +2,8 @@
 import {
   ComponentsObject,
   DataType,
-  FormatType,
   ReferenceObject,
-  SchemaObject,
+  SchemaObject
 } from '@/types/openapi'; // Adjust path
 import clsx from 'clsx';
 import React, { useState } from 'react';
@@ -141,25 +140,32 @@ const PropertyDisplay: React.FC<{
             <span className="text-gray-400"><ChevronIcon isExpanded={isExpanded} /></span>
           )}
         </span>
-        {/* Text content follows. Starts at same effective indent */}
-        <span className="font-mono text-sm text-black group-hover:text-gray-900">{propName}</span>
-        {/* ... rest of header ... */}
-        <TypeIndicator type={displayTypeString as DataType}>{displayTypeString}</TypeIndicator>
-        {format && <FormatBadge format={format as FormatType} className='text-gray-400' />}
-        {deprecated && <DeprecatedBadge />}
+        <div className="flex-1 gap-1 flex items-center justify-between">
+          {/* Text content follows. Starts at same effective indent */}
+          <span className="font-mono text-sm text-black group-hover:text-gray-900">{propName}</span>
 
-        {/* Hover Trailing Line */}
-        {isRequired && (
-          <>
-            {/* hover line */}
-            <div className="h-px self-center ml-1 flex-grow border-t border-transparent group-hover:border-gray-300 transition-colors duration-150"></div>
+          {/* hover line */}
+          <div className="h-px self-center ml-1 flex-grow border-t border-transparent group-hover:border-gray-300 transition-colors duration-150"></div>
 
-            {/* required badge */}
-            <div className="flex-shrink-0 flex items-center">
-              <RequiredBadge />
-            </div>
-          </>
-        )}
+          {/* Type and other badges */}
+          {/* This div is flex-1 to take up remaining space */}
+          <div className="flex gap-1 items-center">
+            {/* ... rest of header ... */}
+            <TypeIndicator type={displayTypeString as DataType}>{displayTypeString}</TypeIndicator>
+            {/* {format && <FormatBadge format={format as FormatType} className='text-gray-400' />} */}
+            {deprecated && <DeprecatedBadge />}
+
+            {/* Hover Trailing Line */}
+            {isRequired && (
+              <>
+                {/* required badge */}
+                <div className="flex-shrink-0 flex items-center">
+                  <RequiredBadge />
+                </div>
+              </>
+            )}
+          </div>
+        </div>
       </div>
 
       {/* Collapsible Section */}

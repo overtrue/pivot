@@ -96,8 +96,8 @@ const ResponsesSection: React.FC<ResponsesSectionProps> = ({
               key={status}
               onClick={() => setActiveStatus(status)}
               className={`px-3 py-1 text-sm rounded-full transition-colors ${status === activeStatus
-                  ? 'bg-blue-500 text-white'
-                  : 'bg-gray-100 hover:bg-gray-200 text-gray-800'
+                ? 'bg-blue-500 text-white'
+                : 'bg-gray-100 hover:bg-gray-200 text-gray-800'
                 }`}
             >
               {status === 'default' ? 'Default' : status}
@@ -108,7 +108,7 @@ const ResponsesSection: React.FC<ResponsesSectionProps> = ({
 
       {/* 活动响应内容 */}
       {activeStatus && activeResponse && (
-        <div className="border rounded bg-gray-50 p-4">
+        <div className="rounded">
           <ResponseGroup
             status={activeStatus}
             response={activeResponse}
@@ -119,7 +119,7 @@ const ResponsesSection: React.FC<ResponsesSectionProps> = ({
 
       {/* 无响应时的提示 */}
       {(!activeStatus || !activeResponse) && (
-        <div className="text-yellow-600 p-3 bg-yellow-50 rounded">
+        <div className="text-yellow-600 text-sm p-3 bg-yellow-50 rounded">
           {allStatusCodes.length === 0
             ? '未定义响应'
             : '无法解析所选响应'}

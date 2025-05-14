@@ -1,11 +1,9 @@
 // filepath: /workspaces/pivot/components/interactive/Codegen.tsx
 import { ComponentsObject, HttpMethod, ParameterObject, ReferenceObject, RequestBodyObject } from '@/types/openapi';
-import { ChevronDown, ChevronUp } from 'lucide-react';
 import React, { useState } from 'react';
 import { generateExample } from '../../utils/generateExample';
 import { resolveRef } from '../../utils/resolveRef';
 import CodeMarkdown from '../atoms/CodeMarkdown';
-import MethodLabel from '../atoms/MethodLabel';
 import { codeGenerators } from './codeGenerators';
 
 interface CodegenProps {
@@ -93,39 +91,22 @@ const Codegen: React.FC<CodegenProps> = ({ endpoint, method, parameters = [], re
 
   return (
     <div className="border rounded-lg overflow-hidden shadow-sm bg-white transition-all">
-      <div
-        className={`border-b bg-gray-50 px-4 py-3 flex items-center ${collapsible ? 'cursor-pointer' : ''}`}
-        onClick={collapsible ? toggleCollapse : undefined}
-      >
-        <MethodLabel method={method.toUpperCase() as 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH' | 'OPTIONS' | 'HEAD'} className="mr-2" />
-        <div className="text-sm text-gray-800 font-mono truncate overflow-hidden flex-grow">
-          {endpoint}
-        </div>
-        {collapsible && (
-          <div className="text-gray-500 ml-2">
-            {collapsed ? <ChevronDown size={18} /> : <ChevronUp size={18} />}
-          </div>
-        )}
-      </div>
-
       {!collapsed && (
         <>
-          <div className="px-4 py-3 border-b bg-gray-50">
-            <div className="flex flex-wrap space-x-1 p-1 bg-gray-100 rounded-md">
-              {codeGenerators.map((generator) => (
-                <button
-                  key={generator.id}
-                  onClick={() => setLanguageId(generator.id)}
-                  className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md text-sm font-medium transition-colors mb-1 ${languageId === generator.id
-                    ? 'bg-white text-blue-700 shadow-sm'
-                    : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
-                    }`}
-                >
-                  {generator.getIcon()}
-                  {generator.label}
-                </button>
-              ))}
-            </div>
+          <div className="flex flex-wrap space-x-1 p-1 bg-gray-50">
+            {codeGenerators.map((generator) => (
+              <button
+                key={generator.id}
+                onClick={() => setLanguageId(generator.id)}
+                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md text-sm font-medium transition-colors mb-1 ${languageId === generator.id
+                  ? 'bg-white text-blue-700 shadow-sm'
+                  : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
+                  }`}
+              >
+                {generator.getIcon()}
+                {generator.label}
+              </button>
+            ))}
           </div>
 
           <CodeMarkdown

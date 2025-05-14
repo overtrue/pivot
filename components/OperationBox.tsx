@@ -60,10 +60,9 @@ const OperationBox: React.FC<OperationBoxProps> = ({
   };
 
   const toggleExpand = () => setIsExpanded(!isExpanded);
-  const toggleTryItOut = () => setIsTryItOutVisible(!isTryItOutVisible);
 
   return (
-    <div className={`border rounded overflow-hidden shadow-sm ${operation.deprecated ? 'border-red-300' : 'border-gray-300'} ${className}`}>
+    <div className={`bg-gray-50/50 rounded overflow-hidden ${operation.deprecated ? 'bg-red-300' : 'bg-gray-50/50'} ${className}`}>
       {/* Header Section */}
       <div
         className={`p-3 flex justify-between items-center cursor-pointer ${operation.deprecated ? 'bg-red-50' : ''}`}
@@ -80,17 +79,15 @@ const OperationBox: React.FC<OperationBoxProps> = ({
 
       {/* Collapsible Body */}
       {isExpanded && (
-        <div className="divide-y divide-gray-200">
+        <div className="">
           {/* Description Section */}
           {(operation.summary || operation.description || externalDocs) && (
             <div className="p-4 space-y-2">
               {operation.summary && (
-                <DescriptionDisplay className="text-base font-medium md:hidden" description={operation.summary} />
+                <DescriptionDisplay className="text-base text-gray-800 font-medium md:hidden" description={operation.summary} />
               )}
               {operation.description && (
-                <div className="text-sm text-gray-700 prose max-w-none">
-                  <DescriptionDisplay description={operation.description} />
-                </div>
+                <DescriptionDisplay description={operation.description} className="text-sm text-gray-800 prose max-w-none" />
               )}
               {externalDocs && <ExternalDocsDisplay externalDocs={externalDocs} className="mt-2" />}
             </div>
