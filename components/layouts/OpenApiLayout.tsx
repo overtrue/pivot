@@ -372,7 +372,7 @@ const OpenApiLayout: React.FC<OpenApiLayoutProps> = ({ spec: inputSpec, classNam
                 baseUrl={parsedSpec?.servers && parsedSpec.servers.length > 0 ? parsedSpec.servers[0].url : ''} // 使用可选链确保安全访问
                 components={components} // This comes from useOpenApi(parsedSpec)
                 collapsible={true}
-                defaultCollapsed={true}
+                defaultCollapsed={false}
               />
             </div>
           </div>
