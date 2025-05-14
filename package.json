@@ -1,6 +1,6 @@
 {
   "name": "@overtrue/pivot",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Pivot - A modern React UI library for OpenAPI specifications",
   "main": "./dist/pivot.umd.js",
   "module": "./dist/pivot.es.js",
