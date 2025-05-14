@@ -6,6 +6,7 @@ interface RequestBodySectionProps {
     components?: ComponentsObject;
     spec?: OpenApiSpec;
     className?: string;
+    titleClassName?: string;
 }
 declare const RequestBodySection: React.FC<RequestBodySectionProps>;
 export default RequestBodySection;

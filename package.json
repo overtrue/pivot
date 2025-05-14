@@ -14,10 +14,6 @@
     "build:app": "vite build --mode app",
     "prepublishOnly": "npm run build"
   },
-  "peerDependencies": {
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0"
-  },
   "dependencies": {
     "@codemirror/lang-css": "^6.3.1",
     "@codemirror/lang-html": "^6.4.9",
@@ -29,11 +25,12 @@
     "clsx": "^2.1.1",
     "js-yaml": "^4.1.0",
     "lucide-react": "^0.264.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
     "react-markdown": "^10.1.0",
     "react-syntax-highlighter": "^15.6.1"
   },
   "devDependencies": {
-    "@storybook/experimental-addon-test": "^8.6.12",
     "@types/js-yaml": "^4.0.9",
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
