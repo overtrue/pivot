@@ -5,7 +5,7 @@ import {
   ReferenceObject,
   SchemaObject
 } from '@/types/openapi'; // Adjust path
-import clsx from 'clsx';
+import { cn } from '@/utils/cn';
 import React, { useState } from 'react';
 import { resolveRef } from '../utils/resolveRef';
 import DefaultValueDisplay from './atoms/DefaultValueDisplay';
@@ -32,7 +32,7 @@ const MAX_DEPTH = 10; // Simple depth limit to prevent infinite loops
 // --- Collapsible Icon --- (Simple SVG Chevron)
 const ChevronIcon = ({ isExpanded }: { isExpanded: boolean }) => (
   <svg
-    className={`w-3 h-3 transition-transform duration-200 ease-in-out ${isExpanded ? 'rotate-90' : 'rotate-0'}`}
+    className={cn(`w-3 h-3 transition-transform duration-200 ease-in-out`, isExpanded ? 'rotate-90' : 'rotate-0')}
     fill="none"
     strokeLinecap="round"
     strokeLinejoin="round"
@@ -77,8 +77,8 @@ const PropertyDisplay: React.FC<{
       ? (propSchemaOrRef as ReferenceObject).$ref
       : '[invalid schema]';
     return (
-      <div className="pl-3 my-2 border-l-2 border-gray-200">
-        <div className="font-mono font-medium text-sm mb-1 text-black">{propName} <span className="text-red-500 text-xs">Error resolving {refString}</span></div>
+      <div className="pl-3 my-2 border-l-2 border-gray-200 dark:border-gray-700">
+        <div className="font-mono font-medium text-sm mb-1 text-black dark:text-gray-200">{propName} <span className="text-red-500 dark:text-red-400 text-xs">Error resolving {refString}</span></div>
       </div>
     )
   }
@@ -123,29 +123,29 @@ const PropertyDisplay: React.FC<{
   const iconSpanWidthClass = isCollapsible ? 'w-4' : 'w-0'; // Fixed width for the icon span when it exists
 
   return (
-    <div className={clsx('py-1', className)} role='property-item'>
+    <div className={cn('py-1', className)} role='property-item'>
       {/* Property Name Row */}
       <div
-        className={`group flex items-center flex-wrap gap-x-1 mb-0.5 ${isCollapsible ? 'cursor-pointer' : ''}`}
+        className={cn('group flex items-center flex-wrap gap-x-1 mb-0.5', isCollapsible && 'cursor-pointer')}
         onClick={isCollapsible ? toggleExpansion : undefined}
         role='property-item-header'
       >
         {/* Prefix Connector Line - Conditional width */}
-        <div className={`${connectorWidthClass} border-t border-gray-200 group-hover:border-gray-300 flex-shrink-0`}></div>
+        <div className={cn(connectorWidthClass, 'border-t border-gray-200 dark:border-gray-700 group-hover:border-gray-300 dark:group-hover:border-gray-600 flex-shrink-0')}></div>
 
         {/* Icon Span - RENDERED ONLY IF COLLAPSIBLE */}
         {/* This span provides the space and contains the centered icon */}
-        <span className={`${iconSpanWidthClass} inline-flex items-center justify-center h-5`}>
+        <span className={cn(iconSpanWidthClass, 'inline-flex items-center justify-center h-5')}>
           {isCollapsible && (
-            <span className="text-gray-400"><ChevronIcon isExpanded={isExpanded} /></span>
+            <span className="text-gray-400 dark:text-gray-500"><ChevronIcon isExpanded={isExpanded} /></span>
           )}
         </span>
         <div className="flex-1 gap-1 flex items-center justify-between">
           {/* Text content follows. Starts at same effective indent */}
-          <span className="font-mono text-sm text-black group-hover:text-gray-900">{propName}</span>
+          <span className="font-mono text-sm text-black dark:text-gray-200 group-hover:text-gray-900 dark:group-hover:text-white">{propName}</span>
 
           {/* hover line */}
-          <div className="h-px self-center ml-1 flex-grow border-t border-transparent group-hover:border-gray-300 transition-colors duration-150"></div>
+          <div className="h-px self-center ml-1 flex-grow border-t border-transparent group-hover:border-gray-300 dark:group-hover:border-gray-600 transition-colors duration-150"></div>
 
           {/* Type and other badges */}
           {/* This div is flex-1 to take up remaining space */}
@@ -154,7 +154,6 @@ const PropertyDisplay: React.FC<{
             <TypeIndicator type={displayTypeString as DataType}>{displayTypeString}</TypeIndicator>
             {/* {format && <FormatBadge format={format as FormatType} className='text-gray-400' />} */}
             {deprecated && <DeprecatedBadge />}
-
             {/* Hover Trailing Line */}
             {isRequired && (
               <>
@@ -167,13 +166,11 @@ const PropertyDisplay: React.FC<{
           </div>
         </div>
       </div>
-
       {/* Collapsible Section */}
-      {/* Adjusted pl based on consistent total indent (w-8) */}
-      <div className={`pl-10 transition-all duration-300 ease-in-out overflow-hidden ${isExpanded ? 'max-h-[1000px] opacity-100' : 'max-h-0 opacity-0'}`} role='property-item-content'>
+      {/* Adjusted pl based on consistent total indent (w-8) */}    <div className={`pl-10 transition-all duration-300 ease-in-out overflow-hidden ${isExpanded ? 'max-h-[1000px] opacity-100' : 'max-h-0 opacity-0'}`} role='property-item-content'>
         {/* ... description, default, enum, constraints ... */}
         {description && (
-          <DescriptionDisplay description={description} className="text-sm text-gray-500 mb-1 pt-0.5" />
+          <DescriptionDisplay description={description as string} className="text-sm text-gray-500 mb-1 pt-0.5" />
         )}
 
         {defaultValue && (
@@ -306,7 +303,7 @@ const SchemaDisplay: React.FC<SchemaDisplayProps & { _currentDepth?: number }> =
           )}
           {renderComposition()}
           {properties && Object.keys(properties).length > 0 && (
-            <div className="mt-1 border-l border-gray-200">
+            <div className="mt-1 border-l border-gray-200 dark:border-gray-700">
               {Object.entries(properties).map(([propName, propSchema]) => (
                 <PropertyDisplay
                   key={propName}

@@ -1,4 +1,5 @@
 
+import { cn } from '@/utils/cn';
 import React from 'react';
 
 interface SectionTitleProps {
@@ -8,7 +9,7 @@ interface SectionTitleProps {
 
 const SectionTitle: React.FC<SectionTitleProps> = ({ title, className }) => {
   return (
-    <h4 className={`font-semibold text-sm ${className}`}>
+    <h4 className={cn('font-semibold text-sm dark:text-gray-200', className)}>
       {title}
     </h4>
   );

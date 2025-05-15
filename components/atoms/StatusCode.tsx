@@ -1,4 +1,4 @@
-import clsx from 'clsx';
+import { cn } from '@/utils/cn';
 import React from 'react';
 
 interface StatusCodeProps {
@@ -13,12 +13,12 @@ const StatusCode: React.FC<StatusCodeProps> = ({ code, size = 'small', className
 
   const getColorClass = () => {
     switch (firstDigit) {
-      case '1': return 'bg-blue-100 text-blue-800'; // Informational
-      case '2': return 'bg-green-100 text-green-800'; // Success
-      case '3': return 'bg-yellow-100 text-yellow-800'; // Redirection
-      case '4': return 'bg-orange-100 text-orange-800'; // Client Error
-      case '5': return 'bg-red-100 text-red-800'; // Server Error
-      default: return 'bg-gray-100 text-gray-800';
+      case '1': return 'bg-blue-100 dark:bg-blue-900/70 text-blue-800 dark:text-blue-200'; // Informational
+      case '2': return 'bg-green-100 dark:bg-green-900/70 text-green-800 dark:text-green-200'; // Success
+      case '3': return 'bg-yellow-100 dark:bg-yellow-900/70 text-yellow-800 dark:text-yellow-200'; // Redirection
+      case '4': return 'bg-orange-100 dark:bg-orange-900/70 text-orange-800 dark:text-orange-200'; // Client Error
+      case '5': return 'bg-red-100 dark:bg-red-900/70 text-red-800 dark:text-red-200'; // Server Error
+      default: return 'bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200';
     }
   };
 
@@ -29,7 +29,7 @@ const StatusCode: React.FC<StatusCodeProps> = ({ code, size = 'small', className
 
   return (
     <span
-      className={clsx(
+      className={cn(
         'font-semibold rounded',
         sizeClasses[size],
         getColorClass(),

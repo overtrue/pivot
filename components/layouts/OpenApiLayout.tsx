@@ -221,7 +221,7 @@ const OpenApiLayout: React.FC<OpenApiLayoutProps> = ({ spec: inputSpec, classNam
   if (parseError) {
     return (
       <div className="flex items-center justify-center h-screen bg-gray-100">
-        <div className="bg-white p-8 rounded-lg shadow-md text-center">
+        <div className="bg-white dark:bg-gray-900 p-8 rounded-lg shadow-md text-center">
           <h2 className="text-2xl font-semibold text-red-600 mb-4">规范解析错误</h2>
           <p className="text-gray-700">{parseError}</p>
         </div>
@@ -258,126 +258,127 @@ const OpenApiLayout: React.FC<OpenApiLayoutProps> = ({ spec: inputSpec, classNam
 
         {/* 拖动调整手柄 */}
         <div
-          className="absolute top-0 right-0 bottom-0 w-1 bg-transparent hover:bg-slate-400 cursor-ew-resize z-10"
+          className="absolute top-0 right-0 bottom-0 w-1 bg-transparent hover:bg-slate-400 dark:hover:bg-slate-500 cursor-ew-resize z-10"
           onMouseDown={startDragging}
         />
       </div>
 
       {/* Center Content Area */}
-      <main className="flex-grow p-8 overflow-y-auto">
-        {/* 1. Info Section */}
-        <div className="mb-10">
-          <SectionTitle title="基本信息" className="text-2xl mb-6 pb-2 border-b" />
-          {parsedSpec?.info && <InfoSection info={parsedSpec.info} />} {/* 使用可选链确保安全访问 */}
-        </div>
-
-        {/* 2. Servers Section */}
-        {parsedSpec?.servers && parsedSpec.servers.length > 0 && ( /* 使用可选链确保安全访问 */
+      <main className="flex-1 flex gap-2 p-8 overflow-y-auto max-w-7xl mx-auto dark:text-gray-200">
+        <div>
+          {/* 1. Info Section */}
           <div className="mb-10">
-            <SectionTitle title="服务器" className="text-2xl mb-6 pb-2 border-b" />
-            <ServersSection servers={parsedSpec.servers} /> {/* 已确保服务器存在 */}
+            <SectionTitle title="基本信息" className="text-2xl mb-6 pb-2 border-b dark:border-b-gray-700" />
+            {parsedSpec?.info && <InfoSection info={parsedSpec.info} />} {/* 使用可选链确保安全访问 */}
           </div>
-        )}
 
-        {/* 3. Operations Section (Filtered) */}
-        <div className="mb-10">
-          <SectionTitle
-            title={activeTag ? `接口 "${activeTag}"` : '所有接口'}
-            className="text-2xl mb-6 pb-2 border-b"
-          />
-
-          {Object.keys(taggedOperations).length > 0 ? (
-            <div className="space-y-8">
-              {Object.entries(taggedOperations).map(([tag, operations]) => (
-                <div key={tag} className="space-y-4">
-                  {tag !== activeTag && (
-                    <h3 className="text-xl font-medium text-gray-700">{tag}</h3>
-                  )}
-
-                  {operations.map(({ path, method, operation }: { path: string; method: string; operation: OperationObject }) => {
-                    const operationId = operation.operationId || `${method}-${path}`;
-                    return (
-                      <div key={`${method}-${path}`} id={`operation-${operationId}`}>
-                        <OperationBox
-                          onSelectOperation={() => handleSelectOperation(operationId, path, method, operation)}
-                          path={path}
-                          method={method.toUpperCase()} // 确保这里仍然是大写，因为 NavigationSidebar 可能期望大写
-                          operation={operation}
-                          components={components}
-                        />
-                      </div>
-                    );
-                  })}
-                </div>
-              ))}
+          {/* 2. Servers Section */}
+          {parsedSpec?.servers && parsedSpec.servers.length > 0 && ( /* 使用可选链确保安全访问 */
+            <div className="mb-10">
+              <SectionTitle title="服务器" className="text-2xl mb-6 pb-2 border-b" />
+              <ServersSection servers={parsedSpec.servers} /> {/* 已确保服务器存在 */}
             </div>
-          ) : (
-            activeTag && (
-              <div className="text-gray-500 italic">没有找到标签为 "{activeTag}" 的操作。</div>
-            )
+          )}
+
+          {/* 3. Operations Section (Filtered) */}
+          <div className="mb-10">
+            <SectionTitle
+              title={activeTag ? `接口 "${activeTag}"` : '所有接口'}
+              className="text-2xl mb-6 pb-2 border-b"
+            />
+
+            {Object.keys(taggedOperations).length > 0 ? (
+              <div className="space-y-8">
+                {Object.entries(taggedOperations).map(([tag, operations]) => (
+                  <div key={tag} className="space-y-4">
+                    {tag !== activeTag && (
+                      <h3 className="text-xl font-medium text-gray-700">{tag}</h3>
+                    )}
+
+                    {operations.map(({ path, method, operation }: { path: string; method: string; operation: OperationObject }) => {
+                      const operationId = operation.operationId || `${method}-${path}`;
+                      return (
+                        <div key={`${method}-${path}`} id={`operation-${operationId}`}>
+                          <OperationBox
+                            onSelectOperation={() => handleSelectOperation(operationId, path, method, operation)}
+                            path={path}
+                            method={method.toUpperCase()} // 确保这里仍然是大写，因为 NavigationSidebar 可能期望大写
+                            operation={operation}
+                            components={components}
+                          />
+                        </div>
+                      );
+                    })}
+                  </div>
+                ))}
+              </div>
+            ) : (
+              activeTag && (
+                <div className="text-gray-500 italic">没有找到标签为 "{activeTag}" 的操作。</div>
+              )
+            )}
+          </div>
+
+          {/* 4. Components Section */}
+          {components && Object.keys(components).length > 0 && (
+            <div ref={componentsRef} className="mb-10" id="components-section">
+              <SectionTitle title="数据模型" className="text-2xl mb-6 pb-2 border-b" />
+              <AccordionComponentsSection
+                components={components} // This comes from useOpenApi(parsedSpec)
+                selectedSchema={selectedSchema}
+              />
+            </div>
+          )}
+
+          {/* 5. Security Section */}
+          {(parsedSpec?.security || (components && 'securitySchemes' in components)) && ( /* 使用可选链确保安全访问 */
+            <div className="mb-10">
+              <SectionTitle title="安全设置" className="text-2xl mb-6 pb-2 border-b" />
+              <SecuritySection
+                security={parsedSpec?.security} /* 使用可选链确保安全访问 */
+                securitySchemes={components && 'securitySchemes' in components ? components.securitySchemes : undefined}
+                components={components} // This comes from useOpenApi(parsedSpec)
+              />
+            </div>
+          )}
+
+          {/* 6. External Docs Section (Root Level) */}
+          {parsedSpec?.externalDocs && ( /* 使用可选链确保安全访问 */
+            <div className="mb-10">
+              <SectionTitle title="外部文档" className="text-2xl mb-6 pb-2 border-b" />
+              <ExternalDocsDisplay externalDocs={parsedSpec.externalDocs} /> {/* 已确保 externalDocs 存在 */}
+            </div>
           )}
         </div>
-
-        {/* 4. Components Section */}
-        {components && Object.keys(components).length > 0 && (
-          <div ref={componentsRef} className="mb-10" id="components-section">
-            <SectionTitle title="数据模型" className="text-2xl mb-6 pb-2 border-b" />
-            <AccordionComponentsSection
-              components={components} // This comes from useOpenApi(parsedSpec)
-              selectedSchema={selectedSchema}
-            />
-          </div>
-        )}
-
-        {/* 5. Security Section */}
-        {(parsedSpec?.security || (components && 'securitySchemes' in components)) && ( /* 使用可选链确保安全访问 */
-          <div className="mb-10">
-            <SectionTitle title="安全设置" className="text-2xl mb-6 pb-2 border-b" />
-            <SecuritySection
-              security={parsedSpec?.security} /* 使用可选链确保安全访问 */
-              securitySchemes={components && 'securitySchemes' in components ? components.securitySchemes : undefined}
-              components={components} // This comes from useOpenApi(parsedSpec)
-            />
-          </div>
-        )}
-
-        {/* 6. External Docs Section (Root Level) */}
-        {parsedSpec?.externalDocs && ( /* 使用可选链确保安全访问 */
-          <div className="mb-10">
-            <SectionTitle title="外部文档" className="text-2xl mb-6 pb-2 border-b" />
-            <ExternalDocsDisplay externalDocs={parsedSpec.externalDocs} /> {/* 已确保 externalDocs 存在 */}
-          </div>
-        )}
-      </main>
-
-      {/* Right Sidebar (Code Samples Placeholder) */}
-      {selectedOperation && (
-        <aside className="w-1/3 max-w-screen-md flex-shrink-0 p-4 border-l bg-gray-50">
-          <div className="sticky top-4">
-            <Codegen
-              endpoint={selectedOperation.path}
-              method={selectedOperation.method as HttpMethod}
-              components={components} // This comes from useOpenApi(parsedSpec)
-              requestBody={selectedOperation.operation.requestBody}
-              parameters={selectedOperation.operation.parameters || []}
-              collapsible={true}
-              defaultCollapsed={false}
-            />
-
-            <div className="mt-6">
-              <TryItOutPanel
-                operation={selectedOperation.operation}
-                method={selectedOperation.method}
-                path={selectedOperation.path}
-                baseUrl={parsedSpec?.servers && parsedSpec.servers.length > 0 ? parsedSpec.servers[0].url : ''} // 使用可选链确保安全访问
+        {/* Right Sidebar (Code Samples Placeholder) */}
+        {selectedOperation && (
+          <aside className="w-1/3 max-w-screen-md flex-shrink-0 p-4 relative">
+            <div className="sticky top-4">
+              <Codegen
+                endpoint={selectedOperation.path}
+                method={selectedOperation.method as HttpMethod}
                 components={components} // This comes from useOpenApi(parsedSpec)
+                requestBody={selectedOperation.operation.requestBody}
+                parameters={selectedOperation.operation.parameters || []}
                 collapsible={true}
                 defaultCollapsed={false}
               />
+
+              <div className="mt-6">
+                <TryItOutPanel
+                  operation={selectedOperation.operation}
+                  method={selectedOperation.method}
+                  path={selectedOperation.path}
+                  baseUrl={parsedSpec?.servers && parsedSpec.servers.length > 0 ? parsedSpec.servers[0].url : ''} // 使用可选链确保安全访问
+                  components={components} // This comes from useOpenApi(parsedSpec)
+                  collapsible={true}
+                  defaultCollapsed={false}
+                />
+              </div>
             </div>
-          </div>
-        </aside>
-      )}
+          </aside>
+        )}
+      </main>
     </div>
   );
 };

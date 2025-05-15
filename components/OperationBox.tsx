@@ -7,6 +7,7 @@ import {
   OpenApiSpec,
   OperationObject
 } from '@/types/openapi';
+import { cn } from '@/utils/cn';
 import React, { useState } from 'react';
 import ParametersSection from './/ParametersSection';
 import ResponsesSection from './/ResponsesSection';
@@ -62,16 +63,23 @@ const OperationBox: React.FC<OperationBoxProps> = ({
   const toggleExpand = () => setIsExpanded(!isExpanded);
 
   return (
-    <div className={`bg-gray-50/50 rounded overflow-hidden ${operation.deprecated ? 'bg-red-300' : 'bg-gray-50/50'} ${className}`}>
+    <div className={cn(
+      'rounded overflow-hidden',
+      operation.deprecated ? 'bg-red-300 dark:bg-red-900/50' : 'bg-gray-50/50 dark:bg-gray-800/50',
+      className
+    )}>
       {/* Header Section */}
       <div
-        className={`p-3 flex justify-between items-center cursor-pointer ${operation.deprecated ? 'bg-red-50' : ''}`}
+        className={cn(
+          'p-3 flex justify-between items-center cursor-pointer',
+          operation.deprecated ? 'bg-red-50 dark:bg-red-900/30' : ''
+        )}
         onClick={handleHeaderClick}
       >
         <div className="flex items-center space-x-3 flex-wrap">
           <MethodLabel method={method.toUpperCase() as any} />
           <OperationPath path={path} className="break-all" />
-          {operation.summary && <span className="text-sm text-gray-700 hidden md:inline">- {operation.summary}</span>}
+          {operation.summary && <span className="text-sm text-gray-700 dark:text-gray-300 hidden md:inline">- {operation.summary}</span>}
           {operation.deprecated && <DeprecatedBadge />}
         </div>
         <ExpandCollapse isExpanded={isExpanded} onToggle={toggleExpand} label="" />
@@ -84,10 +92,10 @@ const OperationBox: React.FC<OperationBoxProps> = ({
           {(operation.summary || operation.description || externalDocs) && (
             <div className="p-4 space-y-2">
               {operation.summary && (
-                <DescriptionDisplay className="text-base text-gray-800 font-medium md:hidden" description={operation.summary} />
+                <DescriptionDisplay className="text-base text-gray-800 dark:text-gray-200 font-medium md:hidden" description={operation.summary} />
               )}
               {operation.description && (
-                <DescriptionDisplay description={operation.description} className="text-sm text-gray-800 prose max-w-none" />
+                <DescriptionDisplay description={operation.description} className="text-sm text-gray-800 dark:text-gray-200 prose dark:prose-invert max-w-none" />
               )}
               {externalDocs && <ExternalDocsDisplay externalDocs={externalDocs} className="mt-2" />}
             </div>

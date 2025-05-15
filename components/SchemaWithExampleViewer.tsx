@@ -6,6 +6,7 @@ import {
   RequestBodyObject,
   ResponseObject
 } from '@/types/openapi';
+import { cn } from '@/utils/cn';
 import { generateExample } from '@/utils/generateExample';
 import { resolveRef } from '@/utils/resolveRef';
 import React, { useEffect, useState } from 'react';
@@ -48,7 +49,7 @@ const SchemaExampleView: React.FC<SchemaExampleViewProps> = ({
   // 获取 schema
   const schema = mediaType.schema;
   if (!schema) {
-    return <div className="text-yellow-500">未定义模式</div>;
+    return <div className="text-yellow-500 dark:text-yellow-400">未定义模式</div>;
   }
 
   // 获取示例数据
@@ -87,17 +88,19 @@ const SchemaExampleView: React.FC<SchemaExampleViewProps> = ({
     <div className={className}>
       {/* 视图切换器 */}
       <div className="mb-4 flex items-center justify-between">
-        <div className={`flex bg-gray-100 rounded-lg p-0.5 relative ${buttonClassName}`}>
+        <div className={cn('flex bg-gray-100 dark:bg-gray-700 rounded-lg p-0.5 relative', buttonClassName)}>
           <button
             onClick={(e) => {
               e.preventDefault();
               e.stopPropagation();
               toggleViewMode('example');
             }}
-            className={`px-3 py-1 text-sm rounded-md transition-colors ${viewMode === 'example'
-              ? 'bg-white shadow text-blue-700'
-              : 'text-gray-700 hover:bg-gray-200'
-              }`}
+            className={cn(
+              'px-3 py-1 text-sm rounded-md transition-colors',
+              viewMode === 'example'
+                ? 'bg-white dark:bg-gray-800 shadow text-blue-700 dark:text-blue-400'
+                : 'text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
+            )}
             type="button"
           >
             示例数据
@@ -108,10 +111,12 @@ const SchemaExampleView: React.FC<SchemaExampleViewProps> = ({
               e.stopPropagation();
               toggleViewMode('schema');
             }}
-            className={`px-3 py-1 text-sm rounded-md transition-colors ${viewMode === 'schema'
-              ? 'bg-white shadow text-blue-700'
-              : 'text-gray-700 hover:bg-gray-200'
-              }`}
+            className={cn(
+              'px-3 py-1 text-sm rounded-md transition-colors',
+              viewMode === 'schema'
+                ? 'bg-white dark:bg-gray-800 shadow text-blue-700 dark:text-blue-400'
+                : 'text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
+            )}
             type="button"
           >
             数据结构
@@ -122,7 +127,7 @@ const SchemaExampleView: React.FC<SchemaExampleViewProps> = ({
         {viewMode === 'example' && hasExamples && examplesKeys.length > 1 && (
           <div className="ml-2 relative">
             <select
-              className="text-sm border rounded-md px-2 py-1 bg-white"
+              className="text-sm border rounded-md px-2 py-1 bg-white dark:bg-gray-700 dark:text-gray-200 dark:border-gray-600"
               value={selectedExample}
               onChange={(e) => setSelectedExample(e.target.value)}
               onClick={(e) => e.stopPropagation()}
@@ -131,7 +136,7 @@ const SchemaExampleView: React.FC<SchemaExampleViewProps> = ({
                 const example = resolveRef<ExampleObject>(mediaType.examples![key], components, 'examples');
                 const displayName = example?.summary || key;
                 return (
-                  <option key={key} value={key}>
+                  <option key={key} value={key} className="dark:bg-gray-700">
                     {displayName}
                   </option>
                 );
@@ -148,7 +153,7 @@ const SchemaExampleView: React.FC<SchemaExampleViewProps> = ({
           /* 示例数据视图 */
           <ExampleDisplay
             example={exampleValue}
-            className="border rounded overflow-hidden bg-gray-50"
+            className="border dark:border-gray-700 rounded overflow-hidden bg-gray-50 dark:bg-gray-900"
             language={getLanguageForMediaType()}
           />
         ) : (
@@ -156,7 +161,7 @@ const SchemaExampleView: React.FC<SchemaExampleViewProps> = ({
           <SchemaDisplay
             schema={schema}
             components={components}
-            className="border rounded p-3 bg-gray-50"
+            className="border dark:border-gray-700 rounded p-3 bg-gray-50 dark:bg-gray-900"
           />
         )}
       </div>
@@ -249,7 +254,7 @@ const SchemaWithExampleViewer: React.FC<SchemaWithExampleViewerProps> = ({
 
   if (mediaTypes.length === 0) {
     return (
-      <div className="text-yellow-500 p-3">
+      <div className="text-yellow-500 dark:text-yellow-400 p-3">
         未定义内容
       </div>
     );
@@ -280,7 +285,7 @@ const SchemaWithExampleViewer: React.FC<SchemaWithExampleViewerProps> = ({
   const description = getDescription();
 
   return (
-    <div className={`mb-4 ${className}`}>
+    <div className={cn('mb-4', 'dark:text-gray-200', className)}>
       {/* 自定义头部区域 */}
       {renderHeader && renderHeader()}
 

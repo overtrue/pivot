@@ -1,4 +1,5 @@
 import OpenApiLayout from '@/components/layouts/OpenApiLayout';
+import { ThemeToggle } from '@/components/ThemeToggle';
 import { Github } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 
@@ -24,7 +25,7 @@ export default function App() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const prevUrlRef = useRef<string>('');
-  const debounceTimerRef = useRef<NodeJS.Timeout | null>(null);
+  const debounceTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   // 组件加载时自动加载默认规范
   useEffect(() => {
@@ -81,7 +82,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col dark:bg-gray-900">
       <header className="bg-gradient-to-r from-slate-600 to-slate-800 text-white py-3 px-6 shadow-lg">
         <div className="w-full flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center">
@@ -111,7 +112,7 @@ export default function App() {
                     setSpecUrl(selectedExample.url);
                   }
                 }}
-                className="w-full appearance-none pl-4 pr-10 py-2 text-sm border border-slate-400 bg-slate-700 bg-opacity-20 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-white focus:border-transparent"
+                className="w-full appearance-none pl-4 pr-10 py-2 text-sm border border-slate-400 bg-slate-700 bg-opacity-20 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-white focus:border-transparent dark:bg-slate-800 dark:border-slate-600"
                 value={API_EXAMPLES.find(ex => ex.url === specUrl)?.url || ''}
               >
                 <option value="" disabled>选择示例API</option>
@@ -135,7 +136,7 @@ export default function App() {
                 value={specUrl}
                 onChange={(e) => setSpecUrl(e.target.value)}
                 placeholder="输入OpenAPI规范URL"
-                className="block w-full px-4 py-2 text-sm border border-slate-400 bg-slate-700 bg-opacity-20 rounded-md text-white placeholder-slate-300 focus:outline-none focus:ring-2 focus:ring-white focus:border-transparent"
+                className="block w-full px-4 py-2 text-sm border border-slate-400 bg-slate-700 bg-opacity-20 dark:bg-slate-800 dark:border-slate-600 rounded-md text-white placeholder-slate-300 focus:outline-none focus:ring-2 focus:ring-white focus:border-transparent"
               />
               {loading && (
                 <div className="absolute inset-y-0 right-0 flex items-center pr-3">
@@ -145,15 +146,18 @@ export default function App() {
             </div>
 
             {/* GitHub 链接 */}
-            <a
-              href="https://github.com/overtrue/pivot"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center text-white hover:text-slate-200 transition-colors"
-              title="GitHub 仓库"
-            >
-              <Github className="h-5 w-5" />
-            </a>
+            <div className="flex items-center gap-3">
+              <ThemeToggle />
+              <a
+                href="https://github.com/overtrue/pivot"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center text-white hover:text-slate-200 transition-colors"
+                title="GitHub 仓库"
+              >
+                <Github className="h-5 w-5" />
+              </a>
+            </div>
           </div>
         </div>
       </header>
@@ -161,7 +165,7 @@ export default function App() {
       <main className="flex-1">
         {error && (
           <div className="max-w-3xl mx-auto mt-8 px-4">
-            <div className="bg-red-50 border border-red-200 rounded-md p-4 text-red-700">
+            <div className="bg-red-50 dark:bg-red-900 border border-red-200 dark:border-red-800 rounded-md p-4 text-red-700 dark:text-red-300">
               <p className="font-medium">加载错误</p>
               <p className="text-sm mt-1">{error}</p>
             </div>
@@ -170,14 +174,14 @@ export default function App() {
 
         {!spec && !loading && !error ? (
           <div className="max-w-3xl mx-auto mt-12 text-center px-4">
-            <h2 className="text-xl font-medium text-gray-700 mb-4">输入OpenAPI规范URL</h2>
-            <p className="text-gray-500">
+            <h2 className="text-xl font-medium text-gray-700 dark:text-gray-200 mb-4">输入OpenAPI规范URL</h2>
+            <p className="text-gray-500 dark:text-gray-400">
               您可以使用上方的输入框输入任何有效的OpenAPI规范URL，系统会自动加载。
             </p>
           </div>
         ) : loading ? (
           <div className="flex justify-center items-center min-h-[60vh]">
-            <div className="animate-spin rounded-full h-12 w-12 border-2 border-b-2 border-slate-500"></div>
+            <div className="animate-spin rounded-full h-12 w-12 border-2 border-b-2 border-slate-500 dark:border-slate-300"></div>
           </div>
         ) : spec ? (
           <OpenApiLayout spec={spec} />

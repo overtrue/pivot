@@ -6,9 +6,11 @@ import {
   ResponseObject,
   ResponsesObjectMap
 } from '@/types/openapi';
+import { cn } from '@/utils/cn';
 import React, { useState } from 'react';
 import ResponseGroup from './ResponseGroup';
 import SectionTitle from './atoms/SectionTitle';
+import StatusCode from './atoms/StatusCode';
 
 interface ResponsesSectionProps {
   responses: ResponsesObjectMap;
@@ -34,7 +36,7 @@ const ResponsesSection: React.FC<ResponsesSectionProps> = ({
 
   // 如果没有提供spec或components，无法处理引用
   if (!openApi) {
-    return <div className="text-red-500">缺少解析引用所需的组件定义</div>;
+    return <div className="text-red-500 dark:text-red-400">缺少解析引用所需的组件定义</div>;
   }
 
   // 对状态码进行分组
@@ -85,7 +87,7 @@ const ResponsesSection: React.FC<ResponsesSectionProps> = ({
   const activeResponse = activeStatus ? getResponseByStatus(activeStatus) : null;
 
   return (
-    <div className={className}>
+    <div className={cn(className)}>
       <SectionTitle title="响应" className="text-lg font-medium mb-3" />
 
       {/* 状态码列表 */}
@@ -95,12 +97,18 @@ const ResponsesSection: React.FC<ResponsesSectionProps> = ({
             <button
               key={status}
               onClick={() => setActiveStatus(status)}
-              className={`px-3 py-1 text-sm rounded-full transition-colors ${status === activeStatus
-                ? 'bg-blue-500 text-white'
-                : 'bg-gray-100 hover:bg-gray-200 text-gray-800'
-                }`}
+              className={cn(
+                "transition-transform hover:scale-105 focus:scale-105",
+              )}
             >
-              {status === 'default' ? 'Default' : status}
+              <StatusCode
+                code={status === 'default' ? 'default' : status}
+                size="medium"
+                className={cn(
+                  "cursor-pointer",
+                  status === activeStatus ? "opacity-100" : "opacity-80 hover:opacity-100"
+                )}
+              />
             </button>
           ))}
         </div>
@@ -119,13 +127,11 @@ const ResponsesSection: React.FC<ResponsesSectionProps> = ({
 
       {/* 无响应时的提示 */}
       {(!activeStatus || !activeResponse) && (
-        <div className="text-yellow-600 text-sm p-3 bg-yellow-50 rounded">
-          {allStatusCodes.length === 0
-            ? '未定义响应'
-            : '无法解析所选响应'}
+        <div className="text-yellow-600 dark:text-yellow-400 text-sm p-3 bg-yellow-50 dark:bg-yellow-900/30 rounded">
+          {allStatusCodes.length === 0 ? '未定义响应' : '无法解析所选响应'}
         </div>
       )}
-    </div>
+    </div >
   );
 };
 

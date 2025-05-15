@@ -1,12 +1,18 @@
+import { cn } from '@/utils/cn';
 import React from 'react';
 
-const TermsOfService: React.FC<{ url: string }> = ({ url }) => {
+interface TermsOfServiceProps {
+  url: string;
+  className?: string;
+}
+
+const TermsOfService: React.FC<TermsOfServiceProps> = ({ url, className }) => {
   return (
     <a
       href={url}
       target="_blank"
       rel="noopener noreferrer"
-      className="text-blue-600 hover:underline text-sm"
+      className={cn("text-blue-600 dark:text-blue-400 hover:underline text-sm", className)}
     >
       Terms of Service
     </a>

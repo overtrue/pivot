@@ -1,14 +1,16 @@
 
+import { cn } from '@/utils/cn';
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
 
 interface ParameterDescriptionProps {
   description: string;
+  className?: string;
 }
 
-const ParameterDescription: React.FC<ParameterDescriptionProps> = ({ description }) => {
+const ParameterDescription: React.FC<ParameterDescriptionProps> = ({ description, className }) => {
   return (
-    <div className="text-sm text-gray-500 prose max-w-none">
+    <div className={cn("text-sm text-gray-500 dark:text-gray-400 prose dark:prose-invert max-w-none", className)}>
       <ReactMarkdown>{description}</ReactMarkdown>
     </div>
   );

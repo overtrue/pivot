@@ -21,7 +21,7 @@ const ResponseGroup: React.FC<ResponseGroupProps> = ({ status, response, compone
       <div className="flex items-center space-x-2">
         <StatusCode code={status} />
         {response.description && (
-          <span className="text-gray-700 text-sm">{response.description}</span>
+          <span className="text-gray-700 dark:text-gray-300 text-sm">{response.description}</span>
         )}
       </div>
 
@@ -38,7 +38,7 @@ const ResponseGroup: React.FC<ResponseGroupProps> = ({ status, response, compone
       {/* 头部信息 */}
       {response.headers && Object.keys(response.headers).length > 0 && (
         <div>
-          <h4 className="text-sm font-semibold uppercase text-gray-500 mb-2">响应头</h4>
+          <h4 className="text-sm font-semibold uppercase text-gray-500 dark:text-gray-400 mb-2">响应头</h4>
           <div className="border rounded overflow-hidden">
             <table className="min-w-full divide-y divide-gray-200">
               <thead className="bg-gray-50">

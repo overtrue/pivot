@@ -378,7 +378,7 @@ const TryItOutPanel: React.FC<TryItOutPanelProps> = ({
     return (
       <div className="space-y-3">
         <div className="flex items-center justify-between">
-          <h3 className="text-sm font-medium text-gray-700">认证</h3>
+          <h3 className="text-sm font-medium text-gray-700 dark:text-gray-300">认证</h3>
         </div>
         <div className="space-y-3">
           {securitySchemes.length > 1 && (
@@ -512,7 +512,7 @@ const TryItOutPanel: React.FC<TryItOutPanelProps> = ({
               return null;
             })}
         </div>
-      </div>
+      </div >
     );
   };
 

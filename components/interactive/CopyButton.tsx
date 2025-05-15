@@ -1,3 +1,4 @@
+import { cn } from '@/utils/cn';
 import { Clipboard, ClipboardCheck } from 'lucide-react';
 import React, { useEffect, useState } from 'react';
 
@@ -51,7 +52,12 @@ const CopyButton: React.FC<CopyButtonProps> = ({
   return (
     <button
       onClick={handleCopy}
-      className={`bg-gray-100 hover:bg-gray-200 text-gray-500 rounded transition-colors ${sizeClasses[size]} ${className} ${copied ? 'text-green-600' : ''}`}
+      className={cn(
+        'bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 text-gray-500 dark:text-gray-300 rounded transition-colors',
+        sizeClasses[size],
+        className,
+        copied ? 'text-green-600 dark:text-green-400' : ''
+      )}
       title="复制到剪贴板"
     >
       {copied ? (

@@ -1,6 +1,8 @@
+import { useTheme } from '@/lib/theme/ThemeProvider';
+import { cn } from '@/utils/cn';
 import React from 'react';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { vs } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import { vs, vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import CopyButton from '../interactive/CopyButton';
 
 interface CodeMarkdownProps {
@@ -20,17 +22,36 @@ const CodeMarkdown: React.FC<CodeMarkdownProps> = ({
   className = '',
   disableCopy = false
 }) => {
+  // 尝试使用 ThemeProvider 上下文，如果不可用，则使用本地状态或者获取系统首选配色
+  const theme = (() => {
+    try {
+      return useTheme().theme;
+    } catch (e) {
+      // 如果不在 ThemeProvider 内部，检查 localStorage 或系统首选
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme === 'dark') return 'dark';
+      if (savedTheme === 'light') return 'light';
+      // 检查系统首选配色
+      if (typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        return 'dark';
+      }
+      return 'light';
+    }
+  })();
+
+  const codeStyle = theme === 'dark' ? vscDarkPlus : vs;
+
   return (
-    <div className={`relative ${className}`}>
+    <div className={cn('relative', className)}>
       {!disableCopy && (
         <div className="absolute top-3 right-3 z-10">
-          <CopyButton text={code} className="text-gray-300" size="sm" />
+          <CopyButton text={code} className="text-gray-300 dark:text-gray-500" size="sm" />
         </div>
       )}
-      <div className="overflow-hidden">
+      <div className="overflow-hidden dark:bg-gray-900 rounded-lg">
         <SyntaxHighlighter
           language={language}
-          style={vs}
+          style={codeStyle}
           codeTagProps={{
             className: 'font-mono'
           }}
@@ -39,7 +60,8 @@ const CodeMarkdown: React.FC<CodeMarkdownProps> = ({
             padding: '1rem',
             fontSize: '0.75rem',
             lineHeight: 1.2,
-            border: 'none'
+            border: 'none',
+            backgroundColor: theme === 'dark' ? '#1e1e1e' : undefined
           }}
         >
           {code}

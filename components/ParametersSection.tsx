@@ -4,6 +4,7 @@ import {
   ParameterObject,
   ReferenceObject
 } from '@/types/openapi'; // Adjust path
+import { cn } from '@/utils/cn';
 import React from 'react';
 import { resolveRef } from '../utils/resolveRef';
 import ParameterItem from './ParameterItem'; // Import ParameterItem and StyleType
@@ -20,10 +21,10 @@ const ParametersSection: React.FC<ParametersSectionProps> = ({ parameters, compo
   }
 
   return (
-    <div className={className}>
+    <div className={cn(className, "dark:text-gray-200")}>
       {/* Optionally add a title, or assume OperationBox provides context */}
       {/* <SectionTitle title="Parameters" className="text-sm font-semibold mb-3"/> */}
-      <h4 className="text-sm font-semibold mb-3">Parameters</h4>
+      <h4 className="text-sm font-semibold mb-3 dark:text-gray-300">Parameters</h4>
       <div className="space-y-3">
         {parameters.map((paramOrRef, index) => {
           // Resolve parameter ref
@@ -34,7 +35,7 @@ const ParametersSection: React.FC<ParametersSectionProps> = ({ parameters, compo
               ? (paramOrRef as ReferenceObject).$ref
               : `[invalid parameter at index ${index}]`;
             return (
-              <div key={index} className="text-xs text-red-500 p-1 border border-dashed rounded">
+              <div key={index} className="text-xs text-red-500 dark:text-red-400 p-1 border border-dashed dark:border-red-700 rounded">
                 Failed to resolve parameter: {refString}
               </div>
             );

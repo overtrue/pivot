@@ -36,7 +36,7 @@ const ResponseItem: React.FC<ResponseItemProps> = ({
       ? response.$ref
       : '[unknown reference]';
     return (
-      <div className="text-xs text-red-500 p-2 border rounded bg-red-50">
+      <div className="text-xs text-red-500 dark:text-red-400 p-2 border dark:border-red-800 rounded bg-red-50 dark:bg-red-900/20">
         无法显示响应 {code}: 引用 {refString} 未解析或解析失败。
       </div>
     );

@@ -1,4 +1,5 @@
 import { DataType } from '@/types/openapi';
+import { cn } from '@/utils/cn';
 import React from 'react';
 
 // Define theme names for data types
@@ -13,13 +14,13 @@ interface TypeIndicatorProps {
 
 // Map themes to text colors
 const dataTypeThemeColors: Record<DataTypeTheme, string> = {
-  primary: 'text-blue-800',    // number/integer
-  secondary: 'text-purple-800',// array
-  success: 'text-green-800',  // string
-  warning: 'text-yellow-800', // boolean
-  danger: 'text-red-800',      // (Currently unused, could be for invalid/error types)
-  info: 'text-indigo-800',   // object
-  neutral: 'text-gray-500',   // null & default (using the gray-500 from your last FormatBadge change)
+  primary: 'text-blue-800 dark:text-blue-400',       // number/integer
+  secondary: 'text-purple-800 dark:text-purple-400', // array
+  success: 'text-green-800 dark:text-green-400',     // string
+  warning: 'text-yellow-800 dark:text-yellow-400',   // boolean
+  danger: 'text-red-800 dark:text-red-400',          // (Currently unused, could be for invalid/error types)
+  info: 'text-indigo-800 dark:text-indigo-400',      // object
+  neutral: 'text-gray-500 dark:text-gray-400',       // null & default
 };
 
 // Helper to determine theme from data type if theme is 'auto'
@@ -53,7 +54,7 @@ const TypeIndicator: React.FC<TypeIndicatorProps> = ({ type, theme = 'auto', cla
   return (
     <span
       // Remove padding, background, and rounded classes
-      className={`text-xs font-medium font-mono ${colorClass} ${className || ''}`}
+      className={cn('text-xs font-medium font-mono', colorClass, className)}
     >
       {children || type} {/* Display children if provided, otherwise the type */}
     </span>

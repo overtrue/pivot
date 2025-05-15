@@ -1,4 +1,5 @@
 
+import { cn } from '@/utils/cn';
 import React from 'react';
 
 interface ValueDisplayProps {
@@ -12,7 +13,7 @@ const ValueDisplay: React.FC<ValueDisplayProps> = ({ value, className = '' }) =>
     : String(value);
 
   return (
-    <code className={`text-xs bg-gray-100 px-2 py-1 rounded font-mono break-all ${className}`}>
+    <code className={cn('text-xs bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded font-mono break-all', className)}>
       {displayValue}
     </code>
   );

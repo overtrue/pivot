@@ -1,5 +1,5 @@
 
-import clsx from 'clsx';
+import { cn } from '@/utils/cn';
 import React from 'react';
 import PathSegment from './PathSegment';
 
@@ -61,7 +61,7 @@ const OperationPath: React.FC<OperationPathProps> = ({ path, className }) => {
   };
 
   return (
-    <div className={clsx('flex flex-wrap items-center', className)}>
+    <div className={cn('flex flex-wrap items-center text-gray-600 dark:text-gray-400', className)}>
       {segments.map((segment, index) => renderSegment(segment, index))}
     </div>
   );

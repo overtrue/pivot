@@ -1,5 +1,5 @@
-
 import { SchemaObject } from '@/types/openapi'; // Adjust path
+import { cn } from '@/utils/cn';
 import React from 'react';
 
 interface SchemaConstraintsProps {
@@ -24,7 +24,7 @@ const SchemaConstraints: React.FC<SchemaConstraintsProps> = ({ schema, className
     constraints.push({ label: 'Max Length', value: schema.maxLength });
   }
   if (schema.pattern) {
-    constraints.push({ label: 'Pattern', value: <code className="text-xs font-mono bg-gray-100 px-1 rounded">{schema.pattern}</code> });
+    constraints.push({ label: 'Pattern', value: <code className="text-xs font-mono bg-gray-100 dark:bg-gray-800 px-1 rounded">{schema.pattern}</code> });
   }
   if (schema.minItems !== undefined) {
     constraints.push({ label: 'Min Items', value: schema.minItems });
@@ -47,9 +47,9 @@ const SchemaConstraints: React.FC<SchemaConstraintsProps> = ({ schema, className
   }
 
   return (
-    <div className={className}>
+    <div className={cn(className)}>
       <h4 className="text-xs font-semibold mb-1">Constraints</h4>
-      <ul className="text-xs text-gray-600 pl-4 list-disc space-y-0.5">
+      <ul className="text-xs text-gray-600 dark:text-gray-400 pl-4 list-disc space-y-0.5">
         {constraints.map((constraint) => (
           <li key={constraint.label}>
             <span className="font-medium">{constraint.label}:</span> {constraint.value}

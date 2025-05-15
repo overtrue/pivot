@@ -1,3 +1,4 @@
+import { cn } from '@/utils/cn';
 import React from 'react';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { vs } from 'react-syntax-highlighter/dist/esm/styles/prism';
@@ -22,7 +23,7 @@ const ExampleDisplay: React.FC<ExampleDisplayProps> = ({
 }) => {
   if (!example) {
     return (
-      <div className="bg-yellow-50 text-yellow-800 p-3 rounded text-sm">
+      <div className="bg-yellow-50 dark:bg-yellow-900/30 text-yellow-800 dark:text-yellow-300 p-3 rounded text-sm">
         未提供示例数据
       </div>
     );
@@ -83,9 +84,9 @@ const ExampleDisplay: React.FC<ExampleDisplayProps> = ({
   const exampleStr = formatExample();
 
   return (
-    <div className={`relative ${className}`}>
+    <div className={cn('relative', className)}>
       {title && (
-        <div className="bg-gray-50 px-4 py-2 text-sm font-medium text-gray-700">
+        <div className="bg-gray-50 dark:bg-gray-800 px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300">
           {title}
         </div>
       )}

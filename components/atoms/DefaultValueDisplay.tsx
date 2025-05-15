@@ -1,4 +1,5 @@
 
+import { cn } from '@/utils/cn';
 import React from 'react';
 import ValueDisplay from './ValueDisplay';
 
@@ -13,8 +14,8 @@ const DefaultValueDisplay: React.FC<DefaultValueDisplayProps> = ({ value, classN
   }
 
   return (
-    <div className={`${className || ''}`}>
-      <h4 className="text-xs font-semibold mb-1 text-gray-500">默认值</h4>
+    <div className={cn(className)}>
+      <h4 className="text-xs font-semibold mb-1 text-gray-500 dark:text-gray-400">默认值</h4>
       <ValueDisplay value={value} />
     </div>
   );

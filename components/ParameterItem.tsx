@@ -1,6 +1,7 @@
 
 import EnumValuesDisplay from '@/components/atoms/EnumValuesDisplay';
 import { ComponentsObject, ExampleObject, ParameterObject, ReferenceObject, SchemaObject, StyleType } from '@/types/openapi';
+import { cn } from '@/utils/cn';
 import React, { useState } from 'react';
 import DefaultValueDisplay from './atoms/DefaultValueDisplay';
 import DeprecatedBadge from './atoms/DeprecatedBadge';
@@ -47,29 +48,25 @@ const ParameterItem: React.FC<ParameterItemProps> = ({
     schema.pattern;
 
   return (
-    <div className={`border rounded-md overflow-hidden ${deprecated ? 'border-red-300' : 'border-gray-300'} ${className}`}>
-      <div className="p-3 flex flex-wrap items-center justify-between gap-2" onClick={() => setIsExpanded(!isExpanded)}>
+    <div className={cn('border rounded-md overflow-hidden',
+      deprecated
+        ? 'border-red-300 dark:border-red-700'
+        : 'border-gray-300 dark:border-gray-700',
+      className)}>
+      <div className="px-4 py-3 flex flex-wrap items-center justify-between gap-2 dark:bg-gray-800" onClick={() => setIsExpanded(!isExpanded)}>
         <div className="flex flex-wrap items-center gap-2">
-          <ParameterName name={name} required={required} deprecated={deprecated} />
+          <ParameterName name={name} deprecated={deprecated} />
 
           {deprecated && <DeprecatedBadge />}
 
-          <InLabel type={paramIn} />
-
-          {schema.type && (
-            <TypeIndicator type={schema.type} />
-          )}
-
-          {schema.format && (
-            <FormatBadge format={schema.format} />
-          )}
-
-          {style && (
-            <StyleBadge style={style} />
+          {required && (
+            <span className="bg-red-100 dark:bg-red-900/30 text-red-800 dark:text-red-400 px-2 py-0.5 text-xs rounded font-semibold">
+              required
+            </span>
           )}
 
           {explode && (
-            <span className="bg-blue-100 text-blue-800 px-2 py-0.5 text-xs rounded">
+            <span className="bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 px-2 py-0.5 text-xs rounded">
               explode
             </span>
           )}
@@ -85,13 +82,8 @@ const ParameterItem: React.FC<ParameterItemProps> = ({
       </div>
 
       {isExpanded && hasDetails && (
-        <div className="p-4 border-t border-gray-200 flex flex-col gap-3">
-          {description && (
-            <div className="">
-              <h4 className="text-xs font-semibold mb-1 text-gray-500">Description</h4>
-              <ParameterDescription description={description} />
-            </div>
-          )}
+        <div className="p-4 pt-0 flex flex-col gap-3 dark:bg-gray-800">
+          {description && <ParameterDescription description={description} />}
 
           <DefaultValueDisplay value={schema.default} />
 
@@ -102,6 +94,21 @@ const ParameterItem: React.FC<ParameterItemProps> = ({
           {examples && Object.keys(examples).length > 0 && (
             <ExamplesDisplay examples={examples} components={components} />
           )}
+          <div className='flex items-center gap-2'>
+            <InLabel type={paramIn} />
+
+            {schema.type && (
+              <TypeIndicator type={schema.type} />
+            )}
+
+            {schema.format && (
+              <FormatBadge format={schema.format} />
+            )}
+
+            {style && (
+              <StyleBadge style={style} />
+            )}
+          </div>
         </div>
       )}
     </div>

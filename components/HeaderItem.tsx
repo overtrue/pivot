@@ -5,6 +5,7 @@ import {
   ReferenceObject,
   SchemaObject
 } from '@/types/openapi';
+import { cn } from '@/utils/cn';
 import React, { useState } from 'react';
 import DefaultValueDisplay from './atoms/DefaultValueDisplay';
 import DeprecatedBadge from './atoms/DeprecatedBadge';
@@ -56,7 +57,13 @@ const HeaderItem: React.FC<HeaderItemProps> = ({
   const hasDetails = description || hasSchemaDetails || (examples && Object.keys(examples).length > 0);
 
   return (
-    <div className={`mb-2 p-2 border rounded ${deprecated ? 'border-red-300 bg-red-50' : 'border-gray-200'} ${className}`}>
+    <div className={cn(
+      'mb-2 p-2 border rounded',
+      deprecated
+        ? 'border-red-300 bg-red-50 dark:border-red-700 dark:bg-red-900/20'
+        : 'border-gray-200 dark:border-gray-700 dark:bg-gray-800',
+      className
+    )}>
       <div className="flex items-center justify-between mb-1">
         <div className="flex items-center flex-wrap gap-2">
           <span className={`font-mono font-medium ${deprecated ? 'line-through text-red-500' : ''}`}>{name}</span>

@@ -1,3 +1,4 @@
+import { cn } from '@/utils/cn';
 import React, { useState } from 'react';
 import ValueDisplay from './ValueDisplay';
 
@@ -14,7 +15,7 @@ const EnumValues: React.FC<EnumValuesProps> = ({ values, className }) => {
   }
 
   return (
-    <div className={className}>
+    <div className={cn(className)}>
       {values.map((value, index) => (
         <ValueDisplay key={index} value={value} />
       ))}

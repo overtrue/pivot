@@ -1,4 +1,4 @@
-import clsx from 'clsx';
+import { cn } from '@/utils/cn';
 import React from 'react';
 
 interface WebhookLabelProps {
@@ -8,9 +8,9 @@ interface WebhookLabelProps {
 const WebhookLabel: React.FC<WebhookLabelProps> = ({ className }) => {
   return (
     <span
-      className={clsx(
+      className={cn(
         'px-2 py-1 text-xs font-semibold rounded',
-        'bg-purple-100 text-purple-800',
+        'bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-400',
         className
       )}
     >

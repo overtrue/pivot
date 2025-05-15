@@ -1,4 +1,5 @@
 import { FormatType } from '@/types/openapi';
+import { cn } from '@/utils/cn';
 import React from 'react';
 
 // Define more abstract theme names
@@ -12,12 +13,12 @@ interface FormatBadgeProps {
 
 // Map themes to colors using new names (only text color)
 const formatThemeColors: Record<FormatTheme, string> = {
-  primary: 'text-blue-800',      // Was number, removed bg-blue-100
-  secondary: 'text-purple-800', // Was date, removed bg-purple-100
-  success: 'text-green-800',    // Was identifier, removed bg-green-100
-  warning: 'text-yellow-800', // Was binary, removed bg-yellow-100
-  danger: 'text-red-800',       // Was sensitive, removed bg-red-100
-  neutral: 'text-gray-500',     // Was default, removed bg-gray-100
+  primary: 'text-blue-800 dark:text-blue-400',         // Was number
+  secondary: 'text-purple-800 dark:text-purple-400',   // Was date
+  success: 'text-green-800 dark:text-green-400',       // Was identifier
+  warning: 'text-yellow-800 dark:text-yellow-400',     // Was binary
+  danger: 'text-red-800 dark:text-red-400',            // Was sensitive
+  neutral: 'text-gray-500 dark:text-gray-400',         // Was default
 };
 
 // Helper to determine theme from format if theme is 'auto' (returns new theme names)
@@ -39,7 +40,7 @@ const FormatBadge: React.FC<FormatBadgeProps> = ({ format, theme = 'auto', class
 
   return (
     <span
-      className={`text-xs font-medium font-mono ${colorClass} ${className || ''}`}
+      className={cn('text-xs font-medium font-mono', colorClass, className)}
     >
       {format}
     </span>
