@@ -1,3 +1,4 @@
+import { useI18n } from '@/lib/i18n/I18nProvider';
 import {
   ComponentsObject,
   ExampleObject,
@@ -15,9 +16,9 @@ import ExampleDisplay from './ExampleDisplay';
 import MediaTypeSelector from './MediaTypeSelector';
 import SchemaDisplay from './SchemaDisplay';
 
-// ===== SchemaExampleView 组件部分 =====
+// ===== SchemaExampleView Component Section =====
 
-// 定义视图类型
+// Define view modes
 type ViewMode = 'schema' | 'example';
 
 interface SchemaExampleViewProps {
@@ -30,8 +31,8 @@ interface SchemaExampleViewProps {
 }
 
 /**
- * 通用的 Schema 和示例数据视图组件
- * 可以显示 schema 和其对应的 example 数据，并支持在两者间切换
+ * Generic Schema and Example Data View Component
+ * Can display schema and its corresponding example data, with ability to toggle between them
  */
 const SchemaExampleView: React.FC<SchemaExampleViewProps> = ({
   mediaType,
@@ -41,52 +42,54 @@ const SchemaExampleView: React.FC<SchemaExampleViewProps> = ({
   buttonClassName = '',
   contentClassName = ''
 }) => {
-  // 视图模式状态 - 默认为示例数据
+  const { t } = useI18n();
+
+  // View mode state - defaults to example
   const [viewMode, setViewMode] = useState<ViewMode>('example');
-  // 当前选中的示例名称
+  // Currently selected example name
   const [selectedExample, setSelectedExample] = useState<string>('');
 
-  // 获取 schema
+  // Get schema
   const schema = mediaType.schema;
   if (!schema) {
-    return <div className="text-yellow-500 dark:text-yellow-400">未定义模式</div>;
+    return <div className="text-yellow-500 dark:text-yellow-400">{t('Schema not defined')}</div>;
   }
 
-  // 获取示例数据
+  // Get example data
   const hasExample = !!mediaType.example;
   const hasExamples = !!(mediaType.examples && Object.keys(mediaType.examples || {}).length > 0);
   const examplesKeys = hasExamples ? Object.keys(mediaType.examples || {}) : [];
 
-  // 确保有选中的示例
+  // Ensure an example is selected
   useEffect(() => {
     if (hasExamples && !selectedExample && examplesKeys.length > 0) {
       setSelectedExample(examplesKeys[0]);
     }
   }, [hasExamples, selectedExample, examplesKeys]);
 
-  // 获取当前选中的示例
+  // Get current selected example
   const currentExample = selectedExample && hasExamples
     ? resolveRef<ExampleObject>(mediaType.examples![selectedExample], components, 'examples')
     : null;
 
-  // 示例显示内容 - 优先使用提供的示例，否则根据 schema 生成
+  // Example display content - prefer provided example, otherwise generate from schema
   const providedExample = currentExample?.value || mediaType.example;
   const generatedExample = generateExample(schema, components);
   const exampleValue = providedExample || generatedExample;
 
-  // 检查是否有可用的示例
-  const hasAnyExample = true; // 始终可以显示示例，因为现在我们可以生成示例
+  // Check if any example is available
+  const hasAnyExample = true; // Always can show example since we can generate now
 
-  // 切换视图模式
+  // Toggle view mode
   const toggleViewMode = (mode: ViewMode) => {
-    if (mode === viewMode) return; // 如果已经是当前模式，不做任何操作
+    if (mode === viewMode) return; // If already in this mode, do nothing
     setViewMode(mode);
-    console.log(`已切换视图模式到: ${mode}`);
+    console.log(t('Switched view mode to: %s').replace('%s', mode));
   };
 
   return (
     <div className={className}>
-      {/* 视图切换器 */}
+      {/* View switcher */}
       <div className="mb-4 flex items-center justify-between">
         <div className={cn('flex bg-gray-100 dark:bg-gray-700 rounded-lg p-0.5 relative', buttonClassName)}>
           <button
@@ -103,7 +106,7 @@ const SchemaExampleView: React.FC<SchemaExampleViewProps> = ({
             )}
             type="button"
           >
-            示例数据
+            {t('Example Data')}
           </button>
           <button
             onClick={(e) => {
@@ -119,11 +122,11 @@ const SchemaExampleView: React.FC<SchemaExampleViewProps> = ({
             )}
             type="button"
           >
-            数据结构
+            {t('Schema')}
           </button>
         </div>
 
-        {/* 多个示例选择器 */}
+        {/* Multiple examples selector */}
         {viewMode === 'example' && hasExamples && examplesKeys.length > 1 && (
           <div className="ml-2 relative">
             <select
@@ -146,29 +149,29 @@ const SchemaExampleView: React.FC<SchemaExampleViewProps> = ({
         )}
       </div>
 
-      {/* 内容显示区域 */}
+      {/* Content display area */}
       <div className={contentClassName}>
-        {/* 根据视图模式显示不同内容 */}
+        {/* Display different content based on view mode */}
         {viewMode === 'example' ? (
-          /* 示例数据视图 */
+          /* Example data view */
           <ExampleDisplay
             example={exampleValue}
-            className="border dark:border-gray-700 rounded overflow-hidden bg-gray-50 dark:bg-gray-900"
+            className="rounded overflow-hidden bg-gray-50 dark:bg-gray-800"
             language={getLanguageForMediaType()}
           />
         ) : (
-          /* 数据结构视图 */
+          /* Schema structure view */
           <SchemaDisplay
             schema={schema}
             components={components}
-            className="border dark:border-gray-700 rounded p-3 bg-gray-50 dark:bg-gray-900"
+            className="rounded p-3 bg-gray-50 dark:bg-gray-800"
           />
         )}
       </div>
     </div>
   );
 
-  // 根据媒体类型获取语言
+  // Get language based on media type
   function getLanguageForMediaType(): string {
     if (mediaTypeName.includes('json')) {
       return 'json';
@@ -182,10 +185,10 @@ const SchemaExampleView: React.FC<SchemaExampleViewProps> = ({
   }
 };
 
-// ===== SchemaWithExampleViewer 组件部分 =====
+// ===== SchemaWithExampleViewer Component Section =====
 
 interface SchemaWithExampleViewerProps {
-  // 内容可以是请求体或响应体
+  // Content can be a request body or response body
   content: RequestBodyObject | ReferenceObject | ResponseObject | Record<string, MediaTypeObject>;
   components?: ComponentsObject;
   className?: string;
@@ -197,8 +200,8 @@ interface SchemaWithExampleViewerProps {
 }
 
 /**
- * Schema与示例查看器组件
- * 用于展示 schema 和它的示例数据，支持切换不同的媒体类型格式
+ * Schema and Example Viewer Component
+ * Used to display schema and its example data, supporting switching between different media type formats
  */
 const SchemaWithExampleViewer: React.FC<SchemaWithExampleViewerProps> = ({
   content,
@@ -208,7 +211,9 @@ const SchemaWithExampleViewer: React.FC<SchemaWithExampleViewerProps> = ({
   renderHeader,
   renderFooter
 }) => {
-  // 根据内容类型，获取媒体类型映射
+  const { t } = useI18n();
+
+  // Based on content type, get the media type mapping
   const getMediaTypes = (): Record<string, MediaTypeObject> => {
     if (contentType === 'mediaTypes' && typeof content === 'object') {
       return content as Record<string, MediaTypeObject>;
@@ -231,7 +236,7 @@ const SchemaWithExampleViewer: React.FC<SchemaWithExampleViewerProps> = ({
   const mediaTypes = Object.keys(mediaTypesContent);
   const [activeMediaType, setActiveMediaType] = useState<string | null>(null);
 
-  // 设置初始媒体类型，优先使用 application/json
+  // Set initial media type, prefer application/json
   useEffect(() => {
     if (mediaTypes.length > 0 && activeMediaType === null) {
       const jsonType = mediaTypes.find(type => type.includes('json'));
@@ -241,7 +246,7 @@ const SchemaWithExampleViewer: React.FC<SchemaWithExampleViewerProps> = ({
     }
   }, [mediaTypes, activeMediaType]);
 
-  // 当媒体类型列表变化时检查当前选择的媒体类型是否有效
+  // Check if the current media type selection is valid when the list changes
   useEffect(() => {
     if (activeMediaType && !mediaTypes.includes(activeMediaType) && mediaTypes.length > 0) {
       const jsonType = mediaTypes.find(type => type.includes('json'));
@@ -255,19 +260,19 @@ const SchemaWithExampleViewer: React.FC<SchemaWithExampleViewerProps> = ({
   if (mediaTypes.length === 0) {
     return (
       <div className="text-yellow-500 dark:text-yellow-400 p-3">
-        未定义内容
+        {t("No content defined")}
       </div>
     );
   }
 
   const selectedMediaTypeObject = activeMediaType ? mediaTypesContent[activeMediaType] : null;
 
-  // 处理媒体类型切换
+  // Handle media type switching
   const handleSelectMediaType = (mediaType: string) => {
     setActiveMediaType(mediaType);
   };
 
-  // 获取说明信息（如果有）
+  // Get description (if available)
   const getDescription = () => {
     if (contentType === 'requestBody') {
       const resolvedBody = resolveRef<RequestBodyObject>(content as RequestBodyObject | ReferenceObject, components, 'requestBodies');
@@ -286,17 +291,17 @@ const SchemaWithExampleViewer: React.FC<SchemaWithExampleViewerProps> = ({
 
   return (
     <div className={cn('mb-4', 'dark:text-gray-200', className)}>
-      {/* 自定义头部区域 */}
+      {/* Custom header area */}
       {renderHeader && renderHeader()}
 
-      {/* 描述信息 */}
+      {/* Description information */}
       {description && (
         <div className="mb-3">
           <DescriptionDisplay description={description} />
         </div>
       )}
 
-      {/* 媒体类型选择器 */}
+      {/* Media type selector */}
       {mediaTypes.length > 1 && (
         <div className="mb-3">
           <MediaTypeSelector
@@ -307,10 +312,10 @@ const SchemaWithExampleViewer: React.FC<SchemaWithExampleViewerProps> = ({
         </div>
       )}
 
-      {/* 内容显示区域 */}
+      {/* Content display area */}
       {activeMediaType && selectedMediaTypeObject && (
         <div className="space-y-4">
-          {/* 使用 SchemaExampleView 组件显示 schema 和示例数据 */}
+          {/* Use SchemaExampleView component to display schema and example data */}
           <SchemaExampleView
             key={activeMediaType}
             mediaType={selectedMediaTypeObject}
@@ -319,7 +324,7 @@ const SchemaWithExampleViewer: React.FC<SchemaWithExampleViewerProps> = ({
             contentClassName="mt-2"
           />
 
-          {/* 自定义底部区域 */}
+          {/* Custom footer area */}
           {renderFooter && renderFooter(selectedMediaTypeObject)}
         </div>
       )}

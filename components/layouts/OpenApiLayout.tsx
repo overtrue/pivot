@@ -1,4 +1,5 @@
 import { useOpenApi } from '@/hooks/useOpenApi';
+import { useI18n } from '@/lib/i18n/I18nProvider';
 import {
   HttpMethod,
   OpenApiSpec as OpenApiObject,
@@ -22,12 +23,14 @@ interface OpenApiLayoutProps {
   className?: string;
 }
 
-const MIN_SIDEBAR_WIDTH = 280; // 最小宽度
-const MAX_SIDEBAR_WIDTH = 350; // 最大宽度
-const DEFAULT_SIDEBAR_WIDTH = 280; // 默认宽度
+const MIN_SIDEBAR_WIDTH = 280; // Minimum width
+const MAX_SIDEBAR_WIDTH = 350; // Maximum width
+const DEFAULT_SIDEBAR_WIDTH = 280; // Default width
 
 const OpenApiLayout: React.FC<OpenApiLayoutProps> = ({ spec: inputSpec, className }) => {
-  // 所有hooks都必须在组件顶层无条件调用
+  const { t } = useI18n();
+
+  // All hooks must be called at the top level without conditions
   const [parsedSpec, setParsedSpec] = useState<OpenApiObject | null>(null);
   const [parseError, setParseError] = useState<string | null>(null);
   const [activeTag, setActiveTag] = useState<string | null>(null);
@@ -41,18 +44,18 @@ const OpenApiLayout: React.FC<OpenApiLayoutProps> = ({ spec: inputSpec, classNam
   const rootRef = useRef<HTMLDivElement>(null);
   const componentsRef = useRef<HTMLDivElement>(null);
 
-  // 解析字符串为OpenAPI对象
+  // Parse string to OpenAPI object
   useEffect(() => {
     if (typeof inputSpec === 'string') {
       try {
-        // 尝试解析为JSON
+        // Try to parse as JSON
         try {
           const jsonData = JSON.parse(inputSpec);
           setParsedSpec(jsonData);
           setParseError(null);
           return;
         } catch (jsonError) {
-          // JSON解析失败，尝试解析为YAML
+          // JSON parsing failed, try parsing as YAML
           try {
             const yamlData = yaml.load(inputSpec);
             if (typeof yamlData === 'object' && yamlData !== null) {
@@ -60,24 +63,24 @@ const OpenApiLayout: React.FC<OpenApiLayoutProps> = ({ spec: inputSpec, classNam
               setParseError(null);
               return;
             } else {
-              throw new Error('解析后的YAML不是有效的对象');
+              throw new Error('Parsed YAML is not a valid object');
             }
           } catch (yamlError) {
-            setParseError(`解析OpenAPI规范失败: ${yamlError instanceof Error ? yamlError.message : '未知错误'}`);
+            setParseError(`Failed to parse OpenAPI spec: ${yamlError instanceof Error ? yamlError.message : 'Unknown error'}`);
             setParsedSpec(null);
           }
         }
       } catch (error) {
-        setParseError(`解析OpenAPI规范失败: ${error instanceof Error ? error.message : '未知错误'}`);
+        setParseError(`Failed to parse OpenAPI spec: ${error instanceof Error ? error.message : 'Unknown error'}`);
         setParsedSpec(null);
       }
     } else {
-      // 输入已经是对象
+      // Input is already an object
       console.log('Parsed OpenAPI spec:', inputSpec);
       setParsedSpec(inputSpec);
       setParseError(null);
     }
-  }, [inputSpec]);  // 创建一个空的规范对象，用于在 parsedSpec 为 null 时提供给 useOpenApi
+  }, [inputSpec]);  // Create an empty spec object to provide to useOpenApi when parsedSpec is null
   const emptySpec = useMemo(() => ({
     openapi: '3.0.0',
     info: { title: '', version: '' },
@@ -93,38 +96,38 @@ const OpenApiLayout: React.FC<OpenApiLayoutProps> = ({ spec: inputSpec, classNam
     resolve
   } = useOpenApi(parsedSpec || emptySpec);
 
-  // 初始化CSS变量
+  // Initialize CSS variables
   useEffect(() => {
     if (rootRef.current) {
       rootRef.current.style.setProperty('--sidebar-width', `${sidebarWidth}px`);
     }
   }, [sidebarWidth]);
 
-  // 开始拖动
+  // Start dragging
   const startDragging = (e: React.MouseEvent) => {
     e.preventDefault();
     setIsDragging(true);
   };
 
-  // 处理拖动过程
+  // Handle dragging process
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       if (!isDragging || !rootRef.current) return;
 
-      // 计算新宽度
+      // Calculate new width
       let newWidth = e.clientX;
 
-      // 限制宽度范围
+      // Limit width range
       if (newWidth < MIN_SIDEBAR_WIDTH) newWidth = MIN_SIDEBAR_WIDTH;
       if (newWidth > MAX_SIDEBAR_WIDTH) newWidth = MAX_SIDEBAR_WIDTH;
 
-      // 直接更新CSS变量，避免React状态更新导致的重新渲染
+      // Directly update CSS variables to avoid React state updates causing re-renders
       rootRef.current.style.setProperty('--sidebar-width', `${newWidth}px`);
     };
 
     const handleMouseUp = () => {
       if (isDragging && rootRef.current) {
-        // 获取当前CSS变量值，更新React状态
+        // Get the current CSS variable value, update React state
         const currentWidth = rootRef.current.style.getPropertyValue('--sidebar-width');
         const numWidth = parseInt(currentWidth, 10);
         if (!isNaN(numWidth)) {
@@ -145,13 +148,13 @@ const OpenApiLayout: React.FC<OpenApiLayoutProps> = ({ spec: inputSpec, classNam
     };
   }, [isDragging]);
 
-  // 按标签过滤的操作
+  // Operations filtered by tag
   const currentOperationsByTag = getOperationsByTag();
   const taggedOperations = activeTag
     ? { [activeTag]: currentOperationsByTag[activeTag] || [] }
     : currentOperationsByTag;
 
-  // 更新选择的操作
+  // Update the selected operation
   const handleSelectOperation = useCallback((operationId: string, path: string, method: string, operation: OperationObject) => {
     setSelectedOperationId(operationId);
     setSelectedOperation({
@@ -160,7 +163,7 @@ const OpenApiLayout: React.FC<OpenApiLayoutProps> = ({ spec: inputSpec, classNam
       operation
     });
 
-    // 滚动到选中的操作
+    // Scroll to the selected operation
     setTimeout(() => {
       const element = document.getElementById(`operation-${operationId}`);
       if (element) {
@@ -169,18 +172,18 @@ const OpenApiLayout: React.FC<OpenApiLayoutProps> = ({ spec: inputSpec, classNam
     }, 100);
   }, []);
 
-  // 处理选择schema的事件
+  // Handle schema selection events
   const handleSelectSchema = (schemaName: string) => {
     setSelectedSchema(schemaName);
 
-    // 先滚动到组件部分
+    // First scroll to the components section
     if (componentsRef.current) {
       componentsRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 
-    // 通知AccordionComponentsSection展开对应的schema
+    // Notify AccordionComponentsSection to expand the corresponding schema
     setTimeout(() => {
-      // 使用自定义事件通知AccordionComponentsSection
+      // Use custom event to notify AccordionComponentsSection
       const event = new CustomEvent('openapi-select-schema', {
         detail: { name: schemaName, type: 'schemas' }
       });
@@ -188,14 +191,14 @@ const OpenApiLayout: React.FC<OpenApiLayoutProps> = ({ spec: inputSpec, classNam
     }, 300);
   };
 
-  // 自动选择第一个操作，使页面加载时默认显示内容
+  // Auto-select the first operation, to display content by default when page loads
   useEffect(() => {
-    // 延迟执行，确保组件完全渲染和数据已加载
+    // Delay execution to ensure components are fully rendered and data is loaded
     const timer = setTimeout(() => {
       if (selectedOperation || !parsedSpec) return;
 
       try {
-        const operationsByTag = getOperationsByTag(); // 直接调用从 hook 获取的函数
+        const operationsByTag = getOperationsByTag(); // Call the function directly from the hook
         const tags = Object.keys(operationsByTag);
 
         if (tags.length > 0) {
@@ -212,39 +215,39 @@ const OpenApiLayout: React.FC<OpenApiLayoutProps> = ({ spec: inputSpec, classNam
       } catch (error) {
         console.error('Error auto-selecting operation:', error);
       }
-    }, 300); // 给页面渲染预留时间
+    }, 300); // Allow time for page rendering
 
     return () => clearTimeout(timer);
   }, [parsedSpec, handleSelectOperation, getOperationsByTag]);
 
-  // 如果解析出错，显示错误信息
+  // If there's a parsing error, display the error message
   if (parseError) {
     return (
-      <div className="flex items-center justify-center h-screen bg-gray-100">
-        <div className="bg-white dark:bg-gray-900 p-8 rounded-lg shadow-md text-center">
-          <h2 className="text-2xl font-semibold text-red-600 mb-4">规范解析错误</h2>
-          <p className="text-gray-700">{parseError}</p>
+      <div className="flex items-center justify-center h-screen bg-gray-100 dark:bg-gray-900">
+        <div className="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-md text-center">
+          <h2 className="text-2xl font-semibold text-red-600 dark:text-red-400 mb-4">{t('Specification Parse Error')}</h2>
+          <p className="text-gray-700 dark:text-gray-300">{parseError}</p>
         </div>
       </div>
     );
   }
 
-  // 如果规范尚未解析，显示加载状态
+  // If the spec is not yet parsed, display loading state
   if (!parsedSpec) {
     return (
-      <div className="flex justify-center items-center min-h-[60vh]">
-        <div className="animate-spin rounded-full h-12 w-12 border-2 border-slate-500"></div>
-        <p className="ml-4 text-slate-500">正在解析规范...</p>
+      <div className="flex justify-center items-center min-h-[60vh] dark:text-gray-200">
+        <div className="animate-spin rounded-full h-12 w-12 border-2 border-slate-500 dark:border-slate-400"></div>
+        <p className="ml-4 text-slate-500 dark:text-slate-400">{t('Parsing specification...')}</p>
       </div>
     );
   }
 
   return (
-    <div ref={rootRef} className={`flex min-h-screen ${className} ${isDragging ? 'select-none cursor-ew-resize' : ''}`}>
+    <div ref={rootRef} className={`flex min-h-screen bg-white dark:bg-gray-900 ${className} ${isDragging ? 'select-none cursor-ew-resize' : ''}`}>
       {/* Left Sidebar (Navigation) */}
       <div
         ref={sidebarRef}
-        className="flex-shrink-0 relative"
+        className="flex-shrink-0 relative bg-gray-50 dark:bg-gray-800"
         style={{ width: 'var(--sidebar-width)' }}
       >
         <NavigationSidebar
@@ -256,7 +259,7 @@ const OpenApiLayout: React.FC<OpenApiLayoutProps> = ({ spec: inputSpec, classNam
           onSelectSchema={handleSelectSchema}
         />
 
-        {/* 拖动调整手柄 */}
+        {/* Drag handle */}
         <div
           className="absolute top-0 right-0 bottom-0 w-1 bg-transparent hover:bg-slate-400 dark:hover:bg-slate-500 cursor-ew-resize z-10"
           onMouseDown={startDragging}
@@ -264,18 +267,18 @@ const OpenApiLayout: React.FC<OpenApiLayoutProps> = ({ spec: inputSpec, classNam
       </div>
 
       {/* Center Content Area */}
-      <main className="flex-1 flex gap-2 p-8 overflow-y-auto max-w-7xl mx-auto dark:text-gray-200">
+      <main className="flex-1 flex gap-2 p-8 overflow-y-auto mx-auto dark:text-gray-200">
         <div>
           {/* 1. Info Section */}
           <div className="mb-10">
-            <SectionTitle title="基本信息" className="text-2xl mb-6 pb-2 border-b dark:border-b-gray-700" />
+            <SectionTitle title={t('Basic Information')} className="text-2xl mb-6 pb-2 border-b dark:border-b-gray-700" />
             {parsedSpec?.info && <InfoSection info={parsedSpec.info} />} {/* 使用可选链确保安全访问 */}
           </div>
 
           {/* 2. Servers Section */}
           {parsedSpec?.servers && parsedSpec.servers.length > 0 && ( /* 使用可选链确保安全访问 */
             <div className="mb-10">
-              <SectionTitle title="服务器" className="text-2xl mb-6 pb-2 border-b" />
+              <SectionTitle title={t('Servers')} className="text-2xl mb-6 pb-2 border-b dark:border-b-gray-700" />
               <ServersSection servers={parsedSpec.servers} /> {/* 已确保服务器存在 */}
             </div>
           )}
@@ -283,8 +286,8 @@ const OpenApiLayout: React.FC<OpenApiLayoutProps> = ({ spec: inputSpec, classNam
           {/* 3. Operations Section (Filtered) */}
           <div className="mb-10">
             <SectionTitle
-              title={activeTag ? `接口 "${activeTag}"` : '所有接口'}
-              className="text-2xl mb-6 pb-2 border-b"
+              title={activeTag ? t('Operations "%s"').replace('%s', activeTag) : t('All Operations')}
+              className="text-2xl mb-6 pb-2 border-b dark:border-b-gray-700"
             />
 
             {Object.keys(taggedOperations).length > 0 ? (
@@ -292,7 +295,7 @@ const OpenApiLayout: React.FC<OpenApiLayoutProps> = ({ spec: inputSpec, classNam
                 {Object.entries(taggedOperations).map(([tag, operations]) => (
                   <div key={tag} className="space-y-4">
                     {tag !== activeTag && (
-                      <h3 className="text-xl font-medium text-gray-700">{tag}</h3>
+                      <h3 className="text-xl font-medium text-gray-700 dark:text-gray-300">{tag}</h3>
                     )}
 
                     {operations.map(({ path, method, operation }: { path: string; method: string; operation: OperationObject }) => {
@@ -314,7 +317,7 @@ const OpenApiLayout: React.FC<OpenApiLayoutProps> = ({ spec: inputSpec, classNam
               </div>
             ) : (
               activeTag && (
-                <div className="text-gray-500 italic">没有找到标签为 "{activeTag}" 的操作。</div>
+                <div className="text-gray-500 dark:text-gray-400 italic">{t('No operations found with tag "%s"').replace('%s', activeTag)}</div>
               )
             )}
           </div>
@@ -322,7 +325,7 @@ const OpenApiLayout: React.FC<OpenApiLayoutProps> = ({ spec: inputSpec, classNam
           {/* 4. Components Section */}
           {components && Object.keys(components).length > 0 && (
             <div ref={componentsRef} className="mb-10" id="components-section">
-              <SectionTitle title="数据模型" className="text-2xl mb-6 pb-2 border-b" />
+              <SectionTitle title={t('Components')} className="text-2xl mb-6 pb-2 border-b dark:border-b-gray-700" />
               <AccordionComponentsSection
                 components={components} // This comes from useOpenApi(parsedSpec)
                 selectedSchema={selectedSchema}
@@ -333,7 +336,7 @@ const OpenApiLayout: React.FC<OpenApiLayoutProps> = ({ spec: inputSpec, classNam
           {/* 5. Security Section */}
           {(parsedSpec?.security || (components && 'securitySchemes' in components)) && ( /* 使用可选链确保安全访问 */
             <div className="mb-10">
-              <SectionTitle title="安全设置" className="text-2xl mb-6 pb-2 border-b" />
+              <SectionTitle title={t('Security')} className="text-2xl mb-6 pb-2 border-b dark:border-b-gray-700" />
               <SecuritySection
                 security={parsedSpec?.security} /* 使用可选链确保安全访问 */
                 securitySchemes={components && 'securitySchemes' in components ? components.securitySchemes : undefined}
@@ -345,7 +348,7 @@ const OpenApiLayout: React.FC<OpenApiLayoutProps> = ({ spec: inputSpec, classNam
           {/* 6. External Docs Section (Root Level) */}
           {parsedSpec?.externalDocs && ( /* 使用可选链确保安全访问 */
             <div className="mb-10">
-              <SectionTitle title="外部文档" className="text-2xl mb-6 pb-2 border-b" />
+              <SectionTitle title={t('External Documentation')} className="text-2xl mb-6 pb-2 border-b dark:border-b-gray-700" />
               <ExternalDocsDisplay externalDocs={parsedSpec.externalDocs} /> {/* 已确保 externalDocs 存在 */}
             </div>
           )}

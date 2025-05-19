@@ -1,4 +1,5 @@
 
+import { useI18n } from '@/lib/i18n/I18nProvider';
 import {
   ComponentsObject,
   HeaderObject,
@@ -27,6 +28,8 @@ const ResponseItem: React.FC<ResponseItemProps> = ({
   response,
   components
 }) => {
+  const { t } = useI18n();
+
   // 解析响应对象（如果是引用）
   const resolvedResponse = resolveRef<ResponseObject>(response, components, 'responses');
 
@@ -34,10 +37,10 @@ const ResponseItem: React.FC<ResponseItemProps> = ({
   if (!resolvedResponse) {
     const refString = (response && typeof response === 'object' && '$ref' in response)
       ? response.$ref
-      : '[unknown reference]';
+      : t('[unknown reference]');
     return (
       <div className="text-xs text-red-500 dark:text-red-400 p-2 border dark:border-red-800 rounded bg-red-50 dark:bg-red-900/20">
-        无法显示响应 {code}: 引用 {refString} 未解析或解析失败。
+        {t('Cannot display response %s: Reference %s failed to resolve.').replace('%s', code).replace('%s', refString)}
       </div>
     );
   }

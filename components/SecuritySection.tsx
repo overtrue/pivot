@@ -1,3 +1,4 @@
+import { useI18n } from '@/lib/i18n/I18nProvider';
 import {
   ComponentsObject,
   ReferenceObject,
@@ -22,6 +23,7 @@ const SecuritySection: React.FC<SecuritySectionProps> = ({
   components,
   className,
 }) => {
+  const { t } = useI18n();
   const hasGlobalRequirements = security && security.length > 0;
   const hasSchemes = securitySchemes && Object.keys(securitySchemes).length > 0;
 
@@ -35,15 +37,15 @@ const SecuritySection: React.FC<SecuritySectionProps> = ({
     if (schemes.length === 0) return null;
 
     return (
-      <div key={index} className="border rounded p-2 text-sm bg-gray-50">
+      <div key={index} className="rounded p-2 text-sm bg-gray-50 dark:bg-gray-800/70">
         {schemes.map(([schemeName, scopes], idx) => (
           <div key={schemeName} className={`flex items-center gap-2 ${idx > 0 ? 'mt-1' : ''}`}>
-            <span className="font-mono font-semibold">{schemeName}</span>
+            <span className="font-mono font-semibold dark:text-gray-200">{schemeName}</span>
             {scopes.length > 0 && (
-              <span className="text-xs text-gray-600">Scopes: {scopes.join(', ')}</span>
+              <span className="text-xs text-gray-600 dark:text-gray-400">{t('Scopes:')} {scopes.join(', ')}</span>
             )}
             {scopes.length === 0 && (
-              <span className="text-xs text-gray-500 italic">(No specific scopes required)</span>
+              <span className="text-xs text-gray-500 dark:text-gray-400 italic">{t('(No specific scopes required)')}</span>
             )}
           </div>
         ))}
@@ -52,15 +54,15 @@ const SecuritySection: React.FC<SecuritySectionProps> = ({
   };
 
   return (
-    <div className={`py-6 ${className}`}>
-      <SectionTitle title="Security" className="text-2xl mb-4" />
+    <div className={`py-6 ${className} dark:text-gray-200`}>
+      <SectionTitle title={t('Security')} className="text-2xl mb-4" />
 
       {/* Global Security Requirements */}
       {hasGlobalRequirements && (
         <div className="mb-6">
-          <h3 className="text-lg font-semibold mb-2">Global Requirements</h3>
-          <p className="text-sm text-gray-600 mb-3">
-            API calls must satisfy ONE of the following security requirement sets:
+          <h3 className="text-lg font-semibold mb-2 dark:text-gray-200">{t('Global Requirements')}</h3>
+          <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">
+            {t('API calls must satisfy ONE of the following security requirement sets:')}
           </p>
           <div className="space-y-2">
             {security?.map(renderRequirement)}
@@ -71,7 +73,7 @@ const SecuritySection: React.FC<SecuritySectionProps> = ({
       {/* Security Schemes Definitions */}
       {hasSchemes && (
         <div className={hasGlobalRequirements ? 'mt-8' : ''}>
-          <h3 className="text-lg font-semibold mb-3">Security Schemes</h3>
+          <h3 className="text-lg font-semibold mb-3 dark:text-gray-200">{t('Security Schemes')}</h3>
           <div className="space-y-4">
             {Object.entries(securitySchemes || {}).map(([name, schemeOrRef]) => {
               // Resolve refs if security schemes can be defined with $ref
@@ -80,7 +82,7 @@ const SecuritySection: React.FC<SecuritySectionProps> = ({
                 const refString = (schemeOrRef && typeof schemeOrRef === 'object' && '$ref' in schemeOrRef)
                   ? (schemeOrRef as ReferenceObject).$ref
                   : '[unknown reference]';
-                return <div key={name} className="text-xs text-red-500">Failed to resolve scheme: {refString}</div>;
+                return <div key={name} className="text-xs text-red-500 dark:text-red-400">{t('Failed to resolve scheme:')} {refString}</div>;
               }
               return (
                 <SecuritySchemeDisplay key={name} name={name} scheme={scheme} />

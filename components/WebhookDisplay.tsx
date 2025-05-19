@@ -1,3 +1,4 @@
+import { useI18n } from '@/lib/i18n/I18nProvider';
 import { ComponentsObject, PathItemObject } from '@/types/openapi';
 import React from 'react';
 import OperationBox from './OperationBox';
@@ -15,6 +16,7 @@ const WebhookDisplay: React.FC<WebhookDisplayProps> = ({
   components,
   className,
 }) => {
+  const { t } = useI18n();
   const operations = [
     { method: 'get', operation: pathItem.get },
     { method: 'post', operation: pathItem.post },
@@ -23,9 +25,9 @@ const WebhookDisplay: React.FC<WebhookDisplayProps> = ({
   ].filter(({ operation }) => operation);
 
   return (
-    <div className={`border rounded-lg p-4 bg-gray-50 ${className || ''}`}>
+    <div className={`rounded-lg p-4 bg-gray-50 ${className || ''}`}>
       <h2 className="text-lg font-semibold text-gray-900 mb-2">
-        Webhook: <span className="text-blue-600">{name}</span>
+        {t('Webhook:')} <span className="text-blue-600">{name}</span>
       </h2>
 
       {pathItem.description && (
@@ -40,7 +42,6 @@ const WebhookDisplay: React.FC<WebhookDisplayProps> = ({
             method={method}
             operation={operation!}
             components={components}
-            className="border-none bg-white"
           />
         ))}
       </div>

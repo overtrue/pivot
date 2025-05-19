@@ -1,4 +1,4 @@
-
+import { useI18n } from '@/lib/i18n/I18nProvider';
 import {
   ComponentsObject,
   LinkObject,
@@ -14,6 +14,7 @@ interface LinksSectionProps {
 }
 
 const LinksSection: React.FC<LinksSectionProps> = ({ links, components }) => {
+  const { t } = useI18n();
   const linkEntries = Object.entries(links);
 
   if (linkEntries.length === 0) {
@@ -23,7 +24,7 @@ const LinksSection: React.FC<LinksSectionProps> = ({ links, components }) => {
   return (
     <div className="mb-4">
       {/* <SectionTitle title="Links" /> */}
-      <h4 className="text-sm font-semibold uppercase text-gray-500 mb-2">Links</h4>
+      <h4 className="text-sm font-semibold uppercase text-gray-500 mb-2">{t('Links')}</h4>
       <div className="space-y-3">
         {linkEntries.map(([name, linkOrRef]) => {
           // Resolve link ref
@@ -37,7 +38,7 @@ const LinksSection: React.FC<LinksSectionProps> = ({ links, components }) => {
             // Optionally render an error state for this link
             return (
               <div key={name} className="text-xs text-red-500 p-1 border border-dashed rounded">
-                Failed to resolve link: {name} ({refString})
+                {t('Failed to resolve link:')} {name} ({refString})
               </div>
             );
           }

@@ -1,4 +1,5 @@
 import DescriptionDisplay from '@/components/atoms/DescriptionDisplay';
+import { useI18n } from '@/lib/i18n/I18nProvider';
 import { ServerObject, ServerVariableObject } from '@/types/openapi';
 import React, { useState } from 'react';
 import ServerVariable from './/ServerVariable';
@@ -9,6 +10,7 @@ interface ServerProps {
 }
 
 const Server: React.FC<ServerProps> = ({ server }) => {
+  const { t } = useI18n();
   const { url, description, variables } = server;
   const [isExpanded, setIsExpanded] = useState(false);
   const hasVariables = variables && Object.keys(variables).length > 0;
@@ -37,22 +39,22 @@ const Server: React.FC<ServerProps> = ({ server }) => {
   const interpolatedUrl = hasVariables ? interpolateUrl(url, variables) : url;
 
   return (
-    <div className="border rounded mb-4 overflow-hidden">
-      <div className="p-3 bg-gray-50 flex items-center justify-between">
+    <div className="rounded mb-4 overflow-hidden">
+      <div className="p-3 bg-gray-50 dark:bg-gray-800 flex items-center justify-between">
         <div className="flex-grow overflow-auto">
-          <div className="font-mono text-sm break-all">
+          <div className="font-mono text-sm break-all dark:text-gray-200">
             {urlParts.map(part => (
               <span
                 key={part.key}
-                className={part.isVariable ? 'bg-blue-100 text-blue-800 rounded px-1' : ''}
+                className={part.isVariable ? 'bg-blue-100 dark:bg-blue-900/50 text-blue-800 dark:text-blue-300 rounded px-1' : ''}
               >
                 {part.text}
               </span>
             ))}
           </div>
           {hasVariables && (
-            <div className="text-xs text-gray-600 mt-1">
-              插值后: {interpolatedUrl}
+            <div className="text-xs text-gray-600 dark:text-gray-400 mt-1">
+              {t('Interpolated URL:')} {interpolatedUrl}
             </div>
           )}
         </div>
@@ -60,24 +62,24 @@ const Server: React.FC<ServerProps> = ({ server }) => {
           <ExpandCollapse
             isExpanded={isExpanded}
             onToggle={() => setIsExpanded(!isExpanded)}
-            label={isExpanded ? "收起" : "展开"}
+            label={isExpanded ? t("Collapse") : t("Expand")}
             className="ml-3 flex-shrink-0"
           />
         )}
       </div>
 
       {isExpanded && (description || hasVariables) && (
-        <div className="p-4 border-t">
+        <div className="p-4 border-t dark:border-gray-700 dark:bg-gray-800/50">
           {description && (
             <div className="mb-4">
-              <h4 className="text-sm font-semibold mb-1">说明</h4>
+              <h4 className="text-sm font-semibold mb-1 dark:text-gray-200">{t('Description')}</h4>
               <DescriptionDisplay description={description} />
             </div>
           )}
 
           {hasVariables && (
             <div>
-              <h4 className="text-sm font-semibold mb-2">服务器变量:</h4>
+              <h4 className="text-sm font-semibold mb-2 dark:text-gray-200">{t('Server Variables:')}</h4>
               <div className="space-y-3">
                 {Object.entries(variables).map(([name, variable]) => (
                   <ServerVariable key={name} name={name} variable={variable} />

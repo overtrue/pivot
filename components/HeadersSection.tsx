@@ -1,4 +1,5 @@
 
+import { useI18n } from '@/lib/i18n/I18nProvider';
 import {
   ComponentsObject,
   HeaderObject,
@@ -14,6 +15,7 @@ interface HeadersSectionProps {
 }
 
 const HeadersSection: React.FC<HeadersSectionProps> = ({ headers, components }) => {
+  const { t } = useI18n();
   const headerEntries = Object.entries(headers);
 
   if (headerEntries.length === 0) {
@@ -23,7 +25,7 @@ const HeadersSection: React.FC<HeadersSectionProps> = ({ headers, components }) 
   return (
     <div className="mb-4 dark:text-gray-200">
       {/* <SectionTitle title="Headers" /> */}
-      <h4 className="text-sm font-semibold uppercase text-gray-500 dark:text-gray-400 mb-2">Headers</h4>
+      <h4 className="text-sm font-semibold uppercase text-gray-500 dark:text-gray-400 mb-2">{t("Headers")}</h4>
       <div className="space-y-3">
         {headerEntries.map(([name, headerOrRef]) => {
           // Resolve header ref
@@ -37,7 +39,7 @@ const HeadersSection: React.FC<HeadersSectionProps> = ({ headers, components }) 
             // Optionally render an error state for this header
             return (
               <div key={name} className="text-xs text-red-500 dark:text-red-400 p-1 border border-dashed dark:border-red-700 rounded">
-                Failed to resolve header: {name} ({refString})
+                {t("Failed to resolve reference")}: {name} ({refString})
               </div>
             );
           }

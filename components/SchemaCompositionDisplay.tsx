@@ -1,4 +1,5 @@
 
+import { useI18n } from '@/lib/i18n/I18nProvider';
 import {
   ComponentsObject,
   ReferenceObject,
@@ -16,13 +17,6 @@ interface SchemaCompositionDisplayProps {
   className?: string;
 }
 
-const keywordTitles = {
-  allOf: 'All Of',
-  anyOf: 'Any Of',
-  oneOf: 'One Of',
-  not: 'Not',
-};
-
 // 辅助函数：从引用路径中提取引用名称
 const extractRefName = (ref: string): string | null => {
   const refMatch = ref.match(/^#\/components\/([^/]+)\/(.+)$/);
@@ -39,9 +33,18 @@ const SchemaCompositionDisplay: React.FC<SchemaCompositionDisplayProps> = ({
   currentDepth,
   className,
 }) => {
+  const { t } = useI18n();
+
   if (!subschemas || subschemas.length === 0) {
     return null;
   }
+
+  const keywordTitles = {
+    allOf: t('All Of'),
+    anyOf: t('Any Of'),
+    oneOf: t('One Of'),
+    not: t('Not'),
+  };
 
   const title = keywordTitles[keyword];
   const borderColor = {
@@ -63,7 +66,7 @@ const SchemaCompositionDisplay: React.FC<SchemaCompositionDisplayProps> = ({
           return (
             <div key={index}>
               {refName && (
-                <div className="text-xs font-medium text-gray-500 mb-1">引用: {refName}</div>
+                <div className="text-xs font-medium text-gray-500 mb-1">{t('Reference:')} {refName}</div>
               )}
               <SchemaDisplay
                 schema={subschema}

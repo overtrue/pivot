@@ -1,3 +1,4 @@
+import { useI18n } from '@/lib/i18n/I18nProvider';
 import { cn } from '@/utils/cn';
 import React from 'react';
 
@@ -6,6 +7,8 @@ interface WebhookLabelProps {
 }
 
 const WebhookLabel: React.FC<WebhookLabelProps> = ({ className }) => {
+  const { t } = useI18n();
+
   return (
     <span
       className={cn(
@@ -14,7 +17,7 @@ const WebhookLabel: React.FC<WebhookLabelProps> = ({ className }) => {
         className
       )}
     >
-      Webhook
+      {t('Webhook')}
     </span>
   );
 };

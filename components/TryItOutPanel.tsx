@@ -1,9 +1,10 @@
+import { useI18n } from '@/lib/i18n/I18nProvider';
 import {
   ComponentsObject,
   OperationObject,
   ParameterObject,
   SecurityRequirementObject,
-  SecuritySchemeObject,
+  SecuritySchemeObject
 } from '@/types/openapi';
 import { ChevronDown, ChevronUp, Send } from 'lucide-react';
 import React, { useState } from 'react';
@@ -45,6 +46,7 @@ const TryItOutPanel: React.FC<TryItOutPanelProps> = ({
   collapsible = false,
   defaultCollapsed = false,
 }) => {
+  const { t } = useI18n();
   // 参数输入值状态
   const [paramValues, setParamValues] = useState<Record<string, string>>({});
   // 请求体状态
@@ -350,8 +352,8 @@ const TryItOutPanel: React.FC<TryItOutPanelProps> = ({
       });
 
     } catch (err) {
-      console.error('请求错误:', err);
-      setError(err instanceof Error ? err.message : '发送请求时出错');
+      console.error(t('Request error') + ':', err);
+      setError(err instanceof Error ? err.message : t('Error sending request'));
     } finally {
       setIsLoading(false);
     }
@@ -360,13 +362,13 @@ const TryItOutPanel: React.FC<TryItOutPanelProps> = ({
   // 获取响应状态的样式
   const getStatusStyle = (status: number) => {
     if (status >= 200 && status < 300) {
-      return 'bg-green-100 text-green-800';
+      return 'bg-green-100 dark:bg-green-900/50 text-green-800 dark:text-green-300';
     } else if (status >= 400 && status < 500) {
-      return 'bg-yellow-100 text-yellow-800';
+      return 'bg-yellow-100 dark:bg-yellow-900/50 text-yellow-800 dark:text-yellow-300';
     } else if (status >= 500) {
-      return 'bg-red-100 text-red-800';
+      return 'bg-red-100 dark:bg-red-900/50 text-red-800 dark:text-red-300';
     }
-    return 'bg-gray-100 text-gray-800';
+    return 'bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-300';
   };
 
   // 渲染安全认证输入表单
@@ -378,18 +380,18 @@ const TryItOutPanel: React.FC<TryItOutPanelProps> = ({
     return (
       <div className="space-y-3">
         <div className="flex items-center justify-between">
-          <h3 className="text-sm font-medium text-gray-700 dark:text-gray-300">认证</h3>
+          <h3 className="text-sm font-medium text-gray-700 dark:text-gray-300">{t('Authentication')}</h3>
         </div>
         <div className="space-y-3">
           {securitySchemes.length > 1 && (
             <div className="mb-2">
-              <label className="text-xs text-gray-600 block mb-1">选择认证方式</label>
+              <label className="text-xs text-gray-600 dark:text-gray-400 block mb-1">{t('Select authentication method')}</label>
               <select
-                className="w-full px-2 py-2 border rounded text-sm"
+                className="w-full px-2 py-2 border dark:border-gray-700 rounded text-sm dark:bg-gray-700 dark:text-gray-200"
                 value={activeSecurityScheme || ''}
                 onChange={(e) => setActiveSecurityScheme(e.target.value || null)}
               >
-                <option value="">不使用认证</option>
+                <option value="">{t('No authentication')}</option>
                 {securitySchemes.map((scheme, index) => (
                   <option key={index} value={scheme.name}>
                     {scheme.name} ({scheme.scheme.type})
@@ -407,14 +409,14 @@ const TryItOutPanel: React.FC<TryItOutPanelProps> = ({
               switch (schemeObj.type) {
                 case 'apiKey':
                   return (
-                    <div key={index} className="p-3 border rounded bg-blue-50">
-                      <div className="text-xs font-semibold text-blue-800 mb-2">API Key ({schemeObj.in})</div>
-                      <label className="text-xs text-gray-600 block mb-1">
+                    <div key={index} className="p-3 border dark:border-gray-700 rounded bg-blue-50 dark:bg-blue-900/30">
+                      <div className="text-xs font-semibold text-blue-800 dark:text-blue-300 mb-2">{t('API Key')} ({schemeObj.in})</div>
+                      <label className="text-xs text-gray-600 dark:text-gray-400 block mb-1">
                         {schemeObj.name} {schemeObj.description && `- ${schemeObj.description}`}
                       </label>
                       <input
                         type="text"
-                        className="w-full px-2 py-1 border rounded text-sm"
+                        className="w-full px-2 py-1 border dark:border-gray-700 rounded text-sm dark:bg-gray-700 dark:text-gray-200"
                         placeholder={`输入 ${schemeObj.name} 值`}
                         value={authState.apiKey?.[name] || ''}
                         onChange={(e) => handleAuthChange(scheme, e.target.value)}
@@ -425,15 +427,15 @@ const TryItOutPanel: React.FC<TryItOutPanelProps> = ({
                 case 'http':
                   if (schemeObj.scheme === 'basic') {
                     return (
-                      <div key={index} className="p-3 border rounded bg-green-50">
-                        <div className="text-xs font-semibold text-green-800 mb-2">HTTP Basic</div>
-                        <label className="text-xs text-gray-600 block mb-1">
+                      <div key={index} className="p-3 border dark:border-gray-700 rounded bg-green-50 dark:bg-green-900/30">
+                        <div className="text-xs font-semibold text-green-800 dark:text-green-300 mb-2">{t('HTTP Basic')}</div>
+                        <label className="text-xs text-gray-600 dark:text-gray-400 block mb-1">
                           Base64 编码的用户名:密码
                           {schemeObj.description && ` - ${schemeObj.description}`}
                         </label>
                         <input
                           type="text"
-                          className="w-full px-2 py-1 border rounded text-sm"
+                          className="w-full px-2 py-1 border dark:border-gray-700 rounded text-sm dark:bg-gray-700 dark:text-gray-200"
                           placeholder="输入 Base64 编码的认证信息"
                           value={authState.http?.['basic'] || ''}
                           onChange={(e) => handleAuthChange(scheme, e.target.value)}
@@ -442,16 +444,16 @@ const TryItOutPanel: React.FC<TryItOutPanelProps> = ({
                     );
                   } else if (schemeObj.scheme === 'bearer') {
                     return (
-                      <div key={index} className="p-3 border rounded bg-purple-50">
-                        <div className="text-xs font-semibold text-purple-800 mb-2">
+                      <div key={index} className="p-3 border dark:border-gray-700 rounded bg-purple-50 dark:bg-purple-900/30">
+                        <div className="text-xs font-semibold text-purple-800 dark:text-purple-300 mb-2">
                           Bearer Token {schemeObj.bearerFormat && `(${schemeObj.bearerFormat})`}
                         </div>
-                        <label className="text-xs text-gray-600 block mb-1">
+                        <label className="text-xs text-gray-600 dark:text-gray-400 block mb-1">
                           Token {schemeObj.description && ` - ${schemeObj.description}`}
                         </label>
                         <input
                           type="text"
-                          className="w-full px-2 py-1 border rounded text-sm"
+                          className="w-full px-2 py-1 border dark:border-gray-700 rounded text-sm dark:bg-gray-700 dark:text-gray-200"
                           placeholder="输入 Bearer Token"
                           value={authState.http?.['bearer'] || ''}
                           onChange={(e) => handleAuthChange(scheme, e.target.value)}
@@ -463,24 +465,24 @@ const TryItOutPanel: React.FC<TryItOutPanelProps> = ({
 
                 case 'oauth2':
                   return (
-                    <div key={index} className="p-3 border rounded bg-orange-50">
-                      <div className="text-xs font-semibold text-orange-800 mb-2">OAuth 2.0</div>
+                    <div key={index} className="p-3 border dark:border-gray-700 rounded bg-orange-50 dark:bg-orange-900/30">
+                      <div className="text-xs font-semibold text-orange-800 dark:text-orange-300 mb-2">OAuth 2.0</div>
                       {scheme.scopes.length > 0 && (
-                        <div className="text-xs text-gray-600 mb-2">
-                          <div className="font-medium mb-1">所需权限:</div>
+                        <div className="text-xs text-gray-600 dark:text-gray-400 mb-2">
+                          <div className="font-medium mb-1">{t('Required Permissions')}:</div>
                           <ul className="list-disc list-inside space-y-0.5">
                             {scheme.scopes.map((scope, i) => (
-                              <li key={i} className="text-gray-600">{scope}</li>
+                              <li key={i} className="text-gray-600 dark:text-gray-400">{scope}</li>
                             ))}
                           </ul>
                         </div>
                       )}
-                      <label className="text-xs text-gray-600 block mb-1">
+                      <label className="text-xs text-gray-600 dark:text-gray-400 block mb-1">
                         Access Token
                       </label>
                       <input
                         type="text"
-                        className="w-full px-2 py-1 border rounded text-sm"
+                        className="w-full px-2 py-1 border dark:border-gray-700 rounded text-sm dark:bg-gray-700 dark:text-gray-200"
                         placeholder="输入 OAuth2 Access Token"
                         value={authState.oauth2?.[name]?.token || ''}
                         onChange={(e) => handleAuthChange(scheme, e.target.value)}
@@ -490,17 +492,17 @@ const TryItOutPanel: React.FC<TryItOutPanelProps> = ({
 
                 case 'openIdConnect':
                   return (
-                    <div key={index} className="p-3 border rounded bg-indigo-50">
-                      <div className="text-xs font-semibold text-indigo-800 mb-2">
+                    <div key={index} className="p-3 border dark:border-gray-700 rounded bg-indigo-50 dark:bg-indigo-900/30">
+                      <div className="text-xs font-semibold text-indigo-800 dark:text-indigo-300 mb-2">
                         OpenID Connect ({schemeObj.openIdConnectUrl})
                       </div>
-                      <label className="text-xs text-gray-600 block mb-1">
+                      <label className="text-xs text-gray-600 dark:text-gray-400 block mb-1">
                         ID Token
                         {schemeObj.description && ` - ${schemeObj.description}`}
                       </label>
                       <input
                         type="text"
-                        className="w-full px-2 py-1 border rounded text-sm"
+                        className="w-full px-2 py-1 border dark:border-gray-700 rounded text-sm dark:bg-gray-700 dark:text-gray-200"
                         placeholder="输入 OpenID Token"
                         value={authState.openIdConnect?.token || ''}
                         onChange={(e) => handleAuthChange(scheme, e.target.value)}
@@ -517,19 +519,19 @@ const TryItOutPanel: React.FC<TryItOutPanelProps> = ({
   };
 
   return (
-    <div className="border rounded-lg overflow-hidden shadow-sm bg-white transition-all">
+    <div className="border dark:border-gray-700 rounded-lg overflow-hidden shadow-sm bg-white dark:bg-gray-800 transition-all">
       <div
-        className={`bg-gray-50 px-4 py-3 flex items-center justify-between ${collapsible ? 'cursor-pointer' : ''}`}
+        className={`bg-gray-50 dark:bg-gray-800/70 px-4 py-3 flex items-center justify-between ${collapsible ? 'cursor-pointer' : ''}`}
         onClick={collapsible ? toggleCollapse : undefined}
       >
         <div className="flex items-center min-w-0">
           <MethodLabel method={method.toUpperCase() as any} className="mr-2 flex-shrink-0" />
-          <div className="text-sm text-gray-800 font-mono truncate overflow-hidden">
+          <div className="text-sm text-gray-800 dark:text-gray-200 font-mono truncate overflow-hidden">
             {path}
           </div>
         </div>
         {collapsible && (
-          <div className="text-gray-500 flex-shrink-0 ml-2">
+          <div className="text-gray-500 dark:text-gray-400 flex-shrink-0 ml-2">
             {collapsed ? <ChevronDown size={18} /> : <ChevronUp size={18} />}
           </div>
         )}
@@ -537,21 +539,21 @@ const TryItOutPanel: React.FC<TryItOutPanelProps> = ({
 
       {!collapsed && (
         <div className="p-4 space-y-4">
-          {/* 参数输入 */}
+          {/* Parameter inputs */}
           {resolveParameters().length > 0 && (
             <div className="space-y-3">
               <div className="flex items-center justify-between">
-                <h3 className="text-sm font-medium text-gray-700">请求参数</h3>
+                <h3 className="text-sm font-medium text-gray-700 dark:text-gray-300">{t('Request Parameters')}</h3>
               </div>
               <div className="space-y-3">
                 {resolveParameters().map(param => (
                   <div key={param.name} className="grid grid-cols-12 gap-2 items-start">
                     <div className="col-span-4">
                       <div className="flex items-center gap-1">
-                        <span className={`text-sm ${param.required ? 'font-semibold' : ''}`}>
-                          {param.name} {param.required && <span className="text-red-500">*</span>}
+                        <span className={`text-sm ${param.required ? 'font-semibold' : ''} dark:text-gray-300`}>
+                          {param.name} {param.required && <span className="text-red-500 dark:text-red-400">*</span>}
                         </span>
-                        <span className="text-xs bg-gray-100 px-1 py-0.5 rounded">{param.in}</span>
+                        <span className="text-xs bg-gray-100 dark:bg-gray-700 px-1 py-0.5 rounded dark:text-gray-300">{param.in}</span>
                       </div>
                     </div>
                     <div className="col-span-8">
@@ -559,8 +561,8 @@ const TryItOutPanel: React.FC<TryItOutPanelProps> = ({
                         type="text"
                         value={paramValues[param.name] || ''}
                         onChange={(e) => handleParamChange(param.name, e.target.value)}
-                        className="w-full px-2 py-1 border rounded text-sm"
-                        placeholder={`输入${param.name}值`}
+                        className="w-full px-2 py-1 border dark:border-gray-700 rounded text-sm dark:bg-gray-700 dark:text-gray-200"
+                        placeholder={`Enter ${param.name} value`}
                       />
                     </div>
                   </div>
@@ -569,40 +571,40 @@ const TryItOutPanel: React.FC<TryItOutPanelProps> = ({
             </div>
           )}
 
-          {/* 认证部分 */}
+          {/* Authentication section */}
           {renderAuthInputs()}
 
-          {/* 请求体输入 */}
+          {/* Request body input */}
           {resolveRequestBody() && (
             <div className="space-y-3">
               <div className="flex items-center justify-between">
-                <h3 className="text-sm font-medium text-gray-700">请求体</h3>
+                <h3 className="text-sm font-medium text-gray-700 dark:text-gray-300">{t('Request Body')}</h3>
               </div>
-              <div className="text-xs text-gray-500 mb-1">
+              <div className="text-xs text-gray-500 dark:text-gray-400 mb-1">
                 {(() => {
                   const requestBody = resolveRequestBody();
                   if (requestBody && 'description' in requestBody) {
-                    return requestBody.description || '请输入请求体数据';
+                    return requestBody.description || 'Please enter request body data';
                   }
-                  return '请输入请求体数据';
+                  return 'Please enter request body data';
                 })()}
               </div>
-              <div className="bg-gray-50 p-1 rounded-md border">
+              <div className="bg-gray-50 dark:bg-gray-700 p-1 rounded-md border dark:border-gray-600">
                 <textarea
-                  className="w-full bg-transparent p-2 font-mono text-sm resize-y"
+                  className="w-full bg-transparent p-2 font-mono text-sm resize-y dark:text-gray-200"
                   value={requestBodyValue}
                   onChange={(e) => handleRequestBodyChange(e.target.value)}
                   rows={5}
-                  placeholder="{ /* 请求体数据 */ }"
+                  placeholder="{ /* Request body data */ }"
                 />
               </div>
             </div>
           )}
 
-          {/* 自定义请求头 */}
+          {/* Custom request headers */}
           <div className="space-y-3">
             <div className="flex items-center justify-between">
-              <h3 className="text-sm font-medium text-gray-700">请求头</h3>
+              <h3 className="text-sm font-medium text-gray-700 dark:text-gray-300">{t('Request Headers')}</h3>
             </div>
             <div className="space-y-2">
               {Object.entries(headers).map(([key, value]) => (
@@ -618,8 +620,8 @@ const TryItOutPanel: React.FC<TryItOutPanelProps> = ({
                         newHeaders[e.target.value] = oldValue;
                         setHeaders(newHeaders);
                       }}
-                      className="w-full px-2 py-1 border rounded text-sm"
-                      placeholder="请求头名称"
+                      className="w-full px-2 py-1 border dark:border-gray-700 rounded text-sm dark:bg-gray-700 dark:text-gray-200"
+                      placeholder="Header name"
                     />
                   </div>
                   <div className="col-span-6">
@@ -627,8 +629,8 @@ const TryItOutPanel: React.FC<TryItOutPanelProps> = ({
                       type="text"
                       value={value}
                       onChange={(e) => handleHeaderChange(key, e.target.value)}
-                      className="w-full px-2 py-1 border rounded text-sm"
-                      placeholder="值"
+                      className="w-full px-2 py-1 border dark:border-gray-700 rounded text-sm dark:bg-gray-700 dark:text-gray-200"
+                      placeholder="Value"
                     />
                   </div>
                   <div className="col-span-2 flex justify-end">
@@ -638,9 +640,9 @@ const TryItOutPanel: React.FC<TryItOutPanelProps> = ({
                         delete newHeaders[key];
                         setHeaders(newHeaders);
                       }}
-                      className="px-2 py-1 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded text-sm transition-colors"
+                      className="px-2 py-1 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-300 rounded text-sm transition-colors"
                     >
-                      删除
+                      {t('Delete')}
                     </button>
                   </div>
                 </div>
@@ -652,56 +654,56 @@ const TryItOutPanel: React.FC<TryItOutPanelProps> = ({
                     [`Header-${Object.keys(headers).length}`]: '',
                   }));
                 }}
-                className="text-xs px-3 py-1 rounded bg-gray-100 hover:bg-gray-200 text-gray-700 transition-colors inline-flex items-center"
+                className="text-xs px-3 py-1 rounded bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-300 transition-colors inline-flex items-center"
               >
-                添加请求头
+                {t('Add Request Header')}
               </button>
             </div>
           </div>
 
-          {/* 发送请求按钮 */}
+          {/* Send request button */}
           <div className="pt-2">
             <button
               onClick={sendRequest}
               disabled={isLoading}
               className={`px-3 py-1.5 rounded-md text-white text-sm font-medium inline-flex items-center ${isLoading
-                ? 'bg-blue-400 cursor-not-allowed'
-                : 'bg-blue-600 hover:bg-blue-700'
+                ? 'bg-blue-400 dark:bg-blue-500/50 cursor-not-allowed'
+                : 'bg-blue-600 hover:bg-blue-700 dark:bg-blue-600 dark:hover:bg-blue-500'
                 } transition-colors`}
             >
               <Send size={14} className="mr-1.5" />
-              {isLoading ? '发送中...' : '发送请求'}
+              {isLoading ? 'Sending...' : 'Send Request'}
             </button>
           </div>
 
-          {/* 错误信息 */}
+          {/* Error message */}
           {error && (
-            <div className="mt-4 p-3 bg-red-50 text-red-700 rounded-md border border-red-100">
-              <p className="text-sm font-medium">请求错误</p>
+            <div className="mt-4 p-3 bg-red-50 dark:bg-red-900/30 text-red-700 dark:text-red-300 rounded-md border border-red-100 dark:border-red-800">
+              <p className="text-sm font-medium">{t('Request Error')}</p>
               <p className="text-sm">{error}</p>
             </div>
           )}
 
-          {/* 响应结果 */}
+          {/* Response results */}
           {response && (
-            <div className="mt-4 border rounded-md overflow-hidden">
-              <div className="bg-gray-50 p-3 border-b flex justify-between items-center">
+            <div className="mt-4 border dark:border-gray-700 rounded-md overflow-hidden">
+              <div className="bg-gray-50 dark:bg-gray-800/70 p-3 border-b dark:border-gray-700 flex justify-between items-center">
                 <div className="flex items-center">
                   <span className={`px-2 py-1 rounded text-xs font-medium ${getStatusStyle(response.status)}`}>
                     {response.status} {response.statusText}
                   </span>
-                  <span className="ml-2 text-sm text-gray-600">
+                  <span className="ml-2 text-sm text-gray-600 dark:text-gray-400">
                     {response.time}ms
                   </span>
                 </div>
               </div>
 
-              <div className="divide-y">
-                {/* 响应头 */}
+              <div className="divide-y dark:divide-gray-700">
+                {/* Response headers */}
                 <div className="p-3">
-                  <h4 className="text-sm font-medium text-gray-700 mb-2">响应头</h4>
-                  <div className="bg-gray-50 p-3 rounded-md border overflow-x-auto">
-                    <pre className="text-xs font-mono">
+                  <h4 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">{t('Response Headers')}</h4>
+                  <div className="bg-gray-50 dark:bg-gray-700 p-3 rounded-md border dark:border-gray-600 overflow-x-auto">
+                    <pre className="text-xs font-mono dark:text-gray-300">
                       {Object.entries(response.headers).map(([key, value]) => (
                         `${key}: ${value}\n`
                       ))}
@@ -709,9 +711,9 @@ const TryItOutPanel: React.FC<TryItOutPanelProps> = ({
                   </div>
                 </div>
 
-                {/* 响应体 */}
+                {/* Response body */}
                 <div className="p-3">
-                  <h4 className="text-sm font-medium text-gray-700 mb-2">响应体</h4>
+                  <h4 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">{t('Response Body')}</h4>
                   <div className="bg-gray-900 text-gray-100 p-3 rounded-md overflow-x-auto">
                     <pre className="text-xs font-mono whitespace-pre-wrap">
                       {response.body}

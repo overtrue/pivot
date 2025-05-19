@@ -1,4 +1,4 @@
-
+import { useI18n } from '@/lib/i18n/I18nProvider';
 import React from 'react';
 
 interface ComponentItemsListProps {
@@ -8,8 +8,10 @@ interface ComponentItemsListProps {
 }
 
 const ComponentItemsList: React.FC<ComponentItemsListProps> = ({ items, selectedItem, onSelectItem }) => {
+  const { t } = useI18n();
+
   if (!items || items.length === 0) {
-    return <div className="text-gray-500 italic">无可用项目</div>;
+    return <div className="text-gray-500 italic">{t('No items available')}</div>;
   }
 
   return (

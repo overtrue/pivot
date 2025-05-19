@@ -1,8 +1,8 @@
 import { useTheme } from '@/lib/theme/ThemeProvider';
 import { cn } from '@/utils/cn';
 import React from 'react';
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { vs, vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import SyntaxHighlighter from 'react-syntax-highlighter';
+import { atomOneDark, atomOneLight } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 import CopyButton from '../interactive/CopyButton';
 
 interface CodeMarkdownProps {
@@ -39,29 +39,27 @@ const CodeMarkdown: React.FC<CodeMarkdownProps> = ({
     }
   })();
 
-  const codeStyle = theme === 'dark' ? vscDarkPlus : vs;
+  const codeStyle = theme === 'dark' ? atomOneDark : atomOneLight;
 
   return (
     <div className={cn('relative', className)}>
       {!disableCopy && (
         <div className="absolute top-3 right-3 z-10">
-          <CopyButton text={code} className="text-gray-300 dark:text-gray-500" size="sm" />
+          <CopyButton text={code} size="sm" />
         </div>
       )}
-      <div className="overflow-hidden dark:bg-gray-900 rounded-lg">
+      <div className="overflow-hidden dark:bg-gray-800">
         <SyntaxHighlighter
           language={language}
           style={codeStyle}
-          codeTagProps={{
-            className: 'font-mono'
-          }}
           customStyle={{
             margin: 0,
             padding: '1rem',
             fontSize: '0.75rem',
             lineHeight: 1.2,
             border: 'none',
-            backgroundColor: theme === 'dark' ? '#1e1e1e' : undefined
+            borderRadius: '0.5rem',
+            backgroundColor: theme === 'dark' ? 'transparent' : undefined
           }}
         >
           {code}

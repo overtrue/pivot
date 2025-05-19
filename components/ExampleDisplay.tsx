@@ -1,8 +1,7 @@
+import { useI18n } from '@/lib/i18n/I18nProvider';
 import { cn } from '@/utils/cn';
 import React from 'react';
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { vs } from 'react-syntax-highlighter/dist/esm/styles/prism';
-import CopyButton from './interactive/CopyButton';
+import CodeMarkdown from './atoms/CodeMarkdown';
 
 interface ExampleDisplayProps {
   example: any;
@@ -21,10 +20,12 @@ const ExampleDisplay: React.FC<ExampleDisplayProps> = ({
   language = 'json',
   title
 }) => {
+  const { t } = useI18n();
+
   if (!example) {
     return (
       <div className="bg-yellow-50 dark:bg-yellow-900/30 text-yellow-800 dark:text-yellow-300 p-3 rounded text-sm">
-        未提供示例数据
+        {t('No example data provided')}
       </div>
     );
   }
@@ -73,7 +74,7 @@ const ExampleDisplay: React.FC<ExampleDisplayProps> = ({
 
           return objectToXml(example, 'pet');
         } catch (error) {
-          console.error('XML格式化失败:', error);
+          console.error(t('XML formatting failed:'), error);
           return JSON.stringify(example, null, 2); // 失败时回退到JSON
         }
       default:
@@ -90,28 +91,11 @@ const ExampleDisplay: React.FC<ExampleDisplayProps> = ({
           {title}
         </div>
       )}
-      <div className="absolute top-2 right-2 z-10">
-        <CopyButton text={exampleStr} />
-      </div>
-      <SyntaxHighlighter
+      <CodeMarkdown
+        code={exampleStr}
         language={language}
-        style={vs}
         className="rounded text-xs overflow-x-auto"
-        codeTagProps={{
-          className: 'font-mono'
-        }}
-        customStyle={{
-          background: 'transparent',
-          padding: '12px',
-          margin: 0,
-          border: 'none',
-          fontFamily: 'inherit',
-          fontWeight: 'normal',
-          lineHeight: '1.4',
-        }}
-      >
-        {exampleStr}
-      </SyntaxHighlighter>
+      />
     </div>
   );
 };

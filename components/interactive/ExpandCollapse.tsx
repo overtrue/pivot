@@ -1,4 +1,3 @@
-
 import { cn } from '@/utils/cn';
 import React from 'react';
 
@@ -14,8 +13,14 @@ interface ExpandCollapseProps {
 const ExpandCollapse: React.FC<ExpandCollapseProps> = ({
   isExpanded,
   onToggle,
+  label,
+  expandedLabel,
+  collapsedLabel,
   className,
 }) => {
+  // 确定要显示的标签
+  const displayLabel = label || (isExpanded ? expandedLabel : collapsedLabel);
+
   return (
     <button
       type="button"
@@ -26,7 +31,7 @@ const ExpandCollapse: React.FC<ExpandCollapseProps> = ({
       )}
       aria-expanded={isExpanded}
     >
-      {/* <span>{displayLabel}</span> */}
+      {displayLabel && <span>{displayLabel}</span>}
       <svg
         className={cn(
           'ml-1 h-4 w-4 transition-transform duration-200',
@@ -37,7 +42,12 @@ const ExpandCollapse: React.FC<ExpandCollapseProps> = ({
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
       >
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth={2}
+          d="M19 9l-7 7-7-7"
+        />
       </svg>
     </button>
   );

@@ -1,4 +1,4 @@
-
+import { useI18n } from '@/lib/i18n/I18nProvider';
 import {
   ComponentsObject
 } from '@/types/openapi';
@@ -13,6 +13,8 @@ interface ComponentTabsProps {
 }
 
 const ComponentTabs: React.FC<ComponentTabsProps> = ({ availableTypes, activeType, onSelectType }) => {
+  const { t } = useI18n();
+
   return (
     <div className="mb-4 border-b">
       <ul className="flex flex-wrap -mb-px text-sm font-medium text-center">
@@ -25,7 +27,7 @@ const ComponentTabs: React.FC<ComponentTabsProps> = ({ availableTypes, activeTyp
                 : 'border-transparent hover:text-gray-600 hover:border-gray-300'
                 }`}
             >
-              {type}
+              {t(type)}
             </button>
           </li>
         ))}

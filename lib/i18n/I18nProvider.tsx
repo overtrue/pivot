@@ -1,9 +1,9 @@
-
 import React, { createContext, useContext, useState } from 'react';
 import en from './locales/en';
 import zh from './locales/zh';
 
-const locales = { en, zh };
+type LocaleStrings = Record<string, string>;
+const locales: Record<string, LocaleStrings> = { en, zh };
 
 interface I18nContextProps {
   locale: 'en' | 'zh';
@@ -17,13 +17,8 @@ export const I18nProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [locale, setLocale] = useState<'en' | 'zh'>('en');
 
   const t = (key: string): string => {
-    const keys = key.split('.');
-    let value: any = locales[locale];
-    for (const k of keys) {
-      value = value?.[k];
-      if (value === undefined) return key;
-    }
-    return value;
+    // 直接使用扁平结构查找，如果未找到则返回原key
+    return locales[locale][key] || key;
   };
 
   return (

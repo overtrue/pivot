@@ -1,5 +1,5 @@
-
 import EnumValuesDisplay from '@/components/atoms/EnumValuesDisplay';
+import { useI18n } from '@/lib/i18n/I18nProvider';
 import { ComponentsObject, ExampleObject, ParameterObject, ReferenceObject, SchemaObject, StyleType } from '@/types/openapi';
 import { cn } from '@/utils/cn';
 import React, { useState } from 'react';
@@ -41,6 +41,7 @@ const ParameterItem: React.FC<ParameterItemProps> = ({
   components,
   className
 }) => {
+  const { t } = useI18n();
   const [isExpanded, setIsExpanded] = useState(false);
   const hasDetails = schema.default !== undefined || schema.enum || examples || description ||
     schema.minimum !== undefined || schema.maximum !== undefined ||
@@ -48,11 +49,7 @@ const ParameterItem: React.FC<ParameterItemProps> = ({
     schema.pattern;
 
   return (
-    <div className={cn('border rounded-md overflow-hidden',
-      deprecated
-        ? 'border-red-300 dark:border-red-700'
-        : 'border-gray-300 dark:border-gray-700',
-      className)}>
+    <div className={cn('rounded-md overflow-hidden', className)}>
       <div className="px-4 py-3 flex flex-wrap items-center justify-between gap-2 dark:bg-gray-800" onClick={() => setIsExpanded(!isExpanded)}>
         <div className="flex flex-wrap items-center gap-2">
           <ParameterName name={name} deprecated={deprecated} />
@@ -61,13 +58,13 @@ const ParameterItem: React.FC<ParameterItemProps> = ({
 
           {required && (
             <span className="bg-red-100 dark:bg-red-900/30 text-red-800 dark:text-red-400 px-2 py-0.5 text-xs rounded font-semibold">
-              required
+              {t('required')}
             </span>
           )}
 
           {explode && (
             <span className="bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 px-2 py-0.5 text-xs rounded">
-              explode
+              {t('explode')}
             </span>
           )}
         </div>
@@ -76,7 +73,6 @@ const ParameterItem: React.FC<ParameterItemProps> = ({
           <ExpandCollapse
             isExpanded={isExpanded}
             onToggle={() => setIsExpanded(!isExpanded)}
-            label={isExpanded ? "Hide details" : "Show details"}
           />
         )}
       </div>

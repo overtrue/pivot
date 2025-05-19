@@ -1,3 +1,4 @@
+import { useI18n } from '@/lib/i18n/I18nProvider';
 import {
   CallbackObject,
   ComponentsObject,
@@ -33,12 +34,14 @@ interface ComponentDetailProps {
 }
 
 const ComponentDetail: React.FC<ComponentDetailProps> = ({ activeType, selectedItemName, components }) => {
+  const { t } = useI18n();
+
   if (!activeType || !selectedItemName || !components[activeType] || !components[activeType]?.[selectedItemName]) {
-    return <div className="text-gray-500 italic p-4">请从列表中选择一项。</div>;
+    return <div className="text-gray-500 italic p-4">{t('Please select an item from the list.')}</div>;
   }
 
   const item = components[activeType]?.[selectedItemName];
-  if (!item) return <div className="text-red-500 p-4">错误：未找到所选项目。</div>;
+  if (!item) return <div className="text-red-500 p-4">{t('Error: Selected item not found.')}</div>;
 
   switch (activeType) {
     case 'schemas':
@@ -76,7 +79,7 @@ const ComponentDetail: React.FC<ComponentDetailProps> = ({ activeType, selectedI
 
     case 'securitySchemes':
       const scheme = resolveRef<SecuritySchemeObject>(item as SecuritySchemeObject | ReferenceObject, components, 'securitySchemes');
-      if (!scheme) return <div className="text-red-500 p-4">无法解析安全方案引用。</div>;
+      if (!scheme) return <div className="text-red-500 p-4">{t('Cannot resolve security scheme reference.')}</div>;
       return <SecuritySchemeDisplay name={selectedItemName} scheme={scheme} />;
 
     case 'links':
@@ -93,7 +96,7 @@ const ComponentDetail: React.FC<ComponentDetailProps> = ({ activeType, selectedI
       />;
 
     default:
-      return <div className="text-red-500 p-4">错误：未知组件类型 '{activeType}'。</div>;
+      return <div className="text-red-500 p-4">{t('Error: Unknown component type')} '{activeType}'.</div>;
   }
 };
 

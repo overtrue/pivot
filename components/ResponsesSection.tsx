@@ -1,5 +1,5 @@
-
 import { useOpenApi } from '@/hooks/useOpenApi';
+import { useI18n } from '@/lib/i18n/I18nProvider';
 import {
   ComponentsObject,
   OpenApiSpec,
@@ -25,6 +25,7 @@ const ResponsesSection: React.FC<ResponsesSectionProps> = ({
   spec,
   className = ''
 }) => {
+  const { t } = useI18n();
   const [activeStatus, setActiveStatus] = useState<string | null>(null);
 
   // 使用钩子处理OpenAPI数据
@@ -36,7 +37,7 @@ const ResponsesSection: React.FC<ResponsesSectionProps> = ({
 
   // 如果没有提供spec或components，无法处理引用
   if (!openApi) {
-    return <div className="text-red-500 dark:text-red-400">缺少解析引用所需的组件定义</div>;
+    return <div className="text-red-500 dark:text-red-400">{t('Missing component definitions required to resolve references')}</div>;
   }
 
   // 对状态码进行分组
@@ -83,23 +84,20 @@ const ResponsesSection: React.FC<ResponsesSectionProps> = ({
     return openApi.resolve<ResponseObject>(response, 'responses');
   }
 
-  // 当前活动响应
+  // Current active response
   const activeResponse = activeStatus ? getResponseByStatus(activeStatus) : null;
 
   return (
     <div className={cn(className)}>
-      <SectionTitle title="响应" className="text-lg font-medium mb-3" />
+      <SectionTitle title={t('Response')} className="text-lg font-medium mb-3" />
 
-      {/* 状态码列表 */}
+      {/* Status code list */}
       <div className="mb-4">
         <div className="flex flex-wrap gap-2">
           {allStatusCodes.map(status => (
             <button
               key={status}
               onClick={() => setActiveStatus(status)}
-              className={cn(
-                "transition-transform hover:scale-105 focus:scale-105",
-              )}
             >
               <StatusCode
                 code={status === 'default' ? 'default' : status}
@@ -114,7 +112,7 @@ const ResponsesSection: React.FC<ResponsesSectionProps> = ({
         </div>
       </div>
 
-      {/* 活动响应内容 */}
+      {/* Active response content */}
       {activeStatus && activeResponse && (
         <div className="rounded">
           <ResponseGroup
@@ -125,10 +123,10 @@ const ResponsesSection: React.FC<ResponsesSectionProps> = ({
         </div>
       )}
 
-      {/* 无响应时的提示 */}
+      {/* Prompt when no response is available */}
       {(!activeStatus || !activeResponse) && (
         <div className="text-yellow-600 dark:text-yellow-400 text-sm p-3 bg-yellow-50 dark:bg-yellow-900/30 rounded">
-          {allStatusCodes.length === 0 ? '未定义响应' : '无法解析所选响应'}
+          {allStatusCodes.length === 0 ? t('No responses defined') : t('Could not resolve selected response')}
         </div>
       )}
     </div >

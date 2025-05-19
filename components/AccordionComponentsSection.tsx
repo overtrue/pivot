@@ -1,4 +1,5 @@
 
+import { useI18n } from '@/lib/i18n/I18nProvider';
 import { ComponentsObject } from '@/types/openapi';
 import { ChevronDown, ChevronRight } from 'lucide-react';
 import React, { useEffect, useMemo, useState } from 'react';
@@ -13,41 +14,42 @@ interface AccordionComponentsSectionProps {
 }
 
 const AccordionComponentsSection: React.FC<AccordionComponentsSectionProps> = ({ components, selectedSchema, className }) => {
+  const { t } = useI18n();
   const availableComponents = useMemo(() => getAvailableComponents(components), [components]);
   const availableTypes = useMemo(() => Object.keys(availableComponents) as ComponentType[], [availableComponents]);
 
-  // 当前展开的组件
+  // Currently expanded component
   const [expandedComponent, setExpandedComponent] = useState<{ type: ComponentType, name: string } | null>(null);
 
-  // 当前激活的类型标签
+  // Currently active type tab
   const [activeType, setActiveType] = useState<ComponentType | null>(
     availableTypes.includes('schemas' as ComponentType) ? 'schemas' as ComponentType :
       availableTypes[0] || null
   );
 
-  // 切换展开组件
+  // Toggle expanded component
   const toggleExpandComponent = (type: ComponentType, name: string) => {
     if (expandedComponent?.type === type && expandedComponent?.name === name) {
-      // 点击已展开的组件，则折叠它
+      // If clicking on an already expanded component, collapse it
       setExpandedComponent(null);
     } else {
-      // 否则展开这个组件，折叠其他组件
+      // Otherwise expand this component and collapse others
       setExpandedComponent({ type, name });
     }
   };
 
-  // 监听自定义事件，处理外部选择schema的请求
+  // Listen for custom events to handle external schema selection requests
   useEffect(() => {
     const handleSelectSchema = (event: CustomEvent) => {
       const { name, type } = event.detail;
       if (type === 'schemas') {
-        // 激活schemas标签
+        // Activate schemas tab
         setActiveType('schemas' as ComponentType);
 
-        // 展开对应的schema
+        // Expand the corresponding schema
         toggleExpandComponent('schemas' as ComponentType, name);
 
-        // 滚动到该schema
+        // Scroll to the schema
         setTimeout(() => {
           const element = document.getElementById(`schema-${name}`);
           if (element) {
@@ -64,13 +66,13 @@ const AccordionComponentsSection: React.FC<AccordionComponentsSectionProps> = ({
     };
   }, []);
 
-  // 处理selectedSchema属性变化
+  // Handle selectedSchema prop changes
   useEffect(() => {
     if (selectedSchema) {
-      // 激活schemas标签
+      // Activate schemas tab
       setActiveType('schemas' as ComponentType);
 
-      // 展开对应的schema
+      // Expand the corresponding schema
       toggleExpandComponent('schemas' as ComponentType, selectedSchema);
     }
   }, [selectedSchema]);
@@ -81,52 +83,52 @@ const AccordionComponentsSection: React.FC<AccordionComponentsSectionProps> = ({
 
   return (
     <div className={`py-4 ${className}`}>
-      {/* 类型标签 */}
-      <div className="flex border-b mb-4 overflow-x-auto hide-scrollbar">
+      {/* Type tabs */}
+      <div className="flex border-b dark:border-gray-700 mb-4 overflow-x-auto hide-scrollbar">
         {availableTypes.map((type) => (
           <button
             key={type}
             className={`px-4 py-2 capitalize whitespace-nowrap ${activeType === type
-              ? 'border-b-2 border-blue-500 text-blue-600 font-medium'
-              : 'text-gray-600 hover:text-blue-500'
+              ? 'border-b-2 border-blue-500 text-blue-600 dark:text-blue-400 font-medium'
+              : 'text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400'
               }`}
             onClick={() => setActiveType(type)}
           >
             {type}
-            <span className="ml-1 text-xs text-gray-500">
+            <span className="ml-1 text-xs text-gray-500 dark:text-gray-500">
               ({availableComponents[type]?.length || 0})
             </span>
           </button>
         ))}
       </div>
 
-      {/* 显示当前类型的组件 */}
+      {/* Display components for current type */}
       {activeType && availableComponents[activeType] && (
         <div className="space-y-2">
           {availableComponents[activeType].map((name) => (
-            <div key={name} id={`schema-${name}`} className="border rounded-md overflow-hidden bg-white">
-              {/* 组件名称标题栏 */}
+            <div key={name} id={`schema-${name}`} className="rounded-md overflow-hidden bg-white dark:bg-gray-800">
+              {/* Component name header */}
               <div
-                className="flex items-center justify-between px-4 py-3 bg-gray-50 cursor-pointer hover:bg-gray-100"
+                className="flex items-center justify-between px-4 py-3 bg-gray-50 dark:bg-gray-800/60 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700/60"
                 onClick={() => toggleExpandComponent(activeType, name)}
               >
                 <div className="flex items-center gap-2">
-                  <span className="text-gray-500">
+                  <span className="text-gray-500 dark:text-gray-400">
                     {expandedComponent?.type === activeType && expandedComponent?.name === name ? (
                       <ChevronDown className="h-5 w-5" />
                     ) : (
                       <ChevronRight className="h-5 w-5" />
                     )}
                   </span>
-                  <h3 className="font-mono text-sm">
+                  <h3 className="font-mono text-sm dark:text-gray-200">
                     {name}
                   </h3>
                 </div>
               </div>
 
-              {/* 展开的组件详情 */}
+              {/* Expanded component details */}
               {expandedComponent?.type === activeType && expandedComponent?.name === name && (
-                <div className="p-4 border-t">
+                <div className="p-4">
                   <ComponentDetail
                     activeType={activeType}
                     selectedItemName={name}

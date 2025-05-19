@@ -1,4 +1,4 @@
-
+import { useI18n } from '@/lib/i18n/I18nProvider';
 import { LinkObject } from '@/types/openapi';
 import React, { useState } from 'react';
 import DescriptionDisplay from './atoms/DescriptionDisplay';
@@ -20,6 +20,7 @@ const LinkItem: React.FC<LinkItemProps> = ({
   server,
   className
 }) => {
+  const { t } = useI18n();
   const [isExpanded, setIsExpanded] = useState(false);
   const hasDetails = description ||
     parameters ||
@@ -33,7 +34,7 @@ const LinkItem: React.FC<LinkItemProps> = ({
       : null;
 
   return (
-    <div className={`mb-2 p-3 border rounded ${className || ''}`}>
+    <div className={`mb-2 p-3 rounded ${className || ''}`}>
       <div className="flex items-center justify-between">
         <div className="flex items-center space-x-2">
           <span className="font-mono font-medium">{name}</span>
@@ -42,7 +43,7 @@ const LinkItem: React.FC<LinkItemProps> = ({
               ? 'bg-blue-100 text-blue-800'
               : 'bg-green-100 text-green-800'
               }`}>
-              {primaryIdentifier.type}: {primaryIdentifier.value}
+              {t(primaryIdentifier.type)}: {primaryIdentifier.value}
             </span>
           )}
         </div>
@@ -51,7 +52,7 @@ const LinkItem: React.FC<LinkItemProps> = ({
           <ExpandCollapse
             isExpanded={isExpanded}
             onToggle={() => setIsExpanded(!isExpanded)}
-            label={isExpanded ? "Hide Details" : "Show Details"}
+            label={isExpanded ? t("Hide Details") : t("Show Details")}
           />
         )}
       </div>
@@ -66,14 +67,14 @@ const LinkItem: React.FC<LinkItemProps> = ({
         <div className="mt-3 pl-2 border-l-2 border-gray-200 space-y-4">
           {description && (
             <div>
-              <h4 className="text-xs font-semibold mb-1">Description</h4>
+              <h4 className="text-xs font-semibold mb-1">{t('Description')}</h4>
               <DescriptionDisplay description={description} className="text-sm" />
             </div>
           )}
 
           {parameters && Object.keys(parameters).length > 0 && (
             <div>
-              <h4 className="text-xs font-semibold mb-1">Parameters</h4>
+              <h4 className="text-xs font-semibold mb-1">{t('Parameters')}</h4>
               <div className="bg-gray-50 p-2 rounded text-xs space-y-1">
                 {Object.entries(parameters).map(([paramName, paramValue]) => (
                   <div key={paramName} className="grid grid-cols-[max-content_1fr] gap-x-2">
@@ -89,7 +90,7 @@ const LinkItem: React.FC<LinkItemProps> = ({
 
           {requestBody && (
             <div>
-              <h4 className="text-xs font-semibold mb-1">Request Body</h4>
+              <h4 className="text-xs font-semibold mb-1">{t('Request Body')}</h4>
               <div className="bg-gray-50 p-2 rounded text-xs">
                 <pre className="font-mono bg-gray-100 px-1.5 py-0.5 rounded overflow-x-auto break-all">
                   <code>{typeof requestBody === 'string' ? requestBody : JSON.stringify(requestBody, null, 2)}</code>
@@ -100,7 +101,7 @@ const LinkItem: React.FC<LinkItemProps> = ({
 
           {server && (
             <div>
-              <h4 className="text-xs font-semibold mb-1">Server</h4>
+              <h4 className="text-xs font-semibold mb-1">{t('Server')}</h4>
               <ServerDisplay server={server} />
             </div>
           )}

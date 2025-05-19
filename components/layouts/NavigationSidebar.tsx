@@ -1,3 +1,4 @@
+import { useI18n } from '@/lib/i18n/I18nProvider';
 import { OpenApiSpec, PathItemObject } from '@/types/openapi';
 import { cn } from '@/utils/cn';
 import { ChevronDown, ChevronRight, ChevronsDown, ChevronsUp, Github, Info, Search } from 'lucide-react';
@@ -20,6 +21,7 @@ const NavigationSidebar: React.FC<NavigationSidebarProps> = ({
   onSelectSchema,
   className
 }) => {
+  const { t } = useI18n();
   const [collapsedTags, setCollapsedTags] = useState<Record<string, boolean>>({});
   const [searchQuery, setSearchQuery] = useState('');
   const [isAllCollapsed, setIsAllCollapsed] = useState(false);
@@ -84,7 +86,7 @@ const NavigationSidebar: React.FC<NavigationSidebarProps> = ({
     <nav className={cn('sticky top-0 h-screen overflow-y-auto bg-gray-50 dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 flex flex-col', className)}>
       {/* 标题区域 */}
       <div className="sticky top-0 z-10 px-4 py-4">
-        <h2 className="text-base font-semibold truncate dark:text-white">{openapi.info?.title || 'API 文档'}</h2>
+        <h2 className="text-base font-semibold truncate dark:text-white">{openapi.info?.title || t('API Documentation')}</h2>
         {/* <p className="text-xs text-slate-400 dark:text-slate-400 mt-0.5 truncate">{openapi.info?.version || ''}</p> */}
       </div>
 
@@ -95,7 +97,7 @@ const NavigationSidebar: React.FC<NavigationSidebarProps> = ({
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="搜索API..."
+            placeholder={t('Search API...')}
             className="w-full pl-8 pr-3 py-1.5 text-sm border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-slate-500 focus:border-slate-500 bg-white dark:bg-gray-700 dark:text-white"
           />
           <Search className="absolute left-2.5 top-1/2 transform -translate-y-1/2 h-3.5 w-3.5 text-gray-400" />
@@ -108,21 +110,21 @@ const NavigationSidebar: React.FC<NavigationSidebarProps> = ({
           // 有标签时的渲染
           <>
             <div className="flex items-center justify-between mb-3">
-              <h3 className="text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400">接口</h3>
+              <h3 className="text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400">{t('Endpoints')}</h3>
               <button
                 onClick={toggleAllTags}
                 className="flex items-center text-xs text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300 transition-colors"
-                title={isAllCollapsed ? "全部展开" : "全部折叠"}
+                title={isAllCollapsed ? t("Expand All") : t("Collapse All")}
               >
                 {isAllCollapsed ? (
                   <>
                     <ChevronsDown className="h-3.5 w-3.5 mr-1" />
-                    <span>展开</span>
+                    <span>{t('Expand')}</span>
                   </>
                 ) : (
                   <>
                     <ChevronsUp className="h-3.5 w-3.5 mr-1" />
-                    <span>折叠</span>
+                    <span>{t('Collapse')}</span>
                   </>
                 )}
               </button>
@@ -194,7 +196,7 @@ const NavigationSidebar: React.FC<NavigationSidebarProps> = ({
         ) : (
           // 无标签时直接显示所有路径
           <>
-            <h3 className="text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-3">接口</h3>
+            <h3 className="text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-3">{t('Endpoints')}</h3>
             <ul className="space-y-0.5">
               {openapi.paths && Object.entries(openapi.paths).map(([path, pathItem]) => {
                 const operations = Object.entries(pathItem as PathItemObject)
@@ -228,7 +230,7 @@ const NavigationSidebar: React.FC<NavigationSidebarProps> = ({
         {/* 模式 */}
         {openapi.components?.schemas && Object.keys(openapi.components.schemas).length > 0 && (
           <div className="mt-6">
-            <h3 className="text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-3">数据模型</h3>
+            <h3 className="text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-3">{t('Data Models')}</h3>
             <ul className="space-y-0.5 pl-2">
               {openapi.components.schemas && Object.keys(openapi.components.schemas)
                 .filter(name => !searchQuery || name.toLowerCase().includes(searchQuery.toLowerCase()))

@@ -1,3 +1,4 @@
+import { useI18n } from '@/lib/i18n/I18nProvider';
 import { SecuritySchemeType } from '@/types/openapi';
 import { cn } from '@/utils/cn';
 import React from 'react';
@@ -16,6 +17,8 @@ const schemeColors: Record<SecuritySchemeType, string> = {
 };
 
 const SchemeType: React.FC<SchemeTypeProps> = ({ type, className }) => {
+  const { t } = useI18n();
+
   return (
     <span
       className={cn(
@@ -24,7 +27,7 @@ const SchemeType: React.FC<SchemeTypeProps> = ({ type, className }) => {
         className
       )}
     >
-      {type}
+      {t(type)}
     </span>
   );
 };

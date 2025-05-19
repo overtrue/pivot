@@ -1,3 +1,4 @@
+import { useI18n } from '@/lib/i18n/I18nProvider';
 import { cn } from '@/utils/cn';
 import React from 'react';
 
@@ -12,6 +13,8 @@ const MediaTypeSelector: React.FC<MediaTypeSelectorProps> = ({
   activeMediaType,
   onSelectMediaType,
 }) => {
+  const { t } = useI18n();
+
   if (mediaTypes.length <= 1) {
     return null; // Don't render tabs if only one or zero media types
   }
@@ -19,7 +22,7 @@ const MediaTypeSelector: React.FC<MediaTypeSelectorProps> = ({
   const handleClick = (e: React.MouseEvent, mediaType: string) => {
     e.preventDefault();
     e.stopPropagation();
-    console.log(`切换媒体类型到: ${mediaType}`);
+    console.log(t('Switching media type to: %s').replace('%s', mediaType));
     onSelectMediaType(mediaType);
   };
 

@@ -1,3 +1,4 @@
+import { useI18n } from '@/lib/i18n/I18nProvider';
 import {
   ComponentsObject,
   EncodingPropertyObject,
@@ -17,6 +18,8 @@ const ResponseContentSection: React.FC<ResponseContentSectionProps> = ({
   components,
   className = ''
 }) => {
+  const { t } = useI18n();
+
   // 渲染媒体类型的额外信息（如编码）
   const renderMediaTypeEncoding = (mediaType: MediaTypeObject) => {
     if (!mediaType.encoding || Object.keys(mediaType.encoding).length === 0) {
@@ -25,7 +28,7 @@ const ResponseContentSection: React.FC<ResponseContentSectionProps> = ({
 
     return (
       <div className="mt-4">
-        <h5 className="text-sm font-medium mb-2">Encoding</h5>
+        <h5 className="text-sm font-medium mb-2">{t('Encoding')}</h5>
         <div className="space-y-2">
           {Object.entries(mediaType.encoding).map(([property, encoding]: [string, EncodingPropertyObject]) => (
             <div key={property} className="border rounded p-2 bg-white">
@@ -33,25 +36,25 @@ const ResponseContentSection: React.FC<ResponseContentSectionProps> = ({
               <div className="grid grid-cols-[max-content_1fr] gap-x-2 gap-y-1 text-xs">
                 {encoding.contentType && (
                   <>
-                    <div className="text-gray-600">Content Type</div>
+                    <div className="text-gray-600">{t('Content Type')}</div>
                     <div className="font-mono">{encoding.contentType}</div>
                   </>
                 )}
                 {encoding.style && (
                   <>
-                    <div className="text-gray-600">Style</div>
+                    <div className="text-gray-600">{t('Style')}</div>
                     <div className="font-mono">{encoding.style}</div>
                   </>
                 )}
                 {encoding.explode !== undefined && (
                   <>
-                    <div className="text-gray-600">Explode</div>
+                    <div className="text-gray-600">{t('Explode')}</div>
                     <div className="font-mono">{encoding.explode.toString()}</div>
                   </>
                 )}
                 {encoding.allowReserved !== undefined && (
                   <>
-                    <div className="text-gray-600">Allow Reserved</div>
+                    <div className="text-gray-600">{t('Allow Reserved')}</div>
                     <div className="font-mono">{encoding.allowReserved.toString()}</div>
                   </>
                 )}

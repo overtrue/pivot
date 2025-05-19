@@ -2,6 +2,7 @@
 import MethodLabel from '@/components/atoms/MethodLabel';
 import OperationPath from '@/components/atoms/OperationPath';
 import { useOpenApi } from '@/hooks/useOpenApi';
+import { useI18n } from '@/lib/i18n/I18nProvider';
 import {
   ComponentsObject,
   OpenApiSpec,
@@ -39,6 +40,7 @@ const OperationBox: React.FC<OperationBoxProps> = ({
 }) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [isTryItOutVisible, setIsTryItOutVisible] = useState(false);
+  const { t } = useI18n();
 
   // 如果提供了完整规范，使用useOpenApi处理数据
   const openApi = spec ? useOpenApi(spec) : null;
@@ -82,7 +84,7 @@ const OperationBox: React.FC<OperationBoxProps> = ({
           {operation.summary && <span className="text-sm text-gray-700 dark:text-gray-300 hidden md:inline">- {operation.summary}</span>}
           {operation.deprecated && <DeprecatedBadge />}
         </div>
-        <ExpandCollapse isExpanded={isExpanded} onToggle={toggleExpand} label="" />
+        <ExpandCollapse isExpanded={isExpanded} onToggle={toggleExpand} />
       </div>
 
       {/* Collapsible Body */}
@@ -90,7 +92,7 @@ const OperationBox: React.FC<OperationBoxProps> = ({
         <div className="">
           {/* Description Section */}
           {(operation.summary || operation.description || externalDocs) && (
-            <div className="p-4 space-y-2">
+            <div className="p-4 pt-0 space-y-2">
               {operation.summary && (
                 <DescriptionDisplay className="text-base text-gray-800 dark:text-gray-200 font-medium md:hidden" description={operation.summary} />
               )}

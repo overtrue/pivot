@@ -1,3 +1,4 @@
+import { useI18n } from '@/lib/i18n/I18nProvider';
 import { DataType } from '@/types/openapi';
 import { cn } from '@/utils/cn';
 import React from 'react';
@@ -45,18 +46,26 @@ const getThemeForDataType = (type: DataType): DataTypeTheme => {
 };
 
 const TypeIndicator: React.FC<TypeIndicatorProps> = ({ type, theme = 'auto', className, children }) => {
+  const { t } = useI18n();
   // Determine the final theme name
   const finalTheme = theme === 'auto' ? getThemeForDataType(type) : theme;
 
   // Get text color class from the theme map
   const colorClass = dataTypeThemeColors[finalTheme] || dataTypeThemeColors.neutral; // Fallback to neutral
 
+  // 翻译类型名称
+  const getTypeDisplay = () => {
+    if (children) return children;
+    // 由于type是受限的DataType类型，我们直接返回type
+    return type;
+  };
+
   return (
     <span
       // Remove padding, background, and rounded classes
       className={cn('text-xs font-medium font-mono', colorClass, className)}
     >
-      {children || type} {/* Display children if provided, otherwise the type */}
+      {getTypeDisplay()}
     </span>
   );
 };

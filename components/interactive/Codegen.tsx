@@ -1,4 +1,4 @@
-// filepath: /workspaces/pivot/components/interactive/Codegen.tsx
+import { useI18n } from '@/lib/i18n/I18nProvider';
 import { ComponentsObject, HttpMethod, ParameterObject, ReferenceObject, RequestBodyObject } from '@/types/openapi';
 import React, { useState } from 'react';
 import { generateExample } from '../../utils/generateExample';
@@ -17,6 +17,7 @@ interface CodegenProps {
 }
 
 const Codegen: React.FC<CodegenProps> = ({ endpoint, method, parameters = [], requestBody, components, collapsible = false, defaultCollapsed = false }) => {
+  const { t } = useI18n();
   const [languageId, setLanguageId] = useState(codeGenerators[0]?.id || 'curl');
   const [collapsed, setCollapsed] = useState(defaultCollapsed);
 
@@ -90,17 +91,17 @@ const Codegen: React.FC<CodegenProps> = ({ endpoint, method, parameters = [], re
   };
 
   return (
-    <div className="border rounded-lg overflow-hidden shadow-sm bg-white transition-all">
+    <div className="border dark:border-gray-700 rounded-lg overflow-hidden shadow-sm bg-white dark:bg-gray-800 transition-all">
       {!collapsed && (
         <>
-          <div className="flex flex-wrap space-x-1 p-1 bg-gray-50">
+          <div className="flex flex-wrap space-x-1 p-1 bg-gray-50 dark:bg-gray-800/70">
             {codeGenerators.map((generator) => (
               <button
                 key={generator.id}
                 onClick={() => setLanguageId(generator.id)}
                 className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md text-sm font-medium transition-colors mb-1 ${languageId === generator.id
-                  ? 'bg-white text-blue-700 shadow-sm'
-                  : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
+                  ? 'bg-white dark:bg-gray-700 text-blue-700 dark:text-blue-400 shadow-sm'
+                  : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700/50'
                   }`}
               >
                 {generator.getIcon()}

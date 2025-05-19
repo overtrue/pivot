@@ -1,4 +1,4 @@
-
+import { useI18n } from '@/lib/i18n/I18nProvider';
 import {
   ComponentsObject,
   ExampleObject,
@@ -14,6 +14,8 @@ interface ExamplesDisplayProps {
 }
 
 const ExamplesDisplay: React.FC<ExamplesDisplayProps> = ({ examples, components }) => {
+  const { t } = useI18n();
+
   const resolvedExamples = Object.entries(examples)
     .map(([key, exampleOrRef]) => {
       // Use the generic resolver
@@ -23,7 +25,7 @@ const ExamplesDisplay: React.FC<ExamplesDisplayProps> = ({ examples, components 
         const refString = (exampleOrRef && typeof exampleOrRef === 'object' && '$ref' in exampleOrRef)
           ? (exampleOrRef as ReferenceObject).$ref
           : '[unknown reference]';
-        console.warn(`[ExamplesDisplay] Failed to resolve example ref: ${refString} for key ${key}`);
+        console.warn(t("[ExamplesDisplay] Failed to resolve example ref: %s for key %s").replace("%s", refString).replace("%s", key));
         return null;
       }
       return { key, ...resolved };

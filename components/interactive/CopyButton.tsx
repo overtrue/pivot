@@ -1,3 +1,4 @@
+import { useI18n } from '@/lib/i18n/I18nProvider';
 import { cn } from '@/utils/cn';
 import { Clipboard, ClipboardCheck } from 'lucide-react';
 import React, { useEffect, useState } from 'react';
@@ -15,6 +16,7 @@ const CopyButton: React.FC<CopyButtonProps> = ({
   iconClassName = '',
   size = 'md'
 }) => {
+  const { t } = useI18n();
   const [copied, setCopied] = useState(false);
 
   // 自动还原图标
@@ -32,7 +34,7 @@ const CopyButton: React.FC<CopyButtonProps> = ({
       await navigator.clipboard.writeText(text);
       setCopied(true);
     } catch (err) {
-      console.error('复制失败: ', err);
+      console.error(t('Copy failed:'), err);
     }
   };
 
@@ -58,7 +60,7 @@ const CopyButton: React.FC<CopyButtonProps> = ({
         className,
         copied ? 'text-green-600 dark:text-green-400' : ''
       )}
-      title="复制到剪贴板"
+      title={t('Copy to clipboard')}
     >
       {copied ? (
         <ClipboardCheck size={iconSizes[size]} className={iconClassName} />
