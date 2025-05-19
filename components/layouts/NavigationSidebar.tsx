@@ -81,9 +81,18 @@ const NavigationSidebar: React.FC<NavigationSidebarProps> = ({
 
   const tags = openapi.tags || [];
   const hasCustomTags = tags.length > 0;
+  const scrollbarStyles = [
+    '[&::-webkit-scrollbar]:w-1',
+    '[&::-webkit-scrollbar-track]:rounded-full',
+    '[&::-webkit-scrollbar-track]:bg-gray-100',
+    '[&::-webkit-scrollbar-thumb]:rounded-full',
+    '[&::-webkit-scrollbar-thumb]:bg-gray-300',
+    'dark:[&::-webkit-scrollbar-track]:bg-neutral-700',
+    'dark:[&::-webkit-scrollbar-thumb]:bg-neutral-500',
+  ];
 
   return (
-    <nav className={cn('sticky top-0 h-screen overflow-y-auto bg-gray-50 dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 flex flex-col', className)}>
+    <nav className={cn('sticky top-0 h-screen overflow-y-auto bg-gray-50 dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 flex flex-col', scrollbarStyles, className)}>
       {/* 标题区域 */}
       <div className="sticky top-0 z-10 px-4 py-4">
         <h2 className="text-base font-semibold truncate dark:text-white">{openapi.info?.title || t('API Documentation')}</h2>
@@ -104,7 +113,7 @@ const NavigationSidebar: React.FC<NavigationSidebarProps> = ({
         </div>
       </div>
 
-      <div className="p-4 flex-grow overflow-y-auto pb-16">
+      <div className={cn('p-4 flex-grow overflow-y-auto pb-16', scrollbarStyles)}>
         {/* 标签和路径 */}
         {hasCustomTags ? (
           // 有标签时的渲染
@@ -264,7 +273,7 @@ const NavigationSidebar: React.FC<NavigationSidebarProps> = ({
 
         <ThemeToggle />
       </div>
-    </nav>
+    </nav >
   );
 };
 

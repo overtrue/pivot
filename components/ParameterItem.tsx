@@ -49,7 +49,7 @@ const ParameterItem: React.FC<ParameterItemProps> = ({
     schema.pattern;
 
   return (
-    <div className={cn('rounded-md overflow-hidden', className)}>
+    <div className={cn('bg-gray-50 dark:bg-gray-800 rounded-md overflow-hidden', className)}>
       <div className="px-4 py-3 flex flex-wrap items-center justify-between gap-2 dark:bg-gray-800" onClick={() => setIsExpanded(!isExpanded)}>
         <div className="flex flex-wrap items-center gap-2">
           <ParameterName name={name} deprecated={deprecated} />
