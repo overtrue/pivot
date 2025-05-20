@@ -106,7 +106,7 @@ const SchemaExampleView: React.FC<SchemaExampleViewProps> = ({
             )}
             type="button"
           >
-            {t('Example Data')}
+            {t('Example')}
           </button>
           <button
             onClick={(e) => {

@@ -202,7 +202,6 @@ const zh = {
   "Reference:": "引用：",
 
   // SchemaExampleView translations
-  "Example Data": "示例数据",
   "Schema not defined": "未定义模式",
   "Switched view mode to: %s": "已切换视图模式到: %s",
 
@@ -238,11 +237,9 @@ const zh = {
   // Additional generic translations
   "Webhook": "Webhook",
   "Additional information can be found here:": "可在此处找到额外信息：",
-  "Basic Information": "基本信息",
   "Specification Parse Error": "规范解析错误",
   "Parsing specification...": "正在解析规范...",
   "No operations found with tag \"%s\"": "没有找到标签为 \"%s\" 的操作",
-  "External Documentation": "外部文档",
   "Reference Object": "引用对象",
   "API Documentation": "API 文档",
   "Search API...": "搜索API...",

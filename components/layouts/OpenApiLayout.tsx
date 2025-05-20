@@ -17,8 +17,9 @@ import SecuritySection from '../SecuritySection';
 import ServersSection from '../ServersSection';
 import TryItOutPanel from '../TryItOutPanel';
 import NavigationSidebar from './NavigationSidebar';
+import ResizableSidebar from './ResizableSidebar';
 
-interface OpenApiLayoutProps {
+interface AllInOneLayoutProps {
   spec: OpenApiObject | string | null; // Allow spec to be null
   className?: string;
 }
@@ -27,7 +28,7 @@ const MIN_SIDEBAR_WIDTH = 280; // Minimum width
 const MAX_SIDEBAR_WIDTH = 350; // Maximum width
 const DEFAULT_SIDEBAR_WIDTH = 280; // Default width
 
-const OpenApiLayout: React.FC<OpenApiLayoutProps> = ({ spec: inputSpec, className }) => {
+const AllInOneLayout: React.FC<AllInOneLayoutProps> = ({ spec: inputSpec, className }) => {
   const { t } = useI18n();
 
   // All hooks must be called at the top level without conditions
@@ -37,11 +38,8 @@ const OpenApiLayout: React.FC<OpenApiLayoutProps> = ({ spec: inputSpec, classNam
   const [selectedOperationId, setSelectedOperationId] = useState<string | null>(null);
   const [selectedOperation, setSelectedOperation] = useState<{ path: string; method: string; operation: OperationObject } | null>(null);
   const [sidebarWidth, setSidebarWidth] = useState(DEFAULT_SIDEBAR_WIDTH);
-  const [isDragging, setIsDragging] = useState(false);
   const [selectedSchema, setSelectedSchema] = useState<string | null>(null);
 
-  const sidebarRef = useRef<HTMLDivElement>(null);
-  const rootRef = useRef<HTMLDivElement>(null);
   const componentsRef = useRef<HTMLDivElement>(null);
 
   // Parse string to OpenAPI object
@@ -96,57 +94,10 @@ const OpenApiLayout: React.FC<OpenApiLayoutProps> = ({ spec: inputSpec, classNam
     resolve
   } = useOpenApi(parsedSpec || emptySpec);
 
-  // Initialize CSS variables
-  useEffect(() => {
-    if (rootRef.current) {
-      rootRef.current.style.setProperty('--sidebar-width', `${sidebarWidth}px`);
-    }
-  }, [sidebarWidth]);
-
-  // Start dragging
-  const startDragging = (e: React.MouseEvent) => {
-    e.preventDefault();
-    setIsDragging(true);
+  // 处理侧边栏宽度变化
+  const handleSidebarWidthChange = (width: number) => {
+    setSidebarWidth(width);
   };
-
-  // Handle dragging process
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      if (!isDragging || !rootRef.current) return;
-
-      // Calculate new width
-      let newWidth = e.clientX;
-
-      // Limit width range
-      if (newWidth < MIN_SIDEBAR_WIDTH) newWidth = MIN_SIDEBAR_WIDTH;
-      if (newWidth > MAX_SIDEBAR_WIDTH) newWidth = MAX_SIDEBAR_WIDTH;
-
-      // Directly update CSS variables to avoid React state updates causing re-renders
-      rootRef.current.style.setProperty('--sidebar-width', `${newWidth}px`);
-    };
-
-    const handleMouseUp = () => {
-      if (isDragging && rootRef.current) {
-        // Get the current CSS variable value, update React state
-        const currentWidth = rootRef.current.style.getPropertyValue('--sidebar-width');
-        const numWidth = parseInt(currentWidth, 10);
-        if (!isNaN(numWidth)) {
-          setSidebarWidth(numWidth);
-        }
-      }
-      setIsDragging(false);
-    };
-
-    if (isDragging) {
-      document.addEventListener('mousemove', handleMouseMove);
-      document.addEventListener('mouseup', handleMouseUp);
-    }
-
-    return () => {
-      document.removeEventListener('mousemove', handleMouseMove);
-      document.removeEventListener('mouseup', handleMouseUp);
-    };
-  }, [isDragging]);
 
   // Operations filtered by tag
   const currentOperationsByTag = getOperationsByTag();
@@ -243,31 +194,29 @@ const OpenApiLayout: React.FC<OpenApiLayoutProps> = ({ spec: inputSpec, classNam
   }
 
   return (
-    <div ref={rootRef} className={`flex min-h-screen bg-white dark:bg-gray-900 ${className} ${isDragging ? 'select-none cursor-ew-resize' : ''}`}>
-      {/* Left Sidebar (Navigation) */}
-      <div
-        ref={sidebarRef}
-        className="flex-shrink-0 relative bg-gray-50 dark:bg-gray-800"
-        style={{ width: 'var(--sidebar-width)' }}
+    <div className={`flex min-h-screen bg-white dark:bg-gray-900 ${className}`}>
+      {/* 使用ResizableSidebar组件 */}
+      <ResizableSidebar
+        defaultWidth={DEFAULT_SIDEBAR_WIDTH}
+        minWidth={MIN_SIDEBAR_WIDTH}
+        maxWidth={MAX_SIDEBAR_WIDTH}
+        onWidthChange={handleSidebarWidthChange}
+        sidebarClassName="bg-gray-50 dark:bg-gray-800"
+        stickyPosition={true}
+        topOffset="0px"
       >
         <NavigationSidebar
-          openapi={parsedSpec} // parsedSpec 已在前面进行了非空检查
+          openapi={parsedSpec}
           onSelectOperation={(path, method, operation) => {
             const operationId = operation.operationId || `${method}-${path}`;
             handleSelectOperation(operationId, path, method, operation);
           }}
           onSelectSchema={handleSelectSchema}
         />
-
-        {/* Drag handle */}
-        <div
-          className="absolute top-0 right-0 bottom-0 w-1 bg-transparent hover:bg-slate-400 dark:hover:bg-slate-500 cursor-ew-resize z-10"
-          onMouseDown={startDragging}
-        />
-      </div>
+      </ResizableSidebar>
 
       {/* Center Content Area */}
-      <main className="flex-1 flex gap-2 p-8 overflow-y-auto mx-auto dark:text-gray-200">
+      <main className="flex-1 flex gap-2 p-8 overflow-y-auto h-screen mx-auto dark:text-gray-200">
         <div>
           {/* 1. Info Section */}
           <div className="mb-10">
@@ -386,4 +335,4 @@ const OpenApiLayout: React.FC<OpenApiLayoutProps> = ({ spec: inputSpec, classNam
   );
 };
 
-export default OpenApiLayout;
+export default AllInOneLayout;

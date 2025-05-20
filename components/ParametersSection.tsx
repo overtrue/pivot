@@ -13,9 +13,10 @@ interface ParametersSectionProps {
   parameters: (ParameterObject | ReferenceObject)[];
   components?: ComponentsObject;
   className?: string;
+  expanded?: boolean; // 添加这个属性用于控制所有参数是否默认展开
 }
 
-const ParametersSection: React.FC<ParametersSectionProps> = ({ parameters, components, className }) => {
+const ParametersSection: React.FC<ParametersSectionProps> = ({ parameters, components, className, expanded }) => {
   const { t } = useI18n();
 
   if (!parameters || parameters.length === 0) {
@@ -54,6 +55,7 @@ const ParametersSection: React.FC<ParametersSectionProps> = ({ parameters, compo
               schema={parameter.schema && 'type' in parameter.schema ? parameter.schema : {}}
               // Handle style type issues
               style={parameter.style}
+              expanded={expanded}
             />
           );
         })}

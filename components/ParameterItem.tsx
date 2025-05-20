@@ -26,6 +26,7 @@ interface ParameterItemProps extends Omit<ParameterObject, 'schema' | 'examples'
   examples?: Record<string, ExampleObject | ReferenceObject>;
   components?: ComponentsObject; // 用于解析引用
   className?: string;
+  expanded?: boolean; // 控制是否默认展开参数详情
 }
 
 const ParameterItem: React.FC<ParameterItemProps> = ({
@@ -39,10 +40,11 @@ const ParameterItem: React.FC<ParameterItemProps> = ({
   explode,
   examples,
   components,
-  className
+  className,
+  expanded
 }) => {
   const { t } = useI18n();
-  const [isExpanded, setIsExpanded] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(expanded ?? false);
   const hasDetails = schema.default !== undefined || schema.enum || examples || description ||
     schema.minimum !== undefined || schema.maximum !== undefined ||
     schema.minLength !== undefined || schema.maxLength !== undefined ||

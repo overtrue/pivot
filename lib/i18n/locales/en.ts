@@ -149,15 +149,7 @@ const en = {
   "Copy failed:": "Copy failed:",
 
   // SecuritySchemeDisplay translations
-  "In:": "In:",
-  "Name:": "Name:",
-  "Scheme:": "Scheme:",
   "Flows:": "Flows:",
-  "Authorization URL:": "Authorization URL:",
-  "Token URL:": "Token URL:",
-  "Refresh URL:": "Refresh URL:",
-  "Scopes:": "Scopes:",
-  "OpenID Connect URL:": "OpenID Connect URL:",
   "Details for mutualTLS not specifically rendered.": "Details for mutualTLS not specifically rendered.",
   "Unknown security scheme type:": "Unknown security scheme type:",
 
@@ -244,11 +236,9 @@ const en = {
   // Additional generic translations
   "Webhook": "Webhook",
   "Additional information can be found here:": "Additional information can be found here:",
-  "Basic Information": "Basic Information",
   "Specification Parse Error": "Specification Parse Error",
   "Parsing specification...": "Parsing specification...",
   "No operations found with tag \"%s\"": "No operations found with tag \"%s\"",
-  "External Documentation": "External Documentation",
   "Reference Object": "Reference Object",
   "API Documentation": "API Documentation",
   "Search API...": "Search API...",
@@ -256,12 +246,6 @@ const en = {
   "Expand All": "Expand All",
   "Collapse All": "Collapse All",
   "Data Models": "Data Models",
-  "Variables": "Variables",
-  "Default value:": "Default value:",
-  "Available values:": "Available values:",
-  "Server Variables:": "Server Variables:",
-  "Description": "Description",
-  "Interpolated URL:": "Interpolated URL:",
 };
 
 export default en;

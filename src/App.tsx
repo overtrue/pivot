@@ -1,8 +1,9 @@
 import LanguageSwitcher from '@/components/LanguageSwitcher';
 import OpenApiLayout from '@/components/layouts/OpenApiLayout';
+import PathDetailLayout from '@/components/layouts/PathDetailLayout';
 import { ThemeToggle } from '@/components/ThemeToggle';
 import { useI18n } from '@/lib/i18n/I18nProvider';
-import { Github } from 'lucide-react';
+import { Github, Layout, LayoutTemplate } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 
 // 预定义的API示例列表
@@ -26,6 +27,7 @@ export default function App() {
   const [spec, setSpec] = useState<any>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const [layoutType, setLayoutType] = useState<'allInOne' | 'pathDetail'>('allInOne');
   const prevUrlRef = useRef<string>('');
   const debounceTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const { t } = useI18n();
@@ -148,20 +150,43 @@ export default function App() {
               )}
             </div>
 
-            {/* GitHub 链接和主题切换 */}
-            <div className="flex items-center gap-3">
-              <ThemeToggle />
-              <LanguageSwitcher />
-              <a
-                href="https://github.com/overtrue/pivot"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center text-white hover:text-slate-200 transition-colors"
-                title={t('GitHub repository')}
+            {/* 布局切换按钮 */}
+            <div className="flex items-center bg-slate-600 bg-opacity-30 rounded-md border border-slate-500 p-0.5 mr-2">
+              <button
+                onClick={() => setLayoutType('allInOne')}
+                className={`flex items-center px-3 py-1.5 text-xs rounded-md transition-colors ${layoutType === 'allInOne'
+                    ? 'bg-white text-slate-800'
+                    : 'text-white hover:bg-slate-600'
+                  }`}
+                title={t('All-in-one view')}
               >
-                <Github className="h-5 w-5" />
-              </a>
+                <LayoutTemplate className="w-3.5 h-3.5 mr-1.5" />
+                {t('All-in-one')}
+              </button>
+              <button
+                onClick={() => setLayoutType('pathDetail')}
+                className={`flex items-center px-3 py-1.5 text-xs rounded-md transition-colors ${layoutType === 'pathDetail'
+                    ? 'bg-white text-slate-800'
+                    : 'text-white hover:bg-slate-600'
+                  }`}
+                title={t('Path detail view')}
+              >
+                <Layout className="w-3.5 h-3.5 mr-1.5" />
+                {t('Path detail')}
+              </button>
             </div>
+
+            <ThemeToggle />
+            <LanguageSwitcher />
+            <a
+              href="https://github.com/overtrue/pivot"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center text-white hover:text-slate-200 transition-colors"
+              title={t('GitHub repository')}
+            >
+              <Github className="h-5 w-5" />
+            </a>
           </div>
         </div>
       </header>
@@ -188,7 +213,11 @@ export default function App() {
             <div className="animate-spin rounded-full h-12 w-12 border-2 border-b-2 border-slate-500 dark:border-slate-300"></div>
           </div>
         ) : spec ? (
-          <OpenApiLayout spec={spec} />
+          layoutType === 'allInOne' ? (
+            <OpenApiLayout spec={spec} />
+          ) : (
+            <PathDetailLayout spec={spec} />
+          )
         ) : null}
       </main>
     </div>

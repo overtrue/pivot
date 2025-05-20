@@ -9,6 +9,7 @@ import { ThemeToggle } from '../ThemeToggle';
 interface NavigationSidebarProps {
   openapi: OpenApiSpec;
   activePath?: string | null;
+  activeMethod?: string | null;
   onSelectOperation?: (path: string, method: string, operation: any) => void;
   onSelectSchema?: (schemaName: string) => void;
   className?: string;
@@ -17,6 +18,7 @@ interface NavigationSidebarProps {
 const NavigationSidebar: React.FC<NavigationSidebarProps> = ({
   openapi,
   activePath = null,
+  activeMethod = null,
   onSelectOperation = () => { },
   onSelectSchema,
   className
@@ -92,9 +94,9 @@ const NavigationSidebar: React.FC<NavigationSidebarProps> = ({
   ];
 
   return (
-    <nav className={cn('sticky top-0 h-screen overflow-y-auto bg-gray-50 dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 flex flex-col', scrollbarStyles, className)}>
+    <nav className={cn('h-full flex flex-col bg-gray-50 dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700', scrollbarStyles, className)}>
       {/* 标题区域 */}
-      <div className="sticky top-0 z-10 px-4 py-4">
+      <div className="sticky top-0 z-10 px-4 py-4 bg-gray-50 dark:bg-gray-800">
         <h2 className="text-base font-semibold truncate dark:text-white">{openapi.info?.title || t('API Documentation')}</h2>
         {/* <p className="text-xs text-slate-400 dark:text-slate-400 mt-0.5 truncate">{openapi.info?.version || ''}</p> */}
       </div>
@@ -113,7 +115,7 @@ const NavigationSidebar: React.FC<NavigationSidebarProps> = ({
         </div>
       </div>
 
-      <div className={cn('p-4 flex-grow overflow-y-auto pb-16', scrollbarStyles)}>
+      <div className={cn('p-4 flex-grow overflow-y-auto', scrollbarStyles)}>
         {/* 标签和路径 */}
         {hasCustomTags ? (
           // 有标签时的渲染
@@ -177,7 +179,7 @@ const NavigationSidebar: React.FC<NavigationSidebarProps> = ({
                               return null;
                             }
 
-                            const isActive = activePath === path;
+                            const isActive = activePath === path && activeMethod && activeMethod.toUpperCase() === method.toUpperCase();
                             return (
                               <li key={`${method}-${path}`}>
                                 <button
@@ -214,7 +216,7 @@ const NavigationSidebar: React.FC<NavigationSidebarProps> = ({
                 return operations.map(([method, operation]) => {
                   if (!filterPaths(path, method, operation)) return null;
 
-                  const isActive = activePath === path;
+                  const isActive = activePath === path && activeMethod && activeMethod.toUpperCase() === method.toUpperCase();
                   return (
                     <li key={`${method}-${path}`}>
                       <button
@@ -260,7 +262,7 @@ const NavigationSidebar: React.FC<NavigationSidebarProps> = ({
       </div>
 
       {/* GitHub 链接 - 固定在底部 */}
-      <div className="sticky bottom-0 mt-auto border-t border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 px-4 py-3 flex items-center justify-between">
+      <div className="mt-auto border-t border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 px-4 py-3 flex items-center justify-between">
         <a
           href="https://github.com/overtrue/pivot"
           target="_blank"

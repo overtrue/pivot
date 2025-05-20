@@ -276,7 +276,7 @@ const SchemaDisplay: React.FC<SchemaDisplayProps & { _currentDepth?: number }> =
     case 'boolean':
     case 'null':
       return (
-        <div className={`p-2 border rounded bg-gray-50/50 dark:bg-gray-800/50 dark:border-gray-700 ${className}`}>
+        <div className={`p-2 rounded bg-gray-50/50 dark:bg-gray-800/50 ${className}`}>
           <div className="flex items-center gap-2 mb-1 flex-wrap">
             {type && <TypeIndicator type={type as any} />}
             {format && <FormatBadge format={format as any} />}
