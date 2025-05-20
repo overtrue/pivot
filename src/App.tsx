@@ -1,5 +1,5 @@
 import LanguageSwitcher from '@/components/LanguageSwitcher';
-import OpenApiLayout from '@/components/layouts/OpenApiLayout';
+import OpenApiLayout from '@/components/layouts/AllInOneLayout';
 import PathDetailLayout from '@/components/layouts/PathDetailLayout';
 import { ThemeToggle } from '@/components/ThemeToggle';
 import { useI18n } from '@/lib/i18n/I18nProvider';

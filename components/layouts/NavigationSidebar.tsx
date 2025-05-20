@@ -86,11 +86,11 @@ const NavigationSidebar: React.FC<NavigationSidebarProps> = ({
   const scrollbarStyles = [
     '[&::-webkit-scrollbar]:w-0.5',
     '[&::-webkit-scrollbar-track]:rounded-full',
-    '[&::-webkit-scrollbar-track]:bg-neutral-100',
+    '[&::-webkit-scrollbar-track]:bg-neutral-50/50',
     '[&::-webkit-scrollbar-thumb]:rounded-full',
-    '[&::-webkit-scrollbar-thumb]:bg-neutral-300',
-    'dark:[&::-webkit-scrollbar-track]:bg-neutral-700',
-    'dark:[&::-webkit-scrollbar-thumb]:bg-neutral-500',
+    '[&::-webkit-scrollbar-thumb]:bg-neutral-50/50',
+    'dark:[&::-webkit-scrollbar-track]:bg-neutral-800',
+    'dark:[&::-webkit-scrollbar-thumb]:bg-neutral-800/50',
   ];
 
   return (
