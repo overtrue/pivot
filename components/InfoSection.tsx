@@ -18,7 +18,7 @@ const InfoSection: React.FC<InfoSectionProps> = ({ info, className }) => {
   return (
     <div className={cn('py-8', className)}>
       <div className="flex flex-col items-start mb-8">
-        <h1 className="text-3xl font-bold mb-3 text-gray-800 dark:text-gray-100">{info.title}</h1>
+        <h1 className="text-3xl font-bold mb-3 text-neutral-800 dark:text-neutral-100">{info.title}</h1>
         <div className="flex items-center px-3 py-1.5 bg-blue-50 dark:bg-blue-900 text-blue-700 dark:text-blue-300 rounded-full text-sm font-medium">
           {t('Version')} {info.version}
         </div>

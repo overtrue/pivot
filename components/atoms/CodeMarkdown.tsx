@@ -48,7 +48,7 @@ const CodeMarkdown: React.FC<CodeMarkdownProps> = ({
           <CopyButton text={code} size="sm" />
         </div>
       )}
-      <div className="overflow-hidden dark:bg-gray-800">
+      <div className="overflow-hidden dark:bg-neutral-800">
         <SyntaxHighlighter
           language={language}
           style={codeStyle}

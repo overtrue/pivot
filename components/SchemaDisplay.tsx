@@ -77,8 +77,8 @@ const PropertyDisplay: React.FC<{
       ? (propSchemaOrRef as ReferenceObject).$ref
       : '[invalid schema]';
     return (
-      <div className="pl-3 my-2 border-l-2 border-gray-200 dark:border-gray-700">
-        <div className="font-mono font-medium text-sm mb-1 text-black dark:text-gray-200">{propName} <span className="text-red-500 dark:text-red-400 text-xs">Error resolving {refString}</span></div>
+      <div className="pl-3 my-2 border-l-2 border-neutral-200 dark:border-neutral-700">
+        <div className="font-mono font-medium text-sm mb-1 text-black dark:text-neutral-200">{propName} <span className="text-red-500 dark:text-red-400 text-xs">Error resolving {refString}</span></div>
       </div>
     )
   }
@@ -131,28 +131,28 @@ const PropertyDisplay: React.FC<{
         role='property-item-header'
       >
         {/* Prefix Connector Line - Conditional width */}
-        <div className={cn(connectorWidthClass, 'border-t border-gray-200 dark:border-gray-700 group-hover:border-gray-300 dark:group-hover:border-gray-600 flex-shrink-0')}></div>
+        <div className={cn(connectorWidthClass, 'border-t border-neutral-200 dark:border-neutral-700 group-hover:border-neutral-300 dark:group-hover:border-neutral-600 flex-shrink-0')}></div>
 
         {/* Icon Span - RENDERED ONLY IF COLLAPSIBLE */}
         {/* This span provides the space and contains the centered icon */}
         <span className={cn(iconSpanWidthClass, 'inline-flex items-center justify-center h-5')}>
           {isCollapsible && (
-            <span className="text-gray-400 dark:text-gray-500"><ChevronIcon isExpanded={isExpanded} /></span>
+            <span className="text-neutral-400 dark:text-neutral-500"><ChevronIcon isExpanded={isExpanded} /></span>
           )}
         </span>
         <div className="flex-1 gap-1 flex items-center justify-between">
           {/* Text content follows. Starts at same effective indent */}
-          <span className="font-mono text-sm text-black dark:text-gray-200 group-hover:text-gray-900 dark:group-hover:text-white">{propName}</span>
+          <span className="font-mono text-sm text-black dark:text-neutral-200 group-hover:text-neutral-900 dark:group-hover:text-white">{propName}</span>
 
           {/* hover line */}
-          <div className="h-px self-center ml-1 flex-grow border-t border-transparent group-hover:border-gray-300 dark:group-hover:border-gray-600 transition-colors duration-150"></div>
+          <div className="h-px self-center ml-1 flex-grow border-t border-transparent group-hover:border-neutral-300 dark:group-hover:border-neutral-600 transition-colors duration-150"></div>
 
           {/* Type and other badges */}
           {/* This div is flex-1 to take up remaining space */}
           <div className="flex gap-1 items-center">
             {/* ... rest of header ... */}
             <TypeIndicator type={displayTypeString as DataType}>{displayTypeString}</TypeIndicator>
-            {/* {format && <FormatBadge format={format as FormatType} className='text-gray-400' />} */}
+            {/* {format && <FormatBadge format={format as FormatType} className='text-neutral-400' />} */}
             {deprecated && <DeprecatedBadge />}
             {/* Hover Trailing Line */}
             {isRequired && (
@@ -170,19 +170,19 @@ const PropertyDisplay: React.FC<{
       {/* Adjusted pl based on consistent total indent (w-8) */}    <div className={`pl-10 transition-all duration-300 ease-in-out overflow-hidden ${isExpanded ? 'max-h-[1000px] opacity-100' : 'max-h-0 opacity-0'}`} role='property-item-content'>
         {/* ... description, default, enum, constraints ... */}
         {description && (
-          <DescriptionDisplay description={description as string} className="text-sm text-gray-500 dark:text-gray-400 mb-1 pt-0.5" />
+          <DescriptionDisplay description={description as string} className="text-sm text-neutral-500 dark:text-neutral-400 mb-1 pt-0.5" />
         )}
 
         {defaultValue && (
-          <DefaultValueDisplay value={defaultValue} className="text-xs text-gray-500 dark:text-gray-400 mb-0.5" />
+          <DefaultValueDisplay value={defaultValue} className="text-xs text-neutral-500 dark:text-neutral-400 mb-0.5" />
         )}
 
         {enumValues && (
-          <EnumValuesDisplay values={enumValues || []} className="text-xs text-gray-500 dark:text-gray-400 mb-0.5" />
+          <EnumValuesDisplay values={enumValues || []} className="text-xs text-neutral-500 dark:text-neutral-400 mb-0.5" />
         )}
 
         {Object.keys(otherConstraints).length > 0 && (
-          <SchemaConstraints schema={{ ...resolvedPropSchema, default: undefined, enum: undefined }} className="text-xs text-gray-500 dark:text-gray-400" />
+          <SchemaConstraints schema={{ ...resolvedPropSchema, default: undefined, enum: undefined }} className="text-xs text-neutral-500 dark:text-neutral-400" />
         )}
 
         {/* Recursive call */}
@@ -276,13 +276,13 @@ const SchemaDisplay: React.FC<SchemaDisplayProps & { _currentDepth?: number }> =
     case 'boolean':
     case 'null':
       return (
-        <div className={`p-2 rounded bg-gray-50/50 dark:bg-gray-800/50 ${className}`}>
+        <div className={`p-2 rounded bg-neutral-50/50 dark:bg-neutral-800/50 ${className}`}>
           <div className="flex items-center gap-2 mb-1 flex-wrap">
             {type && <TypeIndicator type={type as any} />}
             {format && <FormatBadge format={format as any} />}
             {deprecated && <DeprecatedBadge />}
           </div>
-          {description && <DescriptionDisplay description={description} className="text-sm mt-1 mb-1 dark:text-gray-300" />}
+          {description && <DescriptionDisplay description={description} className="text-sm mt-1 mb-1 dark:text-neutral-300" />}
           <DefaultValueDisplay value={defaultValue} className="text-xs mb-1" />
           <EnumValuesDisplay values={enumValues || []} className="text-xs mb-1" />
           <SchemaConstraints schema={{ ...resolvedSchema, default: undefined, enum: undefined, description: undefined, deprecated: undefined }} className="text-xs" />
@@ -299,12 +299,12 @@ const SchemaDisplay: React.FC<SchemaDisplayProps & { _currentDepth?: number }> =
                 <TypeIndicator type="object" />
                 {deprecated && <DeprecatedBadge />}
               </div>
-              {description && <DescriptionDisplay description={description} className="text-sm text-gray-600 dark:text-gray-300 mt-1 mb-2" />}
+              {description && <DescriptionDisplay description={description} className="text-sm text-neutral-600 dark:text-neutral-300 mt-1 mb-2" />}
             </>
           )}
           {renderComposition()}
           {properties && Object.keys(properties).length > 0 && (
-            <div className="mt-1 border-l border-gray-200 dark:border-gray-700">
+            <div className="mt-1 border-l border-neutral-200 dark:border-neutral-700">
               {Object.entries(properties).map(([propName, propSchema]) => (
                 <PropertyDisplay
                   key={propName}
@@ -318,10 +318,10 @@ const SchemaDisplay: React.FC<SchemaDisplayProps & { _currentDepth?: number }> =
             </div>
           )}
           {additionalProperties !== undefined && additionalProperties !== false && (
-            <div className="mt-2 pl-4 py-2 border-l border-dashed border-gray-300 dark:border-gray-600">
-              <h4 className="text-xs font-semibold italic text-gray-500 dark:text-gray-400 mb-1">Additional Properties</h4>
+            <div className="mt-2 pl-4 py-2 border-l border-dashed border-neutral-300 dark:border-neutral-600">
+              <h4 className="text-xs font-semibold italic text-neutral-500 dark:text-neutral-400 mb-1">Additional Properties</h4>
               {additionalProperties === true ? (
-                <span className="text-sm text-gray-600 dark:text-gray-300">Allowed: Yes (any type)</span>
+                <span className="text-sm text-neutral-600 dark:text-neutral-300">Allowed: Yes (any type)</span>
               ) : (
                 <SchemaDisplay
                   schema={additionalProperties as SchemaObject | ReferenceObject}
@@ -342,12 +342,12 @@ const SchemaDisplay: React.FC<SchemaDisplayProps & { _currentDepth?: number }> =
             <>
               <div className="flex items-center gap-2 mb-1 flex-wrap">
                 {isRef && refName && (
-                  <span className="text-xs text-gray-500 italic">{refName}</span>
+                  <span className="text-xs text-neutral-500 italic">{refName}</span>
                 )}
                 <TypeIndicator type="array" />
                 {deprecated && <DeprecatedBadge />}
               </div>
-              {description && <DescriptionDisplay description={description} className="text-sm text-gray-600 dark:text-gray-300 mt-1 mb-2" />}
+              {description && <DescriptionDisplay description={description} className="text-sm text-neutral-600 dark:text-neutral-300 mt-1 mb-2" />}
             </>
           )}
           {renderComposition()}
@@ -369,10 +369,10 @@ const SchemaDisplay: React.FC<SchemaDisplayProps & { _currentDepth?: number }> =
     default:
       if (allOf || anyOf || oneOf || not) {
         return (
-          <div className={`p-2 border rounded border-dashed border-gray-300 dark:border-gray-600 dark:bg-gray-800/30 ${className}`}>
-            <span className="text-xs text-gray-500 dark:text-gray-400 italic">{t('Composition Schema')}</span>
+          <div className={`p-2 border rounded border-dashed border-neutral-300 dark:border-neutral-600 dark:bg-neutral-800/30 ${className}`}>
+            <span className="text-xs text-neutral-500 dark:text-neutral-400 italic">{t('Composition Schema')}</span>
             {deprecated && <DeprecatedBadge />}
-            {description && <DescriptionDisplay description={description} className="text-sm mt-1 mb-1 dark:text-gray-300" />}
+            {description && <DescriptionDisplay description={description} className="text-sm mt-1 mb-1 dark:text-neutral-300" />}
             {renderBasicInfo()}
             {renderComposition()}
           </div>
@@ -389,9 +389,9 @@ const SchemaDisplay: React.FC<SchemaDisplayProps & { _currentDepth?: number }> =
         return <SchemaDisplay schema={inferredArraySchema} components={components} _currentDepth={_currentDepth} className={className} />;
       }
       return (
-        <div className={`text-xs text-gray-500 dark:text-gray-400 p-1 border border-dashed rounded dark:border-gray-600 ${className}`}>
+        <div className={`text-xs text-neutral-500 dark:text-neutral-400 p-1 border border-dashed rounded dark:border-neutral-600 ${className}`}>
           {t('Unknown or underspecified schema type.')}
-          {description && <DescriptionDisplay description={description} className="block mt-1 dark:text-gray-300" />}
+          {description && <DescriptionDisplay description={description} className="block mt-1 dark:text-neutral-300" />}
           {renderComposition()}
         </div>
       );

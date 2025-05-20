@@ -24,10 +24,10 @@ const ParametersSection: React.FC<ParametersSectionProps> = ({ parameters, compo
   }
 
   return (
-    <div className={cn(className, "dark:text-gray-200")}>
+    <div className={cn(className, "dark:text-neutral-200")}>
       {/* Optionally add a title, or assume OperationBox provides context */}
       {/* <SectionTitle title="Parameters" className="text-sm font-semibold mb-3"/> */}
-      <h4 className="text-sm font-semibold mb-3 dark:text-gray-300">{t('Parameters')}</h4>
+      <h4 className="text-sm font-semibold mb-3 dark:text-neutral-300">{t('Parameters')}</h4>
       <div className="space-y-3">
         {parameters.map((paramOrRef, index) => {
           // Resolve parameter ref

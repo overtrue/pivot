@@ -18,7 +18,7 @@ const formatThemeColors: Record<FormatTheme, string> = {
   success: 'text-green-800 dark:text-green-400',       // Was identifier
   warning: 'text-yellow-800 dark:text-yellow-400',     // Was binary
   danger: 'text-red-800 dark:text-red-400',            // Was sensitive
-  neutral: 'text-gray-500 dark:text-gray-400',         // Was default
+  neutral: 'text-neutral-500 dark:text-neutral-400',         // Was default
 };
 
 // Helper to determine theme from format if theme is 'auto' (returns new theme names)

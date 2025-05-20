@@ -368,7 +368,7 @@ const TryItOutPanel: React.FC<TryItOutPanelProps> = ({
     } else if (status >= 500) {
       return 'bg-red-100 dark:bg-red-900/50 text-red-800 dark:text-red-300';
     }
-    return 'bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-300';
+    return 'bg-neutral-100 dark:bg-neutral-700 text-neutral-800 dark:text-neutral-300';
   };
 
   // 渲染安全认证输入表单
@@ -380,14 +380,14 @@ const TryItOutPanel: React.FC<TryItOutPanelProps> = ({
     return (
       <div className="space-y-3">
         <div className="flex items-center justify-between">
-          <h3 className="text-sm font-medium text-gray-700 dark:text-gray-300">{t('Authentication')}</h3>
+          <h3 className="text-sm font-medium text-neutral-700 dark:text-neutral-300">{t('Authentication')}</h3>
         </div>
         <div className="space-y-3">
           {securitySchemes.length > 1 && (
             <div className="mb-2">
-              <label className="text-xs text-gray-600 dark:text-gray-400 block mb-1">{t('Select authentication method')}</label>
+              <label className="text-xs text-neutral-600 dark:text-neutral-400 block mb-1">{t('Select authentication method')}</label>
               <select
-                className="w-full px-2 py-2 border dark:border-gray-700 rounded text-sm dark:bg-gray-700 dark:text-gray-200"
+                className="w-full px-2 py-2 border dark:border-neutral-700 rounded text-sm dark:bg-neutral-700 dark:text-neutral-200"
                 value={activeSecurityScheme || ''}
                 onChange={(e) => setActiveSecurityScheme(e.target.value || null)}
               >
@@ -409,14 +409,14 @@ const TryItOutPanel: React.FC<TryItOutPanelProps> = ({
               switch (schemeObj.type) {
                 case 'apiKey':
                   return (
-                    <div key={index} className="p-3 border dark:border-gray-700 rounded bg-blue-50 dark:bg-blue-900/30">
+                    <div key={index} className="p-3 border dark:border-neutral-700 rounded bg-blue-50 dark:bg-blue-900/30">
                       <div className="text-xs font-semibold text-blue-800 dark:text-blue-300 mb-2">{t('API Key')} ({schemeObj.in})</div>
-                      <label className="text-xs text-gray-600 dark:text-gray-400 block mb-1">
+                      <label className="text-xs text-neutral-600 dark:text-neutral-400 block mb-1">
                         {schemeObj.name} {schemeObj.description && `- ${schemeObj.description}`}
                       </label>
                       <input
                         type="text"
-                        className="w-full px-2 py-1 border dark:border-gray-700 rounded text-sm dark:bg-gray-700 dark:text-gray-200"
+                        className="w-full px-2 py-1 border dark:border-neutral-700 rounded text-sm dark:bg-neutral-700 dark:text-neutral-200"
                         placeholder={`输入 ${schemeObj.name} 值`}
                         value={authState.apiKey?.[name] || ''}
                         onChange={(e) => handleAuthChange(scheme, e.target.value)}
@@ -427,15 +427,15 @@ const TryItOutPanel: React.FC<TryItOutPanelProps> = ({
                 case 'http':
                   if (schemeObj.scheme === 'basic') {
                     return (
-                      <div key={index} className="p-3 border dark:border-gray-700 rounded bg-green-50 dark:bg-green-900/30">
+                      <div key={index} className="p-3 border dark:border-neutral-700 rounded bg-green-50 dark:bg-green-900/30">
                         <div className="text-xs font-semibold text-green-800 dark:text-green-300 mb-2">{t('HTTP Basic')}</div>
-                        <label className="text-xs text-gray-600 dark:text-gray-400 block mb-1">
+                        <label className="text-xs text-neutral-600 dark:text-neutral-400 block mb-1">
                           Base64 编码的用户名:密码
                           {schemeObj.description && ` - ${schemeObj.description}`}
                         </label>
                         <input
                           type="text"
-                          className="w-full px-2 py-1 border dark:border-gray-700 rounded text-sm dark:bg-gray-700 dark:text-gray-200"
+                          className="w-full px-2 py-1 border dark:border-neutral-700 rounded text-sm dark:bg-neutral-700 dark:text-neutral-200"
                           placeholder="输入 Base64 编码的认证信息"
                           value={authState.http?.['basic'] || ''}
                           onChange={(e) => handleAuthChange(scheme, e.target.value)}
@@ -444,16 +444,16 @@ const TryItOutPanel: React.FC<TryItOutPanelProps> = ({
                     );
                   } else if (schemeObj.scheme === 'bearer') {
                     return (
-                      <div key={index} className="p-3 border dark:border-gray-700 rounded bg-purple-50 dark:bg-purple-900/30">
+                      <div key={index} className="p-3 border dark:border-neutral-700 rounded bg-purple-50 dark:bg-purple-900/30">
                         <div className="text-xs font-semibold text-purple-800 dark:text-purple-300 mb-2">
                           Bearer Token {schemeObj.bearerFormat && `(${schemeObj.bearerFormat})`}
                         </div>
-                        <label className="text-xs text-gray-600 dark:text-gray-400 block mb-1">
+                        <label className="text-xs text-neutral-600 dark:text-neutral-400 block mb-1">
                           Token {schemeObj.description && ` - ${schemeObj.description}`}
                         </label>
                         <input
                           type="text"
-                          className="w-full px-2 py-1 border dark:border-gray-700 rounded text-sm dark:bg-gray-700 dark:text-gray-200"
+                          className="w-full px-2 py-1 border dark:border-neutral-700 rounded text-sm dark:bg-neutral-700 dark:text-neutral-200"
                           placeholder="输入 Bearer Token"
                           value={authState.http?.['bearer'] || ''}
                           onChange={(e) => handleAuthChange(scheme, e.target.value)}
@@ -465,24 +465,24 @@ const TryItOutPanel: React.FC<TryItOutPanelProps> = ({
 
                 case 'oauth2':
                   return (
-                    <div key={index} className="p-3 border dark:border-gray-700 rounded bg-orange-50 dark:bg-orange-900/30">
+                    <div key={index} className="p-3 border dark:border-neutral-700 rounded bg-orange-50 dark:bg-orange-900/30">
                       <div className="text-xs font-semibold text-orange-800 dark:text-orange-300 mb-2">OAuth 2.0</div>
                       {scheme.scopes.length > 0 && (
-                        <div className="text-xs text-gray-600 dark:text-gray-400 mb-2">
+                        <div className="text-xs text-neutral-600 dark:text-neutral-400 mb-2">
                           <div className="font-medium mb-1">{t('Required Permissions')}:</div>
                           <ul className="list-disc list-inside space-y-0.5">
                             {scheme.scopes.map((scope, i) => (
-                              <li key={i} className="text-gray-600 dark:text-gray-400">{scope}</li>
+                              <li key={i} className="text-neutral-600 dark:text-neutral-400">{scope}</li>
                             ))}
                           </ul>
                         </div>
                       )}
-                      <label className="text-xs text-gray-600 dark:text-gray-400 block mb-1">
+                      <label className="text-xs text-neutral-600 dark:text-neutral-400 block mb-1">
                         Access Token
                       </label>
                       <input
                         type="text"
-                        className="w-full px-2 py-1 border dark:border-gray-700 rounded text-sm dark:bg-gray-700 dark:text-gray-200"
+                        className="w-full px-2 py-1 border dark:border-neutral-700 rounded text-sm dark:bg-neutral-700 dark:text-neutral-200"
                         placeholder="输入 OAuth2 Access Token"
                         value={authState.oauth2?.[name]?.token || ''}
                         onChange={(e) => handleAuthChange(scheme, e.target.value)}
@@ -519,7 +519,7 @@ const TryItOutPanel: React.FC<TryItOutPanelProps> = ({
   };
 
   return (
-    <div className="border dark:border-gray-700 rounded-lg overflow-hidden shadow-sm bg-white dark:bg-gray-800 transition-all">
+    <div className="border dark:border-neutral-700 rounded-lg overflow-hidden shadow-sm bg-white dark:bg-neutral-800 transition-all">
       <div
         className={`bg-gray-50 dark:bg-gray-800/70 px-4 py-3 flex items-center justify-between ${collapsible ? 'cursor-pointer' : ''}`}
         onClick={collapsible ? toggleCollapse : undefined}
@@ -589,9 +589,9 @@ const TryItOutPanel: React.FC<TryItOutPanelProps> = ({
                   return 'Please enter request body data';
                 })()}
               </div>
-              <div className="bg-gray-50 dark:bg-gray-700 p-1 rounded-md border dark:border-gray-600">
+              <div className="bg-neutral-50 dark:bg-neutral-700 p-1 rounded-md border dark:border-neutral-600">
                 <textarea
-                  className="w-full bg-transparent p-2 font-mono text-sm resize-y dark:text-gray-200"
+                  className="w-full bg-transparent p-2 font-mono text-sm resize-y dark:text-neutral-200"
                   value={requestBodyValue}
                   onChange={(e) => handleRequestBodyChange(e.target.value)}
                   rows={5}
@@ -686,24 +686,22 @@ const TryItOutPanel: React.FC<TryItOutPanelProps> = ({
 
           {/* Response results */}
           {response && (
-            <div className="mt-4 border dark:border-gray-700 rounded-md overflow-hidden">
-              <div className="bg-gray-50 dark:bg-gray-800/70 p-3 border-b dark:border-gray-700 flex justify-between items-center">
+            <div className="mt-4 border dark:border-neutral-700 rounded-md overflow-hidden">
+              <div className="bg-neutral-50 dark:bg-neutral-800/70 p-3 border-b dark:border-neutral-700 flex justify-between items-center">
                 <div className="flex items-center">
                   <span className={`px-2 py-1 rounded text-xs font-medium ${getStatusStyle(response.status)}`}>
                     {response.status} {response.statusText}
                   </span>
-                  <span className="ml-2 text-sm text-gray-600 dark:text-gray-400">
+                  <span className="ml-2 text-sm text-neutral-600 dark:text-neutral-400">
                     {response.time}ms
                   </span>
                 </div>
-              </div>
-
-              <div className="divide-y dark:divide-gray-700">
+              </div>                <div className="divide-y dark:divide-neutral-700">
                 {/* Response headers */}
                 <div className="p-3">
-                  <h4 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">{t('Response Headers')}</h4>
-                  <div className="bg-gray-50 dark:bg-gray-700 p-3 rounded-md border dark:border-gray-600 overflow-x-auto">
-                    <pre className="text-xs font-mono dark:text-gray-300">
+                  <h4 className="text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">{t('Response Headers')}</h4>
+                  <div className="bg-neutral-50 dark:bg-neutral-700 p-3 rounded-md border dark:border-neutral-600 overflow-x-auto">
+                    <pre className="text-xs font-mono dark:text-neutral-300">
                       {Object.entries(response.headers).map(([key, value]) => (
                         `${key}: ${value}\n`
                       ))}

@@ -67,7 +67,7 @@ const OperationBox: React.FC<OperationBoxProps> = ({
   return (
     <div className={cn(
       'rounded overflow-hidden',
-      operation.deprecated ? 'bg-red-300 dark:bg-red-900/50' : 'bg-gray-50/50 dark:bg-gray-800/50',
+      operation.deprecated ? 'bg-red-300 dark:bg-red-900/50' : 'bg-neutral-50/50 dark:bg-neutral-800/50',
       className
     )}>
       {/* Header Section */}
@@ -81,7 +81,7 @@ const OperationBox: React.FC<OperationBoxProps> = ({
         <div className="flex items-center space-x-3 flex-wrap">
           <MethodLabel method={method.toUpperCase() as any} />
           <OperationPath path={path} className="break-all" />
-          {operation.summary && <span className="text-sm text-gray-700 dark:text-gray-300 hidden md:inline">- {operation.summary}</span>}
+          {operation.summary && <span className="text-sm text-neutral-700 dark:text-neutral-300 hidden md:inline">- {operation.summary}</span>}
           {operation.deprecated && <DeprecatedBadge />}
         </div>
         <ExpandCollapse isExpanded={isExpanded} onToggle={toggleExpand} />
@@ -94,10 +94,10 @@ const OperationBox: React.FC<OperationBoxProps> = ({
           {(operation.summary || operation.description || externalDocs) && (
             <div className="p-4 pt-0 space-y-2">
               {operation.summary && (
-                <DescriptionDisplay className="text-base text-gray-800 dark:text-gray-200 font-medium md:hidden" description={operation.summary} />
+                <DescriptionDisplay className="text-base text-neutral-800 dark:text-neutral-200 font-medium md:hidden" description={operation.summary} />
               )}
               {operation.description && (
-                <DescriptionDisplay description={operation.description} className="text-sm text-gray-800 dark:text-gray-200 prose dark:prose-invert max-w-none" />
+                <DescriptionDisplay description={operation.description} className="text-sm text-neutral-800 dark:text-neutral-200 prose dark:prose-invert max-w-none" />
               )}
               {externalDocs && <ExternalDocsDisplay externalDocs={externalDocs} className="mt-2" />}
             </div>

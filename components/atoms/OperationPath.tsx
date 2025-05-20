@@ -61,7 +61,7 @@ const OperationPath: React.FC<OperationPathProps> = ({ path, className }) => {
   };
 
   return (
-    <div className={cn('flex flex-wrap items-center text-gray-600 dark:text-gray-400', className)}>
+    <div className={cn('flex flex-wrap items-center text-neutral-600 dark:text-neutral-400', className)}>
       {segments.map((segment, index) => renderSegment(segment, index))}
     </div>
   );

@@ -27,7 +27,7 @@ export default function App() {
   const [spec, setSpec] = useState<any>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
-  const [layoutType, setLayoutType] = useState<'allInOne' | 'pathDetail'>('allInOne');
+  const [layoutType, setLayoutType] = useState<'allInOne' | 'pathDetail'>('pathDetail');
   const prevUrlRef = useRef<string>('');
   const debounceTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const { t } = useI18n();
@@ -78,6 +78,53 @@ export default function App() {
       // 获取响应文本，直接传递给OpenApiLayout组件处理
       const text = await response.text();
       setSpec(text);
+
+      // 尝试解析OpenAPI规范以获取第一个路径
+      try {
+        let parsedSpec;
+        try {
+          // 尝试解析JSON
+          parsedSpec = JSON.parse(text);
+        } catch {
+          // 如果JSON解析失败，尝试YAML解析
+          const yaml = await import('js-yaml');
+          parsedSpec = yaml.load(text);
+        }
+
+        // 如果解析成功且存在路径
+        if (parsedSpec && parsedSpec.paths) {
+          // 获取当前URL中的path和method参数
+          const urlSearchParams = new URLSearchParams(window.location.search);
+          const currentPath = urlSearchParams.get('path');
+          const currentMethod = urlSearchParams.get('method');
+
+          // 只有当URL中没有指定path和method时，才自动选择第一个path
+          const shouldSelectFirstPath = !currentPath || !currentMethod;
+
+          if (shouldSelectFirstPath) {
+            const paths = Object.keys(parsedSpec.paths);
+            if (paths.length > 0) {
+              // 获取第一个路径
+              const firstPath = paths[0];
+              const pathItem = parsedSpec.paths[firstPath];
+
+              // 获取该路径的第一个HTTP方法
+              const methods = ['get', 'post', 'put', 'delete', 'patch', 'options', 'head'];
+              const firstMethod = methods.find(method => pathItem[method]);
+
+              if (firstMethod) {
+                // 使用URL参数存储选中的路径和方法
+                urlSearchParams.set('path', firstPath);
+                urlSearchParams.set('method', firstMethod.toUpperCase());
+                window.history.replaceState({}, '', `${window.location.pathname}?${urlSearchParams.toString()}`);
+              }
+            }
+          }
+        }
+      } catch (parseErr) {
+        // 解析错误可以忽略，不影响主要功能
+        console.log('Could not automatically select first path:', parseErr);
+      }
     } catch (err) {
       setError(`${t('Failed to load OpenAPI spec')}: ${err instanceof Error ? err.message : t('Unknown error')}`);
       console.error(t('Loading error') + ':', err);
@@ -87,12 +134,12 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col dark:bg-gray-900">
-      <header className="bg-gradient-to-r from-slate-600 to-slate-800 text-white py-3 px-6 shadow-lg">
-        <div className="w-full flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="flex items-center">
+    <div className="min-h-screen flex flex-col dark:bg-neutral-900">
+      <header className="bg-gradient-to-r from-slate-600 to-slate-800 text-white py-3 px-4 md:px-6 shadow-lg">
+        <div className="w-full flex flex-col sm:flex-row items-center justify-between gap-3">
+          <div className="flex items-center shrink-0">
             <svg
-              className="w-7 h-7 mr-2 text-white"
+              className="w-6 h-6 mr-2 text-white"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
@@ -107,9 +154,9 @@ export default function App() {
             <h1 className="text-lg sm:text-xl font-bold text-white tracking-wide">Pivot</h1>
           </div>
 
-          <div className="w-full max-w-3xl flex items-center gap-4">
+          <div className="w-full max-w-4xl flex items-center gap-3">
             {/* 示例选择器 */}
-            <div className="relative w-44">
+            <div className="relative w-40">
               <select
                 onChange={(e) => {
                   const selectedExample = API_EXAMPLES.find(ex => ex.url === e.target.value);
@@ -117,7 +164,7 @@ export default function App() {
                     setSpecUrl(selectedExample.url);
                   }
                 }}
-                className="w-full appearance-none pl-4 pr-10 py-2 text-sm border border-slate-400 bg-slate-700 bg-opacity-20 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-white focus:border-transparent dark:bg-slate-800 dark:border-slate-600"
+                className="w-full appearance-none pl-4 pr-10 py-1.5 text-xs border border-slate-400 bg-slate-700 bg-opacity-20 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-white focus:border-transparent dark:bg-slate-800 dark:border-slate-600"
                 value={API_EXAMPLES.find(ex => ex.url === specUrl)?.url || ''}
               >
                 <option value="" disabled>{t('Select example API')}</option>
@@ -141,7 +188,7 @@ export default function App() {
                 value={specUrl}
                 onChange={(e) => setSpecUrl(e.target.value)}
                 placeholder={t('Enter OpenAPI spec URL')}
-                className="block w-full px-4 py-2 text-sm border border-slate-400 bg-slate-700 bg-opacity-20 dark:bg-slate-800 dark:border-slate-600 rounded-md text-white placeholder-slate-300 focus:outline-none focus:ring-2 focus:ring-white focus:border-transparent"
+                className="block w-full px-4 py-1.5 text-xs border border-slate-400 bg-slate-700 bg-opacity-20 dark:bg-slate-800 dark:border-slate-600 rounded-md text-white placeholder-slate-300 focus:outline-none focus:ring-2 focus:ring-white focus:border-transparent"
               />
               {loading && (
                 <div className="absolute inset-y-0 right-0 flex items-center pr-3">
@@ -151,41 +198,45 @@ export default function App() {
             </div>
 
             {/* 布局切换按钮 */}
-            <div className="flex items-center bg-slate-600 bg-opacity-30 rounded-md border border-slate-500 p-0.5 mr-2">
-              <button
-                onClick={() => setLayoutType('allInOne')}
-                className={`flex items-center px-3 py-1.5 text-xs rounded-md transition-colors ${layoutType === 'allInOne'
-                    ? 'bg-white text-slate-800'
-                    : 'text-white hover:bg-slate-600'
-                  }`}
-                title={t('All-in-one view')}
-              >
-                <LayoutTemplate className="w-3.5 h-3.5 mr-1.5" />
-                {t('All-in-one')}
-              </button>
+            <div className="flex items-center bg-slate-600 bg-opacity-30 rounded-md border border-slate-500 p-0.5 mr-1 shrink-0">
               <button
                 onClick={() => setLayoutType('pathDetail')}
-                className={`flex items-center px-3 py-1.5 text-xs rounded-md transition-colors ${layoutType === 'pathDetail'
-                    ? 'bg-white text-slate-800'
-                    : 'text-white hover:bg-slate-600'
+                className={`flex items-center px-2 py-1 text-xs rounded-md transition-colors ${layoutType === 'pathDetail'
+                  ? 'bg-white text-slate-800'
+                  : 'text-white hover:bg-slate-600'
                   }`}
                 title={t('Path detail view')}
               >
-                <Layout className="w-3.5 h-3.5 mr-1.5" />
+                <Layout className="w-3.5 h-3 mr-1" />
                 {t('Path detail')}
+              </button>
+              <button
+                onClick={() => setLayoutType('allInOne')}
+                className={`flex items-center px-2 py-1 text-xs rounded-md transition-colors ${layoutType === 'allInOne'
+                  ? 'bg-white text-slate-800'
+                  : 'text-white hover:bg-slate-600'
+                  }`}
+                title={t('All-in-one view')}
+              >
+                <LayoutTemplate className="w-3.5 h-3 mr-1" />
+                {t('All-in-one')}
               </button>
             </div>
 
-            <ThemeToggle />
-            <LanguageSwitcher />
+            <div className="shrink-0">
+              <ThemeToggle />
+            </div>
+            <div className="shrink-0">
+              <LanguageSwitcher />
+            </div>
             <a
               href="https://github.com/overtrue/pivot"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center text-white hover:text-slate-200 transition-colors"
+              className="flex items-center px-3 py-1.5 text-white hover:bg-slate-600 rounded-md transition-colors shrink-0"
               title={t('GitHub repository')}
             >
-              <Github className="h-5 w-5" />
+              <Github className="w-4 h-4" />
             </a>
           </div>
         </div>
@@ -203,8 +254,8 @@ export default function App() {
 
         {!spec && !loading && !error ? (
           <div className="max-w-3xl mx-auto mt-12 text-center px-4">
-            <h2 className="text-xl font-medium text-gray-700 dark:text-gray-200 mb-4">{t('Enter OpenAPI spec URL')}</h2>
-            <p className="text-gray-500 dark:text-gray-400">
+            <h2 className="text-xl font-medium text-neutral-700 dark:text-neutral-200 mb-4">{t('Enter OpenAPI spec URL')}</h2>
+            <p className="text-neutral-500 dark:text-neutral-400">
               {t('You can use the input box above to enter any valid OpenAPI spec URL, the system will load it automatically.')}
             </p>
           </div>

@@ -23,9 +23,9 @@ const HeadersSection: React.FC<HeadersSectionProps> = ({ headers, components }) 
   }
 
   return (
-    <div className="mb-4 dark:text-gray-200">
+    <div className="mb-4 dark:text-neutral-200">
       {/* <SectionTitle title="Headers" /> */}
-      <h4 className="text-sm font-semibold uppercase text-gray-500 dark:text-gray-400 mb-2">{t("Headers")}</h4>
+      <h4 className="text-sm font-semibold uppercase text-neutral-500 dark:text-neutral-400 mb-2">{t("Headers")}</h4>
       <div className="space-y-3">
         {headerEntries.map(([name, headerOrRef]) => {
           // Resolve header ref

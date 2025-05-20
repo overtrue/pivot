@@ -12,7 +12,7 @@ const PathSegment: React.FC<PathSegmentProps> = ({ path, isParameter = false, cl
     <span
       className={cn(
         'text-sm font-mono',
-        isParameter ? 'text-blue-600 dark:text-blue-400' : 'text-gray-800 dark:text-gray-300',
+        isParameter ? 'text-blue-600 dark:text-blue-400' : 'text-neutral-800 dark:text-neutral-300',
         className
       )}
     >

@@ -91,7 +91,7 @@ const SchemaExampleView: React.FC<SchemaExampleViewProps> = ({
     <div className={className}>
       {/* View switcher */}
       <div className="mb-4 flex items-center justify-between">
-        <div className={cn('flex bg-gray-100 dark:bg-gray-700 rounded-lg p-0.5 relative', buttonClassName)}>
+        <div className={cn('flex bg-neutral-100 dark:bg-neutral-700 rounded-lg p-0.5 relative', buttonClassName)}>
           <button
             onClick={(e) => {
               e.preventDefault();
@@ -101,8 +101,8 @@ const SchemaExampleView: React.FC<SchemaExampleViewProps> = ({
             className={cn(
               'px-3 py-1 text-sm rounded-md transition-colors',
               viewMode === 'example'
-                ? 'bg-white dark:bg-gray-800 shadow text-blue-700 dark:text-blue-400'
-                : 'text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
+                ? 'bg-white dark:bg-neutral-800 shadow text-blue-700 dark:text-blue-400'
+                : 'text-neutral-700 dark:text-neutral-300 hover:bg-neutral-200 dark:hover:bg-neutral-600'
             )}
             type="button"
           >
@@ -117,8 +117,8 @@ const SchemaExampleView: React.FC<SchemaExampleViewProps> = ({
             className={cn(
               'px-3 py-1 text-sm rounded-md transition-colors',
               viewMode === 'schema'
-                ? 'bg-white dark:bg-gray-800 shadow text-blue-700 dark:text-blue-400'
-                : 'text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
+                ? 'bg-white dark:bg-neutral-800 shadow text-blue-700 dark:text-blue-400'
+                : 'text-neutral-700 dark:text-neutral-300 hover:bg-neutral-200 dark:hover:bg-neutral-600'
             )}
             type="button"
           >
@@ -130,7 +130,7 @@ const SchemaExampleView: React.FC<SchemaExampleViewProps> = ({
         {viewMode === 'example' && hasExamples && examplesKeys.length > 1 && (
           <div className="ml-2 relative">
             <select
-              className="text-sm border rounded-md px-2 py-1 bg-white dark:bg-gray-700 dark:text-gray-200 dark:border-gray-600"
+              className="text-sm border rounded-md px-2 py-1 bg-white dark:bg-neutral-700 dark:text-neutral-200 dark:border-neutral-600"
               value={selectedExample}
               onChange={(e) => setSelectedExample(e.target.value)}
               onClick={(e) => e.stopPropagation()}
@@ -139,7 +139,7 @@ const SchemaExampleView: React.FC<SchemaExampleViewProps> = ({
                 const example = resolveRef<ExampleObject>(mediaType.examples![key], components, 'examples');
                 const displayName = example?.summary || key;
                 return (
-                  <option key={key} value={key} className="dark:bg-gray-700">
+                  <option key={key} value={key} className="dark:bg-neutral-700">
                     {displayName}
                   </option>
                 );
@@ -156,7 +156,7 @@ const SchemaExampleView: React.FC<SchemaExampleViewProps> = ({
           /* Example data view */
           <ExampleDisplay
             example={exampleValue}
-            className="rounded overflow-hidden bg-gray-50 dark:bg-gray-800"
+            className="rounded overflow-hidden bg-neutral-50 dark:bg-neutral-800"
             language={getLanguageForMediaType()}
           />
         ) : (
@@ -164,7 +164,7 @@ const SchemaExampleView: React.FC<SchemaExampleViewProps> = ({
           <SchemaDisplay
             schema={schema}
             components={components}
-            className="rounded p-3 bg-gray-50 dark:bg-gray-800"
+            className="rounded p-3 bg-neutral-50 dark:bg-neutral-800"
           />
         )}
       </div>

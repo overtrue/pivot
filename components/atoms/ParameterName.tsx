@@ -11,7 +11,7 @@ const ParameterName: React.FC<ParameterNameProps> = ({ name, deprecated }) => {
   return (
     <span className={cn(
       'font-mono text-sm font-medium',
-      deprecated ? 'line-through text-red-500 dark:text-red-400' : 'dark:text-gray-200'
+      deprecated ? 'line-through text-red-500 dark:text-red-400' : 'dark:text-neutral-200'
     )}>
       {name}
     </span>
