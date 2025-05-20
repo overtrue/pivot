@@ -12,7 +12,6 @@ import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import DescriptionDisplay from '../atoms/DescriptionDisplay';
 import MethodLabel from '../atoms/MethodLabel';
 import OperationPath from '../atoms/OperationPath';
-import SectionTitle from '../atoms/SectionTitle';
 import Codegen from '../interactive/Codegen';
 import ParametersSection from '../ParametersSection';
 import RequestBodySection from '../RequestBodySection';
@@ -247,7 +246,6 @@ const PathDetailLayout: React.FC<PathDetailLayoutProps> = ({ spec: inputSpec, cl
               <div className="sticky top-4 space-y-6">
                 {/* 代码生成器面板 */}
                 <div className="">
-                  <SectionTitle title={t('Code Samples')} className="text-xl mb-4" />
                   <Codegen
                     endpoint={selectedOperation.path}
                     method={selectedOperation.method as HttpMethod}
@@ -260,7 +258,6 @@ const PathDetailLayout: React.FC<PathDetailLayoutProps> = ({ spec: inputSpec, cl
 
                 {/* Try It Out面板 */}
                 <div className="">
-                  <SectionTitle title={t('Try It')} className="text-xl mb-4" />
                   <TryItOutPanel
                     operation={selectedOperation.operation}
                     method={selectedOperation.method}
