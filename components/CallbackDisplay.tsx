@@ -37,12 +37,12 @@ const CallbackDisplay: React.FC<CallbackDisplayProps> = ({
   }
 
   return (
-    <div className={`p-4 border rounded bg-gray-50 ${className}`}>
+    <div className={`p-4 border rounded bg-neutral-50 ${className}`}>
       <h3 className="text-lg font-semibold mb-3 font-mono">Callback: {name}</h3>
       {/* Callbacks are a map of expressions to PathItemObjects */}
       {Object.entries(callback).map(([expression, pathItemOrRef]) => (
         <div key={expression} className="mb-6">
-          <h4 className="text-md font-semibold mb-2 font-mono bg-gray-200 px-2 py-1 rounded inline-block">Expression: {expression}</h4>
+          <h4 className="text-md font-semibold mb-2 font-mono bg-neutral-200 px-2 py-1 rounded inline-block">Expression: {expression}</h4>
           {/* Resolve PathItem ref */}
           {(() => {
             const pathItem = resolveRef<PathItemObject>(pathItemOrRef, components, 'pathItems');
@@ -69,7 +69,7 @@ const CallbackDisplay: React.FC<CallbackDisplayProps> = ({
                         method={method.toUpperCase()}
                         operation={operationOrRef} // Pass potentially unresolved operation
                         components={components}
-                        className="shadow-none border-gray-300"
+                        className="shadow-none border-neutral-300"
                       />
                     );
                   }

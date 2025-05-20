@@ -135,7 +135,7 @@ export default function App() {
 
   return (
     <div className="min-h-screen flex flex-col dark:bg-neutral-900">
-      <header className="bg-gradient-to-r from-slate-600 to-slate-800 text-white py-3 px-4 md:px-6 shadow-lg">
+      <header className="bg-black text-white py-2 px-4 md:px-6 shadow-lg">
         <div className="w-full flex flex-col sm:flex-row items-center justify-between gap-3">
           <div className="flex items-center shrink-0">
             <svg
@@ -164,7 +164,7 @@ export default function App() {
                     setSpecUrl(selectedExample.url);
                   }
                 }}
-                className="w-full appearance-none pl-4 pr-10 py-1.5 text-xs border border-slate-400 bg-slate-700 bg-opacity-20 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-white focus:border-transparent dark:bg-slate-800 dark:border-slate-600"
+                className="w-full appearance-none pl-4 pr-10 py-1.5 text-xs border border-neutral-400 bg-neutral-700 bg-opacity-20 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-white focus:border-transparent dark:bg-neutral-800 dark:border-neutral-600"
                 value={API_EXAMPLES.find(ex => ex.url === specUrl)?.url || ''}
               >
                 <option value="" disabled>{t('Select example API')}</option>
@@ -188,7 +188,7 @@ export default function App() {
                 value={specUrl}
                 onChange={(e) => setSpecUrl(e.target.value)}
                 placeholder={t('Enter OpenAPI spec URL')}
-                className="block w-full px-4 py-1.5 text-xs border border-slate-400 bg-slate-700 bg-opacity-20 dark:bg-slate-800 dark:border-slate-600 rounded-md text-white placeholder-slate-300 focus:outline-none focus:ring-2 focus:ring-white focus:border-transparent"
+                className="block w-full px-4 py-1.5 text-xs border border-neutral-400 bg-neutral-700 bg-opacity-20 dark:bg-neutral-800 dark:border-neutral-600 rounded-md text-white placeholder-neutral-300 focus:outline-none focus:ring-2 focus:ring-white focus:border-transparent"
               />
               {loading && (
                 <div className="absolute inset-y-0 right-0 flex items-center pr-3">
@@ -198,12 +198,12 @@ export default function App() {
             </div>
 
             {/* 布局切换按钮 */}
-            <div className="flex items-center bg-slate-600 bg-opacity-30 rounded-md border border-slate-500 p-0.5 mr-1 shrink-0">
+            <div className="flex items-center bg-neutral-600 bg-opacity-30 rounded-md border border-neutral-500 p-0.5 mr-1 shrink-0">
               <button
                 onClick={() => setLayoutType('pathDetail')}
-                className={`flex items-center px-2 py-1 text-xs rounded-md transition-colors ${layoutType === 'pathDetail'
-                  ? 'bg-white text-slate-800'
-                  : 'text-white hover:bg-slate-600'
+                className={`flex items-center px-2 py-1 text-xs rounded transition-colors ${layoutType === 'pathDetail'
+                  ? 'bg-white text-neutral-800'
+                  : 'text-white hover:bg-neutral-600'
                   }`}
                 title={t('Path detail view')}
               >
@@ -212,9 +212,9 @@ export default function App() {
               </button>
               <button
                 onClick={() => setLayoutType('allInOne')}
-                className={`flex items-center px-2 py-1 text-xs rounded-md transition-colors ${layoutType === 'allInOne'
-                  ? 'bg-white text-slate-800'
-                  : 'text-white hover:bg-slate-600'
+                className={`flex items-center px-2 py-1 text-xs rounded transition-colors ${layoutType === 'allInOne'
+                  ? 'bg-white text-neutral-800'
+                  : 'text-white hover:bg-neutral-600'
                   }`}
                 title={t('All-in-one view')}
               >
@@ -233,7 +233,7 @@ export default function App() {
               href="https://github.com/overtrue/pivot"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center px-3 py-1.5 text-white hover:bg-slate-600 rounded-md transition-colors shrink-0"
+              className="flex items-center px-3 py-1.5 text-white hover:bg-neutral-600 rounded-md transition-colors shrink-0"
               title={t('GitHub repository')}
             >
               <Github className="w-4 h-4" />
@@ -261,7 +261,7 @@ export default function App() {
           </div>
         ) : loading ? (
           <div className="flex justify-center items-center min-h-[60vh]">
-            <div className="animate-spin rounded-full h-12 w-12 border-2 border-b-2 border-slate-500 dark:border-slate-300"></div>
+            <svg className="mr-3 -ml-1 size-5 animate-spin text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
           </div>
         ) : spec ? (
           layoutType === 'allInOne' ? (

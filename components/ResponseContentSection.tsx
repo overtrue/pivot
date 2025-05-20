@@ -36,25 +36,25 @@ const ResponseContentSection: React.FC<ResponseContentSectionProps> = ({
               <div className="grid grid-cols-[max-content_1fr] gap-x-2 gap-y-1 text-xs">
                 {encoding.contentType && (
                   <>
-                    <div className="text-gray-600">{t('Content Type')}</div>
+                    <div className="text-neutral-600">{t('Content Type')}</div>
                     <div className="font-mono">{encoding.contentType}</div>
                   </>
                 )}
                 {encoding.style && (
                   <>
-                    <div className="text-gray-600">{t('Style')}</div>
+                    <div className="text-neutral-600">{t('Style')}</div>
                     <div className="font-mono">{encoding.style}</div>
                   </>
                 )}
                 {encoding.explode !== undefined && (
                   <>
-                    <div className="text-gray-600">{t('Explode')}</div>
+                    <div className="text-neutral-600">{t('Explode')}</div>
                     <div className="font-mono">{encoding.explode.toString()}</div>
                   </>
                 )}
                 {encoding.allowReserved !== undefined && (
                   <>
-                    <div className="text-gray-600">{t('Allow Reserved')}</div>
+                    <div className="text-neutral-600">{t('Allow Reserved')}</div>
                     <div className="font-mono">{encoding.allowReserved.toString()}</div>
                   </>
                 )}

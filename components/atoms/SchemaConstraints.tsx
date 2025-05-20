@@ -27,7 +27,7 @@ const SchemaConstraints: React.FC<SchemaConstraintsProps> = ({ schema, className
     constraints.push({ label: t('Max Length'), value: schema.maxLength });
   }
   if (schema.pattern) {
-    constraints.push({ label: t('Pattern'), value: <code className="text-xs font-mono bg-gray-100 dark:bg-gray-800 px-1 rounded">{schema.pattern}</code> });
+    constraints.push({ label: t('Pattern'), value: <code className="text-xs font-mono bg-neutral-100 dark:bg-neutral-800 px-1 rounded">{schema.pattern}</code> });
   }
   if (schema.minItems !== undefined) {
     constraints.push({ label: t('Min Items'), value: schema.minItems });
@@ -52,7 +52,7 @@ const SchemaConstraints: React.FC<SchemaConstraintsProps> = ({ schema, className
   return (
     <div className={cn(className)}>
       <h4 className="text-xs font-semibold mb-1">{t('Constraints')}</h4>
-      <ul className="text-xs text-gray-600 dark:text-gray-400 pl-4 list-disc space-y-0.5">
+      <ul className="text-xs text-neutral-600 dark:text-neutral-400 pl-4 list-disc space-y-0.5">
         {constraints.map((constraint) => (
           <li key={constraint.label}>
             <span className="font-medium">{constraint.label}:</span> {constraint.value}

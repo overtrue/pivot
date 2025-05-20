@@ -56,7 +56,7 @@ const SchemaCompositionDisplay: React.FC<SchemaCompositionDisplayProps> = ({
 
   return (
     <div className={`mt-3 p-3 border rounded ${borderColor} ${className}`}>
-      <h4 className="text-sm font-semibold mb-2 text-gray-700">{title}</h4>
+      <h4 className="text-sm font-semibold mb-2 text-neutral-700">{title}</h4>
       <div className="space-y-3">
         {subschemas.map((subschema, index) => {
           // 检查是否是引用对象并提取引用名称
@@ -66,7 +66,7 @@ const SchemaCompositionDisplay: React.FC<SchemaCompositionDisplayProps> = ({
           return (
             <div key={index}>
               {refName && (
-                <div className="text-xs font-medium text-gray-500 mb-1">{t('Reference:')} {refName}</div>
+                <div className="text-xs font-medium text-neutral-500 mb-1">{t('Reference:')} {refName}</div>
               )}
               <SchemaDisplay
                 schema={subschema}

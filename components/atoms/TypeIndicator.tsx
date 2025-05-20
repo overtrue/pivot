@@ -21,7 +21,7 @@ const dataTypeThemeColors: Record<DataTypeTheme, string> = {
   warning: 'text-yellow-800 dark:text-yellow-400',   // boolean
   danger: 'text-red-800 dark:text-red-400',          // (Currently unused, could be for invalid/error types)
   info: 'text-indigo-800 dark:text-indigo-400',      // object
-  neutral: 'text-gray-500 dark:text-gray-400',       // null & default
+  neutral: 'text-neutral-500 dark:text-neutral-400',       // null & default
 };
 
 // Helper to determine theme from data type if theme is 'auto'

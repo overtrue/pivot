@@ -61,7 +61,7 @@ const HeaderItem: React.FC<HeaderItemProps> = ({
       'mb-2 p-2 border rounded',
       deprecated
         ? 'border-red-300 bg-red-50 dark:border-red-700 dark:bg-red-900/20'
-        : 'border-gray-200 dark:border-gray-700 dark:bg-gray-800',
+        : 'border-neutral-200 dark:border-neutral-700 dark:bg-neutral-800',
       className
     )}>
       <div className="flex items-center justify-between mb-1">
@@ -85,13 +85,13 @@ const HeaderItem: React.FC<HeaderItemProps> = ({
       </div>
 
       {description && !isExpanded && (
-        <div className="text-sm text-gray-600 truncate">
+        <div className="text-sm text-neutral-600 truncate">
           <DescriptionDisplay description={description} />
         </div>
       )}
 
       {isExpanded && hasDetails && (
-        <div className="mt-3 pl-2 border-l-2 border-gray-200 space-y-4">
+        <div className="mt-3 pl-2 border-l-2 border-neutral-200 space-y-4">
           {description && (
             <div>
               <DescriptionDisplay description={description} className="text-sm" />

@@ -52,7 +52,7 @@ const ComponentsSection: React.FC<ComponentsSectionProps> = ({ components, class
         </div>
 
         {/* Detail panel */}
-        <div className="flex-grow md:w-1/2 border dark:border-gray-700 rounded p-4 bg-white dark:bg-gray-800 min-h-[200px]">
+        <div className="flex-grow md:w-1/2 border dark:border-neutral-700 rounded p-4 bg-white dark:bg-neutral-800 min-h-[200px]">
           <ComponentDetail
             activeType={activeType}
             selectedItemName={selectedItemName}

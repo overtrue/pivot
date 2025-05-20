@@ -107,7 +107,7 @@ const ResizableSidebar: React.FC<ResizableSidebarProps> = ({
 
         {/* 调整大小手柄 */}
         <div
-          className="absolute top-0 right-0 bottom-0 w-1 bg-transparent hover:bg-slate-400 dark:hover:bg-slate-500 cursor-ew-resize z-10"
+          className="absolute top-0 right-0 bottom-0 w-1 bg-transparent hover:bg-neutral-400 dark:hover:bg-neutral-500 cursor-ew-resize z-10"
           onMouseDown={startDragging}
         />
       </div>

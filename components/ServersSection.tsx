@@ -18,7 +18,7 @@ const ServersSection: React.FC<ServersSectionProps> = ({ servers, className }) =
   }
 
   return (
-    <div className={`py-4 ${className} dark:text-gray-200`}>
+    <div className={`py-4 ${className} dark:text-neutral-200`}>
       <SectionTitle title={t("Servers")} className="text-xl mb-3" />
       <div className="space-y-4">
         {servers.map((server, index) => (

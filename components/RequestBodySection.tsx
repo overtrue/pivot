@@ -24,7 +24,6 @@ const RequestBodySection: React.FC<RequestBodySectionProps> = ({
   components,
   spec,
   className = '',
-  titleClassName = ''
 }) => {
   const { t } = useI18n();
 
@@ -70,7 +69,7 @@ const RequestBodySection: React.FC<RequestBodySectionProps> = ({
 
   return (
     <div className={className}>
-      <SectionTitle title={t('Request Body')} className={cn('text-lg font-medium mb-3', titleClassName, "dark:text-white")} />
+      <SectionTitle title={t('Request Body')} className={cn('text-lg font-medium my-3')} />
 
       <SchemaWithExampleViewer
         content={requestBody}

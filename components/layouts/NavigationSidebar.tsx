@@ -84,34 +84,34 @@ const NavigationSidebar: React.FC<NavigationSidebarProps> = ({
   const tags = openapi.tags || [];
   const hasCustomTags = tags.length > 0;
   const scrollbarStyles = [
-    '[&::-webkit-scrollbar]:w-1',
+    '[&::-webkit-scrollbar]:w-0.5',
     '[&::-webkit-scrollbar-track]:rounded-full',
-    '[&::-webkit-scrollbar-track]:bg-gray-100',
+    '[&::-webkit-scrollbar-track]:bg-neutral-100',
     '[&::-webkit-scrollbar-thumb]:rounded-full',
-    '[&::-webkit-scrollbar-thumb]:bg-gray-300',
+    '[&::-webkit-scrollbar-thumb]:bg-neutral-300',
     'dark:[&::-webkit-scrollbar-track]:bg-neutral-700',
     'dark:[&::-webkit-scrollbar-thumb]:bg-neutral-500',
   ];
 
   return (
-    <nav className={cn('h-full flex flex-col bg-gray-50 dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700', scrollbarStyles, className)}>
+    <nav className={cn('h-full flex flex-col bg-neutral-50 dark:bg-neutral-800 border-r border-neutral-200 dark:border-neutral-700', scrollbarStyles, className)}>
       {/* 标题区域 */}
-      <div className="sticky top-0 z-10 px-4 py-4 bg-gray-50 dark:bg-gray-800">
+      <div className="sticky top-0 z-10 px-4 py-4 bg-neutral-50 dark:bg-neutral-800">
         <h2 className="text-base font-semibold truncate dark:text-white">{openapi.info?.title || t('API Documentation')}</h2>
-        {/* <p className="text-xs text-slate-400 dark:text-slate-400 mt-0.5 truncate">{openapi.info?.version || ''}</p> */}
+        {/* <p className="text-xs text-neutral-400 dark:text-neutral-400 mt-0.5 truncate">{openapi.info?.version || ''}</p> */}
       </div>
 
       {/* 搜索框 */}
-      <div className="px-4 py-2 sticky top-[53px] bg-gray-50 dark:bg-gray-800 z-10">
+      <div className="px-4 py-2 sticky top-[53px] bg-neutral-50 dark:bg-neutral-800 z-10">
         <div className="relative">
           <input
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder={t('Search API...')}
-            className="w-full pl-8 pr-3 py-1.5 text-sm border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-slate-500 focus:border-slate-500 bg-white dark:bg-gray-700 dark:text-white"
+            className="w-full pl-8 pr-3 py-1.5 text-sm border border-neutral-300 dark:border-neutral-600 rounded-md focus:outline-none focus:ring-2 focus:ring-neutral-500 focus:border-neutral-500 bg-white dark:bg-neutral-700 dark:text-white"
           />
-          <Search className="absolute left-2.5 top-1/2 transform -translate-y-1/2 h-3.5 w-3.5 text-gray-400" />
+          <Search className="absolute left-2.5 top-1/2 transform -translate-y-1/2 h-3.5 w-3.5 text-neutral-400" />
         </div>
       </div>
 
@@ -121,10 +121,10 @@ const NavigationSidebar: React.FC<NavigationSidebarProps> = ({
           // 有标签时的渲染
           <>
             <div className="flex items-center justify-between mb-3">
-              <h3 className="text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400">{t('Endpoints')}</h3>
+              <h3 className="text-xs font-semibold uppercase tracking-wider text-neutral-500 dark:text-neutral-400">{t('Endpoints')}</h3>
               <button
                 onClick={toggleAllTags}
-                className="flex items-center text-xs text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300 transition-colors"
+                className="flex items-center text-xs text-neutral-500 hover:text-neutral-700 dark:text-neutral-400 dark:hover:text-neutral-300 transition-colors"
                 title={isAllCollapsed ? t("Expand All") : t("Collapse All")}
               >
                 {isAllCollapsed ? (
@@ -151,15 +151,15 @@ const NavigationSidebar: React.FC<NavigationSidebarProps> = ({
                     >
                       <div className="flex items-center">
                         {isCollapsed ? (
-                          <ChevronRight className="h-4 w-4 text-gray-500 dark:text-gray-400 mr-1.5" />
+                          <ChevronRight className="h-4 w-4 text-neutral-500 dark:text-neutral-400 mr-1.5" />
                         ) : (
-                          <ChevronDown className="h-4 w-4 text-gray-500 dark:text-gray-400 mr-1.5" />
+                          <ChevronDown className="h-4 w-4 text-neutral-500 dark:text-neutral-400 mr-1.5" />
                         )}
-                        <span className="font-medium text-gray-700 dark:text-gray-200">{tag.name}</span>
+                        <span className="font-medium text-neutral-700 dark:text-neutral-200">{tag.name}</span>
                       </div>
                       {tag.description && (
                         <span
-                          className="text-xs text-gray-400 group-hover:text-slate-600 transition-colors flex items-center"
+                          className="text-xs text-neutral-400 group-hover:text-neutral-600 transition-colors flex items-center"
                           title={tag.description}
                         >
                           <Info className="h-3.5 w-3.5" />
@@ -186,8 +186,8 @@ const NavigationSidebar: React.FC<NavigationSidebarProps> = ({
                                   onClick={() => onSelectOperation(path, method, operation)}
                                   className={`w-full text-left px-2.5 flex items-center gap-2 py-1 rounded-md text-sm transition-colors
                                     ${isActive
-                                      ? 'bg-slate-200 text-slate-800 dark:bg-gray-700 dark:text-white'
-                                      : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'}`}
+                                      ? 'bg-neutral-200 text-neutral-800 dark:bg-neutral-700 dark:text-white'
+                                      : 'text-neutral-700 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-700'}`}
                                   title={operation.summary || path}
                                 >
                                   <span className="font-mono text-xs truncate flex-1">{path}</span>
@@ -207,7 +207,7 @@ const NavigationSidebar: React.FC<NavigationSidebarProps> = ({
         ) : (
           // 无标签时直接显示所有路径
           <>
-            <h3 className="text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-3">{t('Endpoints')}</h3>
+            <h3 className="text-xs font-semibold uppercase tracking-wider text-neutral-500 dark:text-neutral-400 mb-3">{t('Endpoints')}</h3>
             <ul className="space-y-0.5">
               {openapi.paths && Object.entries(openapi.paths).map(([path, pathItem]) => {
                 const operations = Object.entries(pathItem as PathItemObject)
@@ -223,8 +223,8 @@ const NavigationSidebar: React.FC<NavigationSidebarProps> = ({
                         onClick={() => onSelectOperation(path, method, operation)}
                         className={`w-full text-left px-2.5 flex items-center gap-2 py-1 rounded-md text-sm
                           ${isActive
-                            ? 'bg-slate-200 text-slate-800 dark:bg-gray-700 dark:text-white'
-                            : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'}`}
+                            ? 'bg-neutral-200 text-neutral-800 dark:bg-neutral-700 dark:text-white'
+                            : 'text-neutral-700 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-700'}`}
                         title={operation.summary || path}
                       >
                         <span className="font-mono text-xs truncate flex-1">{path}</span>
@@ -241,17 +241,17 @@ const NavigationSidebar: React.FC<NavigationSidebarProps> = ({
         {/* 模式 */}
         {openapi.components?.schemas && Object.keys(openapi.components.schemas).length > 0 && (
           <div className="mt-6">
-            <h3 className="text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-3">{t('Data Models')}</h3>
+            <h3 className="text-xs font-semibold uppercase tracking-wider text-neutral-500 dark:text-neutral-400 mb-3">{t('Data Models')}</h3>
             <ul className="space-y-0.5 pl-2">
               {openapi.components.schemas && Object.keys(openapi.components.schemas)
                 .filter(name => !searchQuery || name.toLowerCase().includes(searchQuery.toLowerCase()))
                 .map(schemaName => (
                   <li key={schemaName} className="group">
                     <div
-                      className="flex items-center py-0.5 px-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer text-gray-700 dark:text-gray-300"
+                      className="flex items-center py-0.5 px-2 rounded-md hover:bg-neutral-100 dark:hover:bg-neutral-700 cursor-pointer text-neutral-700 dark:text-neutral-300"
                       onClick={() => onSelectSchema?.(schemaName)}
                     >
-                      <span className="h-2 w-2 rounded-full bg-slate-500 mr-2 flex-shrink-0"></span>
+                      <span className="h-2 w-2 rounded-full bg-neutral-500 mr-2 flex-shrink-0"></span>
                       <span className="font-mono text-xs truncate">{schemaName}</span>
                     </div>
                   </li>
@@ -262,12 +262,12 @@ const NavigationSidebar: React.FC<NavigationSidebarProps> = ({
       </div>
 
       {/* GitHub 链接 - 固定在底部 */}
-      <div className="mt-auto border-t border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 px-4 py-3 flex items-center justify-between">
+      <div className="mt-auto border-t border-neutral-200 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-800 px-4 py-3 flex items-center justify-between">
         <a
           href="https://github.com/overtrue/pivot"
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white text-sm"
+          className="flex items-center text-neutral-600 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white text-sm"
         >
           <Github className="h-4 w-4 mr-2" />
           <span>GitHub</span>

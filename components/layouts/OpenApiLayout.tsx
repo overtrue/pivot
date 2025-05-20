@@ -174,10 +174,10 @@ const AllInOneLayout: React.FC<AllInOneLayoutProps> = ({ spec: inputSpec, classN
   // If there's a parsing error, display the error message
   if (parseError) {
     return (
-      <div className="flex items-center justify-center h-screen bg-gray-100 dark:bg-gray-900">
-        <div className="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-md text-center">
+      <div className="flex items-center justify-center h-screen bg-neutral-100 dark:bg-neutral-900">
+        <div className="bg-white dark:bg-neutral-800 p-8 rounded-lg shadow-md text-center">
           <h2 className="text-2xl font-semibold text-red-600 dark:text-red-400 mb-4">{t('Specification Parse Error')}</h2>
-          <p className="text-gray-700 dark:text-gray-300">{parseError}</p>
+          <p className="text-neutral-700 dark:text-neutral-300">{parseError}</p>
         </div>
       </div>
     );
@@ -186,22 +186,22 @@ const AllInOneLayout: React.FC<AllInOneLayoutProps> = ({ spec: inputSpec, classN
   // If the spec is not yet parsed, display loading state
   if (!parsedSpec) {
     return (
-      <div className="flex justify-center items-center min-h-[60vh] dark:text-gray-200">
-        <div className="animate-spin rounded-full h-12 w-12 border-2 border-slate-500 dark:border-slate-400"></div>
-        <p className="ml-4 text-slate-500 dark:text-slate-400">{t('Parsing specification...')}</p>
+      <div className="flex justify-center items-center min-h-[60vh] dark:text-neutral-200">
+        <div className="animate-spin rounded-full h-12 w-12 border-2 border-neutral-500 dark:border-neutral-400"></div>
+        <p className="ml-4 text-neutral-500 dark:text-neutral-400">{t('Parsing specification...')}</p>
       </div>
     );
   }
 
   return (
-    <div className={`flex min-h-screen bg-white dark:bg-gray-900 ${className}`}>
+    <div className={`flex min-h-screen bg-white dark:bg-neutral-900 ${className}`}>
       {/* 使用ResizableSidebar组件 */}
       <ResizableSidebar
         defaultWidth={DEFAULT_SIDEBAR_WIDTH}
         minWidth={MIN_SIDEBAR_WIDTH}
         maxWidth={MAX_SIDEBAR_WIDTH}
         onWidthChange={handleSidebarWidthChange}
-        sidebarClassName="bg-gray-50 dark:bg-gray-800"
+        sidebarClassName="bg-neutral-50 dark:bg-neutral-800"
         stickyPosition={true}
         topOffset="0px"
       >
@@ -216,18 +216,18 @@ const AllInOneLayout: React.FC<AllInOneLayoutProps> = ({ spec: inputSpec, classN
       </ResizableSidebar>
 
       {/* Center Content Area */}
-      <main className="flex-1 flex gap-2 p-8 overflow-y-auto h-screen mx-auto dark:text-gray-200">
+      <main className="flex-1 flex gap-2 p-8 overflow-y-auto h-screen mx-auto dark:text-neutral-200">
         <div>
           {/* 1. Info Section */}
           <div className="mb-10">
-            <SectionTitle title={t('Basic Information')} className="text-2xl mb-6 pb-2 border-b dark:border-b-gray-700" />
+            <SectionTitle title={t('Basic Information')} className="text-2xl mb-6 pb-2 border-b dark:border-b-neutral-700" />
             {parsedSpec?.info && <InfoSection info={parsedSpec.info} />} {/* 使用可选链确保安全访问 */}
           </div>
 
           {/* 2. Servers Section */}
           {parsedSpec?.servers && parsedSpec.servers.length > 0 && ( /* 使用可选链确保安全访问 */
             <div className="mb-10">
-              <SectionTitle title={t('Servers')} className="text-2xl mb-6 pb-2 border-b dark:border-b-gray-700" />
+              <SectionTitle title={t('Servers')} className="text-2xl mb-6 pb-2 border-b dark:border-b-neutral-700" />
               <ServersSection servers={parsedSpec.servers} /> {/* 已确保服务器存在 */}
             </div>
           )}
@@ -236,7 +236,7 @@ const AllInOneLayout: React.FC<AllInOneLayoutProps> = ({ spec: inputSpec, classN
           <div className="mb-10">
             <SectionTitle
               title={activeTag ? t('Operations "%s"').replace('%s', activeTag) : t('All Operations')}
-              className="text-2xl mb-6 pb-2 border-b dark:border-b-gray-700"
+              className="text-2xl mb-6 pb-2 border-b dark:border-b-neutral-700"
             />
 
             {Object.keys(taggedOperations).length > 0 ? (
@@ -244,7 +244,7 @@ const AllInOneLayout: React.FC<AllInOneLayoutProps> = ({ spec: inputSpec, classN
                 {Object.entries(taggedOperations).map(([tag, operations]) => (
                   <div key={tag} className="space-y-4">
                     {tag !== activeTag && (
-                      <h3 className="text-xl font-medium text-gray-700 dark:text-gray-300">{tag}</h3>
+                      <h3 className="text-xl font-medium text-neutral-700 dark:text-neutral-300">{tag}</h3>
                     )}
 
                     {operations.map(({ path, method, operation }: { path: string; method: string; operation: OperationObject }) => {
@@ -266,7 +266,7 @@ const AllInOneLayout: React.FC<AllInOneLayoutProps> = ({ spec: inputSpec, classN
               </div>
             ) : (
               activeTag && (
-                <div className="text-gray-500 dark:text-gray-400 italic">{t('No operations found with tag "%s"').replace('%s', activeTag)}</div>
+                <div className="text-neutral-500 dark:text-neutral-400 italic">{t('No operations found with tag "%s"').replace('%s', activeTag)}</div>
               )
             )}
           </div>
@@ -274,7 +274,7 @@ const AllInOneLayout: React.FC<AllInOneLayoutProps> = ({ spec: inputSpec, classN
           {/* 4. Components Section */}
           {components && Object.keys(components).length > 0 && (
             <div ref={componentsRef} className="mb-10" id="components-section">
-              <SectionTitle title={t('Components')} className="text-2xl mb-6 pb-2 border-b dark:border-b-gray-700" />
+              <SectionTitle title={t('Components')} className="text-2xl mb-6 pb-2 border-b dark:border-b-neutral-700" />
               <AccordionComponentsSection
                 components={components} // This comes from useOpenApi(parsedSpec)
                 selectedSchema={selectedSchema}
@@ -285,7 +285,7 @@ const AllInOneLayout: React.FC<AllInOneLayoutProps> = ({ spec: inputSpec, classN
           {/* 5. Security Section */}
           {(parsedSpec?.security || (components && 'securitySchemes' in components)) && ( /* 使用可选链确保安全访问 */
             <div className="mb-10">
-              <SectionTitle title={t('Security')} className="text-2xl mb-6 pb-2 border-b dark:border-b-gray-700" />
+              <SectionTitle title={t('Security')} className="text-2xl mb-6 pb-2 border-b dark:border-b-neutral-700" />
               <SecuritySection
                 security={parsedSpec?.security} /* 使用可选链确保安全访问 */
                 securitySchemes={components && 'securitySchemes' in components ? components.securitySchemes : undefined}
@@ -297,7 +297,7 @@ const AllInOneLayout: React.FC<AllInOneLayoutProps> = ({ spec: inputSpec, classN
           {/* 6. External Docs Section (Root Level) */}
           {parsedSpec?.externalDocs && ( /* 使用可选链确保安全访问 */
             <div className="mb-10">
-              <SectionTitle title={t('External Documentation')} className="text-2xl mb-6 pb-2 border-b dark:border-b-gray-700" />
+              <SectionTitle title={t('External Documentation')} className="text-2xl mb-6 pb-2 border-b dark:border-b-neutral-700" />
               <ExternalDocsDisplay externalDocs={parsedSpec.externalDocs} /> {/* 已确保 externalDocs 存在 */}
             </div>
           )}

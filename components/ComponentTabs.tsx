@@ -24,7 +24,7 @@ const ComponentTabs: React.FC<ComponentTabsProps> = ({ availableTypes, activeTyp
               onClick={() => onSelectType(type)}
               className={`inline-block p-2 border-b-2 rounded-t-lg capitalize ${activeType === type
                 ? 'text-blue-600 border-blue-600'
-                : 'border-transparent hover:text-gray-600 hover:border-gray-300'
+                : 'border-transparent hover:text-neutral-600 hover:border-neutral-300'
                 }`}
             >
               {t(type)}

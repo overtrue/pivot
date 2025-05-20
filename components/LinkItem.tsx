@@ -58,13 +58,13 @@ const LinkItem: React.FC<LinkItemProps> = ({
       </div>
 
       {description && !isExpanded && (
-        <div className="text-sm text-gray-600 mt-1 truncate">
+        <div className="text-sm text-neutral-600 mt-1 truncate">
           <DescriptionDisplay description={description} />
         </div>
       )}
 
       {isExpanded && hasDetails && (
-        <div className="mt-3 pl-2 border-l-2 border-gray-200 space-y-4">
+        <div className="mt-3 pl-2 border-l-2 border-neutral-200 space-y-4">
           {description && (
             <div>
               <h4 className="text-xs font-semibold mb-1">{t('Description')}</h4>
@@ -75,11 +75,11 @@ const LinkItem: React.FC<LinkItemProps> = ({
           {parameters && Object.keys(parameters).length > 0 && (
             <div>
               <h4 className="text-xs font-semibold mb-1">{t('Parameters')}</h4>
-              <div className="bg-gray-50 p-2 rounded text-xs space-y-1">
+              <div className="bg-neutral-50 p-2 rounded text-xs space-y-1">
                 {Object.entries(parameters).map(([paramName, paramValue]) => (
                   <div key={paramName} className="grid grid-cols-[max-content_1fr] gap-x-2">
-                    <span className="font-mono font-medium text-gray-700">{paramName}:</span>
-                    <pre className="font-mono bg-gray-100 px-1.5 py-0.5 rounded overflow-x-auto break-all">
+                    <span className="font-mono font-medium text-neutral-700">{paramName}:</span>
+                    <pre className="font-mono bg-neutral-100 px-1.5 py-0.5 rounded overflow-x-auto break-all">
                       <code>{typeof paramValue === 'string' ? paramValue : JSON.stringify(paramValue)}</code>
                     </pre>
                   </div>
@@ -91,8 +91,8 @@ const LinkItem: React.FC<LinkItemProps> = ({
           {requestBody && (
             <div>
               <h4 className="text-xs font-semibold mb-1">{t('Request Body')}</h4>
-              <div className="bg-gray-50 p-2 rounded text-xs">
-                <pre className="font-mono bg-gray-100 px-1.5 py-0.5 rounded overflow-x-auto break-all">
+              <div className="bg-neutral-50 p-2 rounded text-xs">
+                <pre className="font-mono bg-neutral-100 px-1.5 py-0.5 rounded overflow-x-auto break-all">
                   <code>{typeof requestBody === 'string' ? requestBody : JSON.stringify(requestBody, null, 2)}</code>
                 </pre>
               </div>

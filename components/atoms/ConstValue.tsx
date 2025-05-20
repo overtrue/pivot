@@ -11,7 +11,7 @@ const ConstValue: React.FC<ConstValueProps> = ({ value, className }) => {
 
   return (
     <div className={`flex items-center space-x-2 ${className}`}>
-      <span className="font-mono text-sm bg-gray-100 px-2 py-1 rounded">
+      <span className="font-mono text-sm bg-neutral-100 px-2 py-1 rounded">
         const: {stringValue}
       </span>
       <CopyButton text={stringValue} />

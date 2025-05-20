@@ -11,15 +11,15 @@ const SecurityRequirementItem: React.FC<SecurityRequirementItemProps> = ({ requi
   const { t } = useI18n();
 
   return (
-    <div className="bg-gray-50 dark:bg-gray-800 rounded p-2 text-xs dark:text-gray-200">
+    <div className="bg-neutral-50 dark:bg-neutral-800 rounded p-2 text-xs dark:text-neutral-200">
       {/* A single requirement object can list multiple schemes required together (AND) */}
       {Object.entries(requirement).map(([schemeName, scopes]) => (
         <div key={schemeName} className="flex items-center space-x-1">
-          <span className="font-semibold text-gray-700 dark:text-gray-300">{schemeName}:</span>
+          <span className="font-semibold text-neutral-700 dark:text-neutral-300">{schemeName}:</span>
           {scopes.length > 0 ? (
-            <span className="text-gray-600 dark:text-gray-400">[{scopes.join(', ')}]</span>
+            <span className="text-neutral-600 dark:text-neutral-400">[{scopes.join(', ')}]</span>
           ) : (
-            <span className="text-gray-500 dark:text-gray-500 italic">{t('(No specific scopes required)')}</span>
+            <span className="text-neutral-500 dark:text-neutral-500 italic">{t('(No specific scopes required)')}</span>
           )}
         </div>
       ))}

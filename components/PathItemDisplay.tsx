@@ -28,9 +28,9 @@ const PathItemDisplay: React.FC<PathItemDisplayProps> = ({
 
   return (
     <div className={`space-y-4 ${className || ''}`}>
-      <h2 className="text-xl font-semibold text-gray-900">{path}</h2>
+      <h2 className="text-xl font-semibold text-neutral-900">{path}</h2>
       {pathItem.description && (
-        <p className="text-gray-600">{pathItem.description}</p>
+        <p className="text-neutral-600">{pathItem.description}</p>
       )}
 
       <div className="space-y-6">

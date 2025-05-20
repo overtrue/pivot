@@ -30,7 +30,7 @@ const ResponseGroup: React.FC<ResponseGroupProps> = ({
     <div className="space-y-4">
       <div className="flex items-center space-x-2">
         {response.description && (
-          <span className="text-gray-700 dark:text-gray-300 text-sm">{response.description}</span>
+          <span className="text-neutral-700 dark:text-neutral-300 text-sm">{response.description}</span>
         )}
       </div>
 
@@ -47,7 +47,7 @@ const ResponseGroup: React.FC<ResponseGroupProps> = ({
       {/* 头部信息 */}
       {response.headers && Object.keys(response.headers).length > 0 && (
         <div>
-          <h4 className="text-sm font-semibold uppercase text-gray-500 dark:text-gray-400 mb-2">{t('Response Headers')}</h4>
+          <h4 className="text-sm font-semibold uppercase text-neutral-500 dark:text-neutral-400 mb-2">{t('Response Headers')}</h4>
           <ResponseHeadersTable headers={response.headers} components={components} />
         </div>
       )}

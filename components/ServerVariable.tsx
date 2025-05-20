@@ -13,9 +13,9 @@ const ServerVariable: React.FC<ServerVariableProps> = ({ name, variable }) => {
   const { description, default: defaultValue, enum: enumValues } = variable;
 
   return (
-    <div className="rounded p-3 bg-gray-50 dark:bg-gray-800/70">
+    <div className="rounded p-3 bg-neutral-50 dark:bg-neutral-800/70">
       <div className="flex items-center justify-between mb-2">
-        <span className="font-mono text-sm font-medium dark:text-gray-200">{name}</span>
+        <span className="font-mono text-sm font-medium dark:text-neutral-200">{name}</span>
         <span className="px-2 py-0.5 text-xs bg-blue-100 dark:bg-blue-900/50 text-blue-800 dark:text-blue-300 rounded">
           {t('Default value:')} {defaultValue}
         </span>
@@ -27,10 +27,10 @@ const ServerVariable: React.FC<ServerVariableProps> = ({ name, variable }) => {
 
       {enumValues && enumValues.length > 0 && (
         <div>
-          <h5 className="text-xs font-medium mb-1 dark:text-gray-300">{t('Available values:')}</h5>
+          <h5 className="text-xs font-medium mb-1 dark:text-neutral-300">{t('Available values:')}</h5>
           <div className="flex flex-wrap gap-1">
             {enumValues.map((value) => (
-              <span key={value} className="text-xs bg-gray-100 dark:bg-gray-700 dark:text-gray-300 px-2 py-0.5 rounded">
+              <span key={value} className="text-xs bg-neutral-100 dark:bg-neutral-700 dark:text-neutral-300 px-2 py-0.5 rounded">
                 {value}
               </span>
             ))}

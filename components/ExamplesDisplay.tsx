@@ -39,11 +39,11 @@ const ExamplesDisplay: React.FC<ExamplesDisplayProps> = ({ examples, components 
   return (
     <div className="space-y-3">
       {resolvedExamples.map((example) => (
-        <div key={example.key} className="border border-gray-200 rounded p-3">
+        <div key={example.key} className="border border-neutral-200 rounded p-3">
           <div className="flex justify-between items-start mb-1">
             <span className="font-semibold text-sm">{example.key}</span>
             {example.summary && (
-              <span className="text-xs text-gray-600 text-right">{example.summary}</span>
+              <span className="text-xs text-neutral-600 text-right">{example.summary}</span>
             )}
           </div>
           {example.description && (
@@ -51,7 +51,7 @@ const ExamplesDisplay: React.FC<ExamplesDisplayProps> = ({ examples, components 
           )}
           {example.value !== undefined && (
             <div>
-              <pre className="bg-gray-100 p-2 rounded font-mono text-xs overflow-x-auto">
+              <pre className="bg-neutral-100 p-2 rounded font-mono text-xs overflow-x-auto">
                 <code>{JSON.stringify(example.value, null, 2)}</code>
               </pre>
             </div>

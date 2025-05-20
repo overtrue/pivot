@@ -55,7 +55,7 @@ const CopyButton: React.FC<CopyButtonProps> = ({
     <button
       onClick={handleCopy}
       className={cn(
-        'bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 text-gray-500 dark:text-gray-300 rounded transition-colors',
+        'bg-neutral-100 dark:bg-neutral-700 hover:bg-neutral-200 dark:hover:bg-neutral-600 text-neutral-500 dark:text-neutral-300 rounded transition-colors',
         sizeClasses[size],
         className,
         copied ? 'text-green-600 dark:text-green-400' : ''

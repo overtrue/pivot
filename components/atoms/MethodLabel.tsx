@@ -39,16 +39,16 @@ const methodColors: Record<MethodLabelProps['method'], { text: string; bg: strin
     darkBg: 'dark:bg-purple-900'
   },
   OPTIONS: {
-    text: 'text-gray-600',
-    bg: 'bg-gray-100',
-    darkText: 'dark:text-gray-300',
-    darkBg: 'dark:bg-gray-800'
+    text: 'text-neutral-600',
+    bg: 'bg-neutral-100',
+    darkText: 'dark:text-neutral-300',
+    darkBg: 'dark:bg-neutral-800'
   },
   HEAD: {
-    text: 'text-gray-600',
-    bg: 'bg-gray-100',
-    darkText: 'dark:text-gray-300',
-    darkBg: 'dark:bg-gray-800'
+    text: 'text-neutral-600',
+    bg: 'bg-neutral-100',
+    darkText: 'dark:text-neutral-300',
+    darkBg: 'dark:bg-neutral-800'
   },
 };
 

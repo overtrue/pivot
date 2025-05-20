@@ -37,7 +37,7 @@ const ComponentDetail: React.FC<ComponentDetailProps> = ({ activeType, selectedI
   const { t } = useI18n();
 
   if (!activeType || !selectedItemName || !components[activeType] || !components[activeType]?.[selectedItemName]) {
-    return <div className="text-gray-500 italic p-4">{t('Please select an item from the list.')}</div>;
+    return <div className="text-neutral-500 italic p-4">{t('Please select an item from the list.')}</div>;
   }
 
   const item = components[activeType]?.[selectedItemName];

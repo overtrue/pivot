@@ -24,7 +24,7 @@ const LinksSection: React.FC<LinksSectionProps> = ({ links, components }) => {
   return (
     <div className="mb-4">
       {/* <SectionTitle title="Links" /> */}
-      <h4 className="text-sm font-semibold uppercase text-gray-500 mb-2">{t('Links')}</h4>
+      <h4 className="text-sm font-semibold uppercase text-neutral-500 mb-2">{t('Links')}</h4>
       <div className="space-y-3">
         {linkEntries.map(([name, linkOrRef]) => {
           // Resolve link ref

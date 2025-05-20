@@ -13,7 +13,7 @@ const ValueDisplay: React.FC<ValueDisplayProps> = ({ value, className = '' }) =>
     : String(value);
 
   return (
-    <code className={cn('text-xs bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded font-mono break-all', className)}>
+    <code className={cn('text-xs bg-neutral-100 dark:bg-neutral-800 px-2 py-1 rounded font-mono break-all', className)}>
       {displayValue}
     </code>
   );

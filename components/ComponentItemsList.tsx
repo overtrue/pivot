@@ -11,7 +11,7 @@ const ComponentItemsList: React.FC<ComponentItemsListProps> = ({ items, selected
   const { t } = useI18n();
 
   if (!items || items.length === 0) {
-    return <div className="text-gray-500 italic">{t('No items available')}</div>;
+    return <div className="text-neutral-500 italic">{t('No items available')}</div>;
   }
 
   return (
@@ -20,7 +20,7 @@ const ComponentItemsList: React.FC<ComponentItemsListProps> = ({ items, selected
         <li key={itemName}>
           <button
             onClick={() => onSelectItem(itemName)}
-            className={`w-full text-left px-3 py-1.5 rounded hover:bg-gray-100 ${selectedItem === itemName ? 'bg-blue-50 text-blue-700 font-semibold' : 'text-gray-700'
+            className={`w-full text-left px-3 py-1.5 rounded hover:bg-neutral-100 ${selectedItem === itemName ? 'bg-blue-50 text-blue-700 font-semibold' : 'text-neutral-700'
               }`}
           >
             {itemName}

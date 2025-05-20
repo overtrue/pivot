@@ -18,7 +18,7 @@ const StatusCode: React.FC<StatusCodeProps> = ({ code, size = 'small', className
       case '3': return 'bg-yellow-100 dark:bg-yellow-900/70 text-yellow-800 dark:text-yellow-200'; // Redirection
       case '4': return 'bg-orange-100 dark:bg-orange-900/70 text-orange-800 dark:text-orange-200'; // Client Error
       case '5': return 'bg-red-100 dark:bg-red-900/70 text-red-800 dark:text-red-200'; // Server Error
-      default: return 'bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200';
+      default: return 'bg-neutral-100 dark:bg-neutral-700 text-neutral-800 dark:text-neutral-200';
     }
   };
 

@@ -51,8 +51,8 @@ const ParameterItem: React.FC<ParameterItemProps> = ({
     schema.pattern;
 
   return (
-    <div className={cn('bg-gray-50 dark:bg-gray-800 rounded-md overflow-hidden', className)}>
-      <div className="px-4 py-3 flex flex-wrap items-center justify-between gap-2 dark:bg-gray-800" onClick={() => setIsExpanded(!isExpanded)}>
+    <div className={cn('bg-neutral-50 dark:bg-neutral-800 rounded-md overflow-hidden', className)}>
+      <div className="px-4 py-3 flex flex-wrap items-center justify-between gap-2 dark:bg-neutral-800" onClick={() => setIsExpanded(!isExpanded)}>
         <div className="flex flex-wrap items-center gap-2">
           <ParameterName name={name} deprecated={deprecated} />
 
@@ -80,7 +80,7 @@ const ParameterItem: React.FC<ParameterItemProps> = ({
       </div>
 
       {isExpanded && hasDetails && (
-        <div className="p-4 pt-0 flex flex-col gap-3 dark:bg-gray-800">
+        <div className="p-4 pt-0 flex flex-col gap-3 dark:bg-neutral-800">
           {description && <ParameterDescription description={description} />}
 
           <DefaultValueDisplay value={schema.default} />

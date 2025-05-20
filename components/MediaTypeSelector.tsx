@@ -27,7 +27,7 @@ const MediaTypeSelector: React.FC<MediaTypeSelectorProps> = ({
   };
 
   return (
-    <div className="mb-2 border-b dark:border-gray-700">
+    <div className="mb-2 border-b dark:border-neutral-700">
       <ul className="flex flex-wrap -mb-px text-sm font-medium text-center z-10">
         {mediaTypes.map(mediaType => (
           <li key={mediaType} className="mr-2">
@@ -37,7 +37,7 @@ const MediaTypeSelector: React.FC<MediaTypeSelectorProps> = ({
                 'inline-block p-2 border-b-2 rounded-t-lg',
                 activeMediaType === mediaType
                   ? 'text-blue-600 dark:text-blue-400 border-blue-600 dark:border-blue-400'
-                  : 'border-transparent hover:text-gray-600 dark:hover:text-gray-300 hover:border-gray-300 dark:hover:border-gray-600'
+                  : 'border-transparent hover:text-neutral-600 dark:hover:text-neutral-300 hover:border-neutral-300 dark:hover:border-neutral-600'
               )}
               type="button"
             >

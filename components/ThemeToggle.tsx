@@ -43,7 +43,7 @@ export function ThemeToggle() {
   return (
     <button
       onClick={toggleTheme}
-      className="flex items-center px-3 py-1.5 text-sm text-white hover:bg-slate-600 dark:hover:bg-slate-700 transition-colors rounded-md"
+      className="flex items-center px-3 py-1.5 text-sm text-white hover:bg-neutral-600 dark:hover:bg-neutral-700 transition-colors rounded-md"
       aria-label="切换主题"
     >
       {theme === 'light' ? <Moon className="w-4 h-4" /> : <Sun className="w-4 h-4" />}

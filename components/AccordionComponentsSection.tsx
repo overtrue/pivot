@@ -84,18 +84,18 @@ const AccordionComponentsSection: React.FC<AccordionComponentsSectionProps> = ({
   return (
     <div className={`py-4 ${className}`}>
       {/* Type tabs */}
-      <div className="flex border-b dark:border-gray-700 mb-4 overflow-x-auto hide-scrollbar">
+      <div className="flex border-b dark:border-neutral-700 mb-4 overflow-x-auto hide-scrollbar">
         {availableTypes.map((type) => (
           <button
             key={type}
             className={`px-4 py-2 capitalize whitespace-nowrap ${activeType === type
               ? 'border-b-2 border-blue-500 text-blue-600 dark:text-blue-400 font-medium'
-              : 'text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400'
+              : 'text-neutral-600 dark:text-neutral-400 hover:text-blue-500 dark:hover:text-blue-400'
               }`}
             onClick={() => setActiveType(type)}
           >
             {type}
-            <span className="ml-1 text-xs text-gray-500 dark:text-gray-500">
+            <span className="ml-1 text-xs text-neutral-500 dark:text-neutral-500">
               ({availableComponents[type]?.length || 0})
             </span>
           </button>
@@ -106,21 +106,21 @@ const AccordionComponentsSection: React.FC<AccordionComponentsSectionProps> = ({
       {activeType && availableComponents[activeType] && (
         <div className="space-y-2">
           {availableComponents[activeType].map((name) => (
-            <div key={name} id={`schema-${name}`} className="rounded-md overflow-hidden bg-white dark:bg-gray-800">
+            <div key={name} id={`schema-${name}`} className="rounded-md overflow-hidden bg-white dark:bg-neutral-800">
               {/* Component name header */}
               <div
-                className="flex items-center justify-between px-4 py-3 bg-gray-50 dark:bg-gray-800/60 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700/60"
+                className="flex items-center justify-between px-4 py-3 bg-neutral-50 dark:bg-neutral-800/60 cursor-pointer hover:bg-neutral-100 dark:hover:bg-neutral-700/60"
                 onClick={() => toggleExpandComponent(activeType, name)}
               >
                 <div className="flex items-center gap-2">
-                  <span className="text-gray-500 dark:text-gray-400">
+                  <span className="text-neutral-500 dark:text-neutral-400">
                     {expandedComponent?.type === activeType && expandedComponent?.name === name ? (
                       <ChevronDown className="h-5 w-5" />
                     ) : (
                       <ChevronRight className="h-5 w-5" />
                     )}
                   </span>
-                  <h3 className="font-mono text-sm dark:text-gray-200">
+                  <h3 className="font-mono text-sm dark:text-neutral-200">
                     {name}
                   </h3>
                 </div>

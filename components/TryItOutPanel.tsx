@@ -492,17 +492,17 @@ const TryItOutPanel: React.FC<TryItOutPanelProps> = ({
 
                 case 'openIdConnect':
                   return (
-                    <div key={index} className="p-3 border dark:border-gray-700 rounded bg-indigo-50 dark:bg-indigo-900/30">
+                    <div key={index} className="p-3 border dark:border-neutral-700 rounded bg-indigo-50 dark:bg-indigo-900/30">
                       <div className="text-xs font-semibold text-indigo-800 dark:text-indigo-300 mb-2">
                         OpenID Connect ({schemeObj.openIdConnectUrl})
                       </div>
-                      <label className="text-xs text-gray-600 dark:text-gray-400 block mb-1">
+                      <label className="text-xs text-neutral-600 dark:text-neutral-400 block mb-1">
                         ID Token
                         {schemeObj.description && ` - ${schemeObj.description}`}
                       </label>
                       <input
                         type="text"
-                        className="w-full px-2 py-1 border dark:border-gray-700 rounded text-sm dark:bg-gray-700 dark:text-gray-200"
+                        className="w-full px-2 py-1 border dark:border-neutral-700 rounded text-sm dark:bg-neutral-700 dark:text-neutral-200"
                         placeholder="输入 OpenID Token"
                         value={authState.openIdConnect?.token || ''}
                         onChange={(e) => handleAuthChange(scheme, e.target.value)}
@@ -521,17 +521,17 @@ const TryItOutPanel: React.FC<TryItOutPanelProps> = ({
   return (
     <div className="border dark:border-neutral-700 rounded-lg overflow-hidden shadow-sm bg-white dark:bg-neutral-800 transition-all">
       <div
-        className={`bg-gray-50 dark:bg-gray-800/70 px-4 py-3 flex items-center justify-between ${collapsible ? 'cursor-pointer' : ''}`}
+        className={`bg-neutral-50 dark:bg-neutral-800/70 px-4 py-3 flex items-center justify-between ${collapsible ? 'cursor-pointer' : ''}`}
         onClick={collapsible ? toggleCollapse : undefined}
       >
         <div className="flex items-center min-w-0">
           <MethodLabel method={method.toUpperCase() as any} className="mr-2 flex-shrink-0" />
-          <div className="text-sm text-gray-800 dark:text-gray-200 font-mono truncate overflow-hidden">
+          <div className="text-sm text-neutral-800 dark:text-neutral-200 font-mono truncate overflow-hidden">
             {path}
           </div>
         </div>
         {collapsible && (
-          <div className="text-gray-500 dark:text-gray-400 flex-shrink-0 ml-2">
+          <div className="text-neutral-500 dark:text-neutral-400 flex-shrink-0 ml-2">
             {collapsed ? <ChevronDown size={18} /> : <ChevronUp size={18} />}
           </div>
         )}
@@ -543,17 +543,17 @@ const TryItOutPanel: React.FC<TryItOutPanelProps> = ({
           {resolveParameters().length > 0 && (
             <div className="space-y-3">
               <div className="flex items-center justify-between">
-                <h3 className="text-sm font-medium text-gray-700 dark:text-gray-300">{t('Request Parameters')}</h3>
+                <h3 className="text-sm font-medium text-neutral-700 dark:text-neutral-300">{t('Request Parameters')}</h3>
               </div>
               <div className="space-y-3">
                 {resolveParameters().map(param => (
                   <div key={param.name} className="grid grid-cols-12 gap-2 items-start">
                     <div className="col-span-4">
                       <div className="flex items-center gap-1">
-                        <span className={`text-sm ${param.required ? 'font-semibold' : ''} dark:text-gray-300`}>
+                        <span className={`text-sm ${param.required ? 'font-semibold' : ''} dark:text-neutral-300`}>
                           {param.name} {param.required && <span className="text-red-500 dark:text-red-400">*</span>}
                         </span>
-                        <span className="text-xs bg-gray-100 dark:bg-gray-700 px-1 py-0.5 rounded dark:text-gray-300">{param.in}</span>
+                        <span className="text-xs bg-neutral-100 dark:bg-neutral-700 px-1 py-0.5 rounded dark:text-neutral-300">{param.in}</span>
                       </div>
                     </div>
                     <div className="col-span-8">
@@ -561,7 +561,7 @@ const TryItOutPanel: React.FC<TryItOutPanelProps> = ({
                         type="text"
                         value={paramValues[param.name] || ''}
                         onChange={(e) => handleParamChange(param.name, e.target.value)}
-                        className="w-full px-2 py-1 border dark:border-gray-700 rounded text-sm dark:bg-gray-700 dark:text-gray-200"
+                        className="w-full px-2 py-1 border dark:border-neutral-700 rounded text-sm dark:bg-neutral-700 dark:text-neutral-200"
                         placeholder={`Enter ${param.name} value`}
                       />
                     </div>
@@ -578,9 +578,9 @@ const TryItOutPanel: React.FC<TryItOutPanelProps> = ({
           {resolveRequestBody() && (
             <div className="space-y-3">
               <div className="flex items-center justify-between">
-                <h3 className="text-sm font-medium text-gray-700 dark:text-gray-300">{t('Request Body')}</h3>
+                <h3 className="text-sm font-medium text-neutral-700 dark:text-neutral-300">{t('Request Body')}</h3>
               </div>
-              <div className="text-xs text-gray-500 dark:text-gray-400 mb-1">
+              <div className="text-xs text-neutral-500 dark:text-neutral-400 mb-1">
                 {(() => {
                   const requestBody = resolveRequestBody();
                   if (requestBody && 'description' in requestBody) {
@@ -604,7 +604,7 @@ const TryItOutPanel: React.FC<TryItOutPanelProps> = ({
           {/* Custom request headers */}
           <div className="space-y-3">
             <div className="flex items-center justify-between">
-              <h3 className="text-sm font-medium text-gray-700 dark:text-gray-300">{t('Request Headers')}</h3>
+              <h3 className="text-sm font-medium text-neutral-700 dark:text-neutral-300">{t('Request Headers')}</h3>
             </div>
             <div className="space-y-2">
               {Object.entries(headers).map(([key, value]) => (
@@ -620,7 +620,7 @@ const TryItOutPanel: React.FC<TryItOutPanelProps> = ({
                         newHeaders[e.target.value] = oldValue;
                         setHeaders(newHeaders);
                       }}
-                      className="w-full px-2 py-1 border dark:border-gray-700 rounded text-sm dark:bg-gray-700 dark:text-gray-200"
+                      className="w-full px-2 py-1 border dark:border-neutral-700 rounded text-sm dark:bg-neutral-700 dark:text-neutral-200"
                       placeholder="Header name"
                     />
                   </div>
@@ -629,7 +629,7 @@ const TryItOutPanel: React.FC<TryItOutPanelProps> = ({
                       type="text"
                       value={value}
                       onChange={(e) => handleHeaderChange(key, e.target.value)}
-                      className="w-full px-2 py-1 border dark:border-gray-700 rounded text-sm dark:bg-gray-700 dark:text-gray-200"
+                      className="w-full px-2 py-1 border dark:border-neutral-700 rounded text-sm dark:bg-neutral-700 dark:text-neutral-200"
                       placeholder="Value"
                     />
                   </div>
@@ -640,7 +640,7 @@ const TryItOutPanel: React.FC<TryItOutPanelProps> = ({
                         delete newHeaders[key];
                         setHeaders(newHeaders);
                       }}
-                      className="px-2 py-1 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-300 rounded text-sm transition-colors"
+                      className="px-2 py-1 bg-neutral-100 dark:bg-neutral-700 hover:bg-neutral-200 dark:hover:bg-neutral-600 text-neutral-700 dark:text-neutral-300 rounded text-sm transition-colors"
                     >
                       {t('Delete')}
                     </button>
@@ -654,7 +654,7 @@ const TryItOutPanel: React.FC<TryItOutPanelProps> = ({
                     [`Header-${Object.keys(headers).length}`]: '',
                   }));
                 }}
-                className="text-xs px-3 py-1 rounded bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-300 transition-colors inline-flex items-center"
+                className="text-xs px-3 py-1 rounded bg-neutral-100 dark:bg-neutral-700 hover:bg-neutral-200 dark:hover:bg-neutral-600 text-neutral-700 dark:text-neutral-300 transition-colors inline-flex items-center"
               >
                 {t('Add Request Header')}
               </button>
@@ -711,8 +711,8 @@ const TryItOutPanel: React.FC<TryItOutPanelProps> = ({
 
                 {/* Response body */}
                 <div className="p-3">
-                  <h4 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">{t('Response Body')}</h4>
-                  <div className="bg-gray-900 text-gray-100 p-3 rounded-md overflow-x-auto">
+                  <h4 className="text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">{t('Response Body')}</h4>
+                  <div className="bg-neutral-900 text-neutral-100 p-3 rounded-md overflow-x-auto">
                     <pre className="text-xs font-mono whitespace-pre-wrap">
                       {response.body}
                     </pre>

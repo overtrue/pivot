@@ -18,7 +18,7 @@ const DefaultValueDisplay: React.FC<DefaultValueDisplayProps> = ({ value, classN
 
   return (
     <div className={cn(className)}>
-      <h4 className="text-xs font-semibold mb-1 text-gray-500 dark:text-gray-400">{t('Default')}</h4>
+      <h4 className="text-xs font-semibold mb-1 text-neutral-500 dark:text-neutral-400">{t('Default')}</h4>
       <ValueDisplay value={value} />
     </div>
   );

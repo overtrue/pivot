@@ -19,7 +19,7 @@ const Servers: React.FC<ServersProps> = ({ servers, className }) => {
   }
 
   return (
-    <div className={`${className || ''} dark:text-gray-200`}>
+    <div className={`${className || ''} dark:text-neutral-200`}>
       <SectionTitle title={t("Servers")} />
       <div className="mt-3">
         {servers.map((server, index) => (

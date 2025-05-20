@@ -290,7 +290,7 @@ const SchemaWithExampleViewer: React.FC<SchemaWithExampleViewerProps> = ({
   const description = getDescription();
 
   return (
-    <div className={cn('mb-4', 'dark:text-gray-200', className)}>
+    <div className={cn('mb-4', 'dark:text-neutral-200', className)}>
       {/* Custom header area */}
       {renderHeader && renderHeader()}
 

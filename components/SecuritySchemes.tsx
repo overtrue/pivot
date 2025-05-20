@@ -17,7 +17,7 @@ const SecuritySchemes: React.FC<SecuritySchemesProps> = ({ schemes, className })
   }
 
   return (
-    <div className={`${className || ''} dark:text-gray-200`}>
+    <div className={`${className || ''} dark:text-neutral-200`}>
       <SectionTitle title={t('Security Schemes')} />
       <div className="space-y-6 mt-3">
         {Object.entries(schemes).map(([name, scheme]) => (

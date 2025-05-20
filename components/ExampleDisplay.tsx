@@ -87,7 +87,7 @@ const ExampleDisplay: React.FC<ExampleDisplayProps> = ({
   return (
     <div className={cn('relative', className)}>
       {title && (
-        <div className="bg-gray-50 dark:bg-gray-800 px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300">
+        <div className="bg-neutral-50 dark:bg-neutral-800 px-4 py-2 text-sm font-medium text-neutral-700 dark:text-neutral-300">
           {title}
         </div>
       )}

@@ -91,17 +91,17 @@ const Codegen: React.FC<CodegenProps> = ({ endpoint, method, parameters = [], re
   };
 
   return (
-    <div className="border dark:border-gray-700 rounded-lg overflow-hidden shadow-sm bg-white dark:bg-gray-800 transition-all">
+    <div className="border dark:border-neutral-700 rounded-lg overflow-hidden shadow-sm bg-white dark:bg-neutral-800 transition-all">
       {!collapsed && (
         <>
-          <div className="flex flex-wrap space-x-1 p-1 bg-gray-50 dark:bg-gray-800/70">
+          <div className="flex flex-wrap space-x-1 p-1 bg-neutral-50 dark:bg-neutral-800/70">
             {codeGenerators.map((generator) => (
               <button
                 key={generator.id}
                 onClick={() => setLanguageId(generator.id)}
                 className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md text-sm font-medium transition-colors mb-1 ${languageId === generator.id
-                  ? 'bg-white dark:bg-gray-700 text-blue-700 dark:text-blue-400 shadow-sm'
-                  : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700/50'
+                  ? 'bg-white dark:bg-neutral-700 text-blue-700 dark:text-blue-400 shadow-sm'
+                  : 'text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-200 hover:bg-neutral-50 dark:hover:bg-neutral-700/50'
                   }`}
               >
                 {generator.getIcon()}

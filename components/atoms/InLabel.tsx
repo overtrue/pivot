@@ -18,7 +18,7 @@ const getColorForType = (type: ParameterLocation): string => {
     case 'cookie':
       return 'bg-yellow-100 dark:bg-yellow-900/50 text-yellow-800 dark:text-yellow-300';
     default:
-      return 'bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-300';
+      return 'bg-neutral-100 dark:bg-neutral-800 text-neutral-800 dark:text-neutral-300';
   }
 };
 

@@ -28,7 +28,7 @@ const SecurityRequirementsSection: React.FC<SecurityRequirementsSectionProps> = 
           <SecurityRequirementItem key={index} requirement={requirement} />
         ))}
         {security.length > 1 && (
-          <p className="text-xs text-gray-500 dark:text-gray-400 mt-2 italic">
+          <p className="text-xs text-neutral-500 dark:text-neutral-400 mt-2 italic">
             {t('Note: Multiple security requirements represent OR logic. Multiple schemes within a requirement represent AND logic.')}
           </p>
         )}

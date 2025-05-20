@@ -9,6 +9,9 @@ import {
 } from '@/types/openapi';
 import * as yaml from 'js-yaml';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import DescriptionDisplay from '../atoms/DescriptionDisplay';
+import MethodLabel from '../atoms/MethodLabel';
+import OperationPath from '../atoms/OperationPath';
 import SectionTitle from '../atoms/SectionTitle';
 import Codegen from '../interactive/Codegen';
 import ParametersSection from '../ParametersSection';
@@ -148,10 +151,10 @@ const PathDetailLayout: React.FC<PathDetailLayoutProps> = ({ spec: inputSpec, cl
   // If there's a parsing error, display the error message
   if (parseError) {
     return (
-      <div className="flex items-center justify-center h-screen bg-gray-100 dark:bg-gray-900">
-        <div className="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-md text-center">
+      <div className="flex items-center justify-center h-screen bg-neutral-100 dark:bg-neutral-900">
+        <div className="bg-white dark:bg-neutral-800 p-8 rounded-lg shadow-md text-center">
           <h2 className="text-2xl font-semibold text-red-600 dark:text-red-400 mb-4">{t('Specification Parse Error')}</h2>
-          <p className="text-gray-700 dark:text-gray-300">{parseError}</p>
+          <p className="text-neutral-700 dark:text-neutral-300">{parseError}</p>
         </div>
       </div>
     );
@@ -160,22 +163,22 @@ const PathDetailLayout: React.FC<PathDetailLayoutProps> = ({ spec: inputSpec, cl
   // If the spec is not yet parsed, display loading state
   if (!parsedSpec) {
     return (
-      <div className="flex justify-center items-center min-h-[60vh] dark:text-gray-200">
-        <div className="animate-spin rounded-full h-12 w-12 border-2 border-slate-500 dark:border-slate-400"></div>
-        <p className="ml-4 text-slate-500 dark:text-slate-400">{t('Parsing specification...')}</p>
+      <div className="flex justify-center items-center min-h-[60vh] dark:text-neutral-200">
+        <div className="animate-spin rounded-full h-12 w-12 border-2 border-neutral-500 dark:border-neutral-400"></div>
+        <p className="ml-4 text-neutral-500 dark:text-neutral-400">{t('Parsing specification...')}</p>
       </div>
     );
   }
 
   return (
-    <div className={`flex min-h-screen bg-white dark:bg-gray-900 ${className}`}>
+    <div className={`flex min-h-screen bg-white dark:bg-neutral-900 ${className}`}>
       {/* 使用ResizableSidebar组件 */}
       <ResizableSidebar
         defaultWidth={DEFAULT_SIDEBAR_WIDTH}
         minWidth={MIN_SIDEBAR_WIDTH}
         maxWidth={MAX_SIDEBAR_WIDTH}
         onWidthChange={handleSidebarWidthChange}
-        sidebarClassName="bg-gray-50 dark:bg-gray-800"
+        sidebarClassName="bg-neutral-50 dark:bg-neutral-800"
         stickyPosition={true}
         topOffset="0px"
       >
@@ -188,7 +191,7 @@ const PathDetailLayout: React.FC<PathDetailLayoutProps> = ({ spec: inputSpec, cl
       </ResizableSidebar>
 
       {/* Center Content Area */}
-      <main className="flex-1 p-8 overflow-y-auto h-screen dark:text-gray-200">
+      <main className="flex-1 p-8 overflow-y-auto h-screen dark:text-neutral-200">
         {selectedOperation ? (
           <div className="xl:flex flex-wrap w-full gap-6">
             {/* 左侧内容面板 - API详情 */}
@@ -196,62 +199,45 @@ const PathDetailLayout: React.FC<PathDetailLayoutProps> = ({ spec: inputSpec, cl
               {/* API 操作详情 */}
               <div className="mb-8">
                 <div className="flex items-center gap-3 mb-4">
-                  <span className={`px-3 py-1 text-sm font-semibold rounded-md ${selectedOperation.method === 'GET' ? 'bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-300' :
-                    selectedOperation.method === 'POST' ? 'bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-300' :
-                      selectedOperation.method === 'PUT' ? 'bg-amber-100 text-amber-700 dark:bg-amber-900 dark:text-amber-300' :
-                        selectedOperation.method === 'DELETE' ? 'bg-red-100 text-red-700 dark:bg-red-900 dark:text-red-300' :
-                          selectedOperation.method === 'PATCH' ? 'bg-indigo-100 text-indigo-700 dark:bg-indigo-900 dark:text-indigo-300' :
-                            'bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300'
-                    }`}>
-                    {selectedOperation.method}
-                  </span>
-                  <h1 className="text-2xl font-mono font-semibold">{selectedOperation.path}</h1>
+                  <MethodLabel method={selectedOperation.method as any} className="text-sm" />
+                  <OperationPath path={selectedOperation.path} className="text-2xl font-semibold" />
                 </div>
 
                 {/* 操作描述 */}
                 {(selectedOperation.operation.summary || selectedOperation.operation.description) && (
                   <div className="my-8">
                     {selectedOperation.operation.summary && (
-                      <h2 className="text-xl font-medium mb-2 dark:text-gray-200">{selectedOperation.operation.summary}</h2>
+                      <h2 className="text-xl font-medium mb-2 dark:text-neutral-200">{selectedOperation.operation.summary}</h2>
                     )}
                     {selectedOperation.operation.description && (
-                      <p className="text-gray-700 dark:text-gray-300 whitespace-pre-wrap">{selectedOperation.operation.description}</p>
+                      <DescriptionDisplay description={selectedOperation.operation.description} />
                     )}
                   </div>
                 )}
 
                 {/* 参数部分 */}
                 {selectedOperation.operation.parameters && selectedOperation.operation.parameters.length > 0 && (
-                  <div className="mb-8">
-                    <SectionTitle title={t('Parameters')} className="text-xl mb-4 pb-2 border-b dark:border-b-gray-700" />
-                    <ParametersSection
-                      parameters={selectedOperation.operation.parameters}
-                      components={components}
-                      expanded={true}
-                    />
-                  </div>
+                  <ParametersSection
+                    parameters={selectedOperation.operation.parameters}
+                    components={components}
+                    expanded={true}
+                  />
                 )}
 
                 {/* 请求体部分 */}
                 {selectedOperation.operation.requestBody && (
-                  <div className="mb-8">
-                    <SectionTitle title={t('Request Body')} className="text-xl mb-4 pb-2 border-b dark:border-b-gray-700" />
-                    <RequestBodySection
-                      requestBody={selectedOperation.operation.requestBody}
-                      components={components}
-                    />
-                  </div>
+                  <RequestBodySection
+                    requestBody={selectedOperation.operation.requestBody}
+                    components={components}
+                  />
                 )}
 
                 {/* 响应部分 */}
                 {selectedOperation.operation.responses && Object.keys(selectedOperation.operation.responses).length > 0 && (
-                  <div className="mb-8">
-                    <SectionTitle title={t('Responses')} className="text-xl mb-4 pb-2 border-b dark:border-b-gray-700" />
-                    <ResponsesSection
-                      responses={selectedOperation.operation.responses}
-                      components={components}
-                    />
-                  </div>
+                  <ResponsesSection
+                    responses={selectedOperation.operation.responses}
+                    components={components}
+                  />
                 )}
               </div>
             </div>
@@ -260,7 +246,7 @@ const PathDetailLayout: React.FC<PathDetailLayoutProps> = ({ spec: inputSpec, cl
             <div className="w-1/3 min-w-[560px] max-w-screen-md flex-shrink-0">
               <div className="sticky top-4 space-y-6">
                 {/* 代码生成器面板 */}
-                <div className="p-5 bg-white dark:bg-gray-800 rounded-lg">
+                <div className="">
                   <SectionTitle title={t('Code Samples')} className="text-xl mb-4" />
                   <Codegen
                     endpoint={selectedOperation.path}
@@ -273,7 +259,7 @@ const PathDetailLayout: React.FC<PathDetailLayoutProps> = ({ spec: inputSpec, cl
                 </div>
 
                 {/* Try It Out面板 */}
-                <div className="p-5 bg-white dark:bg-gray-800 rounded-lg">
+                <div className="">
                   <SectionTitle title={t('Try It')} className="text-xl mb-4" />
                   <TryItOutPanel
                     operation={selectedOperation.operation}
@@ -290,8 +276,8 @@ const PathDetailLayout: React.FC<PathDetailLayoutProps> = ({ spec: inputSpec, cl
         ) : (
           <div className="flex flex-col items-center justify-center min-h-[60vh]">
             <div className="text-center max-w-md">
-              <h2 className="text-2xl font-semibold mb-4 dark:text-gray-200">{t('Select an API endpoint')}</h2>
-              <p className="text-gray-600 dark:text-gray-400">{t('Choose an API endpoint from the sidebar to view its details.')}</p>
+              <h2 className="text-2xl font-semibold mb-4 dark:text-neutral-200">{t('Select an API endpoint')}</h2>
+              <p className="text-neutral-600 dark:text-neutral-400">{t('Choose an API endpoint from the sidebar to view its details.')}</p>
             </div>
           </div>
         )}

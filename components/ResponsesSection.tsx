@@ -89,7 +89,7 @@ const ResponsesSection: React.FC<ResponsesSectionProps> = ({
 
   return (
     <div className={cn(className)}>
-      <SectionTitle title={t('Response')} className="text-lg font-medium mb-3" />
+      <SectionTitle title={t('Response')} className="text-lg my-3" />
 
       {/* Status code list */}
       <div className="mb-4">

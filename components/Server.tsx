@@ -40,9 +40,9 @@ const Server: React.FC<ServerProps> = ({ server }) => {
 
   return (
     <div className="rounded mb-4 overflow-hidden">
-      <div className="p-3 bg-gray-50 dark:bg-gray-800 flex items-center justify-between">
+      <div className="p-3 bg-neutral-50 dark:bg-neutral-800 flex items-center justify-between">
         <div className="flex-grow overflow-auto">
-          <div className="font-mono text-sm break-all dark:text-gray-200">
+          <div className="font-mono text-sm break-all dark:text-neutral-200">
             {urlParts.map(part => (
               <span
                 key={part.key}
@@ -53,7 +53,7 @@ const Server: React.FC<ServerProps> = ({ server }) => {
             ))}
           </div>
           {hasVariables && (
-            <div className="text-xs text-gray-600 dark:text-gray-400 mt-1">
+            <div className="text-xs text-neutral-600 dark:text-neutral-400 mt-1">
               {t('Interpolated URL:')} {interpolatedUrl}
             </div>
           )}
@@ -69,17 +69,17 @@ const Server: React.FC<ServerProps> = ({ server }) => {
       </div>
 
       {isExpanded && (description || hasVariables) && (
-        <div className="p-4 border-t dark:border-gray-700 dark:bg-gray-800/50">
+        <div className="p-4 border-t dark:border-neutral-700 dark:bg-neutral-800/50">
           {description && (
             <div className="mb-4">
-              <h4 className="text-sm font-semibold mb-1 dark:text-gray-200">{t('Description')}</h4>
+              <h4 className="text-sm font-semibold mb-1 dark:text-neutral-200">{t('Description')}</h4>
               <DescriptionDisplay description={description} />
             </div>
           )}
 
           {hasVariables && (
             <div>
-              <h4 className="text-sm font-semibold mb-2 dark:text-gray-200">{t('Server Variables:')}</h4>
+              <h4 className="text-sm font-semibold mb-2 dark:text-neutral-200">{t('Server Variables:')}</h4>
               <div className="space-y-3">
                 {Object.entries(variables).map(([name, variable]) => (
                   <ServerVariable key={name} name={name} variable={variable} />

@@ -25,13 +25,13 @@ const WebhookDisplay: React.FC<WebhookDisplayProps> = ({
   ].filter(({ operation }) => operation);
 
   return (
-    <div className={`rounded-lg p-4 bg-gray-50 ${className || ''}`}>
-      <h2 className="text-lg font-semibold text-gray-900 mb-2">
+    <div className={`rounded-lg p-4 bg-neutral-50 ${className || ''}`}>
+      <h2 className="text-lg font-semibold text-neutral-900 mb-2">
         {t('Webhook:')} <span className="text-blue-600">{name}</span>
       </h2>
 
       {pathItem.description && (
-        <p className="text-gray-600 mb-4">{pathItem.description}</p>
+        <p className="text-neutral-600 mb-4">{pathItem.description}</p>
       )}
 
       <div className="space-y-4">

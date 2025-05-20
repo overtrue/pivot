@@ -8,6 +8,7 @@ import { cn } from '@/utils/cn';
 import React from 'react';
 import { resolveRef } from '../utils/resolveRef';
 import ParameterItem from './ParameterItem'; // Import ParameterItem and StyleType
+import SectionTitle from './atoms/SectionTitle';
 
 interface ParametersSectionProps {
   parameters: (ParameterObject | ReferenceObject)[];
@@ -26,8 +27,7 @@ const ParametersSection: React.FC<ParametersSectionProps> = ({ parameters, compo
   return (
     <div className={cn(className, "dark:text-neutral-200")}>
       {/* Optionally add a title, or assume OperationBox provides context */}
-      {/* <SectionTitle title="Parameters" className="text-sm font-semibold mb-3"/> */}
-      <h4 className="text-sm font-semibold mb-3 dark:text-neutral-300">{t('Parameters')}</h4>
+      <SectionTitle title={t('Parameters')} className="text-lg font-medium mb-3" />
       <div className="space-y-3">
         {parameters.map((paramOrRef, index) => {
           // Resolve parameter ref

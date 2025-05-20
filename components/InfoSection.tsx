@@ -25,20 +25,20 @@ const InfoSection: React.FC<InfoSectionProps> = ({ info, className }) => {
       </div>
 
       {info.description && (
-        <div className="mb-8 bg-white dark:bg-gray-800 p-6 rounded-lg">
+        <div className="mb-8 bg-white dark:bg-neutral-800 p-6 rounded-lg">
           <div className="flex items-center mb-4">
             <FileText className="text-blue-600 dark:text-blue-400 mr-2" size={20} />
-            <h2 className="text-xl font-semibold text-gray-800 dark:text-gray-100">{t('API Description')}</h2>
+            <h2 className="text-xl font-semibold text-neutral-800 dark:text-neutral-100">{t('API Description')}</h2>
           </div>
-          <DescriptionDisplay description={info.description} className="prose max-w-none text-gray-600 dark:text-gray-300" />
+          <DescriptionDisplay description={info.description} className="prose max-w-none text-neutral-600 dark:text-neutral-300" />
         </div>
       )}
 
       {info.termsOfService && (
-        <div className="mb-8 bg-white dark:bg-gray-800 p-6 rounded-lg">
+        <div className="mb-8 bg-white dark:bg-neutral-800 p-6 rounded-lg">
           <div className="flex items-center mb-4">
             <Book className="text-blue-600 dark:text-blue-400 mr-2" size={20} />
-            <h2 className="text-xl font-semibold text-gray-800 dark:text-gray-100">{t('Terms of Service')}</h2>
+            <h2 className="text-xl font-semibold text-neutral-800 dark:text-neutral-100">{t('Terms of Service')}</h2>
           </div>
           <a href={info.termsOfService} target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline hover:text-blue-800 dark:hover:text-blue-300 transition-colors break-all flex items-center">
             <span>{info.termsOfService}</span>
@@ -48,20 +48,20 @@ const InfoSection: React.FC<InfoSectionProps> = ({ info, className }) => {
 
       <div className="grid md:grid-cols-2 gap-6">
         {info.contact && (
-          <div className="bg-white dark:bg-gray-800 p-6 rounded-lg">
+          <div className="bg-white dark:bg-neutral-800 p-6 rounded-lg">
             <div className="flex items-center mb-4">
               <Users className="text-blue-600 dark:text-blue-400 mr-2" size={20} />
-              <h2 className="text-xl font-semibold text-gray-800 dark:text-gray-100">{t('Contact')}</h2>
+              <h2 className="text-xl font-semibold text-neutral-800 dark:text-neutral-100">{t('Contact')}</h2>
             </div>
             <ContactDisplay contact={info.contact} />
           </div>
         )}
 
         {info.license && (
-          <div className="bg-white dark:bg-gray-800 p-6 rounded-lg">
+          <div className="bg-white dark:bg-neutral-800 p-6 rounded-lg">
             <div className="flex items-center mb-4">
               <Info className="text-blue-600 dark:text-blue-400 mr-2" size={20} />
-              <h2 className="text-xl font-semibold text-gray-800 dark:text-gray-100">{t('License')}</h2>
+              <h2 className="text-xl font-semibold text-neutral-800 dark:text-neutral-100">{t('License')}</h2>
             </div>
             <LicenseDisplay license={info.license} />
           </div>

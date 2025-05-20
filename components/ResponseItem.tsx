@@ -56,7 +56,7 @@ const ResponseItem: React.FC<ResponseItemProps> = ({
   return (
     <div className="border rounded mb-4 overflow-hidden">
       {/* Header part */}
-      <div className="p-3 bg-gray-50 flex items-center justify-between">
+      <div className="p-3 bg-neutral-50 flex items-center justify-between">
         <div className="flex items-center space-x-3">
           <StatusCode code={code} />
           {description && <DescriptionDisplay description={description} className="text-sm mb-0" />}
