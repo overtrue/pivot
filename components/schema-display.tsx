@@ -8,15 +8,8 @@ import {
 import { cn } from '@/utils/cn';
 import React, { useState } from 'react';
 import { resolveRef } from '../utils/resolveRef';
-import DefaultValueDisplay from './atoms/section-title';
-import DeprecatedBadge from './atoms/section-title';
-import DescriptionDisplay from './atoms/section-title';
-import EnumValuesDisplay from './atoms/section-title';
-import FormatBadge from './atoms/section-title';
-import RequiredBadge from './atoms/section-title'; // Needed for object properties
-import SchemaConstraints from './atoms/section-title';
-import TypeIndicator from './atoms/section-title';
-import SchemaCompositionDisplay from '.'; // Import composition helper
+import { default as DefaultValueDisplay, default as DeprecatedBadge, default as DescriptionDisplay, default as EnumValuesDisplay, default as FormatBadge, default as RequiredBadge, default as SchemaConstraints, default as TypeIndicator } from './atoms/section-title';
+import SchemaCompositionDisplay from './schema-composition-display'; // Import composition helper
 
 interface SchemaDisplayProps {
   schema: SchemaObject | ReferenceObject;

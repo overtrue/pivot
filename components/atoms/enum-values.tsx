@@ -1,6 +1,6 @@
 import { cn } from '@/utils/cn';
 import React, { useState } from 'react';
-import ValueDisplay from '.';
+import ValueDisplay from './value-display';
 
 interface EnumValuesProps {
   values: any[];

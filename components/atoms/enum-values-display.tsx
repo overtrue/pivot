@@ -1,7 +1,6 @@
-
 import { cn } from '@/utils/cn';
 import React from 'react';
-import EnumValues from '.';
+import EnumValues from './enum-values';
 
 interface EnumValuesDisplayProps {
   values: any[];

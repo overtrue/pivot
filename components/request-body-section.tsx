@@ -9,7 +9,7 @@ import {
 import { cn } from '@/utils/cn';
 import React from 'react';
 import SectionTitle from './atoms/section-title';
-import SchemaWithExampleViewer from '.';
+import SchemaWithExampleViewer from './schema-with-example-viewer';
 
 interface RequestBodySectionProps {
   requestBody: RequestBodyObject | ReferenceObject;

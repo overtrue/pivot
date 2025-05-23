@@ -1,9 +1,9 @@
 import { useI18n } from '@/lib/i18n/i18n-provider';
 import { LinkObject } from '@/types/openapi';
 import React, { useState } from 'react';
-import DescriptionDisplay from './atoms/section-title';
-import ServerDisplay from './atoms/section-title';
-import ExpandCollapse from './interactive';
+import DescriptionDisplay from './atoms/description-display';
+import ServerDisplay from './atoms/server-display';
+import ExpandCollapse from './interactive/expand-collapse';
 
 interface LinkItemProps extends LinkObject {
   name: string;

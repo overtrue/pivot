@@ -3,9 +3,9 @@ import { InfoObject } from '@/types/openapi'; // Adjust path
 import { cn } from '@/utils/cn';
 import { Book, FileText, Info, Users } from 'lucide-react';
 import React from 'react';
-import ContactDisplay from './atoms/section-title';
-import DescriptionDisplay from './atoms/section-title';
-import LicenseDisplay from './atoms/section-title';
+import ContactDisplay from './atoms/contact-display';
+import DescriptionDisplay from './atoms/description-display';
+import LicenseDisplay from './atoms/license-display';
 
 interface InfoSectionProps {
   info: InfoObject;

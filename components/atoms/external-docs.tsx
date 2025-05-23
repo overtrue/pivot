@@ -22,5 +22,3 @@ const ExternalDocs: React.FC<{ url: string; description?: string; className?: st
 };
 
 export default ExternalDocs;
-
-export default ExternalDocs;

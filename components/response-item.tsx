@@ -1,4 +1,3 @@
-
 import { useI18n } from '@/lib/i18n/i18n-provider';
 import {
   ComponentsObject,
@@ -10,11 +9,11 @@ import {
 } from '@/types/openapi'; // Adjust path
 import React from 'react';
 import { resolveRef } from '../utils/resolveRef';
-import DescriptionDisplay from './atoms/section-title';
-import StatusCode from './atoms/section-title';
-import HeadersSection from '.';
-import LinksSection from '.';
-import ResponseContentSection from '.';
+import DescriptionDisplay from './atoms/description-display';
+import StatusCode from './atoms/status-code';
+import HeadersSection from './headers-section';
+import LinksSection from './links-section';
+import ResponseContentSection from './response-content-section';
 
 // 修改接口，接受原始响应对象或引用
 interface ResponseItemProps {

@@ -1,4 +1,4 @@
-import DescriptionDisplay from '@/components/atoms/openapi';
+import DescriptionDisplay from '@/components/atoms/description-display';
 import { useI18n } from '@/lib/i18n/i18n-provider';
 import { ServerObject, ServerVariableObject } from '@/types/openapi';
 import React, { useState } from 'react';

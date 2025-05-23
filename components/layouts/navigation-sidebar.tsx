@@ -3,8 +3,8 @@ import { OpenApiSpec, PathItemObject } from '@/types/openapi';
 import { cn } from '@/utils/cn';
 import { ChevronDown, ChevronRight, ChevronsDown, ChevronsUp, Github, Info, Search } from 'lucide-react';
 import React, { useState } from 'react';
-import MethodLabel from '../atoms';
-import { ThemeToggle } from '..';
+import MethodLabel from '../atoms/method-label';
+import { ThemeToggle } from '../theme-toggle';
 
 interface NavigationSidebarProps {
   openapi: OpenApiSpec;

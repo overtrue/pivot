@@ -1,9 +1,9 @@
-import { CurlGenerator } from './generators/openapi';
-import { LaravelGenerator } from './generators/openapi';
-import { PhpGenerator } from './generators/openapi';
-import { PythonGenerator } from './generators/openapi';
-import { TypeScriptGenerator } from './generators/openapi';
-import { CodeGenerator } from './openapi';
+import { CodeGenerator } from './code-generator';
+import { CurlGenerator } from './generators/curl-generator';
+import { LaravelGenerator } from './generators/laravel-generator';
+import { PhpGenerator } from './generators/php-generator';
+import { PythonGenerator } from './generators/python-generator';
+import { TypeScriptGenerator } from './generators/type-script-generator';
 
 // 注册所有代码生成器
 export const codeGenerators: CodeGenerator[] = [

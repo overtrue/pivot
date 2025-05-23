@@ -1,4 +1,3 @@
-
 import { useI18n } from '@/lib/i18n/i18n-provider';
 import {
   ComponentsObject,
@@ -7,7 +6,7 @@ import {
   SchemaObject
 } from '@/types/openapi'; // 导入SchemaCompositionKeyword
 import React from 'react';
-import SchemaDisplay from '.'; // Import the main display component
+import SchemaDisplay from './schema-display'; // Import the main display component
 
 interface SchemaCompositionDisplayProps {
   keyword: SchemaCompositionKeyword;

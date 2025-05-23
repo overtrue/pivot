@@ -6,7 +6,7 @@ import {
 } from '@/types/openapi';
 import React from 'react';
 import { resolveRef } from '../utils/resolveRef'; // Import generic resolver
-import DescriptionDisplay from './atoms/section-title';
+import DescriptionDisplay from './atoms/description-display';
 
 interface ExamplesDisplayProps {
   examples: Record<string, ExampleObject | ReferenceObject>;

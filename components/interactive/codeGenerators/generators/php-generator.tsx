@@ -1,20 +1,19 @@
 // filepath: /workspaces/pivot/components/interactive/codeGenerators/generators/PhpGenerator.ts
-import React from 'react';
 import { Code2 } from 'lucide-react';
 import { CodeGenerator, CodeGeneratorParams } from '..';
-import { replaceDoubleQuotes } from '../utils/resolveRef';
+import { replaceDoubleQuotes } from '../utils/replaceDoubleQuotes';
 
 export class PhpGenerator implements CodeGenerator {
   id = 'php';
   label = 'PHP';
-  
+
   getIcon() {
     return <Code2 size={16} />;
   }
-  
+
   generateCode(params: CodeGeneratorParams): string {
     const { endpoint, method, requestBodyExample, requestBody } = params;
-    
+
     return `<?php
 // 使用 PHP 的 cURL 扩展
 function call_${method.toLowerCase()}() {

@@ -1,7 +1,6 @@
-
 import { cn } from '@/utils/cn';
 import React from 'react';
-import PathSegment from '.';
+import PathSegment from './path-segment';
 
 interface OperationPathProps {
   path: string;

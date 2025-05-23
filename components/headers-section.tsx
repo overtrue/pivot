@@ -1,4 +1,3 @@
-
 import { useI18n } from '@/lib/i18n/i18n-provider';
 import {
   ComponentsObject,
@@ -7,7 +6,7 @@ import {
 } from '@/types/openapi'; // Adjust path
 import React from 'react';
 import { resolveRef } from '../utils/resolveRef'; // Import generic resolver
-import HeaderItem from '.'; // New path relative to HeadersSection
+import HeaderItem from './header-item'; // New path relative to HeadersSection
 
 interface HeadersSectionProps {
   headers: Record<string, HeaderObject | ReferenceObject>;

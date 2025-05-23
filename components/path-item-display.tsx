@@ -1,6 +1,6 @@
 import { ComponentsObject, PathItemObject } from '@/types/openapi';
 import React from 'react';
-import OperationBox from '.';
+import OperationBox from './operation-box';
 
 export interface PathItemDisplayProps {
   path: string;

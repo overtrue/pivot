@@ -5,7 +5,7 @@ import {
   MediaTypeObject
 } from '@/types/openapi'; // Adjust path
 import React from 'react';
-import SchemaWithExampleViewer from '.';
+import SchemaWithExampleViewer from './schema-with-example-viewer';
 
 interface ResponseContentSectionProps {
   content: Record<string, MediaTypeObject>;

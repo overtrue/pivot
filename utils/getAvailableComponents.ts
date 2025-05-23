@@ -1,6 +1,7 @@
-
 import { ComponentsObject } from '@/types/openapi';
-import { ComponentType } from '../components/openapi';
+
+// 定义ComponentType类型（从components/component-tabs.tsx移动到这里）
+export type ComponentType = keyof ComponentsObject;
 
 /**
  * 获取OpenAPI组件中可用的组件类型及其项目

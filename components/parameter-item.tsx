@@ -1,19 +1,19 @@
-import EnumValuesDisplay from '@/components/atoms/openapi';
+import EnumValuesDisplay from '@/components/atoms/enum-values-display';
 import { useI18n } from '@/lib/i18n/i18n-provider';
 import { ComponentsObject, ExampleObject, ParameterObject, ReferenceObject, SchemaObject, StyleType } from '@/types/openapi';
 import { cn } from '@/utils/cn';
 import React, { useState } from 'react';
-import DefaultValueDisplay from './atoms/section-title';
-import DeprecatedBadge from './atoms/section-title';
-import FormatBadge from './atoms/section-title';
-import InLabel from './atoms/section-title';
-import ParameterDescription from './atoms/section-title';
-import ParameterName from './atoms/section-title';
-import SchemaConstraints from './atoms/section-title';
-import StyleBadge from './atoms/section-title';
-import TypeIndicator from './atoms/section-title';
-import ExamplesDisplay from '.';
-import ExpandCollapse from './interactive';
+import DefaultValueDisplay from './atoms/default-value-display';
+import DeprecatedBadge from './atoms/deprecated-badge';
+import FormatBadge from './atoms/format-badge';
+import InLabel from './atoms/in-label';
+import ParameterDescription from './atoms/parameter-description';
+import ParameterName from './atoms/parameter-name';
+import SchemaConstraints from './atoms/schema-constraints';
+import StyleBadge from './atoms/style-badge';
+import TypeIndicator from './atoms/type-indicator';
+import ExamplesDisplay from './examples-display';
+import ExpandCollapse from './interactive/expand-collapse';
 
 // 类型守卫函数，检查是否为SchemaObject
 function isSchemaObject(obj: SchemaObject | ReferenceObject | undefined): obj is SchemaObject {

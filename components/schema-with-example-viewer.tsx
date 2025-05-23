@@ -7,7 +7,9 @@ import {
   RequestBodyObject,
   ResponseObject
 } from '@/types/openapi';
-import { cn, generateExample, resolveRef } from '@/utils/cn';
+import { cn } from '@/utils/cn';
+import { generateExample } from '@/utils/generateExample';
+import { resolveRef } from '@/utils/resolveRef';
 import React, { useEffect, useState } from 'react';
 import DescriptionDisplay from './atoms/description-display';
 import ExampleDisplay from './example-display';
