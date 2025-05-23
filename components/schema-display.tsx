@@ -7,8 +7,8 @@ import {
 } from '@/types/openapi'; // Adjust path
 import { cn } from '@/utils/cn';
 import React, { useState } from 'react';
-import { resolveRef } from '../utils/resolveRef';
-import { default as DefaultValueDisplay, default as DeprecatedBadge, default as DescriptionDisplay, default as EnumValuesDisplay, default as FormatBadge, default as RequiredBadge, default as SchemaConstraints, default as TypeIndicator } from './atoms/section-title';
+import { resolveRef } from '@/utils/resolveRef';
+import { default as DefaultValueDisplay, default as DeprecatedBadge, default as DescriptionDisplay, default as EnumValuesDisplay, default as FormatBadge, default as RequiredBadge, default as SchemaConstraints, default as TypeIndicator } from './section-title';
 import SchemaCompositionDisplay from './schema-composition-display'; // Import composition helper
 
 interface SchemaDisplayProps {

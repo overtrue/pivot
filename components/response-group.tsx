@@ -1,7 +1,7 @@
 import { useI18n } from '@/lib/i18n/i18n-provider';
 import { ComponentsObject, ResponseObject } from '@/types/openapi';
 import React from 'react';
-import ResponseHeadersTable from './atoms/response-headers-table';
+import ResponseHeadersTable from './response-headers-table';
 import ResponseContentSection from './response-content-section';
 
 interface ResponseGroupProps {

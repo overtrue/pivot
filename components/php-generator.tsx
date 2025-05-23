@@ -1,7 +1,7 @@
 // filepath: /workspaces/pivot/components/interactive/codeGenerators/generators/PhpGenerator.ts
 import { Code2 } from 'lucide-react';
-import { CodeGenerator, CodeGeneratorParams } from '..';
-import { replaceDoubleQuotes } from '../utils/replaceDoubleQuotes';
+import { CodeGenerator, CodeGeneratorParams } from './types';
+import { replaceDoubleQuotes } from './replaceDoubleQuotes';
 
 export class PhpGenerator implements CodeGenerator {
   id = 'php';

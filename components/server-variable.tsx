@@ -1,7 +1,7 @@
-import DescriptionDisplay from '@/components/atoms/description-display';
 import { useI18n } from '@/lib/i18n/i18n-provider';
 import { ServerVariableObject } from '@/types/openapi';
 import React from 'react';
+import DescriptionDisplay from './description-display';
 
 interface ServerVariableProps {
   name: string;

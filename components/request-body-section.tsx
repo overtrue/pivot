@@ -8,7 +8,7 @@ import {
 } from '@/types/openapi';
 import { cn } from '@/utils/cn';
 import React from 'react';
-import SectionTitle from './atoms/section-title';
+import SectionTitle from './section-title';
 import SchemaWithExampleViewer from './schema-with-example-viewer';
 
 interface RequestBodySectionProps {

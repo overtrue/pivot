@@ -1,8 +1,8 @@
 import { useI18n } from '@/lib/i18n/i18n-provider';
 import { ComponentsObject } from '@/types/openapi';
 import React, { useMemo, useState } from 'react';
-import { getAvailableComponents } from '../utils/getAvailableComponents';
-import SectionTitle from './atoms/section-title';
+import { getAvailableComponents } from '@/utils/getAvailableComponents';
+import SectionTitle from './section-title';
 import ComponentDetail from './component-detail';
 import ComponentItemsList from './component-items-list';
 import ComponentTabs, { ComponentType } from './component-tabs';

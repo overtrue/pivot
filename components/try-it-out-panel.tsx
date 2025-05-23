@@ -8,8 +8,8 @@ import {
 } from '@/types/openapi';
 import { ChevronDown, ChevronUp, Send } from 'lucide-react';
 import React, { useState } from 'react';
-import { resolveRef } from '../utils/resolveRef';
-import MethodLabel from './atoms/method-label';
+import { resolveRef } from '@/utils/resolveRef';
+import MethodLabel from './method-label';
 
 interface TryItOutPanelProps {
   operation: OperationObject;

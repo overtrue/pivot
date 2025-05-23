@@ -5,7 +5,7 @@ import {
   ReferenceObject
 } from '@/types/openapi'; // Adjust path
 import React from 'react';
-import { resolveRef } from '../utils/resolveRef';
+import { resolveRef } from '@/utils/resolveRef';
 import OperationBox from './operation-box'; // Reuse OperationBox to display callback operations
 
 interface CallbackDisplayProps {

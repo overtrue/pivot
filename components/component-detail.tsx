@@ -14,7 +14,7 @@ import {
   SecuritySchemeObject
 } from '@/types/openapi';
 import React from 'react';
-import { resolveRef } from '../utils/resolveRef';
+import { resolveRef } from '@/utils/resolveRef';
 import CallbackDisplay from './callback-display';
 import { ComponentType } from './component-tabs';
 import ExamplesDisplay from './examples-display';

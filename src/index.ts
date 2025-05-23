@@ -1,5 +1,5 @@
+export { default as OpenApiLayout } from '../components/all-in-one-layout';
 export { default as ComponentDetail } from '../components/ComponentDetail';
-export { default as OpenApiLayout } from '../components/layouts/AllInOneLayout';
 export { default as OperationBox } from '../components/OperationBox';
 export { default as PathItemDisplay } from '../components/PathItemDisplay';
 export { default as TryItOutPanel } from '../components/TryItOutPanel';

@@ -1,5 +1,3 @@
-import MethodLabel from '@/components/atoms/method-label';
-import OperationPath from '@/components/atoms/operation-path';
 import { useOpenApi } from '@/hooks/useOpenApi';
 import { useI18n } from '@/lib/i18n/i18n-provider';
 import {
@@ -9,10 +7,12 @@ import {
 } from '@/types/openapi';
 import { cn } from '@/utils/cn';
 import React, { useState } from 'react';
-import DeprecatedBadge from './atoms/deprecated-badge';
-import DescriptionDisplay from './atoms/description-display';
-import ExternalDocsDisplay from './atoms/external-docs-display';
-import ExpandCollapse from './interactive/expand-collapse';
+import DeprecatedBadge from './deprecated-badge';
+import DescriptionDisplay from './description-display';
+import ExternalDocsDisplay from './external-docs-display';
+import ExpandCollapse from './expand-collapse';
+import MethodLabel from './method-label';
+import OperationPath from './operation-path';
 import ParametersSection from './parameters-section';
 import RequestBodySection from './request-body-section';
 import ResponsesSection from './responses-section';

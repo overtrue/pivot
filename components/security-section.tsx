@@ -6,8 +6,8 @@ import {
   SecuritySchemeObject
 } from '@/types/openapi';
 import React from 'react';
-import { resolveRef } from '../utils/resolveRef';
-import SectionTitle from './atoms/section-title';
+import { resolveRef } from '@/utils/resolveRef';
+import SectionTitle from './section-title';
 import SecuritySchemeDisplay from './security-scheme-display';
 
 interface SecuritySectionProps {

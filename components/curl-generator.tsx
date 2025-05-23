@@ -1,6 +1,6 @@
 import React from 'react';
 import { Terminal } from 'lucide-react';
-import { CodeGenerator, CodeGeneratorParams } from '..';
+import { CodeGenerator, CodeGeneratorParams } from './types';
 
 export class CurlGenerator implements CodeGenerator {
   id = 'curl';

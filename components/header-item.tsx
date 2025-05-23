@@ -6,16 +6,16 @@ import {
 } from '@/types/openapi';
 import { cn } from '@/utils/cn';
 import React, { useState } from 'react';
-import DefaultValueDisplay from './atoms/default-value-display';
-import DeprecatedBadge from './atoms/deprecated-badge';
-import DescriptionDisplay from './atoms/description-display';
-import EnumValuesDisplay from './atoms/enum-values-display';
-import FormatBadge from './atoms/format-badge';
-import RequiredBadge from './atoms/required-badge';
-import SchemaConstraints from './atoms/schema-constraints';
-import TypeIndicator from './atoms/type-indicator';
+import DefaultValueDisplay from './default-value-display';
+import DeprecatedBadge from './deprecated-badge';
+import DescriptionDisplay from './description-display';
+import EnumValuesDisplay from './enum-values-display';
+import FormatBadge from './format-badge';
+import RequiredBadge from './required-badge';
+import SchemaConstraints from './schema-constraints';
+import TypeIndicator from './type-indicator';
 import ExamplesDisplay from './examples-display';
-import ExpandCollapse from './interactive/expand-collapse';
+import ExpandCollapse from './expand-collapse';
 
 // Type guard to check if it's a SchemaObject and not a ReferenceObject
 function isSchemaObject(obj: SchemaObject | ReferenceObject): obj is SchemaObject {

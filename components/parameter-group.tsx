@@ -1,6 +1,6 @@
-import ExpandCollapse from '@/components/interactive/expand-collapse';
-import RequiredMarker from './atoms/required-marker';
-import TypeIndicator from './atoms/type-indicator';
+import RequiredMarker from './required-marker';
+import TypeIndicator from './type-indicator';
+import ExpandCollapse from './expand-collapse';
 
 interface ParameterGroupProps {
   inType: 'query' | 'path' | 'header' | 'cookie';

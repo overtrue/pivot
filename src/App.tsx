@@ -1,6 +1,6 @@
+import OpenApiLayout from '@/components/all-in-one-layout';
 import LanguageSwitcher from '@/components/language-switcher';
-import OpenApiLayout from '@/components/layouts/all-in-one-layout';
-import PathDetailLayout from '@/components/layouts/path-detail-layout';
+import PathDetailLayout from '@/components/path-detail-layout';
 import { ThemeToggle } from '@/components/theme-toggle';
 import { useI18n } from '@/lib/i18n/i18n-provider';
 import { Github, Layout, LayoutTemplate } from 'lucide-react';

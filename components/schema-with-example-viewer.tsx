@@ -11,7 +11,7 @@ import { cn } from '@/utils/cn';
 import { generateExample } from '@/utils/generateExample';
 import { resolveRef } from '@/utils/resolveRef';
 import React, { useEffect, useState } from 'react';
-import DescriptionDisplay from './atoms/description-display';
+import DescriptionDisplay from './description-display';
 import ExampleDisplay from './example-display';
 import MediaTypeSelector from './media-type-selector';
 import SchemaDisplay from './schema-display';

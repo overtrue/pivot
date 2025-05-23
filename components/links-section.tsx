@@ -5,7 +5,7 @@ import {
   ReferenceObject,
 } from '@/types/openapi'; // Adjust path
 import React from 'react';
-import { resolveRef } from '../utils/resolveRef'; // Import generic resolver
+import { resolveRef } from '@/utils/resolveRef'; // Import generic resolver
 import LinkItem from './link-item'; // New path relative to LinksSection
 
 interface LinksSectionProps {

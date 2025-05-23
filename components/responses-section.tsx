@@ -8,8 +8,8 @@ import {
 } from '@/types/openapi';
 import { cn } from '@/utils/cn';
 import React, { useState } from 'react';
-import SectionTitle from './atoms/section-title';
-import StatusCode from './atoms/status-code';
+import SectionTitle from './section-title';
+import StatusCode from './status-code';
 import ResponseGroup from './response-group';
 
 interface ResponsesSectionProps {

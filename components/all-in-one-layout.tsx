@@ -8,10 +8,10 @@ import {
 import * as yaml from 'js-yaml';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import AccordionComponentsSection from '../accordion-components-section';
-import ExternalDocsDisplay from '../atoms/external-docs-display';
-import SectionTitle from '../atoms/section-title';
+import ExternalDocsDisplay from './external-docs-display';
+import SectionTitle from './section-title';
 import InfoSection from '../info-section';
-import Codegen from '../interactive/codegen';
+import Codegen from './codegen';
 import OperationBox from '../operation-box';
 import SecuritySection from '../security-section';
 import ServersSection from '../servers-section';

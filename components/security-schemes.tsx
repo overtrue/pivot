@@ -1,7 +1,7 @@
 import { useI18n } from '@/lib/i18n/i18n-provider';
 import React from 'react';
 import { SecuritySchemeObject } from '../types/openapi';
-import SectionTitle from './atoms/section-title';
+import SectionTitle from './section-title';
 import SecurityScheme from './security-scheme';
 
 interface SecuritySchemesProps {

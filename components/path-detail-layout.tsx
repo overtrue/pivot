@@ -9,10 +9,10 @@ import {
 } from '@/types/openapi';
 import * as yaml from 'js-yaml';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import DescriptionDisplay from '../atoms/description-display';
-import MethodLabel from '../atoms/method-label';
-import OperationPath from '../atoms/operation-path';
-import Codegen from '../interactive/codegen';
+import DescriptionDisplay from './description-display';
+import MethodLabel from './method-label';
+import OperationPath from './operation-path';
+import Codegen from './codegen';
 import ParametersSection from '../parameters-section';
 import RequestBodySection from '../request-body-section';
 import ResponsesSection from '../responses-section';

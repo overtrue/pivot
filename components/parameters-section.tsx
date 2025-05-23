@@ -6,8 +6,8 @@ import {
 } from '@/types/openapi'; // Adjust path
 import { cn } from '@/utils/cn';
 import React from 'react';
-import { resolveRef } from '../utils/resolveRef';
-import SectionTitle from './atoms/section-title';
+import { resolveRef } from '@/utils/resolveRef';
+import SectionTitle from './section-title';
 import ParameterItem from './parameter-item'; // Import ParameterItem and StyleType
 
 interface ParametersSectionProps {

@@ -1,5 +1,5 @@
 import React from 'react';
-import CopyButton from '../interactive/copy-button';
+import CopyButton from './copy-button';
 
 interface ConstValueProps {
   value: any;

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Braces } from 'lucide-react';
-import { CodeGenerator, CodeGeneratorParams } from '..';
+import { CodeGenerator, CodeGeneratorParams } from './types';
 
 export class TypeScriptGenerator implements CodeGenerator {
   id = 'typescript';

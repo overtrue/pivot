@@ -1,6 +1,6 @@
 import React from 'react';
 import { Code2 } from 'lucide-react';
-import { CodeGenerator, CodeGeneratorParams } from '..';
+import { CodeGenerator, CodeGeneratorParams } from './types';
 
 export class PythonGenerator implements CodeGenerator {
   id = 'python';
