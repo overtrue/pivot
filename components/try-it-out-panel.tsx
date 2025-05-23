@@ -8,7 +8,7 @@ import {
 } from '@/types/openapi';
 import { ChevronDown, ChevronUp, Send } from 'lucide-react';
 import React, { useState } from 'react';
-import { resolveRef } from '../utils/openapi';
+import { resolveRef } from '../utils/resolveRef';
 import MethodLabel from './atoms/section-title';
 
 interface TryItOutPanelProps {

@@ -7,14 +7,12 @@ import {
   RequestBodyObject,
   ResponseObject
 } from '@/types/openapi';
-import { cn } from '@/utils/cn';
-import { generateExample } from '@/utils/cn';
-import { resolveRef } from '@/utils/cn';
+import { cn, generateExample, resolveRef } from '@/utils/cn';
 import React, { useEffect, useState } from 'react';
-import DescriptionDisplay from './atoms/section-title';
-import ExampleDisplay from '.';
-import MediaTypeSelector from '.';
-import SchemaDisplay from '.';
+import DescriptionDisplay from './atoms/description-display';
+import ExampleDisplay from './example-display';
+import MediaTypeSelector from './media-type-selector';
+import SchemaDisplay from './schema-display';
 
 // ===== SchemaExampleView Component Section =====
 

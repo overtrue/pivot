@@ -1,4 +1,3 @@
-
 import {
   ComponentsObject,
   HeaderObject,
@@ -7,16 +6,16 @@ import {
 } from '@/types/openapi';
 import { cn } from '@/utils/cn';
 import React, { useState } from 'react';
-import DefaultValueDisplay from './atoms/section-title';
-import DeprecatedBadge from './atoms/section-title';
-import DescriptionDisplay from './atoms/section-title';
-import EnumValuesDisplay from './atoms/section-title';
-import FormatBadge from './atoms/section-title';
-import RequiredBadge from './atoms/section-title';
-import SchemaConstraints from './atoms/section-title';
-import TypeIndicator from './atoms/section-title';
-import ExamplesDisplay from '.';
-import ExpandCollapse from './interactive';
+import DefaultValueDisplay from './atoms/default-value-display';
+import DeprecatedBadge from './atoms/deprecated-badge';
+import DescriptionDisplay from './atoms/description-display';
+import EnumValuesDisplay from './atoms/enum-values-display';
+import FormatBadge from './atoms/format-badge';
+import RequiredBadge from './atoms/required-badge';
+import SchemaConstraints from './atoms/schema-constraints';
+import TypeIndicator from './atoms/type-indicator';
+import ExamplesDisplay from './examples-display';
+import ExpandCollapse from './interactive/expand-collapse';
 
 // Type guard to check if it's a SchemaObject and not a ReferenceObject
 function isSchemaObject(obj: SchemaObject | ReferenceObject): obj is SchemaObject {

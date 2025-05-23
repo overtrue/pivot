@@ -1,5 +1,5 @@
 import { useOpenApi } from '@/hooks/useOpenApi';
-import useUrlParams from '@/hooks/useOpenApi';
+import useUrlParams from '@/hooks/useUrlParams';
 import { useI18n } from '@/lib/i18n/i18n-provider';
 import {
   HttpMethod,
@@ -9,16 +9,16 @@ import {
 } from '@/types/openapi';
 import * as yaml from 'js-yaml';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import DescriptionDisplay from '../atoms';
-import MethodLabel from '../atoms';
-import OperationPath from '../atoms';
-import Codegen from '../interactive';
-import ParametersSection from '..';
-import RequestBodySection from '..';
-import ResponsesSection from '..';
-import TryItOutPanel from '..';
-import NavigationSidebar from '.';
-import ResizableSidebar from '.';
+import DescriptionDisplay from '../atoms/description-display';
+import MethodLabel from '../atoms/method-label';
+import OperationPath from '../atoms/operation-path';
+import Codegen from '../interactive/codegen';
+import ParametersSection from '../parameters-section';
+import RequestBodySection from '../request-body-section';
+import ResponsesSection from '../responses-section';
+import TryItOutPanel from '../try-it-out-panel';
+import NavigationSidebar from './navigation-sidebar';
+import ResizableSidebar from './resizable-sidebar';
 
 interface PathDetailLayoutProps {
   spec: OpenApiObject | string | null; // Allow spec to be null

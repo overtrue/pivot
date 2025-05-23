@@ -9,7 +9,7 @@ import {
   ResponseObject
 } from '@/types/openapi'; // Adjust path
 import React from 'react';
-import { resolveRef } from '../utils/openapi';
+import { resolveRef } from '../utils/resolveRef';
 import DescriptionDisplay from './atoms/section-title';
 import StatusCode from './atoms/section-title';
 import HeadersSection from '.';

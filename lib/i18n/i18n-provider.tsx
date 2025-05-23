@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState } from 'react';
-import en from './locales/openapi';
-import zh from './locales/openapi';
+import en from './locales/en';
+import zh from './locales/zh';
 
 type LocaleStrings = Record<string, string>;
 const locales: Record<string, LocaleStrings> = { en, zh };

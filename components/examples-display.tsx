@@ -5,7 +5,7 @@ import {
   ReferenceObject
 } from '@/types/openapi';
 import React from 'react';
-import { resolveRef } from '../utils/openapi'; // Import generic resolver
+import { resolveRef } from '../utils/resolveRef'; // Import generic resolver
 import DescriptionDisplay from './atoms/section-title';
 
 interface ExamplesDisplayProps {

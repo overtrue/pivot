@@ -2,7 +2,7 @@
 import React from 'react';
 import { Code2 } from 'lucide-react';
 import { CodeGenerator, CodeGeneratorParams } from '..';
-import { replaceDoubleQuotes } from '../utils/openapi';
+import { replaceDoubleQuotes } from '../utils/resolveRef';
 
 export class PhpGenerator implements CodeGenerator {
   id = 'php';

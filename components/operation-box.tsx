@@ -1,6 +1,5 @@
-
-import MethodLabel from '@/components/atoms/openapi';
-import OperationPath from '@/components/atoms/openapi';
+import MethodLabel from '@/components/atoms/method-label';
+import OperationPath from '@/components/atoms/operation-path';
 import { useOpenApi } from '@/hooks/useOpenApi';
 import { useI18n } from '@/lib/i18n/i18n-provider';
 import {
@@ -10,14 +9,14 @@ import {
 } from '@/types/openapi';
 import { cn } from '@/utils/cn';
 import React, { useState } from 'react';
-import ParametersSection from './/openapi';
-import ResponsesSection from './/openapi';
-import DeprecatedBadge from './atoms/section-title';
-import DescriptionDisplay from './atoms/section-title';
-import ExternalDocsDisplay from './atoms/section-title';
-import ExpandCollapse from './interactive';
-import RequestBodySection from '.';
-import SecurityRequirementsSection from '.';
+import DeprecatedBadge from './atoms/deprecated-badge';
+import DescriptionDisplay from './atoms/description-display';
+import ExternalDocsDisplay from './atoms/external-docs-display';
+import ExpandCollapse from './interactive/expand-collapse';
+import ParametersSection from './parameters-section';
+import RequestBodySection from './request-body-section';
+import ResponsesSection from './responses-section';
+import SecurityRequirementsSection from './security-requirements-section';
 
 interface OperationBoxProps {
   path: string;

@@ -7,7 +7,7 @@ import {
 } from '@/types/openapi'; // Adjust path
 import { cn } from '@/utils/cn';
 import React, { useState } from 'react';
-import { resolveRef } from '../utils/openapi';
+import { resolveRef } from '../utils/resolveRef';
 import DefaultValueDisplay from './atoms/section-title';
 import DeprecatedBadge from './atoms/section-title';
 import DescriptionDisplay from './atoms/section-title';

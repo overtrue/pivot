@@ -14,18 +14,18 @@ import {
   SecuritySchemeObject
 } from '@/types/openapi';
 import React from 'react';
-import { resolveRef } from '../utils/openapi';
-import { ComponentType } from './/openapi';
-import ParameterItem from './/openapi';
-import CallbackDisplay from '.';
-import ExamplesDisplay from '.';
-import HeaderItem from '.';
-import LinkItem from '.';
-import RequestBodySection from '.';
-import ResponseItem from '.';
-import SchemaDisplay from '.';
-import SecuritySchemeDisplay from '.';
-import WebhookDisplay from '.';
+import { resolveRef } from '../utils/resolveRef';
+import CallbackDisplay from './callback-display';
+import { ComponentType } from './component-tabs';
+import ExamplesDisplay from './examples-display';
+import HeaderItem from './header-item';
+import LinkItem from './link-item';
+import ParameterItem from './parameter-item';
+import RequestBodySection from './request-body-section';
+import ResponseItem from './response-item';
+import SchemaDisplay from './schema-display';
+import SecuritySchemeDisplay from './security-scheme-display';
+import WebhookDisplay from './webhook-display';
 
 interface ComponentDetailProps {
   activeType: ComponentType | null;

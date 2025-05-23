@@ -1,7 +1,7 @@
 import { useI18n } from '@/lib/i18n/i18n-provider';
 import { cn } from '@/utils/cn';
 import React from 'react';
-import CodeMarkdown from './atoms/section-title';
+import CodeMarkdown from './atoms/code-markdown';
 
 interface ExampleDisplayProps {
   example: any;

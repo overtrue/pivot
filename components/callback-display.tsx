@@ -1,4 +1,3 @@
-
 import {
   CallbackObject,
   ComponentsObject,
@@ -6,8 +5,8 @@ import {
   ReferenceObject
 } from '@/types/openapi'; // Adjust path
 import React from 'react';
-import { resolveRef } from '../utils/openapi';
-import OperationBox from '.'; // Reuse OperationBox to display callback operations
+import { resolveRef } from '../utils/resolveRef';
+import OperationBox from './operation-box'; // Reuse OperationBox to display callback operations
 
 interface CallbackDisplayProps {
   name: string; // Name of the callback defined in the parent component

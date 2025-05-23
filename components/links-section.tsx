@@ -5,8 +5,8 @@ import {
   ReferenceObject,
 } from '@/types/openapi'; // Adjust path
 import React from 'react';
-import { resolveRef } from '../utils/openapi'; // Import generic resolver
-import LinkItem from '.'; // New path relative to LinksSection
+import { resolveRef } from '../utils/resolveRef'; // Import generic resolver
+import LinkItem from './link-item'; // New path relative to LinksSection
 
 interface LinksSectionProps {
   links: Record<string, LinkObject | ReferenceObject>;
