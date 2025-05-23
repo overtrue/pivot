@@ -1,4 +1,4 @@
-import { ComponentsObject, HttpMethod, ParameterObject, ReferenceObject, RequestBodyObject } from '../../types/openapi';
+import { ComponentsObject, HttpMethod, ParameterObject, ReferenceObject, RequestBodyObject } from '../../types/type-script-generator';
 import { default as React } from 'react';
 
 interface CodegenProps {

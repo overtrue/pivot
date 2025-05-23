@@ -1,10 +1,10 @@
-import { useI18n } from '@/lib/i18n/I18nProvider';
+import { useI18n } from '@/lib/i18n/i18n-provider';
 import { ComponentsObject, HttpMethod, ParameterObject, ReferenceObject, RequestBodyObject } from '@/types/openapi';
 import React, { useState } from 'react';
-import { generateExample } from '../../utils/generateExample';
-import { resolveRef } from '../../utils/resolveRef';
-import CodeMarkdown from '../atoms/CodeMarkdown';
-import { codeGenerators } from './codeGenerators';
+import { generateExample } from '../../utils/openapi';
+import { resolveRef } from '../../utils/openapi';
+import CodeMarkdown from '../atoms';
+import { codeGenerators } from '.';
 
 interface CodegenProps {
   endpoint: string;

@@ -1,4 +1,4 @@
-import { LinkObject } from '../types/openapi';
+import { LinkObject } from '../types/type-script-generator';
 import { default as React } from 'react';
 
 interface LinkItemProps extends LinkObject {

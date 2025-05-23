@@ -1,4 +1,4 @@
-import { ServerVariableObject } from '../types/openapi';
+import { ServerVariableObject } from '../types/type-script-generator';
 import { default as React } from 'react';
 
 interface ServerVariableProps {

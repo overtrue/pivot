@@ -1,4 +1,4 @@
-import { ComponentsObject, ReferenceObject, SchemaObject } from '../types/openapi';
+import { ComponentsObject, ReferenceObject, SchemaObject } from '../types/type-script-generator';
 
 /**
  * 根据OpenAPI Schema生成示例数据

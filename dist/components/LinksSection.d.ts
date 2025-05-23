@@ -1,4 +1,4 @@
-import { ComponentsObject, LinkObject, ReferenceObject } from '../types/openapi';
+import { ComponentsObject, LinkObject, ReferenceObject } from '../types/type-script-generator';
 import { default as React } from 'react';
 
 interface LinksSectionProps {

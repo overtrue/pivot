@@ -1,4 +1,4 @@
-import { ComponentsObject } from '../types/openapi';
+import { ComponentsObject } from '../types/type-script-generator';
 import { default as React } from 'react';
 
 interface ComponentsSectionProps {

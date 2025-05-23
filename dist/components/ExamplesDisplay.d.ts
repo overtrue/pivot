@@ -1,4 +1,4 @@
-import { ComponentsObject, ExampleObject, ReferenceObject } from '../types/openapi';
+import { ComponentsObject, ExampleObject, ReferenceObject } from '../types/type-script-generator';
 import { default as React } from 'react';
 
 interface ExamplesDisplayProps {

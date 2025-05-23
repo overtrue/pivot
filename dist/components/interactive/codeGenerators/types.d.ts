@@ -1,4 +1,4 @@
-import { HttpMethod, ParameterObject, RequestBodyObject } from '../../../types/openapi';
+import { HttpMethod, ParameterObject, RequestBodyObject } from '../../../types/type-script-generator';
 import { ReactNode } from 'react';
 
 export interface CodeGeneratorParams {

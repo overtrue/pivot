@@ -1,4 +1,4 @@
-import { OpenApiSpec as OpenApiObject } from '../../types/openapi';
+import { OpenApiSpec as OpenApiObject } from '../../types/type-script-generator';
 import { default as React } from 'react';
 
 interface OpenApiLayoutProps {

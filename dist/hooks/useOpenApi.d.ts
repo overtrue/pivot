@@ -1,4 +1,4 @@
-import { OpenApiSpec, OperationObject, ParameterObject, ReferenceObject, RequestBodyObject, ResponseObject, SchemaObject, ServerObject } from '../types/openapi';
+import { OpenApiSpec, OperationObject, ParameterObject, ReferenceObject, RequestBodyObject, ResponseObject, SchemaObject, ServerObject } from '../types/type-script-generator';
 
 /**
  * 自定义钩子，简化OpenAPI结构的处理

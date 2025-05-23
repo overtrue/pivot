@@ -1,4 +1,4 @@
-import { ComponentsObject, HeaderObject } from '../types/openapi';
+import { ComponentsObject, HeaderObject } from '../types/type-script-generator';
 import { default as React } from 'react';
 
 interface HeaderItemProps extends HeaderObject {

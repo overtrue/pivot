@@ -1,4 +1,4 @@
-import { ComponentsObject, OpenApiSpec, ReferenceObject, RequestBodyObject } from '../types/openapi';
+import { ComponentsObject, OpenApiSpec, ReferenceObject, RequestBodyObject } from '../types/type-script-generator';
 import { default as React } from 'react';
 
 interface RequestBodySectionProps {

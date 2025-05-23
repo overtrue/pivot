@@ -1,4 +1,4 @@
-import { ComponentsObject, ExampleObject, ParameterObject, ReferenceObject, SchemaObject, StyleType } from '../types/openapi';
+import { ComponentsObject, ExampleObject, ParameterObject, ReferenceObject, SchemaObject, StyleType } from '../types/type-script-generator';
 import { default as React } from 'react';
 
 interface ParameterItemProps extends Omit<ParameterObject, 'schema' | 'examples' | 'style'> {

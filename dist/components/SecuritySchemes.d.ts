@@ -1,5 +1,5 @@
 import { default as React } from 'react';
-import { SecuritySchemeObject } from '../types/openapi';
+import { SecuritySchemeObject } from '../types/type-script-generator';
 
 interface SecuritySchemesProps {
     schemes: Record<string, SecuritySchemeObject>;

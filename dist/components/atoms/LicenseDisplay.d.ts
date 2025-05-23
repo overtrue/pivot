@@ -1,4 +1,4 @@
-import { LicenseObject } from '../../types/openapi';
+import { LicenseObject } from '../../types/type-script-generator';
 import { default as React } from 'react';
 
 interface LicenseDisplayProps {

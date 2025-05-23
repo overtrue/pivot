@@ -1,4 +1,4 @@
-import { ComponentsObject, ReferenceObject, ResponseObject } from '../types/openapi';
+import { ComponentsObject, ReferenceObject, ResponseObject } from '../types/type-script-generator';
 import { default as React } from 'react';
 
 interface ResponseItemProps {

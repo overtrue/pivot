@@ -1,5 +1,5 @@
 import { default as React } from 'react';
-import { CodeGenerator, CodeGeneratorParams } from '../types';
+import { CodeGenerator, CodeGeneratorParams } from '../type-script-generator';
 
 export declare class PhpGenerator implements CodeGenerator {
     id: string;

@@ -1,9 +1,9 @@
-import DescriptionDisplay from '@/components/atoms/DescriptionDisplay';
-import { useI18n } from '@/lib/i18n/I18nProvider';
+import DescriptionDisplay from '@/components/atoms/openapi';
+import { useI18n } from '@/lib/i18n/i18n-provider';
 import { ServerObject, ServerVariableObject } from '@/types/openapi';
 import React, { useState } from 'react';
-import ServerVariable from './/ServerVariable';
-import ExpandCollapse from './interactive/ExpandCollapse';
+import ServerVariable from './/openapi';
+import ExpandCollapse from './interactive';
 
 interface ServerProps {
   server: ServerObject;

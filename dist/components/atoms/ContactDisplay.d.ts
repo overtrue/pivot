@@ -1,4 +1,4 @@
-import { ContactObject } from '../../types/openapi';
+import { ContactObject } from '../../types/type-script-generator';
 import { default as React } from 'react';
 
 interface ContactDisplayProps {

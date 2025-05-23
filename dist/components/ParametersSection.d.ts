@@ -1,4 +1,4 @@
-import { ComponentsObject, ParameterObject, ReferenceObject } from '../types/openapi';
+import { ComponentsObject, ParameterObject, ReferenceObject } from '../types/type-script-generator';
 import { default as React } from 'react';
 
 interface ParametersSectionProps {

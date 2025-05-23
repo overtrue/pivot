@@ -1,4 +1,4 @@
-import { StyleType } from '../../types/openapi';
+import { StyleType } from '../../types/type-script-generator';
 import { default as React } from 'react';
 
 interface StyleBadgeProps {

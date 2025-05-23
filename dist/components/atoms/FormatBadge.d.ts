@@ -1,4 +1,4 @@
-import { FormatType } from '../../types/openapi';
+import { FormatType } from '../../types/type-script-generator';
 import { default as React } from 'react';
 
 type FormatTheme = 'primary' | 'secondary' | 'success' | 'warning' | 'danger' | 'neutral';

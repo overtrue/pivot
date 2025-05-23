@@ -1,4 +1,4 @@
-import { ComponentsObject, OpenApiSpec, OperationObject } from '../types/openapi';
+import { ComponentsObject, OpenApiSpec, OperationObject } from '../types/type-script-generator';
 import { default as React } from 'react';
 
 interface OperationBoxProps {

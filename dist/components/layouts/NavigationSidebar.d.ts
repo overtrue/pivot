@@ -1,4 +1,4 @@
-import { OpenApiSpec } from '../../types/openapi';
+import { OpenApiSpec } from '../../types/type-script-generator';
 import { default as React } from 'react';
 
 interface NavigationSidebarProps {

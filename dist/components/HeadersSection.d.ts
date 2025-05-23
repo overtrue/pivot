@@ -1,4 +1,4 @@
-import { ComponentsObject, HeaderObject, ReferenceObject } from '../types/openapi';
+import { ComponentsObject, HeaderObject, ReferenceObject } from '../types/type-script-generator';
 import { default as React } from 'react';
 
 interface HeadersSectionProps {

@@ -1,4 +1,4 @@
-import { SecurityRequirementObject } from '../types/openapi';
+import { SecurityRequirementObject } from '../types/type-script-generator';
 import { default as React } from 'react';
 
 interface SecurityRequirementItemProps {

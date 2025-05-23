@@ -1,4 +1,4 @@
-import { ComponentsObject, ReferenceObject } from '../types/openapi';
+import { ComponentsObject, ReferenceObject } from '../types/type-script-generator';
 
 /**
  * 解析OpenAPI中的引用对象

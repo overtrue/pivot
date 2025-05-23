@@ -1,9 +1,9 @@
 
-import { useI18n } from '@/lib/i18n/I18nProvider';
+import { useI18n } from '@/lib/i18n/i18n-provider';
 import { ServerObject } from '@/types/openapi';
 import React from 'react';
-import SectionTitle from './atoms/SectionTitle';
-import Server from './Server';
+import SectionTitle from './atoms/section-title';
+import Server from '.';
 
 // Server list component
 interface ServersProps {

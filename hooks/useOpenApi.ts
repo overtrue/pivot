@@ -9,7 +9,7 @@ import {
   SchemaObject,
   ServerObject
 } from '@/types/openapi';
-import { resolveRef } from '@/utils/resolveRef';
+import { resolveRef } from '@/utils/openapi';
 import { useMemo } from 'react';
 
 /**

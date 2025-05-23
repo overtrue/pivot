@@ -1,5 +1,5 @@
 import { default as React } from 'react';
-import { OAuthFlow } from '../types/openapi';
+import { OAuthFlow } from '../types/type-script-generator';
 
 interface OAuthFlowDetailsProps {
     flowName: string;

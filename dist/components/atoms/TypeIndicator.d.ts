@@ -1,4 +1,4 @@
-import { DataType } from '../../types/openapi';
+import { DataType } from '../../types/type-script-generator';
 import { default as React } from 'react';
 
 type DataTypeTheme = 'primary' | 'secondary' | 'success' | 'warning' | 'danger' | 'info' | 'neutral';

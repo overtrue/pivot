@@ -1,4 +1,4 @@
-import { ComponentsObject, OperationObject } from '../types/openapi';
+import { ComponentsObject, OperationObject } from '../types/type-script-generator';
 import { default as React } from 'react';
 
 interface TryItOutPanelProps {

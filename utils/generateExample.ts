@@ -1,5 +1,5 @@
 import { ComponentsObject, ReferenceObject, SchemaObject } from '@/types/openapi';
-import { resolveRef } from './resolveRef';
+import { resolveRef } from './openapi';
 
 /**
  * 根据OpenAPI Schema生成示例数据

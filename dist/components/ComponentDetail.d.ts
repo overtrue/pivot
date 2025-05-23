@@ -1,6 +1,6 @@
-import { ComponentsObject } from '../types/openapi';
+import { ComponentsObject } from '../types/type-script-generator';
 import { default as React } from 'react';
-import { ComponentType } from './/ComponentTabs';
+import { ComponentType } from './/type-script-generator';
 
 interface ComponentDetailProps {
     activeType: ComponentType | null;

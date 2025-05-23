@@ -1,4 +1,4 @@
-import { SecuritySchemeObject } from '../types/openapi';
+import { SecuritySchemeObject } from '../types/type-script-generator';
 import { default as React } from 'react';
 
 interface SecuritySchemeDisplayProps {

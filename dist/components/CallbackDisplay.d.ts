@@ -1,4 +1,4 @@
-import { CallbackObject, ComponentsObject, ReferenceObject } from '../types/openapi';
+import { CallbackObject, ComponentsObject, ReferenceObject } from '../types/type-script-generator';
 import { default as React } from 'react';
 
 interface CallbackDisplayProps {

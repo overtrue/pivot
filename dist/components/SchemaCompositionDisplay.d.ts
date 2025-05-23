@@ -1,4 +1,4 @@
-import { ComponentsObject, ReferenceObject, SchemaCompositionKeyword, SchemaObject } from '../types/openapi';
+import { ComponentsObject, ReferenceObject, SchemaCompositionKeyword, SchemaObject } from '../types/type-script-generator';
 import { default as React } from 'react';
 
 interface SchemaCompositionDisplayProps {

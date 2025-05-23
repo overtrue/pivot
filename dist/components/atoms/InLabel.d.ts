@@ -1,4 +1,4 @@
-import { ParameterLocation } from '../../types/openapi';
+import { ParameterLocation } from '../../types/type-script-generator';
 import { default as React } from 'react';
 
 interface InLabelProps {

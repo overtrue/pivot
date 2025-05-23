@@ -1,4 +1,4 @@
-import { ServerObject } from '../../types/openapi';
+import { ServerObject } from '../../types/type-script-generator';
 import { default as React } from 'react';
 
 interface ServerDisplayProps {

@@ -1,4 +1,4 @@
-import { SecuritySchemeType } from '../../types/openapi';
+import { SecuritySchemeType } from '../../types/type-script-generator';
 import { default as React } from 'react';
 
 interface SchemeTypeProps {

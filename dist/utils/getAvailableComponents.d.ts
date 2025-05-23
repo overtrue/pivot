@@ -1,4 +1,4 @@
-import { ComponentsObject } from '../types/openapi';
+import { ComponentsObject } from '../types/type-script-generator';
 
 /**
  * 获取OpenAPI组件中可用的组件类型及其项目

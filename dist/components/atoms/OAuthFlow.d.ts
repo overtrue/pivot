@@ -1,4 +1,4 @@
-import { OAuthFlowType } from '../../types/openapi';
+import { OAuthFlowType } from '../../types/type-script-generator';
 import { default as React } from 'react';
 
 interface OAuthFlowProps {

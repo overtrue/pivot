@@ -1,4 +1,4 @@
-import { SchemaObject } from '../../types/openapi';
+import { SchemaObject } from '../../types/type-script-generator';
 import { default as React } from 'react';
 
 interface SchemaConstraintsProps {

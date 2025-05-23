@@ -1,4 +1,4 @@
-import { ExternalDocumentationObject } from '../../types/openapi';
+import { ExternalDocumentationObject } from '../../types/type-script-generator';
 import { default as React } from 'react';
 
 interface ExternalDocsDisplayProps {

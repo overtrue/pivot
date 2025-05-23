@@ -1,4 +1,4 @@
-import { ComponentsObject, PathItemObject } from '../types/openapi';
+import { ComponentsObject, PathItemObject } from '../types/type-script-generator';
 import { default as React } from 'react';
 
 export interface PathItemDisplayProps {
