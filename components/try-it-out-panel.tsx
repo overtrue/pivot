@@ -9,7 +9,7 @@ import {
 import { ChevronDown, ChevronUp, Send } from 'lucide-react';
 import React, { useState } from 'react';
 import { resolveRef } from '../utils/resolveRef';
-import MethodLabel from './atoms/section-title';
+import MethodLabel from './atoms/method-label';
 
 interface TryItOutPanelProps {
   operation: OperationObject;

@@ -1,9 +1,9 @@
 import { useI18n } from '@/lib/i18n/i18n-provider';
 import React from 'react';
 import { OAuthFlows, SecuritySchemeObject } from '../types/openapi';
-import DescriptionDisplay from './atoms/section-title';
-import SchemeType from './atoms/section-title';
-import OAuthFlowDetails from '.';
+import DescriptionDisplay from './atoms/description-display';
+import SchemeType from './atoms/scheme-type';
+import OAuthFlowDetails from './o-auth-flow-details';
 
 interface SecuritySchemeProps {
   name: string;

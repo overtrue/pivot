@@ -1,7 +1,7 @@
 import { useI18n } from '@/lib/i18n/i18n-provider';
 import { SecuritySchemeObject } from '@/types/openapi'; // Adjust path
 import React from 'react';
-import DescriptionDisplay from './atoms/section-title';
+import DescriptionDisplay from './atoms/description-display';
 
 interface SecuritySchemeDisplayProps {
   name: string;

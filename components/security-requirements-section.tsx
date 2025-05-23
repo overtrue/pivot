@@ -1,7 +1,7 @@
 import { useI18n } from '@/lib/i18n/i18n-provider';
 import React from 'react';
 import SectionTitle from './atoms/section-title';
-import SecurityRequirementItem from '.';
+import SecurityRequirementItem from './security-requirement-item';
 // Assuming SecurityRequirementObject is defined in shared types
 // Typically: { [name: string]: string[]; }[]
 import { SecurityRequirementObject } from '@/types/openapi';
