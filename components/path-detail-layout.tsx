@@ -9,16 +9,16 @@ import {
 } from '@/types/openapi';
 import * as yaml from 'js-yaml';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import Codegen from './codegen';
 import DescriptionDisplay from './description-display';
 import MethodLabel from './method-label';
-import OperationPath from './operation-path';
-import Codegen from './codegen';
-import ParametersSection from '../parameters-section';
-import RequestBodySection from '../request-body-section';
-import ResponsesSection from '../responses-section';
-import TryItOutPanel from '../try-it-out-panel';
 import NavigationSidebar from './navigation-sidebar';
+import OperationPath from './operation-path';
+import ParametersSection from './parameters-section';
+import RequestBodySection from './request-body-section';
 import ResizableSidebar from './resizable-sidebar';
+import ResponsesSection from './responses-section';
+import TryItOutPanel from './try-it-out-panel';
 
 interface PathDetailLayoutProps {
   spec: OpenApiObject | string | null; // Allow spec to be null

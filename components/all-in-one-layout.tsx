@@ -7,17 +7,17 @@ import {
 } from '@/types/openapi';
 import * as yaml from 'js-yaml';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import AccordionComponentsSection from '../accordion-components-section';
-import ExternalDocsDisplay from './external-docs-display';
-import SectionTitle from './section-title';
-import InfoSection from '../info-section';
+import AccordionComponentsSection from './accordion-components-section';
 import Codegen from './codegen';
-import OperationBox from '../operation-box';
-import SecuritySection from '../security-section';
-import ServersSection from '../servers-section';
-import TryItOutPanel from '../try-it-out-panel';
+import ExternalDocsDisplay from './external-docs-display';
+import InfoSection from './info-section';
 import NavigationSidebar from './navigation-sidebar';
+import OperationBox from './operation-box';
 import ResizableSidebar from './resizable-sidebar';
+import SectionTitle from './section-title';
+import SecuritySection from './security-section';
+import ServersSection from './servers-section';
+import TryItOutPanel from './try-it-out-panel';
 
 interface AllInOneLayoutProps {
   spec: OpenApiObject | string | null; // Allow spec to be null

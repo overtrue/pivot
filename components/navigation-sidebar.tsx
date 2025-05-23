@@ -4,7 +4,7 @@ import { cn } from '@/utils/cn';
 import { ChevronDown, ChevronRight, ChevronsDown, ChevronsUp, Github, Info, Search } from 'lucide-react';
 import React, { useState } from 'react';
 import MethodLabel from './method-label';
-import { ThemeToggle } from '../theme-toggle';
+import { ThemeToggle } from './theme-toggle';
 
 interface NavigationSidebarProps {
   openapi: OpenApiSpec;
