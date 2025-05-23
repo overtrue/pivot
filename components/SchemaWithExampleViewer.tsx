@@ -1,25 +1,25 @@
-import { useI18n } from '@/lib/i18n/I18nProvider';
+import { useI18n } from "@/lib/i18n/I18nProvider";
 import {
   ComponentsObject,
   ExampleObject,
   MediaTypeObject,
   ReferenceObject,
   RequestBodyObject,
-  ResponseObject
-} from '@/types/openapi';
-import { cn } from '@/utils/cn';
-import { generateExample } from '@/utils/generateExample';
-import { resolveRef } from '@/utils/resolveRef';
-import React, { useEffect, useState } from 'react';
-import DescriptionDisplay from './atoms/DescriptionDisplay';
-import ExampleDisplay from './ExampleDisplay';
-import MediaTypeSelector from './MediaTypeSelector';
-import SchemaDisplay from './SchemaDisplay';
+  ResponseObject,
+} from "@/types/openapi";
+import { cn } from "@/utils/cn";
+import { generateExample } from "@/utils/generateExample";
+import { resolveRef } from "@/utils/resolveRef";
+import React, { useEffect, useState } from "react";
+import DescriptionDisplay from "./atoms/DescriptionDisplay";
+import ExampleDisplay from "./ExampleDisplay";
+import MediaTypeSelector from "./MediaTypeSelector";
+import SchemaDisplay from "./SchemaDisplay";
 
 // ===== SchemaExampleView Component Section =====
 
 // Define view modes
-type ViewMode = 'schema' | 'example';
+type ViewMode = "schema" | "example";
 
 interface SchemaExampleViewProps {
   mediaType: MediaTypeObject;
@@ -36,28 +36,34 @@ interface SchemaExampleViewProps {
  */
 const SchemaExampleView: React.FC<SchemaExampleViewProps> = ({
   mediaType,
-  mediaTypeName = 'application/json',
+  mediaTypeName = "application/json",
   components,
-  className = '',
-  buttonClassName = '',
-  contentClassName = ''
+  className = "",
+  buttonClassName = "",
+  contentClassName = "",
 }) => {
   const { t } = useI18n();
 
   // View mode state - defaults to example
-  const [viewMode, setViewMode] = useState<ViewMode>('example');
+  const [viewMode, setViewMode] = useState<ViewMode>("example");
   // Currently selected example name
-  const [selectedExample, setSelectedExample] = useState<string>('');
+  const [selectedExample, setSelectedExample] = useState<string>("");
 
   // Get schema
   const schema = mediaType.schema;
   if (!schema) {
-    return <div className="text-yellow-500 dark:text-yellow-400">{t('Schema not defined')}</div>;
+    return (
+      <div className="text-yellow-500 dark:text-yellow-400">
+        {t("Schema not defined")}
+      </div>
+    );
   }
 
   // Get example data
   const hasExample = !!mediaType.example;
-  const hasExamples = !!(mediaType.examples && Object.keys(mediaType.examples || {}).length > 0);
+  const hasExamples = !!(
+    mediaType.examples && Object.keys(mediaType.examples || {}).length > 0
+  );
   const examplesKeys = hasExamples ? Object.keys(mediaType.examples || {}) : [];
 
   // Ensure an example is selected
@@ -68,9 +74,14 @@ const SchemaExampleView: React.FC<SchemaExampleViewProps> = ({
   }, [hasExamples, selectedExample, examplesKeys]);
 
   // Get current selected example
-  const currentExample = selectedExample && hasExamples
-    ? resolveRef<ExampleObject>(mediaType.examples![selectedExample], components, 'examples')
-    : null;
+  const currentExample =
+    selectedExample && hasExamples
+      ? resolveRef<ExampleObject>(
+          mediaType.examples![selectedExample],
+          components,
+          "examples",
+        )
+      : null;
 
   // Example display content - prefer provided example, otherwise generate from schema
   const providedExample = currentExample?.value || mediaType.example;
@@ -84,50 +95,55 @@ const SchemaExampleView: React.FC<SchemaExampleViewProps> = ({
   const toggleViewMode = (mode: ViewMode) => {
     if (mode === viewMode) return; // If already in this mode, do nothing
     setViewMode(mode);
-    console.log(t('Switched view mode to: %s').replace('%s', mode));
+    console.log(t("Switched view mode to: %s").replace("%s", mode));
   };
 
   return (
     <div className={className}>
       {/* View switcher */}
       <div className="mb-4 flex items-center justify-between">
-        <div className={cn('flex bg-neutral-100 dark:bg-neutral-700 rounded-lg p-0.5 relative', buttonClassName)}>
+        <div
+          className={cn(
+            "flex bg-neutral-100 dark:bg-neutral-700 rounded-lg p-0.5 relative",
+            buttonClassName,
+          )}
+        >
           <button
             onClick={(e) => {
               e.preventDefault();
               e.stopPropagation();
-              toggleViewMode('example');
+              toggleViewMode("example");
             }}
             className={cn(
-              'px-3 py-1 text-sm rounded-md transition-colors',
-              viewMode === 'example'
-                ? 'bg-white dark:bg-neutral-800 shadow text-blue-700 dark:text-blue-400'
-                : 'text-neutral-700 dark:text-neutral-300 hover:bg-neutral-200 dark:hover:bg-neutral-600'
+              "px-3 py-1 text-sm rounded-md transition-colors",
+              viewMode === "example"
+                ? "bg-white dark:bg-neutral-800 shadow text-blue-700 dark:text-blue-400"
+                : "text-neutral-700 dark:text-neutral-300 hover:bg-neutral-200 dark:hover:bg-neutral-600",
             )}
             type="button"
           >
-            {t('Example')}
+            {t("Example")}
           </button>
           <button
             onClick={(e) => {
               e.preventDefault();
               e.stopPropagation();
-              toggleViewMode('schema');
+              toggleViewMode("schema");
             }}
             className={cn(
-              'px-3 py-1 text-sm rounded-md transition-colors',
-              viewMode === 'schema'
-                ? 'bg-white dark:bg-neutral-800 shadow text-blue-700 dark:text-blue-400'
-                : 'text-neutral-700 dark:text-neutral-300 hover:bg-neutral-200 dark:hover:bg-neutral-600'
+              "px-3 py-1 text-sm rounded-md transition-colors",
+              viewMode === "schema"
+                ? "bg-white dark:bg-neutral-800 shadow text-blue-700 dark:text-blue-400"
+                : "text-neutral-700 dark:text-neutral-300 hover:bg-neutral-200 dark:hover:bg-neutral-600",
             )}
             type="button"
           >
-            {t('Schema')}
+            {t("Schema")}
           </button>
         </div>
 
         {/* Multiple examples selector */}
-        {viewMode === 'example' && hasExamples && examplesKeys.length > 1 && (
+        {viewMode === "example" && hasExamples && examplesKeys.length > 1 && (
           <div className="ml-2 relative">
             <select
               className="text-sm border rounded-md px-2 py-1 bg-white dark:bg-neutral-700 dark:text-neutral-200 dark:border-neutral-600"
@@ -135,8 +151,12 @@ const SchemaExampleView: React.FC<SchemaExampleViewProps> = ({
               onChange={(e) => setSelectedExample(e.target.value)}
               onClick={(e) => e.stopPropagation()}
             >
-              {examplesKeys.map(key => {
-                const example = resolveRef<ExampleObject>(mediaType.examples![key], components, 'examples');
+              {examplesKeys.map((key) => {
+                const example = resolveRef<ExampleObject>(
+                  mediaType.examples![key],
+                  components,
+                  "examples",
+                );
                 const displayName = example?.summary || key;
                 return (
                   <option key={key} value={key} className="dark:bg-neutral-700">
@@ -152,7 +172,7 @@ const SchemaExampleView: React.FC<SchemaExampleViewProps> = ({
       {/* Content display area */}
       <div className={contentClassName}>
         {/* Display different content based on view mode */}
-        {viewMode === 'example' ? (
+        {viewMode === "example" ? (
           /* Example data view */
           <ExampleDisplay
             example={exampleValue}
@@ -173,14 +193,17 @@ const SchemaExampleView: React.FC<SchemaExampleViewProps> = ({
 
   // Get language based on media type
   function getLanguageForMediaType(): string {
-    if (mediaTypeName.includes('json')) {
-      return 'json';
-    } else if (mediaTypeName.includes('xml')) {
-      return 'xml';
-    } else if (mediaTypeName.includes('yaml') || mediaTypeName.includes('yml')) {
-      return 'yaml';
+    if (mediaTypeName.includes("json")) {
+      return "json";
+    } else if (mediaTypeName.includes("xml")) {
+      return "xml";
+    } else if (
+      mediaTypeName.includes("yaml") ||
+      mediaTypeName.includes("yml")
+    ) {
+      return "yaml";
     } else {
-      return 'text';
+      return "text";
     }
   }
 };
@@ -189,12 +212,16 @@ const SchemaExampleView: React.FC<SchemaExampleViewProps> = ({
 
 interface SchemaWithExampleViewerProps {
   // Content can be a request body or response body
-  content: RequestBodyObject | ReferenceObject | ResponseObject | Record<string, MediaTypeObject>;
+  content:
+    | RequestBodyObject
+    | ReferenceObject
+    | ResponseObject
+    | Record<string, MediaTypeObject>;
   components?: ComponentsObject;
   className?: string;
   title?: string;
   showTitle?: boolean;
-  contentType?: 'requestBody' | 'response' | 'mediaTypes';
+  contentType?: "requestBody" | "response" | "mediaTypes";
   renderHeader?: () => React.ReactNode;
   renderFooter?: (mediaType: MediaTypeObject) => React.ReactNode;
 }
@@ -206,26 +233,34 @@ interface SchemaWithExampleViewerProps {
 const SchemaWithExampleViewer: React.FC<SchemaWithExampleViewerProps> = ({
   content,
   components,
-  className = '',
-  contentType = 'mediaTypes',
+  className = "",
+  contentType = "mediaTypes",
   renderHeader,
-  renderFooter
+  renderFooter,
 }) => {
   const { t } = useI18n();
 
   // Based on content type, get the media type mapping
   const getMediaTypes = (): Record<string, MediaTypeObject> => {
-    if (contentType === 'mediaTypes' && typeof content === 'object') {
+    if (contentType === "mediaTypes" && typeof content === "object") {
       return content as Record<string, MediaTypeObject>;
     }
 
-    if (contentType === 'requestBody') {
-      const resolvedBody = resolveRef<RequestBodyObject>(content as RequestBodyObject | ReferenceObject, components, 'requestBodies');
+    if (contentType === "requestBody") {
+      const resolvedBody = resolveRef<RequestBodyObject>(
+        content as RequestBodyObject | ReferenceObject,
+        components,
+        "requestBodies",
+      );
       return resolvedBody?.content || {};
     }
 
-    if (contentType === 'response') {
-      const resolvedResponse = resolveRef<ResponseObject>(content as ResponseObject | ReferenceObject, components, 'responses');
+    if (contentType === "response") {
+      const resolvedResponse = resolveRef<ResponseObject>(
+        content as ResponseObject | ReferenceObject,
+        components,
+        "responses",
+      );
       return resolvedResponse?.content || {};
     }
 
@@ -239,7 +274,7 @@ const SchemaWithExampleViewer: React.FC<SchemaWithExampleViewerProps> = ({
   // Set initial media type, prefer application/json
   useEffect(() => {
     if (mediaTypes.length > 0 && activeMediaType === null) {
-      const jsonType = mediaTypes.find(type => type.includes('json'));
+      const jsonType = mediaTypes.find((type) => type.includes("json"));
       setActiveMediaType(jsonType || mediaTypes[0]);
     } else if (mediaTypes.length === 0) {
       setActiveMediaType(null);
@@ -248,8 +283,12 @@ const SchemaWithExampleViewer: React.FC<SchemaWithExampleViewerProps> = ({
 
   // Check if the current media type selection is valid when the list changes
   useEffect(() => {
-    if (activeMediaType && !mediaTypes.includes(activeMediaType) && mediaTypes.length > 0) {
-      const jsonType = mediaTypes.find(type => type.includes('json'));
+    if (
+      activeMediaType &&
+      !mediaTypes.includes(activeMediaType) &&
+      mediaTypes.length > 0
+    ) {
+      const jsonType = mediaTypes.find((type) => type.includes("json"));
       setActiveMediaType(jsonType || mediaTypes[0]);
     }
     if (mediaTypes.length === 0) {
@@ -265,7 +304,9 @@ const SchemaWithExampleViewer: React.FC<SchemaWithExampleViewerProps> = ({
     );
   }
 
-  const selectedMediaTypeObject = activeMediaType ? mediaTypesContent[activeMediaType] : null;
+  const selectedMediaTypeObject = activeMediaType
+    ? mediaTypesContent[activeMediaType]
+    : null;
 
   // Handle media type switching
   const handleSelectMediaType = (mediaType: string) => {
@@ -274,13 +315,21 @@ const SchemaWithExampleViewer: React.FC<SchemaWithExampleViewerProps> = ({
 
   // Get description (if available)
   const getDescription = () => {
-    if (contentType === 'requestBody') {
-      const resolvedBody = resolveRef<RequestBodyObject>(content as RequestBodyObject | ReferenceObject, components, 'requestBodies');
+    if (contentType === "requestBody") {
+      const resolvedBody = resolveRef<RequestBodyObject>(
+        content as RequestBodyObject | ReferenceObject,
+        components,
+        "requestBodies",
+      );
       return resolvedBody?.description;
     }
 
-    if (contentType === 'response') {
-      const resolvedResponse = resolveRef<ResponseObject>(content as ResponseObject | ReferenceObject, components, 'responses');
+    if (contentType === "response") {
+      const resolvedResponse = resolveRef<ResponseObject>(
+        content as ResponseObject | ReferenceObject,
+        components,
+        "responses",
+      );
       return resolvedResponse?.description;
     }
 
@@ -290,7 +339,7 @@ const SchemaWithExampleViewer: React.FC<SchemaWithExampleViewerProps> = ({
   const description = getDescription();
 
   return (
-    <div className={cn('mb-4', 'dark:text-neutral-200', className)}>
+    <div className={cn("mb-4", "dark:text-neutral-200", className)}>
       {/* Custom header area */}
       {renderHeader && renderHeader()}
 

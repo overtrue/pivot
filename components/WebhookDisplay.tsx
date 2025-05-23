@@ -1,7 +1,7 @@
-import { useI18n } from '@/lib/i18n/I18nProvider';
-import { ComponentsObject, PathItemObject } from '@/types/openapi';
-import React from 'react';
-import OperationBox from './OperationBox';
+import { useI18n } from "@/lib/i18n/I18nProvider";
+import { ComponentsObject, PathItemObject } from "@/types/openapi";
+import React from "react";
+import OperationBox from "./OperationBox";
 
 export interface WebhookDisplayProps {
   name: string;
@@ -18,16 +18,16 @@ const WebhookDisplay: React.FC<WebhookDisplayProps> = ({
 }) => {
   const { t } = useI18n();
   const operations = [
-    { method: 'get', operation: pathItem.get },
-    { method: 'post', operation: pathItem.post },
-    { method: 'put', operation: pathItem.put },
-    { method: 'delete', operation: pathItem.delete },
+    { method: "get", operation: pathItem.get },
+    { method: "post", operation: pathItem.post },
+    { method: "put", operation: pathItem.put },
+    { method: "delete", operation: pathItem.delete },
   ].filter(({ operation }) => operation);
 
   return (
-    <div className={`rounded-lg p-4 bg-neutral-50 ${className || ''}`}>
+    <div className={`rounded-lg p-4 bg-neutral-50 ${className || ""}`}>
       <h2 className="text-lg font-semibold text-neutral-900 mb-2">
-        {t('Webhook:')} <span className="text-blue-600">{name}</span>
+        {t("Webhook:")} <span className="text-blue-600">{name}</span>
       </h2>
 
       {pathItem.description && (

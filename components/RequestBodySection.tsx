@@ -1,15 +1,15 @@
-import { useOpenApi } from '@/hooks/useOpenApi';
-import { useI18n } from '@/lib/i18n/I18nProvider';
+import { useOpenApi } from "@/hooks/useOpenApi";
+import { useI18n } from "@/lib/i18n/I18nProvider";
 import {
   ComponentsObject,
   OpenApiSpec,
   ReferenceObject,
-  RequestBodyObject
-} from '@/types/openapi';
-import { cn } from '@/utils/cn';
-import React from 'react';
-import SectionTitle from './atoms/SectionTitle';
-import SchemaWithExampleViewer from './SchemaWithExampleViewer';
+  RequestBodyObject,
+} from "@/types/openapi";
+import { cn } from "@/utils/cn";
+import React from "react";
+import SectionTitle from "./atoms/SectionTitle";
+import SchemaWithExampleViewer from "./SchemaWithExampleViewer";
 
 interface RequestBodySectionProps {
   requestBody: RequestBodyObject | ReferenceObject;
@@ -23,7 +23,7 @@ const RequestBodySection: React.FC<RequestBodySectionProps> = ({
   requestBody,
   components,
   spec,
-  className = '',
+  className = "",
 }) => {
   const { t } = useI18n();
 
@@ -36,19 +36,34 @@ const RequestBodySection: React.FC<RequestBodySectionProps> = ({
 
   // 如果没有提供spec或components，无法处理引用
   if (!openApi) {
-    return <div className="text-red-500 dark:text-red-400">{t('Missing component definitions required to resolve references')}</div>;
+    return (
+      <div className="text-red-500 dark:text-red-400">
+        {t("Missing component definitions required to resolve references")}
+      </div>
+    );
   }
 
   // 解析引用对象
-  const resolvedBody = openApi.resolve<RequestBodyObject>(requestBody, 'requestBodies');
+  const resolvedBody = openApi.resolve<RequestBodyObject>(
+    requestBody,
+    "requestBodies",
+  );
   if (!resolvedBody) {
-    return <div className="text-red-500 dark:text-red-400">{t('Cannot resolve request body')}</div>;
+    return (
+      <div className="text-red-500 dark:text-red-400">
+        {t("Cannot resolve request body")}
+      </div>
+    );
   }
 
   // 获取内容
   const content = resolvedBody.content;
   if (!content) {
-    return <div className="text-yellow-500 dark:text-yellow-400">{t('Request body has no content defined')}</div>;
+    return (
+      <div className="text-yellow-500 dark:text-yellow-400">
+        {t("Request body has no content defined")}
+      </div>
+    );
   }
 
   // 自定义头部渲染函数
@@ -59,7 +74,7 @@ const RequestBodySection: React.FC<RequestBodySectionProps> = ({
         {resolvedBody.required && (
           <div className="mb-2">
             <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200">
-              {t('Required')}
+              {t("Required")}
             </span>
           </div>
         )}
@@ -69,7 +84,10 @@ const RequestBodySection: React.FC<RequestBodySectionProps> = ({
 
   return (
     <div className={className}>
-      <SectionTitle title={t('Request Body')} className={cn('text-lg font-medium my-3')} />
+      <SectionTitle
+        title={t("Request Body")}
+        className={cn("text-lg font-medium my-3")}
+      />
 
       <SchemaWithExampleViewer
         content={requestBody}

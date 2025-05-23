@@ -1,0 +1,70 @@
+---
+title: "Status Code"
+description: "A component to display HTTP status codes with color coding."
+component: true
+---
+
+# Status Code
+
+状态码组件用于显示 HTTP 状态码，并根据状态码类型自动应用颜色编码。
+
+## 安装
+
+```bash
+npx shadcn@latest add https://pivot.design/registry.json status-code
+```
+
+## 使用
+
+```tsx
+import { StatusCode } from "@/components/pivot/status-code";
+
+export function Example() {
+  return (
+    <div className="flex items-center gap-2">
+      <StatusCode code={200} />
+      <StatusCode code={404} />
+      <StatusCode code={500} />
+    </div>
+  );
+}
+```
+
+## 示例
+
+### 基础用法
+
+```tsx
+<StatusCode code={200} />
+```
+
+### 不同尺寸
+
+```tsx
+<StatusCode code={200} size="small" />
+<StatusCode code={200} size="medium" />
+```
+
+### 自定义样式
+
+```tsx
+<StatusCode code={200} className="border border-gray-300" />
+```
+
+## API 参考
+
+### Props
+
+| 属性        | 类型                  | 默认值    | 描述            |
+| ----------- | --------------------- | --------- | --------------- |
+| `code`      | `string \| number`    | -         | HTTP 状态码     |
+| `size`      | `'small' \| 'medium'` | `'small'` | 组件尺寸        |
+| `className` | `string`              | -         | 自定义 CSS 类名 |
+
+### 颜色编码
+
+- **1xx (信息响应)** - 蓝色
+- **2xx (成功)** - 绿色
+- **3xx (重定向)** - 黄色
+- **4xx (客户端错误)** - 橙色
+- **5xx (服务器错误)** - 红色

@@ -1,11 +1,10 @@
-
-import { useI18n } from '@/lib/i18n/I18nProvider';
-import { ComponentsObject } from '@/types/openapi';
-import { ChevronDown, ChevronRight } from 'lucide-react';
-import React, { useEffect, useMemo, useState } from 'react';
-import { getAvailableComponents } from '../utils/getAvailableComponents';
-import ComponentDetail from './ComponentDetail';
-import { ComponentType } from './ComponentTabs';
+import { useI18n } from "@/lib/i18n/I18nProvider";
+import { ComponentsObject } from "@/types/openapi";
+import { ChevronDown, ChevronRight } from "lucide-react";
+import React, { useEffect, useMemo, useState } from "react";
+import { getAvailableComponents } from "../utils/getAvailableComponents";
+import ComponentDetail from "./ComponentDetail";
+import { ComponentType } from "./ComponentTabs";
 
 interface AccordionComponentsSectionProps {
   components: ComponentsObject;
@@ -13,18 +12,32 @@ interface AccordionComponentsSectionProps {
   className?: string;
 }
 
-const AccordionComponentsSection: React.FC<AccordionComponentsSectionProps> = ({ components, selectedSchema, className }) => {
+const AccordionComponentsSection: React.FC<AccordionComponentsSectionProps> = ({
+  components,
+  selectedSchema,
+  className,
+}) => {
   const { t } = useI18n();
-  const availableComponents = useMemo(() => getAvailableComponents(components), [components]);
-  const availableTypes = useMemo(() => Object.keys(availableComponents) as ComponentType[], [availableComponents]);
+  const availableComponents = useMemo(
+    () => getAvailableComponents(components),
+    [components],
+  );
+  const availableTypes = useMemo(
+    () => Object.keys(availableComponents) as ComponentType[],
+    [availableComponents],
+  );
 
   // Currently expanded component
-  const [expandedComponent, setExpandedComponent] = useState<{ type: ComponentType, name: string } | null>(null);
+  const [expandedComponent, setExpandedComponent] = useState<{
+    type: ComponentType;
+    name: string;
+  } | null>(null);
 
   // Currently active type tab
   const [activeType, setActiveType] = useState<ComponentType | null>(
-    availableTypes.includes('schemas' as ComponentType) ? 'schemas' as ComponentType :
-      availableTypes[0] || null
+    availableTypes.includes("schemas" as ComponentType)
+      ? ("schemas" as ComponentType)
+      : availableTypes[0] || null,
   );
 
   // Toggle expanded component
@@ -42,27 +55,33 @@ const AccordionComponentsSection: React.FC<AccordionComponentsSectionProps> = ({
   useEffect(() => {
     const handleSelectSchema = (event: CustomEvent) => {
       const { name, type } = event.detail;
-      if (type === 'schemas') {
+      if (type === "schemas") {
         // Activate schemas tab
-        setActiveType('schemas' as ComponentType);
+        setActiveType("schemas" as ComponentType);
 
         // Expand the corresponding schema
-        toggleExpandComponent('schemas' as ComponentType, name);
+        toggleExpandComponent("schemas" as ComponentType, name);
 
         // Scroll to the schema
         setTimeout(() => {
           const element = document.getElementById(`schema-${name}`);
           if (element) {
-            element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            element.scrollIntoView({ behavior: "smooth", block: "start" });
           }
         }, 100);
       }
     };
 
-    document.addEventListener('openapi-select-schema', handleSelectSchema as EventListener);
+    document.addEventListener(
+      "openapi-select-schema",
+      handleSelectSchema as EventListener,
+    );
 
     return () => {
-      document.removeEventListener('openapi-select-schema', handleSelectSchema as EventListener);
+      document.removeEventListener(
+        "openapi-select-schema",
+        handleSelectSchema as EventListener,
+      );
     };
   }, []);
 
@@ -70,10 +89,10 @@ const AccordionComponentsSection: React.FC<AccordionComponentsSectionProps> = ({
   useEffect(() => {
     if (selectedSchema) {
       // Activate schemas tab
-      setActiveType('schemas' as ComponentType);
+      setActiveType("schemas" as ComponentType);
 
       // Expand the corresponding schema
-      toggleExpandComponent('schemas' as ComponentType, selectedSchema);
+      toggleExpandComponent("schemas" as ComponentType, selectedSchema);
     }
   }, [selectedSchema]);
 
@@ -88,10 +107,11 @@ const AccordionComponentsSection: React.FC<AccordionComponentsSectionProps> = ({
         {availableTypes.map((type) => (
           <button
             key={type}
-            className={`px-4 py-2 capitalize whitespace-nowrap ${activeType === type
-              ? 'border-b-2 border-blue-500 text-blue-600 dark:text-blue-400 font-medium'
-              : 'text-neutral-600 dark:text-neutral-400 hover:text-blue-500 dark:hover:text-blue-400'
-              }`}
+            className={`px-4 py-2 capitalize whitespace-nowrap ${
+              activeType === type
+                ? "border-b-2 border-blue-500 text-blue-600 dark:text-blue-400 font-medium"
+                : "text-neutral-600 dark:text-neutral-400 hover:text-blue-500 dark:hover:text-blue-400"
+            }`}
             onClick={() => setActiveType(type)}
           >
             {type}
@@ -106,7 +126,11 @@ const AccordionComponentsSection: React.FC<AccordionComponentsSectionProps> = ({
       {activeType && availableComponents[activeType] && (
         <div className="space-y-2">
           {availableComponents[activeType].map((name) => (
-            <div key={name} id={`schema-${name}`} className="rounded-md overflow-hidden bg-white dark:bg-neutral-800">
+            <div
+              key={name}
+              id={`schema-${name}`}
+              className="rounded-md overflow-hidden bg-white dark:bg-neutral-800"
+            >
               {/* Component name header */}
               <div
                 className="flex items-center justify-between px-4 py-3 bg-neutral-50 dark:bg-neutral-800/60 cursor-pointer hover:bg-neutral-100 dark:hover:bg-neutral-700/60"
@@ -114,7 +138,8 @@ const AccordionComponentsSection: React.FC<AccordionComponentsSectionProps> = ({
               >
                 <div className="flex items-center gap-2">
                   <span className="text-neutral-500 dark:text-neutral-400">
-                    {expandedComponent?.type === activeType && expandedComponent?.name === name ? (
+                    {expandedComponent?.type === activeType &&
+                    expandedComponent?.name === name ? (
                       <ChevronDown className="h-5 w-5" />
                     ) : (
                       <ChevronRight className="h-5 w-5" />
@@ -127,15 +152,16 @@ const AccordionComponentsSection: React.FC<AccordionComponentsSectionProps> = ({
               </div>
 
               {/* Expanded component details */}
-              {expandedComponent?.type === activeType && expandedComponent?.name === name && (
-                <div className="p-4">
-                  <ComponentDetail
-                    activeType={activeType}
-                    selectedItemName={name}
-                    components={components}
-                  />
-                </div>
-              )}
+              {expandedComponent?.type === activeType &&
+                expandedComponent?.name === name && (
+                  <div className="p-4">
+                    <ComponentDetail
+                      activeType={activeType}
+                      selectedItemName={name}
+                      components={components}
+                    />
+                  </div>
+                )}
             </div>
           ))}
         </div>

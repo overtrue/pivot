@@ -1,11 +1,11 @@
-import { useI18n } from '@/lib/i18n/I18nProvider';
+import { useI18n } from "@/lib/i18n/I18nProvider";
 import {
   ComponentsObject,
   EncodingPropertyObject,
-  MediaTypeObject
-} from '@/types/openapi'; // Adjust path
-import React from 'react';
-import SchemaWithExampleViewer from './SchemaWithExampleViewer';
+  MediaTypeObject,
+} from "@/types/openapi"; // Adjust path
+import React from "react";
+import SchemaWithExampleViewer from "./SchemaWithExampleViewer";
 
 interface ResponseContentSectionProps {
   content: Record<string, MediaTypeObject>;
@@ -16,7 +16,7 @@ interface ResponseContentSectionProps {
 const ResponseContentSection: React.FC<ResponseContentSectionProps> = ({
   content,
   components,
-  className = ''
+  className = "",
 }) => {
   const { t } = useI18n();
 
@@ -28,39 +28,51 @@ const ResponseContentSection: React.FC<ResponseContentSectionProps> = ({
 
     return (
       <div className="mt-4">
-        <h5 className="text-sm font-medium mb-2">{t('Encoding')}</h5>
+        <h5 className="text-sm font-medium mb-2">{t("Encoding")}</h5>
         <div className="space-y-2">
-          {Object.entries(mediaType.encoding).map(([property, encoding]: [string, EncodingPropertyObject]) => (
-            <div key={property} className="border rounded p-2 bg-white">
-              <div className="font-mono text-sm mb-1 font-medium">{property}</div>
-              <div className="grid grid-cols-[max-content_1fr] gap-x-2 gap-y-1 text-xs">
-                {encoding.contentType && (
-                  <>
-                    <div className="text-neutral-600">{t('Content Type')}</div>
-                    <div className="font-mono">{encoding.contentType}</div>
-                  </>
-                )}
-                {encoding.style && (
-                  <>
-                    <div className="text-neutral-600">{t('Style')}</div>
-                    <div className="font-mono">{encoding.style}</div>
-                  </>
-                )}
-                {encoding.explode !== undefined && (
-                  <>
-                    <div className="text-neutral-600">{t('Explode')}</div>
-                    <div className="font-mono">{encoding.explode.toString()}</div>
-                  </>
-                )}
-                {encoding.allowReserved !== undefined && (
-                  <>
-                    <div className="text-neutral-600">{t('Allow Reserved')}</div>
-                    <div className="font-mono">{encoding.allowReserved.toString()}</div>
-                  </>
-                )}
+          {Object.entries(mediaType.encoding).map(
+            ([property, encoding]: [string, EncodingPropertyObject]) => (
+              <div key={property} className="border rounded p-2 bg-white">
+                <div className="font-mono text-sm mb-1 font-medium">
+                  {property}
+                </div>
+                <div className="grid grid-cols-[max-content_1fr] gap-x-2 gap-y-1 text-xs">
+                  {encoding.contentType && (
+                    <>
+                      <div className="text-neutral-600">
+                        {t("Content Type")}
+                      </div>
+                      <div className="font-mono">{encoding.contentType}</div>
+                    </>
+                  )}
+                  {encoding.style && (
+                    <>
+                      <div className="text-neutral-600">{t("Style")}</div>
+                      <div className="font-mono">{encoding.style}</div>
+                    </>
+                  )}
+                  {encoding.explode !== undefined && (
+                    <>
+                      <div className="text-neutral-600">{t("Explode")}</div>
+                      <div className="font-mono">
+                        {encoding.explode.toString()}
+                      </div>
+                    </>
+                  )}
+                  {encoding.allowReserved !== undefined && (
+                    <>
+                      <div className="text-neutral-600">
+                        {t("Allow Reserved")}
+                      </div>
+                      <div className="font-mono">
+                        {encoding.allowReserved.toString()}
+                      </div>
+                    </>
+                  )}
+                </div>
               </div>
-            </div>
-          ))}
+            ),
+          )}
         </div>
       </div>
     );

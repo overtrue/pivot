@@ -1,9 +1,9 @@
-import { default as React } from 'react';
+import { default as React } from "react";
 
 interface ParameterNameProps {
-    name: string;
-    required?: boolean;
-    deprecated?: boolean;
+  name: string;
+  required?: boolean;
+  deprecated?: boolean;
 }
 declare const ParameterName: React.FC<ParameterNameProps>;
 export default ParameterName;

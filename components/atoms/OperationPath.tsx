@@ -1,7 +1,6 @@
-
-import { cn } from '@/utils/cn';
-import React from 'react';
-import PathSegment from './PathSegment';
+import { cn } from "@/utils/cn";
+import React from "react";
+import PathSegment from "./PathSegment";
 
 interface OperationPathProps {
   path: string;
@@ -40,7 +39,9 @@ const OperationPath: React.FC<OperationPathProps> = ({ path, className }) => {
           {parts.map((part, partIndex) => {
             if (partIndex % 2 === 0) {
               // 非参数部分
-              return part ? <PathSegment key={`${index}-${partIndex}`} path={part} /> : null;
+              return part ? (
+                <PathSegment key={`${index}-${partIndex}`} path={part} />
+              ) : null;
             } else {
               // 参数部分
               return (
@@ -61,7 +62,12 @@ const OperationPath: React.FC<OperationPathProps> = ({ path, className }) => {
   };
 
   return (
-    <div className={cn('flex flex-wrap items-center text-neutral-600 dark:text-neutral-400', className)}>
+    <div
+      className={cn(
+        "flex flex-wrap items-center text-neutral-600 dark:text-neutral-400",
+        className,
+      )}
+    >
       {segments.map((segment, index) => renderSegment(segment, index))}
     </div>
   );

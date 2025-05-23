@@ -1,15 +1,15 @@
-import { useI18n } from '@/lib/i18n/I18nProvider';
-import { ComponentsObject, ResponseObject } from '@/types/openapi';
-import React from 'react';
-import ResponseContentSection from './ResponseContentSection';
-import ResponseHeadersTable from './atoms/ResponseHeadersTable';
+import { useI18n } from "@/lib/i18n/I18nProvider";
+import { ComponentsObject, ResponseObject } from "@/types/openapi";
+import React from "react";
+import ResponseContentSection from "./ResponseContentSection";
+import ResponseHeadersTable from "./atoms/ResponseHeadersTable";
 
 interface ResponseGroupProps {
   status: string;
   response: ResponseObject;
   components?: ComponentsObject;
   statusCodeProps?: {
-    size?: 'small' | 'medium';
+    size?: "small" | "medium";
     className?: string;
     show?: boolean;
   };
@@ -30,7 +30,9 @@ const ResponseGroup: React.FC<ResponseGroupProps> = ({
     <div className="space-y-4">
       <div className="flex items-center space-x-2">
         {response.description && (
-          <span className="text-neutral-700 dark:text-neutral-300 text-sm">{response.description}</span>
+          <span className="text-neutral-700 dark:text-neutral-300 text-sm">
+            {response.description}
+          </span>
         )}
       </div>
 
@@ -47,8 +49,13 @@ const ResponseGroup: React.FC<ResponseGroupProps> = ({
       {/* 头部信息 */}
       {response.headers && Object.keys(response.headers).length > 0 && (
         <div>
-          <h4 className="text-sm font-semibold uppercase text-neutral-500 dark:text-neutral-400 mb-2">{t('Response Headers')}</h4>
-          <ResponseHeadersTable headers={response.headers} components={components} />
+          <h4 className="text-sm font-semibold uppercase text-neutral-500 dark:text-neutral-400 mb-2">
+            {t("Response Headers")}
+          </h4>
+          <ResponseHeadersTable
+            headers={response.headers}
+            components={components}
+          />
         </div>
       )}
     </div>

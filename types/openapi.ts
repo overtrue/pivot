@@ -3,33 +3,79 @@
 // Basic OpenAPI 3.0 Types (Simplified)
 // Consider using a library like openapi-types for more comprehensive definitions
 
-export interface ReferenceObject { $ref: string; }
+export interface ReferenceObject {
+  $ref: string;
+}
 
 // HTTP方法类型定义
-export type HttpMethod = 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH' | 'OPTIONS' | 'HEAD' | 'TRACE';
+export type HttpMethod =
+  | "GET"
+  | "POST"
+  | "PUT"
+  | "DELETE"
+  | "PATCH"
+  | "OPTIONS"
+  | "HEAD"
+  | "TRACE";
 
 // 格式类型定义，用于schema.format
-export type FormatType = 'int32' | 'int64' | 'float' | 'double' | 'byte' | 'binary' |
-  'date' | 'date-time' | 'password' | 'email' | 'uuid' | 'uri' | 'url' |
-  'hostname' | 'ipv4' | 'ipv6';
+export type FormatType =
+  | "int32"
+  | "int64"
+  | "float"
+  | "double"
+  | "byte"
+  | "binary"
+  | "date"
+  | "date-time"
+  | "password"
+  | "email"
+  | "uuid"
+  | "uri"
+  | "url"
+  | "hostname"
+  | "ipv4"
+  | "ipv6";
 
 // JSON Schema 组合关键字
-export type SchemaCompositionKeyword = 'allOf' | 'anyOf' | 'oneOf' | 'not';
+export type SchemaCompositionKeyword = "allOf" | "anyOf" | "oneOf" | "not";
 
 // 安全方案类型
-export type SecuritySchemeType = 'apiKey' | 'http' | 'oauth2' | 'openIdConnect' | 'mutualTLS';
+export type SecuritySchemeType =
+  | "apiKey"
+  | "http"
+  | "oauth2"
+  | "openIdConnect"
+  | "mutualTLS";
 
 // OAuth流程类型
-export type OAuthFlowType = 'implicit' | 'password' | 'clientCredentials' | 'authorizationCode';
+export type OAuthFlowType =
+  | "implicit"
+  | "password"
+  | "clientCredentials"
+  | "authorizationCode";
 
 // 数据类型
-export type DataType = 'string' | 'number' | 'integer' | 'boolean' | 'array' | 'object' | 'null';
+export type DataType =
+  | "string"
+  | "number"
+  | "integer"
+  | "boolean"
+  | "array"
+  | "object"
+  | "null";
 
 // 参数样式类型
-export type StyleType = 'form' | 'spaceDelimited' | 'pipeDelimited' | 'deepObject' | 'matrix' | 'label';
+export type StyleType =
+  | "form"
+  | "spaceDelimited"
+  | "pipeDelimited"
+  | "deepObject"
+  | "matrix"
+  | "label";
 
 // 参数位置类型
-export type ParameterLocation = 'query' | 'header' | 'path' | 'cookie';
+export type ParameterLocation = "query" | "header" | "path" | "cookie";
 
 // ExternalDocumentationObject 定义
 export interface ExternalDocumentationObject {
@@ -104,7 +150,9 @@ export interface BaseParameterObject {
   examples?: Record<string, ExampleObject | ReferenceObject>;
   content?: Record<string, MediaTypeObject>;
 }
-export interface ParameterObject extends BaseParameterObject { /* Allow extension */ }
+export interface ParameterObject extends BaseParameterObject {
+  /* Allow extension */
+}
 
 export interface ExampleObject {
   summary?: string;
@@ -151,9 +199,13 @@ export interface ResponseObject {
   content?: Record<string, MediaTypeObject>;
   links?: Record<string, LinkObject | ReferenceObject>;
 }
-export interface ResponsesObjectMap { [statusCode: string]: ResponseObject | ReferenceObject; }
+export interface ResponsesObjectMap {
+  [statusCode: string]: ResponseObject | ReferenceObject;
+}
 
-export interface SecurityRequirementObject { [name: string]: string[]; }
+export interface SecurityRequirementObject {
+  [name: string]: string[];
+}
 
 export interface OperationObject {
   tags?: string[];
@@ -186,7 +238,9 @@ export interface PathItemObject {
   parameters?: (ParameterObject | ReferenceObject)[];
 }
 
-export interface PathsObject { [path: string]: PathItemObject; }
+export interface PathsObject {
+  [path: string]: PathItemObject;
+}
 
 // 回调对象是一个运行时表达式到PathItem对象的映射
 export interface CallbackObject {
@@ -213,7 +267,7 @@ export interface SecuritySchemeObject {
   type: SecuritySchemeType;
   description?: string;
   name?: string; // For apiKey
-  in?: 'query' | 'header' | 'cookie'; // For apiKey
+  in?: "query" | "header" | "cookie"; // For apiKey
   scheme?: string; // For http
   bearerFormat?: string; // For http bearer
   flows?: OAuthFlows; // For oauth2

@@ -1,9 +1,12 @@
-import { useTheme } from '@/lib/theme/ThemeProvider';
-import { cn } from '@/utils/cn';
-import React from 'react';
-import SyntaxHighlighter from 'react-syntax-highlighter';
-import { atomOneDark, atomOneLight } from 'react-syntax-highlighter/dist/esm/styles/hljs';
-import CopyButton from '../interactive/CopyButton';
+import { useTheme } from "@/lib/theme/ThemeProvider";
+import { cn } from "@/utils/cn";
+import React from "react";
+import SyntaxHighlighter from "react-syntax-highlighter";
+import {
+  atomOneDark,
+  atomOneLight,
+} from "react-syntax-highlighter/dist/esm/styles/hljs";
+import CopyButton from "../interactive/CopyButton";
 
 interface CodeMarkdownProps {
   code: string;
@@ -19,8 +22,8 @@ interface CodeMarkdownProps {
 const CodeMarkdown: React.FC<CodeMarkdownProps> = ({
   code,
   language,
-  className = '',
-  disableCopy = false
+  className = "",
+  disableCopy = false,
 }) => {
   // 尝试使用 ThemeProvider 上下文，如果不可用，则使用本地状态或者获取系统首选配色
   const theme = (() => {
@@ -28,21 +31,25 @@ const CodeMarkdown: React.FC<CodeMarkdownProps> = ({
       return useTheme().theme;
     } catch (e) {
       // 如果不在 ThemeProvider 内部，检查 localStorage 或系统首选
-      const savedTheme = localStorage.getItem('theme');
-      if (savedTheme === 'dark') return 'dark';
-      if (savedTheme === 'light') return 'light';
+      const savedTheme = localStorage.getItem("theme");
+      if (savedTheme === "dark") return "dark";
+      if (savedTheme === "light") return "light";
       // 检查系统首选配色
-      if (typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        return 'dark';
+      if (
+        typeof window !== "undefined" &&
+        window.matchMedia &&
+        window.matchMedia("(prefers-color-scheme: dark)").matches
+      ) {
+        return "dark";
       }
-      return 'light';
+      return "light";
     }
   })();
 
-  const codeStyle = theme === 'dark' ? atomOneDark : atomOneLight;
+  const codeStyle = theme === "dark" ? atomOneDark : atomOneLight;
 
   return (
-    <div className={cn('relative', className)}>
+    <div className={cn("relative", className)}>
       {!disableCopy && (
         <div className="absolute top-3 right-3 z-10">
           <CopyButton text={code} size="sm" />
@@ -54,12 +61,12 @@ const CodeMarkdown: React.FC<CodeMarkdownProps> = ({
           style={codeStyle}
           customStyle={{
             margin: 0,
-            padding: '1rem',
-            fontSize: '0.75rem',
+            padding: "1rem",
+            fontSize: "0.75rem",
             lineHeight: 1.2,
-            border: 'none',
-            borderRadius: '0.5rem',
-            backgroundColor: theme === 'dark' ? 'transparent' : undefined
+            border: "none",
+            borderRadius: "0.5rem",
+            backgroundColor: theme === "dark" ? "transparent" : undefined,
           }}
         >
           {code}

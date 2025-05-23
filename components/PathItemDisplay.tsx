@@ -1,6 +1,6 @@
-import { ComponentsObject, PathItemObject } from '@/types/openapi';
-import React from 'react';
-import OperationBox from './OperationBox';
+import { ComponentsObject, PathItemObject } from "@/types/openapi";
+import React from "react";
+import OperationBox from "./OperationBox";
 
 export interface PathItemDisplayProps {
   path: string;
@@ -16,18 +16,18 @@ const PathItemDisplay: React.FC<PathItemDisplayProps> = ({
   className,
 }) => {
   const operations = [
-    { method: 'get', operation: pathItem.get },
-    { method: 'put', operation: pathItem.put },
-    { method: 'post', operation: pathItem.post },
-    { method: 'delete', operation: pathItem.delete },
-    { method: 'options', operation: pathItem.options },
-    { method: 'head', operation: pathItem.head },
-    { method: 'patch', operation: pathItem.patch },
-    { method: 'trace', operation: pathItem.trace },
+    { method: "get", operation: pathItem.get },
+    { method: "put", operation: pathItem.put },
+    { method: "post", operation: pathItem.post },
+    { method: "delete", operation: pathItem.delete },
+    { method: "options", operation: pathItem.options },
+    { method: "head", operation: pathItem.head },
+    { method: "patch", operation: pathItem.patch },
+    { method: "trace", operation: pathItem.trace },
   ].filter(({ operation }) => operation);
 
   return (
-    <div className={`space-y-4 ${className || ''}`}>
+    <div className={`space-y-4 ${className || ""}`}>
       <h2 className="text-xl font-semibold text-neutral-900">{path}</h2>
       {pathItem.description && (
         <p className="text-neutral-600">{pathItem.description}</p>

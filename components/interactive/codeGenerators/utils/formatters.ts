@@ -9,12 +9,16 @@
  * @param spaces 每级缩进的空格数
  * @returns 格式化的字符串
  */
-export function formatJSON(obj: any, indentLevel: number = 0, spaces: number = 2): string {
-  const indent = ' '.repeat(spaces * indentLevel);
+export function formatJSON(
+  obj: any,
+  indentLevel: number = 0,
+  spaces: number = 2,
+): string {
+  const indent = " ".repeat(spaces * indentLevel);
   return JSON.stringify(obj, null, spaces)
-    .split('\n')
-    .map(line => `${indent}${line}`)
-    .join('\n');
+    .split("\n")
+    .map((line) => `${indent}${line}`)
+    .join("\n");
 }
 
 /**

@@ -1,8 +1,8 @@
-import { SecurityRequirementObject } from '../types/openapi';
-import { default as React } from 'react';
+import { SecurityRequirementObject } from "../types/openapi";
+import { default as React } from "react";
 
 interface SecurityRequirementItemProps {
-    requirement: SecurityRequirementObject;
+  requirement: SecurityRequirementObject;
 }
 declare const SecurityRequirementItem: React.FC<SecurityRequirementItemProps>;
 export default SecurityRequirementItem;

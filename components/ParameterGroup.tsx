@@ -1,20 +1,23 @@
-import ExpandCollapse from '@/components/interactive/ExpandCollapse';
-import React from 'react';
-import RequiredMarker from './atoms/RequiredMarker';
-import TypeIndicator from './atoms/TypeIndicator';
+import ExpandCollapse from "@/components/interactive/ExpandCollapse";
+import React from "react";
+import RequiredMarker from "./atoms/RequiredMarker";
+import TypeIndicator from "./atoms/TypeIndicator";
 
 interface ParameterGroupProps {
-  inType: 'query' | 'path' | 'header' | 'cookie';
+  inType: "query" | "path" | "header" | "cookie";
   parameters: { name: string; required: boolean; type: string }[];
 }
 
-const ParameterGroup: React.FC<ParameterGroupProps> = ({ inType, parameters }) => {
+const ParameterGroup: React.FC<ParameterGroupProps> = ({
+  inType,
+  parameters,
+}) => {
   return (
     <div className="space-y-4">
       <h3 className="text-lg font-semibold capitalize">{inType} Parameters</h3>
       <ExpandCollapse
         isExpanded={true}
-        onToggle={() => { }}
+        onToggle={() => {}}
         label="Toggle Parameters"
       />
       <div className="space-y-2">

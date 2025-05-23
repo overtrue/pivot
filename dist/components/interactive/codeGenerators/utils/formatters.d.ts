@@ -8,7 +8,11 @@
  * @param spaces 每级缩进的空格数
  * @returns 格式化的字符串
  */
-export declare function formatJSON(obj: any, indentLevel?: number, spaces?: number): string;
+export declare function formatJSON(
+  obj: any,
+  indentLevel?: number,
+  spaces?: number,
+): string;
 /**
  * 替换字符串中的双引号为单引号（用于PHP/Laravel代码）
  * @param str 原始字符串

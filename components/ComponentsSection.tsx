@@ -1,24 +1,34 @@
-
-import { useI18n } from '@/lib/i18n/I18nProvider';
-import { ComponentsObject } from '@/types/openapi';
-import React, { useMemo, useState } from 'react';
-import { getAvailableComponents } from '../utils/getAvailableComponents';
-import ComponentTabs, { ComponentType } from './/ComponentTabs';
-import SectionTitle from './atoms/SectionTitle';
-import ComponentDetail from './ComponentDetail';
-import ComponentItemsList from './ComponentItemsList';
+import { useI18n } from "@/lib/i18n/I18nProvider";
+import { ComponentsObject } from "@/types/openapi";
+import React, { useMemo, useState } from "react";
+import { getAvailableComponents } from "../utils/getAvailableComponents";
+import ComponentTabs, { ComponentType } from ".//ComponentTabs";
+import SectionTitle from "./atoms/SectionTitle";
+import ComponentDetail from "./ComponentDetail";
+import ComponentItemsList from "./ComponentItemsList";
 
 interface ComponentsSectionProps {
   components: ComponentsObject;
   className?: string;
 }
 
-const ComponentsSection: React.FC<ComponentsSectionProps> = ({ components, className }) => {
+const ComponentsSection: React.FC<ComponentsSectionProps> = ({
+  components,
+  className,
+}) => {
   const { t } = useI18n();
-  const availableComponents = useMemo(() => getAvailableComponents(components), [components]);
-  const availableTypes = useMemo(() => Object.keys(availableComponents) as ComponentType[], [availableComponents]);
+  const availableComponents = useMemo(
+    () => getAvailableComponents(components),
+    [components],
+  );
+  const availableTypes = useMemo(
+    () => Object.keys(availableComponents) as ComponentType[],
+    [availableComponents],
+  );
 
-  const [activeType, setActiveType] = useState<ComponentType | null>(availableTypes[0] || null);
+  const [activeType, setActiveType] = useState<ComponentType | null>(
+    availableTypes[0] || null,
+  );
   const [selectedItemName, setSelectedItemName] = useState<string | null>(null);
 
   // Reset selected item when type changes

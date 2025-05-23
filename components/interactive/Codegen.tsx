@@ -1,10 +1,16 @@
-import { useI18n } from '@/lib/i18n/I18nProvider';
-import { ComponentsObject, HttpMethod, ParameterObject, ReferenceObject, RequestBodyObject } from '@/types/openapi';
-import React, { useState } from 'react';
-import { generateExample } from '../../utils/generateExample';
-import { resolveRef } from '../../utils/resolveRef';
-import CodeMarkdown from '../atoms/CodeMarkdown';
-import { codeGenerators } from './codeGenerators';
+import { useI18n } from "@/lib/i18n/I18nProvider";
+import {
+  ComponentsObject,
+  HttpMethod,
+  ParameterObject,
+  ReferenceObject,
+  RequestBodyObject,
+} from "@/types/openapi";
+import React, { useState } from "react";
+import { generateExample } from "../../utils/generateExample";
+import { resolveRef } from "../../utils/resolveRef";
+import CodeMarkdown from "../atoms/CodeMarkdown";
+import { codeGenerators } from "./codeGenerators";
 
 interface CodegenProps {
   endpoint: string;
@@ -16,9 +22,17 @@ interface CodegenProps {
   defaultCollapsed?: boolean;
 }
 
-const Codegen: React.FC<CodegenProps> = ({ endpoint, method, parameters = [], requestBody, components, collapsible = false, defaultCollapsed = false }) => {
+const Codegen: React.FC<CodegenProps> = ({
+  endpoint,
+  method,
+  parameters = [],
+  requestBody,
+  components,
+  collapsible = false,
+  defaultCollapsed = false,
+}) => {
   const { t } = useI18n();
-  const [languageId, setLanguageId] = useState(codeGenerators[0]?.id || 'curl');
+  const [languageId, setLanguageId] = useState(codeGenerators[0]?.id || "curl");
   const [collapsed, setCollapsed] = useState(defaultCollapsed);
 
   const toggleCollapse = () => {
@@ -28,65 +42,77 @@ const Codegen: React.FC<CodegenProps> = ({ endpoint, method, parameters = [], re
   };
 
   // 解析请求体
-  const resolvedRequestBody = requestBody ? resolveRef<RequestBodyObject>(requestBody, components, 'requestBodies') : undefined;
+  const resolvedRequestBody = requestBody
+    ? resolveRef<RequestBodyObject>(requestBody, components, "requestBodies")
+    : undefined;
 
   // 解析参数
-  const resolvedParameters = parameters.map(param =>
-    resolveRef<ParameterObject>(param, components, 'parameters')
-  ).filter(Boolean) as ParameterObject[];
+  const resolvedParameters = parameters
+    .map((param) =>
+      resolveRef<ParameterObject>(param, components, "parameters"),
+    )
+    .filter(Boolean) as ParameterObject[];
 
   // 生成请求体示例数据
   const getRequestBodyExample = () => {
-    if (!resolvedRequestBody || !resolvedRequestBody.content) return { example: "data" };
+    if (!resolvedRequestBody || !resolvedRequestBody.content)
+      return { example: "data" };
 
     // 获取内容类型，优先使用application/json
-    const contentType =
-      resolvedRequestBody.content['application/json'] ?
-        'application/json' :
-        Object.keys(resolvedRequestBody.content)[0];
+    const contentType = resolvedRequestBody.content["application/json"]
+      ? "application/json"
+      : Object.keys(resolvedRequestBody.content)[0];
 
-    if (!contentType || !resolvedRequestBody.content[contentType].schema) return { example: "data" };
+    if (!contentType || !resolvedRequestBody.content[contentType].schema)
+      return { example: "data" };
 
     const schema = resolvedRequestBody.content[contentType].schema;
     if (!schema) return { example: "data" };
 
     // 使用通用的示例生成工具
-    return resolvedRequestBody.content[contentType].example ||
+    return (
+      resolvedRequestBody.content[contentType].example ||
       generateExample(schema, components, {
         maxDepth: 2,
         includeReadOnly: true,
-        includeWriteOnly: true
-      });
+        includeWriteOnly: true,
+      })
+    );
   };
 
   const requestBodyExample = getRequestBodyExample();
 
   const getCode = () => {
     // 使用模块化的代码生成器
-    const generator = codeGenerators.find(gen => gen.id === languageId);
-    if (!generator) return '';
+    const generator = codeGenerators.find((gen) => gen.id === languageId);
+    if (!generator) return "";
 
     return generator.generateCode({
       endpoint,
       method,
       parameters: resolvedParameters,
       requestBody: resolvedRequestBody || undefined,
-      requestBodyExample
+      requestBodyExample,
     });
   };
 
   // 获取代码语言
   const getCodeLanguage = () => {
-    const generator = codeGenerators.find(gen => gen.id === languageId);
-    if (!generator) return 'bash';
+    const generator = codeGenerators.find((gen) => gen.id === languageId);
+    if (!generator) return "bash";
 
     switch (languageId) {
-      case 'curl': return 'bash';
-      case 'python': return 'python';
-      case 'typescript':
-      case 'javascript': return 'javascript';
-      case 'php': return 'php';
-      default: return languageId;
+      case "curl":
+        return "bash";
+      case "python":
+        return "python";
+      case "typescript":
+      case "javascript":
+        return "javascript";
+      case "php":
+        return "php";
+      default:
+        return languageId;
     }
   };
 
@@ -99,10 +125,11 @@ const Codegen: React.FC<CodegenProps> = ({ endpoint, method, parameters = [], re
               <button
                 key={generator.id}
                 onClick={() => setLanguageId(generator.id)}
-                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md text-sm font-medium transition-colors mb-1 ${languageId === generator.id
-                  ? 'bg-white dark:bg-neutral-700 text-blue-700 dark:text-blue-400 shadow-sm'
-                  : 'text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-200 hover:bg-neutral-50 dark:hover:bg-neutral-700/50'
-                  }`}
+                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md text-sm font-medium transition-colors mb-1 ${
+                  languageId === generator.id
+                    ? "bg-white dark:bg-neutral-700 text-blue-700 dark:text-blue-400 shadow-sm"
+                    : "text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-200 hover:bg-neutral-50 dark:hover:bg-neutral-700/50"
+                }`}
               >
                 {generator.getIcon()}
                 {generator.label}

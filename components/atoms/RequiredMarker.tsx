@@ -1,5 +1,5 @@
-import { cn } from '@/utils/cn';
-import React from 'react';
+import { cn } from "@/utils/cn";
+import React from "react";
 
 interface RequiredMarkerProps {
   className?: string;
@@ -7,7 +7,10 @@ interface RequiredMarkerProps {
 
 const RequiredMarker: React.FC<RequiredMarkerProps> = ({ className }) => {
   return (
-    <span className={cn('text-red-600 dark:text-red-400 font-bold', className)} title="Required">
+    <span
+      className={cn("text-red-600 dark:text-red-400 font-bold", className)}
+      title="Required"
+    >
       *
     </span>
   );

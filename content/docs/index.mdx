@@ -1,0 +1,59 @@
+---
+title: "Pivot - OpenAPI Component Library"
+description: "A modern React UI library for OpenAPI specifications, built with shadcn/ui registry system."
+---
+
+# Pivot - OpenAPI Component Library
+
+Pivot 是一个现代化的 React UI 组件库，专门为 OpenAPI 规范设计。它基于 shadcn/ui registry 系统构建，让您可以轻松地将组件添加到自己的项目中。
+
+## 特性
+
+- 🚀 **现代化设计** - 基于 Tailwind CSS 和 shadcn/ui 设计系统
+- 📦 **Registry 系统** - 使用 shadcn/ui registry 系统，方便组件发布和安装
+- 🎨 **可定制** - 支持主题定制和样式覆盖
+- 📱 **响应式** - 完全响应式设计，适配各种设备
+- 🌙 **暗色模式** - 内置暗色模式支持
+- 🔧 **TypeScript** - 完整的 TypeScript 支持
+
+## 快速开始
+
+### 安装
+
+```bash
+npx shadcn@latest add https://pivot.design/registry.json
+```
+
+### 使用组件
+
+```tsx
+import { StatusCode } from "@/components/pivot/status-code";
+import { MethodLabel } from "@/components/pivot/method-label";
+
+export function Example() {
+  return (
+    <div className="flex items-center gap-2">
+      <MethodLabel method="GET" />
+      <StatusCode code={200} />
+    </div>
+  );
+}
+```
+
+## 组件分类
+
+### 原子组件 (Atoms)
+
+基础的、可复用的小组件，如状态码、方法标签等。
+
+### 布局组件 (Layouts)
+
+复杂的布局组件和模板，如 API 文档布局、侧边栏等。
+
+## 贡献
+
+欢迎贡献代码！请查看我们的 [贡献指南](https://github.com/your-repo/pivot) 了解更多信息。
+
+## 许可证
+
+MIT License

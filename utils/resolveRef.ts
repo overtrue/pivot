@@ -1,5 +1,4 @@
-
-import { ComponentsObject, ReferenceObject } from '@/types/openapi';
+import { ComponentsObject, ReferenceObject } from "@/types/openapi";
 
 /**
  * 解析OpenAPI中的引用对象
@@ -11,12 +10,12 @@ import { ComponentsObject, ReferenceObject } from '@/types/openapi';
 export function resolveRef<T>(
   obj: T | ReferenceObject | undefined,
   components?: ComponentsObject,
-  category?: string
+  category?: string,
 ): T | null {
   if (!obj) return null;
 
   // 检查是否是引用对象
-  if (typeof obj === 'object' && obj !== null && '$ref' in obj) {
+  if (typeof obj === "object" && obj !== null && "$ref" in obj) {
     const refObj = obj as ReferenceObject;
     const refPath = refObj.$ref;
 
@@ -32,16 +31,25 @@ export function resolveRef<T>(
       }
 
       // 根据类别获取组件集合
-      const componentCollection = components[refCategory as keyof ComponentsObject];
+      const componentCollection =
+        components[refCategory as keyof ComponentsObject];
 
-      if (componentCollection && typeof componentCollection === 'object') {
+      if (componentCollection && typeof componentCollection === "object") {
         // 解析引用对象
         const resolved = componentCollection[refName];
 
         if (resolved) {
           // 检查是否是嵌套引用，如果是则递归解析
-          if (typeof resolved === 'object' && resolved !== null && '$ref' in resolved) {
-            return resolveRef<T>(resolved as ReferenceObject, components, category);
+          if (
+            typeof resolved === "object" &&
+            resolved !== null &&
+            "$ref" in resolved
+          ) {
+            return resolveRef<T>(
+              resolved as ReferenceObject,
+              components,
+              category,
+            );
           }
           return resolved as unknown as T;
         }

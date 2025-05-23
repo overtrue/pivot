@@ -1,23 +1,22 @@
-
-import MethodLabel from '@/components/atoms/MethodLabel';
-import OperationPath from '@/components/atoms/OperationPath';
-import { useOpenApi } from '@/hooks/useOpenApi';
-import { useI18n } from '@/lib/i18n/I18nProvider';
+import MethodLabel from "@/components/atoms/MethodLabel";
+import OperationPath from "@/components/atoms/OperationPath";
+import { useOpenApi } from "@/hooks/useOpenApi";
+import { useI18n } from "@/lib/i18n/I18nProvider";
 import {
   ComponentsObject,
   OpenApiSpec,
-  OperationObject
-} from '@/types/openapi';
-import { cn } from '@/utils/cn';
-import React, { useState } from 'react';
-import ParametersSection from './/ParametersSection';
-import ResponsesSection from './/ResponsesSection';
-import DeprecatedBadge from './atoms/DeprecatedBadge';
-import DescriptionDisplay from './atoms/DescriptionDisplay';
-import ExternalDocsDisplay from './atoms/ExternalDocsDisplay';
-import ExpandCollapse from './interactive/ExpandCollapse';
-import RequestBodySection from './RequestBodySection';
-import SecurityRequirementsSection from './SecurityRequirementsSection';
+  OperationObject,
+} from "@/types/openapi";
+import { cn } from "@/utils/cn";
+import React, { useState } from "react";
+import ParametersSection from ".//ParametersSection";
+import ResponsesSection from ".//ResponsesSection";
+import DeprecatedBadge from "./atoms/DeprecatedBadge";
+import DescriptionDisplay from "./atoms/DescriptionDisplay";
+import ExternalDocsDisplay from "./atoms/ExternalDocsDisplay";
+import ExpandCollapse from "./interactive/ExpandCollapse";
+import RequestBodySection from "./RequestBodySection";
+import SecurityRequirementsSection from "./SecurityRequirementsSection";
 
 interface OperationBoxProps {
   path: string;
@@ -36,7 +35,7 @@ const OperationBox: React.FC<OperationBoxProps> = ({
   components,
   className,
   onSelectOperation,
-  spec
+  spec,
 }) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [isTryItOutVisible, setIsTryItOutVisible] = useState(false);
@@ -65,23 +64,31 @@ const OperationBox: React.FC<OperationBoxProps> = ({
   const toggleExpand = () => setIsExpanded(!isExpanded);
 
   return (
-    <div className={cn(
-      'rounded overflow-hidden',
-      operation.deprecated ? 'bg-red-300 dark:bg-red-900/50' : 'bg-neutral-50/50 dark:bg-neutral-800/50',
-      className
-    )}>
+    <div
+      className={cn(
+        "rounded overflow-hidden",
+        operation.deprecated
+          ? "bg-red-300 dark:bg-red-900/50"
+          : "bg-neutral-50/50 dark:bg-neutral-800/50",
+        className,
+      )}
+    >
       {/* Header Section */}
       <div
         className={cn(
-          'p-3 flex justify-between items-center cursor-pointer',
-          operation.deprecated ? 'bg-red-50 dark:bg-red-900/30' : ''
+          "p-3 flex justify-between items-center cursor-pointer",
+          operation.deprecated ? "bg-red-50 dark:bg-red-900/30" : "",
         )}
         onClick={handleHeaderClick}
       >
         <div className="flex items-center space-x-3 flex-wrap">
           <MethodLabel method={method.toUpperCase() as any} />
           <OperationPath path={path} className="break-all" />
-          {operation.summary && <span className="text-sm text-neutral-700 dark:text-neutral-300 hidden md:inline">- {operation.summary}</span>}
+          {operation.summary && (
+            <span className="text-sm text-neutral-700 dark:text-neutral-300 hidden md:inline">
+              - {operation.summary}
+            </span>
+          )}
           {operation.deprecated && <DeprecatedBadge />}
         </div>
         <ExpandCollapse isExpanded={isExpanded} onToggle={toggleExpand} />
@@ -94,33 +101,53 @@ const OperationBox: React.FC<OperationBoxProps> = ({
           {(operation.summary || operation.description || externalDocs) && (
             <div className="p-4 pt-0 space-y-2">
               {operation.summary && (
-                <DescriptionDisplay className="text-base text-neutral-800 dark:text-neutral-200 font-medium md:hidden" description={operation.summary} />
+                <DescriptionDisplay
+                  className="text-base text-neutral-800 dark:text-neutral-200 font-medium md:hidden"
+                  description={operation.summary}
+                />
               )}
               {operation.description && (
-                <DescriptionDisplay description={operation.description} className="text-sm text-neutral-800 dark:text-neutral-200 prose dark:prose-invert max-w-none" />
+                <DescriptionDisplay
+                  description={operation.description}
+                  className="text-sm text-neutral-800 dark:text-neutral-200 prose dark:prose-invert max-w-none"
+                />
               )}
-              {externalDocs && <ExternalDocsDisplay externalDocs={externalDocs} className="mt-2" />}
+              {externalDocs && (
+                <ExternalDocsDisplay
+                  externalDocs={externalDocs}
+                  className="mt-2"
+                />
+              )}
             </div>
           )}
 
           {/* Parameters Section */}
           {parameters && parameters.length > 0 && (
             <div className="p-4">
-              <ParametersSection parameters={parameters} components={resolvedComponents} />
+              <ParametersSection
+                parameters={parameters}
+                components={resolvedComponents}
+              />
             </div>
           )}
 
           {/* Request Body Section */}
           {requestBody && (
             <div className="p-4">
-              <RequestBodySection requestBody={requestBody} components={resolvedComponents} />
+              <RequestBodySection
+                requestBody={requestBody}
+                components={resolvedComponents}
+              />
             </div>
           )}
 
           {/* Responses Section */}
           {responses && (
             <div className="p-4">
-              <ResponsesSection responses={responses} components={resolvedComponents} />
+              <ResponsesSection
+                responses={responses}
+                components={resolvedComponents}
+              />
             </div>
           )}
 

@@ -1,0 +1,59 @@
+# Pivot Project - MagicUI Style Component Library
+
+这是一个基于 MagicUI 架构的 OpenAPI 组件库项目。
+
+## 项目架构
+- 基于 Next.js 15 + App Router
+- 使用 shadcn/ui registry 系统进行组件发布
+- TypeScript + Tailwind CSS
+- pnpm 作为包管理器
+- content-collections 管理文档内容
+
+## 目录结构
+- `app/` - Next.js app router 页面和路由
+- `registry/` - 可发布的组件源码（核心组件库）
+- `content/` - MDX 文档内容
+- `__registry__/` - 构建后的 registry 文件（自动生成）
+- `components/` - 网站 UI 组件（非发布组件）
+- `lib/` - 工具函数和配置
+- `hooks/` - React hooks
+- `styles/` - 全局样式
+- `public/` - 静态资源
+
+## 组件分类
+- `registry/pivot/` - 原子组件（atoms）和基础组件
+- `registry/example/` - 复杂组件和布局模板（layouts）
+- `registry/lib/` - 工具函数
+
+## 编码规范
+1. 所有组件必须使用 TypeScript
+2. 使用 Tailwind CSS 进行样式设计
+3. 组件必须有明确的 props 类型定义
+4. 可发布组件放在 registry/ 目录下，并且扁平放置，不要嵌套
+5. 组件文件名使用 kebab-case（如：magic-card.tsx）
+6. 导出的组件使用 PascalCase（如：MagicCard）
+7. 使用 forwardRef 处理 ref 传递
+8. 使用 class-variance-authority 处理变体样式
+
+## 依赖管理
+- 优先使用 @radix-ui 作为无头组件
+- 使用 lucide-react 作为图标库
+- 使用 motion 处理动画效果
+- 使用 tailwind-merge 合并 className
+
+## 组件发布规范
+- 每个组件需在 registry.json 中注册
+- 组件需要包含 title、description
+- 明确声明依赖关系
+- 提供完整的使用示例
+
+## 文档规范
+- 使用 MDX 编写组件文档
+- 包含组件 API 说明
+- 提供实际使用示例
+- 包含安装和使用指南
+
+## 重要提醒
+- 不要修改现有组件的样式和逻辑，只调整目录结构和引入路径
+- 所有变更仅限于 pivot 目录
+- 严格遵循 MagicUI 的组织方式和最佳实践

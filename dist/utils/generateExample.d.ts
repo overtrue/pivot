@@ -1,4 +1,8 @@
-import { ComponentsObject, ReferenceObject, SchemaObject } from '../types/openapi';
+import {
+  ComponentsObject,
+  ReferenceObject,
+  SchemaObject,
+} from "../types/openapi";
 
 /**
  * 根据OpenAPI Schema生成示例数据
@@ -8,9 +12,13 @@ import { ComponentsObject, ReferenceObject, SchemaObject } from '../types/openap
  * @param options 额外配置选项
  * @returns 生成的示例数据
  */
-export declare function generateExample(schema: SchemaObject | ReferenceObject, components?: ComponentsObject, options?: {
+export declare function generateExample(
+  schema: SchemaObject | ReferenceObject,
+  components?: ComponentsObject,
+  options?: {
     maxDepth?: number;
     currentDepth?: number;
     includeReadOnly?: boolean;
     includeWriteOnly?: boolean;
-}): any;
+  },
+): any;

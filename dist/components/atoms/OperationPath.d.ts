@@ -1,8 +1,8 @@
-import { default as React } from 'react';
+import { default as React } from "react";
 
 interface OperationPathProps {
-    path: string;
-    className?: string;
+  path: string;
+  className?: string;
 }
 /**
  * 将一个完整的 OpenAPI 路径分割为多个 PathSegment 组件

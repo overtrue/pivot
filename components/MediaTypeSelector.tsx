@@ -1,6 +1,6 @@
-import { useI18n } from '@/lib/i18n/I18nProvider';
-import { cn } from '@/utils/cn';
-import React from 'react';
+import { useI18n } from "@/lib/i18n/I18nProvider";
+import { cn } from "@/utils/cn";
+import React from "react";
 
 interface MediaTypeSelectorProps {
   mediaTypes: string[];
@@ -22,22 +22,22 @@ const MediaTypeSelector: React.FC<MediaTypeSelectorProps> = ({
   const handleClick = (e: React.MouseEvent, mediaType: string) => {
     e.preventDefault();
     e.stopPropagation();
-    console.log(t('Switching media type to: %s').replace('%s', mediaType));
+    console.log(t("Switching media type to: %s").replace("%s", mediaType));
     onSelectMediaType(mediaType);
   };
 
   return (
     <div className="mb-2 border-b dark:border-neutral-700">
       <ul className="flex flex-wrap -mb-px text-sm font-medium text-center z-10">
-        {mediaTypes.map(mediaType => (
+        {mediaTypes.map((mediaType) => (
           <li key={mediaType} className="mr-2">
             <button
               onClick={(e) => handleClick(e, mediaType)}
               className={cn(
-                'inline-block p-2 border-b-2 rounded-t-lg',
+                "inline-block p-2 border-b-2 rounded-t-lg",
                 activeMediaType === mediaType
-                  ? 'text-blue-600 dark:text-blue-400 border-blue-600 dark:border-blue-400'
-                  : 'border-transparent hover:text-neutral-600 dark:hover:text-neutral-300 hover:border-neutral-300 dark:hover:border-neutral-600'
+                  ? "text-blue-600 dark:text-blue-400 border-blue-600 dark:border-blue-400"
+                  : "border-transparent hover:text-neutral-600 dark:hover:text-neutral-300 hover:border-neutral-300 dark:hover:border-neutral-600",
               )}
               type="button"
             >

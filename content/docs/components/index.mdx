@@ -1,0 +1,263 @@
+---
+title: "组件总览"
+description: "Pivot OpenAPI 组件库中所有可用组件的概览。"
+---
+
+# 组件总览
+
+Pivot 提供了一套专门为 OpenAPI 规范设计的 React UI 组件。所有组件都基于 Tailwind CSS 和 shadcn/ui 设计系统，支持暗色模式，并且可以通过 registry 系统轻松安装。
+
+## 原子组件 (Atoms)
+
+这些是基础的、可复用的小组件，专门为显示 OpenAPI 规范中的各种元素而设计。
+
+### 状态码和方法
+
+#### Status Code
+
+用于显示 HTTP 状态码的组件，自动根据状态码类型应用颜色编码。
+
+```tsx
+<StatusCode code={200} />
+<StatusCode code={404} />
+<StatusCode code={500} size="medium" />
+```
+
+#### Method Label
+
+用于显示 HTTP 方法的组件，支持所有标准 HTTP 方法的颜色编码。
+
+```tsx
+<MethodLabel method="GET" />
+<MethodLabel method="POST" />
+<MethodLabel method="DELETE" variant="compact" />
+```
+
+### 数据类型和格式
+
+#### Type Indicator
+
+用于显示数据类型的组件，支持所有 JSON Schema 数据类型。
+
+```tsx
+<TypeIndicator type="string" />
+<TypeIndicator type="number" />
+<TypeIndicator type="array" theme="secondary" />
+```
+
+#### Format Badge
+
+用于显示数据格式类型的组件，支持常见的数据格式。
+
+```tsx
+<FormatBadge format="email" />
+<FormatBadge format="date" />
+<FormatBadge format="uuid" />
+```
+
+#### Style Badge
+
+用于显示参数样式类型的组件。
+
+```tsx
+<StyleBadge style="form" />
+<StyleBadge style="simple" />
+<StyleBadge style="matrix" />
+```
+
+### 参数和标识
+
+#### In Label
+
+用于显示参数位置的组件（query、path、header、cookie）。
+
+```tsx
+<InLabel type="query" />
+<InLabel type="path" />
+<InLabel type="header" />
+```
+
+#### Required Badge
+
+用于标识必填字段的徽章组件。
+
+```tsx
+<RequiredBadge />
+<RequiredBadge>必填</RequiredBadge>
+```
+
+#### Required Marker
+
+简单的星号标记，用于指示必填字段。
+
+```tsx
+<span>Name <RequiredMarker /></span>
+<span>Email <RequiredMarker title="此字段为必填项" /></span>
+```
+
+#### Deprecated Badge
+
+用于标识已废弃字段或端点的徽章组件。
+
+```tsx
+<DeprecatedBadge />
+<DeprecatedBadge>已废弃</DeprecatedBadge>
+```
+
+### 特殊标签
+
+#### Version Badge
+
+用于显示版本信息的徽章组件。
+
+```tsx
+<VersionBadge version="1.0.0" />
+<VersionBadge version="2.1.3" />
+```
+
+#### Webhook Label
+
+用于标识 Webhook 操作的标签组件。
+
+```tsx
+<WebhookLabel />
+<WebhookLabel>Webhook 端点</WebhookLabel>
+```
+
+### 值显示
+
+#### Value Display
+
+用于显示各种类型值的组件，支持基本类型和复杂对象。
+
+```tsx
+<ValueDisplay value="Hello World" />
+<ValueDisplay value={42} />
+<ValueDisplay value={{ name: "John", age: 30 }} />
+```
+
+#### Enum Values
+
+用于显示枚举值列表的组件。
+
+```tsx
+<EnumValues values={["pending", "approved", "rejected"]} />
+<EnumValues values={[1, 2, 3, 5, 8]} />
+```
+
+## 安装组件
+
+你可以通过以下方式安装单个组件：
+
+```bash
+# 核心组件
+npx shadcn@latest add https://pivot.design/registry.json status-code
+npx shadcn@latest add https://pivot.design/registry.json method-label
+npx shadcn@latest add https://pivot.design/registry.json type-indicator
+
+# 徽章组件
+npx shadcn@latest add https://pivot.design/registry.json required-badge
+npx shadcn@latest add https://pivot.design/registry.json deprecated-badge
+npx shadcn@latest add https://pivot.design/registry.json version-badge
+
+# 格式和样式
+npx shadcn@latest add https://pivot.design/registry.json format-badge
+npx shadcn@latest add https://pivot.design/registry.json style-badge
+npx shadcn@latest add https://pivot.design/registry.json in-label
+
+# 值和标记
+npx shadcn@latest add https://pivot.design/registry.json value-display
+npx shadcn@latest add https://pivot.design/registry.json enum-values
+npx shadcn@latest add https://pivot.design/registry.json required-marker
+
+# 特殊标签
+npx shadcn@latest add https://pivot.design/registry.json webhook-label
+```
+
+或者安装所有原子组件：
+
+```bash
+npx shadcn@latest add https://pivot.design/registry.json \
+  status-code method-label type-indicator required-badge \
+  deprecated-badge format-badge in-label version-badge \
+  value-display webhook-label style-badge required-marker enum-values
+```
+
+## 组合使用示例
+
+这些组件可以组合使用来构建复杂的 API 文档界面：
+
+```tsx
+import {
+  StatusCode,
+  MethodLabel,
+  TypeIndicator,
+  RequiredBadge,
+  FormatBadge,
+  InLabel,
+  RequiredMarker,
+  WebhookLabel,
+} from "@/components/pivot";
+
+export function ApiEndpoint() {
+  return (
+    <div className="space-y-4">
+      {/* 标准 API 端点 */}
+      <div className="flex items-center gap-2 p-4 border rounded-lg">
+        <MethodLabel method="POST" />
+        <span className="text-muted-foreground">/api/users</span>
+        <InLabel type="query" />
+        <TypeIndicator type="object" />
+        <RequiredBadge />
+        <FormatBadge format="email" />
+        <StatusCode code={201} />
+      </div>
+
+      {/* Webhook 端点 */}
+      <div className="flex items-center gap-2 p-4 border rounded-lg">
+        <WebhookLabel />
+        <span className="text-muted-foreground">/webhooks/notify</span>
+        <TypeIndicator type="object" />
+        <StatusCode code={200} />
+      </div>
+
+      {/* 带必填标记的参数 */}
+      <div className="flex items-center gap-2 p-4 border rounded-lg">
+        <span>参数名称</span>
+        <RequiredMarker />
+        <InLabel type="query" />
+        <TypeIndicator type="string" />
+        <FormatBadge format="email" />
+      </div>
+    </div>
+  );
+}
+```
+
+## 组件总数
+
+目前已提供 **13个** 核心原子组件：
+
+1. **StatusCode** - HTTP 状态码显示
+2. **MethodLabel** - HTTP 方法标签
+3. **TypeIndicator** - 数据类型指示器
+4. **RequiredBadge** - 必填字段徽章
+5. **DeprecatedBadge** - 废弃标识徽章
+6. **FormatBadge** - 数据格式徽章
+7. **InLabel** - 参数位置标签
+8. **VersionBadge** - 版本信息徽章
+9. **ValueDisplay** - 值显示组件
+10. **WebhookLabel** - Webhook 标签
+11. **StyleBadge** - 样式类型徽章
+12. **RequiredMarker** - 必填星号标记
+13. **EnumValues** - 枚举值显示
+
+## 特性
+
+- 🎨 **一致的设计语言** - 所有组件遵循统一的设计系统
+- 🌙 **暗色模式支持** - 自动适配明暗主题
+- 📱 **完全响应式** - 在所有设备上都能正常显示
+- 🔧 **TypeScript 支持** - 完整的类型定义
+- 🎯 **专门优化** - 专为 OpenAPI 规范设计
+- ⚡ **轻量高效** - 基于 Tailwind CSS，无运行时样式计算
+- 🔄 **组合友好** - 组件之间可以灵活组合使用

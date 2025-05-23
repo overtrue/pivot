@@ -1,6 +1,6 @@
-import { default as React } from 'react';
+import { default as React } from "react";
 
 declare const TermsOfService: React.FC<{
-    url: string;
+  url: string;
 }>;
 export default TermsOfService;

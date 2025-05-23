@@ -1,20 +1,20 @@
-import { useI18n } from '@/lib/i18n/I18nProvider';
-import { cn } from '@/utils/cn';
-import { Clipboard, ClipboardCheck } from 'lucide-react';
-import React, { useEffect, useState } from 'react';
+import { useI18n } from "@/lib/i18n/I18nProvider";
+import { cn } from "@/utils/cn";
+import { Clipboard, ClipboardCheck } from "lucide-react";
+import React, { useEffect, useState } from "react";
 
 interface CopyButtonProps {
   text: string;
   className?: string;
   iconClassName?: string;
-  size?: 'sm' | 'md' | 'lg';
+  size?: "sm" | "md" | "lg";
 }
 
 const CopyButton: React.FC<CopyButtonProps> = ({
   text,
-  className = '',
-  iconClassName = '',
-  size = 'md'
+  className = "",
+  iconClassName = "",
+  size = "md",
 }) => {
   const { t } = useI18n();
   const [copied, setCopied] = useState(false);
@@ -34,33 +34,33 @@ const CopyButton: React.FC<CopyButtonProps> = ({
       await navigator.clipboard.writeText(text);
       setCopied(true);
     } catch (err) {
-      console.error(t('Copy failed:'), err);
+      console.error(t("Copy failed:"), err);
     }
   };
 
   // 根据尺寸大小设置不同的样式
   const sizeClasses = {
-    sm: 'p-1',
-    md: 'p-2',
-    lg: 'p-3'
+    sm: "p-1",
+    md: "p-2",
+    lg: "p-3",
   };
 
   const iconSizes = {
     sm: 14,
     md: 16,
-    lg: 20
+    lg: 20,
   };
 
   return (
     <button
       onClick={handleCopy}
       className={cn(
-        'bg-neutral-100 dark:bg-neutral-700 hover:bg-neutral-200 dark:hover:bg-neutral-600 text-neutral-500 dark:text-neutral-300 rounded transition-colors',
+        "bg-neutral-100 dark:bg-neutral-700 hover:bg-neutral-200 dark:hover:bg-neutral-600 text-neutral-500 dark:text-neutral-300 rounded transition-colors",
         sizeClasses[size],
         className,
-        copied ? 'text-green-600 dark:text-green-400' : ''
+        copied ? "text-green-600 dark:text-green-400" : "",
       )}
-      title={t('Copy to clipboard')}
+      title={t("Copy to clipboard")}
     >
       {copied ? (
         <ClipboardCheck size={iconSizes[size]} className={iconClassName} />

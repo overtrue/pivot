@@ -1,7 +1,7 @@
-import { default as React } from 'react';
+import { default as React } from "react";
 
 interface ParameterDescriptionProps {
-    description: string;
+  description: string;
 }
 declare const ParameterDescription: React.FC<ParameterDescriptionProps>;
 export default ParameterDescription;

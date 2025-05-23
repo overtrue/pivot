@@ -1,6 +1,5 @@
-
-import { ComponentsObject } from '@/types/openapi';
-import { ComponentType } from '../components/ComponentTabs';
+import { ComponentsObject } from "@/types/openapi";
+import { ComponentType } from "../components/ComponentTabs";
 
 /**
  * 获取OpenAPI组件中可用的组件类型及其项目

@@ -7,22 +7,26 @@ import {
   RequestBodyObject,
   ResponseObject,
   SchemaObject,
-  ServerObject
-} from '@/types/openapi';
-import { resolveRef } from '@/utils/resolveRef';
-import { useMemo } from 'react';
+  ServerObject,
+} from "@/types/openapi";
+import { resolveRef } from "@/utils/resolveRef";
+import { useMemo } from "react";
 
 /**
  * 自定义钩子，简化OpenAPI结构的处理
  * @param spec OpenAPI规范对象
  * @returns 一组处理OpenAPI结构的工具函数
  */
-export function useOpenApi(spec: OpenApiSpec) { // spec 不再接受 null
+export function useOpenApi(spec: OpenApiSpec) {
+  // spec 不再接受 null
   const components = spec.components; // 直接访问，因为 spec 不为 null
 
   // 优化引用解析，避免重复计算
   const resolve = useMemo(() => {
-    return function resolve<T>(obj: T | ReferenceObject | undefined, category?: string): T | null {
+    return function resolve<T>(
+      obj: T | ReferenceObject | undefined,
+      category?: string,
+    ): T | null {
       // 移除 !spec 检查，因为 spec 保证存在
       return resolveRef<T>(obj, components, category);
     };
@@ -33,33 +37,35 @@ export function useOpenApi(spec: OpenApiSpec) { // spec 不再接受 null
    * @param schema 模式对象
    * @returns 类型信息字符串
    */
-  const getSchemaType = (schema: SchemaObject | ReferenceObject | undefined): string => {
-    if (!schema) return '未知';
+  const getSchemaType = (
+    schema: SchemaObject | ReferenceObject | undefined,
+  ): string => {
+    if (!schema) return "未知";
 
-    const resolvedSchema = resolve<SchemaObject>(schema, 'schemas');
-    if (!resolvedSchema) return '未知';
+    const resolvedSchema = resolve<SchemaObject>(schema, "schemas");
+    if (!resolvedSchema) return "未知";
 
-    let type = resolvedSchema.type || '';
+    let type = resolvedSchema.type || "";
 
     // 处理数组类型
-    if (type === 'array' && resolvedSchema.items) {
+    if (type === "array" && resolvedSchema.items) {
       const itemType = getSchemaType(resolvedSchema.items);
       return `${type}<${itemType}>`;
     }
 
     // 处理对象或复合类型
-    if (type === 'object' || !type) {
+    if (type === "object" || !type) {
       if (resolvedSchema.properties) {
-        return 'object';
+        return "object";
       }
       if (resolvedSchema.allOf) {
-        return 'allOf';
+        return "allOf";
       }
       if (resolvedSchema.oneOf) {
-        return 'oneOf';
+        return "oneOf";
       }
       if (resolvedSchema.anyOf) {
-        return 'anyOf';
+        return "anyOf";
       }
     }
 
@@ -68,7 +74,7 @@ export function useOpenApi(spec: OpenApiSpec) { // spec 不再接受 null
       return `${type}(${resolvedSchema.format})`;
     }
 
-    return type || '未知';
+    return type || "未知";
   };
 
   /**
@@ -76,24 +82,39 @@ export function useOpenApi(spec: OpenApiSpec) { // spec 不再接受 null
    * @param requestBody 请求体对象
    * @returns 解析后的模式对象
    */
-  const getRequestBodySchema = (requestBody: RequestBodyObject | ReferenceObject | undefined): SchemaObject | null => {
+  const getRequestBodySchema = (
+    requestBody: RequestBodyObject | ReferenceObject | undefined,
+  ): SchemaObject | null => {
     if (!requestBody) return null;
 
-    const resolvedBody = resolve<RequestBodyObject>(requestBody, 'requestBodies');
+    const resolvedBody = resolve<RequestBodyObject>(
+      requestBody,
+      "requestBodies",
+    );
     if (!resolvedBody || !resolvedBody.content) return null;
 
     // 尝试获取常见内容类型
-    const contentTypes = ['application/json', 'application/xml', '*/*'];
+    const contentTypes = ["application/json", "application/xml", "*/*"];
     for (const contentType of contentTypes) {
       if (resolvedBody.content[contentType]?.schema) {
-        return resolve<SchemaObject>(resolvedBody.content[contentType].schema, 'schemas') || null;
+        return (
+          resolve<SchemaObject>(
+            resolvedBody.content[contentType].schema,
+            "schemas",
+          ) || null
+        );
       }
     }
 
     // 如果找不到常见类型，使用第一个可用类型
     const firstContentType = Object.keys(resolvedBody.content)[0];
     if (firstContentType && resolvedBody.content[firstContentType]?.schema) {
-      return resolve<SchemaObject>(resolvedBody.content[firstContentType].schema, 'schemas') || null;
+      return (
+        resolve<SchemaObject>(
+          resolvedBody.content[firstContentType].schema,
+          "schemas",
+        ) || null
+      );
     }
 
     return null;
@@ -104,10 +125,12 @@ export function useOpenApi(spec: OpenApiSpec) { // spec 不再接受 null
    * @param schema 模式对象
    * @returns 属性对象集合
    */
-  const getSchemaProperties = (schema: SchemaObject | ReferenceObject | undefined) => {
+  const getSchemaProperties = (
+    schema: SchemaObject | ReferenceObject | undefined,
+  ) => {
     if (!schema) return {};
 
-    const resolvedSchema = resolve<SchemaObject>(schema, 'schemas');
+    const resolvedSchema = resolve<SchemaObject>(schema, "schemas");
     if (!resolvedSchema) return {};
 
     // 处理基本对象
@@ -116,8 +139,11 @@ export function useOpenApi(spec: OpenApiSpec) { // spec 不再接受 null
     }
 
     // 处理数组
-    if (resolvedSchema.type === 'array' && resolvedSchema.items) {
-      const itemsSchema = resolve<SchemaObject>(resolvedSchema.items, 'schemas');
+    if (resolvedSchema.type === "array" && resolvedSchema.items) {
+      const itemsSchema = resolve<SchemaObject>(
+        resolvedSchema.items,
+        "schemas",
+      );
       if (itemsSchema?.properties) {
         return itemsSchema.properties;
       }
@@ -142,7 +168,9 @@ export function useOpenApi(spec: OpenApiSpec) { // spec 不再接受 null
    * @param parameters 参数对象数组
    * @returns 按位置分组的参数
    */
-  const processParameters = (parameters: (ParameterObject | ReferenceObject)[] | undefined) => {
+  const processParameters = (
+    parameters: (ParameterObject | ReferenceObject)[] | undefined,
+  ) => {
     if (!parameters || parameters.length === 0) {
       return {};
     }
@@ -151,11 +179,11 @@ export function useOpenApi(spec: OpenApiSpec) { // spec 不再接受 null
       path: [],
       query: [],
       header: [],
-      cookie: []
+      cookie: [],
     };
 
     for (const param of parameters) {
-      const resolvedParam = resolve<ParameterObject>(param, 'parameters');
+      const resolvedParam = resolve<ParameterObject>(param, "parameters");
       if (resolvedParam && resolvedParam.in) {
         result[resolvedParam.in].push(resolvedParam);
       }
@@ -169,22 +197,27 @@ export function useOpenApi(spec: OpenApiSpec) { // spec 不再接受 null
    * @param response 响应对象
    * @returns 处理后的响应信息
    */
-  const processResponse = (response: ResponseObject | ReferenceObject | undefined) => {
+  const processResponse = (
+    response: ResponseObject | ReferenceObject | undefined,
+  ) => {
     if (!response) return null;
 
-    const resolvedResponse = resolve<ResponseObject>(response, 'responses');
+    const resolvedResponse = resolve<ResponseObject>(response, "responses");
     if (!resolvedResponse) return null;
 
     // 处理响应内容
     if (resolvedResponse.content) {
       // 尝试获取常见内容类型
-      const contentTypes = ['application/json', 'application/xml', '*/*'];
+      const contentTypes = ["application/json", "application/xml", "*/*"];
       for (const contentType of contentTypes) {
         if (resolvedResponse.content[contentType]?.schema) {
           return {
-            description: resolvedResponse.description || '',
+            description: resolvedResponse.description || "",
             contentType,
-            schema: resolve<SchemaObject>(resolvedResponse.content[contentType].schema, 'schemas')
+            schema: resolve<SchemaObject>(
+              resolvedResponse.content[contentType].schema,
+              "schemas",
+            ),
           };
         }
       }
@@ -193,18 +226,21 @@ export function useOpenApi(spec: OpenApiSpec) { // spec 不再接受 null
       const firstContentType = Object.keys(resolvedResponse.content)[0];
       if (firstContentType) {
         return {
-          description: resolvedResponse.description || '',
+          description: resolvedResponse.description || "",
           contentType: firstContentType,
-          schema: resolve<SchemaObject>(resolvedResponse.content[firstContentType].schema, 'schemas')
+          schema: resolve<SchemaObject>(
+            resolvedResponse.content[firstContentType].schema,
+            "schemas",
+          ),
         };
       }
     }
 
     // 处理没有内容的响应
     return {
-      description: resolvedResponse.description || '',
-      contentType: '',
-      schema: null
+      description: resolvedResponse.description || "",
+      contentType: "",
+      schema: null,
     };
   };
 
@@ -213,35 +249,51 @@ export function useOpenApi(spec: OpenApiSpec) { // spec 不再接受 null
    * @param schema 模式对象
    * @returns 约束信息对象
    */
-  const getSchemaConstraints = (schema: SchemaObject | ReferenceObject | undefined) => {
+  const getSchemaConstraints = (
+    schema: SchemaObject | ReferenceObject | undefined,
+  ) => {
     if (!schema) return {};
 
-    const resolvedSchema = resolve<SchemaObject>(schema, 'schemas');
+    const resolvedSchema = resolve<SchemaObject>(schema, "schemas");
     if (!resolvedSchema) return {};
 
     const constraints: Record<string, any> = {};
 
     // 收集数值约束
-    if (resolvedSchema.minimum !== undefined) constraints.minimum = resolvedSchema.minimum;
-    if (resolvedSchema.maximum !== undefined) constraints.maximum = resolvedSchema.maximum;
-    if (resolvedSchema.exclusiveMinimum !== undefined) constraints.exclusiveMinimum = resolvedSchema.exclusiveMinimum;
-    if (resolvedSchema.exclusiveMaximum !== undefined) constraints.exclusiveMaximum = resolvedSchema.exclusiveMaximum;
-    if (resolvedSchema.multipleOf !== undefined) constraints.multipleOf = resolvedSchema.multipleOf;
+    if (resolvedSchema.minimum !== undefined)
+      constraints.minimum = resolvedSchema.minimum;
+    if (resolvedSchema.maximum !== undefined)
+      constraints.maximum = resolvedSchema.maximum;
+    if (resolvedSchema.exclusiveMinimum !== undefined)
+      constraints.exclusiveMinimum = resolvedSchema.exclusiveMinimum;
+    if (resolvedSchema.exclusiveMaximum !== undefined)
+      constraints.exclusiveMaximum = resolvedSchema.exclusiveMaximum;
+    if (resolvedSchema.multipleOf !== undefined)
+      constraints.multipleOf = resolvedSchema.multipleOf;
 
     // 收集字符串约束
-    if (resolvedSchema.minLength !== undefined) constraints.minLength = resolvedSchema.minLength;
-    if (resolvedSchema.maxLength !== undefined) constraints.maxLength = resolvedSchema.maxLength;
-    if (resolvedSchema.pattern !== undefined) constraints.pattern = resolvedSchema.pattern;
+    if (resolvedSchema.minLength !== undefined)
+      constraints.minLength = resolvedSchema.minLength;
+    if (resolvedSchema.maxLength !== undefined)
+      constraints.maxLength = resolvedSchema.maxLength;
+    if (resolvedSchema.pattern !== undefined)
+      constraints.pattern = resolvedSchema.pattern;
 
     // 收集数组约束
-    if (resolvedSchema.minItems !== undefined) constraints.minItems = resolvedSchema.minItems;
-    if (resolvedSchema.maxItems !== undefined) constraints.maxItems = resolvedSchema.maxItems;
-    if (resolvedSchema.uniqueItems !== undefined) constraints.uniqueItems = resolvedSchema.uniqueItems;
+    if (resolvedSchema.minItems !== undefined)
+      constraints.minItems = resolvedSchema.minItems;
+    if (resolvedSchema.maxItems !== undefined)
+      constraints.maxItems = resolvedSchema.maxItems;
+    if (resolvedSchema.uniqueItems !== undefined)
+      constraints.uniqueItems = resolvedSchema.uniqueItems;
 
     // 收集对象约束
-    if (resolvedSchema.minProperties !== undefined) constraints.minProperties = resolvedSchema.minProperties;
-    if (resolvedSchema.maxProperties !== undefined) constraints.maxProperties = resolvedSchema.maxProperties;
-    if (resolvedSchema.required !== undefined) constraints.required = resolvedSchema.required;
+    if (resolvedSchema.minProperties !== undefined)
+      constraints.minProperties = resolvedSchema.minProperties;
+    if (resolvedSchema.maxProperties !== undefined)
+      constraints.maxProperties = resolvedSchema.maxProperties;
+    if (resolvedSchema.required !== undefined)
+      constraints.required = resolvedSchema.required;
 
     return constraints;
   };
@@ -252,16 +304,22 @@ export function useOpenApi(spec: OpenApiSpec) { // spec 不再接受 null
    * @param method HTTP方法
    * @returns 操作对象
    */
-  const getOperation = (path: string, method: string): OperationObject | null => {
+  const getOperation = (
+    path: string,
+    method: string,
+  ): OperationObject | null => {
     if (!spec.paths || !spec.paths[path]) return null;
 
-    const pathItem = resolve<PathItemObject>(spec.paths[path], 'pathItems');
+    const pathItem = resolve<PathItemObject>(spec.paths[path], "pathItems");
     if (!pathItem) return null;
 
     const lowerMethod = method.toLowerCase() as keyof PathItemObject;
     if (!(lowerMethod in pathItem)) return null;
 
-    return resolve<OperationObject>(pathItem[lowerMethod] as OperationObject, 'operations');
+    return resolve<OperationObject>(
+      pathItem[lowerMethod] as OperationObject,
+      "operations",
+    );
   };
 
   /**
@@ -281,26 +339,44 @@ export function useOpenApi(spec: OpenApiSpec) { // spec 不再接受 null
       if (!spec.paths) {
         return {};
       }
-      const operations: Record<string, { path: string; method: string; operation: OperationObject }[]> = {};
+      const operations: Record<
+        string,
+        { path: string; method: string; operation: OperationObject }[]
+      > = {};
       for (const path in spec.paths) {
         const pathItem = spec.paths[path] as PathItemObject;
         for (const method in pathItem) {
           const httpMethod = method.toLowerCase() as keyof PathItemObject;
-          if (['get', 'put', 'post', 'delete', 'options', 'head', 'patch', 'trace'].includes(httpMethod)) {
+          if (
+            [
+              "get",
+              "put",
+              "post",
+              "delete",
+              "options",
+              "head",
+              "patch",
+              "trace",
+            ].includes(httpMethod)
+          ) {
             const operation = pathItem[httpMethod] as OperationObject;
             if (operation.tags && operation.tags.length > 0) {
-              operation.tags.forEach(tag => {
+              operation.tags.forEach((tag) => {
                 if (!operations[tag]) {
                   operations[tag] = [];
                 }
                 operations[tag].push({ path, method: httpMethod, operation });
               });
             } else {
-              const defaultTag = 'default';
+              const defaultTag = "default";
               if (!operations[defaultTag]) {
                 operations[defaultTag] = [];
               }
-              operations[defaultTag].push({ path, method: httpMethod, operation });
+              operations[defaultTag].push({
+                path,
+                method: httpMethod,
+                operation,
+              });
             }
           }
         }
@@ -321,6 +397,6 @@ export function useOpenApi(spec: OpenApiSpec) { // spec 不再接受 null
     getSchemaConstraints,
     getOperation,
     getServers,
-    getOperationsByTag
+    getOperationsByTag,
   };
 }

@@ -1,6 +1,5 @@
-
-import { cn } from '@/utils/cn';
-import React from 'react';
+import { cn } from "@/utils/cn";
+import React from "react";
 
 interface ParameterNameProps {
   name: string;
@@ -9,10 +8,14 @@ interface ParameterNameProps {
 
 const ParameterName: React.FC<ParameterNameProps> = ({ name, deprecated }) => {
   return (
-    <span className={cn(
-      'font-mono text-sm font-medium',
-      deprecated ? 'line-through text-red-500 dark:text-red-400' : 'dark:text-neutral-200'
-    )}>
+    <span
+      className={cn(
+        "font-mono text-sm font-medium",
+        deprecated
+          ? "line-through text-red-500 dark:text-red-400"
+          : "dark:text-neutral-200",
+      )}
+    >
       {name}
     </span>
   );

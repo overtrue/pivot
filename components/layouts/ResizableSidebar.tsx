@@ -1,5 +1,5 @@
-import { cn } from '@/utils/cn';
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import { cn } from "@/utils/cn";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 
 interface ResizableSidebarProps {
   children: React.ReactNode;
@@ -22,7 +22,7 @@ const ResizableSidebar: React.FC<ResizableSidebarProps> = ({
   sidebarClassName,
   onWidthChange,
   stickyPosition = true, // 默认启用粘性定位
-  topOffset = '0px' // 默认顶部偏移量为0
+  topOffset = "0px", // 默认顶部偏移量为0
 }) => {
   const [sidebarWidth, setSidebarWidth] = useState(defaultWidth);
   const [isDragging, setIsDragging] = useState(false);
@@ -33,7 +33,7 @@ const ResizableSidebar: React.FC<ResizableSidebarProps> = ({
   // 初始化 CSS 变量
   useEffect(() => {
     if (rootRef.current) {
-      rootRef.current.style.setProperty('--sidebar-width', `${sidebarWidth}px`);
+      rootRef.current.style.setProperty("--sidebar-width", `${sidebarWidth}px`);
     }
   }, [sidebarWidth]);
 
@@ -56,13 +56,14 @@ const ResizableSidebar: React.FC<ResizableSidebarProps> = ({
       if (newWidth > maxWidth) newWidth = maxWidth;
 
       // 直接更新 CSS 变量，避免 React 状态更新引起重新渲染
-      rootRef.current.style.setProperty('--sidebar-width', `${newWidth}px`);
+      rootRef.current.style.setProperty("--sidebar-width", `${newWidth}px`);
     };
 
     const handleMouseUp = () => {
       if (isDragging && rootRef.current) {
         // 获取当前 CSS 变量值并更新 React 状态
-        const currentWidth = rootRef.current.style.getPropertyValue('--sidebar-width');
+        const currentWidth =
+          rootRef.current.style.getPropertyValue("--sidebar-width");
         const numWidth = parseInt(currentWidth, 10);
         if (!isNaN(numWidth)) {
           setSidebarWidth(numWidth);
@@ -73,34 +74,31 @@ const ResizableSidebar: React.FC<ResizableSidebarProps> = ({
     };
 
     if (isDragging) {
-      document.addEventListener('mousemove', handleMouseMove);
-      document.addEventListener('mouseup', handleMouseUp);
+      document.addEventListener("mousemove", handleMouseMove);
+      document.addEventListener("mouseup", handleMouseUp);
     }
 
     return () => {
-      document.removeEventListener('mousemove', handleMouseMove);
-      document.removeEventListener('mouseup', handleMouseUp);
+      document.removeEventListener("mousemove", handleMouseMove);
+      document.removeEventListener("mouseup", handleMouseUp);
     };
   }, [isDragging, minWidth, maxWidth, onWidthChange]);
 
   return (
     <div
       ref={rootRef}
-      className={cn(
-        className,
-        isDragging && 'select-none cursor-ew-resize'
-      )}
+      className={cn(className, isDragging && "select-none cursor-ew-resize")}
     >
       <div
         ref={sidebarRef}
         className={cn(
           "flex-shrink-0 relative",
           stickyPosition && "sticky top-0 h-screen",
-          sidebarClassName
+          sidebarClassName,
         )}
         style={{
-          width: 'var(--sidebar-width)',
-          top: stickyPosition ? topOffset : undefined
+          width: "var(--sidebar-width)",
+          top: stickyPosition ? topOffset : undefined,
         }}
       >
         {children}

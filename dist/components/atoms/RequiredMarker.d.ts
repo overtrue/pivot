@@ -1,7 +1,7 @@
-import { default as React } from 'react';
+import { default as React } from "react";
 
 interface RequiredMarkerProps {
-    className?: string;
+  className?: string;
 }
 declare const RequiredMarker: React.FC<RequiredMarkerProps>;
 export default RequiredMarker;

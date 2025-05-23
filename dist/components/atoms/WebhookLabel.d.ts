@@ -1,7 +1,7 @@
-import { default as React } from 'react';
+import { default as React } from "react";
 
 interface WebhookLabelProps {
-    className?: string;
+  className?: string;
 }
 declare const WebhookLabel: React.FC<WebhookLabelProps>;
 export default WebhookLabel;

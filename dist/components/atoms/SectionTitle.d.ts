@@ -1,8 +1,8 @@
-import { default as React } from 'react';
+import { default as React } from "react";
 
 interface SectionTitleProps {
-    title: string;
-    className?: string;
+  title: string;
+  className?: string;
 }
 declare const SectionTitle: React.FC<SectionTitleProps>;
 export default SectionTitle;

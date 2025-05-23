@@ -1,20 +1,20 @@
 // filepath: /workspaces/pivot/components/interactive/codeGenerators/generators/PhpGenerator.ts
-import React from 'react';
-import { Code2 } from 'lucide-react';
-import { CodeGenerator, CodeGeneratorParams } from '../types';
-import { replaceDoubleQuotes } from '../utils/formatters';
+import React from "react";
+import { Code2 } from "lucide-react";
+import { CodeGenerator, CodeGeneratorParams } from "../types";
+import { replaceDoubleQuotes } from "../utils/formatters";
 
 export class PhpGenerator implements CodeGenerator {
-  id = 'php';
-  label = 'PHP';
-  
+  id = "php";
+  label = "PHP";
+
   getIcon() {
     return <Code2 size={16} />;
   }
-  
+
   generateCode(params: CodeGeneratorParams): string {
     const { endpoint, method, requestBodyExample, requestBody } = params;
-    
+
     return `<?php
 // 使用 PHP 的 cURL 扩展
 function call_${method.toLowerCase()}() {
@@ -31,10 +31,17 @@ function call_${method.toLowerCase()}() {
         CURLOPT_URL => $url,
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_HTTPHEADER => $headers,
-        CURLOPT_CUSTOMREQUEST => "${method}",${(['POST', 'PUT', 'PATCH'].includes(method) && requestBody) ? `
+        CURLOPT_CUSTOMREQUEST => "${method}",${
+          ["POST", "PUT", "PATCH"].includes(method) && requestBody
+            ? `
         CURLOPT_POSTFIELDS => json_encode(
-${JSON.stringify(requestBodyExample, null, 4).split('\n').map(line => '            ' + replaceDoubleQuotes(line)).join(',\n')}
-        ),` : ''}
+${JSON.stringify(requestBodyExample, null, 4)
+  .split("\n")
+  .map((line) => "            " + replaceDoubleQuotes(line))
+  .join(",\n")}
+        ),`
+            : ""
+        }
     ]);
 
     $response = curl_exec($curl);
