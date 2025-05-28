@@ -1,16 +1,15 @@
-import tailwindcssAnimate from "tailwindcss-animate"
-import { fontFamily } from "tailwindcss/defaultTheme"
-
 /** @type {import('tailwindcss').Config} */
-export default {
+module.exports = {
   darkMode: ["class"],
   content: [
-    "./app/**/*.{js,ts,jsx,tsx,mdx}",
-    "./components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./registry/**/*.{js,ts,jsx,tsx,mdx}",
-    "./content/**/*.{js,ts,jsx,tsx,mdx}",
-    "./lib/**/*.{js,ts,jsx,tsx,mdx}",
+    "./pages/**/*.{ts,tsx}",
+    "./components/**/*.{ts,tsx}",
+    "./app/**/*.{ts,tsx}",
+    "./src/**/*.{ts,tsx}",
+    "./registry/**/*.{ts,tsx}",
+    "./content/**/*.{md,mdx}",
   ],
+  prefix: "",
   theme: {
     container: {
       center: true,
@@ -20,10 +19,6 @@ export default {
       },
     },
     extend: {
-      fontFamily: {
-        sans: ["var(--font-geist-sans)", ...fontFamily.sans],
-        mono: ["var(--font-geist-mono)", ...fontFamily.mono],
-      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -80,5 +75,5 @@ export default {
       },
     },
   },
-  plugins: [tailwindcssAnimate],
+  plugins: [require("tailwindcss-animate")],
 }

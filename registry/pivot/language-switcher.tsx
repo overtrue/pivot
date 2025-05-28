@@ -1,3 +1,5 @@
+"use client";
+
 import { cn } from "@/lib/utils";
 import { Globe } from "lucide-react";
 import React, { useState } from "react";

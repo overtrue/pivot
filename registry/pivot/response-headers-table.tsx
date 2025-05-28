@@ -2,11 +2,16 @@ import { cn } from "@/lib/utils";
 import React from "react";
 import { DescriptionDisplay } from "./description-display";
 
+interface SchemaObject {
+  type: string;
+  format?: string;
+}
+
 interface HeaderObject {
   description?: string;
   required?: boolean;
   deprecated?: boolean;
-  schema?: any;
+  schema: SchemaObject;
 }
 
 interface ResponseHeadersTableProps {
@@ -21,7 +26,9 @@ const ResponseHeadersTable = React.forwardRef<
   HTMLDivElement,
   ResponseHeadersTableProps
 >(({ headers, className }, ref) => {
-  if (!headers || Object.keys(headers).length === 0) {
+  const headerEntries = Object.entries(headers);
+
+  if (headerEntries.length === 0) {
     return null;
   }
 
@@ -48,7 +55,7 @@ const ResponseHeadersTable = React.forwardRef<
           </tr>
         </thead>
         <tbody className="bg-white dark:bg-neutral-800 divide-y divide-neutral-200 dark:divide-neutral-700">
-          {Object.entries(headers).map(([name, header]) => (
+          {headerEntries.map(([name, header]) => (
             <tr key={name}>
               <td className="px-3 py-2 text-sm font-mono dark:text-neutral-300">
                 {name}
@@ -59,7 +66,7 @@ const ResponseHeadersTable = React.forwardRef<
                 )}
               </td>
               <td className="px-3 py-2 text-sm dark:text-neutral-300">
-                {header.schema?.type || "Unknown"}
+                {header.schema.type}
               </td>
             </tr>
           ))}
@@ -71,4 +78,4 @@ const ResponseHeadersTable = React.forwardRef<
 
 ResponseHeadersTable.displayName = "ResponseHeadersTable";
 
-export { ResponseHeadersTable, type HeaderObject };
+export { ResponseHeadersTable, type HeaderObject, type SchemaObject };

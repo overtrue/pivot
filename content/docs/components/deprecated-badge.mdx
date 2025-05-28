@@ -1,0 +1,153 @@
+---
+title: Deprecated Badge
+description: 用于标识已弃用功能的徽章组件，提供清晰的警告提示。
+component: true
+---
+
+Deprecated Badge 组件用于标识已弃用的 API 端点、参数或功能，通过红色徽章提供清晰的警告提示。
+
+<ComponentPreview name="deprecated-badge-demo" />
+
+## 安装
+
+```bash
+npx shadcn@latest add https://pivotkit.vercel.app/registry.json deprecated-badge
+```
+
+## 使用方法
+
+```tsx
+import { DeprecatedBadge } from "@/components/pivot/deprecated-badge";
+```
+
+```tsx
+<DeprecatedBadge />
+```
+
+## 示例
+
+### 基本用法
+
+```tsx
+<div className="flex items-center gap-2">
+  <span>旧版 API</span>
+  <DeprecatedBadge />
+</div>
+```
+
+### 自定义文本
+
+```tsx
+<div className="space-y-2">
+  <div className="flex items-center gap-2">
+    <span>v1.0 接口</span>
+    <DeprecatedBadge>已弃用</DeprecatedBadge>
+  </div>
+
+  <div className="flex items-center gap-2">
+    <span>Legacy API</span>
+    <DeprecatedBadge>Deprecated</DeprecatedBadge>
+  </div>
+</div>
+```
+
+### 在 API 文档中使用
+
+```tsx
+<div className="space-y-3">
+  <div className="flex items-center gap-3 p-3 border rounded">
+    <MethodLabel method="GET" />
+    <code className="font-mono">/api/v1/users</code>
+    <DeprecatedBadge />
+    <span className="text-sm text-muted-foreground">
+      获取用户列表（已弃用）
+    </span>
+  </div>
+
+  <div className="flex items-center gap-3 p-3 border rounded">
+    <MethodLabel method="POST" />
+    <code className="font-mono">/api/v2/users</code>
+    <span className="text-sm text-muted-foreground">创建用户（推荐使用）</span>
+  </div>
+</div>
+```
+
+### 在参数文档中使用
+
+```tsx
+<div className="space-y-3">
+  <div className="flex items-center gap-3 p-3 border rounded">
+    <code className="font-mono">user_id</code>
+    <TypeIndicator type="string" />
+    <DeprecatedBadge />
+    <span className="text-sm text-muted-foreground">
+      用户ID（请使用 id 参数）
+    </span>
+  </div>
+
+  <div className="flex items-center gap-3 p-3 border rounded">
+    <code className="font-mono">id</code>
+    <TypeIndicator type="string" />
+    <RequiredBadge />
+    <span className="text-sm text-muted-foreground">用户的唯一标识符</span>
+  </div>
+</div>
+```
+
+## API 参考
+
+### Props
+
+| 属性        | 类型              | 默认值         | 描述            |
+| ----------- | ----------------- | -------------- | --------------- |
+| `children`  | `React.ReactNode` | `"Deprecated"` | 徽章显示的文本  |
+| `className` | `string`          | -              | 额外的 CSS 类名 |
+
+## 设计原则
+
+### 颜色选择
+
+- 使用红色系配色方案，表示警告和需要注意的内容
+- 支持暗色主题，确保在不同主题下都有良好的对比度
+
+### 使用时机
+
+- API 版本迁移期间标识旧版本接口
+- 参数重命名时标识旧参数名
+- 功能下线前的过渡期警告
+
+## 最佳实践
+
+1. **提供替代方案** - 在标识弃用功能的同时，提供新的替代方案
+2. **版本管理** - 配合版本号使用，明确弃用的时间线
+3. **文档说明** - 详细说明弃用原因和迁移指南
+4. **渐进式弃用** - 给用户足够的时间进行迁移
+
+## 使用场景
+
+- **API 版本管理** - 标识已弃用的 API 版本
+- **参数迁移** - 标识已重命名或移除的参数
+- **功能下线** - 标识即将移除的功能
+- **向后兼容** - 在保持兼容性的同时引导用户使用新功能
+
+## 与其他组件配合
+
+```tsx
+// 与版本徽章配合使用
+<div className="flex items-center gap-2">
+  <VersionBadge version="v1.0" />
+  <DeprecatedBadge />
+</div>
+
+// 与方法标签配合使用
+<div className="flex items-center gap-2">
+  <MethodLabel method="GET" />
+  <DeprecatedBadge />
+</div>
+
+// 与状态码配合使用
+<div className="flex items-center gap-2">
+  <StatusCode code={200} />
+  <DeprecatedBadge>Legacy Response</DeprecatedBadge>
+</div>
+```

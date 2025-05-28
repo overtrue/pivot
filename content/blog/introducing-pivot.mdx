@@ -1,0 +1,102 @@
+---
+title: 介绍 Pivot - 专为 OpenAPI 设计的组件库
+description: 了解 Pivot 如何简化 API 文档的构建过程，提供现代化的用户体验。
+image: /images/blog/introducing-pivot.png
+tag: 发布
+author: Pivot 团队
+publishedOn: 2024-01-15
+featured: true
+---
+
+我们很高兴地宣布 Pivot 的正式发布！Pivot 是一个专门为 OpenAPI 规范设计的现代化 React UI 组件库。
+
+## 为什么需要 Pivot？
+
+在构建 API 文档时，开发者经常面临以下挑战：
+
+1. **设计不一致** - 不同的组件使用不同的设计语言
+2. **缺乏专业性** - 通用组件无法很好地展示 API 特有的信息
+3. **开发效率低** - 需要从头开始构建每个组件
+
+Pivot 解决了这些问题，提供了一套专门为 API 文档设计的组件。
+
+## 核心特性
+
+### 🎯 专门优化
+
+每个组件都是专门为 OpenAPI 规范设计的，能够完美展示：
+
+- HTTP 状态码
+- 请求方法
+- 数据类型
+- 参数信息
+- 响应格式
+
+### 🎨 现代化设计
+
+基于 Tailwind CSS 和现代设计原则，提供：
+
+- 清晰的视觉层次
+- 一致的颜色编码
+- 优雅的动画效果
+- 完美的暗色模式支持
+
+### 🚀 开发者友好
+
+采用 shadcn/ui 的 registry 系统：
+
+- 复制粘贴即可使用
+- 完整的 TypeScript 支持
+- 灵活的定制选项
+- 详细的文档和示例
+
+## 快速开始
+
+安装 Pivot 非常简单：
+
+```bash
+npx create-next-app@latest my-app --typescript --tailwind
+cd my-app
+npx shadcn@latest add https://pivotkit.vercel.app/registry.json status-code
+```
+
+然后就可以在项目中使用了：
+
+```tsx
+import { StatusCode } from "@/components/pivot/status-code";
+
+export function ApiResponse() {
+  return (
+    <div className="flex items-center gap-2">
+      <span>响应状态：</span>
+      <StatusCode code={200} />
+    </div>
+  );
+}
+```
+
+## 未来计划
+
+我们正在积极开发更多功能：
+
+- **CLI 工具** - 简化组件安装和管理
+- **更多组件** - 扩展组件库的覆盖范围
+- **主题系统** - 提供更多预设主题
+- **文档生成器** - 自动从 OpenAPI 规范生成文档
+
+## 加入我们
+
+Pivot 是一个开源项目，我们欢迎社区的贡献：
+
+- [GitHub 仓库](https://github.com/overtrue/pivot)
+- [文档网站](https://pivotkit.vercel.app)
+- [NPM 包](https://www.npmjs.com/package/@overtrue/pivot)
+- [讨论区](https://github.com/overtrue/pivot/discussions)
+
+让我们一起构建更好的 API 文档体验！
+
+## 相关链接
+
+- [文档网站](https://pivotkit.vercel.app)
+- [GitHub 仓库](https://github.com/overtrue/pivot)
+- [NPM 包](https://www.npmjs.com/package/@overtrue/pivot)

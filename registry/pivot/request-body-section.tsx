@@ -2,9 +2,15 @@ import { cn } from "@/lib/utils";
 import React from "react";
 import { SectionTitle } from "../pivot/section-title";
 
+interface MediaTypeObject {
+  schema?: any;
+  example?: any;
+  examples?: Record<string, any>;
+}
+
 interface RequestBodyObject {
   description?: string;
-  content: Record<string, any>;
+  content: Record<string, MediaTypeObject>;
   required?: boolean;
 }
 
@@ -62,8 +68,8 @@ const RequestBodySection = React.forwardRef<
   }
 
   // Get content
-  const content = resolvedBody.content;
-  if (!content) {
+  const contentEntries = Object.entries(resolvedBody.content);
+  if (contentEntries.length === 0) {
     return (
       <div
         ref={ref}
@@ -103,7 +109,7 @@ const RequestBodySection = React.forwardRef<
           Content Types
         </h4>
         <div className="space-y-2">
-          {Object.entries(content).map(([mediaType, mediaTypeObj]) => (
+          {contentEntries.map(([mediaType, mediaTypeObj]) => (
             <div
               key={mediaType}
               className="p-3 bg-neutral-50 dark:bg-neutral-800 rounded border"
@@ -114,13 +120,13 @@ const RequestBodySection = React.forwardRef<
                 </span>
               </div>
 
-              {mediaTypeObj?.schema && (
+              {mediaTypeObj.schema && (
                 <div className="text-xs text-neutral-600 dark:text-neutral-400 italic">
                   Schema available (requires schema display component)
                 </div>
               )}
 
-              {mediaTypeObj?.example && (
+              {mediaTypeObj.example && (
                 <div className="mt-2">
                   <span className="text-xs font-medium text-neutral-600 dark:text-neutral-400">
                     Example:
@@ -131,7 +137,7 @@ const RequestBodySection = React.forwardRef<
                 </div>
               )}
 
-              {mediaTypeObj?.examples && (
+              {mediaTypeObj.examples && (
                 <div className="mt-2">
                   <span className="text-xs font-medium text-neutral-600 dark:text-neutral-400">
                     Examples:
@@ -163,7 +169,9 @@ RequestBodySection.displayName = "RequestBodySection";
 export {
   RequestBodySection,
   type ComponentsObject,
+  type MediaTypeObject,
   type ReferenceObject,
   type RequestBodyObject,
-  type RequestBodySectionProps,
+  type RequestBodySectionProps
 };
+

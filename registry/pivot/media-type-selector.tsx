@@ -2,7 +2,7 @@ import { cn } from "@/lib/utils";
 import React from "react";
 
 interface MediaTypeSelectorProps {
-  mediaTypes: string[];
+  mediaTypes?: string[];
   activeMediaType: string | null;
   onSelectMediaType: (mediaType: string) => void;
   className?: string;
@@ -12,7 +12,7 @@ const MediaTypeSelector = React.forwardRef<
   HTMLDivElement,
   MediaTypeSelectorProps
 >(({ mediaTypes, activeMediaType, onSelectMediaType, className }, ref) => {
-  if (mediaTypes.length <= 1) {
+  if (!mediaTypes || mediaTypes.length <= 1) {
     return null; // Don't render tabs if only one or zero media types
   }
 

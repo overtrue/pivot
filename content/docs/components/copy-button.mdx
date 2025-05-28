@@ -1,0 +1,175 @@
+---
+title: Copy Button
+description: 用于复制文本到剪贴板的按钮组件，支持视觉反馈和不同尺寸。
+component: true
+---
+
+Copy Button 组件提供了一个简单的方式来复制文本到用户的剪贴板，并提供视觉反馈来确认复制操作。
+
+<ComponentPreview name="copy-button-demo" />
+
+## 安装
+
+```bash
+npx shadcn@latest add https://pivotkit.vercel.app/registry.json copy-button
+```
+
+## 使用方法
+
+```tsx
+import { CopyButton } from "@/components/pivot/copy-button";
+```
+
+```tsx
+<CopyButton text="要复制的文本" />
+```
+
+## 示例
+
+### 基本用法
+
+```tsx
+<div className="flex items-center gap-2">
+  <code className="bg-muted px-2 py-1 rounded text-sm">
+    npm install @pivot/ui
+  </code>
+  <CopyButton text="npm install @pivot/ui" />
+</div>
+```
+
+### 不同尺寸
+
+```tsx
+<div className="flex items-center gap-4">
+  <div className="flex items-center gap-2">
+    <span className="text-sm">小尺寸:</span>
+    <CopyButton text="小尺寸按钮" size="sm" />
+  </div>
+
+  <div className="flex items-center gap-2">
+    <span className="text-sm">中等尺寸:</span>
+    <CopyButton text="中等尺寸按钮" size="md" />
+  </div>
+
+  <div className="flex items-center gap-2">
+    <span className="text-sm">大尺寸:</span>
+    <CopyButton text="大尺寸按钮" size="lg" />
+  </div>
+</div>
+```
+
+### 在代码块中使用
+
+```tsx
+<div className="relative">
+  <pre className="bg-muted p-4 rounded-lg overflow-x-auto">
+    <code>{`const example = {
+  name: "Pivot UI",
+  version: "1.0.0"
+};`}</code>
+  </pre>
+  <div className="absolute top-2 right-2">
+    <CopyButton
+      text={`const example = {
+  name: "Pivot UI",
+  version: "1.0.0"
+};`}
+      size="sm"
+    />
+  </div>
+</div>
+```
+
+### 复制 API 端点
+
+```tsx
+<div className="space-y-4">
+  <div className="flex items-center justify-between p-3 border rounded-lg">
+    <div className="flex items-center gap-2">
+      <MethodLabel method="GET" />
+      <code className="text-sm">/api/users</code>
+    </div>
+    <CopyButton text="/api/users" size="sm" />
+  </div>
+
+  <div className="flex items-center justify-between p-3 border rounded-lg">
+    <div className="flex items-center gap-2">
+      <MethodLabel method="POST" />
+      <code className="text-sm">/api/users</code>
+    </div>
+    <CopyButton text="/api/users" size="sm" />
+  </div>
+</div>
+```
+
+### 自定义样式
+
+```tsx
+<CopyButton
+  text="自定义样式的复制按钮"
+  className="bg-blue-100 hover:bg-blue-200 text-blue-600"
+  iconClassName="text-blue-600"
+/>
+```
+
+## API 参考
+
+### Props
+
+| 属性            | 类型                   | 默认值 | 描述                 |
+| --------------- | ---------------------- | ------ | -------------------- |
+| `text`          | `string`               | -      | 要复制到剪贴板的文本 |
+| `size`          | `"sm" \| "md" \| "lg"` | `"md"` | 按钮尺寸             |
+| `className`     | `string`               | -      | 额外的 CSS 类名      |
+| `iconClassName` | `string`               | -      | 图标的额外 CSS 类名  |
+
+### 尺寸规格
+
+- **sm**: 小尺寸，适用于紧凑的界面
+- **md**: 中等尺寸，默认尺寸
+- **lg**: 大尺寸，适用于需要突出显示的场景
+
+## 功能特性
+
+### 视觉反馈
+
+- 复制成功后图标会从 📋 变为 ✅
+- 按钮颜色会短暂变为绿色
+- 2 秒后自动恢复到原始状态
+
+### 错误处理
+
+- 自动处理剪贴板 API 不可用的情况
+- 在控制台记录复制失败的错误
+
+### 无障碍性
+
+- 提供 `title` 属性用于工具提示
+- 支持键盘导航
+- 适当的焦点管理
+
+## 最佳实践
+
+1. **上下文相关** - 将复制按钮放置在相关内容附近
+2. **视觉层次** - 使用适当的尺寸以匹配周围的 UI 元素
+3. **反馈明确** - 确保用户能够清楚地看到复制成功的反馈
+4. **内容有意义** - 只为有价值的内容提供复制功能
+
+## 使用场景
+
+- **代码示例** - 让用户快速复制代码片段
+- **API 端点** - 复制 API URL 或路径
+- **配置信息** - 复制配置代码或命令
+- **分享链接** - 复制页面或资源链接
+- **文档内容** - 复制重要的文本信息
+
+## 浏览器兼容性
+
+Copy Button 组件使用现代的 Clipboard API，支持：
+
+- Chrome 66+
+- Firefox 63+
+- Safari 13.1+
+- Edge 79+
+
+对于不支持的浏览器，组件会优雅降级并在控制台记录错误。

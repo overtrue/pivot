@@ -1,3 +1,5 @@
+"use client";
+
 import { cn } from "@/lib/utils";
 import React, { useState } from "react";
 import { DescriptionDisplay } from "../pivot/description-display";
@@ -11,12 +13,24 @@ interface ServerObject {
 }
 
 interface ServerProps {
-  server: ServerObject;
+  server?: ServerObject;
   className?: string;
 }
 
 const Server = React.forwardRef<HTMLDivElement, ServerProps>(
   ({ server, className }, ref) => {
+    if (!server) {
+      return (
+        <div ref={ref} className={cn("rounded mb-4 overflow-hidden", className)}>
+          <div className="p-3 bg-neutral-50 dark:bg-neutral-800">
+            <div className="font-mono text-sm text-neutral-500 dark:text-neutral-400">
+              No server data available
+            </div>
+          </div>
+        </div>
+      );
+    }
+
     const { url, description, variables } = server;
     const [isExpanded, setIsExpanded] = useState(false);
     const hasVariables = variables && Object.keys(variables).length > 0;

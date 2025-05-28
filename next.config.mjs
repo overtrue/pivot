@@ -2,38 +2,39 @@ import { withContentCollections } from "@content-collections/next"
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  output: process.env.NODE_ENV === "production" ? "standalone" : undefined,
+  reactStrictMode: true,
   experimental: {
-    optimizePackageImports: ["lucide-react"],
-  },
-  eslint: {
-    // Warning: This allows production builds to successfully complete even if
-    // your project has ESLint errors.
-    ignoreDuringBuilds: true,
-  },
-  typescript: {
-    // Warning: This allows production builds to successfully complete even if
-    // your project has type errors.
-    ignoreBuildErrors: true,
+    // optimizeCss: true, // 临时禁用以解决启动问题
   },
   images: {
-    dangerouslyAllowSVG: true,
-    contentDispositionType: "attachment",
-    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
+    domains: ["localhost", "pivotkit.vercel.app"],
   },
   async redirects() {
     return [
       {
         source: "/components",
-        destination: "/docs/components",
+        destination: "/docs/components/status-code",
         permanent: true,
       },
       {
-        source: "/docs/components/accordion",
-        destination: "/docs/components/accordion",
+        source: "/components/:path*",
+        destination: "/docs/components/:path*",
+        permanent: true,
+      },
+      {
+        source: "/docs/components",
+        destination: "/docs/components/status-code",
+        permanent: true,
+      },
+      {
+        source: "/r/:path([^.]*)",
+        destination: "/r/:path.json",
         permanent: true,
       },
     ]
   },
 }
 
+// withContentCollections must be the outermost plugin
 export default withContentCollections(nextConfig)

@@ -1,70 +1,91 @@
 ---
-title: "Status Code"
-description: "A component to display HTTP status codes with color coding."
+title: Status Code
+description: 用于显示 HTTP 状态码的组件，自动根据状态码类型应用颜色编码。
 component: true
 ---
 
-# Status Code
+Status Code 组件用于显示 HTTP 状态码，并根据状态码的类型自动应用相应的颜色编码。
 
-状态码组件用于显示 HTTP 状态码，并根据状态码类型自动应用颜色编码。
+<ComponentPreview name="status-code-demo" />
 
 ## 安装
 
 ```bash
-npx shadcn@latest add https://pivot.design/registry.json status-code
+npx shadcn@latest add https://pivotkit.vercel.app/registry.json status-code
 ```
 
-## 使用
+## 使用方法
 
 ```tsx
 import { StatusCode } from "@/components/pivot/status-code";
-
-export function Example() {
-  return (
-    <div className="flex items-center gap-2">
-      <StatusCode code={200} />
-      <StatusCode code={404} />
-      <StatusCode code={500} />
-    </div>
-  );
-}
 ```
-
-## 示例
-
-### 基础用法
 
 ```tsx
 <StatusCode code={200} />
 ```
 
-### 不同尺寸
+## 示例
+
+### 基本用法
 
 ```tsx
-<StatusCode code={200} size="small" />
-<StatusCode code={200} size="medium" />
+<div className="flex items-center gap-2">
+  <StatusCode code={200} />
+  <StatusCode code={201} />
+  <StatusCode code={404} />
+  <StatusCode code={500} />
+</div>
 ```
 
-### 自定义样式
+### 不同大小
 
 ```tsx
-<StatusCode code={200} className="border border-gray-300" />
+<div className="flex items-center gap-2">
+  <StatusCode code={200} size="sm" />
+  <StatusCode code={200} size="md" />
+  <StatusCode code={200} size="lg" />
+</div>
+```
+
+### 不同变体
+
+```tsx
+<div className="flex items-center gap-2">
+  <StatusCode code={200} variant="default" />
+  <StatusCode code={200} variant="outline" />
+  <StatusCode code={200} variant="ghost" />
+</div>
 ```
 
 ## API 参考
 
 ### Props
 
-| 属性        | 类型                  | 默认值    | 描述            |
-| ----------- | --------------------- | --------- | --------------- |
-| `code`      | `string \| number`    | -         | HTTP 状态码     |
-| `size`      | `'small' \| 'medium'` | `'small'` | 组件尺寸        |
-| `className` | `string`              | -         | 自定义 CSS 类名 |
+| 属性        | 类型                                | 默认值      | 描述            |
+| ----------- | ----------------------------------- | ----------- | --------------- |
+| `code`      | `number`                            | -           | HTTP 状态码     |
+| `size`      | `"sm" \| "md" \| "lg"`              | `"md"`      | 组件大小        |
+| `variant`   | `"default" \| "outline" \| "ghost"` | `"default"` | 组件变体        |
+| `className` | `string`                            | -           | 额外的 CSS 类名 |
 
 ### 颜色编码
 
-- **1xx (信息响应)** - 蓝色
+组件会根据状态码自动应用颜色：
+
+- **1xx (信息性)** - 蓝色
 - **2xx (成功)** - 绿色
 - **3xx (重定向)** - 黄色
 - **4xx (客户端错误)** - 橙色
 - **5xx (服务器错误)** - 红色
+
+## 最佳实践
+
+1. **一致性** - 在整个应用中保持状态码显示的一致性
+2. **可读性** - 确保状态码在不同背景下都清晰可见
+3. **语义化** - 利用颜色编码帮助用户快速理解状态码含义
+
+## 无障碍性
+
+- 组件支持屏幕阅读器
+- 颜色编码不是唯一的信息传达方式
+- 支持键盘导航

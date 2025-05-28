@@ -1,12 +1,20 @@
+"use client";
+
 import { cn } from "@/lib/utils";
 import React from "react";
 import { RequiredMarker } from "../pivot/required-marker";
-import { TypeIndicator } from "../pivot/type-indicator";
+import { TypeIndicator, type DataType } from "../pivot/type-indicator";
 import { ExpandCollapse } from "./expand-collapse";
+
+interface Parameter {
+  name: string;
+  required: boolean;
+  type: DataType;
+}
 
 interface ParameterGroupProps {
   inType: "query" | "path" | "header" | "cookie";
-  parameters: { name: string; required: boolean; type: string }[];
+  parameters: Parameter[];
   className?: string;
 }
 
@@ -29,13 +37,17 @@ const ParameterGroup = React.forwardRef<HTMLDivElement, ParameterGroupProps>(
         </div>
         {isExpanded && (
           <div className="space-y-2">
-            {parameters.map((param) => (
-              <div key={param.name} className="flex items-center space-x-2">
-                <span className="font-mono text-sm">{param.name}</span>
-                {param.required && <RequiredMarker />}
-                <TypeIndicator type={param.type as any} />
-              </div>
-            ))}
+            {parameters.length > 0 ? (
+              parameters.map((param) => (
+                <div key={param.name} className="flex items-center space-x-2">
+                  <span className="font-mono text-sm">{param.name}</span>
+                  {param.required && <RequiredMarker />}
+                  <TypeIndicator type={param.type} />
+                </div>
+              ))
+            ) : (
+              <div className="text-neutral-500">No parameters</div>
+            )}
           </div>
         )}
       </div>
@@ -45,4 +57,4 @@ const ParameterGroup = React.forwardRef<HTMLDivElement, ParameterGroupProps>(
 
 ParameterGroup.displayName = "ParameterGroup";
 
-export { ParameterGroup };
+export { ParameterGroup, type Parameter, type ParameterGroupProps };

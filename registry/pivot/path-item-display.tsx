@@ -22,13 +22,26 @@ interface PathItemObject {
 
 interface PathItemDisplayProps {
   path: string;
-  pathItem: PathItemObject;
+  pathItem?: PathItemObject;
   components?: ComponentsObject;
   className?: string;
 }
 
 const PathItemDisplay = React.forwardRef<HTMLDivElement, PathItemDisplayProps>(
   ({ path, pathItem, components, className }, ref) => {
+    if (!pathItem) {
+      return (
+        <div ref={ref} className={cn("space-y-4", className)}>
+          <h2 className="text-xl font-semibold text-neutral-900 dark:text-neutral-100 font-mono">
+            {path}
+          </h2>
+          <div className="text-neutral-500 dark:text-neutral-400 text-sm italic">
+            No path item data available
+          </div>
+        </div>
+      );
+    }
+
     const operations = [
       { method: "get", operation: pathItem.get },
       { method: "put", operation: pathItem.put },

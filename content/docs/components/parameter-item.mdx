@@ -1,0 +1,137 @@
+---
+title: Parameter Item
+description: 用于显示单个 API 参数信息的组件，包含参数名、类型、描述等详细信息。
+component: true
+---
+
+Parameter Item 组件用于展示单个 API 参数的完整信息，包括参数名、类型、位置、是否必需等。
+
+<ComponentPreview name="parameter-item-demo" />
+
+## 安装
+
+```bash
+npx shadcn@latest add https://pivotkit.vercel.app/registry.json parameter-item
+```
+
+## 使用方法
+
+```tsx
+import { ParameterItem } from "@/components/pivot/parameter-item";
+```
+
+```tsx
+<ParameterItem
+  name="userId"
+  type="string"
+  in="path"
+  required={true}
+  description="用户的唯一标识符"
+/>
+```
+
+## 示例
+
+### 路径参数
+
+```tsx
+<ParameterItem
+  name="id"
+  type="string"
+  in="path"
+  required={true}
+  description="资源的唯一标识符"
+  format="uuid"
+/>
+```
+
+### 查询参数
+
+```tsx
+<div className="space-y-3">
+  <ParameterItem
+    name="page"
+    type="integer"
+    in="query"
+    required={false}
+    description="页码，从 1 开始"
+    defaultValue={1}
+    minimum={1}
+  />
+
+  <ParameterItem
+    name="limit"
+    type="integer"
+    in="query"
+    required={false}
+    description="每页返回的记录数"
+    defaultValue={20}
+    minimum={1}
+    maximum={100}
+  />
+
+  <ParameterItem
+    name="search"
+    type="string"
+    in="query"
+    required={false}
+    description="搜索关键词"
+  />
+</div>
+```
+
+### 请求头参数
+
+```tsx
+<div className="space-y-3">
+  <ParameterItem
+    name="Authorization"
+    type="string"
+    in="header"
+    required={true}
+    description="Bearer token for authentication"
+    example="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+  />
+
+  <ParameterItem
+    name="Content-Type"
+    type="string"
+    in="header"
+    required={false}
+    description="请求内容类型"
+    defaultValue="application/json"
+  />
+</div>
+```
+
+### 带枚举值的参数
+
+```tsx
+<ParameterItem
+  name="status"
+  type="string"
+  in="query"
+  required={false}
+  description="用户状态过滤"
+  enumValues={["active", "inactive", "pending"]}
+/>
+```
+
+## API 参考
+
+### Props
+
+| 属性           | 类型                                        | 默认值  | 描述               |
+| -------------- | ------------------------------------------- | ------- | ------------------ |
+| `name`         | `string`                                    | -       | 参数名称           |
+| `type`         | `string`                                    | -       | 参数类型           |
+| `in`           | `"query" \| "path" \| "header" \| "cookie"` | -       | 参数位置           |
+| `required`     | `boolean`                                   | `false` | 是否必需           |
+| `description`  | `string`                                    | -       | 参数描述           |
+| `format`       | `string`                                    | -       | 参数格式           |
+| `defaultValue` | `any`                                       | -       | 默认值             |
+| `example`      | `any`                                       | -       | 示例值             |
+| `enumValues`   | `string[]`                                  | -       | 枚举值列表         |
+| `minimum`      | `number`                                    | -       | 最小值（数字类型） |
+| `maximum`      | `number`                                    | -       | 最大值（数字类型） |
+| `className`    | `string`                                    | -       | 额外的 CSS 类名    |

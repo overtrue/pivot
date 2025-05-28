@@ -1,0 +1,69 @@
+---
+title: Style Badge
+description: 用于显示样式类型的徽章组件，支持不同的样式主题和变体。
+component: true
+---
+
+Style Badge 组件用于显示不同的样式类型或主题标识，提供视觉上的分类和标识功能。
+
+<ComponentPreview name="style-badge-demo" />
+
+## 安装
+
+```bash
+npx shadcn@latest add https://pivotkit.vercel.app/registry.json style-badge
+```
+
+## 使用方法
+
+```tsx
+import { StyleBadge } from "@/components/pivot/style-badge";
+```
+
+```tsx
+<StyleBadge style="primary" />
+```
+
+## 示例
+
+### 基本用法
+
+```tsx
+<div className="flex flex-wrap items-center gap-2">
+  <StyleBadge style="primary" />
+  <StyleBadge style="secondary" />
+  <StyleBadge style="success" />
+  <StyleBadge style="warning" />
+  <StyleBadge style="danger" />
+</div>
+```
+
+### 在组件分类中使用
+
+```tsx
+<div className="space-y-3">
+  <div className="flex items-center gap-3 p-3 border rounded">
+    <StyleBadge style="primary" />
+    <span className="text-sm">主要组件</span>
+  </div>
+
+  <div className="flex items-center gap-3 p-3 border rounded">
+    <StyleBadge style="secondary" />
+    <span className="text-sm">辅助组件</span>
+  </div>
+
+  <div className="flex items-center gap-3 p-3 border rounded">
+    <StyleBadge style="success" />
+    <span className="text-sm">成功状态</span>
+  </div>
+</div>
+```
+
+## API 参考
+
+### Props
+
+| 属性        | 类型                                                             | 默认值      | 描述            |
+| ----------- | ---------------------------------------------------------------- | ----------- | --------------- |
+| `style`     | `"primary" \| "secondary" \| "success" \| "warning" \| "danger"` | `"primary"` | 样式类型        |
+| `className` | `string`                                                         | -           | 额外的 CSS 类名 |

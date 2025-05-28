@@ -1,3 +1,5 @@
+"use client";
+
 import { cn } from "@/lib/utils";
 import React, { useState } from "react";
 import { DeprecatedBadge } from "../pivot/deprecated-badge";
@@ -51,6 +53,22 @@ const OperationBox = React.forwardRef<HTMLDivElement, OperationBoxProps>(
   ) => {
     const [isExpanded, setIsExpanded] = useState(false);
 
+    if (!operation) {
+      return (
+        <div
+          ref={ref}
+          className={cn(
+            "rounded overflow-hidden bg-neutral-50/50 dark:bg-neutral-800/50 p-3",
+            className,
+          )}
+        >
+          <div className="text-neutral-500 dark:text-neutral-400 text-sm italic">
+            No operation data available
+          </div>
+        </div>
+      );
+    }
+
     // Use spec components if provided, otherwise use direct components
     const resolvedComponents = spec?.components || components;
 
@@ -75,7 +93,7 @@ const OperationBox = React.forwardRef<HTMLDivElement, OperationBoxProps>(
         className={cn(
           "rounded overflow-hidden",
           operation.deprecated
-            ? "bg-red-300 dark:bg-red-900/50"
+            ? "bg-red-50/50 dark:bg-red-900/20"
             : "bg-neutral-50/50 dark:bg-neutral-800/50",
           className,
         )}
@@ -103,7 +121,9 @@ const OperationBox = React.forwardRef<HTMLDivElement, OperationBoxProps>(
 
         {/* Collapsible Body */}
         {isExpanded && (
-          <div className="">
+          <div className={cn(
+            operation.deprecated ? "bg-red-50/30 dark:bg-red-900/10" : ""
+          )}>
             {/* Description Section */}
             {(operation.summary || operation.description || externalDocs) && (
               <div className="p-4 pt-0 space-y-2">
@@ -178,5 +198,6 @@ export {
   type ComponentsObject,
   type OpenApiSpec,
   type OperationBoxProps,
-  type OperationObject,
+  type OperationObject
 };
+

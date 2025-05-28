@@ -1,3 +1,5 @@
+"use client";
+
 import { cn } from "@/lib/utils";
 import React, { useState } from "react";
 import { DefaultValueDisplay } from "../pivot/default-value-display";
@@ -211,5 +213,6 @@ export {
   type HeaderItemProps,
   type HeaderObject,
   type ReferenceObject,
-  type SchemaObject,
+  type SchemaObject
 };
+

@@ -39,7 +39,7 @@ export interface CodeGenerator {
 }
 
 // PythonGenerator implementation
-export class PythonGenerator implements CodeGenerator {
+export class PythonGeneratorClass implements CodeGenerator {
   id = "python";
   label = "Python";
 
@@ -77,13 +77,27 @@ def call_${method.toLowerCase()}():
 
 // React component wrapper
 interface PythonGeneratorProps {
-  params: CodeGeneratorParams;
+  params?: CodeGeneratorParams;
   className?: string;
 }
 
 const PythonGeneratorComponent = React.forwardRef<HTMLDivElement, PythonGeneratorProps>(
   ({ params, className }, ref) => {
-    const generator = new PythonGenerator();
+    if (!params) {
+      return (
+        <div ref={ref} className={className}>
+          <div className="flex items-center gap-2 mb-2">
+            <Code2 size={16} />
+            <span className="font-medium">Python</span>
+          </div>
+          <div className="bg-neutral-100 dark:bg-neutral-800 p-4 rounded-md text-neutral-500 dark:text-neutral-400">
+            No parameters provided for code generation
+          </div>
+        </div>
+      );
+    }
+
+    const generator = new PythonGeneratorClass();
     const code = generator.generateCode(params);
 
     return (

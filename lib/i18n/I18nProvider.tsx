@@ -20,7 +20,7 @@ export const I18nProvider: React.FC<{ children: React.ReactNode }> = ({
 
   const t = (key: string): string => {
     // 直接使用扁平结构查找，如果未找到则返回原key
-    return locales[locale][key] || key;
+    return locales[locale]?.[key] || key;
   };
 
   return (

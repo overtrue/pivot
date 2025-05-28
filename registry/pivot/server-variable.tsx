@@ -10,12 +10,33 @@ interface ServerVariableObject {
 
 interface ServerVariableProps {
   name: string;
-  variable: ServerVariableObject;
+  variable?: ServerVariableObject;
   className?: string;
 }
 
 const ServerVariable = React.forwardRef<HTMLDivElement, ServerVariableProps>(
   ({ name, variable, className }, ref) => {
+    if (!variable) {
+      return (
+        <div
+          ref={ref}
+          className={cn(
+            "rounded p-3 bg-neutral-50 dark:bg-neutral-800/70",
+            className,
+          )}
+        >
+          <div className="flex items-center justify-between mb-2">
+            <span className="font-mono text-sm font-medium dark:text-neutral-200">
+              {name}
+            </span>
+            <span className="px-2 py-0.5 text-xs bg-neutral-100 dark:bg-neutral-700 text-neutral-600 dark:text-neutral-400 rounded">
+              No data
+            </span>
+          </div>
+        </div>
+      );
+    }
+
     const { description, default: defaultValue, enum: enumValues } = variable;
 
     return (

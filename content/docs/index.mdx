@@ -1,42 +1,57 @@
 ---
-title: "Pivot - OpenAPI Component Library"
-description: "A modern React UI library for OpenAPI specifications, built with shadcn/ui registry system."
+title: 介绍
+description: 一个现代化的 React UI 组件库，专为 OpenAPI 规范设计。
 ---
 
-# Pivot - OpenAPI Component Library
+Pivot 是一个现代化的 React UI 组件库，专门为 OpenAPI 规范设计。它提供了一套可复制粘贴的组件，帮助开发者快速构建美观、功能强大的 API 文档界面。
 
-Pivot 是一个现代化的 React UI 组件库，专门为 OpenAPI 规范设计。它基于 shadcn/ui registry 系统构建，让您可以轻松地将组件添加到自己的项目中。
+## 设计理念
+
+**我们相信优秀的设计是软件成功的关键因素之一**。对于 API 文档来说，清晰、直观的界面设计能够显著提升开发者的使用体验，降低 API 的学习成本。
+
+一些开发者在使用 API 文档时会考虑：
+
+- "这个 API 文档是否清晰易懂？"
+- "示例代码是否完整准确？"
+- "我能否快速找到需要的信息？"
+
+**糟糕的文档设计会让开发者望而却步**。混乱的布局、缺失的示例、复杂的导航都会影响开发者的使用体验。
+
+**优秀的文档设计表明团队对细节的关注**。这让开发者相信："如果他们对文档都如此用心，那么 API 的质量一定也很可靠！"
 
 ## 特性
 
-- 🚀 **现代化设计** - 基于 Tailwind CSS 和 shadcn/ui 设计系统
-- 📦 **Registry 系统** - 使用 shadcn/ui registry 系统，方便组件发布和安装
-- 🎨 **可定制** - 支持主题定制和样式覆盖
-- 📱 **响应式** - 完全响应式设计，适配各种设备
-- 🌙 **暗色模式** - 内置暗色模式支持
-- 🔧 **TypeScript** - 完整的 TypeScript 支持
+- **现代化设计** - 基于 Tailwind CSS 的美观组件
+- **暗色模式** - 完整的暗色主题支持
+- **TypeScript** - 完整的类型定义和类型安全
+- **响应式** - 移动端友好的设计
+- **可定制** - 易于定制和扩展
+- **无障碍** - 遵循 WAI-ARIA 标准
 
-## 快速开始
+## 项目架构
 
-### 安装
+Pivot 采用了与 shadcn/ui 类似的 registry 系统：
+
+- **组件发布** - 通过 registry 系统发布和管理组件
+- **按需引入** - 只安装需要的组件，减少包体积
+- **源码透明** - 所有组件源码可见，方便定制
+- **文档驱动** - 基于 MDX 的文档系统
+
+本项目深受 [shadcn/ui](https://ui.shadcn.com) 的启发。
+
+## 安装
 
 ```bash
-npx shadcn@latest add https://pivot.design/registry.json
+npm install @pivot/ui
 ```
 
-### 使用组件
+## 使用
 
 ```tsx
-import { StatusCode } from "@/components/pivot/status-code";
-import { MethodLabel } from "@/components/pivot/method-label";
+import { StatusCode } from "@pivot/ui";
 
-export function Example() {
-  return (
-    <div className="flex items-center gap-2">
-      <MethodLabel method="GET" />
-      <StatusCode code={200} />
-    </div>
-  );
+export default function MyComponent() {
+  return <StatusCode code={200} />;
 }
 ```
 

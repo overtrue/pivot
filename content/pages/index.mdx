@@ -1,0 +1,65 @@
+---
+title: Pivot
+description: 专为 OpenAPI 规范设计的 React UI 组件库。
+---
+
+# Pivot
+
+专为 OpenAPI 规范设计的现代化 React UI 组件库
+
+## 快速开始
+
+```bash
+npx create-next-app@latest my-app --typescript --tailwind --eslint
+cd my-app
+npm install @overtrue/pivot
+```
+
+## 特性
+
+### 🎨 现代化设计
+
+基于 Tailwind CSS 的美观界面，完美支持暗色模式
+
+### 📱 响应式布局
+
+在所有设备上都能提供最佳的用户体验
+
+### 🚀 快速集成
+
+复制粘贴即可使用，无需复杂配置
+
+### 🔧 高度可定制
+
+灵活的主题系统，支持深度定制
+
+### 📖 完整文档
+
+详细的使用指南和丰富的示例代码
+
+### ⚡ TypeScript 支持
+
+完整的类型定义，提供最佳的开发体验
+
+## 示例代码
+
+```tsx
+import { StatusCode, MethodLabel, TypeIndicator } from "@overtrue/pivot";
+
+export function ApiEndpoint() {
+  return (
+    <div className="flex items-center gap-2">
+      <MethodLabel method="POST" />
+      <span>/api/users</span>
+      <TypeIndicator type="object" />
+      <StatusCode code={201} />
+    </div>
+  );
+}
+```
+
+## 立即开始
+
+- [查看文档](/docs) - 了解如何安装和使用
+- [浏览组件](/docs/components) - 查看所有可用组件
+- [查看示例](/showcase) - 实际应用案例

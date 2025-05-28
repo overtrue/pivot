@@ -6,7 +6,7 @@ interface SecurityRequirementObject {
 }
 
 interface SecurityRequirementItemProps {
-  requirement: SecurityRequirementObject;
+  requirement?: SecurityRequirementObject;
   className?: string;
 }
 
@@ -14,6 +14,22 @@ const SecurityRequirementItem = React.forwardRef<
   HTMLDivElement,
   SecurityRequirementItemProps
 >(({ requirement, className }, ref) => {
+  if (!requirement) {
+    return (
+      <div
+        ref={ref}
+        className={cn(
+          "bg-neutral-50 dark:bg-neutral-800 rounded p-2 text-xs dark:text-neutral-200",
+          className,
+        )}
+      >
+        <span className="text-neutral-500 dark:text-neutral-500 italic">
+          No security requirement data
+        </span>
+      </div>
+    );
+  }
+
   return (
     <div
       ref={ref}

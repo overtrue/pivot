@@ -2,7 +2,7 @@ import { cn } from "@/lib/utils";
 import React from "react";
 
 // Define component types
-export type ComponentType =
+type OpenApiComponentType =
   | "schemas"
   | "responses"
   | "parameters"
@@ -14,9 +14,9 @@ export type ComponentType =
   | "callbacks";
 
 interface ComponentTabsProps {
-  availableTypes: ComponentType[];
-  activeType: ComponentType | null;
-  onSelectType: (type: ComponentType) => void;
+  availableTypes: OpenApiComponentType[];
+  activeType: OpenApiComponentType | null;
+  onSelectType: (type: OpenApiComponentType) => void;
   className?: string;
 }
 
@@ -48,4 +48,4 @@ const ComponentTabs = React.forwardRef<HTMLDivElement, ComponentTabsProps>(
 
 ComponentTabs.displayName = "ComponentTabs";
 
-export { ComponentTabs, type ComponentType };
+export { ComponentTabs, type OpenApiComponentType };

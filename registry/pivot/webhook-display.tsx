@@ -30,6 +30,22 @@ interface WebhookDisplayProps {
 
 const WebhookDisplay = React.forwardRef<HTMLDivElement, WebhookDisplayProps>(
   ({ name, pathItem, components, className }, ref) => {
+    if (!pathItem) {
+      return (
+        <div
+          ref={ref}
+          className={cn(
+            "rounded-lg p-4 bg-neutral-50 dark:bg-neutral-800 border dark:border-neutral-700",
+            className,
+          )}
+        >
+          <div className="text-neutral-500 dark:text-neutral-400 text-sm italic">
+            No webhook data available
+          </div>
+        </div>
+      );
+    }
+
     const operations = [
       { method: "get", operation: pathItem.get },
       { method: "post", operation: pathItem.post },

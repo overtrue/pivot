@@ -1,3 +1,5 @@
+"use client";
+
 import { cn } from "@/lib/utils";
 import React, { useState } from "react";
 import { ConstraintDisplay } from "../pivot/constraint-display";
@@ -138,184 +140,182 @@ const PropertyDisplay: React.FC<{
   currentDepth,
   className,
 }) => {
-  const [isExpanded, setIsExpanded] = useState(true);
-  const toggleExpansion = () => setIsExpanded(!isExpanded);
+    const [isExpanded, setIsExpanded] = useState(true);
+    const toggleExpansion = () => setIsExpanded(!isExpanded);
 
-  const resolvedPropSchema = resolveRef<SchemaObject>(
-    propSchemaOrRef,
-    components,
-    "schemas",
-  );
+    const resolvedPropSchema = resolveRef<SchemaObject>(
+      propSchemaOrRef,
+      components,
+      "schemas",
+    );
 
-  if (!resolvedPropSchema) {
-    const refString =
-      propSchemaOrRef &&
-      typeof propSchemaOrRef === "object" &&
-      "$ref" in propSchemaOrRef
-        ? (propSchemaOrRef as ReferenceObject).$ref
-        : "[invalid schema]";
+    if (!resolvedPropSchema) {
+      const refString =
+        propSchemaOrRef &&
+          typeof propSchemaOrRef === "object" &&
+          "$ref" in propSchemaOrRef
+          ? (propSchemaOrRef as ReferenceObject).$ref
+          : "[invalid schema]";
+      return (
+        <div className="pl-3 my-2 border-l-2 border-neutral-200 dark:border-neutral-700">
+          <div className="font-mono font-medium text-sm mb-1 text-black dark:text-neutral-200">
+            {propName}{" "}
+            <span className="text-red-500 dark:text-red-400 text-xs">
+              Error resolving {refString}
+            </span>
+          </div>
+        </div>
+      );
+    }
+
+    const {
+      type,
+      format,
+      description,
+      default: defaultValue,
+      enum: enumValues,
+      deprecated,
+      items, // For potential inline array display
+      properties, // To decide if recursive call is needed
+      ...otherConstraints
+    } = resolvedPropSchema;
+
+    // Determine display type and collapsibility
+    let displayTypeString = type || "any";
+    let isCollapsible = false;
+    const isActuallyObject =
+      type === "object" ||
+      properties ||
+      typeof otherConstraints.additionalProperties === "object";
+    const isActuallyArray = type === "array" || items;
+    let itemTypeForArray = "";
+
+    if (isActuallyObject) {
+      displayTypeString = "object";
+      isCollapsible = true;
+    }
+    if (isActuallyArray) {
+      itemTypeForArray = getItemTypeString(items, components);
+      displayTypeString = `array[${itemTypeForArray}]`;
+      // Array is collapsible only if its items are objects
+      if (itemTypeForArray === "object") {
+        isCollapsible = true;
+      }
+    }
+
+    // Recursive call is needed only if the property itself is collapsible (i.e., object or array of objects)
+    const shouldRecurse = isCollapsible;
+
+    // Define connector width based on collapsibility to ensure text alignment
+    const connectorWidthClass = isCollapsible ? "w-3" : "w-7"; // Dynamic width
+    const iconSpanWidthClass = isCollapsible ? "w-4" : "w-0"; // Fixed width for the icon span when it exists
+
     return (
-      <div className="pl-3 my-2 border-l-2 border-neutral-200 dark:border-neutral-700">
-        <div className="font-mono font-medium text-sm mb-1 text-black dark:text-neutral-200">
-          {propName}{" "}
-          <span className="text-red-500 dark:text-red-400 text-xs">
-            Error resolving {refString}
+      <div className={cn("py-1", className)} role="property-item">
+        {/* Property Name Row */}
+        <div
+          className={cn(
+            "group flex items-center flex-wrap gap-x-1 mb-0.5",
+            isCollapsible && "cursor-pointer",
+          )}
+          onClick={isCollapsible ? toggleExpansion : undefined}
+          role="property-item-header"
+        >
+          {/* Prefix Connector Line - Conditional width */}
+          <div
+            className={cn(
+              connectorWidthClass,
+              "border-t border-neutral-200 dark:border-neutral-700 group-hover:border-neutral-300 dark:group-hover:border-neutral-600 flex-shrink-0",
+            )}
+          ></div>
+
+          {/* Icon Span - RENDERED ONLY IF COLLAPSIBLE */}
+          <span
+            className={cn(
+              iconSpanWidthClass,
+              "inline-flex items-center justify-center h-5",
+            )}
+          >
+            {isCollapsible && (
+              <span className="text-neutral-400 dark:text-neutral-500">
+                <ChevronIcon isExpanded={isExpanded} />
+              </span>
+            )}
           </span>
+          <div className="flex-1 gap-1 flex items-center justify-between">
+            {/* Text content follows. Starts at same effective indent */}
+            <span className="font-mono text-sm text-black dark:text-neutral-200 group-hover:text-neutral-900 dark:group-hover:text-white">
+              {propName}
+            </span>
+
+            {/* hover line */}
+            <div className="h-px self-center ml-1 flex-grow border-t border-transparent group-hover:border-neutral-300 dark:group-hover:border-neutral-600 transition-colors duration-150"></div>
+
+            {/* Type and other badges */}
+            <div className="flex gap-1 items-center">
+              <TypeIndicator type={displayTypeString as any}>
+                {displayTypeString}
+              </TypeIndicator>
+              {format && <FormatBadge format={format as any} />}
+              {deprecated && <DeprecatedBadge />}
+              {isRequired && (
+                <div className="flex-shrink-0 flex items-center">
+                  <RequiredBadge />
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+        {/* Collapsible Section */}
+        <div
+          className={`pl-10 transition-all duration-300 ease-in-out overflow-hidden ${isExpanded ? "max-h-[1000px] opacity-100" : "max-h-0 opacity-0"}`}
+          role="property-item-content"
+        >
+          {description && (
+            <DescriptionDisplay
+              description={description as string}
+              className="text-sm text-neutral-500 dark:text-neutral-400 mb-1 pt-0.5"
+            />
+          )}
+
+          {defaultValue !== undefined && (
+            <DefaultValueDisplay
+              value={defaultValue}
+              className="text-xs text-neutral-500 dark:text-neutral-400 mb-0.5"
+            />
+          )}
+
+          {enumValues && (
+            <EnumValuesDisplay
+              values={enumValues || []}
+              className="text-xs text-neutral-500 dark:text-neutral-400 mb-0.5"
+            />
+          )}
+
+          {Object.keys(otherConstraints).length > 0 && (
+            <ConstraintDisplay
+              schema={{
+                ...resolvedPropSchema,
+              }}
+              className="text-xs"
+            />
+          )}
+
+          {/* Recursive call */}
+          {shouldRecurse && (
+            <div className="mt-1 pb-0.5" role="property-item-content-children">
+              <SchemaDisplay
+                schema={resolvedPropSchema}
+                components={components}
+                currentDepth={currentDepth + 1}
+                className="border-none p-0"
+              />
+            </div>
+          )}
         </div>
       </div>
     );
-  }
-
-  const {
-    type,
-    format,
-    description,
-    default: defaultValue,
-    enum: enumValues,
-    deprecated,
-    items, // For potential inline array display
-    properties, // To decide if recursive call is needed
-    ...otherConstraints
-  } = resolvedPropSchema;
-
-  // Determine display type and collapsibility
-  let displayTypeString = type || "any";
-  let isCollapsible = false;
-  const isActuallyObject =
-    type === "object" ||
-    properties ||
-    typeof otherConstraints.additionalProperties === "object";
-  const isActuallyArray = type === "array" || items;
-  let itemTypeForArray = "";
-
-  if (isActuallyObject) {
-    displayTypeString = "object";
-    isCollapsible = true;
-  }
-  if (isActuallyArray) {
-    itemTypeForArray = getItemTypeString(items, components);
-    displayTypeString = `array[${itemTypeForArray}]`;
-    // Array is collapsible only if its items are objects
-    if (itemTypeForArray === "object") {
-      isCollapsible = true;
-    }
-  }
-
-  // Recursive call is needed only if the property itself is collapsible (i.e., object or array of objects)
-  const shouldRecurse = isCollapsible;
-
-  // Define connector width based on collapsibility to ensure text alignment
-  const connectorWidthClass = isCollapsible ? "w-3" : "w-7"; // Dynamic width
-  const iconSpanWidthClass = isCollapsible ? "w-4" : "w-0"; // Fixed width for the icon span when it exists
-
-  return (
-    <div className={cn("py-1", className)} role="property-item">
-      {/* Property Name Row */}
-      <div
-        className={cn(
-          "group flex items-center flex-wrap gap-x-1 mb-0.5",
-          isCollapsible && "cursor-pointer",
-        )}
-        onClick={isCollapsible ? toggleExpansion : undefined}
-        role="property-item-header"
-      >
-        {/* Prefix Connector Line - Conditional width */}
-        <div
-          className={cn(
-            connectorWidthClass,
-            "border-t border-neutral-200 dark:border-neutral-700 group-hover:border-neutral-300 dark:group-hover:border-neutral-600 flex-shrink-0",
-          )}
-        ></div>
-
-        {/* Icon Span - RENDERED ONLY IF COLLAPSIBLE */}
-        <span
-          className={cn(
-            iconSpanWidthClass,
-            "inline-flex items-center justify-center h-5",
-          )}
-        >
-          {isCollapsible && (
-            <span className="text-neutral-400 dark:text-neutral-500">
-              <ChevronIcon isExpanded={isExpanded} />
-            </span>
-          )}
-        </span>
-        <div className="flex-1 gap-1 flex items-center justify-between">
-          {/* Text content follows. Starts at same effective indent */}
-          <span className="font-mono text-sm text-black dark:text-neutral-200 group-hover:text-neutral-900 dark:group-hover:text-white">
-            {propName}
-          </span>
-
-          {/* hover line */}
-          <div className="h-px self-center ml-1 flex-grow border-t border-transparent group-hover:border-neutral-300 dark:group-hover:border-neutral-600 transition-colors duration-150"></div>
-
-          {/* Type and other badges */}
-          <div className="flex gap-1 items-center">
-            <TypeIndicator type={displayTypeString as any}>
-              {displayTypeString}
-            </TypeIndicator>
-            {format && <FormatBadge format={format as any} />}
-            {deprecated && <DeprecatedBadge />}
-            {isRequired && (
-              <div className="flex-shrink-0 flex items-center">
-                <RequiredBadge />
-              </div>
-            )}
-          </div>
-        </div>
-      </div>
-      {/* Collapsible Section */}
-      <div
-        className={`pl-10 transition-all duration-300 ease-in-out overflow-hidden ${isExpanded ? "max-h-[1000px] opacity-100" : "max-h-0 opacity-0"}`}
-        role="property-item-content"
-      >
-        {description && (
-          <DescriptionDisplay
-            description={description as string}
-            className="text-sm text-neutral-500 dark:text-neutral-400 mb-1 pt-0.5"
-          />
-        )}
-
-        {defaultValue !== undefined && (
-          <DefaultValueDisplay
-            value={defaultValue}
-            className="text-xs text-neutral-500 dark:text-neutral-400 mb-0.5"
-          />
-        )}
-
-        {enumValues && (
-          <EnumValuesDisplay
-            values={enumValues || []}
-            className="text-xs text-neutral-500 dark:text-neutral-400 mb-0.5"
-          />
-        )}
-
-        {Object.keys(otherConstraints).length > 0 && (
-          <ConstraintDisplay
-            schema={{
-              ...resolvedPropSchema,
-              default: undefined,
-              enum: undefined,
-            }}
-            className="text-xs text-neutral-500 dark:text-neutral-400"
-          />
-        )}
-
-        {/* Recursive call */}
-        {shouldRecurse && (
-          <div className="mt-1 pb-0.5" role="property-item-content-children">
-            <SchemaDisplay
-              schema={resolvedPropSchema}
-              components={components}
-              currentDepth={currentDepth + 1}
-              className="border-none p-0"
-            />
-          </div>
-        )}
-      </div>
-    </div>
-  );
-};
+  };
 
 const SchemaDisplay = React.forwardRef<HTMLDivElement, SchemaDisplayProps>(
   ({ schema: schemaOrRef, components, currentDepth = 0, className }, ref) => {
@@ -472,10 +472,6 @@ const SchemaDisplay = React.forwardRef<HTMLDivElement, SchemaDisplayProps>(
             <ConstraintDisplay
               schema={{
                 ...resolvedSchema,
-                default: undefined,
-                enum: undefined,
-                description: undefined,
-                deprecated: undefined,
               }}
               className="text-xs"
             />
@@ -670,5 +666,6 @@ export {
   type ComponentsObject,
   type ReferenceObject,
   type SchemaDisplayProps,
-  type SchemaObject,
+  type SchemaObject
 };
+

@@ -44,7 +44,7 @@ function replaceDoubleQuotes(str: string): string {
 }
 
 // PhpGenerator implementation
-export class PhpGenerator implements CodeGenerator {
+export class PhpGeneratorClass implements CodeGenerator {
   id = "php";
   label = "PHP";
 
@@ -99,13 +99,27 @@ ${JSON.stringify(requestBodyExample, null, 4)
 
 // React component wrapper
 interface PhpGeneratorProps {
-  params: CodeGeneratorParams;
+  params?: CodeGeneratorParams;
   className?: string;
 }
 
 const PhpGeneratorComponent = React.forwardRef<HTMLDivElement, PhpGeneratorProps>(
   ({ params, className }, ref) => {
-    const generator = new PhpGenerator();
+    if (!params) {
+      return (
+        <div ref={ref} className={className}>
+          <div className="flex items-center gap-2 mb-2">
+            <Code2 size={16} />
+            <span className="font-medium">PHP</span>
+          </div>
+          <div className="bg-neutral-100 dark:bg-neutral-800 p-4 rounded-md text-neutral-500 dark:text-neutral-400">
+            No parameters provided for code generation
+          </div>
+        </div>
+      );
+    }
+
+    const generator = new PhpGeneratorClass();
     const code = generator.generateCode(params);
 
     return (

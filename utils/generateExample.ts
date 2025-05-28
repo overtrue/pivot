@@ -82,18 +82,24 @@ export function generateExample(
 
   if (resolvedSchema.oneOf && resolvedSchema.oneOf.length > 0) {
     // 使用第一个oneOf模式
-    return generateExample(resolvedSchema.oneOf[0], components, {
-      ...options,
-      currentDepth: currentDepth + 1,
-    });
+    const firstSchema = resolvedSchema.oneOf[0];
+    if (firstSchema) {
+      return generateExample(firstSchema, components, {
+        ...options,
+        currentDepth: currentDepth + 1,
+      });
+    }
   }
 
   if (resolvedSchema.anyOf && resolvedSchema.anyOf.length > 0) {
     // 使用第一个anyOf模式
-    return generateExample(resolvedSchema.anyOf[0], components, {
-      ...options,
-      currentDepth: currentDepth + 1,
-    });
+    const firstSchema = resolvedSchema.anyOf[0];
+    if (firstSchema) {
+      return generateExample(firstSchema, components, {
+        ...options,
+        currentDepth: currentDepth + 1,
+      });
+    }
   }
 
   // 根据类型处理

@@ -1,3 +1,5 @@
+"use client";
+
 import { cn } from "@/lib/utils";
 import { Braces, Code2, Terminal } from "lucide-react";
 import React, { useState } from "react";
@@ -50,31 +52,114 @@ function replaceDoubleQuotes(str: string): string {
 }
 
 function generateExample(schema: any, components?: ComponentsObject, options?: any): any {
-  // Simple example generator - in production this would be more sophisticated
-  if (!schema) return "example data";
+  // Improved example generator with realistic data
+  if (!schema) return { message: "Hello World" };
 
   if (schema.example) return schema.example;
 
+  // Generate realistic examples based on field names and types
+  const generateByFieldName = (fieldName: string, type: string): any => {
+    const lowerName = fieldName.toLowerCase();
+
+    // Email fields
+    if (lowerName.includes('email')) {
+      return "user@example.com";
+    }
+
+    // ID fields
+    if (lowerName.includes('id') || lowerName === 'uuid') {
+      return type === 'integer' ? 12345 : "usr_123abc456def";
+    }
+
+    // Name fields
+    if (lowerName.includes('name') || lowerName.includes('title')) {
+      if (lowerName.includes('first')) return "John";
+      if (lowerName.includes('last')) return "Doe";
+      if (lowerName.includes('user')) return "john_doe";
+      if (lowerName.includes('company')) return "Acme Corp";
+      return "Sample Name";
+    }
+
+    // URL fields
+    if (lowerName.includes('url') || lowerName.includes('link') || lowerName.includes('avatar')) {
+      return "https://example.com/resource";
+    }
+
+    // Phone fields
+    if (lowerName.includes('phone') || lowerName.includes('mobile')) {
+      return "+1-555-123-4567";
+    }
+
+    // Address fields
+    if (lowerName.includes('address')) {
+      return "123 Main St, Anytown, ST 12345";
+    }
+
+    // Date fields
+    if (lowerName.includes('date') || lowerName.includes('time') || lowerName.includes('created') || lowerName.includes('updated')) {
+      return "2024-01-15T10:30:00Z";
+    }
+
+    // Status fields
+    if (lowerName.includes('status')) {
+      return "active";
+    }
+
+    // Count/number fields
+    if (lowerName.includes('count') || lowerName.includes('total') || lowerName.includes('amount')) {
+      return 42;
+    }
+
+    // Age fields
+    if (lowerName.includes('age')) {
+      return 28;
+    }
+
+    // Description fields
+    if (lowerName.includes('description') || lowerName.includes('content') || lowerName.includes('message')) {
+      return "This is a sample description that provides meaningful context.";
+    }
+
+    return null; // Fall back to type-based generation
+  };
+
   switch (schema.type) {
     case "string":
-      return schema.enum ? schema.enum[0] : "string";
+      if (schema.enum) return schema.enum[0];
+      if (schema.format === "email") return "user@example.com";
+      if (schema.format === "date") return "2024-01-15";
+      if (schema.format === "date-time") return "2024-01-15T10:30:00Z";
+      if (schema.format === "uri") return "https://example.com";
+      if (schema.format === "uuid") return "123e4567-e89b-12d3-a456-426614174000";
+      return "Sample text";
+
     case "number":
     case "integer":
-      return 123;
+      if (schema.minimum !== undefined) return schema.minimum + 1;
+      if (schema.maximum !== undefined) return Math.min(schema.maximum - 1, 100);
+      return 42;
+
     case "boolean":
       return true;
+
     case "array":
-      return [generateExample(schema.items, components, options)];
+      const itemExample = generateExample(schema.items, components, options);
+      return [itemExample];
+
     case "object":
       const obj: any = {};
       if (schema.properties) {
         Object.keys(schema.properties).forEach(key => {
-          obj[key] = generateExample(schema.properties[key], components, options);
+          const fieldExample = generateByFieldName(key, schema.properties[key].type);
+          obj[key] = fieldExample !== null
+            ? fieldExample
+            : generateExample(schema.properties[key], components, options);
         });
       }
       return obj;
+
     default:
-      return "example";
+      return "sample_value";
   }
 }
 
@@ -309,7 +394,9 @@ const Codegen = React.forwardRef<HTMLDivElement, CodegenProps>(
     defaultCollapsed = false,
     className,
   }, ref) => {
-    const [languageId, setLanguageId] = useState(codeGenerators[0]?.id || "curl");
+    const [languageId, setLanguageId] = useState(
+      codeGenerators.length > 0 && codeGenerators[0] ? codeGenerators[0].id : "curl"
+    );
     const [collapsed, setCollapsed] = useState(defaultCollapsed);
 
     const toggleCollapse = () => {
@@ -340,7 +427,7 @@ const Codegen = React.forwardRef<HTMLDivElement, CodegenProps>(
         ? "application/json"
         : Object.keys(resolvedRequestBody.content)[0];
 
-      if (!contentType || !resolvedRequestBody.content[contentType].schema)
+      if (!contentType || !resolvedRequestBody.content[contentType] || !resolvedRequestBody.content[contentType].schema)
         return { example: "data" };
 
       const schema = resolvedRequestBody.content[contentType].schema;
@@ -430,8 +517,8 @@ Codegen.displayName = "Codegen";
 
 export {
   Codegen,
-  CodeMarkdown, type CodeGenerator,
-  type CodeGeneratorParams, type CodegenProps,
+  CodeMarkdown,
+  type CodegenProps,
   type CodeMarkdownProps
 };
 

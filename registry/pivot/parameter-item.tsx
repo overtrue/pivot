@@ -1,3 +1,5 @@
+"use client";
+
 import { cn } from "@/lib/utils";
 import React, { useState } from "react";
 import { ConstraintDisplay } from "../pivot/constraint-display";
@@ -9,14 +11,15 @@ import { InLabel } from "../pivot/in-label";
 import { ParameterDescription } from "../pivot/parameter-description";
 import { ParameterName } from "../pivot/parameter-name";
 import { StyleBadge } from "../pivot/style-badge";
-import { TypeIndicator } from "../pivot/type-indicator";
+import { TypeIndicator, type DataType } from "../pivot/type-indicator";
 import { ExampleDisplay } from "./example-display";
 import { ExpandCollapse } from "./expand-collapse";
 
 interface SchemaObject {
-  type?: string;
+  type: DataType;
   format?: string;
   default?: any;
+  example?: any;
   enum?: any[];
   minimum?: number;
   maximum?: number;
@@ -59,10 +62,10 @@ type StyleType =
 interface ParameterItemProps {
   name: string;
   in: "query" | "header" | "path" | "cookie";
+  schema: SchemaObject;
   required?: boolean;
   description?: string;
   deprecated?: boolean;
-  schema: SchemaObject;
   style?: StyleType;
   explode?: boolean;
   examples?: Record<string, ExampleObject | ReferenceObject>;
@@ -76,12 +79,12 @@ const ParameterItem = React.forwardRef<HTMLDivElement, ParameterItemProps>(
     {
       name,
       in: paramIn,
-      required,
-      description,
-      deprecated,
       schema,
+      required = false,
+      description,
+      deprecated = false,
       style,
-      explode,
+      explode = false,
       examples,
       components,
       className,
@@ -174,11 +177,8 @@ const ParameterItem = React.forwardRef<HTMLDivElement, ParameterItemProps>(
 
             <div className="flex items-center gap-2">
               <InLabel type={paramIn} />
-
-              {schema.type && <TypeIndicator type={schema.type} />}
-
+              <TypeIndicator type={schema.type} />
               {schema.format && <FormatBadge format={schema.format} />}
-
               {style && <StyleBadge style={style} />}
             </div>
           </div>
@@ -197,5 +197,6 @@ export {
   type ParameterItemProps,
   type ReferenceObject,
   type SchemaObject,
-  type StyleType,
+  type StyleType
 };
+

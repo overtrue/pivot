@@ -25,6 +25,12 @@ export function resolveRef<T>(
     if (refMatch && components) {
       const [, refCategory, refName] = refMatch;
 
+      // 检查refName是否存在
+      if (!refName) {
+        console.warn(`引用名称为空: ${refPath}`);
+        return null;
+      }
+
       // 如果指定了类别，并且与引用类别不一致，则发出警告
       if (category && refCategory !== category) {
         console.warn(`引用类别 ${refCategory} 与期望类别 ${category} 不一致`);

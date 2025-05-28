@@ -35,6 +35,10 @@ const resolveRef = <T,>(
 
 const LinksSection = React.forwardRef<HTMLDivElement, LinksSectionProps>(
   ({ links, components, className }, ref) => {
+    if (!links) {
+      return null;
+    }
+
     const linkEntries = Object.entries(links);
 
     if (linkEntries.length === 0) {
@@ -54,8 +58,8 @@ const LinksSection = React.forwardRef<HTMLDivElement, LinksSectionProps>(
             if (!link) {
               const refString =
                 linkOrRef &&
-                typeof linkOrRef === "object" &&
-                "$ref" in linkOrRef
+                  typeof linkOrRef === "object" &&
+                  "$ref" in linkOrRef
                   ? (linkOrRef as ReferenceObject).$ref
                   : "[unknown reference]";
               console.warn(

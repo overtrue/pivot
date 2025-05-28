@@ -1,0 +1,89 @@
+---
+title: Operation Box
+description: 用于展示 API 操作的容器组件，提供统一的布局和样式。
+component: true
+---
+
+Operation Box 组件是一个容器组件，用于展示完整的 API 操作信息，包括方法、路径、描述等。
+
+<ComponentPreview name="operation-box-demo" />
+
+## 安装
+
+```bash
+npx shadcn@latest add https://pivotkit.vercel.app/registry.json operation-box
+```
+
+## 使用方法
+
+```tsx
+import { OperationBox } from "@/components/pivot/operation-box";
+```
+
+```tsx
+<OperationBox
+  method="GET"
+  path="/api/users"
+  summary="获取用户列表"
+  description="获取系统中所有用户的分页列表"
+>
+  {/* 操作详细内容 */}
+</OperationBox>
+```
+
+## 示例
+
+### 基本用法
+
+```tsx
+<OperationBox
+  method="GET"
+  path="/api/users/{id}"
+  summary="获取用户详情"
+  description="根据用户ID获取特定用户的详细信息"
+>
+  <div className="space-y-4">
+    <ParametersSection parameters={pathParameters} />
+    <ResponsesSection responses={responses} />
+  </div>
+</OperationBox>
+```
+
+### 完整的 API 操作
+
+```tsx
+<div className="space-y-6">
+  <OperationBox
+    method="GET"
+    path="/api/users"
+    summary="获取用户列表"
+    description="获取系统中所有用户的分页列表，支持搜索和过滤"
+  >
+    <ParametersSection parameters={queryParameters} />
+    <ResponsesSection responses={getResponses} />
+  </OperationBox>
+
+  <OperationBox
+    method="POST"
+    path="/api/users"
+    summary="创建用户"
+    description="在系统中创建一个新的用户账户"
+  >
+    <RequestBodySection schema={userCreateSchema} />
+    <ResponsesSection responses={postResponses} />
+  </OperationBox>
+</div>
+```
+
+## API 参考
+
+### Props
+
+| 属性          | 类型              | 默认值 | 描述            |
+| ------------- | ----------------- | ------ | --------------- |
+| `method`      | `string`          | -      | HTTP 方法       |
+| `path`        | `string`          | -      | API 路径        |
+| `summary`     | `string`          | -      | 操作摘要        |
+| `description` | `string`          | -      | 操作详细描述    |
+| `children`    | `React.ReactNode` | -      | 操作的详细内容  |
+| `className`   | `string`          | -      | 额外的 CSS 类名 |

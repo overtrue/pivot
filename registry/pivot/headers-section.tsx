@@ -22,7 +22,7 @@ interface HeaderObject {
 }
 
 interface HeadersSectionProps {
-  headers: Record<string, HeaderObject | ReferenceObject>;
+  headers?: Record<string, HeaderObject | ReferenceObject>;
   components?: ComponentsObject;
   className?: string;
 }
@@ -45,6 +45,10 @@ function resolveRef<T>(
 
 const HeadersSection = React.forwardRef<HTMLDivElement, HeadersSectionProps>(
   ({ headers, components, className }, ref) => {
+    if (!headers) {
+      return null;
+    }
+
     const headerEntries = Object.entries(headers);
 
     if (headerEntries.length === 0) {

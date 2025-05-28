@@ -1,3 +1,5 @@
+"use client";
+
 import { cn } from "@/lib/utils";
 import React, { useMemo, useState } from "react";
 import { SectionTitle } from "../pivot/section-title";
@@ -167,5 +169,6 @@ export {
   ComponentsSection,
   type ComponentsObject,
   type ComponentsSectionProps,
-  type ComponentType,
+  type ComponentType
 };
+

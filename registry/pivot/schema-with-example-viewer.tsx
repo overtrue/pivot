@@ -1,3 +1,5 @@
+"use client";
+
 import { cn } from "@/lib/utils";
 import React, { useEffect, useState } from "react";
 import { DescriptionDisplay } from "../pivot/description-display";
@@ -138,18 +140,21 @@ const SchemaExampleView = React.forwardRef<
     // Ensure an example is selected
     useEffect(() => {
       if (hasExamples && !selectedExample && examplesKeys.length > 0) {
-        setSelectedExample(examplesKeys[0]);
+        const firstExample = examplesKeys[0];
+        if (firstExample) {
+          setSelectedExample(firstExample);
+        }
       }
     }, [hasExamples, selectedExample, examplesKeys]);
 
     // Get current selected example
     const currentExample =
-      selectedExample && hasExamples
+      selectedExample && hasExamples && mediaType.examples![selectedExample]
         ? resolveRef<ExampleObject>(
-            mediaType.examples![selectedExample],
-            components,
-            "examples",
-          )
+          mediaType.examples![selectedExample],
+          components,
+          "examples",
+        )
         : null;
 
     // Example display content - prefer provided example, otherwise generate from schema
@@ -234,8 +239,11 @@ const SchemaExampleView = React.forwardRef<
                 onClick={(e) => e.stopPropagation()}
               >
                 {examplesKeys.map((key) => {
+                  const exampleRef = mediaType.examples![key];
+                  if (!exampleRef) return null;
+
                   const example = resolveRef<ExampleObject>(
-                    mediaType.examples![key],
+                    exampleRef,
                     components,
                     "examples",
                   );
@@ -286,10 +294,10 @@ SchemaExampleView.displayName = "SchemaExampleView";
 interface SchemaWithExampleViewerProps {
   // Content can be a request body or response body
   content:
-    | RequestBodyObject
-    | ReferenceObject
-    | ResponseObject
-    | Record<string, MediaTypeObject>;
+  | RequestBodyObject
+  | ReferenceObject
+  | ResponseObject
+  | Record<string, MediaTypeObject>;
   components?: ComponentsObject;
   className?: string;
   title?: string;
@@ -353,7 +361,8 @@ const SchemaWithExampleViewer = React.forwardRef<
     useEffect(() => {
       if (mediaTypes.length > 0 && activeMediaType === null) {
         const jsonType = mediaTypes.find((type) => type.includes("json"));
-        setActiveMediaType(jsonType || mediaTypes[0]);
+        const firstType = mediaTypes[0];
+        setActiveMediaType(jsonType || (firstType || null));
       } else if (mediaTypes.length === 0) {
         setActiveMediaType(null);
       }
@@ -367,7 +376,8 @@ const SchemaWithExampleViewer = React.forwardRef<
         mediaTypes.length > 0
       ) {
         const jsonType = mediaTypes.find((type) => type.includes("json"));
-        setActiveMediaType(jsonType || mediaTypes[0]);
+        const firstType = mediaTypes[0];
+        setActiveMediaType(jsonType || (firstType || null));
       }
       if (mediaTypes.length === 0) {
         setActiveMediaType(null);
@@ -472,5 +482,6 @@ export {
   type RequestBodyObject,
   type ResponseObject,
   type SchemaExampleViewProps,
-  type SchemaWithExampleViewerProps,
+  type SchemaWithExampleViewerProps
 };
+

@@ -1,0 +1,370 @@
+---
+title: API 文档模板
+description: 使用 Pivot UI 组件构建完整 API 文档的模板和最佳实践。
+---
+
+API 文档模板提供了一套完整的解决方案，帮助您快速构建专业的 API 文档界面。
+
+## 模板特性
+
+- 🚀 **开箱即用** - 预配置的布局和组件
+- 📱 **响应式设计** - 完美支持移动端和桌面端
+- 🎨 **现代化界面** - 基于 Tailwind CSS 的美观设计
+- 🔍 **搜索功能** - 内置的 API 搜索和过滤
+- 📖 **交互式文档** - 支持在线测试 API
+- 🌙 **主题切换** - 支持暗色和亮色主题
+
+## 快速开始
+
+### 1. 安装依赖
+
+```bash
+npm install @pivot/ui
+npm install lucide-react
+npm install @radix-ui/react-*
+```
+
+### 2. 基础布局
+
+```tsx title="components/api-docs-layout.tsx"
+import { NavigationSidebar } from "@/components/pivot/navigation-sidebar";
+import { ResizableSidebar } from "@/components/pivot/resizable-sidebar";
+import { ThemeToggle } from "@/components/pivot/theme-toggle";
+
+export function ApiDocsLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="flex h-screen bg-background">
+      {/* 侧边栏 */}
+      <ResizableSidebar defaultWidth={300} minWidth={250} maxWidth={400}>
+        <NavigationSidebar />
+      </ResizableSidebar>
+
+      {/* 主内容区 */}
+      <div className="flex-1 flex flex-col">
+        {/* 顶部导航 */}
+        <header className="border-b px-6 py-4 flex items-center justify-between">
+          <h1 className="text-xl font-semibold">API 文档</h1>
+          <ThemeToggle />
+        </header>
+
+        {/* 内容区域 */}
+        <main className="flex-1 overflow-auto">{children}</main>
+      </div>
+    </div>
+  );
+}
+```
+
+### 3. API 端点页面
+
+```tsx title="components/api-endpoint.tsx"
+import { MethodLabel } from "@/components/pivot/method-label";
+import { StatusCode } from "@/components/pivot/status-code";
+import { CopyButton } from "@/components/pivot/copy-button";
+import { ParametersSection } from "@/components/pivot/parameters-section";
+import { ResponsesSection } from "@/components/pivot/responses-section";
+import { TryItOutPanel } from "@/components/pivot/try-it-out-panel";
+
+interface ApiEndpointProps {
+  method: "GET" | "POST" | "PUT" | "DELETE" | "PATCH";
+  path: string;
+  summary: string;
+  description?: string;
+  parameters?: any[];
+  responses?: any[];
+}
+
+export function ApiEndpoint({
+  method,
+  path,
+  summary,
+  description,
+  parameters = [],
+  responses = [],
+}: ApiEndpointProps) {
+  return (
+    <div className="max-w-4xl mx-auto p-6 space-y-8">
+      {/* 端点标题 */}
+      <div className="space-y-4">
+        <div className="flex items-center gap-3">
+          <MethodLabel method={method} />
+          <code className="text-lg font-mono">{path}</code>
+          <CopyButton text={path} size="sm" />
+        </div>
+
+        <div>
+          <h1 className="text-2xl font-bold">{summary}</h1>
+          {description && (
+            <p className="text-muted-foreground mt-2">{description}</p>
+          )}
+        </div>
+      </div>
+
+      {/* 参数部分 */}
+      {parameters.length > 0 && <ParametersSection parameters={parameters} />}
+
+      {/* 响应部分 */}
+      {responses.length > 0 && <ResponsesSection responses={responses} />}
+
+      {/* 在线测试 */}
+      <TryItOutPanel method={method} path={path} parameters={parameters} />
+    </div>
+  );
+}
+```
+
+## 组件组合示例
+
+### 完整的 API 文档页面
+
+```tsx title="pages/api/users.tsx"
+import { ApiDocsLayout } from "@/components/api-docs-layout";
+import { ApiEndpoint } from "@/components/api-endpoint";
+
+export default function UsersApiPage() {
+  const getUsersEndpoint = {
+    method: "GET" as const,
+    path: "/api/users",
+    summary: "获取用户列表",
+    description: "获取系统中所有用户的列表，支持分页和过滤。",
+    parameters: [
+      {
+        name: "page",
+        in: "query",
+        type: "integer",
+        description: "页码，从 1 开始",
+        default: 1,
+      },
+      {
+        name: "limit",
+        in: "query",
+        type: "integer",
+        description: "每页返回的用户数量",
+        default: 20,
+      },
+      {
+        name: "search",
+        in: "query",
+        type: "string",
+        description: "搜索关键词，支持用户名和邮箱搜索",
+      },
+    ],
+    responses: [
+      {
+        status: 200,
+        description: "成功返回用户列表",
+        schema: {
+          type: "object",
+          properties: {
+            users: {
+              type: "array",
+              items: {
+                type: "object",
+                properties: {
+                  id: { type: "integer" },
+                  username: { type: "string" },
+                  email: { type: "string" },
+                  created_at: { type: "string", format: "date-time" },
+                },
+              },
+            },
+            pagination: {
+              type: "object",
+              properties: {
+                page: { type: "integer" },
+                limit: { type: "integer" },
+                total: { type: "integer" },
+                pages: { type: "integer" },
+              },
+            },
+          },
+        },
+      },
+      {
+        status: 400,
+        description: "请求参数错误",
+      },
+      {
+        status: 500,
+        description: "服务器内部错误",
+      },
+    ],
+  };
+
+  return (
+    <ApiDocsLayout>
+      <ApiEndpoint {...getUsersEndpoint} />
+    </ApiDocsLayout>
+  );
+}
+```
+
+### 多端点页面
+
+```tsx title="components/api-section.tsx"
+import { MethodLabel } from "@/components/pivot/method-label";
+import { StatusCode } from "@/components/pivot/status-code";
+
+interface ApiSectionProps {
+  title: string;
+  description?: string;
+  endpoints: Array<{
+    method: string;
+    path: string;
+    summary: string;
+    href: string;
+  }>;
+}
+
+export function ApiSection({ title, description, endpoints }: ApiSectionProps) {
+  return (
+    <div className="space-y-6">
+      <div>
+        <h2 className="text-xl font-semibold">{title}</h2>
+        {description && (
+          <p className="text-muted-foreground mt-1">{description}</p>
+        )}
+      </div>
+
+      <div className="space-y-2">
+        {endpoints.map((endpoint, index) => (
+          <a
+            key={index}
+            href={endpoint.href}
+            className="flex items-center gap-3 p-3 rounded-lg border hover:bg-muted/50 transition-colors"
+          >
+            <MethodLabel method={endpoint.method as any} />
+            <code className="text-sm font-mono">{endpoint.path}</code>
+            <span className="text-sm text-muted-foreground flex-1">
+              {endpoint.summary}
+            </span>
+          </a>
+        ))}
+      </div>
+    </div>
+  );
+}
+```
+
+## 最佳实践
+
+### 1. 信息架构
+
+```tsx
+// 推荐的页面结构
+<ApiDocsLayout>
+  <div className="space-y-8">
+    {/* 概览信息 */}
+    <InfoSection />
+
+    {/* 认证说明 */}
+    <SecuritySection />
+
+    {/* API 端点分组 */}
+    <ApiSection title="用户管理" endpoints={userEndpoints} />
+    <ApiSection title="订单管理" endpoints={orderEndpoints} />
+
+    {/* 错误码说明 */}
+    <ErrorCodesSection />
+  </div>
+</ApiDocsLayout>
+```
+
+### 2. 响应式设计
+
+```tsx
+// 移动端适配
+<div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+  <div className="space-y-4">{/* 文档内容 */}</div>
+  <div className="lg:sticky lg:top-6">{/* 代码示例 */}</div>
+</div>
+```
+
+### 3. 交互增强
+
+```tsx
+// 添加搜索功能
+<div className="mb-6">
+  <input
+    type="search"
+    placeholder="搜索 API 端点..."
+    className="w-full px-3 py-2 border rounded-lg"
+  />
+</div>
+
+// 添加过滤器
+<div className="flex gap-2 mb-4">
+  <MethodLabel method="GET" variant="compact" />
+  <MethodLabel method="POST" variant="compact" />
+  <MethodLabel method="PUT" variant="compact" />
+  <MethodLabel method="DELETE" variant="compact" />
+</div>
+```
+
+## 自定义主题
+
+```css title="styles/api-docs.css"
+/* 自定义 API 文档主题 */
+.api-docs {
+  --api-primary: #3b82f6;
+  --api-success: #10b981;
+  --api-warning: #f59e0b;
+  --api-error: #ef4444;
+}
+
+/* 方法标签自定义颜色 */
+.method-get {
+  @apply bg-green-100 text-green-800;
+}
+.method-post {
+  @apply bg-blue-100 text-blue-800;
+}
+.method-put {
+  @apply bg-yellow-100 text-yellow-800;
+}
+.method-delete {
+  @apply bg-red-100 text-red-800;
+}
+```
+
+## 部署建议
+
+### 1. 静态生成
+
+```tsx
+// 使用 Next.js 静态生成
+export async function getStaticProps() {
+  const apiSpec = await loadOpenApiSpec();
+
+  return {
+    props: {
+      apiSpec,
+    },
+  };
+}
+```
+
+### 2. SEO 优化
+
+```tsx
+// 添加元数据
+<Head>
+  <title>{endpoint.summary} - API 文档</title>
+  <meta name="description" content={endpoint.description} />
+  <meta property="og:title" content={endpoint.summary} />
+</Head>
+```
+
+### 3. 性能优化
+
+```tsx
+// 代码分割
+const TryItOutPanel = dynamic(
+  () => import("@/components/pivot/try-it-out-panel"),
+  {
+    loading: () => <div>加载中...</div>,
+  }
+);
+```
+
+这个模板提供了构建专业 API 文档所需的所有组件和最佳实践。您可以根据具体需求进行定制和扩展。

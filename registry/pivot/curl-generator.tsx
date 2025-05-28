@@ -39,7 +39,7 @@ export interface CodeGenerator {
 }
 
 // CurlGenerator implementation
-export class CurlGenerator implements CodeGenerator {
+export class CurlGeneratorClass implements CodeGenerator {
   id = "curl";
   label = "cURL";
 
@@ -79,7 +79,7 @@ interface CurlGeneratorProps {
 
 const CurlGeneratorComponent = React.forwardRef<HTMLDivElement, CurlGeneratorProps>(
   ({ params, className }, ref) => {
-    const generator = new CurlGenerator();
+    const generator = new CurlGeneratorClass();
     const code = generator.generateCode(params);
 
     return (

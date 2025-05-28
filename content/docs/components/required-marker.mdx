@@ -1,0 +1,66 @@
+---
+title: Required Marker
+description: 用于标记必填字段的简单标记组件，通常显示为红色星号。
+component: true
+---
+
+Required Marker 组件是一个简单的必填字段标记，通常显示为红色星号 (\*)，用于表示字段是必需的。
+
+<ComponentPreview name="required-marker-demo" />
+
+## 安装
+
+```bash
+npx shadcn@latest add https://pivotkit.vercel.app/registry.json required-marker
+```
+
+## 使用方法
+
+```tsx
+import { RequiredMarker } from "@/components/pivot/required-marker";
+```
+
+```tsx
+<RequiredMarker />
+```
+
+## 示例
+
+### 基本用法
+
+```tsx
+<div className="flex items-center gap-1">
+  <label>用户名</label>
+  <RequiredMarker />
+</div>
+```
+
+### 在表单中使用
+
+```tsx
+<div className="space-y-4">
+  <div>
+    <label className="flex items-center gap-1 text-sm font-medium">
+      邮箱地址
+      <RequiredMarker />
+    </label>
+    <input type="email" className="mt-1 block w-full rounded-md border" />
+  </div>
+
+  <div>
+    <label className="flex items-center gap-1 text-sm font-medium">
+      密码
+      <RequiredMarker />
+    </label>
+    <input type="password" className="mt-1 block w-full rounded-md border" />
+  </div>
+</div>
+```
+
+## API 参考
+
+### Props
+
+| 属性        | 类型     | 默认值 | 描述            |
+| ----------- | -------- | ------ | --------------- |
+| `className` | `string` | -      | 额外的 CSS 类名 |

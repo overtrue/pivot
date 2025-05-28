@@ -1,3 +1,5 @@
+"use client";
+
 import { cn } from "@/lib/utils";
 import * as yaml from "js-yaml";
 import React, { useCallback, useEffect, useState } from "react";
@@ -216,17 +218,18 @@ function resolveRef<T>(ref: any, components?: any): T | null {
 
 function getOperationsByTag(spec: OpenApiSpec): Record<string, OperationInfo[]> {
   const operationsByTag: Record<string, OperationInfo[]> = {};
+  const httpMethods = ['get', 'post', 'put', 'delete', 'patch', 'head', 'options', 'trace'];
 
-  Object.entries(spec.paths || {}).forEach(([path, pathItem]) => {
-    const methods: (keyof PathItemObject)[] = ["get", "post", "put", "delete", "patch", "head", "options"];
-
-    methods.forEach((method) => {
-      const operation = pathItem[method] as OperationObject;
-      if (!operation) return;
+  Object.entries(spec.paths).forEach(([path, pathItem]) => {
+    Object.entries(pathItem).forEach(([method, operation]) => {
+      // 只处理 HTTP 方法
+      if (!httpMethods.includes(method.toLowerCase()) || !operation || typeof operation !== 'object') {
+        return;
+      }
 
       const tags = operation.tags || ["default"];
 
-      tags.forEach((tag) => {
+      tags.forEach((tag: string) => {
         if (!operationsByTag[tag]) {
           operationsByTag[tag] = [];
         }
@@ -378,9 +381,14 @@ const AllInOneLayout = React.forwardRef<HTMLDivElement, AllInOneLayoutProps>(
 
       if (tags.length > 0) {
         const firstTag = tags[0];
-        const operations = operationsByTag[firstTag];
-        if (operations && operations.length > 0) {
-          setSelectedOperation(operations[0]);
+        if (firstTag) {
+          const operations = operationsByTag[firstTag];
+          if (operations && operations.length > 0) {
+            const firstOperation = operations[0];
+            if (firstOperation) {
+              setSelectedOperation(firstOperation);
+            }
+          }
         }
       }
     }, [parsedSpec, selectedOperation]);
@@ -607,22 +615,6 @@ AllInOneLayout.displayName = "AllInOneLayout";
 export {
   AllInOneLayout,
   type AllInOneLayoutProps,
-  type ExternalDocumentationObject,
-  type HeaderObject,
-  type HttpMethod,
-  type MediaTypeObject,
-  type OpenApiSpec,
-  type OperationInfo,
-  type OperationObject,
-  type ParameterObject,
-  type PathItemObject,
-  type RequestBodyObject,
-  type ResponseObject,
-  type ResponsesObject,
-  type SchemaObject,
-  type SecurityRequirementObject,
-  type ServerObject,
-  type ServerVariableObject,
-  type TagObject
+  type OperationInfo
 };
 

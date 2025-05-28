@@ -1,6 +1,6 @@
-# Pivot Project - MagicUI Style Component Library
+# Pivot Project - OpenAPI Component Library
 
-这是一个基于 MagicUI 架构的 OpenAPI 组件库项目。
+这是一个现代化的 OpenAPI 组件库项目。
 
 ## 项目架构
 - 基于 Next.js 15 + App Router
@@ -56,4 +56,4 @@
 ## 重要提醒
 - 不要修改现有组件的样式和逻辑，只调整目录结构和引入路径
 - 所有变更仅限于 pivot 目录
-- 严格遵循 MagicUI 的组织方式和最佳实践
+- 严格遵循现代化组件库的组织方式和最佳实践

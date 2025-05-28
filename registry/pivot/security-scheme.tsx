@@ -103,7 +103,7 @@ const SecurityScheme = React.forwardRef<HTMLDivElement, SecuritySchemeProps>(
                   <div>
                     <span className="font-semibold">Scopes:</span>
                     <ul className="list-disc list-inside ml-4 mt-1">
-                      {Object.entries(flow.scopes).map(
+                      {(Object.entries(flow.scopes) as [string, string][]).map(
                         ([scope, description]) => (
                           <li key={scope} className="text-sm">
                             <code className="font-mono">{scope}</code>
@@ -208,5 +208,6 @@ export {
   SecurityScheme,
   type OAuthFlow,
   type OAuthFlows,
-  type SecuritySchemeObject,
+  type SecuritySchemeObject
 };
+

@@ -16,10 +16,10 @@ interface SecurityRequirementObject {
 }
 
 interface SecuritySchemeObject {
-  type: string;
+  type: "apiKey" | "http" | "oauth2" | "openIdConnect" | "mutualTLS";
   description?: string;
   name?: string;
-  in?: string;
+  in?: "query" | "header" | "cookie";
   scheme?: string;
   bearerFormat?: string;
   flows?: any;
@@ -112,7 +112,7 @@ const SecuritySection = React.forwardRef<HTMLDivElement, SecuritySectionProps>(
               sets:
             </p>
             <div className="space-y-2">
-              {security?.map(renderRequirement)}
+              {security.map(renderRequirement)}
             </div>
           </div>
         )}
@@ -122,7 +122,7 @@ const SecuritySection = React.forwardRef<HTMLDivElement, SecuritySectionProps>(
           <div className={hasGlobalRequirements ? "mt-8" : ""}>
             <SectionTitle title="Security Schemes" className="text-lg mb-4" />
             <div className="space-y-4">
-              {Object.entries(securitySchemes || {}).map(
+              {Object.entries(securitySchemes).map(
                 ([name, schemeOrRef]) => {
                   // Resolve refs if security schemes can be defined with $ref
                   const scheme = resolveRef<SecuritySchemeObject>(

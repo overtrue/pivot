@@ -46,18 +46,19 @@ const registryItemSchema = z.object({
 async function loadRegistryData() {
   const { pivot } = await import("../registry/registry-pivot.js");
   const { lib } = await import("../registry/registry-lib.js");
+  const { exampleRegistry: example } = await import("../registry/registry-example.js");
 
-  return { pivot, lib };
+  return { pivot, lib, example };
 }
 
 const DEPRECATED_ITEMS: string[] = [];
 
 async function buildRegistryIndex() {
-  const { pivot, lib } = await loadRegistryData();
+  const { pivot, lib, example } = await loadRegistryData();
 
   const registry = {
     name: "pivot/ui",
-    homepage: "https://pivot.design",
+    homepage: "https://pivotkit.vercel.app",
     items: z.array(registryItemSchema).parse(
       [
         {
@@ -73,6 +74,7 @@ async function buildRegistryIndex() {
         },
         ...pivot,
         ...lib,
+        ...example,
       ].filter((item) => {
         return !DEPRECATED_ITEMS.includes(item.name);
       }),
@@ -141,11 +143,11 @@ export const Index: Record<string, any> = {`;
 }
 
 async function buildRegistryJsonFile() {
-  const { pivot, lib } = await loadRegistryData();
+  const { pivot, lib, example } = await loadRegistryData();
 
   const registry = {
     name: "pivot/ui",
-    homepage: "https://pivot.design",
+    homepage: "https://pivotkit.vercel.app",
     items: z.array(registryItemSchema).parse(
       [
         {
@@ -161,6 +163,7 @@ async function buildRegistryJsonFile() {
         },
         ...pivot,
         ...lib,
+        ...example,
       ].filter((item) => {
         return !DEPRECATED_ITEMS.includes(item.name);
       }),

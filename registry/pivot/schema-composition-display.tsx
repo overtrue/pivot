@@ -26,7 +26,7 @@ interface SchemaCompositionDisplayProps {
 // 辅助函数：从引用路径中提取引用名称
 const extractRefName = (ref: string): string | null => {
   const refMatch = ref.match(/^#\/components\/([^/]+)\/(.+)$/);
-  if (refMatch) {
+  if (refMatch && refMatch[2]) {
     return refMatch[2]; // 返回引用名称
   }
   return null;
@@ -111,5 +111,6 @@ export {
   type ReferenceObject,
   type SchemaCompositionDisplayProps,
   type SchemaCompositionKeyword,
-  type SchemaObject,
+  type SchemaObject
 };
+

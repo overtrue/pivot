@@ -1,0 +1,161 @@
+---
+title: Response Item
+description: 用于显示单个 API 响应信息的组件，包含状态码、描述、Schema 等详细信息。
+component: true
+---
+
+Response Item 组件用于展示单个 API 响应的完整信息，包括状态码、描述、响应 Schema 等。
+
+<ComponentPreview name="response-item-demo" />
+
+## 安装
+
+```bash
+npx shadcn@latest add https://pivotkit.vercel.app/registry.json response-item
+```
+
+## 使用方法
+
+```tsx
+import { ResponseItem } from "@/components/pivot/response-item";
+```
+
+```tsx
+<ResponseItem
+  statusCode={200}
+  description="成功返回用户信息"
+  schema={userSchema}
+/>
+```
+
+## 示例
+
+### 成功响应
+
+```tsx
+const userSchema = {
+  type: "object",
+  properties: {
+    id: { type: "string", format: "uuid" },
+    name: { type: "string" },
+    email: { type: "string", format: "email" },
+    created_at: { type: "string", format: "date-time" },
+  },
+};
+
+<ResponseItem
+  statusCode={200}
+  description="成功返回用户信息"
+  schema={userSchema}
+  example={{
+    id: "123e4567-e89b-12d3-a456-426614174000",
+    name: "张三",
+    email: "zhangsan@example.com",
+    created_at: "2023-12-01T10:00:00Z",
+  }}
+/>;
+```
+
+### 错误响应
+
+```tsx
+const errorSchema = {
+  type: "object",
+  properties: {
+    error: {
+      type: "object",
+      properties: {
+        code: { type: "string" },
+        message: { type: "string" },
+        details: { type: "array", items: { type: "string" } },
+      },
+    },
+  },
+};
+
+<div className="space-y-4">
+  <ResponseItem
+    statusCode={400}
+    description="请求参数错误"
+    schema={errorSchema}
+    example={{
+      error: {
+        code: "INVALID_REQUEST",
+        message: "请求参数不正确",
+        details: ["email 字段格式不正确"],
+      },
+    }}
+  />
+
+  <ResponseItem
+    statusCode={404}
+    description="用户不存在"
+    schema={errorSchema}
+    example={{
+      error: {
+        code: "USER_NOT_FOUND",
+        message: "指定的用户不存在",
+      },
+    }}
+  />
+
+  <ResponseItem
+    statusCode={500}
+    description="服务器内部错误"
+    schema={errorSchema}
+  />
+</div>;
+```
+
+### 分页响应
+
+```tsx
+const paginatedUsersSchema = {
+  type: "object",
+  properties: {
+    data: {
+      type: "array",
+      items: {
+        type: "object",
+        properties: {
+          id: { type: "string" },
+          name: { type: "string" },
+          email: { type: "string" },
+        },
+      },
+    },
+    pagination: {
+      type: "object",
+      properties: {
+        page: { type: "integer" },
+        limit: { type: "integer" },
+        total: { type: "integer" },
+        pages: { type: "integer" },
+      },
+    },
+  },
+};
+
+<ResponseItem
+  statusCode={200}
+  description="成功返回用户列表"
+  schema={paginatedUsersSchema}
+  headers={{
+    "X-Total-Count": "150",
+    "X-Page-Count": "8",
+  }}
+/>;
+```
+
+## API 参考
+
+### Props
+
+| 属性          | 类型     | 默认值 | 描述            |
+| ------------- | -------- | ------ | --------------- |
+| `statusCode`  | `number` | -      | HTTP 状态码     |
+| `description` | `string` | -      | 响应描述        |
+| `schema`      | `object` | -      | 响应数据 Schema |
+| `example`     | `any`    | -      | 响应示例数据    |
+| `headers`     | `object` | -      | 响应头信息      |
+| `className`   | `string` | -      | 额外的 CSS 类名 |

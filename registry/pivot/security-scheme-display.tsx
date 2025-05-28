@@ -22,7 +22,7 @@ interface SecuritySchemeObject {
 
 interface SecuritySchemeDisplayProps {
   name: string;
-  scheme: SecuritySchemeObject;
+  scheme?: SecuritySchemeObject;
   className?: string;
 }
 
@@ -30,6 +30,27 @@ const SecuritySchemeDisplay = React.forwardRef<
   HTMLDivElement,
   SecuritySchemeDisplayProps
 >(({ name, scheme, className }, ref) => {
+  if (!scheme) {
+    return (
+      <div
+        ref={ref}
+        className={cn("p-3 rounded dark:bg-neutral-800/30", className)}
+      >
+        <div className="flex items-center gap-2 mb-2">
+          <span className="font-mono font-semibold dark:text-neutral-200">
+            {name}
+          </span>
+          <span className="text-xs bg-neutral-200 dark:bg-neutral-700 px-2 py-0.5 rounded dark:text-neutral-300">
+            unknown
+          </span>
+        </div>
+        <div className="text-sm text-neutral-500 dark:text-neutral-400 italic">
+          No security scheme data available
+        </div>
+      </div>
+    );
+  }
+
   const renderDetails = () => {
     switch (scheme.type) {
       case "apiKey":

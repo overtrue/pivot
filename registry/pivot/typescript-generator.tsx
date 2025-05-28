@@ -39,7 +39,7 @@ export interface CodeGenerator {
 }
 
 // TypeScriptGenerator implementation
-export class TypeScriptGenerator implements CodeGenerator {
+export class TypeScriptGeneratorClass implements CodeGenerator {
   id = "typescript";
   label = "TypeScript";
 
@@ -82,7 +82,7 @@ interface TypeScriptGeneratorProps {
 
 const TypeScriptGeneratorComponent = React.forwardRef<HTMLDivElement, TypeScriptGeneratorProps>(
   ({ params, className }, ref) => {
-    const generator = new TypeScriptGenerator();
+    const generator = new TypeScriptGeneratorClass();
     const code = generator.generateCode(params);
 
     return (

@@ -1,3 +1,5 @@
+"use client";
+
 import { cn } from "@/lib/utils";
 import React, { useState } from "react";
 import { SectionTitle } from "../pivot/section-title";
@@ -24,7 +26,7 @@ interface ResponsesObjectMap {
 }
 
 interface ResponsesSectionProps {
-  responses: ResponsesObjectMap;
+  responses?: ResponsesObjectMap;
   components?: ComponentsObject;
   className?: string;
 }
@@ -51,6 +53,17 @@ const ResponsesSection = React.forwardRef<
 >(({ responses, components, className }, ref) => {
   const [activeStatus, setActiveStatus] = useState<string | null>(null);
 
+  if (!responses) {
+    return (
+      <div ref={ref} className={cn(className)}>
+        <SectionTitle title="Responses" className="text-lg my-3" />
+        <div className="text-neutral-500 dark:text-neutral-400 text-sm italic">
+          No responses defined
+        </div>
+      </div>
+    );
+  }
+
   // Group status codes
   const statusGroups: Record<string, string[]> = {
     "1xx": [],
@@ -65,12 +78,12 @@ const ResponsesSection = React.forwardRef<
   // Categorize status codes
   Object.keys(responses).forEach((status) => {
     if (status === "default") {
-      statusGroups.default.push(status);
+      statusGroups.default!.push(status);
     } else if (/^[1-5]\d\d$/.test(status)) {
       const group = `${status[0]}xx`;
-      statusGroups[group].push(status);
+      statusGroups[group]!.push(status);
     } else {
-      statusGroups.other.push(status);
+      statusGroups.other!.push(status);
     }
   });
 
@@ -86,8 +99,9 @@ const ResponsesSection = React.forwardRef<
       "5xx",
       "other",
     ]) {
-      if (statusGroups[group].length > 0) {
-        setActiveStatus(statusGroups[group][0]);
+      const groupStatuses = statusGroups[group]!;
+      if (groupStatuses.length > 0 && groupStatuses[0]) {
+        setActiveStatus(groupStatuses[0]);
         break;
       }
     }
@@ -166,5 +180,6 @@ export {
   type ReferenceObject,
   type ResponseObject,
   type ResponsesObjectMap,
-  type ResponsesSectionProps,
+  type ResponsesSectionProps
 };
+

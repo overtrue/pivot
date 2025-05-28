@@ -39,7 +39,7 @@ export interface CodeGenerator {
 }
 
 // LaravelGenerator implementation
-export class LaravelGenerator implements CodeGenerator {
+export class LaravelGeneratorClass implements CodeGenerator {
   id = "laravel";
   label = "Laravel";
 
@@ -101,13 +101,27 @@ public function call_${method.toLowerCase()}_guzzle()
 
 // React component wrapper
 interface LaravelGeneratorProps {
-  params: CodeGeneratorParams;
+  params?: CodeGeneratorParams;
   className?: string;
 }
 
 const LaravelGeneratorComponent = React.forwardRef<HTMLDivElement, LaravelGeneratorProps>(
   ({ params, className }, ref) => {
-    const generator = new LaravelGenerator();
+    if (!params) {
+      return (
+        <div ref={ref} className={className}>
+          <div className="flex items-center gap-2 mb-2">
+            <Code2 size={16} />
+            <span className="font-medium">Laravel</span>
+          </div>
+          <div className="bg-neutral-100 dark:bg-neutral-800 p-4 rounded-md text-neutral-500 dark:text-neutral-400">
+            No parameters provided for code generation
+          </div>
+        </div>
+      );
+    }
+
+    const generator = new LaravelGeneratorClass();
     const code = generator.generateCode(params);
 
     return (

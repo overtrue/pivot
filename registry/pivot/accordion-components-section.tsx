@@ -1,3 +1,5 @@
+"use client";
+
 import { cn } from "@/lib/utils";
 import { ChevronDown, ChevronRight } from "lucide-react";
 import React, { useEffect, useMemo, useState } from "react";
@@ -39,6 +41,10 @@ function getAvailableComponents(components: ComponentsObject): Record<ComponentT
     callbacks: [],
     webhooks: [],
   };
+
+  if (!components) {
+    return result;
+  }
 
   Object.entries(components).forEach(([type, items]) => {
     if (items && typeof items === 'object' && type in result) {

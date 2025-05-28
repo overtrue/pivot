@@ -1,0 +1,313 @@
+---
+title: 手动安装
+description: 手动安装和配置 Pivot 组件库的详细指南。
+---
+
+如果您不想使用 CLI 工具，可以手动安装和配置 Pivot 组件库。
+
+## 前提条件
+
+确保您的项目已经安装了以下依赖：
+
+```bash
+npm install react react-dom
+npm install typescript @types/react @types/react-dom
+npm install tailwindcss
+```
+
+## 安装核心依赖
+
+安装 Pivot 组件库所需的核心依赖：
+
+```bash
+npm install clsx tailwind-merge class-variance-authority
+npm install @radix-ui/react-slot
+npm install lucide-react
+npm install tailwindcss-animate
+```
+
+## 配置 Tailwind CSS
+
+确保您的 `tailwind.config.js` 包含以下配置：
+
+```js title="tailwind.config.js"
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  darkMode: ["class"],
+  content: [
+    "./pages/**/*.{ts,tsx}",
+    "./components/**/*.{ts,tsx}",
+    "./app/**/*.{ts,tsx}",
+    "./src/**/*.{ts,tsx}",
+  ],
+  theme: {
+    container: {
+      center: true,
+      padding: "2rem",
+      screens: {
+        "2xl": "1400px",
+      },
+    },
+    extend: {
+      colors: {
+        border: "hsl(var(--border))",
+        input: "hsl(var(--input))",
+        ring: "hsl(var(--ring))",
+        background: "hsl(var(--background))",
+        foreground: "hsl(var(--foreground))",
+        primary: {
+          DEFAULT: "hsl(var(--primary))",
+          foreground: "hsl(var(--primary-foreground))",
+        },
+        secondary: {
+          DEFAULT: "hsl(var(--secondary))",
+          foreground: "hsl(var(--secondary-foreground))",
+        },
+        destructive: {
+          DEFAULT: "hsl(var(--destructive))",
+          foreground: "hsl(var(--destructive-foreground))",
+        },
+        muted: {
+          DEFAULT: "hsl(var(--muted))",
+          foreground: "hsl(var(--muted-foreground))",
+        },
+        accent: {
+          DEFAULT: "hsl(var(--accent))",
+          foreground: "hsl(var(--accent-foreground))",
+        },
+        popover: {
+          DEFAULT: "hsl(var(--popover))",
+          foreground: "hsl(var(--popover-foreground))",
+        },
+        card: {
+          DEFAULT: "hsl(var(--card))",
+          foreground: "hsl(var(--card-foreground))",
+        },
+      },
+      borderRadius: {
+        lg: "var(--radius)",
+        md: "calc(var(--radius) - 2px)",
+        sm: "calc(var(--radius) - 4px)",
+      },
+      keyframes: {
+        "accordion-down": {
+          from: { height: "0" },
+          to: { height: "var(--radix-accordion-content-height)" },
+        },
+        "accordion-up": {
+          from: { height: "var(--radix-accordion-content-height)" },
+          to: { height: "0" },
+        },
+      },
+      animation: {
+        "accordion-down": "accordion-down 0.2s ease-out",
+        "accordion-up": "accordion-up 0.2s ease-out",
+      },
+    },
+  },
+  plugins: [require("tailwindcss-animate")],
+};
+```
+
+## 添加 CSS 变量
+
+在您的全局 CSS 文件中添加以下变量：
+
+```css title="globals.css"
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+```
+
+## 创建 utils 函数
+
+创建 `lib/utils.ts` 文件：
+
+```ts title="lib/utils.ts"
+import { type ClassValue, clsx } from "clsx";
+import { twMerge } from "tailwind-merge";
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs));
+}
+```
+
+## 手动添加组件
+
+您可以直接从我们的 registry 复制组件代码。例如，添加 StatusCode 组件：
+
+### 1. 创建组件目录
+
+```bash
+mkdir -p components/pivot
+```
+
+### 2. 复制组件代码
+
+创建 `components/pivot/status-code.tsx`：
+
+```tsx title="components/pivot/status-code.tsx"
+"use client";
+
+import * as React from "react";
+import { cva, type VariantProps } from "class-variance-authority";
+
+import { cn } from "@/lib/utils";
+
+const statusCodeVariants = cva(
+  "inline-flex items-center rounded-md border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2",
+  {
+    variants: {
+      variant: {
+        default: "border-transparent text-primary-foreground",
+        outline: "text-foreground",
+        ghost: "border-transparent",
+      },
+      size: {
+        sm: "px-2 py-0.5 text-xs",
+        md: "px-2.5 py-0.5 text-xs",
+        lg: "px-3 py-1 text-sm",
+      },
+    },
+    defaultVariants: {
+      variant: "default",
+      size: "md",
+    },
+  }
+);
+
+function getStatusCodeColor(code: number) {
+  if (code >= 100 && code < 200) return "bg-blue-500 hover:bg-blue-600";
+  if (code >= 200 && code < 300) return "bg-green-500 hover:bg-green-600";
+  if (code >= 300 && code < 400) return "bg-yellow-500 hover:bg-yellow-600";
+  if (code >= 400 && code < 500) return "bg-orange-500 hover:bg-orange-600";
+  if (code >= 500) return "bg-red-500 hover:bg-red-600";
+  return "bg-gray-500 hover:bg-gray-600";
+}
+
+export interface StatusCodeProps
+  extends React.HTMLAttributes<HTMLDivElement>,
+    VariantProps<typeof statusCodeVariants> {
+  code: number;
+}
+
+const StatusCode = React.forwardRef<HTMLDivElement, StatusCodeProps>(
+  ({ className, variant, size, code, ...props }, ref) => {
+    const colorClass = variant === "default" ? getStatusCodeColor(code) : "";
+
+    return (
+      <div
+        className={cn(
+          statusCodeVariants({ variant, size }),
+          colorClass,
+          className
+        )}
+        ref={ref}
+        {...props}
+      >
+        {code}
+      </div>
+    );
+  }
+);
+StatusCode.displayName = "StatusCode";
+
+export { StatusCode, statusCodeVariants };
+```
+
+### 3. 使用组件
+
+现在您可以在项目中使用组件了：
+
+```tsx
+import { StatusCode } from "@/components/pivot/status-code";
+
+export function Example() {
+  return (
+    <div className="flex items-center gap-2">
+      <StatusCode code={200} />
+      <StatusCode code={404} />
+      <StatusCode code={500} />
+    </div>
+  );
+}
+```
+
+## 添加更多组件
+
+重复上述步骤来添加更多组件。您可以在我们的 [组件文档](/docs/components) 中找到所有可用组件的源代码。
+
+## 类型定义
+
+如果您使用 TypeScript，确保在 `tsconfig.json` 中配置路径映射：
+
+```json title="tsconfig.json"
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./*"]
+    }
+  }
+}
+```
+
+## 完成
+
+现在您已经手动配置好了 Pivot 组件库！虽然手动安装需要更多步骤，但它给您更多的控制权来定制组件以满足您的特定需求。

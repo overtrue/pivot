@@ -8,6 +8,9 @@ import remarkGfm from "remark-gfm";
 import { createHighlighter } from "shiki";
 import { visit } from "unist-util-visit";
 
+import { rehypeComponent } from "./lib/rehype-component";
+import { rehypeNpmCommand } from "./lib/rehype-npm-command";
+
 const prettyCodeOptions: Options = {
   theme: "github-dark",
   keepBackground: false,
@@ -35,6 +38,58 @@ const prettyCodeOptions: Options = {
     node.properties.className = ["word--highlighted"];
   },
 };
+
+const showcase = defineCollection({
+  name: "Showcase",
+  directory: "content/showcase",
+  include: "**/*.mdx",
+  schema: (z) => ({
+    title: z.string(),
+    description: z.string(),
+    image: z.string(),
+    href: z.string(),
+    affiliation: z.string(),
+    featured: z.boolean().optional().default(false),
+  }),
+  transform: async (document, context) => {
+    const body = await compileMDX(context, document, {
+      remarkPlugins: [codeImport, remarkGfm],
+    });
+    return {
+      ...document,
+      slug: `/showcase/${document._meta.path}`,
+      slugAsParams: document._meta.path,
+      body: {
+        raw: document.content,
+        code: body,
+      },
+    };
+  },
+});
+
+const pages = defineCollection({
+  name: "Page",
+  directory: "content/pages",
+  include: "**/*.mdx",
+  schema: (z) => ({
+    title: z.string(),
+    description: z.string(),
+  }),
+  transform: async (document, context) => {
+    const body = await compileMDX(context, document, {
+      remarkPlugins: [codeImport, remarkGfm],
+    });
+    return {
+      ...document,
+      slug: `/${document._meta.path}`,
+      slugAsParams: document._meta.path,
+      body: {
+        raw: document.content,
+        code: body,
+      },
+    };
+  },
+});
 
 const documents = defineCollection({
   name: "Doc",
@@ -64,6 +119,7 @@ const documents = defineCollection({
       remarkPlugins: [codeImport, remarkGfm],
       rehypePlugins: [
         rehypeSlug,
+        rehypeComponent,
         () => (tree) => {
           visit(tree, (node) => {
             if (node?.type === "element" && node?.tagName === "pre") {
@@ -117,6 +173,7 @@ const documents = defineCollection({
             }
           });
         },
+        rehypeNpmCommand,
         [
           rehypeAutolinkHeadings,
           {
@@ -143,6 +200,49 @@ const documents = defineCollection({
   },
 });
 
+const blog = defineCollection({
+  name: "Blog",
+  directory: "content/blog",
+  include: "**/*.mdx",
+  schema: (z) => ({
+    title: z.string(),
+    description: z.string().optional(),
+    image: z.string().optional(),
+    tag: z.string().optional(),
+    author: z.string().optional(),
+    publishedOn: z.string(),
+    featured: z.boolean().optional().default(false),
+  }),
+  transform: async (document, context) => {
+    const body = await compileMDX(context, document, {
+      remarkPlugins: [codeImport, remarkGfm],
+      rehypePlugins: [
+        rehypeSlug,
+        rehypeComponent,
+        [rehypePrettyCode, prettyCodeOptions],
+        [
+          rehypeAutolinkHeadings,
+          {
+            properties: {
+              className: ["subheading-anchor"],
+              ariaLabel: "Link to section",
+            },
+          },
+        ],
+      ],
+    });
+    return {
+      ...document,
+      slug: `/blog/${document._meta.path}`,
+      slugAsParams: document._meta.path,
+      body: {
+        raw: document.content,
+        code: body,
+      },
+    };
+  },
+});
+
 export default defineConfig({
-  collections: [documents],
+  collections: [documents, pages, showcase, blog],
 });

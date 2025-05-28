@@ -1,0 +1,83 @@
+---
+title: Value Display
+description: 用于显示各种类型值的组件，支持字符串、数字、布尔值等不同类型的格式化显示。
+component: true
+---
+
+Value Display 组件用于格式化显示各种类型的值，包括字符串、数字、布尔值、数组、对象等。
+
+<ComponentPreview name="value-display-demo" />
+
+## 安装
+
+```bash
+npx shadcn@latest add https://pivotkit.vercel.app/registry.json value-display
+```
+
+## 使用方法
+
+```tsx
+import { ValueDisplay } from "@/components/pivot/value-display";
+```
+
+```tsx
+<ValueDisplay value="Hello World" type="string" />
+```
+
+## 示例
+
+### 基本类型
+
+```tsx
+<div className="space-y-3">
+  <div className="flex items-center gap-3">
+    <span className="w-20 text-sm">字符串:</span>
+    <ValueDisplay value="Hello World" type="string" />
+  </div>
+
+  <div className="flex items-center gap-3">
+    <span className="w-20 text-sm">数字:</span>
+    <ValueDisplay value={42} type="number" />
+  </div>
+
+  <div className="flex items-center gap-3">
+    <span className="w-20 text-sm">布尔值:</span>
+    <ValueDisplay value={true} type="boolean" />
+  </div>
+
+  <div className="flex items-center gap-3">
+    <span className="w-20 text-sm">空值:</span>
+    <ValueDisplay value={null} type="null" />
+  </div>
+</div>
+```
+
+### 在 API 文档中使用
+
+```tsx
+<div className="space-y-3">
+  <div className="flex items-center gap-3 p-3 border rounded">
+    <code className="font-mono">name</code>
+    <TypeIndicator type="string" />
+    <ValueDisplay value="John Doe" type="string" />
+    <span className="text-sm text-muted-foreground">默认值</span>
+  </div>
+
+  <div className="flex items-center gap-3 p-3 border rounded">
+    <code className="font-mono">age</code>
+    <TypeIndicator type="number" />
+    <ValueDisplay value={25} type="number" />
+    <span className="text-sm text-muted-foreground">示例值</span>
+  </div>
+</div>
+```
+
+## API 参考
+
+### Props
+
+| 属性        | 类型                                                     | 默认值 | 描述            |
+| ----------- | -------------------------------------------------------- | ------ | --------------- |
+| `value`     | `any`                                                    | -      | 要显示的值      |
+| `type`      | `"string" \| "number" \| "boolean" \| "null" \| "array"` | -      | 值的类型        |
+| `className` | `string`                                                 | -      | 额外的 CSS 类名 |
