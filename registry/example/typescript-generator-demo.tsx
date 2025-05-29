@@ -10,7 +10,7 @@ export default function TypescriptGeneratorDemo() {
         name: "X-API-Key",
         in: "header" as const,
         required: true,
-        schema: { type: "string" }
+        schema: { type: "string" as const }
       }
     ],
     requestBodyExample: {
@@ -26,17 +26,17 @@ export default function TypescriptGeneratorDemo() {
       content: {
         "application/json": {
           schema: {
-            type: "object",
+            type: "object" as const,
             required: ["email", "name"],
             properties: {
-              email: { type: "string", format: "email" },
-              name: { type: "string" },
-              age: { type: "integer", minimum: 0 },
+              email: { type: "string" as const, format: "email" as const },
+              name: { type: "string" as const },
+              age: { type: "integer" as const, minimum: 0 },
               preferences: {
-                type: "object",
+                type: "object" as const,
                 properties: {
-                  theme: { type: "string", enum: ["light", "dark"] },
-                  notifications: { type: "boolean" }
+                  theme: { type: "string" as const, enum: ["light", "dark"] },
+                  notifications: { type: "boolean" as const }
                 }
               }
             }
@@ -56,34 +56,34 @@ export default function TypescriptGeneratorDemo() {
         name: "page",
         in: "query" as const,
         required: false,
-        schema: { type: "integer", minimum: 1, default: 1 }
+        schema: { type: "integer" as const, minimum: 1, default: 1 }
       },
       {
         name: "limit",
         in: "query" as const,
         required: false,
-        schema: { type: "integer", minimum: 1, maximum: 100, default: 20 }
+        schema: { type: "integer" as const, minimum: 1, maximum: 100, default: 20 }
       },
       {
         name: "search",
         in: "query" as const,
         required: false,
-        schema: { type: "string" }
+        schema: { type: "string" as const }
       },
       {
         name: "status",
         in: "query" as const,
         required: false,
         schema: {
-          type: "array",
-          items: { type: "string", enum: ["active", "inactive", "pending"] }
+          type: "array" as const,
+          items: { type: "string" as const, enum: ["active", "inactive", "pending"] }
         }
       },
       {
         name: "Authorization",
         in: "header" as const,
         required: true,
-        schema: { type: "string" }
+        schema: { type: "string" as const }
       }
     ],
     requestBodyExample: null,
@@ -99,13 +99,13 @@ export default function TypescriptGeneratorDemo() {
         name: "folderId",
         in: "query" as const,
         required: false,
-        schema: { type: "string" }
+        schema: { type: "string" as const }
       },
       {
         name: "X-Upload-Token",
         in: "header" as const,
         required: true,
-        schema: { type: "string" }
+        schema: { type: "string" as const }
       }
     ],
     requestBodyExample: {
@@ -119,14 +119,14 @@ export default function TypescriptGeneratorDemo() {
       content: {
         "multipart/form-data": {
           schema: {
-            type: "object",
+            type: "object" as const,
             required: ["file"],
             properties: {
-              file: { type: "string", format: "binary" },
-              title: { type: "string" },
-              description: { type: "string" },
-              tags: { type: "array", items: { type: "string" } },
-              isPublic: { type: "boolean", default: false }
+              file: { type: "string" as const, format: "binary" },
+              title: { type: "string" as const },
+              description: { type: "string" as const },
+              tags: { type: "array" as const, items: { type: "string" as const } },
+              isPublic: { type: "boolean" as const, default: false }
             }
           }
         }
@@ -144,13 +144,13 @@ export default function TypescriptGeneratorDemo() {
         name: "userId",
         in: "path" as const,
         required: true,
-        schema: { type: "string", format: "uuid" }
+        schema: { type: "string" as const, format: "uuid" as const }
       },
       {
         name: "Authorization",
         in: "header" as const,
         required: true,
-        schema: { type: "string" }
+        schema: { type: "string" as const }
       }
     ],
     requestBodyExample: {
@@ -162,11 +162,11 @@ export default function TypescriptGeneratorDemo() {
       content: {
         "application/json": {
           schema: {
-            type: "object",
+            type: "object" as const,
             properties: {
-              name: { type: "string" },
-              age: { type: "integer", minimum: 0 },
-              status: { type: "string", enum: ["active", "inactive", "pending"] }
+              name: { type: "string" as const },
+              age: { type: "integer" as const, minimum: 0 },
+              status: { type: "string" as const, enum: ["active", "inactive", "pending"] }
             }
           }
         }
@@ -184,7 +184,7 @@ export default function TypescriptGeneratorDemo() {
         name: "Authorization",
         in: "header" as const,
         required: true,
-        schema: { type: "string" }
+        schema: { type: "string" as const }
       }
     ],
     requestBodyExample: {
@@ -198,16 +198,16 @@ export default function TypescriptGeneratorDemo() {
       content: {
         "application/json": {
           schema: {
-            type: "object",
+            type: "object" as const,
             required: ["userIds"],
             properties: {
               userIds: {
-                type: "array",
-                items: { type: "string", format: "uuid" },
+                type: "array" as const,
+                items: { type: "string" as const, format: "uuid" as const },
                 minItems: 1,
                 maxItems: 100
               },
-              reason: { type: "string" }
+              reason: { type: "string" as const }
             }
           }
         }

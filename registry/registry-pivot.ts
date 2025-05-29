@@ -1150,16 +1150,16 @@ const pivot: Registry = [
     ],
   },
   {
-    name: "all-in-one-layout",
+    name: "operation-list-layout",
     type: "registry:ui",
-    title: "All-in-One Layout",
-    description: "A comprehensive layout combining navigation, operation details, and interactive elements.",
-    dependencies: ["navigation-sidebar", "operation-box", "try-it-out-panel", "resizable-sidebar"],
+    title: "Operation List Layout",
+    description: "A comprehensive layout combining navigation, operation details, and interactive elements with operation list view.",
+    dependencies: ["operation-box", "try-it-out-panel"],
     files: [
       {
-        path: "registry/pivot/all-in-one-layout.tsx",
+        path: "registry/pivot/operation-list-layout.tsx",
         type: "registry:ui",
-        target: "components/pivot/all-in-one-layout.tsx",
+        target: "components/pivot/operation-list-layout.tsx",
       },
     ],
   },

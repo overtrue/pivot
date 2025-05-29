@@ -8,30 +8,30 @@ export default function ResponsesSectionDemo() {
       content: {
         "application/json": {
           schema: {
-            type: "object",
+            type: "object" as const,
             properties: {
               id: {
-                type: "string",
-                format: "uuid",
+                type: "string" as const,
+                format: "uuid" as const,
                 description: "用户唯一标识符"
               },
               email: {
-                type: "string",
-                format: "email",
+                type: "string" as const,
+                format: "email" as const,
                 description: "用户邮箱"
               },
               name: {
-                type: "string",
+                type: "string" as const,
                 description: "用户姓名"
               },
               status: {
-                type: "string",
+                type: "string" as const,
                 enum: ["active", "inactive", "pending"],
                 description: "用户状态"
               },
               createdAt: {
-                type: "string",
-                format: "date-time",
+                type: "string" as const,
+                format: "date-time" as const,
                 description: "创建时间"
               }
             }
@@ -48,11 +48,11 @@ export default function ResponsesSectionDemo() {
       headers: {
         "X-Rate-Limit-Remaining": {
           description: "剩余请求次数",
-          schema: { type: "integer" }
+          schema: { type: "integer" as const }
         },
         "X-Request-ID": {
           description: "请求追踪 ID",
-          schema: { type: "string", format: "uuid" }
+          schema: { type: "string" as const, format: "uuid" as const }
         }
       }
     },
@@ -61,25 +61,25 @@ export default function ResponsesSectionDemo() {
       content: {
         "application/json": {
           schema: {
-            type: "object",
+            type: "object" as const,
             properties: {
               error: {
-                type: "string",
+                type: "string" as const,
                 description: "错误类型"
               },
               message: {
-                type: "string",
+                type: "string" as const,
                 description: "错误描述"
               },
               details: {
-                type: "array",
+                type: "array" as const,
                 description: "详细错误信息",
                 items: {
-                  type: "object",
+                  type: "object" as const,
                   properties: {
-                    field: { type: "string" },
-                    code: { type: "string" },
-                    message: { type: "string" }
+                    field: { type: "string" as const },
+                    code: { type: "string" as const },
+                    message: { type: "string" as const }
                   }
                 }
               }
@@ -104,10 +104,10 @@ export default function ResponsesSectionDemo() {
       content: {
         "application/json": {
           schema: {
-            type: "object",
+            type: "object" as const,
             properties: {
-              error: { type: "string" },
-              message: { type: "string" }
+              error: { type: "string" as const },
+              message: { type: "string" as const }
             }
           },
           example: {
@@ -122,10 +122,10 @@ export default function ResponsesSectionDemo() {
       content: {
         "application/json": {
           schema: {
-            type: "object",
+            type: "object" as const,
             properties: {
-              error: { type: "string" },
-              message: { type: "string" }
+              error: { type: "string" as const },
+              message: { type: "string" as const }
             }
           },
           example: {
@@ -140,11 +140,11 @@ export default function ResponsesSectionDemo() {
       content: {
         "application/json": {
           schema: {
-            type: "object",
+            type: "object" as const,
             properties: {
-              error: { type: "string" },
-              message: { type: "string" },
-              requestId: { type: "string" }
+              error: { type: "string" as const },
+              message: { type: "string" as const },
+              requestId: { type: "string" as const }
             }
           },
           example: {
@@ -164,14 +164,14 @@ export default function ResponsesSectionDemo() {
       content: {
         "application/json": {
           schema: {
-            type: "object",
+            type: "object" as const,
             properties: {
-              id: { type: "string", description: "文件 ID" },
-              filename: { type: "string", description: "文件名" },
-              size: { type: "integer", description: "文件大小（字节）" },
-              mimeType: { type: "string", description: "MIME 类型" },
-              url: { type: "string", format: "uri", description: "文件访问 URL" },
-              uploadedAt: { type: "string", format: "date-time", description: "上传时间" }
+              id: { type: "string" as const, description: "文件 ID" },
+              filename: { type: "string" as const, description: "文件名" },
+              size: { type: "integer" as const, description: "文件大小（字节）" },
+              mimeType: { type: "string" as const, description: "MIME 类型" },
+              url: { type: "string" as const, format: "uri" as const, description: "文件访问 URL" },
+              uploadedAt: { type: "string" as const, format: "date-time" as const, description: "上传时间" }
             }
           },
           example: {
@@ -190,11 +190,11 @@ export default function ResponsesSectionDemo() {
       content: {
         "application/json": {
           schema: {
-            type: "object",
+            type: "object" as const,
             properties: {
-              error: { type: "string" },
-              message: { type: "string" },
-              maxSize: { type: "integer", description: "最大允许大小（字节）" }
+              error: { type: "string" as const },
+              message: { type: "string" as const },
+              maxSize: { type: "integer" as const, description: "最大允许大小（字节）" }
             }
           },
           example: {
@@ -210,13 +210,13 @@ export default function ResponsesSectionDemo() {
       content: {
         "application/json": {
           schema: {
-            type: "object",
+            type: "object" as const,
             properties: {
-              error: { type: "string" },
-              message: { type: "string" },
+              error: { type: "string" as const },
+              message: { type: "string" as const },
               allowedTypes: {
-                type: "array",
-                items: { type: "string" },
+                type: "array" as const,
+                items: { type: "string" as const },
                 description: "允许的文件类型"
               }
             }
@@ -238,31 +238,31 @@ export default function ResponsesSectionDemo() {
       content: {
         "application/json": {
           schema: {
-            type: "object",
+            type: "object" as const,
             properties: {
               data: {
-                type: "array",
+                type: "array" as const,
                 description: "数据列表",
                 items: {
-                  type: "object",
+                  type: "object" as const,
                   properties: {
-                    id: { type: "string" },
-                    title: { type: "string" },
-                    status: { type: "string" },
-                    createdAt: { type: "string", format: "date-time" }
+                    id: { type: "string" as const },
+                    title: { type: "string" as const },
+                    status: { type: "string" as const },
+                    createdAt: { type: "string" as const, format: "date-time" as const }
                   }
                 }
               },
               pagination: {
-                type: "object",
+                type: "object" as const,
                 description: "分页信息",
                 properties: {
-                  page: { type: "integer", description: "当前页码" },
-                  limit: { type: "integer", description: "每页数量" },
-                  total: { type: "integer", description: "总记录数" },
-                  totalPages: { type: "integer", description: "总页数" },
-                  hasNext: { type: "boolean", description: "是否有下一页" },
-                  hasPrev: { type: "boolean", description: "是否有上一页" }
+                  page: { type: "integer" as const, description: "当前页码" },
+                  limit: { type: "integer" as const, description: "每页数量" },
+                  total: { type: "integer" as const, description: "总记录数" },
+                  totalPages: { type: "integer" as const, description: "总页数" },
+                  hasNext: { type: "boolean" as const, description: "是否有下一页" },
+                  hasPrev: { type: "boolean" as const, description: "是否有上一页" }
                 }
               }
             }
@@ -303,7 +303,7 @@ export default function ResponsesSectionDemo() {
         <p className="text-xs text-neutral-600 dark:text-neutral-400 mb-3">
           包含成功响应和各种错误情况的完整响应定义
         </p>
-        <ResponsesSection responses={userApiResponses} />
+        <ResponsesSection responses={userApiResponses as any} />
       </div>
 
       <div>
@@ -311,7 +311,7 @@ export default function ResponsesSectionDemo() {
         <p className="text-xs text-neutral-600 dark:text-neutral-400 mb-3">
           文件上传接口的响应，包含文件信息和错误处理
         </p>
-        <ResponsesSection responses={fileUploadResponses} />
+        <ResponsesSection responses={fileUploadResponses as any} />
       </div>
 
       <div>
@@ -319,7 +319,7 @@ export default function ResponsesSectionDemo() {
         <p className="text-xs text-neutral-600 dark:text-neutral-400 mb-3">
           带分页信息的列表数据响应格式
         </p>
-        <ResponsesSection responses={paginatedListResponses} />
+        <ResponsesSection responses={paginatedListResponses as any} />
       </div>
     </div>
   );

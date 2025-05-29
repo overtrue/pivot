@@ -1,5 +1,12 @@
-import { cn } from "@/lib/utils";
+"use client";
+
+import { useI18n } from "@/lib/i18n";
 import React from "react";
+import { SchemaWithExampleViewer } from "./schema-with-example-viewer";
+
+interface ComponentsObject {
+  [key: string]: any;
+}
 
 interface EncodingPropertyObject {
   contentType?: string;
@@ -15,161 +22,77 @@ interface MediaTypeObject {
   encoding?: Record<string, EncodingPropertyObject>;
 }
 
-interface ComponentsObject {
-  [key: string]: any;
-}
-
 interface ResponseContentSectionProps {
   content: Record<string, MediaTypeObject>;
   components?: ComponentsObject;
   className?: string;
 }
 
-const ResponseContentSection = React.forwardRef<
-  HTMLDivElement,
-  ResponseContentSectionProps
->(({ content, components, className }, ref) => {
-  // Render media type encoding information
-  const renderMediaTypeEncoding = (mediaType: MediaTypeObject) => {
-    if (!mediaType.encoding || Object.keys(mediaType.encoding).length === 0) {
-      return null;
-    }
+const ResponseContentSection = React.forwardRef<HTMLDivElement, ResponseContentSectionProps>(
+  ({ content, components, className = '' }, ref) => {
+    const { t } = useI18n();
 
-    return (
-      <div className="mt-4">
-        <h5 className="text-sm font-medium mb-2 text-neutral-800 dark:text-neutral-200">
-          Encoding
-        </h5>
-        <div className="space-y-2">
-          {Object.entries(mediaType.encoding).map(
-            ([property, encoding]: [string, EncodingPropertyObject]) => (
-              <div
-                key={property}
-                className="border rounded p-2 bg-white dark:bg-neutral-800 dark:border-neutral-700"
-              >
-                <div className="font-mono text-sm mb-1 font-medium text-neutral-800 dark:text-neutral-200">
-                  {property}
-                </div>
+    // 渲染媒体类型的额外信息（如编码）
+    const renderMediaTypeEncoding = (mediaType: MediaTypeObject) => {
+      if (!mediaType.encoding || Object.keys(mediaType.encoding).length === 0) {
+        return null;
+      }
+
+      return (
+        <div className="mt-4">
+          <h5 className="text-sm font-medium mb-2">{t('Encoding')}</h5>
+          <div className="space-y-2">
+            {Object.entries(mediaType.encoding).map(([property, encoding]: [string, EncodingPropertyObject]) => (
+              <div key={property} className="border rounded p-2 bg-white dark:bg-neutral-800">
+                <div className="font-mono text-sm mb-1 font-medium">{property}</div>
                 <div className="grid grid-cols-[max-content_1fr] gap-x-2 gap-y-1 text-xs">
                   {encoding.contentType && (
                     <>
-                      <div className="text-neutral-600 dark:text-neutral-400">
-                        Content Type
-                      </div>
-                      <div className="font-mono text-neutral-800 dark:text-neutral-200">
-                        {encoding.contentType}
-                      </div>
+                      <div className="text-neutral-600 dark:text-neutral-400">{t('Content Type')}</div>
+                      <div className="font-mono">{encoding.contentType}</div>
                     </>
                   )}
                   {encoding.style && (
                     <>
-                      <div className="text-neutral-600 dark:text-neutral-400">
-                        Style
-                      </div>
-                      <div className="font-mono text-neutral-800 dark:text-neutral-200">
-                        {encoding.style}
-                      </div>
+                      <div className="text-neutral-600 dark:text-neutral-400">{t('Style')}</div>
+                      <div className="font-mono">{encoding.style}</div>
                     </>
                   )}
                   {encoding.explode !== undefined && (
                     <>
-                      <div className="text-neutral-600 dark:text-neutral-400">
-                        Explode
-                      </div>
-                      <div className="font-mono text-neutral-800 dark:text-neutral-200">
-                        {encoding.explode.toString()}
-                      </div>
+                      <div className="text-neutral-600 dark:text-neutral-400">{t('Explode')}</div>
+                      <div className="font-mono">{encoding.explode.toString()}</div>
                     </>
                   )}
                   {encoding.allowReserved !== undefined && (
                     <>
-                      <div className="text-neutral-600 dark:text-neutral-400">
-                        Allow Reserved
-                      </div>
-                      <div className="font-mono text-neutral-800 dark:text-neutral-200">
-                        {encoding.allowReserved.toString()}
-                      </div>
+                      <div className="text-neutral-600 dark:text-neutral-400">{t('Allow Reserved')}</div>
+                      <div className="font-mono">{encoding.allowReserved.toString()}</div>
                     </>
                   )}
                 </div>
               </div>
-            ),
-          )}
+            ))}
+          </div>
         </div>
+      );
+    };
+
+    return (
+      <div ref={ref} className={className}>
+        <SchemaWithExampleViewer
+          content={content}
+          components={components}
+          contentType="mediaTypes"
+          showTitle={true}
+          renderFooter={renderMediaTypeEncoding}
+        />
       </div>
     );
-  };
-
-  return (
-    <div ref={ref} className={cn(className)}>
-      <h4 className="text-sm font-semibold mb-3 text-neutral-800 dark:text-neutral-200">
-        Response Content
-      </h4>
-      <div className="space-y-3">
-        {Object.entries(content).map(([mediaType, mediaTypeObj]) => (
-          <div
-            key={mediaType}
-            className="p-3 bg-neutral-50 dark:bg-neutral-800 rounded border dark:border-neutral-700"
-          >
-            <div className="flex items-center justify-between mb-2">
-              <span className="font-mono text-sm font-medium text-blue-600 dark:text-blue-400">
-                {mediaType}
-              </span>
-            </div>
-
-            {mediaTypeObj.schema && (
-              <div className="mb-2 text-xs text-neutral-600 dark:text-neutral-400 italic">
-                Schema available (requires schema display component)
-              </div>
-            )}
-
-            {mediaTypeObj.example && (
-              <div className="mb-2">
-                <span className="text-xs font-medium text-neutral-600 dark:text-neutral-400">
-                  Example:
-                </span>
-                <pre className="text-xs bg-neutral-100 dark:bg-neutral-700 p-2 rounded mt-1 overflow-x-auto">
-                  {JSON.stringify(mediaTypeObj.example, null, 2)}
-                </pre>
-              </div>
-            )}
-
-            {mediaTypeObj.examples && (
-              <div className="mb-2">
-                <span className="text-xs font-medium text-neutral-600 dark:text-neutral-400">
-                  Examples:
-                </span>
-                <div className="space-y-1 mt-1">
-                  {Object.entries(mediaTypeObj.examples).map(
-                    ([name, example]) => (
-                      <div key={name} className="text-xs">
-                        <span className="font-medium text-neutral-600 dark:text-neutral-400">
-                          {name}:
-                        </span>
-                        <pre className="bg-neutral-100 dark:bg-neutral-700 p-1 rounded ml-2 overflow-x-auto">
-                          {JSON.stringify(example, null, 2)}
-                        </pre>
-                      </div>
-                    ),
-                  )}
-                </div>
-              </div>
-            )}
-
-            {renderMediaTypeEncoding(mediaTypeObj)}
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-});
+  }
+);
 
 ResponseContentSection.displayName = "ResponseContentSection";
 
-export {
-  ResponseContentSection,
-  type ComponentsObject,
-  type EncodingPropertyObject,
-  type MediaTypeObject,
-  type ResponseContentSectionProps,
-};
+export { ResponseContentSection, type ResponseContentSectionProps };
+

@@ -1,81 +1,87 @@
+"use client";
+
+import { useI18n } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
 import React from "react";
-import { DescriptionDisplay } from "./description-display";
+import { resolveRef } from "../lib/resolve-ref";
+import { HeaderItem } from "./header-item";
 
-interface SchemaObject {
-  type: string;
-  format?: string;
-}
-
-interface HeaderObject {
-  description?: string;
-  required?: boolean;
-  deprecated?: boolean;
-  schema: SchemaObject;
-}
+// Import types from the centralized types file
+import type {
+  ComponentsObject,
+  HeaderObject,
+  ReferenceObject,
+  StyleType
+} from "@/types/openapi";
 
 interface ResponseHeadersTableProps {
-  headers: Record<string, HeaderObject>;
+  headers: Record<string, HeaderObject | ReferenceObject>;
+  components?: ComponentsObject;
   className?: string;
 }
 
 /**
  * 响应头部表格组件，负责展示API响应的头部信息
  */
-const ResponseHeadersTable = React.forwardRef<
-  HTMLDivElement,
-  ResponseHeadersTableProps
->(({ headers, className }, ref) => {
-  const headerEntries = Object.entries(headers);
+const ResponseHeadersTable = React.forwardRef<HTMLDivElement, ResponseHeadersTableProps>(
+  ({ headers, components, className }, ref) => {
+    const { t } = useI18n();
 
-  if (headerEntries.length === 0) {
-    return null;
-  }
+    if (!headers || Object.keys(headers).length === 0) {
+      return null;
+    }
 
-  return (
-    <div
-      ref={ref}
-      className={cn(
-        "border dark:border-neutral-700 rounded overflow-hidden",
-        className,
-      )}
-    >
-      <table className="min-w-full divide-y divide-neutral-200 dark:divide-neutral-700">
-        <thead className="bg-neutral-50 dark:bg-neutral-800">
-          <tr>
-            <th className="px-3 py-2 text-left text-xs font-medium text-neutral-500 dark:text-neutral-400 uppercase tracking-wider">
-              Name
-            </th>
-            <th className="px-3 py-2 text-left text-xs font-medium text-neutral-500 dark:text-neutral-400 uppercase tracking-wider">
-              Description
-            </th>
-            <th className="px-3 py-2 text-left text-xs font-medium text-neutral-500 dark:text-neutral-400 uppercase tracking-wider">
-              Type
-            </th>
-          </tr>
-        </thead>
-        <tbody className="bg-white dark:bg-neutral-800 divide-y divide-neutral-200 dark:divide-neutral-700">
-          {headerEntries.map(([name, header]) => (
-            <tr key={name}>
-              <td className="px-3 py-2 text-sm font-mono dark:text-neutral-300">
-                {name}
-              </td>
-              <td className="px-3 py-2 text-sm dark:text-neutral-300">
-                {header.description && (
-                  <DescriptionDisplay description={header.description} />
-                )}
-              </td>
-              <td className="px-3 py-2 text-sm dark:text-neutral-300">
-                {header.schema.type}
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
-  );
-});
+    return (
+      <div ref={ref} className={cn("space-y-3", className)}>
+        {Object.entries(headers).map(([name, headerOrRef]) => {
+          // Resolve header ref
+          const header = resolveRef<HeaderObject>(
+            headerOrRef,
+            components,
+            "headers",
+          );
+
+          if (!header) {
+            const refString =
+              headerOrRef &&
+                typeof headerOrRef === "object" &&
+                "$ref" in headerOrRef
+                ? (headerOrRef as ReferenceObject).$ref
+                : t("[unknown reference]");
+            console.warn(
+              `[ResponseHeadersTable] Failed to resolve header ref: ${refString} for key ${name}`,
+            );
+            // Optionally render an error state for this header
+            return (
+              <div
+                key={name}
+                className="text-xs text-red-500 dark:text-red-400 p-1 border border-dashed dark:border-red-700 rounded"
+              >
+                {t("Failed to resolve reference")}: {name} ({refString})
+              </div>
+            );
+          }
+
+          return (
+            <HeaderItem
+              key={name}
+              name={name}
+              description={header.description}
+              required={header.required}
+              deprecated={header.deprecated}
+              schema={header.schema}
+              style={header.style as StyleType}
+              explode={header.explode}
+              examples={header.examples}
+              components={components}
+            />
+          );
+        })}
+      </div>
+    );
+  },
+);
 
 ResponseHeadersTable.displayName = "ResponseHeadersTable";
 
-export { ResponseHeadersTable, type HeaderObject, type SchemaObject };
+export { ResponseHeadersTable, type ResponseHeadersTableProps };

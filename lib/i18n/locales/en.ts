@@ -1,5 +1,6 @@
 const en = {
   Required: "Required",
+  "Search...": "Search...",
   Expand: "Expand",
   Collapse: "Collapse",
   GET: "GET",
@@ -258,6 +259,17 @@ const en = {
   "Expand All": "Expand All",
   "Collapse All": "Collapse All",
   "Data Models": "Data Models",
+
+  // Try It Out Panel translations
+  "Request Parameters": "Request Parameters",
+  "Request Headers": "Request Headers",
+  "Sending...": "Sending...",
+  "Send Request": "Send Request",
+  "Add Header": "Add Header",
+  "Remove": "Remove",
+  "Enter %s value": "Enter %s value",
+  "Header name": "Header name",
+  "Value": "Value",
 };
 
 export default en;

@@ -3,29 +3,13 @@ import React from "react";
 import { SectionTitle } from "../pivot/section-title";
 import { SecuritySchemeDisplay } from "./security-scheme-display";
 
-interface ComponentsObject {
-  [key: string]: any;
-}
-
-interface ReferenceObject {
-  $ref: string;
-}
-
-interface SecurityRequirementObject {
-  [key: string]: string[];
-}
-
-interface SecuritySchemeObject {
-  type: "apiKey" | "http" | "oauth2" | "openIdConnect" | "mutualTLS";
-  description?: string;
-  name?: string;
-  in?: "query" | "header" | "cookie";
-  scheme?: string;
-  bearerFormat?: string;
-  flows?: any;
-  openIdConnectUrl?: string;
-  [key: string]: any;
-}
+// Import types from the centralized types file
+import type {
+  ComponentsObject,
+  ReferenceObject,
+  SecurityRequirementObject,
+  SecuritySchemeObject
+} from "@/types/openapi";
 
 interface SecuritySectionProps {
   security?: SecurityRequirementObject[];
@@ -165,12 +149,5 @@ const SecuritySection = React.forwardRef<HTMLDivElement, SecuritySectionProps>(
 
 SecuritySection.displayName = "SecuritySection";
 
-export {
-  SecuritySection,
-  type ComponentsObject,
-  type ReferenceObject,
-  type SecurityRequirementObject,
-  type SecuritySchemeObject,
-  type SecuritySectionProps
-};
+export { SecuritySection, type SecuritySectionProps };
 

@@ -6,22 +6,22 @@ export default function ParameterGroupDemo() {
     {
       name: "limit",
       required: false,
-      type: "number"
+      type: "number" as const
     },
     {
       name: "offset",
       required: false,
-      type: "number"
+      type: "number" as const
     },
     {
       name: "search",
       required: false,
-      type: "string"
+      type: "string" as const
     },
     {
       name: "status",
       required: false,
-      type: "string"
+      type: "string" as const
     }
   ];
 
@@ -30,12 +30,12 @@ export default function ParameterGroupDemo() {
     {
       name: "userId",
       required: true,
-      type: "string"
+      type: "string" as const
     },
     {
       name: "organizationId",
       required: true,
-      type: "string"
+      type: "string" as const
     }
   ];
 
@@ -44,17 +44,17 @@ export default function ParameterGroupDemo() {
     {
       name: "Authorization",
       required: true,
-      type: "string"
+      type: "string" as const
     },
     {
       name: "X-API-Version",
       required: false,
-      type: "string"
+      type: "string" as const
     },
     {
       name: "X-Request-ID",
       required: false,
-      type: "string"
+      type: "string" as const
     }
   ];
 
@@ -63,12 +63,12 @@ export default function ParameterGroupDemo() {
     {
       name: "session_id",
       required: true,
-      type: "string"
+      type: "string" as const
     },
     {
       name: "csrf_token",
       required: false,
-      type: "string"
+      type: "string" as const
     }
   ];
 

@@ -1,8 +1,9 @@
 "use client";
 
+import { useI18n } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
 import { Globe } from "lucide-react";
-import React, { useState } from "react";
+import React from "react";
 
 interface LanguageSwitcherProps {
   className?: string;
@@ -13,11 +14,11 @@ const LanguageSwitcher = React.forwardRef<
   HTMLButtonElement,
   LanguageSwitcherProps
 >(({ className, onLanguageChange }, ref) => {
-  const [currentLanguage, setCurrentLanguage] = useState("en");
+  const { locale, setLocale } = useI18n();
 
   const toggleLanguage = () => {
-    const newLanguage = currentLanguage === "en" ? "zh" : "en";
-    setCurrentLanguage(newLanguage);
+    const newLanguage = locale === "en" ? "zh" : "en";
+    setLocale(newLanguage);
     onLanguageChange?.(newLanguage);
   };
 
@@ -26,13 +27,13 @@ const LanguageSwitcher = React.forwardRef<
       ref={ref}
       onClick={toggleLanguage}
       className={cn(
-        "flex items-center px-3 py-1.5 text-sm text-white hover:bg-neutral-600 dark:hover:bg-neutral-700 transition-colors rounded-md",
+        "flex items-center px-3 py-1.5 text-sm text-foreground hover:bg-accent hover:text-accent-foreground transition-colors rounded-md",
         className,
       )}
       aria-label="Switch Language"
     >
       <Globe className="w-4 h-4 mr-1.5" />
-      {currentLanguage === "en" ? "中文" : "English"}
+      {locale === "en" ? "中文" : "English"}
     </button>
   );
 });

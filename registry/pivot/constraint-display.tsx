@@ -1,19 +1,8 @@
 import { cn } from "@/lib/utils";
 import React from "react";
 
-interface SchemaObject {
-  minimum?: number;
-  maximum?: number;
-  exclusiveMinimum?: boolean | number;
-  exclusiveMaximum?: boolean | number;
-  minLength?: number;
-  maxLength?: number;
-  pattern?: string;
-  minItems?: number;
-  maxItems?: number;
-  uniqueItems?: boolean;
-  multipleOf?: number;
-}
+// Import types from the centralized types file
+import type { SchemaObject } from "@/types/openapi";
 
 interface ConstraintDisplayProps {
   schema: SchemaObject;

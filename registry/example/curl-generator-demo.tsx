@@ -9,23 +9,23 @@ export default function CurlGeneratorDemo() {
         name: "page",
         in: "query" as const,
         required: false,
-        schema: { type: "integer" }
+        schema: { type: "integer" as const }
       },
       {
         name: "Authorization",
         in: "header" as const,
         required: true,
-        schema: { type: "string" }
+        schema: { type: "string" as const }
       }
     ],
     requestBody: {
       content: {
         "application/json": {
           schema: {
-            type: "object",
+            type: "object" as const,
             properties: {
-              name: { type: "string" },
-              email: { type: "string" }
+              name: { type: "string" as const },
+              email: { type: "string" as const }
             }
           }
         }

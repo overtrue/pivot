@@ -7,7 +7,7 @@ export default function HeaderItemDemo() {
     description: "Bearer Token 认证头，用于 API 访问授权",
     required: true,
     schema: {
-      type: "string",
+      type: "string" as const,
       pattern: "^Bearer [A-Za-z0-9-_=]+\\.[A-Za-z0-9-_=]+\\.[A-Za-z0-9-_.+/=]*$"
     },
     example: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
@@ -19,7 +19,7 @@ export default function HeaderItemDemo() {
     description: "API 密钥，用于识别和认证客户端应用",
     required: true,
     schema: {
-      type: "string",
+      type: "string" as const,
       minLength: 32,
       maxLength: 64
     },
@@ -32,7 +32,7 @@ export default function HeaderItemDemo() {
     description: "请求体的媒体类型，指定数据格式",
     required: true,
     schema: {
-      type: "string",
+      type: "string" as const,
       enum: ["application/json", "application/xml", "multipart/form-data", "text/plain"]
     },
     example: "application/json"
@@ -44,7 +44,7 @@ export default function HeaderItemDemo() {
     description: "客户端可接受的响应媒体类型",
     required: false,
     schema: {
-      type: "string"
+      type: "string" as const
     },
     example: "application/json, application/xml;q=0.9, */*;q=0.8"
   };
@@ -55,7 +55,7 @@ export default function HeaderItemDemo() {
     description: "客户端应用信息，用于统计和兼容性处理",
     required: false,
     schema: {
-      type: "string"
+      type: "string" as const
     },
     example: "MyApp/1.0.0 (iOS 15.0; iPhone13,2)"
   };
@@ -66,8 +66,8 @@ export default function HeaderItemDemo() {
     description: "请求唯一标识符，用于请求追踪和调试",
     required: false,
     schema: {
-      type: "string",
-      format: "uuid"
+      type: "string" as const,
+      format: "uuid" as const
     },
     example: "123e4567-e89b-12d3-a456-426614174000"
   };
@@ -78,7 +78,7 @@ export default function HeaderItemDemo() {
     description: "客户端应用版本号，用于版本兼容性控制",
     required: false,
     schema: {
-      type: "string",
+      type: "string" as const,
       pattern: "^\\d+\\.\\d+\\.\\d+$"
     },
     example: "2.1.0"
@@ -90,7 +90,7 @@ export default function HeaderItemDemo() {
     description: "客户端首选语言，用于国际化响应",
     required: false,
     schema: {
-      type: "string"
+      type: "string" as const
     },
     example: "zh-CN,zh;q=0.9,en;q=0.8"
   };
@@ -101,7 +101,7 @@ export default function HeaderItemDemo() {
     description: "客户端时区，用于时间相关数据的本地化",
     required: false,
     schema: {
-      type: "string"
+      type: "string" as const
     },
     example: "Asia/Shanghai"
   };
@@ -112,8 +112,8 @@ export default function HeaderItemDemo() {
     description: "设备唯一标识符，用于设备管理和安全控制",
     required: false,
     schema: {
-      type: "string",
-      format: "uuid"
+      type: "string" as const,
+      format: "uuid" as const
     },
     example: "device_987fcdeb-51a2-4567-8901-234567890abc"
   };
@@ -124,8 +124,8 @@ export default function HeaderItemDemo() {
     description: "幂等性密钥，确保重复请求的安全性",
     required: false,
     schema: {
-      type: "string",
-      format: "uuid"
+      type: "string" as const,
+      format: "uuid" as const
     },
     example: "idem_456e7890-a12b-34c5-6789-012345678901"
   };
@@ -137,7 +137,7 @@ export default function HeaderItemDemo() {
     required: false,
     deprecated: true,
     schema: {
-      type: "string"
+      type: "string" as const
     },
     example: "legacy_token_abc123def456"
   };

@@ -2,23 +2,8 @@ import { cn } from "@/lib/utils";
 import React from "react";
 import { DescriptionDisplay } from "../pivot/description-display";
 
-interface SecuritySchemeObject {
-  type: "apiKey" | "http" | "oauth2" | "openIdConnect" | "mutualTLS";
-  description?: string;
-  name?: string;
-  in?: "query" | "header" | "cookie";
-  scheme?: string;
-  bearerFormat?: string;
-  flows?: {
-    [flowType: string]: {
-      authorizationUrl?: string;
-      tokenUrl?: string;
-      refreshUrl?: string;
-      scopes?: { [scope: string]: string };
-    };
-  };
-  openIdConnectUrl?: string;
-}
+// Import types from the centralized types file
+import type { SecuritySchemeObject } from "@/types/openapi";
 
 interface SecuritySchemeDisplayProps {
   name: string;
@@ -207,4 +192,4 @@ const SecuritySchemeDisplay = React.forwardRef<
 
 SecuritySchemeDisplay.displayName = "SecuritySchemeDisplay";
 
-export { SecuritySchemeDisplay, type SecuritySchemeObject };
+export { SecuritySchemeDisplay };

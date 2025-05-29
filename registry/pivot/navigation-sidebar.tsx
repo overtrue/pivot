@@ -1,10 +1,11 @@
 "use client";
 
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { Input } from "@/components/ui/input";
+import { useI18n } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
+import { MethodLabel } from "@/registry/pivot/method-label";
 import {
   ChevronRight,
   Folder,
@@ -13,57 +14,11 @@ import {
 } from "lucide-react";
 import React, { useState } from "react";
 
-// Type definitions
-export interface OpenApiSpec {
-  openapi: string;
-  info: {
-    title: string;
-    version: string;
-    description?: string;
-    [key: string]: any;
-  };
-  paths: {
-    [path: string]: PathItemObject;
-  };
-  components?: {
-    schemas?: {
-      [name: string]: any;
-    };
-    [key: string]: any;
-  };
-  tags?: TagObject[];
-  [key: string]: any;
-}
-
-export interface PathItemObject {
-  get?: OperationObject;
-  post?: OperationObject;
-  put?: OperationObject;
-  delete?: OperationObject;
-  options?: OperationObject;
-  head?: OperationObject;
-  patch?: OperationObject;
-  trace?: OperationObject;
-  [key: string]: any;
-}
-
-export interface OperationObject {
-  operationId?: string;
-  summary?: string;
-  description?: string;
-  tags?: string[];
-  parameters?: any[];
-  requestBody?: any;
-  responses?: any;
-  [key: string]: any;
-}
-
-export interface TagObject {
-  name: string;
-  description?: string;
-  externalDocs?: any;
-  [key: string]: any;
-}
+// Import types from the centralized types file
+import type {
+  OpenApiSpec,
+  PathItemObject
+} from "@/types/openapi";
 
 interface NavigationSidebarProps {
   openapi: OpenApiSpec;
@@ -74,49 +29,6 @@ interface NavigationSidebarProps {
   className?: string;
 }
 
-// Method Label Component
-interface MethodLabelProps {
-  method: string;
-  className?: string;
-}
-
-const MethodLabel = React.forwardRef<HTMLSpanElement, MethodLabelProps>(
-  ({ method, className }, ref) => {
-    const getMethodStyle = (method: string) => {
-      switch (method.toLowerCase()) {
-        case "get":
-          return "text-blue-600 bg-blue-50 border-blue-200";
-        case "post":
-          return "text-green-600 bg-green-50 border-green-200";
-        case "put":
-          return "text-orange-600 bg-orange-50 border-orange-200";
-        case "delete":
-          return "text-red-600 bg-red-50 border-red-200";
-        case "patch":
-          return "text-purple-600 bg-purple-50 border-purple-200";
-        default:
-          return "text-gray-600 bg-gray-50 border-gray-200";
-      }
-    };
-
-    return (
-      <Badge
-        ref={ref}
-        variant="outline"
-        className={cn(
-          "text-xs font-mono font-medium uppercase px-1.5 py-0.5 min-w-[40px] justify-center",
-          getMethodStyle(method),
-          className
-        )}
-      >
-        {method}
-      </Badge>
-    );
-  }
-);
-
-MethodLabel.displayName = "MethodLabel";
-
 const NavigationSidebar = React.forwardRef<HTMLDivElement, NavigationSidebarProps>(
   ({
     openapi,
@@ -126,6 +38,7 @@ const NavigationSidebar = React.forwardRef<HTMLDivElement, NavigationSidebarProp
     onSelectSchema,
     className,
   }, ref) => {
+    const { t } = useI18n();
     const [collapsedTags, setCollapsedTags] = useState<Record<string, boolean>>({});
     const [searchQuery, setSearchQuery] = useState("");
 
@@ -154,9 +67,9 @@ const NavigationSidebar = React.forwardRef<HTMLDivElement, NavigationSidebarProp
     const hasCustomTags = tags.length > 0;
 
     return (
-      <div ref={ref} className={cn("flex flex-col h-full w-80 bg-background border-r", className)}>
-        {/* Header */}
-        <div className="p-4 border-b">
+      <div ref={ref} className={cn("flex flex-col h-full w-full bg-background", className)}>
+        {/* Header - Fixed */}
+        <div className="flex-shrink-0 p-4 border-b bg-background">
           <h2 className="font-semibold text-sm">
             {openapi.info?.title || "API Documentation"}
           </h2>
@@ -167,53 +80,62 @@ const NavigationSidebar = React.forwardRef<HTMLDivElement, NavigationSidebarProp
           )}
         </div>
 
-        {/* Search */}
-        <div className="p-4 border-b">
+        {/* Search - Fixed */}
+        <div className="flex-shrink-0 p-4 border-b bg-background">
           <div className="relative">
             <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
             <Input
-              placeholder="搜索..."
+              placeholder={t("Search...")}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="pl-9"
+              className="pl-9 shadow-none"
             />
           </div>
         </div>
 
-        {/* Content */}
-        <div className="flex-1 overflow-auto p-4">
-          <div className="space-y-2">
-            {hasCustomTags ? (
-              // Render with tags
-              tags.map((tag) => {
-                const isCollapsed = collapsedTags[tag.name];
-                return (
+        {/* Content with Sticky Tags */}
+        <div className="flex-1 overflow-y-scroll">
+          {hasCustomTags ? (
+            // Render with tags
+            tags.map((tag) => {
+              const isCollapsed = collapsedTags[tag.name];
+              return (
+                <div key={tag.name} className="border-b border-border/50 last:border-b-0">
+                  {/* Sticky Tag Header */}
+                  <div className="sticky top-0 z-10 bg-background/95 backdrop-blur-sm border-b border-border">
+                    <Collapsible
+                      open={!isCollapsed}
+                      onOpenChange={() => toggleTagCollapse(tag.name)}
+                    >
+                      <CollapsibleTrigger asChild>
+                        <Button
+                          variant="ghost"
+                          className="w-full justify-between p-4 h-auto font-normal hover:bg-muted/50"
+                        >
+                          <div className="flex items-center gap-2">
+                            {isCollapsed ? (
+                              <Folder className="h-4 w-4" />
+                            ) : (
+                              <FolderOpen className="h-4 w-4" />
+                            )}
+                            <span className="text-sm font-medium">{tag.name}</span>
+                          </div>
+                          <ChevronRight className={cn(
+                            "h-4 w-4 transition-transform",
+                            !isCollapsed && "rotate-90"
+                          )} />
+                        </Button>
+                      </CollapsibleTrigger>
+                    </Collapsible>
+                  </div>
+
+                  {/* Tag Content */}
                   <Collapsible
-                    key={tag.name}
                     open={!isCollapsed}
                     onOpenChange={() => toggleTagCollapse(tag.name)}
                   >
-                    <CollapsibleTrigger asChild>
-                      <Button
-                        variant="ghost"
-                        className="w-full justify-between p-2 h-auto font-normal"
-                      >
-                        <div className="flex items-center gap-2">
-                          {isCollapsed ? (
-                            <Folder className="h-4 w-4" />
-                          ) : (
-                            <FolderOpen className="h-4 w-4" />
-                          )}
-                          <span className="text-sm font-medium">{tag.name}</span>
-                        </div>
-                        <ChevronRight className={cn(
-                          "h-4 w-4 transition-transform",
-                          !isCollapsed && "rotate-90"
-                        )} />
-                      </Button>
-                    </CollapsibleTrigger>
                     <CollapsibleContent>
-                      <div className="ml-6 mt-1 space-y-1">
+                      <div className="p-4 space-y-1">
                         {openapi.paths &&
                           Object.entries(openapi.paths).map(
                             ([path, pathItem]) => {
@@ -257,7 +179,7 @@ const NavigationSidebar = React.forwardRef<HTMLDivElement, NavigationSidebarProp
                                         )
                                       }
                                       className={cn(
-                                        "w-full justify-between p-2 h-auto font-normal",
+                                        "w-full justify-between p-2 h-auto font-normal shadow-none",
                                         isActive && "bg-muted"
                                       )}
                                     >
@@ -272,8 +194,9 @@ const NavigationSidebar = React.forwardRef<HTMLDivElement, NavigationSidebarProp
                                         )}
                                       </div>
                                       <MethodLabel
-                                        method={method.toUpperCase()}
+                                        method={method.toUpperCase() as "GET" | "POST" | "PUT" | "DELETE" | "PATCH" | "OPTIONS" | "HEAD"}
                                         className="ml-2 flex-shrink-0"
+                                        variant="compact"
                                       />
                                     </Button>
                                   );
@@ -284,90 +207,63 @@ const NavigationSidebar = React.forwardRef<HTMLDivElement, NavigationSidebarProp
                       </div>
                     </CollapsibleContent>
                   </Collapsible>
-                );
-              })
-            ) : (
-              // No tags - directly display all paths
-              openapi.paths &&
-              Object.entries(openapi.paths).map(([path, pathItem]) => {
-                const operations = Object.entries(
-                  pathItem as PathItemObject,
-                ).filter(([method]) =>
-                  ["get", "post", "put", "delete", "patch"].includes(method),
-                );
-
-                return operations
-                  .map(([method, operation]) => {
-                    if (!filterPaths(path, method, operation)) return null;
-
-                    const isActive =
-                      activePath === path &&
-                      activeMethod !== null &&
-                      activeMethod.toUpperCase() === method.toUpperCase();
-
-                    return (
-                      <Button
-                        key={`${method}-${path}`}
-                        variant={isActive ? "secondary" : "ghost"}
-                        onClick={() =>
-                          onSelectOperation(path, method, operation)
-                        }
-                        className={cn(
-                          "w-full justify-between p-2 h-auto font-normal",
-                          isActive && "bg-muted"
-                        )}
-                      >
-                        <div className="flex flex-col items-start gap-1 flex-1 min-w-0">
-                          <span className="font-mono text-xs truncate w-full text-left">
-                            {path}
-                          </span>
-                          {operation.summary && (
-                            <span className="text-xs text-muted-foreground truncate w-full text-left">
-                              {operation.summary}
-                            </span>
-                          )}
-                        </div>
-                        <MethodLabel
-                          method={method.toUpperCase()}
-                          className="ml-2 flex-shrink-0"
-                        />
-                      </Button>
-                    );
-                  })
-                  .filter(Boolean);
-              })
-            )}
-          </div>
-
-          {/* Schemas */}
-          {openapi.components?.schemas &&
-            Object.keys(openapi.components.schemas).length > 0 && (
-              <div className="mt-6">
-                <h3 className="text-sm font-medium mb-2">数据模型</h3>
-                <div className="space-y-1">
-                  {openapi.components.schemas &&
-                    Object.keys(openapi.components.schemas)
-                      .filter(
-                        (name) =>
-                          !searchQuery ||
-                          name.toLowerCase().includes(searchQuery.toLowerCase()),
-                      )
-                      .map((schemaName) => (
-                        <Button
-                          key={schemaName}
-                          variant="ghost"
-                          onClick={() => onSelectSchema?.(schemaName)}
-                          className="w-full justify-start p-2 h-auto font-normal"
-                        >
-                          <div className="h-2 w-2 rounded-full bg-muted-foreground mr-2 flex-shrink-0"></div>
-                          <span className="font-mono text-xs truncate">
-                            {schemaName}
-                          </span>
-                        </Button>
-                      ))}
                 </div>
-              </div>
-            )}
+              );
+            })
+          ) : (
+            // No tags - directly display all paths
+            <div className="p-4 space-y-1">
+              {openapi.paths &&
+                Object.entries(openapi.paths).map(([path, pathItem]) => {
+                  const operations = Object.entries(
+                    pathItem as PathItemObject,
+                  ).filter(([method]) =>
+                    ["get", "post", "put", "delete", "patch"].includes(method),
+                  );
+
+                  return operations
+                    .map(([method, operation]) => {
+                      if (!filterPaths(path, method, operation)) return null;
+
+                      const isActive =
+                        activePath === path &&
+                        activeMethod !== null &&
+                        activeMethod.toUpperCase() === method.toUpperCase();
+
+                      return (
+                        <Button
+                          key={`${method}-${path}`}
+                          variant={isActive ? "secondary" : "ghost"}
+                          onClick={() =>
+                            onSelectOperation(path, method, operation)
+                          }
+                          className={cn(
+                            "w-full justify-between p-2 h-auto font-normal",
+                            isActive && "bg-muted"
+                          )}
+                        >
+                          <div className="flex flex-col items-start gap-1 flex-1 min-w-0">
+                            <span className="font-mono text-xs truncate w-full text-left">
+                              {path}
+                            </span>
+                            {operation.summary && (
+                              <span className="text-xs text-muted-foreground truncate w-full text-left">
+                                {operation.summary}
+                              </span>
+                            )}
+                          </div>
+                          <MethodLabel
+                            method={method.toUpperCase() as "GET" | "POST" | "PUT" | "DELETE" | "PATCH" | "OPTIONS" | "HEAD"}
+                            className="ml-2 flex-shrink-0"
+                            variant="compact"
+                          />
+                        </Button>
+                      );
+                    })
+                    .filter(Boolean);
+                })}
+            </div>
+          )}
         </div>
       </div>
     );
@@ -377,9 +273,7 @@ const NavigationSidebar = React.forwardRef<HTMLDivElement, NavigationSidebarProp
 NavigationSidebar.displayName = "NavigationSidebar";
 
 export {
-  MethodLabel,
   NavigationSidebar,
-  type MethodLabelProps,
   type NavigationSidebarProps
 };
 

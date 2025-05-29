@@ -5,56 +5,56 @@ export default function AccordionComponentsSectionDemo() {
   const ecommerceComponents = {
     schemas: {
       "Product": {
-        type: "object",
+        type: "object" as const,
         required: ["id", "name", "price"],
         properties: {
-          id: { type: "string", description: "产品唯一标识符" },
-          name: { type: "string", description: "产品名称" },
-          price: { type: "number", description: "产品价格" },
-          category: { type: "string", description: "产品分类" },
-          description: { type: "string", description: "产品描述" },
+          id: { type: "string" as const, description: "产品唯一标识符" },
+          name: { type: "string" as const, description: "产品名称" },
+          price: { type: "number" as const, description: "产品价格" },
+          category: { type: "string" as const, description: "产品分类" },
+          description: { type: "string" as const, description: "产品描述" },
           images: {
-            type: "array",
-            items: { type: "string", format: "uri" },
+            type: "array" as const,
+            items: { type: "string" as const, format: "uri" as const },
             description: "产品图片列表"
           },
-          inStock: { type: "boolean", description: "是否有库存" },
+          inStock: { type: "boolean" as const, description: "是否有库存" },
           tags: {
-            type: "array",
-            items: { type: "string" },
+            type: "array" as const,
+            items: { type: "string" as const },
             description: "产品标签"
           }
         }
       },
       "Order": {
-        type: "object",
+        type: "object" as const,
         required: ["id", "customerId", "items", "totalAmount"],
         properties: {
-          id: { type: "string", description: "订单 ID" },
-          customerId: { type: "string", description: "客户 ID" },
+          id: { type: "string" as const, description: "订单 ID" },
+          customerId: { type: "string" as const, description: "客户 ID" },
           items: {
-            type: "array",
+            type: "array" as const,
             items: { $ref: "#/components/schemas/OrderItem" },
             description: "订单商品列表"
           },
-          totalAmount: { type: "number", description: "订单总金额" },
+          totalAmount: { type: "number" as const, description: "订单总金额" },
           status: {
-            type: "string",
+            type: "string" as const,
             enum: ["pending", "confirmed", "shipped", "delivered", "cancelled"],
             description: "订单状态"
           },
-          createdAt: { type: "string", format: "date-time", description: "创建时间" },
+          createdAt: { type: "string" as const, format: "date-time" as const, description: "创建时间" },
           shippingAddress: { $ref: "#/components/schemas/Address" }
         }
       },
       "OrderItem": {
-        type: "object",
+        type: "object" as const,
         required: ["productId", "quantity", "price"],
         properties: {
-          productId: { type: "string", description: "产品 ID" },
-          quantity: { type: "integer", minimum: 1, description: "购买数量" },
-          price: { type: "number", description: "单价" },
-          discount: { type: "number", description: "折扣金额" }
+          productId: { type: "string" as const, description: "产品 ID" },
+          quantity: { type: "integer" as const, minimum: 1, description: "购买数量" },
+          price: { type: "number" as const, description: "单价" },
+          discount: { type: "number" as const, description: "折扣金额" }
         }
       }
     },
@@ -64,10 +64,10 @@ export default function AccordionComponentsSectionDemo() {
         content: {
           "application/json": {
             schema: {
-              type: "object",
+              type: "object" as const,
               properties: {
                 data: {
-                  type: "array",
+                  type: "array" as const,
                   items: { $ref: "#/components/schemas/Product" }
                 },
                 pagination: { $ref: "#/components/schemas/Pagination" }
@@ -105,34 +105,34 @@ export default function AccordionComponentsSectionDemo() {
   const userManagementComponents = {
     schemas: {
       "User": {
-        type: "object",
+        type: "object" as const,
         required: ["id", "email", "name"],
         properties: {
-          id: { type: "string", description: "用户 ID" },
-          email: { type: "string", format: "email", description: "邮箱地址" },
-          name: { type: "string", description: "用户姓名" },
-          avatar: { type: "string", format: "uri", description: "头像 URL" },
+          id: { type: "string" as const, description: "用户 ID" },
+          email: { type: "string" as const, format: "email" as const, description: "邮箱地址" },
+          name: { type: "string" as const, description: "用户姓名" },
+          avatar: { type: "string" as const, format: "uri" as const, description: "头像 URL" },
           role: {
-            type: "string",
+            type: "string" as const,
             enum: ["admin", "user", "moderator"],
             description: "用户角色"
           },
-          createdAt: { type: "string", format: "date-time", description: "注册时间" },
-          lastLoginAt: { type: "string", format: "date-time", description: "最后登录时间" }
+          createdAt: { type: "string" as const, format: "date-time" as const, description: "注册时间" },
+          lastLoginAt: { type: "string" as const, format: "date-time" as const, description: "最后登录时间" }
         }
       },
       "UserProfile": {
-        type: "object",
+        type: "object" as const,
         properties: {
-          bio: { type: "string", description: "个人简介" },
-          phone: { type: "string", description: "电话号码" },
+          bio: { type: "string" as const, description: "个人简介" },
+          phone: { type: "string" as const, description: "电话号码" },
           address: { $ref: "#/components/schemas/Address" },
           preferences: {
-            type: "object",
+            type: "object" as const,
             properties: {
-              language: { type: "string", description: "首选语言" },
-              timezone: { type: "string", description: "时区" },
-              notifications: { type: "boolean", description: "是否接收通知" }
+              language: { type: "string" as const, description: "首选语言" },
+              timezone: { type: "string" as const, description: "时区" },
+              notifications: { type: "boolean" as const, description: "是否接收通知" }
             }
           }
         }
@@ -152,16 +152,16 @@ export default function AccordionComponentsSectionDemo() {
         content: {
           "application/json": {
             schema: {
-              type: "object",
+              type: "object" as const,
               properties: {
-                error: { type: "string", description: "错误信息" },
+                error: { type: "string" as const, description: "错误信息" },
                 details: {
-                  type: "array",
+                  type: "array" as const,
                   items: {
-                    type: "object",
+                    type: "object" as const,
                     properties: {
-                      field: { type: "string", description: "错误字段" },
-                      message: { type: "string", description: "错误描述" }
+                      field: { type: "string" as const, description: "错误字段" },
+                      message: { type: "string" as const, description: "错误描述" }
                     }
                   }
                 }
@@ -177,32 +177,32 @@ export default function AccordionComponentsSectionDemo() {
   const paymentComponents = {
     schemas: {
       "Payment": {
-        type: "object",
+        type: "object" as const,
         required: ["id", "amount", "currency", "status"],
         properties: {
-          id: { type: "string", description: "支付 ID" },
-          amount: { type: "number", description: "支付金额" },
-          currency: { type: "string", description: "货币代码" },
+          id: { type: "string" as const, description: "支付 ID" },
+          amount: { type: "number" as const, description: "支付金额" },
+          currency: { type: "string" as const, description: "货币代码" },
           status: {
-            type: "string",
+            type: "string" as const,
             enum: ["pending", "completed", "failed", "refunded"],
             description: "支付状态"
           },
           method: {
-            type: "string",
+            type: "string" as const,
             enum: ["credit_card", "paypal", "bank_transfer"],
             description: "支付方式"
           },
-          createdAt: { type: "string", format: "date-time", description: "创建时间" }
+          createdAt: { type: "string" as const, format: "date-time" as const, description: "创建时间" }
         }
       },
       "PaymentMethod": {
-        type: "object",
+        type: "object" as const,
         properties: {
-          type: { type: "string", description: "支付方式类型" },
-          cardLast4: { type: "string", description: "卡号后四位" },
-          expiryMonth: { type: "integer", description: "过期月份" },
-          expiryYear: { type: "integer", description: "过期年份" }
+          type: { type: "string" as const, description: "支付方式类型" },
+          cardLast4: { type: "string" as const, description: "卡号后四位" },
+          expiryMonth: { type: "integer" as const, description: "过期月份" },
+          expiryYear: { type: "integer" as const, description: "过期年份" }
         }
       }
     },

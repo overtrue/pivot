@@ -1,44 +1,21 @@
 import { cn } from "@/lib/utils";
 import React from "react";
+import { resolveRef } from "../lib/resolve-ref";
 import { OperationBox } from "./operation-box";
 
-interface ComponentsObject {
-  [key: string]: any;
-}
-
-interface ReferenceObject {
-  $ref: string;
-}
-
-interface CallbackObject {
-  [expression: string]: PathItemObject | ReferenceObject;
-}
-
-interface PathItemObject {
-  [key: string]: any;
-}
+// Import types from the centralized types file
+import type {
+  CallbackObject,
+  ComponentsObject,
+  PathItemObject,
+  ReferenceObject
+} from "@/types/openapi";
 
 interface CallbackDisplayProps {
   name: string;
   callback: CallbackObject | ReferenceObject;
   components?: ComponentsObject;
   className?: string;
-}
-
-// Simple ref resolution function
-function resolveRef<T>(
-  obj: T | ReferenceObject,
-  components?: ComponentsObject,
-  section?: string,
-): T | null {
-  if (!obj || typeof obj !== "object") return null;
-
-  if ("$ref" in obj) {
-    // This is a simplified resolution - in real implementation you'd parse the $ref path
-    return null; // For now, return null for references
-  }
-
-  return obj as T;
 }
 
 const CallbackDisplay = React.forwardRef<HTMLDivElement, CallbackDisplayProps>(
@@ -151,10 +128,6 @@ CallbackDisplay.displayName = "CallbackDisplay";
 
 export {
   CallbackDisplay,
-  type CallbackDisplayProps,
-  type CallbackObject,
-  type ComponentsObject,
-  type PathItemObject,
-  type ReferenceObject
+  type CallbackDisplayProps
 };
 

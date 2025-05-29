@@ -7,7 +7,6 @@ import {
   ContextMenuItem,
   ContextMenuTrigger,
 } from "@/components/ui/context-menu";
-import { VersionSelect } from "@/components/version-select";
 import { docsConfig } from "@/config/docs";
 import { siteConfig } from "@/config/site";
 import { cn } from "@/lib/utils";
@@ -69,9 +68,9 @@ export function MainNav() {
           </ContextMenuItem>
         </ContextMenuContent>
       </ContextMenu>
-      <div className="mr-4">
+      {/* <div className="mr-4">
         <VersionSelect />
-      </div>
+      </div> */}
       <nav className="hidden items-center space-x-6 text-sm font-medium xl:flex">
         {docsConfig.mainNav
           .filter((item) => item.href)

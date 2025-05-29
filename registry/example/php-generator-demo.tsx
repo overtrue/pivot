@@ -10,7 +10,7 @@ export default function PhpGeneratorDemo() {
         name: "X-Shop-Token",
         in: "header" as const,
         required: true,
-        schema: { type: "string" }
+        schema: { type: "string" as const }
       }
     ],
     requestBodyExample: {
@@ -36,29 +36,29 @@ export default function PhpGeneratorDemo() {
       content: {
         "application/json": {
           schema: {
-            type: "object",
+            type: "object" as const,
             required: ["name", "price", "category"],
             properties: {
-              name: { type: "string", maxLength: 200 },
-              description: { type: "string", maxLength: 2000 },
-              price: { type: "number", minimum: 0 },
-              currency: { type: "string", enum: ["USD", "EUR", "CNY"] },
-              category: { type: "string" },
-              sku: { type: "string" },
+              name: { type: "string" as const, maxLength: 200 },
+              description: { type: "string" as const, maxLength: 2000 },
+              price: { type: "number" as const, minimum: 0 },
+              currency: { type: "string" as const, enum: ["USD", "EUR", "CNY"] },
+              category: { type: "string" as const },
+              sku: { type: "string" as const },
               inventory: {
-                type: "object",
+                type: "object" as const,
                 properties: {
-                  quantity: { type: "integer", minimum: 0 },
-                  trackInventory: { type: "boolean" }
+                  quantity: { type: "integer" as const, minimum: 0 },
+                  trackInventory: { type: "boolean" as const }
                 }
               },
               specifications: {
-                type: "object",
-                additionalProperties: { type: "string" }
+                type: "object" as const,
+                additionalProperties: { type: "string" as const }
               },
               tags: {
-                type: "array",
-                items: { type: "string" }
+                type: "array" as const,
+                items: { type: "string" as const }
               }
             }
           }
@@ -78,45 +78,45 @@ export default function PhpGeneratorDemo() {
         in: "query" as const,
         required: false,
         schema: {
-          type: "array",
-          items: { type: "string", enum: ["pending", "processing", "shipped", "delivered", "cancelled"] }
+          type: "array" as const,
+          items: { type: "string" as const, enum: ["pending", "processing", "shipped", "delivered", "cancelled"] }
         }
       },
       {
         name: "customerId",
         in: "query" as const,
         required: false,
-        schema: { type: "string" }
+        schema: { type: "string" as const }
       },
       {
         name: "dateFrom",
         in: "query" as const,
         required: false,
-        schema: { type: "string", format: "date" }
+        schema: { type: "string" as const, format: "date" as const }
       },
       {
         name: "dateTo",
         in: "query" as const,
         required: false,
-        schema: { type: "string", format: "date" }
+        schema: { type: "string" as const, format: "date" as const }
       },
       {
         name: "page",
         in: "query" as const,
         required: false,
-        schema: { type: "integer", minimum: 1, default: 1 }
+        schema: { type: "integer" as const, minimum: 1, default: 1 }
       },
       {
         name: "limit",
         in: "query" as const,
         required: false,
-        schema: { type: "integer", minimum: 1, maximum: 100, default: 20 }
+        schema: { type: "integer" as const, minimum: 1, maximum: 100, default: 20 }
       },
       {
         name: "Authorization",
         in: "header" as const,
         required: true,
-        schema: { type: "string" }
+        schema: { type: "string" as const }
       }
     ],
     requestBodyExample: null,
@@ -132,13 +132,13 @@ export default function PhpGeneratorDemo() {
         name: "Idempotency-Key",
         in: "header" as const,
         required: true,
-        schema: { type: "string", format: "uuid" }
+        schema: { type: "string" as const, format: "uuid" as const }
       },
       {
         name: "X-Payment-Key",
         in: "header" as const,
         required: true,
-        schema: { type: "string" }
+        schema: { type: "string" as const }
       }
     ],
     requestBodyExample: {
@@ -167,37 +167,37 @@ export default function PhpGeneratorDemo() {
       content: {
         "application/json": {
           schema: {
-            type: "object",
+            type: "object" as const,
             required: ["amount", "currency", "paymentMethod"],
             properties: {
-              amount: { type: "integer", minimum: 1 },
-              currency: { type: "string", enum: ["usd", "eur", "cny"] },
+              amount: { type: "integer" as const, minimum: 1 },
+              currency: { type: "string" as const, enum: ["usd", "eur", "cny"] },
               paymentMethod: {
-                type: "object",
+                type: "object" as const,
                 properties: {
-                  type: { type: "string", enum: ["card", "bank_transfer", "wallet"] },
+                  type: { type: "string" as const, enum: ["card", "bank_transfer", "wallet"] },
                   card: {
-                    type: "object",
+                    type: "object" as const,
                     properties: {
-                      number: { type: "string" },
-                      expMonth: { type: "integer", minimum: 1, maximum: 12 },
-                      expYear: { type: "integer" },
-                      cvc: { type: "string" }
+                      number: { type: "string" as const },
+                      expMonth: { type: "integer" as const, minimum: 1, maximum: 12 },
+                      expYear: { type: "integer" as const },
+                      cvc: { type: "string" as const }
                     }
                   }
                 }
               },
               customer: {
-                type: "object",
+                type: "object" as const,
                 properties: {
-                  email: { type: "string", format: "email" },
-                  name: { type: "string" }
+                  email: { type: "string" as const, format: "email" as const },
+                  name: { type: "string" as const }
                 }
               },
-              description: { type: "string" },
+              description: { type: "string" as const },
               metadata: {
-                type: "object",
-                additionalProperties: { type: "string" }
+                type: "object" as const,
+                additionalProperties: { type: "string" as const }
               }
             }
           }
@@ -216,19 +216,19 @@ export default function PhpGeneratorDemo() {
         name: "articleId",
         in: "path" as const,
         required: true,
-        schema: { type: "string" }
+        schema: { type: "string" as const }
       },
       {
         name: "publish",
         in: "query" as const,
         required: false,
-        schema: { type: "boolean", default: false }
+        schema: { type: "boolean" as const, default: false }
       },
       {
         name: "X-CMS-Token",
         in: "header" as const,
         required: true,
-        schema: { type: "string" }
+        schema: { type: "string" as const }
       }
     ],
     requestBodyExample: {
@@ -253,40 +253,40 @@ export default function PhpGeneratorDemo() {
       content: {
         "application/json": {
           schema: {
-            type: "object",
+            type: "object" as const,
             required: ["title", "content"],
             properties: {
-              title: { type: "string", maxLength: 200 },
-              content: { type: "string" },
-              excerpt: { type: "string", maxLength: 500 },
+              title: { type: "string" as const, maxLength: 200 },
+              content: { type: "string" as const },
+              excerpt: { type: "string" as const, maxLength: 500 },
               author: {
-                type: "object",
+                type: "object" as const,
                 properties: {
-                  id: { type: "string" },
-                  name: { type: "string" },
-                  email: { type: "string", format: "email" }
+                  id: { type: "string" as const },
+                  name: { type: "string" as const },
+                  email: { type: "string" as const, format: "email" as const }
                 }
               },
               categories: {
-                type: "array",
-                items: { type: "string" }
+                type: "array" as const,
+                items: { type: "string" as const }
               },
               tags: {
-                type: "array",
-                items: { type: "string" }
+                type: "array" as const,
+                items: { type: "string" as const }
               },
               seo: {
-                type: "object",
+                type: "object" as const,
                 properties: {
-                  metaTitle: { type: "string" },
-                  metaDescription: { type: "string" },
+                  metaTitle: { type: "string" as const },
+                  metaDescription: { type: "string" as const },
                   keywords: {
-                    type: "array",
-                    items: { type: "string" }
+                    type: "array" as const,
+                    items: { type: "string" as const }
                   }
                 }
               },
-              publishedAt: { type: "string", format: "date-time" }
+              publishedAt: { type: "string" as const, format: "date-time" as const }
             }
           }
         }
@@ -304,7 +304,7 @@ export default function PhpGeneratorDemo() {
         name: "X-Mail-Key",
         in: "header" as const,
         required: true,
-        schema: { type: "string" }
+        schema: { type: "string" as const }
       }
     ],
     requestBodyExample: {
@@ -342,53 +342,53 @@ export default function PhpGeneratorDemo() {
       content: {
         "application/json": {
           schema: {
-            type: "object",
+            type: "object" as const,
             required: ["from", "to", "subject", "content"],
             properties: {
               from: {
-                type: "object",
+                type: "object" as const,
                 properties: {
-                  email: { type: "string", format: "email" },
-                  name: { type: "string" }
+                  email: { type: "string" as const, format: "email" as const },
+                  name: { type: "string" as const }
                 }
               },
               to: {
-                type: "array",
+                type: "array" as const,
                 items: {
-                  type: "object",
+                  type: "object" as const,
                   properties: {
-                    email: { type: "string", format: "email" },
-                    name: { type: "string" }
+                    email: { type: "string" as const, format: "email" as const },
+                    name: { type: "string" as const }
                   }
                 }
               },
-              cc: { type: "array", items: { type: "object" } },
-              bcc: { type: "array", items: { type: "object" } },
-              subject: { type: "string" },
+              cc: { type: "array" as const, items: { type: "object" as const } },
+              bcc: { type: "array" as const, items: { type: "object" as const } },
+              subject: { type: "string" as const },
               content: {
-                type: "object",
+                type: "object" as const,
                 properties: {
-                  text: { type: "string" },
-                  html: { type: "string" }
+                  text: { type: "string" as const },
+                  html: { type: "string" as const }
                 }
               },
               attachments: {
-                type: "array",
+                type: "array" as const,
                 items: {
-                  type: "object",
+                  type: "object" as const,
                   properties: {
-                    filename: { type: "string" },
-                    content: { type: "string" },
-                    type: { type: "string" }
+                    filename: { type: "string" as const },
+                    content: { type: "string" as const },
+                    type: { type: "string" as const }
                   }
                 }
               },
               options: {
-                type: "object",
+                type: "object" as const,
                 properties: {
-                  trackOpens: { type: "boolean" },
-                  trackClicks: { type: "boolean" },
-                  priority: { type: "string", enum: ["low", "normal", "high"] }
+                  trackOpens: { type: "boolean" as const },
+                  trackClicks: { type: "boolean" as const },
+                  priority: { type: "string" as const, enum: ["low", "normal", "high"] }
                 }
               }
             }

@@ -1,3 +1,6 @@
+"use client";
+
+import { I18nProvider } from "@/lib/i18n/I18nProvider";
 import { ExampleDisplay } from "@/registry/pivot/example-display";
 
 export default function ExampleDisplayDemo() {
@@ -247,83 +250,184 @@ export default function ExampleDisplayDemo() {
     }
   ];
 
+  const jsonExample = {
+    id: "123",
+    name: "John Doe",
+    email: "john@example.com",
+    age: 30,
+    active: true,
+    address: {
+      street: "123 Main St",
+      city: "New York",
+      zipCode: "10001"
+    },
+    hobbies: ["reading", "swimming", "coding"]
+  };
+
+  const xmlExample = `<?xml version="1.0" encoding="UTF-8"?>
+<user>
+  <id>123</id>
+  <name>John Doe</name>
+  <email>john@example.com</email>
+  <age>30</age>
+  <active>true</active>
+</user>`;
+
+  const yamlExample = `id: 123
+name: John Doe
+email: john@example.com
+age: 30
+active: true
+address:
+  street: 123 Main St
+  city: New York
+  zipCode: "10001"
+hobbies:
+  - reading
+  - swimming
+  - coding`;
+
   return (
-    <div className="space-y-8 min-w-md">
-      <div>
-        <h4 className="text-sm font-medium mb-3">用户信息示例展示</h4>
-        <p className="text-xs text-neutral-600 dark:text-neutral-400 mb-3">
-          完整的用户对象，包含基本信息、资料和偏好设置
-        </p>
-        <ExampleDisplay example={userExample} />
-      </div>
+    <I18nProvider>
+      <div className="space-y-8 p-6">
+        <h2 className="text-2xl font-bold">Example Display Demo</h2>
 
-      <div>
-        <h4 className="text-sm font-medium mb-3">产品信息示例展示</h4>
-        <p className="text-xs text-neutral-600 dark:text-neutral-400 mb-3">
-          电商产品的详细信息，包含价格、规格、库存等数据
-        </p>
-        <ExampleDisplay example={productExample} />
-      </div>
-
-      <div>
-        <h4 className="text-sm font-medium mb-3">订单信息示例展示</h4>
-        <p className="text-xs text-neutral-600 dark:text-neutral-400 mb-3">
-          完整的订单对象，包含商品列表、价格计算和配送信息
-        </p>
-        <ExampleDisplay example={orderExample} />
-      </div>
-
-      <div>
-        <h4 className="text-sm font-medium mb-3">API 响应示例展示</h4>
-        <p className="text-xs text-neutral-600 dark:text-neutral-400 mb-3">
-          标准的分页列表 API 响应格式，包含数据和分页信息
-        </p>
-        <ExampleDisplay example={apiResponseExample} />
-      </div>
-
-      <div>
-        <h4 className="text-sm font-medium mb-3">错误响应示例展示</h4>
-        <p className="text-xs text-neutral-600 dark:text-neutral-400 mb-3">
-          参数验证失败的错误响应，包含详细的字段错误信息
-        </p>
-        <ExampleDisplay example={errorResponseExample} />
-      </div>
-
-      <div>
-        <h4 className="text-sm font-medium mb-3">支付信息示例展示</h4>
-        <p className="text-xs text-neutral-600 dark:text-neutral-400 mb-3">
-          信用卡支付的完整交易记录，包含支付状态和卡片信息
-        </p>
-        <ExampleDisplay example={paymentExample} />
-      </div>
-
-      <div>
-        <h4 className="text-sm font-medium mb-3">文件上传示例展示</h4>
-        <p className="text-xs text-neutral-600 dark:text-neutral-400 mb-3">
-          文件上传成功后的响应信息，包含文件 URL 和元数据
-        </p>
-        <ExampleDisplay example={fileUploadExample} />
-      </div>
-
-      <div>
-        <h4 className="text-sm font-medium mb-3">数组数据示例展示</h4>
-        <p className="text-xs text-neutral-600 dark:text-neutral-400 mb-3">
-          简单的字符串数组，展示列表类型数据的格式
-        </p>
-        <ExampleDisplay example={arrayExample} />
-      </div>
-
-      <div>
-        <h4 className="text-sm font-medium mb-3">基础数据类型示例</h4>
-        <p className="text-xs text-neutral-600 dark:text-neutral-400 mb-3">
-          各种基础数据类型的示例展示
-        </p>
         <div className="space-y-4">
-          {primitiveExamples.map((example, index) => (
-            <ExampleDisplay key={index} example={example} />
-          ))}
+          <h3 className="text-lg font-semibold">JSON Example with Copy Button</h3>
+          <ExampleDisplay
+            example={jsonExample}
+            language="json"
+            title="User Object"
+            className="max-w-2xl"
+          />
+        </div>
+
+        <div className="space-y-4">
+          <h3 className="text-lg font-semibold">XML Example with Copy Button</h3>
+          <ExampleDisplay
+            example={xmlExample}
+            language="xml"
+            title="User XML"
+            className="max-w-2xl"
+          />
+        </div>
+
+        <div className="space-y-4">
+          <h3 className="text-lg font-semibold">YAML Example with Copy Button</h3>
+          <ExampleDisplay
+            example={yamlExample}
+            language="yaml"
+            title="User YAML"
+            className="max-w-2xl"
+          />
+        </div>
+
+        <div className="space-y-4">
+          <h3 className="text-lg font-semibold">Example without Copy Button</h3>
+          <ExampleDisplay
+            example={jsonExample}
+            language="json"
+            title="User Object (No Copy)"
+            disableCopy={true}
+            className="max-w-2xl"
+          />
+        </div>
+
+        <div className="space-y-4">
+          <h3 className="text-lg font-semibold">Example without Title</h3>
+          <ExampleDisplay
+            example={jsonExample}
+            language="json"
+            className="max-w-2xl"
+          />
+        </div>
+
+        <div className="space-y-4">
+          <h3 className="text-lg font-semibold">Empty Example</h3>
+          <ExampleDisplay
+            example={null}
+            language="json"
+            title="No Data"
+            className="max-w-2xl"
+          />
+        </div>
+
+        <div>
+          <h4 className="text-sm font-medium mb-3">用户信息示例展示</h4>
+          <p className="text-xs text-neutral-600 dark:text-neutral-400 mb-3">
+            完整的用户对象，包含基本信息、资料和偏好设置
+          </p>
+          <ExampleDisplay example={userExample} />
+        </div>
+
+        <div>
+          <h4 className="text-sm font-medium mb-3">产品信息示例展示</h4>
+          <p className="text-xs text-neutral-600 dark:text-neutral-400 mb-3">
+            电商产品的详细信息，包含价格、规格、库存等数据
+          </p>
+          <ExampleDisplay example={productExample} />
+        </div>
+
+        <div>
+          <h4 className="text-sm font-medium mb-3">订单信息示例展示</h4>
+          <p className="text-xs text-neutral-600 dark:text-neutral-400 mb-3">
+            完整的订单对象，包含商品列表、价格计算和配送信息
+          </p>
+          <ExampleDisplay example={orderExample} />
+        </div>
+
+        <div>
+          <h4 className="text-sm font-medium mb-3">API 响应示例展示</h4>
+          <p className="text-xs text-neutral-600 dark:text-neutral-400 mb-3">
+            标准的分页列表 API 响应格式，包含数据和分页信息
+          </p>
+          <ExampleDisplay example={apiResponseExample} />
+        </div>
+
+        <div>
+          <h4 className="text-sm font-medium mb-3">错误响应示例展示</h4>
+          <p className="text-xs text-neutral-600 dark:text-neutral-400 mb-3">
+            参数验证失败的错误响应，包含详细的字段错误信息
+          </p>
+          <ExampleDisplay example={errorResponseExample} />
+        </div>
+
+        <div>
+          <h4 className="text-sm font-medium mb-3">支付信息示例展示</h4>
+          <p className="text-xs text-neutral-600 dark:text-neutral-400 mb-3">
+            信用卡支付的完整交易记录，包含支付状态和卡片信息
+          </p>
+          <ExampleDisplay example={paymentExample} />
+        </div>
+
+        <div>
+          <h4 className="text-sm font-medium mb-3">文件上传示例展示</h4>
+          <p className="text-xs text-neutral-600 dark:text-neutral-400 mb-3">
+            文件上传成功后的响应信息，包含文件 URL 和元数据
+          </p>
+          <ExampleDisplay example={fileUploadExample} />
+        </div>
+
+        <div>
+          <h4 className="text-sm font-medium mb-3">数组数据示例展示</h4>
+          <p className="text-xs text-neutral-600 dark:text-neutral-400 mb-3">
+            简单的字符串数组，展示列表类型数据的格式
+          </p>
+          <ExampleDisplay example={arrayExample} />
+        </div>
+
+        <div>
+          <h4 className="text-sm font-medium mb-3">基础数据类型示例</h4>
+          <p className="text-xs text-neutral-600 dark:text-neutral-400 mb-3">
+            各种基础数据类型的示例展示
+          </p>
+          <div className="space-y-4">
+            {primitiveExamples.map((example, index) => (
+              <ExampleDisplay key={index} example={example} />
+            ))}
+          </div>
         </div>
       </div>
-    </div>
+    </I18nProvider>
   );
 }

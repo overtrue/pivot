@@ -3,22 +3,11 @@ import React from "react";
 import { DescriptionDisplay } from "../pivot/description-display";
 import { OperationBox } from "./operation-box";
 
-interface ComponentsObject {
-  [key: string]: any;
-}
-
-interface PathItemObject {
-  description?: string;
-  get?: any;
-  post?: any;
-  put?: any;
-  delete?: any;
-  options?: any;
-  head?: any;
-  patch?: any;
-  trace?: any;
-  [key: string]: any;
-}
+// Import types from the centralized types file
+import type {
+  ComponentsObject,
+  PathItemObject
+} from "@/types/openapi";
 
 interface PathItemDisplayProps {
   path: string;
@@ -51,7 +40,7 @@ const PathItemDisplay = React.forwardRef<HTMLDivElement, PathItemDisplayProps>(
       { method: "head", operation: pathItem.head },
       { method: "patch", operation: pathItem.patch },
       { method: "trace", operation: pathItem.trace },
-    ].filter(({ operation }) => operation);
+    ].filter(({ operation }) => operation !== undefined);
 
     return (
       <div ref={ref} className={cn("space-y-4", className)}>
@@ -68,7 +57,7 @@ const PathItemDisplay = React.forwardRef<HTMLDivElement, PathItemDisplayProps>(
               key={method}
               path={path}
               method={method.toUpperCase()}
-              operation={operation}
+              operation={operation!}
               components={components}
             />
           ))}

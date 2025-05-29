@@ -1,27 +1,17 @@
+"use client";
+
+import { useI18n } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
+import type { ComponentsObject, ParameterObject, ReferenceObject } from "@/types/openapi";
 import React from "react";
-import { SectionTitle } from "../pivot/section-title";
+import { resolveRef } from "../lib/resolve-ref";
 import { ParameterItem } from "./parameter-item";
+import { SectionTitle } from "./section-title";
 
-interface ParameterObject {
-  name: string;
-  in: "query" | "header" | "path" | "cookie";
-  required?: boolean;
-  description?: string;
-  deprecated?: boolean;
-  schema?: any;
-  style?: string;
-  explode?: boolean;
-  examples?: Record<string, any>;
-}
-
-interface ReferenceObject {
-  $ref: string;
-}
-
-interface ComponentsObject {
-  [key: string]: any;
-}
+// Import types from the centralized types file
+import type {
+  StyleType
+} from "@/types/openapi";
 
 interface ParametersSectionProps {
   parameters: (ParameterObject | ReferenceObject)[];
@@ -30,55 +20,31 @@ interface ParametersSectionProps {
   expanded?: boolean;
 }
 
-// Simple ref resolution function (simplified version)
-function resolveRef<T>(
-  obj: T | ReferenceObject,
-  components?: ComponentsObject,
-  section?: string,
-): T | null {
-  if (!obj || typeof obj !== "object") return null;
-
-  if ("$ref" in obj) {
-    // This is a simplified resolution - in real implementation you'd parse the $ref path
-    return null; // For now, return null for references
-  }
-
-  return obj as T;
-}
-
 const ParametersSection = React.forwardRef<
   HTMLDivElement,
   ParametersSectionProps
 >(({ parameters, components, className, expanded }, ref) => {
+  const { t } = useI18n();
+
   if (!parameters || parameters.length === 0) {
     return null;
   }
 
   return (
     <div ref={ref} className={cn(className, "dark:text-neutral-200")}>
-      <SectionTitle title="Parameters" className="text-lg font-medium mb-3" />
+      <SectionTitle title={t('Parameters')} className="text-lg font-medium mb-3" />
       <div className="space-y-3">
         {parameters.map((paramOrRef, index) => {
           // Resolve parameter ref
-          const parameter = resolveRef<ParameterObject>(
-            paramOrRef,
-            components,
-            "parameters",
-          );
+          const parameter = resolveRef<ParameterObject>(paramOrRef, components, 'parameters');
 
           if (!parameter) {
-            const refString =
-              paramOrRef &&
-              typeof paramOrRef === "object" &&
-              "$ref" in paramOrRef
-                ? (paramOrRef as ReferenceObject).$ref
-                : `[invalid parameter at index ${index}]`;
+            const refString = (paramOrRef && typeof paramOrRef === 'object' && '$ref' in paramOrRef)
+              ? (paramOrRef as ReferenceObject).$ref
+              : `[invalid parameter at index ${index}]`;
             return (
-              <div
-                key={index}
-                className="text-xs text-red-500 dark:text-red-400 p-1 border border-dashed dark:border-red-700 rounded"
-              >
-                Failed to resolve parameter: {refString}
+              <div key={index} className="text-xs text-red-500 dark:text-red-400 p-1 border border-dashed dark:border-red-700 rounded">
+                {t('Failed to resolve parameter:')} {refString}
               </div>
             );
           }
@@ -91,12 +57,8 @@ const ParametersSection = React.forwardRef<
               required={parameter.required ?? false}
               description={parameter.description}
               deprecated={parameter.deprecated}
-              schema={
-                parameter.schema && typeof parameter.schema === "object"
-                  ? parameter.schema
-                  : { type: "string" }
-              }
-              style={parameter.style as any}
+              schema={parameter.schema && 'type' in parameter.schema ? parameter.schema : {}}
+              style={parameter.style as StyleType}
               explode={parameter.explode}
               examples={parameter.examples}
               components={components}
@@ -111,10 +73,5 @@ const ParametersSection = React.forwardRef<
 
 ParametersSection.displayName = "ParametersSection";
 
-export {
-  ParametersSection,
-  type ComponentsObject,
-  type ParameterObject,
-  type ParametersSectionProps,
-  type ReferenceObject,
-};
+export { ParametersSection, type ParametersSectionProps };
+

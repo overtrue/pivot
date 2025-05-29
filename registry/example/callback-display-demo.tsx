@@ -1,56 +1,57 @@
 import { CallbackDisplay } from "@/registry/pivot/callback-display";
+import type { CallbackObject, DataType } from "@/types/openapi";
 
 export default function CallbackDisplayDemo() {
   // 支付成功回调
-  const paymentSuccessCallback = {
+  const paymentSuccessCallback: CallbackObject = {
     "{$request.body#/callbackUrl}": {
       post: {
-        summary: "支付成功通知回调",
-        description: "当支付成功完成时，系统会向商户指定的回调 URL 发送支付结果通知",
+        summary: "支付成功通知",
+        description: "当支付完成时，系统会向指定的回调URL发送支付结果通知",
         requestBody: {
           description: "支付成功通知数据",
           content: {
             "application/json": {
               schema: {
-                type: "object",
-                required: ["paymentId", "orderId", "status", "amount", "timestamp"],
+                type: "object" as const as DataType,
+                required: ["paymentId", "orderId", "status", "amount"],
                 properties: {
                   paymentId: {
-                    type: "string",
-                    description: "支付交易 ID",
-                    example: "pay_abc123def456"
+                    type: "string" as const as DataType,
+                    description: "支付订单号",
+                    example: "pay_1234567890"
                   },
                   orderId: {
-                    type: "string",
+                    type: "string" as const as DataType,
                     description: "商户订单号",
-                    example: "order_456e7890"
+                    example: "order_abc123"
                   },
                   status: {
-                    type: "string",
-                    enum: ["success"],
+                    type: "string" as const as DataType,
+                    enum: ["success", "failed", "pending"],
                     description: "支付状态",
                     example: "success"
                   },
                   amount: {
-                    type: "number",
-                    description: "支付金额",
-                    example: 99.99
+                    type: "number" as const as DataType,
+                    description: "支付金额（分）",
+                    example: 9999
                   },
                   currency: {
-                    type: "string",
+                    type: "string" as const as DataType,
                     description: "货币代码",
-                    example: "USD"
+                    example: "CNY"
                   },
                   timestamp: {
-                    type: "string",
-                    format: "date-time",
+                    type: "string" as const as DataType,
+                    format: "date-time" as const,
                     description: "支付完成时间",
                     example: "2024-03-15T14:30:00Z"
                   },
                   signature: {
-                    type: "string",
-                    description: "回调签名，用于验证请求真实性",
-                    example: "sha256=abc123def456..."
+                    type: "string" as const as DataType,
+                    description: "数字签名，用于验证请求的真实性",
+                    example: "a1b2c3d4e5f6..."
                   }
                 }
               }
@@ -59,26 +60,7 @@ export default function CallbackDisplayDemo() {
         },
         responses: {
           "200": {
-            description: "回调处理成功",
-            content: {
-              "application/json": {
-                schema: {
-                  type: "object",
-                  properties: {
-                    received: {
-                      type: "boolean",
-                      example: true
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            description: "回调数据格式错误"
-          },
-          "401": {
-            description: "签名验证失败"
+            description: "支付通知处理成功"
           }
         }
       }
@@ -86,54 +68,55 @@ export default function CallbackDisplayDemo() {
   };
 
   // 订单状态变更回调
-  const orderStatusCallback = {
-    "{$request.body#/webhookUrl}": {
+  const orderStatusCallback: CallbackObject = {
+    "{$request.body#/statusUpdateUrl}": {
       post: {
-        summary: "订单状态变更通知",
-        description: "当订单状态发生变更时（如发货、配送、签收等），系统会发送状态更新通知",
+        summary: "订单状态更新通知",
+        description: "当订单状态发生变更时，系统会发送状态更新通知",
         requestBody: {
-          description: "订单状态变更通知",
+          description: "订单状态更新数据",
           content: {
             "application/json": {
               schema: {
-                type: "object",
-                required: ["orderId", "status", "timestamp"],
+                type: "object" as const as DataType,
+                required: ["orderId", "status", "updatedAt"],
                 properties: {
                   orderId: {
-                    type: "string",
+                    type: "string" as const as DataType,
                     description: "订单 ID",
-                    example: "order_789xyz123"
-                  },
-                  customerId: {
-                    type: "string",
-                    description: "客户 ID",
-                    example: "user_456abc789"
-                  },
-                  status: {
-                    type: "string",
-                    enum: ["confirmed", "processing", "shipped", "delivered", "cancelled"],
-                    description: "订单状态",
-                    example: "shipped"
+                    example: "order_abc123"
                   },
                   previousStatus: {
-                    type: "string",
-                    description: "之前的订单状态",
+                    type: "string" as const as DataType,
+                    enum: ["pending", "processing", "shipped", "delivered", "cancelled"],
+                    description: "变更前状态",
                     example: "processing"
                   },
+                  status: {
+                    type: "string" as const as DataType,
+                    enum: ["pending", "processing", "shipped", "delivered", "cancelled"],
+                    description: "当前状态",
+                    example: "shipped"
+                  },
                   trackingNumber: {
-                    type: "string",
-                    description: "物流跟踪号（仅在发货时提供）",
+                    type: "string" as const as DataType,
+                    description: "物流追踪号（如果适用）",
                     example: "SF1234567890"
                   },
-                  timestamp: {
-                    type: "string",
-                    format: "date-time",
-                    description: "状态变更时间",
-                    example: "2024-03-15T16:45:00Z"
+                  carrier: {
+                    type: "string" as const as DataType,
+                    description: "承运商",
+                    example: "顺丰速运"
+                  },
+                  updatedAt: {
+                    type: "string" as const as DataType,
+                    format: "date-time" as const,
+                    description: "状态更新时间",
+                    example: "2024-03-16T10:15:00Z"
                   },
                   estimatedDelivery: {
-                    type: "string",
-                    format: "date-time",
+                    type: "string" as const as DataType,
+                    format: "date-time" as const,
                     description: "预计送达时间",
                     example: "2024-03-17T18:00:00Z"
                   }
@@ -152,7 +135,7 @@ export default function CallbackDisplayDemo() {
   };
 
   // 用户注册回调
-  const userRegistrationCallback = {
+  const userRegistrationCallback: CallbackObject = {
     "{$request.body#/notificationUrl}": {
       post: {
         summary: "用户注册完成通知",
@@ -162,39 +145,39 @@ export default function CallbackDisplayDemo() {
           content: {
             "application/json": {
               schema: {
-                type: "object",
+                type: "object" as const as DataType,
                 required: ["userId", "email", "registrationTime"],
                 properties: {
                   userId: {
-                    type: "string",
+                    type: "string" as const as DataType,
                     description: "新注册用户的 ID",
                     example: "user_new123456"
                   },
                   email: {
-                    type: "string",
-                    format: "email",
+                    type: "string" as const as DataType,
+                    format: "email" as const,
                     description: "用户邮箱地址",
                     example: "newuser@example.com"
                   },
                   name: {
-                    type: "string",
+                    type: "string" as const as DataType,
                     description: "用户姓名",
                     example: "张三"
                   },
                   registrationTime: {
-                    type: "string",
-                    format: "date-time",
+                    type: "string" as const as DataType,
+                    format: "date-time" as const,
                     description: "注册完成时间",
                     example: "2024-03-15T10:30:00Z"
                   },
                   source: {
-                    type: "string",
+                    type: "string" as const as DataType,
                     enum: ["web", "mobile", "api"],
                     description: "注册来源",
                     example: "web"
                   },
                   emailVerified: {
-                    type: "boolean",
+                    type: "boolean" as const as DataType,
                     description: "邮箱是否已验证",
                     example: true
                   }
@@ -213,7 +196,7 @@ export default function CallbackDisplayDemo() {
   };
 
   // 数据同步回调
-  const dataSyncCallback = {
+  const dataSyncCallback: CallbackObject = {
     "{$request.body#/syncEndpoint}": {
       post: {
         summary: "数据同步完成通知",
@@ -223,61 +206,61 @@ export default function CallbackDisplayDemo() {
           content: {
             "application/json": {
               schema: {
-                type: "object",
+                type: "object" as const as DataType,
                 required: ["syncId", "status", "completedAt"],
                 properties: {
                   syncId: {
-                    type: "string",
+                    type: "string" as const as DataType,
                     description: "同步任务 ID",
                     example: "sync_task_789"
                   },
                   dataType: {
-                    type: "string",
+                    type: "string" as const as DataType,
                     enum: ["users", "products", "orders", "inventory"],
                     description: "同步的数据类型",
                     example: "products"
                   },
                   status: {
-                    type: "string",
+                    type: "string" as const as DataType,
                     enum: ["success", "failed", "partial"],
                     description: "同步状态",
                     example: "success"
                   },
                   recordsProcessed: {
-                    type: "integer",
+                    type: "integer" as const as DataType,
                     description: "处理的记录数",
                     example: 1250
                   },
                   recordsSucceeded: {
-                    type: "integer",
+                    type: "integer" as const as DataType,
                     description: "成功处理的记录数",
                     example: 1248
                   },
                   recordsFailed: {
-                    type: "integer",
+                    type: "integer" as const as DataType,
                     description: "处理失败的记录数",
                     example: 2
                   },
                   startedAt: {
-                    type: "string",
-                    format: "date-time",
+                    type: "string" as const as DataType,
+                    format: "date-time" as const,
                     description: "同步开始时间",
                     example: "2024-03-15T02:00:00Z"
                   },
                   completedAt: {
-                    type: "string",
-                    format: "date-time",
+                    type: "string" as const as DataType,
+                    format: "date-time" as const,
                     description: "同步完成时间",
                     example: "2024-03-15T02:15:30Z"
                   },
                   errors: {
-                    type: "array",
+                    type: "array" as const as DataType,
                     description: "错误详情列表",
                     items: {
-                      type: "object",
+                      type: "object" as const as DataType,
                       properties: {
-                        recordId: { type: "string" },
-                        error: { type: "string" }
+                        recordId: { type: "string" as const as DataType },
+                        error: { type: "string" as const as DataType }
                       }
                     }
                   }

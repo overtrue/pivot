@@ -1,5 +1,6 @@
 "use client";
 
+import { useI18n } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
 import { Clipboard, ClipboardCheck } from "lucide-react";
 import React, { useEffect, useState } from "react";
@@ -13,6 +14,7 @@ interface CopyButtonProps {
 
 const CopyButton = React.forwardRef<HTMLButtonElement, CopyButtonProps>(
   ({ text, className = "", iconClassName = "", size = "md" }, ref) => {
+    const { t } = useI18n();
     const [copied, setCopied] = useState(false);
 
     // 自动还原图标
@@ -30,7 +32,7 @@ const CopyButton = React.forwardRef<HTMLButtonElement, CopyButtonProps>(
         await navigator.clipboard.writeText(text);
         setCopied(true);
       } catch (err) {
-        console.error("Copy failed:", err);
+        console.error(t('Copy failed:'), err);
       }
     };
 
@@ -57,7 +59,7 @@ const CopyButton = React.forwardRef<HTMLButtonElement, CopyButtonProps>(
           className,
           copied ? "text-green-600 dark:text-green-400" : "",
         )}
-        title="Copy to clipboard"
+        title={t('Copy to clipboard')}
       >
         {copied ? (
           <ClipboardCheck size={iconSizes[size]} className={iconClassName} />
@@ -71,4 +73,4 @@ const CopyButton = React.forwardRef<HTMLButtonElement, CopyButtonProps>(
 
 CopyButton.displayName = "CopyButton";
 
-export { CopyButton };
+export { CopyButton, type CopyButtonProps };

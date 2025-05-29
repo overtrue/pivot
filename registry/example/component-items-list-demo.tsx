@@ -15,43 +15,43 @@ export default function ComponentItemsListDemo() {
   const userManagementComponents = {
     schemas: {
       "User": {
-        type: "object",
+        type: "object" as const,
         required: ["id", "email", "name"],
         properties: {
-          id: { type: "string", description: "用户唯一标识符" },
-          email: { type: "string", format: "email", description: "用户邮箱地址" },
-          name: { type: "string", description: "用户姓名" },
-          avatar: { type: "string", format: "uri", description: "用户头像 URL" },
+          id: { type: "string" as const, description: "用户唯一标识符" },
+          email: { type: "string" as const, format: "email" as const, description: "用户邮箱地址" },
+          name: { type: "string" as const, description: "用户姓名" },
+          avatar: { type: "string" as const, format: "uri" as const, description: "用户头像 URL" },
           role: {
-            type: "string",
+            type: "string" as const,
             enum: ["admin", "user", "moderator"],
             description: "用户角色"
           },
-          createdAt: { type: "string", format: "date-time", description: "注册时间" }
+          createdAt: { type: "string" as const, format: "date-time" as const, description: "注册时间" }
         }
       },
       "UserProfile": {
-        type: "object",
+        type: "object" as const,
         properties: {
-          bio: { type: "string", description: "个人简介" },
-          phone: { type: "string", description: "电话号码" },
+          bio: { type: "string" as const, description: "个人简介" },
+          phone: { type: "string" as const, description: "电话号码" },
           address: { $ref: "#/components/schemas/Address" },
           preferences: {
-            type: "object",
+            type: "object" as const,
             properties: {
-              language: { type: "string", description: "首选语言" },
-              timezone: { type: "string", description: "时区设置" }
+              language: { type: "string" as const, description: "首选语言" },
+              timezone: { type: "string" as const, description: "时区设置" }
             }
           }
         }
       },
       "Address": {
-        type: "object",
+        type: "object" as const,
         properties: {
-          country: { type: "string", description: "国家" },
-          city: { type: "string", description: "城市" },
-          street: { type: "string", description: "街道地址" },
-          zipCode: { type: "string", description: "邮政编码" }
+          country: { type: "string" as const, description: "国家" },
+          city: { type: "string" as const, description: "城市" },
+          street: { type: "string" as const, description: "街道地址" },
+          zipCode: { type: "string" as const, description: "邮政编码" }
         }
       }
     },
@@ -69,10 +69,10 @@ export default function ComponentItemsListDemo() {
         content: {
           "application/json": {
             schema: {
-              type: "object",
+              type: "object" as const,
               properties: {
                 data: {
-                  type: "array",
+                  type: "array" as const,
                   items: { $ref: "#/components/schemas/User" }
                 },
                 pagination: { $ref: "#/components/schemas/Pagination" }
@@ -88,44 +88,44 @@ export default function ComponentItemsListDemo() {
   const ecommerceComponents = {
     schemas: {
       "Product": {
-        type: "object",
+        type: "object" as const,
         required: ["id", "name", "price"],
         properties: {
-          id: { type: "string", description: "产品 ID" },
-          name: { type: "string", description: "产品名称" },
-          description: { type: "string", description: "产品描述" },
-          price: { type: "number", description: "产品价格" },
-          currency: { type: "string", description: "货币代码" },
-          category: { type: "string", description: "产品分类" },
-          brand: { type: "string", description: "品牌名称" },
+          id: { type: "string" as const, description: "产品 ID" },
+          name: { type: "string" as const, description: "产品名称" },
+          description: { type: "string" as const, description: "产品描述" },
+          price: { type: "number" as const, description: "产品价格" },
+          currency: { type: "string" as const, description: "货币代码" },
+          category: { type: "string" as const, description: "产品分类" },
+          brand: { type: "string" as const, description: "品牌名称" },
           images: {
-            type: "array",
-            items: { type: "string", format: "uri" },
+            type: "array" as const,
+            items: { type: "string" as const, format: "uri" as const },
             description: "产品图片列表"
           },
-          inStock: { type: "boolean", description: "是否有库存" },
-          stockQuantity: { type: "integer", description: "库存数量" }
+          inStock: { type: "boolean" as const, description: "是否有库存" },
+          stockQuantity: { type: "integer" as const, description: "库存数量" }
         }
       },
       "Category": {
-        type: "object",
+        type: "object" as const,
         properties: {
-          id: { type: "string", description: "分类 ID" },
-          name: { type: "string", description: "分类名称" },
-          description: { type: "string", description: "分类描述" },
-          parentId: { type: "string", description: "父分类 ID" },
-          level: { type: "integer", description: "分类层级" }
+          id: { type: "string" as const, description: "分类 ID" },
+          name: { type: "string" as const, description: "分类名称" },
+          description: { type: "string" as const, description: "分类描述" },
+          parentId: { type: "string" as const, description: "父分类 ID" },
+          level: { type: "integer" as const, description: "分类层级" }
         }
       },
       "Review": {
-        type: "object",
+        type: "object" as const,
         properties: {
-          id: { type: "string", description: "评价 ID" },
-          productId: { type: "string", description: "产品 ID" },
-          userId: { type: "string", description: "用户 ID" },
-          rating: { type: "integer", minimum: 1, maximum: 5, description: "评分" },
-          comment: { type: "string", description: "评价内容" },
-          createdAt: { type: "string", format: "date-time", description: "评价时间" }
+          id: { type: "string" as const, description: "评价 ID" },
+          productId: { type: "string" as const, description: "产品 ID" },
+          userId: { type: "string" as const, description: "用户 ID" },
+          rating: { type: "integer" as const, minimum: 1, maximum: 5, description: "评分" },
+          comment: { type: "string" as const, description: "评价内容" },
+          createdAt: { type: "string" as const, format: "date-time" as const, description: "评价时间" }
         }
       }
     },
@@ -143,18 +143,18 @@ export default function ComponentItemsListDemo() {
         content: {
           "application/json": {
             schema: {
-              type: "object",
+              type: "object" as const,
               properties: {
                 data: {
-                  type: "array",
+                  type: "array" as const,
                   items: { $ref: "#/components/schemas/Product" }
                 },
                 filters: {
-                  type: "object",
+                  type: "object" as const,
                   properties: {
-                    category: { type: "string" },
-                    priceRange: { type: "object" },
-                    brand: { type: "string" }
+                    category: { type: "string" as const },
+                    priceRange: { type: "object" as const },
+                    brand: { type: "string" as const }
                   }
                 }
               }
@@ -168,13 +168,13 @@ export default function ComponentItemsListDemo() {
         name: "productId",
         in: "path",
         required: true,
-        schema: { type: "string" },
+        schema: { type: "string" as const },
         description: "产品唯一标识符"
       },
       "CategoryFilter": {
         name: "category",
         in: "query",
-        schema: { type: "string" },
+        schema: { type: "string" as const },
         description: "按分类筛选产品"
       }
     }
@@ -184,48 +184,48 @@ export default function ComponentItemsListDemo() {
   const paymentComponents = {
     schemas: {
       "Payment": {
-        type: "object",
+        type: "object" as const,
         required: ["id", "amount", "currency", "status"],
         properties: {
-          id: { type: "string", description: "支付 ID" },
-          orderId: { type: "string", description: "订单 ID" },
-          amount: { type: "number", description: "支付金额" },
-          currency: { type: "string", description: "货币代码" },
+          id: { type: "string" as const, description: "支付 ID" },
+          orderId: { type: "string" as const, description: "订单 ID" },
+          amount: { type: "number" as const, description: "支付金额" },
+          currency: { type: "string" as const, description: "货币代码" },
           method: {
-            type: "string",
+            type: "string" as const,
             enum: ["credit_card", "paypal", "bank_transfer", "alipay", "wechat_pay"],
             description: "支付方式"
           },
           status: {
-            type: "string",
+            type: "string" as const,
             enum: ["pending", "processing", "completed", "failed", "refunded"],
             description: "支付状态"
           },
-          gateway: { type: "string", description: "支付网关" },
-          transactionId: { type: "string", description: "交易 ID" },
-          createdAt: { type: "string", format: "date-time", description: "创建时间" }
+          gateway: { type: "string" as const, description: "支付网关" },
+          transactionId: { type: "string" as const, description: "交易 ID" },
+          createdAt: { type: "string" as const, format: "date-time" as const, description: "创建时间" }
         }
       },
       "PaymentMethod": {
-        type: "object",
+        type: "object" as const,
         properties: {
-          id: { type: "string", description: "支付方式 ID" },
-          type: { type: "string", description: "支付类型" },
-          cardLast4: { type: "string", description: "卡号后四位" },
-          expiryMonth: { type: "integer", description: "过期月份" },
-          expiryYear: { type: "integer", description: "过期年份" },
-          isDefault: { type: "boolean", description: "是否为默认支付方式" }
+          id: { type: "string" as const, description: "支付方式 ID" },
+          type: { type: "string" as const, description: "支付类型" },
+          cardLast4: { type: "string" as const, description: "卡号后四位" },
+          expiryMonth: { type: "integer" as const, description: "过期月份" },
+          expiryYear: { type: "integer" as const, description: "过期年份" },
+          isDefault: { type: "boolean" as const, description: "是否为默认支付方式" }
         }
       },
       "Refund": {
-        type: "object",
+        type: "object" as const,
         properties: {
-          id: { type: "string", description: "退款 ID" },
-          paymentId: { type: "string", description: "原支付 ID" },
-          amount: { type: "number", description: "退款金额" },
-          reason: { type: "string", description: "退款原因" },
+          id: { type: "string" as const, description: "退款 ID" },
+          paymentId: { type: "string" as const, description: "原支付 ID" },
+          amount: { type: "number" as const, description: "退款金额" },
+          reason: { type: "string" as const, description: "退款原因" },
           status: {
-            type: "string",
+            type: "string" as const,
             enum: ["pending", "processing", "completed", "failed"],
             description: "退款状态"
           }
@@ -254,36 +254,36 @@ export default function ComponentItemsListDemo() {
   const notificationComponents = {
     schemas: {
       "Notification": {
-        type: "object",
+        type: "object" as const,
         properties: {
-          id: { type: "string", description: "通知 ID" },
-          userId: { type: "string", description: "接收用户 ID" },
-          title: { type: "string", description: "通知标题" },
-          message: { type: "string", description: "通知内容" },
+          id: { type: "string" as const, description: "通知 ID" },
+          userId: { type: "string" as const, description: "接收用户 ID" },
+          title: { type: "string" as const, description: "通知标题" },
+          message: { type: "string" as const, description: "通知内容" },
           type: {
-            type: "string",
+            type: "string" as const,
             enum: ["info", "warning", "error", "success"],
             description: "通知类型"
           },
           channel: {
-            type: "string",
+            type: "string" as const,
             enum: ["email", "sms", "push", "in_app"],
             description: "发送渠道"
           },
-          isRead: { type: "boolean", description: "是否已读" },
-          createdAt: { type: "string", format: "date-time", description: "创建时间" }
+          isRead: { type: "boolean" as const, description: "是否已读" },
+          createdAt: { type: "string" as const, format: "date-time" as const, description: "创建时间" }
         }
       },
       "NotificationTemplate": {
-        type: "object",
+        type: "object" as const,
         properties: {
-          id: { type: "string", description: "模板 ID" },
-          name: { type: "string", description: "模板名称" },
-          subject: { type: "string", description: "邮件主题" },
-          content: { type: "string", description: "模板内容" },
+          id: { type: "string" as const, description: "模板 ID" },
+          name: { type: "string" as const, description: "模板名称" },
+          subject: { type: "string" as const, description: "邮件主题" },
+          content: { type: "string" as const, description: "模板内容" },
           variables: {
-            type: "array",
-            items: { type: "string" },
+            type: "array" as const,
+            items: { type: "string" as const },
             description: "模板变量"
           }
         }
@@ -305,35 +305,35 @@ export default function ComponentItemsListDemo() {
   const fileManagementComponents = {
     schemas: {
       "File": {
-        type: "object",
+        type: "object" as const,
         properties: {
-          id: { type: "string", description: "文件 ID" },
-          originalName: { type: "string", description: "原始文件名" },
-          fileName: { type: "string", description: "存储文件名" },
-          mimeType: { type: "string", description: "文件 MIME 类型" },
-          size: { type: "integer", description: "文件大小（字节）" },
-          url: { type: "string", format: "uri", description: "文件访问 URL" },
-          thumbnailUrl: { type: "string", format: "uri", description: "缩略图 URL" },
-          uploadedBy: { type: "string", description: "上传用户 ID" },
-          uploadedAt: { type: "string", format: "date-time", description: "上传时间" },
+          id: { type: "string" as const, description: "文件 ID" },
+          originalName: { type: "string" as const, description: "原始文件名" },
+          fileName: { type: "string" as const, description: "存储文件名" },
+          mimeType: { type: "string" as const, description: "文件 MIME 类型" },
+          size: { type: "integer" as const, description: "文件大小（字节）" },
+          url: { type: "string" as const, format: "uri" as const, description: "文件访问 URL" },
+          thumbnailUrl: { type: "string" as const, format: "uri" as const, description: "缩略图 URL" },
+          uploadedBy: { type: "string" as const, description: "上传用户 ID" },
+          uploadedAt: { type: "string" as const, format: "date-time" as const, description: "上传时间" },
           metadata: {
-            type: "object",
+            type: "object" as const,
             description: "文件元数据"
           }
         }
       },
       "UploadSession": {
-        type: "object",
+        type: "object" as const,
         properties: {
-          id: { type: "string", description: "上传会话 ID" },
+          id: { type: "string" as const, description: "上传会话 ID" },
           status: {
-            type: "string",
+            type: "string" as const,
             enum: ["pending", "uploading", "completed", "failed"],
             description: "上传状态"
           },
-          progress: { type: "number", description: "上传进度（0-100）" },
-          totalSize: { type: "integer", description: "总文件大小" },
-          uploadedSize: { type: "integer", description: "已上传大小" }
+          progress: { type: "number" as const, description: "上传进度（0-100）" },
+          totalSize: { type: "integer" as const, description: "总文件大小" },
+          uploadedSize: { type: "integer" as const, description: "已上传大小" }
         }
       }
     }

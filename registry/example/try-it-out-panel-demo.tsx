@@ -1,30 +1,31 @@
 import { TryItOutPanel } from "@/registry/pivot/try-it-out-panel";
+import type { DataType, OperationObject, ParameterLocation } from "@/types/openapi";
 
 export default function TryItOutPanelDemo() {
   // 真实的 API 操作示例
-  const createUserOperation = {
+  const createUserOperation: OperationObject = {
     operationId: "createUser",
     summary: "创建新用户",
     description: "在系统中创建一个新的用户账户。需要提供用户的基本信息。",
     parameters: [
       {
         name: "X-API-Key",
-        in: "header" as const,
+        in: "header" as ParameterLocation,
         required: true,
         description: "API 访问密钥",
         schema: {
-          type: "string",
+          type: "string" as const as DataType,
           pattern: "^[a-zA-Z0-9]{32}$"
         }
       },
       {
         name: "X-Request-ID",
-        in: "header" as const,
+        in: "header" as ParameterLocation,
         required: false,
         description: "请求追踪 ID",
         schema: {
-          type: "string",
-          format: "uuid"
+          type: "string" as const as DataType,
+          format: "uuid" as const
         }
       }
     ],
@@ -34,49 +35,49 @@ export default function TryItOutPanelDemo() {
       content: {
         "application/json": {
           schema: {
-            type: "object",
+            type: "object" as const as DataType,
             required: ["email", "name"],
             properties: {
               email: {
-                type: "string",
-                format: "email",
+                type: "string" as const as DataType,
+                format: "email" as const,
                 description: "用户邮箱地址"
               },
               name: {
-                type: "string",
+                type: "string" as const as DataType,
                 minLength: 1,
                 maxLength: 100,
                 description: "用户姓名"
               },
               age: {
-                type: "integer",
+                type: "integer" as const as DataType,
                 minimum: 0,
                 maximum: 150,
                 description: "用户年龄"
               },
               phone: {
-                type: "string",
+                type: "string" as const as DataType,
                 pattern: "^\\+?[1-9]\\d{1,14}$",
                 description: "手机号码"
               },
               preferences: {
-                type: "object",
+                type: "object" as const as DataType,
                 description: "用户偏好设置",
                 properties: {
                   theme: {
-                    type: "string",
+                    type: "string" as const as DataType,
                     enum: ["light", "dark", "auto"],
                     default: "auto",
                     description: "界面主题"
                   },
                   language: {
-                    type: "string",
+                    type: "string" as const as DataType,
                     enum: ["zh-CN", "en-US", "ja-JP"],
                     default: "zh-CN",
                     description: "界面语言"
                   },
                   notifications: {
-                    type: "boolean",
+                    type: "boolean" as const as DataType,
                     default: true,
                     description: "是否接收通知"
                   }
@@ -104,25 +105,25 @@ export default function TryItOutPanelDemo() {
         content: {
           "application/json": {
             schema: {
-              type: "object",
+              type: "object" as const as DataType,
               properties: {
                 id: {
-                  type: "string",
-                  format: "uuid"
+                  type: "string" as const as DataType,
+                  format: "uuid" as const
                 },
                 email: {
-                  type: "string",
-                  format: "email"
+                  type: "string" as const as DataType,
+                  format: "email" as const
                 },
                 name: {
-                  type: "string"
+                  type: "string" as const as DataType
                 },
                 createdAt: {
-                  type: "string",
-                  format: "date-time"
+                  type: "string" as const as DataType,
+                  format: "date-time" as const
                 },
                 status: {
-                  type: "string",
+                  type: "string" as const as DataType,
                   enum: ["active", "pending"]
                 }
               }
@@ -144,41 +145,41 @@ export default function TryItOutPanelDemo() {
     ]
   };
 
-  const getUserOperation = {
+  const getUserOperation: OperationObject = {
     operationId: "getUser",
     summary: "获取用户信息",
     description: "根据用户 ID 获取用户的详细信息",
     parameters: [
       {
         name: "userId",
-        in: "path" as const,
+        in: "path" as ParameterLocation,
         required: true,
         description: "用户 ID",
         schema: {
-          type: "string",
-          format: "uuid"
+          type: "string" as const as DataType,
+          format: "uuid" as const
         }
       },
       {
         name: "include",
-        in: "query" as const,
+        in: "query" as ParameterLocation,
         required: false,
         description: "包含的额外信息",
         schema: {
-          type: "array",
+          type: "array" as const as DataType,
           items: {
-            type: "string",
+            type: "string" as const as DataType,
             enum: ["profile", "preferences", "permissions"]
           }
         }
       },
       {
         name: "X-API-Key",
-        in: "header" as const,
+        in: "header" as ParameterLocation,
         required: true,
         description: "API 访问密钥",
         schema: {
-          type: "string"
+          type: "string" as const as DataType
         }
       }
     ],

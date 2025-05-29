@@ -4,76 +4,62 @@ export default function RequestBodySectionDemo() {
   // 用户创建请求体示例
   const createUserRequestBody = {
     required: true,
-    description: "创建新用户所需的信息",
+    description: "创建新用户的请求数据",
     content: {
       "application/json": {
         schema: {
-          type: "object",
-          required: ["email", "name"],
+          type: "object" as const,
+          required: ["email", "name", "password"],
           properties: {
             email: {
-              type: "string",
-              format: "email",
-              description: "用户邮箱地址，必须唯一"
+              type: "string" as const,
+              format: "email" as const,
+              description: "用户邮箱地址"
             },
             name: {
-              type: "string",
-              minLength: 1,
-              maxLength: 100,
+              type: "string" as const,
+              minLength: 2,
+              maxLength: 50,
               description: "用户姓名"
             },
             password: {
-              type: "string",
+              type: "string" as const,
               minLength: 8,
-              pattern: "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d@$!%*?&]{8,}$",
-              description: "密码，至少8位，包含大小写字母和数字"
+              maxLength: 128,
+              description: "用户密码"
             },
             age: {
-              type: "integer",
-              minimum: 0,
-              maximum: 150,
+              type: "integer" as const,
+              minimum: 13,
+              maximum: 120,
               description: "用户年龄"
             },
             phone: {
-              type: "string",
+              type: "string" as const,
               pattern: "^\\+?[1-9]\\d{1,14}$",
               description: "手机号码"
             },
             address: {
-              type: "object",
-              description: "用户地址信息",
+              type: "object" as const,
+              description: "用户地址",
               properties: {
-                street: { type: "string", description: "街道地址" },
-                city: { type: "string", description: "城市" },
-                state: { type: "string", description: "州/省" },
-                zipCode: { type: "string", description: "邮政编码" },
-                country: { type: "string", description: "国家" }
+                street: { type: "string" as const, description: "街道地址" },
+                city: { type: "string" as const, description: "城市" },
+                state: { type: "string" as const, description: "州/省" },
+                zipCode: { type: "string" as const, description: "邮政编码" },
+                country: { type: "string" as const, description: "国家" }
               }
             },
             preferences: {
-              type: "object",
+              type: "object" as const,
               description: "用户偏好设置",
               properties: {
+                newsletter: { type: "boolean" as const, description: "是否订阅邮件" },
+                notifications: { type: "boolean" as const, description: "是否接收通知" },
                 theme: {
-                  type: "string",
+                  type: "string" as const,
                   enum: ["light", "dark", "auto"],
-                  default: "auto",
-                  description: "界面主题"
-                },
-                language: {
-                  type: "string",
-                  enum: ["zh-CN", "en-US", "ja-JP", "fr-FR"],
-                  default: "en-US",
-                  description: "界面语言"
-                },
-                notifications: {
-                  type: "object",
-                  description: "通知设置",
-                  properties: {
-                    email: { type: "boolean", default: true },
-                    push: { type: "boolean", default: false },
-                    sms: { type: "boolean", default: false }
-                  }
+                  description: "主题偏好"
                 }
               }
             }
@@ -94,12 +80,8 @@ export default function RequestBodySectionDemo() {
           },
           preferences: {
             theme: "dark",
-            language: "en-US",
-            notifications: {
-              email: true,
-              push: false,
-              sms: false
-            }
+            newsletter: true,
+            notifications: true
           }
         }
       }
@@ -109,64 +91,64 @@ export default function RequestBodySectionDemo() {
   // 文件上传请求体示例
   const fileUploadRequestBody = {
     required: true,
-    description: "文件上传数据",
+    description: "文件上传请求，支持多种格式",
     content: {
       "multipart/form-data": {
         schema: {
-          type: "object",
+          type: "object" as const,
           required: ["file"],
           properties: {
             file: {
-              type: "string",
+              type: "string" as const,
               format: "binary",
               description: "要上传的文件"
             },
             title: {
-              type: "string",
+              type: "string" as const,
               maxLength: 200,
               description: "文件标题"
             },
             description: {
-              type: "string",
+              type: "string" as const,
               maxLength: 1000,
               description: "文件描述"
             },
             tags: {
-              type: "array",
-              items: { type: "string" },
+              type: "array" as const,
+              items: { type: "string" as const },
               maxItems: 10,
               description: "文件标签"
             },
             isPublic: {
-              type: "boolean",
+              type: "boolean" as const,
               default: false,
               description: "是否公开"
             },
             category: {
-              type: "string",
+              type: "string" as const,
               enum: ["document", "image", "video", "audio", "other"],
               description: "文件分类"
             }
           }
-        }
+        },
       },
       "application/json": {
         schema: {
-          type: "object",
+          type: "object" as const,
           required: ["url"],
           properties: {
             url: {
-              type: "string",
-              format: "uri",
+              type: "string" as const,
+              format: "uri" as const,
               description: "远程文件 URL"
             },
             title: {
-              type: "string",
+              type: "string" as const,
               maxLength: 200,
               description: "文件标题"
             },
             description: {
-              type: "string",
+              type: "string" as const,
               maxLength: 1000,
               description: "文件描述"
             }
@@ -181,74 +163,74 @@ export default function RequestBodySectionDemo() {
     }
   };
 
-  // 产品更新请求体示例
+  // 产品更新请求体示例（可选字段）
   const updateProductRequestBody = {
     required: false,
-    description: "更新产品信息，只需提供要修改的字段",
+    description: "更新产品信息，所有字段都是可选的",
     content: {
       "application/json": {
         schema: {
-          type: "object",
+          type: "object" as const,
           properties: {
             name: {
-              type: "string",
+              type: "string" as const,
               minLength: 1,
               maxLength: 200,
               description: "产品名称"
             },
             description: {
-              type: "string",
+              type: "string" as const,
               maxLength: 2000,
               description: "产品描述"
             },
             price: {
-              type: "number",
+              type: "number" as const,
               multipleOf: 0.01,
               minimum: 0,
               description: "产品价格"
             },
             currency: {
-              type: "string",
+              type: "string" as const,
               enum: ["USD", "EUR", "CNY", "JPY"],
               description: "价格货币"
             },
             category: {
-              type: "string",
+              type: "string" as const,
               description: "产品分类"
             },
             tags: {
-              type: "array",
-              items: { type: "string" },
+              type: "array" as const,
+              items: { type: "string" as const },
               maxItems: 20,
               description: "产品标签"
             },
             specifications: {
-              type: "object",
-              additionalProperties: { type: "string" },
+              type: "object" as const,
+              additionalProperties: { type: "string" as const },
               description: "产品规格"
             },
             inventory: {
-              type: "object",
+              type: "object" as const,
               description: "库存信息",
               properties: {
                 quantity: {
-                  type: "integer",
+                  type: "integer" as const,
                   minimum: 0,
                   description: "库存数量"
                 },
                 lowStockThreshold: {
-                  type: "integer",
+                  type: "integer" as const,
                   minimum: 0,
                   description: "低库存阈值"
                 },
                 trackInventory: {
-                  type: "boolean",
+                  type: "boolean" as const,
                   description: "是否跟踪库存"
                 }
               }
             },
             status: {
-              type: "string",
+              type: "string" as const,
               enum: ["draft", "active", "inactive", "discontinued"],
               description: "产品状态"
             }
@@ -285,47 +267,47 @@ export default function RequestBodySectionDemo() {
     content: {
       "application/json": {
         schema: {
-          type: "object",
+          type: "object" as const,
           required: ["operation", "items"],
           properties: {
             operation: {
-              type: "string",
+              type: "string" as const,
               enum: ["create", "update", "delete", "archive"],
               description: "操作类型"
             },
             items: {
-              type: "array",
+              type: "array" as const,
               minItems: 1,
               maxItems: 100,
               description: "操作项目列表",
               items: {
-                type: "object",
+                type: "object" as const,
                 required: ["id"],
                 properties: {
-                  id: { type: "string", description: "项目 ID" },
+                  id: { type: "string" as const, description: "项目 ID" },
                   data: {
-                    type: "object",
+                    type: "object" as const,
                     description: "项目数据（仅用于创建和更新操作）"
                   }
                 }
               }
             },
             options: {
-              type: "object",
+              type: "object" as const,
               description: "操作选项",
               properties: {
                 skipValidation: {
-                  type: "boolean",
+                  type: "boolean" as const,
                   default: false,
                   description: "跳过验证"
                 },
                 continueOnError: {
-                  type: "boolean",
+                  type: "boolean" as const,
                   default: false,
                   description: "遇到错误时继续执行"
                 },
                 dryRun: {
-                  type: "boolean",
+                  type: "boolean" as const,
                   default: false,
                   description: "仅验证不执行"
                 }
@@ -359,34 +341,34 @@ export default function RequestBodySectionDemo() {
     <div className="space-y-8 min-w-md">
       <div>
         <h4 className="text-sm font-medium mb-3">用户创建请求体</h4>
-        <p className="text-xs text-neutral-600 dark:text-neutral-400 mb-3">
+        <p className="text-xs text-muted-foreground mb-3">
           包含完整用户信息的 JSON 请求体，包含验证规则和嵌套对象
         </p>
-        <RequestBodySection requestBody={createUserRequestBody} />
+        <RequestBodySection requestBody={createUserRequestBody as any} />
       </div>
 
       <div>
         <h4 className="text-sm font-medium mb-3">文件上传请求体</h4>
-        <p className="text-xs text-neutral-600 dark:text-neutral-400 mb-3">
+        <p className="text-xs text-muted-foreground mb-3">
           支持多种内容类型的文件上传，包含 multipart/form-data 和 JSON 格式
         </p>
-        <RequestBodySection requestBody={fileUploadRequestBody} />
+        <RequestBodySection requestBody={fileUploadRequestBody as any} />
       </div>
 
       <div>
         <h4 className="text-sm font-medium mb-3">产品更新请求体</h4>
-        <p className="text-xs text-neutral-600 dark:text-neutral-400 mb-3">
+        <p className="text-xs text-muted-foreground mb-3">
           可选的 PATCH 请求体，支持部分字段更新和复杂的嵌套结构
         </p>
-        <RequestBodySection requestBody={updateProductRequestBody} />
+        <RequestBodySection requestBody={updateProductRequestBody as any} />
       </div>
 
       <div>
         <h4 className="text-sm font-medium mb-3">批量操作请求体</h4>
-        <p className="text-xs text-neutral-600 dark:text-neutral-400 mb-3">
+        <p className="text-xs text-muted-foreground mb-3">
           批量处理多个项目的请求体，包含操作类型和选项配置
         </p>
-        <RequestBodySection requestBody={batchOperationRequestBody} />
+        <RequestBodySection requestBody={batchOperationRequestBody as any} />
       </div>
     </div>
   );

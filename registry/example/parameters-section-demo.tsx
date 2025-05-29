@@ -9,7 +9,7 @@ export default function ParametersSectionDemo() {
       required: false,
       description: "页码，从 1 开始",
       schema: {
-        type: "integer",
+        type: "integer" as const,
         minimum: 1,
         default: 1
       }
@@ -20,7 +20,7 @@ export default function ParametersSectionDemo() {
       required: false,
       description: "每页返回的记录数",
       schema: {
-        type: "integer",
+        type: "integer" as const,
         minimum: 1,
         maximum: 100,
         default: 20
@@ -32,7 +32,7 @@ export default function ParametersSectionDemo() {
       required: false,
       description: "搜索关键词，支持姓名和邮箱搜索",
       schema: {
-        type: "string",
+        type: "string" as const,
         maxLength: 100
       }
     },
@@ -42,9 +42,9 @@ export default function ParametersSectionDemo() {
       required: false,
       description: "用户状态筛选",
       schema: {
-        type: "array",
+        type: "array" as const,
         items: {
-          type: "string",
+          type: "string" as const,
           enum: ["active", "inactive", "pending", "suspended"]
         }
       }
@@ -55,7 +55,7 @@ export default function ParametersSectionDemo() {
       required: false,
       description: "用户角色筛选",
       schema: {
-        type: "string",
+        type: "string" as const,
         enum: ["admin", "user", "moderator", "guest"]
       }
     },
@@ -65,8 +65,8 @@ export default function ParametersSectionDemo() {
       required: false,
       description: "创建时间筛选（起始时间）",
       schema: {
-        type: "string",
-        format: "date-time"
+        type: "string" as const,
+        format: "date-time" as const
       }
     },
     {
@@ -75,8 +75,8 @@ export default function ParametersSectionDemo() {
       required: false,
       description: "创建时间筛选（结束时间）",
       schema: {
-        type: "string",
-        format: "date-time"
+        type: "string" as const,
+        format: "date-time" as const
       }
     },
     {
@@ -85,7 +85,7 @@ export default function ParametersSectionDemo() {
       required: false,
       description: "排序字段",
       schema: {
-        type: "string",
+        type: "string" as const,
         enum: ["name", "email", "createdAt", "lastLoginAt"],
         default: "createdAt"
       }
@@ -96,7 +96,7 @@ export default function ParametersSectionDemo() {
       required: false,
       description: "排序方向",
       schema: {
-        type: "string",
+        type: "string" as const,
         enum: ["asc", "desc"],
         default: "desc"
       }
@@ -107,9 +107,9 @@ export default function ParametersSectionDemo() {
       required: false,
       description: "包含的关联数据",
       schema: {
-        type: "array",
+        type: "array" as const,
         items: {
-          type: "string",
+          type: "string" as const,
           enum: ["profile", "permissions", "preferences", "statistics"]
         }
       }
@@ -120,7 +120,7 @@ export default function ParametersSectionDemo() {
       required: true,
       description: "API 访问密钥",
       schema: {
-        type: "string",
+        type: "string" as const,
         pattern: "^[a-zA-Z0-9]{32}$"
       }
     },
@@ -130,7 +130,7 @@ export default function ParametersSectionDemo() {
       required: false,
       description: "Bearer 令牌认证",
       schema: {
-        type: "string",
+        type: "string" as const,
         pattern: "^Bearer [a-zA-Z0-9\\-\\._~\\+\\/]+=*$"
       }
     },
@@ -140,8 +140,8 @@ export default function ParametersSectionDemo() {
       required: false,
       description: "请求追踪 ID",
       schema: {
-        type: "string",
-        format: "uuid"
+        type: "string" as const,
+        format: "uuid" as const
       }
     }
   ];
@@ -154,8 +154,8 @@ export default function ParametersSectionDemo() {
       required: true,
       description: "用户的唯一标识符",
       schema: {
-        type: "string",
-        format: "uuid"
+        type: "string" as const,
+        format: "uuid" as const
       }
     },
     {
@@ -164,9 +164,9 @@ export default function ParametersSectionDemo() {
       required: false,
       description: "包含的额外信息",
       schema: {
-        type: "array",
+        type: "array" as const,
         items: {
-          type: "string",
+          type: "string" as const,
           enum: ["profile", "permissions", "preferences", "activity", "statistics"]
         }
       }
@@ -177,7 +177,7 @@ export default function ParametersSectionDemo() {
       required: false,
       description: "指定返回的字段，用逗号分隔",
       schema: {
-        type: "string",
+        type: "string" as const,
         pattern: "^[a-zA-Z0-9,_]+$"
       }
     },
@@ -187,7 +187,7 @@ export default function ParametersSectionDemo() {
       required: true,
       description: "API 访问密钥",
       schema: {
-        type: "string",
+        type: "string" as const,
         pattern: "^[a-zA-Z0-9]{32}$"
       }
     },
@@ -197,7 +197,7 @@ export default function ParametersSectionDemo() {
       required: false,
       description: "条件请求头，用于缓存控制",
       schema: {
-        type: "string"
+        type: "string" as const
       }
     }
   ];
@@ -210,7 +210,7 @@ export default function ParametersSectionDemo() {
       required: true,
       description: "目标文件夹 ID",
       schema: {
-        type: "string",
+        type: "string" as const,
         pattern: "^folder_[a-zA-Z0-9]+$"
       }
     },
@@ -220,7 +220,7 @@ export default function ParametersSectionDemo() {
       required: false,
       description: "是否覆盖同名文件",
       schema: {
-        type: "boolean",
+        type: "boolean" as const,
         default: false
       }
     },
@@ -230,7 +230,7 @@ export default function ParametersSectionDemo() {
       required: false,
       description: "是否生成缩略图（仅适用于图片）",
       schema: {
-        type: "boolean",
+        type: "boolean" as const,
         default: true
       }
     },
@@ -240,7 +240,7 @@ export default function ParametersSectionDemo() {
       required: false,
       description: "最大文件大小（字节）",
       schema: {
-        type: "integer",
+        type: "integer" as const,
         minimum: 1,
         maximum: 104857600,
         default: 10485760
@@ -252,9 +252,9 @@ export default function ParametersSectionDemo() {
       required: false,
       description: "允许的文件类型",
       schema: {
-        type: "array",
+        type: "array" as const,
         items: {
-          type: "string",
+          type: "string" as const,
           enum: ["image/jpeg", "image/png", "image/gif", "application/pdf", "text/plain"]
         }
       }
@@ -265,7 +265,7 @@ export default function ParametersSectionDemo() {
       required: true,
       description: "上传令牌",
       schema: {
-        type: "string",
+        type: "string" as const,
         pattern: "^upload_[a-zA-Z0-9]{40}$"
       }
     },
@@ -275,7 +275,7 @@ export default function ParametersSectionDemo() {
       required: true,
       description: "内容类型",
       schema: {
-        type: "string",
+        type: "string" as const,
         enum: ["multipart/form-data"]
       }
     },
@@ -285,7 +285,7 @@ export default function ParametersSectionDemo() {
       required: false,
       description: "客户端版本号",
       schema: {
-        type: "string",
+        type: "string" as const,
         pattern: "^\\d+\\.\\d+\\.\\d+$"
       }
     }

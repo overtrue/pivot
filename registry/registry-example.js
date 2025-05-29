@@ -13,15 +13,15 @@ export const exampleRegistry = [
     ]
   },
   {
-    name: "all-in-one-layout-demo",
+    name: "operation-list-layout-demo",
     type: "registry:example",
-    title: "All In One Layout Demo",
-    description: "Example showing all in-one-layout component",
+    title: "Operation List Layout Demo",
+    description: "Example showing operation list layout component",
     files: [
       {
-        path: "registry/example/all-in-one-layout-demo.tsx",
+        path: "registry/example/operation-list-layout-demo.tsx",
         type: "registry:example",
-        target: "components/example/all-in-one-layout-demo.tsx"
+        target: "components/example/operation-list-layout-demo.tsx"
       }
     ]
   },

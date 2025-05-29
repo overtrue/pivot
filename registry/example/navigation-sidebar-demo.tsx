@@ -1,9 +1,10 @@
 "use client";
 
 import { NavigationSidebar } from "@/registry/pivot/navigation-sidebar";
+import type { DataType, OpenApiSpec, ParameterLocation } from "@/types/openapi";
 
 export default function NavigationSidebarDemo() {
-  const mockOpenApi = {
+  const mockOpenApi: OpenApiSpec = {
     openapi: "3.0.0",
     info: {
       title: "示例 API",
@@ -44,9 +45,9 @@ export default function NavigationSidebarDemo() {
           parameters: [
             {
               name: "id",
-              in: "path",
+              in: "path" as ParameterLocation,
               required: true,
-              schema: { type: "string" }
+              schema: { type: "string" as const as DataType }
             }
           ],
           responses: {
@@ -116,19 +117,19 @@ export default function NavigationSidebarDemo() {
     components: {
       schemas: {
         User: {
-          type: "object",
+          type: "object" as const as DataType,
           properties: {
-            id: { type: "string" },
-            name: { type: "string" },
-            email: { type: "string" }
+            id: { type: "string" as const as DataType },
+            name: { type: "string" as const as DataType },
+            email: { type: "string" as const as DataType }
           }
         },
         Order: {
-          type: "object",
+          type: "object" as const as DataType,
           properties: {
-            id: { type: "string" },
-            userId: { type: "string" },
-            amount: { type: "number" }
+            id: { type: "string" as const as DataType },
+            userId: { type: "string" as const as DataType },
+            amount: { type: "number" as const as DataType }
           }
         }
       }

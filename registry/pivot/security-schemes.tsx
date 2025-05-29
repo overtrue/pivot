@@ -1,7 +1,8 @@
 import { cn } from "@/lib/utils";
+import type { SecuritySchemeObject } from "@/types/openapi";
 import React from "react";
 import { SectionTitle } from "../pivot/section-title";
-import { SecurityScheme, type SecuritySchemeObject } from "./security-scheme";
+import { SecurityScheme } from "./security-scheme";
 
 interface SecuritySchemesProps {
   schemes: Record<string, SecuritySchemeObject>;

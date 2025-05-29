@@ -1,31 +1,32 @@
 import { OperationBox } from "@/registry/pivot/operation-box";
+import type { DataType, OperationObject, ParameterLocation } from "@/types/openapi";
 
 export default function OperationBoxDemo() {
   // 示例 OpenAPI 操作数据
-  const getUserOperation = {
+  const getUserOperation: OperationObject = {
     summary: "获取用户信息",
     description: "根据用户 ID 获取用户的详细信息，包括基本资料、权限等。",
     parameters: [
       {
         name: "userId",
-        in: "path",
+        in: "path" as ParameterLocation,
         required: true,
         description: "用户的唯一标识符",
         schema: {
-          type: "string",
-          format: "uuid",
+          type: "string" as const as DataType,
+          format: "uuid" as const,
           example: "123e4567-e89b-12d3-a456-426614174000"
         }
       },
       {
         name: "include",
-        in: "query",
+        in: "query" as ParameterLocation,
         required: false,
         description: "指定要包含的额外信息",
         schema: {
-          type: "array",
+          type: "array" as const as DataType,
           items: {
-            type: "string",
+            type: "string" as const as DataType,
             enum: ["profile", "permissions", "preferences"]
           },
           example: ["profile", "permissions"]
@@ -38,17 +39,17 @@ export default function OperationBoxDemo() {
         content: {
           "application/json": {
             schema: {
-              type: "object",
+              type: "object" as const as DataType,
               properties: {
-                id: { type: "string", format: "uuid" },
-                username: { type: "string" },
-                email: { type: "string", format: "email" },
+                id: { type: "string" as const as DataType, format: "uuid" as const },
+                username: { type: "string" as const as DataType },
+                email: { type: "string" as const as DataType, format: "email" as const },
                 profile: {
-                  type: "object",
+                  type: "object" as const as DataType,
                   properties: {
-                    firstName: { type: "string" },
-                    lastName: { type: "string" },
-                    avatar: { type: "string", format: "uri" }
+                    firstName: { type: "string" as const as DataType },
+                    lastName: { type: "string" as const as DataType },
+                    avatar: { type: "string" as const as DataType, format: "uri" as const }
                   }
                 }
               }
@@ -71,10 +72,10 @@ export default function OperationBoxDemo() {
         content: {
           "application/json": {
             schema: {
-              type: "object",
+              type: "object" as const as DataType,
               properties: {
-                error: { type: "string" },
-                message: { type: "string" }
+                error: { type: "string" as const as DataType },
+                message: { type: "string" as const as DataType }
               }
             },
             example: {
@@ -96,7 +97,7 @@ export default function OperationBoxDemo() {
     }
   };
 
-  const createUserOperation = {
+  const createUserOperation: OperationObject = {
     summary: "创建新用户",
     description: "创建一个新的用户账户。需要管理员权限。",
     requestBody: {
@@ -105,29 +106,29 @@ export default function OperationBoxDemo() {
       content: {
         "application/json": {
           schema: {
-            type: "object",
+            type: "object" as const as DataType,
             required: ["username", "email", "password"],
             properties: {
               username: {
-                type: "string",
+                type: "string" as const as DataType,
                 minLength: 3,
                 maxLength: 50,
                 pattern: "^[a-zA-Z0-9_]+$"
               },
               email: {
-                type: "string",
-                format: "email"
+                type: "string" as const as DataType,
+                format: "email" as const
               },
               password: {
-                type: "string",
+                type: "string" as const as DataType,
                 minLength: 8,
                 description: "密码必须至少包含 8 个字符"
               },
               profile: {
-                type: "object",
+                type: "object" as const as DataType,
                 properties: {
-                  firstName: { type: "string" },
-                  lastName: { type: "string" }
+                  firstName: { type: "string" as const as DataType },
+                  lastName: { type: "string" as const as DataType }
                 }
               }
             }
@@ -150,12 +151,12 @@ export default function OperationBoxDemo() {
         content: {
           "application/json": {
             schema: {
-              type: "object",
+              type: "object" as const as DataType,
               properties: {
-                id: { type: "string", format: "uuid" },
-                username: { type: "string" },
-                email: { type: "string" },
-                createdAt: { type: "string", format: "date-time" }
+                id: { type: "string" as const as DataType, format: "uuid" as const },
+                username: { type: "string" as const as DataType },
+                email: { type: "string" as const as DataType },
+                createdAt: { type: "string" as const as DataType, format: "date-time" as const }
               }
             }
           }
@@ -166,12 +167,12 @@ export default function OperationBoxDemo() {
         content: {
           "application/json": {
             schema: {
-              type: "object",
+              type: "object" as const as DataType,
               properties: {
-                error: { type: "string" },
+                error: { type: "string" as const as DataType },
                 details: {
-                  type: "array",
-                  items: { type: "string" }
+                  type: "array" as const as DataType,
+                  items: { type: "string" as const as DataType }
                 }
               }
             }
@@ -189,15 +190,15 @@ export default function OperationBoxDemo() {
     ]
   };
 
-  const deprecatedOperation = {
+  const deprecatedOperation: OperationObject = {
     summary: "获取用户列表（已弃用）",
     description: "此接口已弃用，请使用新的分页接口 `/api/v2/users`。",
     deprecated: true,
     parameters: [
       {
         name: "limit",
-        in: "query",
-        schema: { type: "integer", maximum: 100 }
+        in: "query" as ParameterLocation,
+        schema: { type: "integer" as const as DataType, maximum: 100 }
       }
     ],
     responses: {
@@ -206,12 +207,12 @@ export default function OperationBoxDemo() {
         content: {
           "application/json": {
             schema: {
-              type: "array",
+              type: "array" as const as DataType,
               items: {
-                type: "object",
+                type: "object" as const as DataType,
                 properties: {
-                  id: { type: "string" },
-                  username: { type: "string" }
+                  id: { type: "string" as const as DataType },
+                  username: { type: "string" as const as DataType }
                 }
               }
             }

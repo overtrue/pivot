@@ -1,21 +1,17 @@
+"use client";
+
+import { useI18n } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
 import React from "react";
+import { resolveRef } from "../lib/resolve-ref";
 import { DescriptionDisplay } from "../pivot/description-display";
 
-interface ComponentsObject {
-  [key: string]: any;
-}
-
-interface ReferenceObject {
-  $ref: string;
-}
-
-interface ExampleObject {
-  summary?: string;
-  description?: string;
-  value?: any;
-  externalValue?: string;
-}
+// Import types from the centralized types file
+import type {
+  ComponentsObject,
+  ExampleObject,
+  ReferenceObject
+} from "@/types/openapi";
 
 interface ExamplesDisplayProps {
   examples: Record<string, ExampleObject | ReferenceObject>;
@@ -23,24 +19,10 @@ interface ExamplesDisplayProps {
   className?: string;
 }
 
-// Simple ref resolution function (simplified version)
-function resolveRef<T>(
-  obj: T | ReferenceObject,
-  components?: ComponentsObject,
-  section?: string,
-): T | null {
-  if (!obj || typeof obj !== "object") return null;
-
-  if ("$ref" in obj) {
-    // This is a simplified resolution - in real implementation you'd parse the $ref path
-    return null; // For now, return null for references
-  }
-
-  return obj as T;
-}
-
 const ExamplesDisplay = React.forwardRef<HTMLDivElement, ExamplesDisplayProps>(
   ({ examples, components, className }, ref) => {
+    const { t } = useI18n();
+
     const resolvedExamples = Object.entries(examples)
       .map(([key, exampleOrRef]) => {
         // Use the generic resolver
@@ -53,12 +35,12 @@ const ExamplesDisplay = React.forwardRef<HTMLDivElement, ExamplesDisplayProps>(
         if (!resolved) {
           const refString =
             exampleOrRef &&
-            typeof exampleOrRef === "object" &&
-            "$ref" in exampleOrRef
+              typeof exampleOrRef === "object" &&
+              "$ref" in exampleOrRef
               ? (exampleOrRef as ReferenceObject).$ref
-              : "[unknown reference]";
+              : t("[unknown reference]");
           console.warn(
-            `[ExamplesDisplay] Failed to resolve example ref: ${refString} for key ${key}`,
+            t("[ExamplesDisplay] Failed to resolve example ref: %s for key %s").replace("%s", refString).replace("%s", key),
           );
           return null;
         }
@@ -125,10 +107,5 @@ const ExamplesDisplay = React.forwardRef<HTMLDivElement, ExamplesDisplayProps>(
 
 ExamplesDisplay.displayName = "ExamplesDisplay";
 
-export {
-  ExamplesDisplay,
-  type ComponentsObject,
-  type ExampleObject,
-  type ExamplesDisplayProps,
-  type ReferenceObject,
-};
+export { ExamplesDisplay, type ExamplesDisplayProps };
+

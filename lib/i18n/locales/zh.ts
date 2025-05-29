@@ -1,5 +1,6 @@
 const zh = {
   Required: "必填",
+  "Search...": "搜索...",
   Expand: "展开",
   Collapse: "收起",
   GET: "获取",
@@ -254,6 +255,17 @@ const zh = {
   "Expand All": "全部展开",
   "Collapse All": "全部折叠",
   "Data Models": "数据模型",
+
+  // Try It Out Panel translations
+  "Request Parameters": "请求参数",
+  "Request Headers": "请求头",
+  "Sending...": "发送中...",
+  "Send Request": "发送请求",
+  "Add Header": "添加请求头",
+  "Remove": "删除",
+  "Enter %s value": "输入 %s 值",
+  "Header name": "请求头名称",
+  "Value": "值",
 };
 
 export default zh;

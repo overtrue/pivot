@@ -1,177 +1,90 @@
+"use client";
+
+import { useI18n } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
+import { ComponentsObject, OpenApiSpec, ReferenceObject, RequestBodyObject } from "@/types/openapi";
 import React from "react";
-import { SectionTitle } from "../pivot/section-title";
-
-interface MediaTypeObject {
-  schema?: any;
-  example?: any;
-  examples?: Record<string, any>;
-}
-
-interface RequestBodyObject {
-  description?: string;
-  content: Record<string, MediaTypeObject>;
-  required?: boolean;
-}
-
-interface ReferenceObject {
-  $ref: string;
-}
-
-interface ComponentsObject {
-  [key: string]: any;
-}
+import { SchemaWithExampleViewer } from "./schema-with-example-viewer";
+import { SectionTitle } from "./section-title";
 
 interface RequestBodySectionProps {
   requestBody: RequestBodyObject | ReferenceObject;
   components?: ComponentsObject;
+  spec?: OpenApiSpec; // 可选，如果提供则使用完整的OpenAPI规范
   className?: string;
   titleClassName?: string;
 }
 
-// Simple ref resolution function (simplified version)
-function resolveRef<T>(
-  obj: T | ReferenceObject,
-  components?: ComponentsObject,
-  section?: string,
-): T | null {
-  if (!obj || typeof obj !== "object") return null;
+const RequestBodySection = React.forwardRef<HTMLDivElement, RequestBodySectionProps>(
+  ({ requestBody, components, spec, className = "", titleClassName }, ref) => {
+    const { t } = useI18n();
 
-  if ("$ref" in obj) {
-    // This is a simplified resolution - in real implementation you'd parse the $ref path
-    return null; // For now, return null for references
-  }
+    // 简化的解析逻辑，如果没有 useOpenApi hook 可用
+    const resolveRequestBody = (body: RequestBodyObject | ReferenceObject): RequestBodyObject | null => {
+      if (!body) return null;
 
-  return obj as T;
-}
+      // 如果是引用对象，尝试解析
+      if (typeof body === 'object' && '$ref' in body) {
+        // 简化的引用解析
+        return null; // 在实际应用中需要完整的引用解析
+      }
 
-const RequestBodySection = React.forwardRef<
-  HTMLDivElement,
-  RequestBodySectionProps
->(({ requestBody, components, className, titleClassName }, ref) => {
-  // Resolve reference object
-  const resolvedBody = resolveRef<RequestBodyObject>(
-    requestBody,
-    components,
-    "requestBodies",
-  );
+      return body as RequestBodyObject;
+    };
 
-  if (!resolvedBody) {
-    return (
-      <div
-        ref={ref}
-        className={cn("text-red-500 dark:text-red-400", className)}
-      >
-        Cannot resolve request body reference
-      </div>
-    );
-  }
+    // 解析引用对象
+    const resolvedBody = resolveRequestBody(requestBody);
 
-  // Get content
-  const contentEntries = Object.entries(resolvedBody.content);
-  if (contentEntries.length === 0) {
-    return (
-      <div
-        ref={ref}
-        className={cn("text-yellow-500 dark:text-yellow-400", className)}
-      >
-        Request body has no content defined
-      </div>
-    );
-  }
-
-  return (
-    <div ref={ref} className={className}>
-      <SectionTitle
-        title="Request Body"
-        className={cn("text-lg font-medium my-3", titleClassName)}
-      />
-
-      {/* Required indicator */}
-      {resolvedBody.required && (
-        <div className="mb-2">
-          <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200">
-            Required
-          </span>
+    if (!resolvedBody) {
+      return (
+        <div ref={ref} className={cn("text-red-500 dark:text-red-400", className)}>
+          {t('Cannot resolve request body')}
         </div>
-      )}
+      );
+    }
 
-      {/* Description */}
-      {resolvedBody.description && (
-        <div className="mb-3 text-sm text-neutral-600 dark:text-neutral-400">
-          {resolvedBody.description}
+    // 获取内容
+    const content = resolvedBody.content;
+    if (!content) {
+      return (
+        <div ref={ref} className={cn("text-yellow-500 dark:text-yellow-400", className)}>
+          {t('Request body has no content defined')}
         </div>
-      )}
+      );
+    }
 
-      {/* Content */}
-      <div className="space-y-3">
-        <h4 className="text-sm font-semibold text-neutral-800 dark:text-neutral-200">
-          Content Types
-        </h4>
-        <div className="space-y-2">
-          {contentEntries.map(([mediaType, mediaTypeObj]) => (
-            <div
-              key={mediaType}
-              className="p-3 bg-neutral-50 dark:bg-neutral-800 rounded border"
-            >
-              <div className="flex items-center justify-between mb-2">
-                <span className="font-mono text-sm font-medium text-blue-600 dark:text-blue-400">
-                  {mediaType}
-                </span>
-              </div>
-
-              {mediaTypeObj.schema && (
-                <div className="text-xs text-neutral-600 dark:text-neutral-400 italic">
-                  Schema available (requires schema display component)
-                </div>
-              )}
-
-              {mediaTypeObj.example && (
-                <div className="mt-2">
-                  <span className="text-xs font-medium text-neutral-600 dark:text-neutral-400">
-                    Example:
-                  </span>
-                  <pre className="text-xs bg-neutral-100 dark:bg-neutral-700 p-2 rounded mt-1 overflow-x-auto">
-                    {JSON.stringify(mediaTypeObj.example, null, 2)}
-                  </pre>
-                </div>
-              )}
-
-              {mediaTypeObj.examples && (
-                <div className="mt-2">
-                  <span className="text-xs font-medium text-neutral-600 dark:text-neutral-400">
-                    Examples:
-                  </span>
-                  <div className="space-y-1 mt-1">
-                    {Object.entries(mediaTypeObj.examples).map(
-                      ([name, example]) => (
-                        <div key={name} className="text-xs">
-                          <span className="font-medium">{name}:</span>
-                          <pre className="bg-neutral-100 dark:bg-neutral-700 p-1 rounded ml-2 overflow-x-auto">
-                            {JSON.stringify(example, null, 2)}
-                          </pre>
-                        </div>
-                      ),
-                    )}
-                  </div>
-                </div>
-              )}
+    // 自定义头部渲染函数
+    const renderHeader = () => {
+      return (
+        <>
+          {/* Required indicator */}
+          {resolvedBody.required && (
+            <div className="mb-2">
+              <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200">
+                {t('Required')}
+              </span>
             </div>
-          ))}
-        </div>
+          )}
+        </>
+      );
+    };
+
+    return (
+      <div ref={ref} className={className}>
+        <SectionTitle title={t('Request Body')} className={cn('text-lg font-medium my-3', titleClassName)} />
+
+        <SchemaWithExampleViewer
+          content={requestBody}
+          components={components}
+          contentType="requestBody"
+          renderHeader={renderHeader}
+        />
       </div>
-    </div>
-  );
-});
+    );
+  }
+);
 
 RequestBodySection.displayName = "RequestBodySection";
 
-export {
-  RequestBodySection,
-  type ComponentsObject,
-  type MediaTypeObject,
-  type ReferenceObject,
-  type RequestBodyObject,
-  type RequestBodySectionProps
-};
+export { RequestBodySection, type RequestBodySectionProps };
 

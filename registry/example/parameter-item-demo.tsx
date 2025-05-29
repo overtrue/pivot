@@ -8,8 +8,8 @@ export default function ParameterItemDemo() {
     required: true,
     description: "用户的唯一标识符",
     schema: {
-      type: "string",
-      format: "uuid",
+      type: "string" as const,
+      format: "uuid" as const,
       example: "123e4567-e89b-12d3-a456-426614174000"
     }
   };
@@ -20,7 +20,7 @@ export default function ParameterItemDemo() {
     required: false,
     description: "返回结果的最大数量",
     schema: {
-      type: "number",
+      type: "number" as const,
       minimum: 1,
       maximum: 100,
       default: 20
@@ -33,7 +33,7 @@ export default function ParameterItemDemo() {
     required: true,
     description: "API 访问密钥",
     schema: {
-      type: "string",
+      type: "string" as const,
       pattern: "^[a-zA-Z0-9]{32}$"
     }
   };
@@ -44,7 +44,7 @@ export default function ParameterItemDemo() {
     required: false,
     description: "用户状态筛选",
     schema: {
-      type: "string",
+      type: "string" as const,
       enum: ["active", "inactive", "pending"],
       default: "active"
     }
@@ -57,7 +57,7 @@ export default function ParameterItemDemo() {
     deprecated: true,
     description: "旧版本的格式参数，请使用 format 参数代替",
     schema: {
-      type: "boolean",
+      type: "boolean" as const,
       default: false
     }
   };

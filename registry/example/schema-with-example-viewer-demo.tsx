@@ -4,62 +4,62 @@ export default function SchemaWithExampleViewerDemo() {
   // 用户信息 Schema 和示例
   const userSchemaWithExample = {
     schema: {
-      type: "object",
+      type: "object" as const,
       required: ["id", "email", "name"],
       properties: {
         id: {
-          type: "string",
+          type: "string" as const,
           description: "用户唯一标识符",
-          format: "uuid"
+          format: "uuid" as const
         },
         email: {
-          type: "string",
+          type: "string" as const,
           description: "用户邮箱地址",
-          format: "email"
+          format: "email" as const
         },
         name: {
-          type: "string",
+          type: "string" as const,
           description: "用户姓名",
           minLength: 1,
           maxLength: 100
         },
         avatar: {
-          type: "string",
+          type: "string" as const,
           description: "用户头像 URL",
-          format: "uri"
+          format: "uri" as const
         },
         role: {
-          type: "string",
+          type: "string" as const,
           description: "用户角色",
           enum: ["admin", "user", "moderator"],
           default: "user"
         },
         profile: {
-          type: "object",
+          type: "object" as const,
           description: "用户详细资料",
           properties: {
             bio: {
-              type: "string",
+              type: "string" as const,
               description: "个人简介"
             },
             phone: {
-              type: "string",
+              type: "string" as const,
               description: "电话号码"
             },
             address: {
-              type: "object",
+              type: "object" as const,
               properties: {
-                country: { type: "string", description: "国家" },
-                city: { type: "string", description: "城市" },
-                street: { type: "string", description: "街道地址" }
+                country: { type: "string" as const, description: "国家" },
+                city: { type: "string" as const, description: "城市" },
+                street: { type: "string" as const, description: "街道地址" }
               }
             }
           }
         },
         createdAt: {
-          type: "string",
+          type: "string" as const,
           description: "注册时间",
-          format: "date-time"
+          format: "date-time" as const
         }
       }
     },
@@ -85,70 +85,70 @@ export default function SchemaWithExampleViewerDemo() {
   // 产品信息 Schema 和示例
   const productSchemaWithExample = {
     schema: {
-      type: "object",
+      type: "object" as const,
       required: ["id", "name", "price"],
       properties: {
         id: {
-          type: "string",
+          type: "string" as const,
           description: "产品唯一标识符"
         },
         name: {
-          type: "string",
+          type: "string" as const,
           description: "产品名称",
           minLength: 1,
           maxLength: 200
         },
         description: {
-          type: "string",
+          type: "string" as const,
           description: "产品描述"
         },
         price: {
-          type: "number",
+          type: "number" as const,
           description: "产品价格",
           minimum: 0
         },
         currency: {
-          type: "string",
+          type: "string" as const,
           description: "货币代码",
           pattern: "^[A-Z]{3}$",
           default: "CNY"
         },
         category: {
-          type: "string",
+          type: "string" as const,
           description: "产品分类",
           enum: ["electronics", "clothing", "books", "home", "sports"]
         },
         images: {
-          type: "array",
+          type: "array" as const,
           description: "产品图片列表",
           items: {
-            type: "string",
-            format: "uri"
+            type: "string" as const,
+            format: "uri" as const
           },
           maxItems: 10
         },
         specifications: {
-          type: "object",
+          type: "object" as const,
           description: "产品规格",
           additionalProperties: {
-            type: "string"
+            type: "string" as const
           }
         },
         inStock: {
-          type: "boolean",
+          type: "boolean" as const,
           description: "是否有库存",
           default: true
         },
         stockQuantity: {
-          type: "integer",
+          type: "integer" as const,
           description: "库存数量",
           minimum: 0
         },
         tags: {
-          type: "array",
+          type: "array" as const,
           description: "产品标签",
           items: {
-            type: "string"
+            type: "string" as const
           }
         }
       }
@@ -179,52 +179,52 @@ export default function SchemaWithExampleViewerDemo() {
   // API 响应 Schema 和示例
   const apiResponseSchemaWithExample = {
     schema: {
-      type: "object",
+      type: "object" as const,
       required: ["success", "data"],
       properties: {
         success: {
-          type: "boolean",
+          type: "boolean" as const,
           description: "请求是否成功"
         },
         data: {
-          type: "object",
+          type: "object" as const,
           description: "响应数据",
           properties: {
             users: {
-              type: "array",
+              type: "array" as const,
               description: "用户列表",
               items: {
-                type: "object",
+                type: "object" as const,
                 properties: {
-                  id: { type: "string", description: "用户 ID" },
-                  name: { type: "string", description: "用户姓名" },
-                  email: { type: "string", format: "email", description: "邮箱" }
+                  id: { type: "string" as const, description: "用户 ID" },
+                  name: { type: "string" as const, description: "用户姓名" },
+                  email: { type: "string" as const, format: "email" as const, description: "邮箱" }
                 }
               }
             },
             pagination: {
-              type: "object",
+              type: "object" as const,
               description: "分页信息",
               properties: {
-                page: { type: "integer", description: "当前页码" },
-                pageSize: { type: "integer", description: "每页数量" },
-                total: { type: "integer", description: "总记录数" },
-                totalPages: { type: "integer", description: "总页数" }
+                page: { type: "integer" as const, description: "当前页码" },
+                pageSize: { type: "integer" as const, description: "每页数量" },
+                total: { type: "integer" as const, description: "总记录数" },
+                totalPages: { type: "integer" as const, description: "总页数" }
               }
             }
           }
         },
         message: {
-          type: "string",
+          type: "string" as const,
           description: "响应消息"
         },
         timestamp: {
-          type: "string",
+          type: "string" as const,
           description: "响应时间戳",
-          format: "date-time"
+          format: "date-time" as const
         },
         requestId: {
-          type: "string",
+          type: "string" as const,
           description: "请求追踪 ID"
         }
       }
@@ -260,48 +260,48 @@ export default function SchemaWithExampleViewerDemo() {
   // 错误响应 Schema 和示例
   const errorResponseSchemaWithExample = {
     schema: {
-      type: "object",
+      type: "object" as const,
       required: ["success", "error"],
       properties: {
         success: {
-          type: "boolean",
+          type: "boolean" as const,
           description: "请求是否成功",
           enum: [false]
         },
         error: {
-          type: "object",
+          type: "object" as const,
           description: "错误信息",
           required: ["code", "message"],
           properties: {
             code: {
-              type: "string",
+              type: "string" as const,
               description: "错误代码",
               enum: ["VALIDATION_ERROR", "NOT_FOUND", "UNAUTHORIZED", "INTERNAL_ERROR"]
             },
             message: {
-              type: "string",
+              type: "string" as const,
               description: "错误描述"
             },
             details: {
-              type: "array",
+              type: "array" as const,
               description: "详细错误信息",
               items: {
-                type: "object",
+                type: "object" as const,
                 properties: {
-                  field: { type: "string", description: "错误字段" },
-                  message: { type: "string", description: "字段错误描述" }
+                  field: { type: "string" as const, description: "错误字段" },
+                  message: { type: "string" as const, description: "字段错误描述" }
                 }
               }
             }
           }
         },
         timestamp: {
-          type: "string",
+          type: "string" as const,
           description: "错误发生时间",
-          format: "date-time"
+          format: "date-time" as const
         },
         requestId: {
-          type: "string",
+          type: "string" as const,
           description: "请求追踪 ID"
         }
       }
@@ -330,64 +330,64 @@ export default function SchemaWithExampleViewerDemo() {
   // 支付信息 Schema 和示例
   const paymentSchemaWithExample = {
     schema: {
-      type: "object",
+      type: "object" as const,
       required: ["id", "amount", "currency", "status"],
       properties: {
         id: {
-          type: "string",
+          type: "string" as const,
           description: "支付唯一标识符"
         },
         orderId: {
-          type: "string",
+          type: "string" as const,
           description: "关联订单 ID"
         },
         amount: {
-          type: "number",
+          type: "number" as const,
           description: "支付金额",
           minimum: 0.01
         },
         currency: {
-          type: "string",
+          type: "string" as const,
           description: "货币代码",
           pattern: "^[A-Z]{3}$"
         },
         method: {
-          type: "string",
+          type: "string" as const,
           description: "支付方式",
           enum: ["credit_card", "paypal", "bank_transfer", "alipay", "wechat_pay"]
         },
         status: {
-          type: "string",
+          type: "string" as const,
           description: "支付状态",
           enum: ["pending", "processing", "completed", "failed", "refunded"]
         },
         gateway: {
-          type: "string",
+          type: "string" as const,
           description: "支付网关"
         },
         transactionId: {
-          type: "string",
+          type: "string" as const,
           description: "第三方交易 ID"
         },
         cardInfo: {
-          type: "object",
+          type: "object" as const,
           description: "信用卡信息（脱敏）",
           properties: {
-            last4: { type: "string", description: "卡号后四位" },
-            brand: { type: "string", description: "卡片品牌" },
-            expiryMonth: { type: "integer", description: "过期月份" },
-            expiryYear: { type: "integer", description: "过期年份" }
+            last4: { type: "string" as const, description: "卡号后四位" },
+            brand: { type: "string" as const, description: "卡片品牌" },
+            expiryMonth: { type: "integer" as const, description: "过期月份" },
+            expiryYear: { type: "integer" as const, description: "过期年份" }
           }
         },
         createdAt: {
-          type: "string",
+          type: "string" as const,
           description: "创建时间",
-          format: "date-time"
+          format: "date-time" as const
         },
         completedAt: {
-          type: "string",
+          type: "string" as const,
           description: "完成时间",
-          format: "date-time"
+          format: "date-time" as const
         }
       }
     },
@@ -414,31 +414,31 @@ export default function SchemaWithExampleViewerDemo() {
   // 数组数据 Schema 和示例
   const arraySchemaWithExample = {
     schema: {
-      type: "array",
+      type: "array" as const,
       description: "产品分类列表",
       items: {
-        type: "object",
+        type: "object" as const,
         required: ["id", "name"],
         properties: {
           id: {
-            type: "string",
+            type: "string" as const,
             description: "分类 ID"
           },
           name: {
-            type: "string",
+            type: "string" as const,
             description: "分类名称"
           },
           description: {
-            type: "string",
+            type: "string" as const,
             description: "分类描述"
           },
           parentId: {
-            type: "string",
+            type: "string" as const,
             description: "父分类 ID",
             nullable: true
           },
           level: {
-            type: "integer",
+            type: "integer" as const,
             description: "分类层级",
             minimum: 1
           }

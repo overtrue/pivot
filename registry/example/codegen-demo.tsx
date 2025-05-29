@@ -1,4 +1,5 @@
 import { Codegen } from "@/registry/pivot/codegen";
+import { DataType, FormatType } from "@/types/openapi";
 
 export default function CodegenDemo() {
   // 真实的 API 示例数据
@@ -10,16 +11,16 @@ export default function CodegenDemo() {
         name: "userId",
         in: "path" as const,
         required: true,
-        schema: { type: "string", format: "uuid" }
+        schema: { type: "string" as const as DataType, format: "uuid" as const as FormatType }
       },
       {
         name: "include",
         in: "query" as const,
         required: false,
         schema: {
-          type: "array",
+          type: "array" as const as DataType,
           items: {
-            type: "string",
+            type: "string" as const as DataType,
             enum: ["profile", "permissions", "preferences"]
           }
         }
@@ -28,7 +29,7 @@ export default function CodegenDemo() {
         name: "X-API-Key",
         in: "header" as const,
         required: true,
-        schema: { type: "string" }
+        schema: { type: "string" as const as DataType }
       }
     ]
   };
@@ -41,7 +42,7 @@ export default function CodegenDemo() {
         name: "X-API-Key",
         in: "header" as const,
         required: true,
-        schema: { type: "string" }
+        schema: { type: "string" as const as DataType }
       }
     ],
     requestBody: {
@@ -49,33 +50,33 @@ export default function CodegenDemo() {
       content: {
         "application/json": {
           schema: {
-            type: "object",
+            type: "object" as const as DataType,
             required: ["email", "name"],
             properties: {
               email: {
-                type: "string",
-                format: "email"
+                type: "string" as const as DataType,
+                format: "email" as const as FormatType
               },
               name: {
-                type: "string",
+                type: "string" as const as DataType,
                 minLength: 1,
                 maxLength: 100
               },
               age: {
-                type: "integer",
+                type: "integer" as const as DataType,
                 minimum: 0,
                 maximum: 150
               },
               preferences: {
-                type: "object",
+                type: "object" as const as DataType,
                 properties: {
                   theme: {
-                    type: "string",
+                    type: "string" as const as DataType,
                     enum: ["light", "dark"],
                     default: "light"
                   },
                   notifications: {
-                    type: "boolean",
+                    type: "boolean" as const as DataType,
                     default: true
                   }
                 }
@@ -95,13 +96,13 @@ export default function CodegenDemo() {
         name: "userId",
         in: "path" as const,
         required: true,
-        schema: { type: "string", format: "uuid" }
+        schema: { type: "string" as const as DataType, format: "uuid" as const as FormatType }
       },
       {
         name: "X-API-Key",
         in: "header" as const,
         required: true,
-        schema: { type: "string" }
+        schema: { type: "string" as const as DataType }
       }
     ],
     requestBody: {
@@ -109,12 +110,12 @@ export default function CodegenDemo() {
       content: {
         "application/json": {
           schema: {
-            type: "object",
+            type: "object" as const as DataType,
             properties: {
-              name: { type: "string" },
-              age: { type: "integer", minimum: 0 },
+              name: { type: "string" as const as DataType },
+              age: { type: "integer" as const as DataType, minimum: 0 },
               status: {
-                type: "string",
+                type: "string" as const as DataType,
                 enum: ["active", "inactive", "pending"]
               }
             }

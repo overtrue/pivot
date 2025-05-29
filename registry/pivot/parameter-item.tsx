@@ -11,53 +11,18 @@ import { InLabel } from "../pivot/in-label";
 import { ParameterDescription } from "../pivot/parameter-description";
 import { ParameterName } from "../pivot/parameter-name";
 import { StyleBadge } from "../pivot/style-badge";
-import { TypeIndicator, type DataType } from "../pivot/type-indicator";
+import { TypeIndicator } from "../pivot/type-indicator";
 import { ExampleDisplay } from "./example-display";
 import { ExpandCollapse } from "./expand-collapse";
 
-interface SchemaObject {
-  type: DataType;
-  format?: string;
-  default?: any;
-  example?: any;
-  enum?: any[];
-  minimum?: number;
-  maximum?: number;
-  minLength?: number;
-  maxLength?: number;
-  pattern?: string;
-  minItems?: number;
-  maxItems?: number;
-  uniqueItems?: boolean;
-  minProperties?: number;
-  maxProperties?: number;
-  exclusiveMinimum?: boolean;
-  exclusiveMaximum?: boolean;
-}
-
-interface ExampleObject {
-  summary?: string;
-  description?: string;
-  value?: any;
-  externalValue?: string;
-}
-
-interface ReferenceObject {
-  $ref: string;
-}
-
-interface ComponentsObject {
-  [key: string]: any;
-}
-
-type StyleType =
-  | "form"
-  | "simple"
-  | "label"
-  | "matrix"
-  | "spaceDelimited"
-  | "pipeDelimited"
-  | "deepObject";
+// Import types from the centralized types file
+import type {
+  ComponentsObject,
+  ExampleObject,
+  ReferenceObject,
+  SchemaObject,
+  StyleType
+} from "@/types/openapi";
 
 interface ParameterItemProps {
   name: string;
@@ -177,7 +142,7 @@ const ParameterItem = React.forwardRef<HTMLDivElement, ParameterItemProps>(
 
             <div className="flex items-center gap-2">
               <InLabel type={paramIn} />
-              <TypeIndicator type={schema.type} />
+              {schema.type && <TypeIndicator type={schema.type} />}
               {schema.format && <FormatBadge format={schema.format} />}
               {style && <StyleBadge style={style} />}
             </div>
@@ -190,13 +155,5 @@ const ParameterItem = React.forwardRef<HTMLDivElement, ParameterItemProps>(
 
 ParameterItem.displayName = "ParameterItem";
 
-export {
-  ParameterItem,
-  type ComponentsObject,
-  type ExampleObject,
-  type ParameterItemProps,
-  type ReferenceObject,
-  type SchemaObject,
-  type StyleType
-};
+export { ParameterItem, type ParameterItemProps };
 

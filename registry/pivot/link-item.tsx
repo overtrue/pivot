@@ -1,5 +1,6 @@
 "use client";
 
+import { useI18n } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
 import React, { useState } from "react";
 import { DescriptionDisplay } from "../pivot/description-display";
@@ -34,6 +35,7 @@ const LinkItem = React.forwardRef<HTMLDivElement, LinkItemProps>(
     },
     ref,
   ) => {
+    const { t } = useI18n();
     const [isExpanded, setIsExpanded] = useState(false);
     const hasDetails = description || parameters || requestBody || server;
 
@@ -57,7 +59,7 @@ const LinkItem = React.forwardRef<HTMLDivElement, LinkItemProps>(
                     : "bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200",
                 )}
               >
-                {primaryIdentifier.type}: {primaryIdentifier.value}
+                {t(primaryIdentifier.type)}: {primaryIdentifier.value}
               </span>
             )}
           </div>
@@ -66,8 +68,8 @@ const LinkItem = React.forwardRef<HTMLDivElement, LinkItemProps>(
             <ExpandCollapse
               isExpanded={isExpanded}
               onToggle={() => setIsExpanded(!isExpanded)}
-              expandedLabel="Hide Details"
-              collapsedLabel="Show Details"
+              expandedLabel={t("Hide Details")}
+              collapsedLabel={t("Show Details")}
             />
           )}
         </div>
@@ -83,7 +85,7 @@ const LinkItem = React.forwardRef<HTMLDivElement, LinkItemProps>(
             {description && (
               <div>
                 <h4 className="text-xs font-semibold mb-1 text-neutral-700 dark:text-neutral-300">
-                  Description
+                  {t('Description')}
                 </h4>
                 <DescriptionDisplay
                   description={description}
@@ -95,7 +97,7 @@ const LinkItem = React.forwardRef<HTMLDivElement, LinkItemProps>(
             {parameters && Object.keys(parameters).length > 0 && (
               <div>
                 <h4 className="text-xs font-semibold mb-1 text-neutral-700 dark:text-neutral-300">
-                  Parameters
+                  {t('Parameters')}
                 </h4>
                 <div className="bg-neutral-50 dark:bg-neutral-800 p-2 rounded text-xs space-y-1">
                   {Object.entries(parameters).map(([paramName, paramValue]) => (
@@ -122,7 +124,7 @@ const LinkItem = React.forwardRef<HTMLDivElement, LinkItemProps>(
             {requestBody && (
               <div>
                 <h4 className="text-xs font-semibold mb-1 text-neutral-700 dark:text-neutral-300">
-                  Request Body
+                  {t('Request Body')}
                 </h4>
                 <div className="bg-neutral-50 dark:bg-neutral-800 p-2 rounded text-xs">
                   <pre className="font-mono bg-neutral-100 dark:bg-neutral-700 px-1.5 py-0.5 rounded overflow-x-auto break-all">
@@ -139,7 +141,7 @@ const LinkItem = React.forwardRef<HTMLDivElement, LinkItemProps>(
             {server && (
               <div>
                 <h4 className="text-xs font-semibold mb-1 text-neutral-700 dark:text-neutral-300">
-                  Server
+                  {t('Server')}
                 </h4>
                 <ServerDisplay server={server} />
               </div>

@@ -16,6 +16,10 @@ export const docsConfig: DocsConfig = {
       href: "/docs/components",
     },
     {
+      title: "查看器",
+      href: "/viewer",
+    },
+    {
       title: "演示",
       href: "/showcase",
     },
@@ -32,6 +36,11 @@ export const docsConfig: DocsConfig = {
         {
           title: "快速开始",
           href: "/docs/quick-start",
+          items: [],
+        },
+        {
+          title: "OpenAPI 查看器",
+          href: "/docs/viewer",
           items: [],
         },
         {

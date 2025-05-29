@@ -10,13 +10,13 @@ export default function LaravelGeneratorDemo() {
         name: "Accept",
         in: "header" as const,
         required: true,
-        schema: { type: "string", enum: ["application/json"] }
+        schema: { type: "string" as const, enum: ["application/json"] }
       },
       {
         name: "Authorization",
         in: "header" as const,
         required: true,
-        schema: { type: "string" }
+        schema: { type: "string" as const }
       }
     ],
     requestBodyExample: {
@@ -35,20 +35,20 @@ export default function LaravelGeneratorDemo() {
       content: {
         "application/json": {
           schema: {
-            type: "object",
+            type: "object" as const,
             required: ["name", "email", "password", "password_confirmation"],
             properties: {
-              name: { type: "string", maxLength: 255 },
-              email: { type: "string", format: "email" },
-              password: { type: "string", minLength: 8 },
-              password_confirmation: { type: "string", minLength: 8 },
-              role: { type: "string", enum: ["admin", "user", "moderator"] },
+              name: { type: "string" as const, maxLength: 255 },
+              email: { type: "string" as const, format: "email" as const },
+              password: { type: "string" as const, minLength: 8 },
+              password_confirmation: { type: "string" as const, minLength: 8 },
+              role: { type: "string" as const, enum: ["admin", "user", "moderator"] },
               profile: {
-                type: "object",
+                type: "object" as const,
                 properties: {
-                  phone: { type: "string" },
-                  address: { type: "string" },
-                  avatar: { type: "string", format: "uri" }
+                  phone: { type: "string" as const },
+                  address: { type: "string" as const },
+                  avatar: { type: "string" as const, format: "uri" as const }
                 }
               }
             }
@@ -68,58 +68,58 @@ export default function LaravelGeneratorDemo() {
         name: "page",
         in: "query" as const,
         required: false,
-        schema: { type: "integer", minimum: 1, default: 1 }
+        schema: { type: "integer" as const, minimum: 1, default: 1 }
       },
       {
         name: "per_page",
         in: "query" as const,
         required: false,
-        schema: { type: "integer", minimum: 1, maximum: 100, default: 15 }
+        schema: { type: "integer" as const, minimum: 1, maximum: 100, default: 15 }
       },
       {
         name: "status",
         in: "query" as const,
         required: false,
-        schema: { type: "string", enum: ["published", "draft", "archived"] }
+        schema: { type: "string" as const, enum: ["published", "draft", "archived"] }
       },
       {
         name: "category_id",
         in: "query" as const,
         required: false,
-        schema: { type: "integer" }
+        schema: { type: "integer" as const }
       },
       {
         name: "search",
         in: "query" as const,
         required: false,
-        schema: { type: "string" }
+        schema: { type: "string" as const }
       },
       {
         name: "sort",
         in: "query" as const,
         required: false,
-        schema: { type: "string", enum: ["created_at", "updated_at", "title", "views"] }
+        schema: { type: "string" as const, enum: ["created_at", "updated_at", "title", "views"] }
       },
       {
         name: "order",
         in: "query" as const,
         required: false,
-        schema: { type: "string", enum: ["asc", "desc"], default: "desc" }
+        schema: { type: "string" as const, enum: ["asc", "desc"], default: "desc" }
       },
       {
         name: "with",
         in: "query" as const,
         required: false,
         schema: {
-          type: "array",
-          items: { type: "string", enum: ["author", "category", "tags", "comments"] }
+          type: "array" as const,
+          items: { type: "string" as const, enum: ["author", "category", "tags", "comments"] }
         }
       },
       {
         name: "Authorization",
         in: "header" as const,
         required: true,
-        schema: { type: "string" }
+        schema: { type: "string" as const }
       }
     ],
     requestBodyExample: null,
@@ -135,19 +135,19 @@ export default function LaravelGeneratorDemo() {
         name: "orderId",
         in: "path" as const,
         required: true,
-        schema: { type: "string" }
+        schema: { type: "string" as const }
       },
       {
         name: "X-CSRF-TOKEN",
         in: "header" as const,
         required: true,
-        schema: { type: "string" }
+        schema: { type: "string" as const }
       },
       {
         name: "Authorization",
         in: "header" as const,
         required: true,
-        schema: { type: "string" }
+        schema: { type: "string" as const }
       }
     ],
     requestBodyExample: {
@@ -164,21 +164,21 @@ export default function LaravelGeneratorDemo() {
       content: {
         "application/json": {
           schema: {
-            type: "object",
+            type: "object" as const,
             required: ["status"],
             properties: {
               status: {
-                type: "string",
+                type: "string" as const,
                 enum: ["pending", "confirmed", "processing", "shipped", "delivered", "cancelled"]
               },
-              notes: { type: "string", maxLength: 1000 },
-              notify_customer: { type: "boolean", default: true },
+              notes: { type: "string" as const, maxLength: 1000 },
+              notify_customer: { type: "boolean" as const, default: true },
               tracking_info: {
-                type: "object",
+                type: "object" as const,
                 properties: {
-                  carrier: { type: "string" },
-                  tracking_number: { type: "string" },
-                  estimated_delivery: { type: "string", format: "date" }
+                  carrier: { type: "string" as const },
+                  tracking_number: { type: "string" as const },
+                  estimated_delivery: { type: "string" as const, format: "date" as const }
                 }
               }
             }
@@ -198,25 +198,25 @@ export default function LaravelGeneratorDemo() {
         name: "disk",
         in: "query" as const,
         required: false,
-        schema: { type: "string", enum: ["local", "s3", "oss"], default: "local" }
+        schema: { type: "string" as const, enum: ["local", "s3", "oss"], default: "local" }
       },
       {
         name: "folder",
         in: "query" as const,
         required: false,
-        schema: { type: "string" }
+        schema: { type: "string" as const }
       },
       {
         name: "X-CSRF-TOKEN",
         in: "header" as const,
         required: true,
-        schema: { type: "string" }
+        schema: { type: "string" as const }
       },
       {
         name: "Authorization",
         in: "header" as const,
         required: true,
-        schema: { type: "string" }
+        schema: { type: "string" as const }
       }
     ],
     requestBodyExample: {
@@ -233,18 +233,18 @@ export default function LaravelGeneratorDemo() {
       content: {
         "multipart/form-data": {
           schema: {
-            type: "object",
+            type: "object" as const,
             required: ["file"],
             properties: {
-              file: { type: "string", format: "binary" },
-              alt_text: { type: "string", maxLength: 255 },
-              caption: { type: "string", maxLength: 500 },
+              file: { type: "string" as const, format: "binary" },
+              alt_text: { type: "string" as const, maxLength: 255 },
+              caption: { type: "string" as const, maxLength: 500 },
               metadata: {
-                type: "object",
+                type: "object" as const,
                 properties: {
-                  category: { type: "string" },
-                  product_id: { type: "string" },
-                  is_featured: { type: "boolean" }
+                  category: { type: "string" as const },
+                  product_id: { type: "string" as const },
+                  is_featured: { type: "boolean" as const }
                 }
               }
             }
@@ -264,19 +264,19 @@ export default function LaravelGeneratorDemo() {
         name: "format",
         in: "query" as const,
         required: false,
-        schema: { type: "string", enum: ["csv", "xlsx", "pdf"], default: "xlsx" }
+        schema: { type: "string" as const, enum: ["csv", "xlsx", "pdf"], default: "xlsx" }
       },
       {
         name: "async",
         in: "query" as const,
         required: false,
-        schema: { type: "boolean", default: true }
+        schema: { type: "boolean" as const, default: true }
       },
       {
         name: "Authorization",
         in: "header" as const,
         required: true,
-        schema: { type: "string" }
+        schema: { type: "string" as const }
       }
     ],
     requestBodyExample: {
@@ -308,40 +308,40 @@ export default function LaravelGeneratorDemo() {
       content: {
         "application/json": {
           schema: {
-            type: "object",
+            type: "object" as const,
             required: ["report_type", "date_range"],
             properties: {
               report_type: {
-                type: "string",
+                type: "string" as const,
                 enum: ["sales_summary", "user_activity", "inventory_report", "financial_summary"]
               },
               date_range: {
-                type: "object",
+                type: "object" as const,
                 required: ["start_date", "end_date"],
                 properties: {
-                  start_date: { type: "string", format: "date" },
-                  end_date: { type: "string", format: "date" }
+                  start_date: { type: "string" as const, format: "date" as const },
+                  end_date: { type: "string" as const, format: "date" as const }
                 }
               },
               filters: {
-                type: "object",
+                type: "object" as const,
                 properties: {
-                  status: { type: "array", items: { type: "string" } },
-                  category_ids: { type: "array", items: { type: "integer" } },
-                  min_amount: { type: "number" }
+                  status: { type: "array" as const, items: { type: "string" as const } },
+                  category_ids: { type: "array" as const, items: { type: "integer" as const } },
+                  min_amount: { type: "number" as const }
                 }
               },
               columns: {
-                type: "array",
-                items: { type: "string" }
+                type: "array" as const,
+                items: { type: "string" as const }
               },
               options: {
-                type: "object",
+                type: "object" as const,
                 properties: {
-                  include_headers: { type: "boolean", default: true },
-                  group_by: { type: "string" },
-                  sort_by: { type: "string" },
-                  sort_order: { type: "string", enum: ["asc", "desc"] }
+                  include_headers: { type: "boolean" as const, default: true },
+                  group_by: { type: "string" as const },
+                  sort_by: { type: "string" as const },
+                  sort_order: { type: "string" as const, enum: ["asc", "desc"] }
                 }
               }
             }

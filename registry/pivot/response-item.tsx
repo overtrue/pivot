@@ -1,90 +1,35 @@
-import { cn } from "@/lib/utils";
-import React from "react";
-import { DescriptionDisplay } from "../pivot/description-display";
-import { StatusCode } from "../pivot/status-code";
+"use client";
 
-interface HeaderObject {
-  description?: string;
-  required?: boolean;
-  deprecated?: boolean;
-  allowEmptyValue?: boolean;
-  style?: string;
-  explode?: boolean;
-  allowReserved?: boolean;
-  schema?: any;
-  example?: any;
-  examples?: Record<string, any>;
-}
+import { useI18n } from "@/lib/i18n";
+import { cn } from '@/lib/utils';
+import type { ComponentsObject, HeaderObject, LinkObject, MediaTypeObject, ReferenceObject, ResponseObject } from '@/types/openapi';
+import React from 'react';
+import { resolveRef } from '../lib/resolve-ref';
+import { DescriptionDisplay } from './description-display';
+import { HeadersSection } from './headers-section';
+import { LinksSection } from './links-section';
+import { StatusCode } from './status-code';
 
-interface MediaTypeObject {
-  schema?: any;
-  example?: any;
-  examples?: Record<string, any>;
-  encoding?: Record<string, any>;
-}
-
-interface LinkObject {
-  operationRef?: string;
-  operationId?: string;
-  parameters?: Record<string, any>;
-  requestBody?: any;
-  description?: string;
-  server?: any;
-}
-
-interface ResponseObject {
-  description: string;
-  headers?: Record<string, HeaderObject>;
-  content?: Record<string, MediaTypeObject>;
-  links?: Record<string, LinkObject>;
-}
-
-interface ReferenceObject {
-  $ref: string;
-}
-
-interface ComponentsObject {
-  [key: string]: any;
-}
-
+// 修改接口，接受原始响应对象或引用
 interface ResponseItemProps {
-  code: string;
-  response: ResponseObject | ReferenceObject;
-  components?: ComponentsObject;
+  code: string; // 状态码
+  response: ResponseObject | ReferenceObject; // 可能是引用或已解析的响应对象
+  components?: ComponentsObject; // 用于解析引用
   className?: string;
-}
-
-// Simple ref resolution function (simplified version)
-function resolveRef<T>(
-  obj: T | ReferenceObject,
-  components?: ComponentsObject,
-  section?: string,
-): T | null {
-  if (!obj || typeof obj !== "object") return null;
-
-  if ("$ref" in obj) {
-    // This is a simplified resolution - in real implementation you'd parse the $ref path
-    return null; // For now, return null for references
-  }
-
-  return obj as T;
 }
 
 const ResponseItem = React.forwardRef<HTMLDivElement, ResponseItemProps>(
   ({ code, response, components, className }, ref) => {
-    // Resolve response object (if it's a reference)
-    const resolvedResponse = resolveRef<ResponseObject>(
-      response,
-      components,
-      "responses",
-    );
+    const { t } = useI18n();
 
-    // If unable to resolve reference, show error message
+    // 解析响应对象（如果是引用）
+    const resolvedResponse = resolveRef(response, components, 'responses');
+
+    // 如果无法解析引用，显示错误信息
     if (!resolvedResponse) {
-      const refString =
-        response && typeof response === "object" && "$ref" in response
-          ? response.$ref
-          : "[unknown reference]";
+      const refString = (response && typeof response === 'object' && '$ref' in response)
+        ? response.$ref
+        : t('[unknown reference]');
       return (
         <div
           ref={ref}
@@ -93,13 +38,12 @@ const ResponseItem = React.forwardRef<HTMLDivElement, ResponseItemProps>(
             className,
           )}
         >
-          Cannot display response {code}: Reference {refString} failed to
-          resolve.
+          {t('Cannot display response %s: Reference %s failed to resolve.').replace('%s', code).replace('%s', refString)}
         </div>
       );
     }
 
-    // Extract properties from resolved object
+    // 从解析后的对象中提取属性
     const { description, headers, content, links } = resolvedResponse;
 
     const hasHeaders = headers && Object.keys(headers).length > 0;
@@ -128,51 +72,63 @@ const ResponseItem = React.forwardRef<HTMLDivElement, ResponseItemProps>(
           </div>
         </div>
 
-        {/* Details part - Always shown if hasDetails */}
+        {/* Collapsible Details part - Now always shown if hasDetails */}
         {hasDetails && (
           <div className="p-4 border-t dark:border-neutral-700">
             {hasHeaders && (
-              <div className="mb-4">
-                <h4 className="text-sm font-semibold mb-2 text-neutral-800 dark:text-neutral-200">
-                  Headers
-                </h4>
-                <div className="space-y-2">
-                  {Object.entries(headers).map(([headerName, headerObj]) => (
-                    <div
-                      key={headerName}
-                      className="flex items-center justify-between p-2 bg-neutral-50 dark:bg-neutral-800 rounded"
-                    >
-                      <span className="font-mono text-sm text-neutral-800 dark:text-neutral-200">
-                        {headerName}
-                      </span>
-                      {headerObj.description && (
-                        <span className="text-xs text-neutral-600 dark:text-neutral-400">
-                          {headerObj.description}
-                        </span>
-                      )}
-                    </div>
-                  ))}
-                </div>
-              </div>
+              <HeadersSection
+                headers={headers}
+                components={components}
+              />
             )}
-
             {hasContent && (
               <div className="mb-4">
                 <h4 className="text-sm font-semibold mb-2 text-neutral-800 dark:text-neutral-200">
-                  Content
+                  {t('Content')}
                 </h4>
-                <div className="space-y-2">
+                <div className="space-y-3">
                   {Object.entries(content).map(([mediaType, mediaTypeObj]) => (
                     <div
                       key={mediaType}
-                      className="p-2 bg-neutral-50 dark:bg-neutral-800 rounded"
+                      className="p-3 bg-muted/50 rounded-md border"
                     >
-                      <span className="font-mono text-sm text-blue-600 dark:text-blue-400">
-                        {mediaType}
-                      </span>
+                      <div className="flex items-center justify-between mb-2">
+                        <span className="font-mono text-sm font-medium text-blue-600 dark:text-blue-400">
+                          {mediaType}
+                        </span>
+                      </div>
+
                       {mediaTypeObj.schema && (
-                        <div className="mt-1 text-xs text-neutral-600 dark:text-neutral-400 italic">
-                          Schema available (requires schema display component)
+                        <div className="mb-3">
+                          <h5 className="text-xs font-medium text-muted-foreground mb-2">Schema</h5>
+                          <div className="text-xs text-muted-foreground italic">
+                            Schema available (requires schema display component)
+                          </div>
+                        </div>
+                      )}
+
+                      {mediaTypeObj.example && (
+                        <div className="mb-2">
+                          <h5 className="text-xs font-medium text-muted-foreground mb-2">Example</h5>
+                          <pre className="text-xs bg-background p-2 rounded border overflow-x-auto">
+                            <code>{JSON.stringify(mediaTypeObj.example, null, 2)}</code>
+                          </pre>
+                        </div>
+                      )}
+
+                      {mediaTypeObj.examples && Object.keys(mediaTypeObj.examples).length > 0 && (
+                        <div>
+                          <h5 className="text-xs font-medium text-muted-foreground mb-2">Examples</h5>
+                          <div className="space-y-2">
+                            {Object.entries(mediaTypeObj.examples).map(([exampleName, exampleObj]) => (
+                              <div key={exampleName}>
+                                <h6 className="text-xs font-medium mb-1">{exampleName}</h6>
+                                <pre className="text-xs bg-background p-2 rounded border overflow-x-auto">
+                                  <code>{JSON.stringify(exampleObj, null, 2)}</code>
+                                </pre>
+                              </div>
+                            ))}
+                          </div>
                         </div>
                       )}
                     </div>
@@ -180,36 +136,17 @@ const ResponseItem = React.forwardRef<HTMLDivElement, ResponseItemProps>(
                 </div>
               </div>
             )}
-
             {hasLinks && (
-              <div>
-                <h4 className="text-sm font-semibold mb-2 text-neutral-800 dark:text-neutral-200">
-                  Links
-                </h4>
-                <div className="space-y-2">
-                  {Object.entries(links).map(([linkName, linkObj]) => (
-                    <div
-                      key={linkName}
-                      className="p-2 bg-neutral-50 dark:bg-neutral-800 rounded"
-                    >
-                      <span className="font-mono text-sm text-green-600 dark:text-green-400">
-                        {linkName}
-                      </span>
-                      {linkObj.description && (
-                        <div className="mt-1 text-xs text-neutral-600 dark:text-neutral-400">
-                          {linkObj.description}
-                        </div>
-                      )}
-                    </div>
-                  ))}
-                </div>
-              </div>
+              <LinksSection
+                links={links}
+                components={components}
+              />
             )}
           </div>
         )}
       </div>
     );
-  },
+  }
 );
 
 ResponseItem.displayName = "ResponseItem";
@@ -222,5 +159,6 @@ export {
   type MediaTypeObject,
   type ReferenceObject,
   type ResponseItemProps,
-  type ResponseObject,
+  type ResponseObject
 };
+

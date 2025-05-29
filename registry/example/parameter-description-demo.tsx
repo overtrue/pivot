@@ -27,7 +27,7 @@ export default function ParameterDescriptionDemo() {
   const dateRangeDescription = {
     description: "查询的开始日期，格式为 ISO 8601 标准（YYYY-MM-DD）。用于筛选指定日期范围内的数据。",
     example: "2024-01-01",
-    format: "date"
+    format: "date" as const
   };
 
   // 排序参数描述

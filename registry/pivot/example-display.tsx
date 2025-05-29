@@ -1,25 +1,33 @@
+"use client";
+
+import { useI18n } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
 import React from "react";
+import { CodeMarkdown } from "./code-markdown";
 
 interface ExampleDisplayProps {
   example: any;
   className?: string;
   language?: string; // 支持指定语言
   title?: string; // 添加标题选项
+  disableCopy?: boolean; // 是否禁用复制功能
 }
 
 /**
- * 组件用于展示 API 示例数据，支持多种格式（json, xml, yaml等）
+ * 组件用于展示 API 示例数据，带有语法高亮和复制功能
+ * 支持多种格式（json, xml, yaml等）
  */
 const ExampleDisplay = React.forwardRef<HTMLDivElement, ExampleDisplayProps>(
-  ({ example, className = "", language = "json", title }, ref) => {
+  ({ example, className = "", language = "json", title, disableCopy = false }, ref) => {
+    const { t } = useI18n();
+
     if (!example) {
       return (
         <div
           ref={ref}
           className="bg-yellow-50 dark:bg-yellow-900/30 text-yellow-800 dark:text-yellow-300 p-3 rounded text-sm"
         >
-          No example data provided
+          {t('No example data provided')}
         </div>
       );
     }
@@ -66,9 +74,9 @@ const ExampleDisplay = React.forwardRef<HTMLDivElement, ExampleDisplayProps>(
               return rootName ? `${xml}\n</${rootName}>` : xml;
             };
 
-            return objectToXml(example, "pet");
+            return objectToXml(example, "data");
           } catch (error) {
-            console.error("XML formatting failed:", error);
+            console.error(t('XML formatting failed:'), error);
             return JSON.stringify(example, null, 2); // 失败时回退到JSON
           }
         default:
@@ -81,13 +89,17 @@ const ExampleDisplay = React.forwardRef<HTMLDivElement, ExampleDisplayProps>(
     return (
       <div ref={ref} className={cn("relative", className)}>
         {title && (
-          <div className="bg-neutral-50 dark:bg-neutral-800 px-4 py-2 text-sm font-medium text-neutral-700 dark:text-neutral-300">
+          <div className="bg-neutral-50 dark:bg-neutral-800 px-4 py-2 text-sm font-medium text-neutral-700 dark:text-neutral-300 rounded-t-lg">
             {title}
           </div>
         )}
-        <pre className="bg-neutral-100 dark:bg-neutral-800 p-4 rounded text-xs overflow-x-auto">
-          <code className={`language-${language}`}>{exampleStr}</code>
-        </pre>
+
+        <CodeMarkdown
+          code={exampleStr}
+          language={language}
+          disableCopy={disableCopy}
+          className={title ? "rounded-t-none" : ""}
+        />
       </div>
     );
   },
@@ -95,4 +107,4 @@ const ExampleDisplay = React.forwardRef<HTMLDivElement, ExampleDisplayProps>(
 
 ExampleDisplay.displayName = "ExampleDisplay";
 
-export { ExampleDisplay };
+export { ExampleDisplay, type ExampleDisplayProps };

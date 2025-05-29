@@ -1443,18 +1443,18 @@ export const Index: Record<string, any> = {
     }),
     meta: undefined,
   },
-  "all-in-one-layout": {
-    name: "all-in-one-layout",
-    description: "A comprehensive layout combining navigation, operation details, and interactive elements.",
+  "operation-list-layout": {
+    name: "operation-list-layout",
+    description: "A comprehensive layout combining navigation, operation details, and interactive elements with operation list view.",
     type: "registry:ui",
     registryDependencies: undefined,
     files: [{
-      path: "registry/pivot/all-in-one-layout.tsx",
+      path: "registry/pivot/operation-list-layout.tsx",
       type: "registry:ui",
-      target: "components/pivot/all-in-one-layout.tsx"
+      target: "components/pivot/operation-list-layout.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/pivot/all-in-one-layout.tsx")
+      const mod = await import("@/registry/pivot/operation-list-layout.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -1494,18 +1494,18 @@ export const Index: Record<string, any> = {
     }),
     meta: undefined,
   },
-  "all-in-one-layout-demo": {
-    name: "all-in-one-layout-demo",
-    description: "Example showing all in-one-layout component",
+  "operation-list-layout-demo": {
+    name: "operation-list-layout-demo",
+    description: "Example showing operation list layout component",
     type: "registry:example",
     registryDependencies: undefined,
     files: [{
-      path: "registry/example/all-in-one-layout-demo.tsx",
+      path: "registry/example/operation-list-layout-demo.tsx",
       type: "registry:example",
-      target: "components/example/all-in-one-layout-demo.tsx"
+      target: "components/example/operation-list-layout-demo.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/example/all-in-one-layout-demo.tsx")
+      const mod = await import("@/registry/example/operation-list-layout-demo.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),

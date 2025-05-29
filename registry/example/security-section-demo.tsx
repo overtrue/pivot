@@ -1,4 +1,5 @@
-import { SecuritySection, type SecurityRequirementObject } from "@/registry/pivot/security-section";
+import { SecuritySection } from "@/registry/pivot/security-section";
+import type { SecurityRequirementObject } from "@/types/openapi";
 
 export default function SecuritySectionDemo() {
   // API 密钥认证示例

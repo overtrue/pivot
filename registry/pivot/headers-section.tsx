@@ -1,25 +1,16 @@
+"use client";
+
+import { useI18n } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
+import type { ComponentsObject, HeaderObject, ReferenceObject } from "@/types/openapi";
 import React from "react";
+import { resolveRef } from "../lib/resolve-ref";
 import { HeaderItem } from "./header-item";
 
-interface ComponentsObject {
-  [key: string]: any;
-}
-
-interface ReferenceObject {
-  $ref: string;
-}
-
-interface HeaderObject {
-  description?: string;
-  required?: boolean;
-  deprecated?: boolean;
-  schema?: any;
-  style?: string;
-  explode?: boolean;
-  examples?: Record<string, any>;
-  [key: string]: any;
-}
+// Import types from the centralized types file
+import type {
+  StyleType
+} from "@/types/openapi";
 
 interface HeadersSectionProps {
   headers?: Record<string, HeaderObject | ReferenceObject>;
@@ -27,24 +18,10 @@ interface HeadersSectionProps {
   className?: string;
 }
 
-// Simple ref resolution function
-function resolveRef<T>(
-  obj: T | ReferenceObject,
-  components?: ComponentsObject,
-  section?: string,
-): T | null {
-  if (!obj || typeof obj !== "object") return null;
-
-  if ("$ref" in obj) {
-    // This is a simplified resolution - in real implementation you'd parse the $ref path
-    return null; // For now, return null for references
-  }
-
-  return obj as T;
-}
-
 const HeadersSection = React.forwardRef<HTMLDivElement, HeadersSectionProps>(
   ({ headers, components, className }, ref) => {
+    const { t } = useI18n();
+
     if (!headers) {
       return null;
     }
@@ -58,7 +35,7 @@ const HeadersSection = React.forwardRef<HTMLDivElement, HeadersSectionProps>(
     return (
       <div ref={ref} className={cn("mb-4 dark:text-neutral-200", className)}>
         <h4 className="text-sm font-semibold uppercase text-neutral-500 dark:text-neutral-400 mb-2">
-          Headers
+          {t("Headers")}
         </h4>
         <div className="space-y-3">
           {headerEntries.map(([name, headerOrRef]) => {
@@ -75,7 +52,7 @@ const HeadersSection = React.forwardRef<HTMLDivElement, HeadersSectionProps>(
                   typeof headerOrRef === "object" &&
                   "$ref" in headerOrRef
                   ? (headerOrRef as ReferenceObject).$ref
-                  : "[unknown reference]";
+                  : t("[unknown reference]");
               console.warn(
                 `[HeadersSection] Failed to resolve header ref: ${refString} for key ${name}`,
               );
@@ -85,7 +62,7 @@ const HeadersSection = React.forwardRef<HTMLDivElement, HeadersSectionProps>(
                   key={name}
                   className="text-xs text-red-500 dark:text-red-400 p-1 border border-dashed dark:border-red-700 rounded"
                 >
-                  Failed to resolve reference: {name} ({refString})
+                  {t("Failed to resolve reference")}: {name} ({refString})
                 </div>
               );
             }
@@ -98,7 +75,7 @@ const HeadersSection = React.forwardRef<HTMLDivElement, HeadersSectionProps>(
                 required={header.required}
                 deprecated={header.deprecated}
                 schema={header.schema}
-                style={header.style}
+                style={header.style as StyleType}
                 explode={header.explode}
                 examples={header.examples}
                 components={components}
@@ -113,11 +90,5 @@ const HeadersSection = React.forwardRef<HTMLDivElement, HeadersSectionProps>(
 
 HeadersSection.displayName = "HeadersSection";
 
-export {
-  HeadersSection,
-  type ComponentsObject,
-  type HeaderObject,
-  type HeadersSectionProps,
-  type ReferenceObject
-};
+export { HeadersSection, type HeadersSectionProps };
 

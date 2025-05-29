@@ -1,16 +1,11 @@
 import { Braces } from "lucide-react";
 import React from "react";
 
+// Import types from the centralized types file
+import type { ParameterObject } from "@/types/openapi";
+
 // Reuse types
 export type HttpMethod = "GET" | "POST" | "PUT" | "DELETE" | "PATCH" | "HEAD" | "OPTIONS";
-
-export interface ParameterObject {
-  name: string;
-  in: "query" | "header" | "path" | "cookie";
-  required?: boolean;
-  schema?: any;
-  [key: string]: any;
-}
 
 export interface RequestBodyObject {
   content?: {

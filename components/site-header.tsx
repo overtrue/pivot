@@ -10,31 +10,31 @@ import { siteConfig } from "@/config/site";
 import { cn } from "@/lib/utils";
 
 export async function SiteHeader() {
-  let stars = 300; // Default value
+  // let stars = 300; // Default value
 
-  try {
-    const response = await fetch(
-      "https://api.github.com/repos/overtrue/pivot",
-      {
-        headers: process.env.GITHUB_OAUTH_TOKEN
-          ? {
-            Authorization: `Bearer ${process.env.GITHUB_OAUTH_TOKEN}`,
-            "Content-Type": "application/json",
-          }
-          : {},
-        next: {
-          revalidate: 3600,
-        },
-      },
-    );
+  // try {
+  //   const response = await fetch(
+  //     "https://api.github.com/repos/overtrue/pivot",
+  //     {
+  //       headers: process.env.GITHUB_OAUTH_TOKEN
+  //         ? {
+  //           Authorization: `Bearer ${process.env.GITHUB_OAUTH_TOKEN}`,
+  //           "Content-Type": "application/json",
+  //         }
+  //         : {},
+  //       next: {
+  //         revalidate: 3600,
+  //       },
+  //     },
+  //   );
 
-    if (response.ok) {
-      const data = await response.json();
-      stars = data.stargazers_count || stars; // Update stars if API response is valid
-    }
-  } catch (error) {
-    console.error("Error fetching GitHub stars:", error);
-  }
+  //   if (response.ok) {
+  //     const data = await response.json();
+  //     stars = data.stargazers_count || stars; // Update stars if API response is valid
+  //   }
+  // } catch (error) {
+  //   console.error("Error fetching GitHub stars:", error);
+  // }
 
   return (
     <header

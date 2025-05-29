@@ -1,3 +1,5 @@
+"use client";
+
 import { RequiredMarker } from "@/registry/pivot/required-marker";
 
 export default function RequiredMarkerDemo() {

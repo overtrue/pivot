@@ -3,7 +3,6 @@
 import { cn } from "@/lib/utils";
 import { ArrowRightIcon } from "@radix-ui/react-icons";
 import Link from "next/link";
-import posthog from "posthog-js";
 
 import { AnimatedShinyText } from "./magicui/animated-shiny-text";
 import { TextAnimate } from "./magicui/text-animate";
@@ -33,32 +32,5 @@ export default function SidebarCTA() {
         了解更多
       </Link>
     </div>
-  );
-}
-
-export function ProductHuntCTA() {
-  return (
-    <Link
-      href="https://www.producthunt.com/posts/magic-ui-2?utm_source=sidebar-cta&utm_medium=sidebar-cta&utm_campaign=product-hunt-sidebar-cta"
-      target="_blank"
-      onClick={() => posthog.capture("product_hunt_sidebar_cta_clicked")}
-      className="group my-20 flex w-full flex-col items-center justify-center gap-2 rounded-xl bg-[#ff6154] p-4 text-center text-lg font-medium leading-tight text-white"
-    >
-      <TextAnimate animate="blurInUp" by="word" className="text-2xl">
-        Vote for Pivot on Product Hunt Today!
-      </TextAnimate>
-      <AnimatedShinyText className="group inline items-center justify-center whitespace-pre-wrap via-white/80 text-white text-xs">
-        ✨ Show your support and vote for us
-      </AnimatedShinyText>
-
-      <video
-        autoPlay
-        loop
-        playsInline
-        muted
-        src="/agent-demo.mp4"
-        className="w-full overflow-hidden rounded-xl shadow-2xl"
-      />
-    </Link>
   );
 }

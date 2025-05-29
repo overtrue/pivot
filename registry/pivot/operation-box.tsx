@@ -1,40 +1,25 @@
 "use client";
 
+import { useI18n } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
 import React, { useState } from "react";
-import { DeprecatedBadge } from "../pivot/deprecated-badge";
-import { DescriptionDisplay } from "../pivot/description-display";
-import { ExternalDocsDisplay } from "../pivot/external-docs-display";
-import { MethodLabel } from "../pivot/method-label";
-import { OperationPath } from "../pivot/operation-path";
+import { DeprecatedBadge } from "./deprecated-badge";
+import { DescriptionDisplay } from "./description-display";
 import { ExpandCollapse } from "./expand-collapse";
+import { ExternalDocsDisplay } from "./external-docs-display";
+import { MethodLabel } from "./method-label";
+import { OperationPath } from "./operation-path";
 import { ParametersSection } from "./parameters-section";
 import { RequestBodySection } from "./request-body-section";
 import { ResponsesSection } from "./responses-section";
 import { SecurityRequirementsSection } from "./security-requirements-section";
 
-interface OperationObject {
-  summary?: string;
-  description?: string;
-  deprecated?: boolean;
-  parameters?: any[];
-  requestBody?: any;
-  responses?: any;
-  security?: any[];
-  externalDocs?: {
-    description?: string;
-    url: string;
-  };
-}
-
-interface ComponentsObject {
-  [key: string]: any;
-}
-
-interface OpenApiSpec {
-  components?: ComponentsObject;
-  [key: string]: any;
-}
+// Import types from the centralized types file
+import type {
+  ComponentsObject,
+  OpenApiSpec,
+  OperationObject
+} from "@/types/openapi";
 
 interface OperationBoxProps {
   path: string;
@@ -52,22 +37,7 @@ const OperationBox = React.forwardRef<HTMLDivElement, OperationBoxProps>(
     ref,
   ) => {
     const [isExpanded, setIsExpanded] = useState(false);
-
-    if (!operation) {
-      return (
-        <div
-          ref={ref}
-          className={cn(
-            "rounded overflow-hidden bg-neutral-50/50 dark:bg-neutral-800/50 p-3",
-            className,
-          )}
-        >
-          <div className="text-neutral-500 dark:text-neutral-400 text-sm italic">
-            No operation data available
-          </div>
-        </div>
-      );
-    }
+    const { t } = useI18n();
 
     // Use spec components if provided, otherwise use direct components
     const resolvedComponents = spec?.components || components;
@@ -91,10 +61,9 @@ const OperationBox = React.forwardRef<HTMLDivElement, OperationBoxProps>(
       <div
         ref={ref}
         className={cn(
-          "rounded overflow-hidden",
+          "rounded-lg overflow-hidden border bg-background",
           operation.deprecated
-            ? "bg-red-50/50 dark:bg-red-900/20"
-            : "bg-neutral-50/50 dark:bg-neutral-800/50",
+            ? "bg-red-300 dark:bg-red-900/50" : '',
           className,
         )}
       >
@@ -121,9 +90,7 @@ const OperationBox = React.forwardRef<HTMLDivElement, OperationBoxProps>(
 
         {/* Collapsible Body */}
         {isExpanded && (
-          <div className={cn(
-            operation.deprecated ? "bg-red-50/30 dark:bg-red-900/10" : ""
-          )}>
+          <div className="">
             {/* Description Section */}
             {(operation.summary || operation.description || externalDocs) && (
               <div className="p-4 pt-0 space-y-2">
@@ -195,9 +162,6 @@ OperationBox.displayName = "OperationBox";
 
 export {
   OperationBox,
-  type ComponentsObject,
-  type OpenApiSpec,
-  type OperationBoxProps,
-  type OperationObject
+  type OperationBoxProps
 };
 

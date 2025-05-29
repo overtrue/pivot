@@ -1,70 +1,71 @@
 "use client";
 
+import { I18nProvider } from "@/lib/i18n/I18nProvider";
 import { CopyButton } from "@/registry/pivot/copy-button";
+import { ExampleDisplay } from "@/registry/pivot/example-display";
 
 export default function CopyButtonDemo() {
-  const codeExample = `curl -X GET "https://api.example.com/users" \\
-  -H "Authorization: Bearer YOUR_TOKEN" \\
-  -H "Content-Type: application/json"`;
-
-  const jsonExample = `{
+  const sampleCode = `{
+  "id": "123",
   "name": "John Doe",
   "email": "john@example.com",
-  "age": 30
+  "age": 30,
+  "active": true
 }`;
 
+  const sampleObject = {
+    id: "123",
+    name: "John Doe",
+    email: "john@example.com",
+    age: 30,
+    active: true
+  };
+
   return (
-    <div className="space-y-4 min-w-md">
-      <div>
-        <h4 className="text-sm font-medium mb-3">简单文本复制</h4>
-        <div className="flex items-center gap-2">
-          <CopyButton text="Hello World" />
-          <span className="text-sm text-muted-foreground">复制简单文本</span>
-        </div>
-      </div>
+    <I18nProvider>
+      <div className="space-y-6 p-6">
+        <h2 className="text-2xl font-bold">Copy Button Demo</h2>
 
-      <div>
-        <h4 className="text-sm font-medium mb-3">复制代码示例</h4>
-        <div className="relative">
-          <pre className="bg-neutral-100 dark:bg-neutral-800 p-3 rounded text-sm overflow-x-auto">
-            <code>{codeExample}</code>
-          </pre>
-          <div className="absolute top-2 right-2">
-            <CopyButton text={codeExample} />
+        <div className="space-y-4">
+          <h3 className="text-lg font-semibold">Basic Copy Button</h3>
+          <div className="flex items-center space-x-4">
+            <CopyButton text="Hello, World!" size="sm" />
+            <CopyButton text="Hello, World!" size="md" />
+            <CopyButton text="Hello, World!" size="lg" />
           </div>
         </div>
-      </div>
 
-      <div>
-        <h4 className="text-sm font-medium mb-3">复制 JSON 数据</h4>
-        <div className="relative">
-          <pre className="bg-neutral-100 dark:bg-neutral-800 p-3 rounded text-sm overflow-x-auto">
-            <code>{jsonExample}</code>
-          </pre>
-          <div className="absolute top-2 right-2">
-            <CopyButton text={jsonExample} />
-          </div>
+        <div className="space-y-4">
+          <h3 className="text-lg font-semibold">Example Display with Copy Button</h3>
+          <ExampleDisplay
+            example={sampleObject}
+            language="json"
+            title="User Object Example"
+            className="max-w-md"
+          />
         </div>
-      </div>
 
-      <div>
-        <h4 className="text-sm font-medium mb-3">不同尺寸</h4>
-        <div className="flex items-center gap-3">
-          <CopyButton text="Small" size="sm" />
-          <CopyButton text="Default" />
-          <CopyButton text="Large" size="lg" />
+        <div className="space-y-4">
+          <h3 className="text-lg font-semibold">Example Display without Copy Button</h3>
+          <ExampleDisplay
+            example={sampleObject}
+            language="json"
+            title="User Object Example (No Copy)"
+            disableCopy={true}
+            className="max-w-md"
+          />
         </div>
-      </div>
 
-      <div>
-        <h4 className="text-sm font-medium mb-3">自定义样式</h4>
-        <div className="flex items-center gap-2">
-          <CopyButton
-            text="Custom style"
-            className="bg-blue-100 text-blue-800 hover:bg-blue-200 dark:bg-blue-900/30 dark:text-blue-400"
+        <div className="space-y-4">
+          <h3 className="text-lg font-semibold">XML Example</h3>
+          <ExampleDisplay
+            example={sampleObject}
+            language="xml"
+            title="User XML Example"
+            className="max-w-md"
           />
         </div>
       </div>
-    </div>
+    </I18nProvider>
   );
 }

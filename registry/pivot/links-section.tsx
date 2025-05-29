@@ -1,3 +1,6 @@
+"use client";
+
+import { useI18n } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
 import React from "react";
 import { LinkItem, type LinkObject } from "./link-item";
@@ -35,6 +38,8 @@ const resolveRef = <T,>(
 
 const LinksSection = React.forwardRef<HTMLDivElement, LinksSectionProps>(
   ({ links, components, className }, ref) => {
+    const { t } = useI18n();
+
     if (!links) {
       return null;
     }
@@ -48,7 +53,7 @@ const LinksSection = React.forwardRef<HTMLDivElement, LinksSectionProps>(
     return (
       <div ref={ref} className={cn("mb-4", className)}>
         <h4 className="text-sm font-semibold uppercase text-neutral-500 dark:text-neutral-400 mb-2">
-          Links
+          {t('Links')}
         </h4>
         <div className="space-y-3">
           {linkEntries.map(([name, linkOrRef]) => {
@@ -61,7 +66,7 @@ const LinksSection = React.forwardRef<HTMLDivElement, LinksSectionProps>(
                   typeof linkOrRef === "object" &&
                   "$ref" in linkOrRef
                   ? (linkOrRef as ReferenceObject).$ref
-                  : "[unknown reference]";
+                  : t("[unknown reference]");
               console.warn(
                 `[LinksSection] Failed to resolve link ref: ${refString} for key ${name}`,
               );
@@ -71,7 +76,7 @@ const LinksSection = React.forwardRef<HTMLDivElement, LinksSectionProps>(
                   key={name}
                   className="text-xs text-red-500 dark:text-red-400 p-1 border border-dashed rounded"
                 >
-                  Failed to resolve link: {name} ({refString})
+                  {t('Failed to resolve link:') + ' ' + name} ({refString})
                 </div>
               );
             }

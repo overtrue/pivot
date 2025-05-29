@@ -1,3 +1,5 @@
+"use client";
+
 import React, { createContext, useContext, useState } from "react";
 import en from "./locales/en";
 import zh from "./locales/zh";
@@ -30,10 +32,36 @@ export const I18nProvider: React.FC<{ children: React.ReactNode }> = ({
   );
 };
 
+// 创建一个默认的翻译函数，使用英文作为默认语言
+const createDefaultTranslator = (defaultLocale: "en" | "zh" = "en") => {
+  return (key: string): string => {
+    return locales[defaultLocale]?.[key] || key;
+  };
+};
+
+// 重构后的 useI18n hook，支持在没有 provider 的情况下使用默认语言
 export const useI18n = (): I18nContextProps => {
   const context = useContext(I18nContext);
+
+  // 如果没有 provider，返回默认的 i18n 对象
   if (!context) {
-    throw new Error("useI18n must be used within an I18nProvider");
+    const defaultT = createDefaultTranslator("en");
+    return {
+      locale: "en",
+      setLocale: () => {
+        console.warn("useI18n: setLocale called outside of I18nProvider. Language switching is not available.");
+      },
+      t: defaultT,
+    };
   }
+
   return context;
+};
+
+// 导出一个独立的翻译函数，可以在组件外部使用
+export const t = createDefaultTranslator("en");
+
+// 导出一个创建翻译函数的工厂函数
+export const createTranslator = (locale: "en" | "zh" = "en") => {
+  return createDefaultTranslator(locale);
 };

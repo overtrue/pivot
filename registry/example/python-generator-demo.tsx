@@ -15,12 +15,12 @@ export default function PythonGeneratorDemo() {
       content: {
         "application/json": {
           schema: {
-            type: "object",
+            type: "object" as const,
             required: ["email", "password"],
             properties: {
-              email: { type: "string", format: "email" },
-              password: { type: "string", minLength: 8 },
-              rememberMe: { type: "boolean", default: false }
+              email: { type: "string" as const, format: "email" as const },
+              password: { type: "string" as const, minLength: 8 },
+              rememberMe: { type: "boolean" as const, default: false }
             }
           }
         }
@@ -38,34 +38,34 @@ export default function PythonGeneratorDemo() {
         name: "startDate",
         in: "query" as const,
         required: true,
-        schema: { type: "string", format: "date" }
+        schema: { type: "string" as const, format: "date" as const }
       },
       {
         name: "endDate",
         in: "query" as const,
         required: true,
-        schema: { type: "string", format: "date" }
+        schema: { type: "string" as const, format: "date" as const }
       },
       {
         name: "metrics",
         in: "query" as const,
         required: false,
         schema: {
-          type: "array",
-          items: { type: "string", enum: ["views", "clicks", "conversions", "revenue"] }
+          type: "array" as const,
+          items: { type: "string" as const, enum: ["views", "clicks", "conversions", "revenue"] }
         }
       },
       {
         name: "groupBy",
         in: "query" as const,
         required: false,
-        schema: { type: "string", enum: ["day", "week", "month"] }
+        schema: { type: "string" as const, enum: ["day", "week", "month"] }
       },
       {
         name: "Authorization",
         in: "header" as const,
         required: true,
-        schema: { type: "string" }
+        schema: { type: "string" as const }
       }
     ],
     requestBodyExample: null,
@@ -81,13 +81,13 @@ export default function PythonGeneratorDemo() {
         name: "model-version",
         in: "header" as const,
         required: false,
-        schema: { type: "string", default: "v1.0" }
+        schema: { type: "string" as const, default: "v1.0" }
       },
       {
         name: "X-API-Key",
         in: "header" as const,
         required: true,
-        schema: { type: "string" }
+        schema: { type: "string" as const }
       }
     ],
     requestBodyExample: {
@@ -107,26 +107,26 @@ export default function PythonGeneratorDemo() {
       content: {
         "application/json": {
           schema: {
-            type: "object",
+            type: "object" as const,
             required: ["features"],
             properties: {
               features: {
-                type: "object",
+                type: "object" as const,
                 description: "输入特征数据",
                 properties: {
-                  age: { type: "integer", minimum: 18, maximum: 100 },
-                  income: { type: "number", minimum: 0 },
-                  creditScore: { type: "integer", minimum: 300, maximum: 850 },
-                  employmentYears: { type: "number", minimum: 0 },
-                  hasProperty: { type: "boolean" }
+                  age: { type: "integer" as const, minimum: 18, maximum: 100 },
+                  income: { type: "number" as const, minimum: 0 },
+                  creditScore: { type: "integer" as const, minimum: 300, maximum: 850 },
+                  employmentYears: { type: "number" as const, minimum: 0 },
+                  hasProperty: { type: "boolean" as const }
                 }
               },
               options: {
-                type: "object",
+                type: "object" as const,
                 description: "预测选项",
                 properties: {
-                  includeConfidence: { type: "boolean", default: false },
-                  explainPrediction: { type: "boolean", default: false }
+                  includeConfidence: { type: "boolean" as const, default: false },
+                  explainPrediction: { type: "boolean" as const, default: false }
                 }
               }
             }
@@ -146,19 +146,19 @@ export default function PythonGeneratorDemo() {
         name: "async",
         in: "query" as const,
         required: false,
-        schema: { type: "boolean", default: true }
+        schema: { type: "boolean" as const, default: true }
       },
       {
         name: "priority",
         in: "query" as const,
         required: false,
-        schema: { type: "string", enum: ["low", "normal", "high"], default: "normal" }
+        schema: { type: "string" as const, enum: ["low", "normal", "high"], default: "normal" }
       },
       {
         name: "Authorization",
         in: "header" as const,
         required: true,
-        schema: { type: "string" }
+        schema: { type: "string" as const }
       }
     ],
     requestBodyExample: {
@@ -179,26 +179,26 @@ export default function PythonGeneratorDemo() {
       content: {
         "application/json": {
           schema: {
-            type: "object",
+            type: "object" as const,
             required: ["operation", "data"],
             properties: {
-              operation: { type: "string", enum: ["transform", "validate", "aggregate"] },
-              inputFormat: { type: "string", enum: ["csv", "json", "xml"] },
-              outputFormat: { type: "string", enum: ["csv", "json", "xml"] },
+              operation: { type: "string" as const, enum: ["transform", "validate", "aggregate"] },
+              inputFormat: { type: "string" as const, enum: ["csv", "json", "xml"] },
+              outputFormat: { type: "string" as const, enum: ["csv", "json", "xml"] },
               data: {
-                type: "array",
-                items: { type: "object" },
+                type: "array" as const,
+                items: { type: "object" as const },
                 maxItems: 1000
               },
               transformations: {
-                type: "array",
+                type: "array" as const,
                 items: {
-                  type: "object",
+                  type: "object" as const,
                   properties: {
-                    type: { type: "string" },
-                    condition: { type: "string" },
-                    field: { type: "string" },
-                    order: { type: "string", enum: ["asc", "desc"] }
+                    type: { type: "string" as const },
+                    condition: { type: "string" as const },
+                    field: { type: "string" as const },
+                    order: { type: "string" as const, enum: ["asc", "desc"] }
                   }
                 }
               }
@@ -219,19 +219,19 @@ export default function PythonGeneratorDemo() {
         name: "format",
         in: "query" as const,
         required: false,
-        schema: { type: "string", enum: ["jpeg", "png", "webp"], default: "jpeg" }
+        schema: { type: "string" as const, enum: ["jpeg", "png", "webp"], default: "jpeg" }
       },
       {
         name: "quality",
         in: "query" as const,
         required: false,
-        schema: { type: "integer", minimum: 1, maximum: 100, default: 80 }
+        schema: { type: "integer" as const, minimum: 1, maximum: 100, default: 80 }
       },
       {
         name: "X-Processing-Token",
         in: "header" as const,
         required: true,
-        schema: { type: "string" }
+        schema: { type: "string" as const }
       }
     ],
     requestBodyExample: {
@@ -251,32 +251,32 @@ export default function PythonGeneratorDemo() {
       content: {
         "application/json": {
           schema: {
-            type: "object",
+            type: "object" as const,
             required: ["imageUrl", "operations"],
             properties: {
-              imageUrl: { type: "string", format: "uri" },
+              imageUrl: { type: "string" as const, format: "uri" as const },
               operations: {
-                type: "array",
+                type: "array" as const,
                 items: {
-                  type: "object",
+                  type: "object" as const,
                   properties: {
-                    type: { type: "string", enum: ["resize", "crop", "filter", "rotate"] },
-                    width: { type: "integer" },
-                    height: { type: "integer" },
-                    x: { type: "integer" },
-                    y: { type: "integer" },
-                    name: { type: "string" },
-                    value: { type: "number" },
-                    angle: { type: "number" }
+                    type: { type: "string" as const, enum: ["resize", "crop", "filter", "rotate"] },
+                    width: { type: "integer" as const },
+                    height: { type: "integer" as const },
+                    x: { type: "integer" as const },
+                    y: { type: "integer" as const },
+                    name: { type: "string" as const },
+                    value: { type: "number" as const },
+                    angle: { type: "number" as const }
                   }
                 }
               },
               metadata: {
-                type: "object",
+                type: "object" as const,
                 properties: {
-                  preserveExif: { type: "boolean", default: true },
-                  addWatermark: { type: "boolean", default: false },
-                  watermarkText: { type: "string" }
+                  preserveExif: { type: "boolean" as const, default: true },
+                  addWatermark: { type: "boolean" as const, default: false },
+                  watermarkText: { type: "string" as const }
                 }
               }
             }

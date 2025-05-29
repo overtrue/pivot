@@ -2,6 +2,7 @@
 
 import { cn } from "@/lib/utils";
 import React, { useState } from "react";
+import { resolveRef } from "../lib/resolve-ref";
 import { ConstraintDisplay } from "../pivot/constraint-display";
 import { DefaultValueDisplay } from "../pivot/default-value-display";
 import { DeprecatedBadge } from "../pivot/deprecated-badge";
@@ -12,43 +13,12 @@ import { RequiredBadge } from "../pivot/required-badge";
 import { TypeIndicator } from "../pivot/type-indicator";
 import { SchemaCompositionDisplay } from "./schema-composition-display";
 
-interface ComponentsObject {
-  [key: string]: any;
-}
-
-interface ReferenceObject {
-  $ref: string;
-}
-
-interface SchemaObject {
-  type?: string;
-  format?: string;
-  description?: string;
-  default?: any;
-  enum?: any[];
-  deprecated?: boolean;
-  properties?: Record<string, SchemaObject | ReferenceObject>;
-  required?: string[];
-  items?: SchemaObject | ReferenceObject;
-  additionalProperties?: boolean | SchemaObject | ReferenceObject;
-  allOf?: (SchemaObject | ReferenceObject)[];
-  anyOf?: (SchemaObject | ReferenceObject)[];
-  oneOf?: (SchemaObject | ReferenceObject)[];
-  not?: SchemaObject | ReferenceObject;
-  minimum?: number;
-  maximum?: number;
-  exclusiveMinimum?: boolean | number;
-  exclusiveMaximum?: boolean | number;
-  minLength?: number;
-  maxLength?: number;
-  pattern?: string;
-  minItems?: number;
-  maxItems?: number;
-  uniqueItems?: boolean;
-  minProperties?: number;
-  maxProperties?: number;
-  [key: string]: any;
-}
+// Import types from the centralized types file
+import type {
+  ComponentsObject,
+  ReferenceObject,
+  SchemaObject
+} from "@/types/openapi";
 
 interface SchemaDisplayProps {
   schema: SchemaObject | ReferenceObject;
@@ -59,22 +29,6 @@ interface SchemaDisplayProps {
 }
 
 const MAX_DEPTH = 10; // Simple depth limit to prevent infinite loops
-
-// Simple ref resolution function (simplified version)
-function resolveRef<T>(
-  obj: T | ReferenceObject,
-  components?: ComponentsObject,
-  section?: string,
-): T | null {
-  if (!obj || typeof obj !== "object") return null;
-
-  if ("$ref" in obj) {
-    // This is a simplified resolution - in real implementation you'd parse the $ref path
-    return null; // For now, return null for references
-  }
-
-  return obj as T;
-}
 
 // --- Collapsible Icon --- (Simple SVG Chevron)
 const ChevronIcon = ({ isExpanded }: { isExpanded: boolean }) => (

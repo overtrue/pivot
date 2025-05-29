@@ -1,255 +1,305 @@
-import { ArrowRight, Copy, Github, Moon, Palette, Settings, Smartphone, Zap } from "lucide-react";
+import { ArrowRight, Code, FileText, Github, Globe, Palette, Sparkles, Zap } from "lucide-react";
 import Link from "next/link";
 
-import { SiteBanner } from "@/components/site-banner";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { Badge } from "@/components/ui/badge";
 import { buttonVariants } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
 import { siteConfig } from "@/config/site";
 import { cn } from "@/lib/utils";
 
 export default function IndexPage() {
   return (
     <>
-      <SiteBanner />
       <SiteHeader />
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="relative overflow-hidden py-24 lg:py-32">
-          <div className="container">
-            <div className="mx-auto max-w-5xl text-center">
-              <Badge variant="outline" className="mb-4">
-                🎉 专为 OpenAPI 设计
-              </Badge>
-              <h1 className="mb-6 text-4xl font-bold tracking-tight sm:text-6xl lg:text-7xl">
-                构建你的
-                <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                  组件库
-                </span>
-              </h1>
-              <p className="mx-auto mb-8 max-w-2xl text-lg text-muted-foreground sm:text-xl">
-                一套精美设计、易于访问的组件和代码分发平台。
-                适用于你喜爱的框架。开源。开放代码。
+        <section className="relative overflow-hidden bg-gradient-to-b from-blue-50/50 via-white to-white dark:from-blue-950/10 dark:via-gray-950 dark:to-gray-950">
+          {/* Decorative Elements */}
+          <div className="absolute inset-0 bg-grid-slate-100 [mask-image:linear-gradient(0deg,white,rgba(255,255,255,0.6))] dark:bg-grid-slate-700/25 dark:[mask-image:linear-gradient(0deg,rgba(255,255,255,0.1),rgba(255,255,255,0.5))]"></div>
+
+          <div className="relative">
+            <div className="mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:px-8 lg:py-40">
+              <div className="mx-auto max-w-4xl text-center">
+                {/* Badge */}
+                <div className="mb-10">
+                  <Badge
+                    variant="secondary"
+                    className="inline-flex items-center gap-1 rounded-full bg-blue-50 px-3 py-1 text-sm font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10 dark:bg-blue-400/10 dark:text-blue-400 dark:ring-blue-400/20"
+                  >
+                    <Sparkles className="h-3 w-3" />
+                    专为 OpenAPI 设计的组件库
+                  </Badge>
+                </div>
+
+                {/* Main Heading */}
+                <h1 className="text-4xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-6xl lg:text-7xl">
+                  <span className="block bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent leading-tight">
+                    OpenAPI 组件库
+                  </span>
+                </h1>
+
+                {/* Subtitle */}
+                <p className="mx-auto mt-8 max-w-2xl text-xl leading-8 text-gray-600 dark:text-gray-300">
+                  精美设计、易于访问的 OpenAPI 组件
+                </p>
+                <p className="mx-auto mt-4 max-w-3xl text-lg leading-7 text-gray-900 dark:text-white font-medium">
+                  将 OpenAPI 规范转换为精美文档，只需几分钟
+                </p>
+
+                {/* Action Buttons */}
+                <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center sm:gap-6">
+                  <Link
+                    href="/docs"
+                    className={cn(
+                      buttonVariants({ size: "lg" }),
+                      "h-12 px-8 bg-blue-600 hover:bg-blue-700 text-white font-semibold shadow-lg shadow-blue-500/25 transition-all hover:shadow-xl hover:shadow-blue-500/30"
+                    )}
+                  >
+                    开始使用
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </Link>
+                  <Link
+                    href="/viewer"
+                    className={cn(
+                      buttonVariants({ variant: "outline", size: "lg" }),
+                      "h-12 px-8 border-gray-300 bg-white hover:bg-gray-50 font-semibold dark:border-gray-600 dark:bg-gray-900 dark:hover:bg-gray-800"
+                    )}
+                  >
+                    在线体验
+                  </Link>
+                  <Link
+                    href={siteConfig.links.github}
+                    target="_blank"
+                    rel="noreferrer"
+                    className={cn(
+                      buttonVariants({ variant: "ghost", size: "lg" }),
+                      "h-12 px-8 text-gray-700 hover:text-gray-900 font-semibold dark:text-gray-300 dark:hover:text-white"
+                    )}
+                  >
+                    <Github className="mr-2 h-4 w-4" />
+                    GitHub
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Features Grid */}
+        <section className="py-20 sm:py-32">
+          <div className="mx-auto max-w-7xl px-6 lg:px-8">
+            <div className="mx-auto max-w-2xl text-center">
+              <h2 className="text-base font-semibold leading-7 text-blue-600 dark:text-blue-400">
+                为开发者设计
+              </h2>
+              <p className="mt-2 text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
+                专注于内容创作
               </p>
-              <div className="flex flex-col gap-4 sm:flex-row sm:justify-center">
-                <Link
-                  href="/docs"
-                  className={cn(buttonVariants({ size: "lg" }), "group")}
-                >
-                  开始使用
-                  <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                </Link>
-                <Link
-                  href="/docs/components"
-                  className={cn(buttonVariants({ variant: "outline", size: "lg" }))}
-                >
-                  浏览组件
-                </Link>
-              </div>
+              <p className="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-300">
+                让我们来处理文档生成的复杂工作，您只需专注于创建优质内容
+              </p>
+            </div>
+
+            <div className="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-none">
+              <dl className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-4">
+                {/* Feature 1 */}
+                <div className="flex flex-col">
+                  <dt className="flex items-center gap-x-3 text-base font-semibold leading-7 text-gray-900 dark:text-white">
+                    <div className="h-10 w-10 flex items-center justify-center rounded-lg bg-blue-600">
+                      <FileText className="h-5 w-5 text-white" />
+                    </div>
+                    专注内容
+                  </dt>
+                  <dd className="mt-4 flex flex-auto flex-col text-base leading-7 text-gray-600 dark:text-gray-300">
+                    <p className="flex-auto">
+                      只需提供 OpenAPI 规范，即可轻松创建美观的文档站点，无需复杂配置
+                    </p>
+                  </dd>
+                </div>
+
+                {/* Feature 2 */}
+                <div className="flex flex-col">
+                  <dt className="flex items-center gap-x-3 text-base font-semibold leading-7 text-gray-900 dark:text-white">
+                    <div className="h-10 w-10 flex items-center justify-center rounded-lg bg-green-600">
+                      <Zap className="h-5 w-5 text-white" />
+                    </div>
+                    开发体验
+                  </dt>
+                  <dd className="mt-4 flex flex-auto flex-col text-base leading-7 text-gray-600 dark:text-gray-300">
+                    <p className="flex-auto">
+                      即时服务器启动、闪电般的热更新，充分利用现代化技术栈
+                    </p>
+                  </dd>
+                </div>
+
+                {/* Feature 3 */}
+                <div className="flex flex-col">
+                  <dt className="flex items-center gap-x-3 text-base font-semibold leading-7 text-gray-900 dark:text-white">
+                    <div className="h-10 w-10 flex items-center justify-center rounded-lg bg-purple-600">
+                      <Palette className="h-5 w-5 text-white" />
+                    </div>
+                    定制主题
+                  </dt>
+                  <dd className="mt-4 flex flex-auto flex-col text-base leading-7 text-gray-600 dark:text-gray-300">
+                    <p className="flex-auto">
+                      使用组件语法和兼容样式，或构建完全自定义的主题
+                    </p>
+                  </dd>
+                </div>
+
+                {/* Feature 4 */}
+                <div className="flex flex-col">
+                  <dt className="flex items-center gap-x-3 text-base font-semibold leading-7 text-gray-900 dark:text-white">
+                    <div className="h-10 w-10 flex items-center justify-center rounded-lg bg-orange-600">
+                      <Globe className="h-5 w-5 text-white" />
+                    </div>
+                    快速部署
+                  </dt>
+                  <dd className="mt-4 flex flex-auto flex-col text-base leading-7 text-gray-600 dark:text-gray-300">
+                    <p className="flex-auto">
+                      快速的初始加载，客户端路由实现流畅的导航体验
+                    </p>
+                  </dd>
+                </div>
+              </dl>
             </div>
           </div>
         </section>
 
-        {/* Examples Section */}
-        <section className="border-t bg-muted/30 py-24">
-          <div className="container">
-            <div className="mx-auto max-w-5xl">
-              <div className="mb-12 text-center">
-                <h2 className="mb-4 text-3xl font-bold sm:text-4xl">示例</h2>
-                <p className="text-lg text-muted-foreground">
-                  查看一些使用 Pivot 构建的精美界面
-                </p>
-              </div>
-
-              {/* Example Cards Grid */}
-              <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-                <Card className="group overflow-hidden transition-all hover:shadow-lg">
-                  <CardContent className="p-0">
-                    <div className="aspect-video bg-gradient-to-br from-blue-50 to-indigo-100 p-6 dark:from-blue-950/50 dark:to-indigo-950/50">
-                      <div className="space-y-3">
-                        <div className="flex items-center gap-2">
-                          <Badge variant="outline" className="bg-blue-100 text-blue-700">GET</Badge>
-                          <span className="font-mono text-sm">/api/users</span>
-                        </div>
-                        <div className="space-y-2">
-                          <div className="h-2 w-3/4 rounded bg-blue-200"></div>
-                          <div className="h-2 w-1/2 rounded bg-blue-200"></div>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="p-4">
-                      <h3 className="font-semibold">API 文档</h3>
-                      <p className="text-sm text-muted-foreground">
-                        现代化的 API 文档界面
-                      </p>
-                    </div>
-                  </CardContent>
-                </Card>
-
-                <Card className="group overflow-hidden transition-all hover:shadow-lg">
-                  <CardContent className="p-0">
-                    <div className="aspect-video bg-gradient-to-br from-green-50 to-emerald-100 p-6 dark:from-green-950/50 dark:to-emerald-950/50">
-                      <div className="space-y-3">
-                        <div className="flex items-center gap-2">
-                          <Badge variant="outline" className="bg-green-100 text-green-700">POST</Badge>
-                          <span className="font-mono text-sm">/api/orders</span>
-                        </div>
-                        <div className="space-y-2">
-                          <div className="h-2 w-2/3 rounded bg-green-200"></div>
-                          <div className="h-2 w-4/5 rounded bg-green-200"></div>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="p-4">
-                      <h3 className="font-semibold">仪表板</h3>
-                      <p className="text-sm text-muted-foreground">
-                        功能丰富的管理界面
-                      </p>
-                    </div>
-                  </CardContent>
-                </Card>
-
-                <Card className="group overflow-hidden transition-all hover:shadow-lg">
-                  <CardContent className="p-0">
-                    <div className="aspect-video bg-gradient-to-br from-purple-50 to-violet-100 p-6 dark:from-purple-950/50 dark:to-violet-950/50">
-                      <div className="space-y-3">
-                        <div className="flex items-center gap-2">
-                          <Badge variant="outline" className="bg-purple-100 text-purple-700">DELETE</Badge>
-                          <span className="font-mono text-sm">/api/tasks</span>
-                        </div>
-                        <div className="space-y-2">
-                          <div className="h-2 w-1/2 rounded bg-purple-200"></div>
-                          <div className="h-2 w-3/5 rounded bg-purple-200"></div>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="p-4">
-                      <h3 className="font-semibold">任务管理</h3>
-                      <p className="text-sm text-muted-foreground">
-                        直观的任务管理界面
-                      </p>
-                    </div>
-                  </CardContent>
-                </Card>
-              </div>
-
-              <div className="mt-12 text-center">
-                <Link
-                  href="/docs/components"
-                  className={cn(buttonVariants({ variant: "outline" }), "group")}
-                >
-                  查看所有示例
-                  <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                </Link>
-              </div>
+        {/* Example Preview */}
+        <section className="bg-gray-50 py-20 dark:bg-gray-900/50 sm:py-32">
+          <div className="mx-auto max-w-7xl px-6 lg:px-8">
+            <div className="mx-auto max-w-2xl text-center">
+              <h2 className="text-base font-semibold leading-7 text-blue-600 dark:text-blue-400">
+                组件预览
+              </h2>
+              <p className="mt-2 text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
+                精美的 OpenAPI 文档界面
+              </p>
+              <p className="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-300">
+                查看使用 Pivot 构建的现代化文档界面示例
+              </p>
             </div>
-          </div>
-        </section>
 
-        {/* Features Section */}
-        <section className="py-24">
-          <div className="container">
-            <div className="mx-auto max-w-5xl">
-              <div className="mb-12 text-center">
-                <h2 className="mb-4 text-3xl font-bold sm:text-4xl">为什么选择 Pivot？</h2>
-                <p className="text-lg text-muted-foreground">
-                  专为现代开发者设计的组件库
+            <div className="mx-auto mt-16 grid max-w-2xl auto-rows-fr grid-cols-1 gap-8 sm:mt-20 lg:mx-0 lg:max-w-none lg:grid-cols-3">
+              {/* Preview Card 1 */}
+              <article className="relative isolate flex flex-col justify-end overflow-hidden rounded-2xl bg-white px-8 pb-8 pt-80 shadow-lg dark:bg-gray-800 sm:pt-48 lg:pt-80">
+                <div className="absolute inset-0 -z-10 bg-gradient-to-t from-blue-600/80 via-blue-600/40 to-blue-600/20"></div>
+                <div className="absolute inset-0 -z-10">
+                  <div className="p-6 space-y-3">
+                    <div className="flex items-center gap-2">
+                      <Badge className="bg-green-100 text-green-700">GET</Badge>
+                      <span className="font-mono text-sm text-white/80">/api/users</span>
+                    </div>
+                    <div className="space-y-2">
+                      <div className="h-2 w-3/4 rounded bg-white/30"></div>
+                      <div className="h-2 w-1/2 rounded bg-white/30"></div>
+                      <div className="h-2 w-2/3 rounded bg-white/30"></div>
+                    </div>
+                  </div>
+                </div>
+                <h3 className="mt-3 text-lg font-semibold leading-6 text-white">
+                  API 文档
+                </h3>
+                <p className="mt-2 text-sm leading-6 text-white/80">
+                  现代化的 API 文档界面，清晰展示接口信息
                 </p>
-              </div>
+              </article>
 
-              <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-                <div className="group">
-                  <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-blue-100 dark:bg-blue-950/50">
-                    <Copy className="h-6 w-6 text-blue-600 dark:text-blue-400" />
+              {/* Preview Card 2 */}
+              <article className="relative isolate flex flex-col justify-end overflow-hidden rounded-2xl bg-white px-8 pb-8 pt-80 shadow-lg dark:bg-gray-800 sm:pt-48 lg:pt-80">
+                <div className="absolute inset-0 -z-10 bg-gradient-to-t from-green-600/80 via-green-600/40 to-green-600/20"></div>
+                <div className="absolute inset-0 -z-10">
+                  <div className="p-6 space-y-3">
+                    <div className="flex items-center gap-2">
+                      <Badge className="bg-blue-100 text-blue-700">POST</Badge>
+                      <span className="font-mono text-sm text-white/80">/api/orders</span>
+                    </div>
+                    <div className="space-y-2">
+                      <div className="h-2 w-2/3 rounded bg-white/30"></div>
+                      <div className="h-2 w-4/5 rounded bg-white/30"></div>
+                      <div className="h-2 w-1/2 rounded bg-white/30"></div>
+                    </div>
                   </div>
-                  <h3 className="mb-2 text-lg font-semibold">复制粘贴</h3>
-                  <p className="text-muted-foreground">
-                    无需复杂配置。复制代码，粘贴到你的项目中，立即开始使用。
-                  </p>
                 </div>
+                <h3 className="mt-3 text-lg font-semibold leading-6 text-white">
+                  交互式界面
+                </h3>
+                <p className="mt-2 text-sm leading-6 text-white/80">
+                  支持在线测试的交互式 API 文档
+                </p>
+              </article>
 
-                <div className="group">
-                  <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-green-100 dark:bg-green-950/50">
-                    <Zap className="h-6 w-6 text-green-600 dark:text-green-400" />
+              {/* Preview Card 3 */}
+              <article className="relative isolate flex flex-col justify-end overflow-hidden rounded-2xl bg-white px-8 pb-8 pt-80 shadow-lg dark:bg-gray-800 sm:pt-48 lg:pt-80">
+                <div className="absolute inset-0 -z-10 bg-gradient-to-t from-purple-600/80 via-purple-600/40 to-purple-600/20"></div>
+                <div className="absolute inset-0 -z-10">
+                  <div className="p-6 space-y-3">
+                    <div className="flex items-center gap-2">
+                      <Badge className="bg-purple-100 text-purple-700">Schema</Badge>
+                      <span className="font-mono text-sm text-white/80">Models</span>
+                    </div>
+                    <div className="space-y-2">
+                      <div className="h-2 w-1/2 rounded bg-white/30"></div>
+                      <div className="h-2 w-3/5 rounded bg-white/30"></div>
+                      <div className="h-2 w-3/4 rounded bg-white/30"></div>
+                    </div>
                   </div>
-                  <h3 className="mb-2 text-lg font-semibold">快速开发</h3>
-                  <p className="text-muted-foreground">
-                    预构建的组件和模板，让你能够快速构建专业的 API 文档界面。
-                  </p>
                 </div>
+                <h3 className="mt-3 text-lg font-semibold leading-6 text-white">
+                  模型展示
+                </h3>
+                <p className="mt-2 text-sm leading-6 text-white/80">
+                  清晰的数据模型和组件结构展示
+                </p>
+              </article>
+            </div>
 
-                <div className="group">
-                  <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-purple-100 dark:bg-purple-950/50">
-                    <Palette className="h-6 w-6 text-purple-600 dark:text-purple-400" />
-                  </div>
-                  <h3 className="mb-2 text-lg font-semibold">现代设计</h3>
-                  <p className="text-muted-foreground">
-                    基于最新的设计趋势，提供美观、一致的用户界面。
-                  </p>
-                </div>
-
-                <div className="group">
-                  <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-orange-100 dark:bg-orange-950/50">
-                    <Smartphone className="h-6 w-6 text-orange-600 dark:text-orange-400" />
-                  </div>
-                  <h3 className="mb-2 text-lg font-semibold">响应式</h3>
-                  <p className="text-muted-foreground">
-                    完美适配所有设备，从手机到桌面都能提供最佳体验。
-                  </p>
-                </div>
-
-                <div className="group">
-                  <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-gray-100 dark:bg-gray-800">
-                    <Moon className="h-6 w-6 text-gray-600 dark:text-gray-400" />
-                  </div>
-                  <h3 className="mb-2 text-lg font-semibold">暗色模式</h3>
-                  <p className="text-muted-foreground">
-                    内置暗色模式支持，自动适配用户的系统偏好。
-                  </p>
-                </div>
-
-                <div className="group">
-                  <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-cyan-100 dark:bg-cyan-950/50">
-                    <Settings className="h-6 w-6 text-cyan-600 dark:text-cyan-400" />
-                  </div>
-                  <h3 className="mb-2 text-lg font-semibold">高度可定制</h3>
-                  <p className="text-muted-foreground">
-                    灵活的主题系统，支持深度定制以匹配你的品牌风格。
-                  </p>
-                </div>
-              </div>
+            <div className="mt-16 text-center">
+              <Link
+                href="/docs/components"
+                className={cn(
+                  buttonVariants({ variant: "outline", size: "lg" }),
+                  "h-12 px-8 border-gray-300 bg-white hover:bg-gray-50 font-semibold dark:border-gray-600 dark:bg-gray-900 dark:hover:bg-gray-800"
+                )}
+              >
+                查看所有组件
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Link>
             </div>
           </div>
         </section>
 
         {/* CTA Section */}
-        <section className="border-t bg-muted/30 py-24">
-          <div className="container">
-            <div className="mx-auto max-w-3xl text-center">
-              <h2 className="mb-4 text-3xl font-bold sm:text-4xl">
-                准备开始了吗？
+        <section className="py-20 sm:py-32">
+          <div className="mx-auto max-w-7xl px-6 lg:px-8">
+            <div className="mx-auto max-w-2xl text-center">
+              <h2 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
+                立即开始构建文档
               </h2>
-              <p className="mb-8 text-lg text-muted-foreground">
-                加入数千名开发者，使用 Pivot 构建美观的 API 文档界面。
+              <p className="mx-auto mt-6 max-w-xl text-lg leading-8 text-gray-600 dark:text-gray-300">
+                加入数千名开发者，使用 Pivot 将 OpenAPI 规范转换为美观的文档
               </p>
-              <div className="flex flex-col gap-4 sm:flex-row sm:justify-center">
+              <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center sm:gap-6">
                 <Link
                   href="/docs"
-                  className={cn(buttonVariants({ size: "lg" }), "group")}
+                  className={cn(
+                    buttonVariants({ size: "lg" }),
+                    "h-12 px-8 bg-blue-600 hover:bg-blue-700 text-white font-semibold shadow-lg shadow-blue-500/25 transition-all hover:shadow-xl hover:shadow-blue-500/30"
+                  )}
                 >
+                  <Code className="mr-2 h-4 w-4" />
                   开始使用
-                  <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
                 </Link>
                 <Link
-                  href={siteConfig.links.github}
-                  target="_blank"
-                  rel="noreferrer"
-                  className={cn(buttonVariants({ variant: "outline", size: "lg" }), "group")}
+                  href="/viewer"
+                  className={cn(
+                    buttonVariants({ variant: "outline", size: "lg" }),
+                    "h-12 px-8 border-gray-300 bg-white hover:bg-gray-50 font-semibold dark:border-gray-600 dark:bg-gray-900 dark:hover:bg-gray-800"
+                  )}
                 >
-                  <Github className="mr-2 h-4 w-4" />
-                  GitHub
+                  在线演示
                 </Link>
               </div>
             </div>
@@ -257,7 +307,6 @@ export default function IndexPage() {
         </section>
       </main>
       <SiteFooter />
-      <div className="pointer-events-none absolute inset-0 h-24 w-full before:absolute before:bottom-[-20%] before:left-1/2 before:z-0 before:h-4/5 before:w-3/5 before:-translate-x-1/2 before:animate-rainbow before:bg-[linear-gradient(90deg,var(--color-1),var(--color-5),var(--color-3),var(--color-4),var(--color-2))] before:bg-[length:200%] before:opacity-20 before:[filter:blur(calc(4*1rem))]" />
     </>
   );
 }

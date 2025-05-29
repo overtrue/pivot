@@ -3,31 +3,11 @@ import React from "react";
 import { DescriptionDisplay } from "../pivot/description-display";
 import { SchemeType } from "../pivot/scheme-type";
 
-// Define OAuth flow types
-interface OAuthFlow {
-  authorizationUrl?: string;
-  tokenUrl?: string;
-  refreshUrl?: string;
-  scopes: Record<string, string>;
-}
-
-interface OAuthFlows {
-  implicit?: OAuthFlow;
-  password?: OAuthFlow;
-  clientCredentials?: OAuthFlow;
-  authorizationCode?: OAuthFlow;
-}
-
-interface SecuritySchemeObject {
-  type: "apiKey" | "http" | "oauth2" | "openIdConnect" | "mutualTLS";
-  description?: string;
-  name?: string;
-  in?: "query" | "header" | "cookie";
-  scheme?: string;
-  bearerFormat?: string;
-  flows?: OAuthFlows;
-  openIdConnectUrl?: string;
-}
+// Import types from the centralized types file
+import type {
+  OAuthFlows,
+  SecuritySchemeObject
+} from "@/types/openapi";
 
 interface SecuritySchemeProps {
   name: string;
@@ -204,10 +184,5 @@ const SecurityScheme = React.forwardRef<HTMLDivElement, SecuritySchemeProps>(
 
 SecurityScheme.displayName = "SecurityScheme";
 
-export {
-  SecurityScheme,
-  type OAuthFlow,
-  type OAuthFlows,
-  type SecuritySchemeObject
-};
+export { SecurityScheme };
 

@@ -6,37 +6,37 @@ export default function HeadersSectionDemo() {
     "X-Rate-Limit-Limit": {
       description: "每小时允许的最大请求数",
       schema: {
-        type: "integer",
+        type: "integer" as const,
         example: 1000
       }
     },
     "X-Rate-Limit-Remaining": {
       description: "当前小时内剩余的请求数",
       schema: {
-        type: "integer",
+        type: "integer" as const,
         example: 999
       }
     },
     "X-Rate-Limit-Reset": {
       description: "速率限制重置的时间戳",
       schema: {
-        type: "integer",
-        format: "int64",
+        type: "integer" as const,
+        format: "int64" as const,
         example: 1640995200
       }
     },
     "X-Request-ID": {
       description: "请求的唯一标识符，用于追踪和调试",
       schema: {
-        type: "string",
-        format: "uuid",
+        type: "string" as const,
+        format: "uuid" as const,
         example: "123e4567-e89b-12d3-a456-426614174000"
       }
     },
     "X-Response-Time": {
       description: "服务器处理请求的时间（毫秒）",
       schema: {
-        type: "integer",
+        type: "integer" as const,
         example: 245
       }
     }
@@ -47,7 +47,7 @@ export default function HeadersSectionDemo() {
     "Cache-Control": {
       description: "缓存控制指令",
       schema: {
-        type: "string",
+        type: "string" as const,
         enum: ["no-cache", "no-store", "max-age=3600", "public", "private"],
         example: "max-age=3600, public"
       }
@@ -55,23 +55,23 @@ export default function HeadersSectionDemo() {
     "ETag": {
       description: "资源的实体标签，用于缓存验证",
       schema: {
-        type: "string",
+        type: "string" as const,
         example: "\"33a64df551425fcc55e4d42a148795d9f25f89d4\""
       }
     },
     "Last-Modified": {
       description: "资源最后修改时间",
       schema: {
-        type: "string",
-        format: "date-time",
+        type: "string" as const,
+        format: "date-time" as const,
         example: "Wed, 21 Oct 2015 07:28:00 GMT"
       }
     },
     "Expires": {
       description: "资源过期时间",
       schema: {
-        type: "string",
-        format: "date-time",
+        type: "string" as const,
+        format: "date-time" as const,
         example: "Thu, 01 Dec 2024 16:00:00 GMT"
       }
     }
@@ -82,7 +82,7 @@ export default function HeadersSectionDemo() {
     "X-Content-Type-Options": {
       description: "防止 MIME 类型嗅探",
       schema: {
-        type: "string",
+        type: "string" as const,
         enum: ["nosniff"],
         example: "nosniff"
       }
@@ -90,7 +90,7 @@ export default function HeadersSectionDemo() {
     "X-Frame-Options": {
       description: "控制页面是否可以在 frame 中显示",
       schema: {
-        type: "string",
+        type: "string" as const,
         enum: ["DENY", "SAMEORIGIN", "ALLOW-FROM"],
         example: "SAMEORIGIN"
       }
@@ -98,21 +98,21 @@ export default function HeadersSectionDemo() {
     "X-XSS-Protection": {
       description: "启用跨站脚本攻击保护",
       schema: {
-        type: "string",
+        type: "string" as const,
         example: "1; mode=block"
       }
     },
     "Strict-Transport-Security": {
       description: "强制使用 HTTPS 连接",
       schema: {
-        type: "string",
+        type: "string" as const,
         example: "max-age=31536000; includeSubDomains"
       }
     },
     "Content-Security-Policy": {
       description: "内容安全策略",
       schema: {
-        type: "string",
+        type: "string" as const,
         example: "default-src 'self'; script-src 'self' 'unsafe-inline'"
       }
     }
@@ -123,35 +123,35 @@ export default function HeadersSectionDemo() {
     "X-Total-Count": {
       description: "总记录数",
       schema: {
-        type: "integer",
+        type: "integer" as const,
         example: 1500
       }
     },
     "X-Page-Count": {
       description: "总页数",
       schema: {
-        type: "integer",
+        type: "integer" as const,
         example: 75
       }
     },
     "X-Current-Page": {
       description: "当前页码",
       schema: {
-        type: "integer",
+        type: "integer" as const,
         example: 1
       }
     },
     "X-Per-Page": {
       description: "每页记录数",
       schema: {
-        type: "integer",
+        type: "integer" as const,
         example: 20
       }
     },
     "Link": {
       description: "分页链接，包含 first、prev、next、last",
       schema: {
-        type: "string",
+        type: "string" as const,
         example: "<https://api.example.com/users?page=1>; rel=\"first\", <https://api.example.com/users?page=2>; rel=\"next\", <https://api.example.com/users?page=75>; rel=\"last\""
       }
     }
@@ -162,28 +162,28 @@ export default function HeadersSectionDemo() {
     "Content-Disposition": {
       description: "指示内容应该如何显示",
       schema: {
-        type: "string",
+        type: "string" as const,
         example: "attachment; filename=\"report.pdf\""
       }
     },
     "Content-Length": {
       description: "响应体的字节长度",
       schema: {
-        type: "integer",
+        type: "integer" as const,
         example: 1048576
       }
     },
     "Content-Type": {
       description: "响应内容的 MIME 类型",
       schema: {
-        type: "string",
+        type: "string" as const,
         example: "application/pdf"
       }
     },
     "Content-Encoding": {
       description: "内容编码方式",
       schema: {
-        type: "string",
+        type: "string" as const,
         enum: ["gzip", "deflate", "br"],
         example: "gzip"
       }

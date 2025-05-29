@@ -14,12 +14,12 @@ import { useMemo } from "react";
 
 /**
  * 自定义钩子，简化OpenAPI结构的处理
- * @param spec OpenAPI规范对象
+ * @param spec OpenAPI规范对象或null
  * @returns 一组处理OpenAPI结构的工具函数
  */
-export function useOpenApi(spec: OpenApiSpec) {
-  // spec 不再接受 null
-  const components = spec.components; // 直接访问，因为 spec 不为 null
+export function useOpenApi(spec: OpenApiSpec | null) {
+  // 当spec为null时，返回空的组件
+  const components = spec?.components;
 
   // 优化引用解析，避免重复计算
   const resolve = useMemo(() => {
@@ -27,10 +27,10 @@ export function useOpenApi(spec: OpenApiSpec) {
       obj: T | ReferenceObject | undefined,
       category?: string,
     ): T | null {
-      // 移除 !spec 检查，因为 spec 保证存在
+      if (!spec || !components) return null;
       return resolveRef<T>(obj, components, category);
     };
-  }, [components]); // spec 从依赖项中移除，因为 hook 的执行本身就依赖 spec
+  }, [components, spec]);
 
   /**
    * 获取模式的类型信息
@@ -311,7 +311,7 @@ export function useOpenApi(spec: OpenApiSpec) {
     path: string,
     method: string,
   ): OperationObject | null => {
-    if (!spec.paths || !spec.paths[path]) return null;
+    if (!spec || !spec.paths || !spec.paths[path]) return null;
 
     const pathItem = resolve<PathItemObject>(spec.paths[path], "pathItems");
     if (!pathItem) return null;
@@ -330,7 +330,7 @@ export function useOpenApi(spec: OpenApiSpec) {
    * @returns 服务器对象数组
    */
   const getServers = (): ServerObject[] => {
-    return spec.servers || [];
+    return spec?.servers || [];
   };
 
   /**
@@ -339,7 +339,7 @@ export function useOpenApi(spec: OpenApiSpec) {
    */
   const getOperationsByTag = useMemo(() => {
     return () => {
-      if (!spec.paths) {
+      if (!spec || !spec.paths) {
         return {};
       }
       const operations: Record<

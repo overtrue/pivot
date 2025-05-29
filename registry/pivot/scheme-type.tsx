@@ -1,13 +1,8 @@
 import { cn } from "@/lib/utils";
 import React from "react";
 
-// Define security scheme types
-type SecuritySchemeType =
-  | "apiKey"
-  | "http"
-  | "oauth2"
-  | "openIdConnect"
-  | "mutualTLS";
+// Import types from the centralized types file
+import type { SecuritySchemeType } from "@/types/openapi";
 
 interface SchemeTypeProps {
   type: SecuritySchemeType;
@@ -44,4 +39,4 @@ const SchemeType = React.forwardRef<HTMLSpanElement, SchemeTypeProps>(
 
 SchemeType.displayName = "SchemeType";
 
-export { SchemeType, type SecuritySchemeType };
+export { SchemeType };

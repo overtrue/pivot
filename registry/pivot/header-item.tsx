@@ -2,49 +2,23 @@
 
 import { cn } from "@/lib/utils";
 import React, { useState } from "react";
-import { DefaultValueDisplay } from "../pivot/default-value-display";
 import { DeprecatedBadge } from "../pivot/deprecated-badge";
 import { DescriptionDisplay } from "../pivot/description-display";
 import { EnumValuesDisplay } from "../pivot/enum-values-display";
 import { FormatBadge } from "../pivot/format-badge";
 import { RequiredBadge } from "../pivot/required-badge";
 import { TypeIndicator } from "../pivot/type-indicator";
+import { DefaultValueDisplay } from "./default-value-display";
 import { ExamplesDisplay } from "./examples-display";
 import { ExpandCollapse } from "./expand-collapse";
 
-interface ComponentsObject {
-  [key: string]: any;
-}
-
-interface ReferenceObject {
-  $ref: string;
-}
-
-interface SchemaObject {
-  type?: string;
-  format?: string;
-  default?: any;
-  enum?: any[];
-  minimum?: number;
-  maximum?: number;
-  minLength?: number;
-  maxLength?: number;
-  pattern?: string;
-  [key: string]: any;
-}
-
-interface HeaderObject {
-  description?: string;
-  required?: boolean;
-  deprecated?: boolean;
-  allowEmptyValue?: boolean;
-  style?: string;
-  explode?: boolean;
-  allowReserved?: boolean;
-  schema?: SchemaObject | ReferenceObject;
-  example?: any;
-  examples?: Record<string, any>;
-}
+// Import types from the centralized types file
+import type {
+  ComponentsObject,
+  HeaderObject,
+  ReferenceObject,
+  SchemaObject
+} from "@/types/openapi";
 
 // Type guard to check if it's a SchemaObject and not a ReferenceObject
 function isSchemaObject(

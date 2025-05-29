@@ -1,3 +1,6 @@
+"use client";
+
+import { useI18n } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
 import React from "react";
 
@@ -12,6 +15,8 @@ const MediaTypeSelector = React.forwardRef<
   HTMLDivElement,
   MediaTypeSelectorProps
 >(({ mediaTypes, activeMediaType, onSelectMediaType, className }, ref) => {
+  const { t } = useI18n();
+
   if (!mediaTypes || mediaTypes.length <= 1) {
     return null; // Don't render tabs if only one or zero media types
   }
@@ -19,7 +24,7 @@ const MediaTypeSelector = React.forwardRef<
   const handleClick = (e: React.MouseEvent, mediaType: string) => {
     e.preventDefault();
     e.stopPropagation();
-    console.log(`Switching media type to: ${mediaType}`);
+    console.log(t('Switching media type to: %s').replace('%s', mediaType));
     onSelectMediaType(mediaType);
   };
 

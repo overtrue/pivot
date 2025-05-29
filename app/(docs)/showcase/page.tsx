@@ -145,7 +145,7 @@ export default function ShowcasePage() {
           </div>
 
           <div className="space-y-6">
-            <ComponentPreview name="all-in-one-layout-demo" />
+            <ComponentPreview name="operation-list-layout-demo" />
           </div>
         </section>
       </div>

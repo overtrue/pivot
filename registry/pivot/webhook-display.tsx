@@ -4,22 +4,11 @@ import { DescriptionDisplay } from "../pivot/description-display";
 import { WebhookLabel } from "../pivot/webhook-label";
 import { OperationBox } from "./operation-box";
 
-interface ComponentsObject {
-  [key: string]: any;
-}
-
-interface PathItemObject {
-  description?: string;
-  get?: any;
-  post?: any;
-  put?: any;
-  delete?: any;
-  options?: any;
-  head?: any;
-  patch?: any;
-  trace?: any;
-  [key: string]: any;
-}
+// Import types from the centralized types file
+import type {
+  ComponentsObject,
+  PathItemObject
+} from "@/types/openapi";
 
 interface WebhookDisplayProps {
   name: string;
@@ -55,7 +44,7 @@ const WebhookDisplay = React.forwardRef<HTMLDivElement, WebhookDisplayProps>(
       { method: "head", operation: pathItem.head },
       { method: "patch", operation: pathItem.patch },
       { method: "trace", operation: pathItem.trace },
-    ].filter(({ operation }) => operation);
+    ].filter(({ operation }) => operation !== undefined);
 
     return (
       <div
@@ -87,7 +76,7 @@ const WebhookDisplay = React.forwardRef<HTMLDivElement, WebhookDisplayProps>(
               key={method}
               path={`webhook:${name}`}
               method={method.toUpperCase()}
-              operation={operation}
+              operation={operation!}
               components={components}
             />
           ))}
@@ -107,8 +96,6 @@ WebhookDisplay.displayName = "WebhookDisplay";
 
 export {
   WebhookDisplay,
-  type ComponentsObject,
-  type PathItemObject,
   type WebhookDisplayProps
 };
 
