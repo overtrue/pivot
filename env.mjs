@@ -13,7 +13,7 @@ export const env = createEnv({
    * 💡 You'll get type errors if these are not prefixed with NEXT_PUBLIC_.
    */
   client: {
-    NEXT_PUBLIC_APP_URL: z.string().min(1),
+    NEXT_PUBLIC_APP_URL: z.string().optional(),
     NEXT_PUBLIC_GA_ID: z.string().optional(),
   },
 
@@ -24,7 +24,7 @@ export const env = createEnv({
    * 💡 You'll get type errors if not all variables from `server` & `client` are included here.
    */
   runtimeEnv: {
-    NEXT_PUBLIC_APP_URL: process.env.NEXT_PUBLIC_APP_URL,
+    NEXT_PUBLIC_APP_URL: process.env.NEXT_PUBLIC_APP_URL || "https://pivot.overtrue.me",
     NEXT_PUBLIC_GA_ID: process.env.NEXT_PUBLIC_GA_ID,
   },
 })
