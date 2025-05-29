@@ -1,0 +1,36 @@
+# Dependencies
+node_modules
+.pnpm-store
+
+# Build outputs
+.next
+dist
+out
+
+# Cache
+.content-collections
+
+# Environment
+.env.local
+.env
+
+# Logs
+*.log
+
+# Editor
+.vscode
+.idea
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Git
+.git
+
+# Testing
+coverage
+
+# Other
+*.tgz
+*.tar.gz

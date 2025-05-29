@@ -1,0 +1,90 @@
+---
+title: "Type Indicator"
+description: "A component to display data types with color coding."
+component: true
+---
+
+# Type Indicator
+
+类型指示器组件用于显示数据类型，并根据类型自动应用颜色编码。
+
+<ComponentPreview name="type-indicator-demo" />
+
+## 安装
+
+```bash
+npx shadcn@latest add https://pivotkit.vercel.app/registry.json type-indicator
+```
+
+## 使用
+
+```tsx
+import { TypeIndicator } from "@/components/pivot/type-indicator";
+
+export function Example() {
+  return (
+    <div className="flex items-center gap-2">
+      <TypeIndicator type="string" />
+      <TypeIndicator type="number" />
+      <TypeIndicator type="boolean" />
+    </div>
+  );
+}
+```
+
+## 示例
+
+### 基础用法
+
+```tsx
+<TypeIndicator type="string" />
+```
+
+### 自定义主题
+
+```tsx
+<TypeIndicator type="string" theme="success" />
+<TypeIndicator type="number" theme="primary" />
+<TypeIndicator type="boolean" theme="warning" />
+```
+
+### 自定义内容
+
+```tsx
+<TypeIndicator type="string">文本</TypeIndicator>
+<TypeIndicator type="array">数组类型</TypeIndicator>
+```
+
+## API 参考
+
+### Props
+
+| 属性        | 类型                      | 默认值   | 描述            |
+| ----------- | ------------------------- | -------- | --------------- |
+| `type`      | `DataType`                | -        | 数据类型        |
+| `theme`     | `DataTypeTheme \| 'auto'` | `'auto'` | 颜色主题        |
+| `className` | `string`                  | -        | 自定义 CSS 类名 |
+| `children`  | `React.ReactNode`         | -        | 自定义显示内容  |
+
+### 数据类型
+
+支持的数据类型：
+
+- `string` - 字符串类型（绿色）
+- `number` - 数字类型（蓝色）
+- `integer` - 整数类型（蓝色）
+- `boolean` - 布尔类型（黄色）
+- `array` - 数组类型（紫色）
+- `object` - 对象类型（靛蓝色）
+- `null` - 空值类型（灰色）
+
+### 主题类型
+
+- `primary` - 蓝色主题
+- `secondary` - 紫色主题
+- `success` - 绿色主题
+- `warning` - 黄色主题
+- `danger` - 红色主题
+- `info` - 靛蓝色主题
+- `neutral` - 灰色主题
+- `auto` - 根据数据类型自动选择

@@ -1,0 +1,240 @@
+---
+title: In Label
+description: 用于标识参数位置的标签组件，支持 query、path、header、cookie 等位置类型。
+component: true
+---
+
+In Label 组件用于标识 API 参数的位置类型，如查询参数、路径参数、请求头参数等，通过不同的颜色来区分不同的位置类型。
+
+<ComponentPreview name="in-label-demo" />
+
+## 安装
+
+```bash
+npx shadcn@latest add https://pivotkit.vercel.app/registry.json in-label
+```
+
+## 使用方法
+
+```tsx
+import { InLabel } from "@/components/pivot/in-label";
+```
+
+```tsx
+<InLabel type="query" />
+```
+
+## 示例
+
+### 基本用法
+
+```tsx
+<div className="flex flex-wrap items-center gap-2">
+  <InLabel type="query" />
+  <InLabel type="path" />
+  <InLabel type="header" />
+  <InLabel type="cookie" />
+</div>
+```
+
+### 查询参数
+
+```tsx
+<div className="space-y-3">
+  <div className="flex items-center gap-3 p-3 border rounded">
+    <code className="font-mono">page</code>
+    <TypeIndicator type="number" />
+    <InLabel type="query" />
+    <span className="text-sm text-muted-foreground">页码，从 1 开始</span>
+  </div>
+
+  <div className="flex items-center gap-3 p-3 border rounded">
+    <code className="font-mono">limit</code>
+    <TypeIndicator type="number" />
+    <InLabel type="query" />
+    <span className="text-sm text-muted-foreground">每页返回的记录数</span>
+  </div>
+
+  <div className="flex items-center gap-3 p-3 border rounded">
+    <code className="font-mono">search</code>
+    <TypeIndicator type="string" />
+    <InLabel type="query" />
+    <span className="text-sm text-muted-foreground">搜索关键词</span>
+  </div>
+</div>
+```
+
+### 路径参数
+
+```tsx
+<div className="space-y-3">
+  <div className="flex items-center gap-3 p-3 border rounded">
+    <code className="font-mono">id</code>
+    <TypeIndicator type="string" />
+    <InLabel type="path" />
+    <RequiredBadge />
+    <span className="text-sm text-muted-foreground">用户的唯一标识符</span>
+  </div>
+
+  <div className="flex items-center gap-3 p-3 border rounded">
+    <code className="font-mono">userId</code>
+    <TypeIndicator type="string" />
+    <InLabel type="path" />
+    <RequiredBadge />
+    <span className="text-sm text-muted-foreground">用户ID</span>
+  </div>
+</div>
+```
+
+### 请求头参数
+
+```tsx
+<div className="space-y-3">
+  <div className="flex items-center gap-3 p-3 border rounded">
+    <code className="font-mono">Authorization</code>
+    <TypeIndicator type="string" />
+    <InLabel type="header" />
+    <RequiredBadge />
+    <span className="text-sm text-muted-foreground">Bearer token</span>
+  </div>
+
+  <div className="flex items-center gap-3 p-3 border rounded">
+    <code className="font-mono">Content-Type</code>
+    <TypeIndicator type="string" />
+    <InLabel type="header" />
+    <span className="text-sm text-muted-foreground">请求内容类型</span>
+  </div>
+
+  <div className="flex items-center gap-3 p-3 border rounded">
+    <code className="font-mono">X-API-Version</code>
+    <TypeIndicator type="string" />
+    <InLabel type="header" />
+    <span className="text-sm text-muted-foreground">API 版本号</span>
+  </div>
+</div>
+```
+
+### Cookie 参数
+
+```tsx
+<div className="space-y-3">
+  <div className="flex items-center gap-3 p-3 border rounded">
+    <code className="font-mono">session_id</code>
+    <TypeIndicator type="string" />
+    <InLabel type="cookie" />
+    <RequiredBadge />
+    <span className="text-sm text-muted-foreground">会话标识符</span>
+  </div>
+
+  <div className="flex items-center gap-3 p-3 border rounded">
+    <code className="font-mono">csrf_token</code>
+    <TypeIndicator type="string" />
+    <InLabel type="cookie" />
+    <span className="text-sm text-muted-foreground">CSRF 防护令牌</span>
+  </div>
+</div>
+```
+
+### 完整的参数文档示例
+
+```tsx
+<div className="space-y-6">
+  <div>
+    <h3 className="text-lg font-semibold mb-3">路径参数</h3>
+    <div className="space-y-2">
+      <div className="flex items-center gap-3 p-3 bg-muted/50 rounded">
+        <code className="font-mono">userId</code>
+        <TypeIndicator type="string" />
+        <InLabel type="path" />
+        <RequiredBadge />
+        <span className="text-sm text-muted-foreground">用户的唯一标识符</span>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <h3 className="text-lg font-semibold mb-3">查询参数</h3>
+    <div className="space-y-2">
+      <div className="flex items-center gap-3 p-3 bg-muted/50 rounded">
+        <code className="font-mono">include</code>
+        <TypeIndicator type="string" />
+        <InLabel type="query" />
+        <span className="text-sm text-muted-foreground">包含的关联数据</span>
+      </div>
+
+      <div className="flex items-center gap-3 p-3 bg-muted/50 rounded">
+        <code className="font-mono">fields</code>
+        <TypeIndicator type="string" />
+        <InLabel type="query" />
+        <span className="text-sm text-muted-foreground">返回的字段列表</span>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <h3 className="text-lg font-semibold mb-3">请求头</h3>
+    <div className="space-y-2">
+      <div className="flex items-center gap-3 p-3 bg-muted/50 rounded">
+        <code className="font-mono">Authorization</code>
+        <TypeIndicator type="string" />
+        <InLabel type="header" />
+        <RequiredBadge />
+        <span className="text-sm text-muted-foreground">Bearer token</span>
+      </div>
+    </div>
+  </div>
+</div>
+```
+
+## API 参考
+
+### Props
+
+| 属性        | 类型                                        | 默认值 | 描述            |
+| ----------- | ------------------------------------------- | ------ | --------------- |
+| `type`      | `"query" \| "path" \| "header" \| "cookie"` | -      | 参数位置类型    |
+| `className` | `string`                                    | -      | 额外的 CSS 类名 |
+
+### 参数位置类型
+
+- **query** - 查询参数（URL 查询字符串）
+- **path** - 路径参数（URL 路径中的变量）
+- **header** - 请求头参数
+- **cookie** - Cookie 参数
+
+### 颜色编码
+
+- **query** (蓝色) - 查询参数
+- **path** (绿色) - 路径参数
+- **header** (紫色) - 请求头参数
+- **cookie** (黄色) - Cookie 参数
+
+## 最佳实践
+
+1. **语义化使用** - 确保标签与实际参数位置一致
+2. **一致性** - 在整个 API 文档中保持位置标识的一致性
+3. **组合使用** - 与类型指示器、必填标识等其他组件配合使用
+4. **分组展示** - 按参数位置类型分组展示，提高可读性
+
+## 无障碍性
+
+- 颜色编码不是唯一的信息传达方式（同时显示位置名称）
+- 支持屏幕阅读器
+- 具有足够的颜色对比度
+- 支持键盘导航
+
+## 使用场景
+
+- **API 文档** - 标识参数的位置类型
+- **接口测试** - 帮助开发者理解参数的传递方式
+- **SDK 生成** - 为代码生成工具提供参数位置信息
+- **文档生成** - 自动化文档生成工具的重要组件
+
+## OpenAPI 规范
+
+In Label 组件遵循 OpenAPI 3.0 规范中的参数位置定义：
+
+- `in: query` - 查询参数
+- `in: path` - 路径参数
+- `in: header` - 请求头参数
+- `in: cookie` - Cookie 参数

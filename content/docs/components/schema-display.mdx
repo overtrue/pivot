@@ -1,0 +1,103 @@
+---
+title: Schema Display
+description: 用于显示 JSON Schema 结构的组件，支持嵌套对象和数组的可视化展示。
+component: true
+---
+
+Schema Display 组件用于可视化展示 JSON Schema 结构，帮助开发者理解 API 的数据结构。
+
+<ComponentPreview name="schema-display-demo" />
+
+## 安装
+
+```bash
+npx shadcn@latest add https://pivotkit.vercel.app/registry.json schema-display
+```
+
+## 使用方法
+
+```tsx
+import { SchemaDisplay } from "@/components/pivot/schema-display";
+```
+
+```tsx
+<SchemaDisplay schema={userSchema} />
+```
+
+## 示例
+
+### 基本对象 Schema
+
+```tsx
+const userSchema = {
+  type: "object",
+  properties: {
+    id: {
+      type: "string",
+      format: "uuid",
+      description: "用户唯一标识符",
+    },
+    name: {
+      type: "string",
+      description: "用户姓名",
+    },
+    email: {
+      type: "string",
+      format: "email",
+      description: "用户邮箱地址",
+    },
+    age: {
+      type: "integer",
+      minimum: 0,
+      maximum: 150,
+      description: "用户年龄",
+    },
+  },
+  required: ["id", "name", "email"],
+};
+
+<SchemaDisplay schema={userSchema} />;
+```
+
+### 嵌套对象 Schema
+
+```tsx
+const orderSchema = {
+  type: "object",
+  properties: {
+    id: {
+      type: "string",
+      description: "订单ID",
+    },
+    user: {
+      type: "object",
+      properties: {
+        id: { type: "string" },
+        name: { type: "string" },
+      },
+    },
+    items: {
+      type: "array",
+      items: {
+        type: "object",
+        properties: {
+          product_id: { type: "string" },
+          quantity: { type: "integer" },
+          price: { type: "number" },
+        },
+      },
+    },
+  },
+};
+
+<SchemaDisplay schema={orderSchema} />;
+```
+
+## API 参考
+
+### Props
+
+| 属性        | 类型     | 默认值 | 描述             |
+| ----------- | -------- | ------ | ---------------- |
+| `schema`    | `object` | -      | JSON Schema 对象 |
+| `className` | `string` | -      | 额外的 CSS 类名  |

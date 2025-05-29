@@ -1,0 +1,129 @@
+---
+title: Method Label
+description: 用于显示 HTTP 方法的标签组件，支持不同的变体和颜色编码。
+component: true
+---
+
+Method Label 组件用于显示 HTTP 方法（GET、POST、PUT、DELETE 等），并根据方法类型自动应用相应的颜色编码。
+
+<ComponentPreview name="method-label-demo" />
+
+## 安装
+
+```bash
+npx shadcn@latest add https://pivotkit.vercel.app/registry.json method-label
+```
+
+## 使用方法
+
+```tsx
+import { MethodLabel } from "@/components/pivot/method-label";
+```
+
+```tsx
+<MethodLabel method="GET" />
+```
+
+## 示例
+
+### 基本用法
+
+```tsx
+<div className="flex items-center gap-2">
+  <MethodLabel method="GET" />
+  <MethodLabel method="POST" />
+  <MethodLabel method="PUT" />
+  <MethodLabel method="DELETE" />
+</div>
+```
+
+### 不同变体
+
+```tsx
+<div className="space-y-4">
+  <div className="flex items-center gap-2">
+    <span className="text-sm text-muted-foreground">默认变体:</span>
+    <MethodLabel method="GET" variant="default" />
+    <MethodLabel method="POST" variant="default" />
+  </div>
+
+  <div className="flex items-center gap-2">
+    <span className="text-sm text-muted-foreground">紧凑变体:</span>
+    <MethodLabel method="GET" variant="compact" />
+    <MethodLabel method="POST" variant="compact" />
+  </div>
+</div>
+```
+
+### 所有支持的方法
+
+```tsx
+<div className="flex flex-wrap items-center gap-2">
+  <MethodLabel method="GET" />
+  <MethodLabel method="POST" />
+  <MethodLabel method="PUT" />
+  <MethodLabel method="DELETE" />
+  <MethodLabel method="PATCH" />
+  <MethodLabel method="OPTIONS" />
+  <MethodLabel method="HEAD" />
+</div>
+```
+
+### 在 API 文档中使用
+
+```tsx
+<div className="flex items-center gap-3 p-4 border rounded-lg">
+  <MethodLabel method="POST" />
+  <span className="font-mono text-sm">/api/users</span>
+  <span className="text-sm text-muted-foreground">创建新用户</span>
+</div>
+```
+
+## API 参考
+
+### Props
+
+| 属性        | 类型                                                                     | 默认值      | 描述            |
+| ----------- | ------------------------------------------------------------------------ | ----------- | --------------- |
+| `method`    | `"GET" \| "POST" \| "PUT" \| "DELETE" \| "PATCH" \| "OPTIONS" \| "HEAD"` | -           | HTTP 方法       |
+| `variant`   | `"default" \| "compact"`                                                 | `"default"` | 组件变体        |
+| `className` | `string`                                                                 | -           | 额外的 CSS 类名 |
+
+### 颜色编码
+
+组件会根据 HTTP 方法自动应用颜色：
+
+- **GET** - 绿色 (表示安全的读取操作)
+- **POST** - 蓝色 (表示创建操作)
+- **PUT** - 黄色 (表示更新操作)
+- **DELETE** - 红色 (表示删除操作)
+- **PATCH** - 紫色 (表示部分更新操作)
+- **OPTIONS** - 灰色 (表示元数据操作)
+- **HEAD** - 灰色 (表示头部信息操作)
+
+### 变体说明
+
+- **default**: 带有背景色和内边距的标签样式
+- **compact**: 仅显示文字颜色，无背景的紧凑样式
+
+## 最佳实践
+
+1. **语义化使用** - 确保方法标签与实际的 HTTP 方法一致
+2. **一致性** - 在整个应用中保持方法标签显示的一致性
+3. **可读性** - 在深色和浅色主题下都要确保良好的对比度
+4. **上下文** - 通常与路径、描述等其他信息一起使用
+
+## 无障碍性
+
+- 组件支持屏幕阅读器
+- 颜色编码不是唯一的信息传达方式（同时显示方法名称）
+- 支持键盘导航和焦点管理
+
+## 设计原则
+
+Method Label 组件遵循 REST API 的标准颜色约定，帮助开发者快速识别不同类型的 HTTP 操作。颜色选择基于操作的语义：
+
+- 绿色用于安全的读取操作
+- 蓝色用于创建操作
+- 黄色用于更新操作
+- 红色用于删除操作

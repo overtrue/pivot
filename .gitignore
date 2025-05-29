@@ -34,5 +34,8 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 
+# content-collections
+.content-collections
+
 *storybook.log
 .content-collections

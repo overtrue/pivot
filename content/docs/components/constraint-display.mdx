@@ -1,0 +1,41 @@
+---
+title: Constraint Display
+description: 用于显示字段约束信息的组件，如最小值、最大值等。
+component: true
+---
+
+用于显示字段约束信息的组件，如最小值、最大值等。
+
+<ComponentPreview name="constraint-display-demo" />
+
+## 安装
+
+```bash
+npx shadcn@latest add https://pivotkit.vercel.app/registry.json constraint-display
+```
+
+## 使用方法
+
+```tsx
+import { ConstraintDisplay } from "@/components/pivot/constraint-display";
+```
+
+```tsx
+<ConstraintDisplay />
+```
+
+## 示例
+
+### 基本用法
+
+```tsx
+<ConstraintDisplay />
+```
+
+## API 参考
+
+### Props
+
+| 属性        | 类型     | 默认值 | 描述            |
+| ----------- | -------- | ------ | --------------- |
+| `className` | `string` | -      | 额外的 CSS 类名 |

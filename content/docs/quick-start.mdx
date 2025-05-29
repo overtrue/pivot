@@ -1,0 +1,338 @@
+---
+title: 快速开始
+description: 5分钟内开始使用 Pivot UI 组件库构建您的第一个 API 文档页面。
+---
+
+本指南将帮助您在 5 分钟内开始使用 Pivot UI 组件库构建您的第一个 API 文档页面。
+
+## 第一步：创建项目
+
+使用 Next.js 创建一个新项目：
+
+```bash
+npx create-next-app@latest my-api-docs --typescript --tailwind --eslint
+cd my-api-docs
+```
+
+## 第二步：安装依赖
+
+安装 Pivot UI 所需的核心依赖：
+
+```bash
+npm install clsx tailwind-merge class-variance-authority
+npm install @radix-ui/react-slot
+npm install lucide-react
+```
+
+## 第三步：配置 utils
+
+创建 `lib/utils.ts` 文件：
+
+```ts title="lib/utils.ts"
+import { type ClassValue, clsx } from "clsx";
+import { twMerge } from "tailwind-merge";
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs));
+}
+```
+
+## 第四步：添加第一个组件
+
+添加 Status Code 组件：
+
+```bash
+npx shadcn@latest add https://pivotkit.vercel.app/registry.json status-code
+```
+
+或者手动创建 `components/pivot/status-code.tsx`：
+
+```tsx title="components/pivot/status-code.tsx"
+"use client";
+
+import * as React from "react";
+import { cva, type VariantProps } from "class-variance-authority";
+import { cn } from "@/lib/utils";
+
+const statusCodeVariants = cva(
+  "inline-flex items-center rounded-md border px-2.5 py-0.5 text-xs font-semibold transition-colors",
+  {
+    variants: {
+      variant: {
+        default: "border-transparent text-primary-foreground",
+        outline: "text-foreground",
+      },
+    },
+    defaultVariants: {
+      variant: "default",
+    },
+  }
+);
+
+function getStatusCodeColor(code: number) {
+  if (code >= 100 && code < 200) return "bg-blue-500";
+  if (code >= 200 && code < 300) return "bg-green-500";
+  if (code >= 300 && code < 400) return "bg-yellow-500";
+  if (code >= 400 && code < 500) return "bg-orange-500";
+  if (code >= 500) return "bg-red-500";
+  return "bg-gray-500";
+}
+
+export interface StatusCodeProps
+  extends React.HTMLAttributes<HTMLDivElement>,
+    VariantProps<typeof statusCodeVariants> {
+  code: number;
+}
+
+const StatusCode = React.forwardRef<HTMLDivElement, StatusCodeProps>(
+  ({ className, variant, code, ...props }, ref) => {
+    const colorClass = variant === "default" ? getStatusCodeColor(code) : "";
+
+    return (
+      <div
+        className={cn(statusCodeVariants({ variant }), colorClass, className)}
+        ref={ref}
+        {...props}
+      >
+        {code}
+      </div>
+    );
+  }
+);
+StatusCode.displayName = "StatusCode";
+
+export { StatusCode };
+```
+
+## 第五步：创建您的第一个 API 文档页面
+
+更新 `app/page.tsx`：
+
+```tsx title="app/page.tsx"
+import { StatusCode } from "@/components/pivot/status-code";
+
+export default function Home() {
+  return (
+    <main className="container mx-auto px-4 py-8">
+      <div className="max-w-4xl mx-auto space-y-8">
+        {/* 页面标题 */}
+        <div className="text-center space-y-4">
+          <h1 className="text-4xl font-bold">API 文档</h1>
+          <p className="text-xl text-muted-foreground">
+            使用 Pivot UI 构建的现代化 API 文档
+          </p>
+        </div>
+
+        {/* API 端点示例 */}
+        <div className="space-y-6">
+          <h2 className="text-2xl font-semibold">用户管理 API</h2>
+
+          {/* GET /api/users */}
+          <div className="border rounded-lg p-6 space-y-4">
+            <div className="flex items-center gap-3">
+              <span className="bg-green-100 text-green-800 px-2 py-1 rounded text-sm font-semibold">
+                GET
+              </span>
+              <code className="text-lg font-mono">/api/users</code>
+            </div>
+
+            <div>
+              <h3 className="text-lg font-semibold">获取用户列表</h3>
+              <p className="text-muted-foreground">
+                获取系统中所有用户的分页列表
+              </p>
+            </div>
+
+            <div>
+              <h4 className="font-semibold mb-2">响应状态码</h4>
+              <div className="flex gap-2">
+                <StatusCode code={200} />
+                <StatusCode code={400} />
+                <StatusCode code={500} />
+              </div>
+            </div>
+          </div>
+
+          {/* POST /api/users */}
+          <div className="border rounded-lg p-6 space-y-4">
+            <div className="flex items-center gap-3">
+              <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded text-sm font-semibold">
+                POST
+              </span>
+              <code className="text-lg font-mono">/api/users</code>
+            </div>
+
+            <div>
+              <h3 className="text-lg font-semibold">创建新用户</h3>
+              <p className="text-muted-foreground">
+                在系统中创建一个新的用户账户
+              </p>
+            </div>
+
+            <div>
+              <h4 className="font-semibold mb-2">响应状态码</h4>
+              <div className="flex gap-2">
+                <StatusCode code={201} />
+                <StatusCode code={400} />
+                <StatusCode code={409} />
+                <StatusCode code={500} />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* 下一步 */}
+        <div className="bg-muted/50 rounded-lg p-6 space-y-4">
+          <h2 className="text-xl font-semibold">下一步</h2>
+          <ul className="space-y-2 text-muted-foreground">
+            <li>• 添加更多 Pivot UI 组件</li>
+            <li>• 配置主题和样式</li>
+            <li>• 集成 OpenAPI 规范</li>
+            <li>• 添加交互式 API 测试功能</li>
+          </ul>
+        </div>
+      </div>
+    </main>
+  );
+}
+```
+
+## 第六步：运行项目
+
+启动开发服务器：
+
+```bash
+npm run dev
+```
+
+打开浏览器访问 `http://localhost:3000`，您应该能看到一个简单但功能完整的 API 文档页面！
+
+## 添加更多组件
+
+现在您可以继续添加更多 Pivot UI 组件来增强您的 API 文档：
+
+### Method Label 组件
+
+```bash
+npx shadcn@latest add https://pivotkit.vercel.app/registry.json method-label
+```
+
+```tsx
+import { MethodLabel } from "@/components/pivot/method-label";
+
+<MethodLabel method="GET" />
+<MethodLabel method="POST" />
+<MethodLabel method="PUT" />
+<MethodLabel method="DELETE" />
+```
+
+### Copy Button 组件
+
+```bash
+npx shadcn@latest add https://pivotkit.vercel.app/registry.json copy-button
+```
+
+```tsx
+import { CopyButton } from "@/components/pivot/copy-button";
+
+<div className="flex items-center gap-2">
+  <code>/api/users</code>
+  <CopyButton text="/api/users" />
+</div>;
+```
+
+### Type Indicator 组件
+
+```bash
+npx shadcn@latest add https://pivotkit.vercel.app/registry.json type-indicator
+```
+
+```tsx
+import { TypeIndicator } from "@/components/pivot/type-indicator";
+
+<TypeIndicator type="string" />
+<TypeIndicator type="number" />
+<TypeIndicator type="boolean" />
+```
+
+## 完整示例
+
+将所有组件组合在一起：
+
+```tsx title="app/page.tsx"
+import { StatusCode } from "@/components/pivot/status-code";
+import { MethodLabel } from "@/components/pivot/method-label";
+import { CopyButton } from "@/components/pivot/copy-button";
+import { TypeIndicator } from "@/components/pivot/type-indicator";
+
+export default function ApiDocsPage() {
+  return (
+    <main className="container mx-auto px-4 py-8">
+      <div className="max-w-4xl mx-auto space-y-8">
+        <h1 className="text-4xl font-bold text-center">API 文档</h1>
+
+        <div className="border rounded-lg p-6 space-y-6">
+          {/* 端点标题 */}
+          <div className="flex items-center gap-3">
+            <MethodLabel method="GET" />
+            <code className="text-lg font-mono">/api/users/{"{id}"}</code>
+            <CopyButton text="/api/users/{id}" size="sm" />
+          </div>
+
+          {/* 描述 */}
+          <div>
+            <h2 className="text-xl font-semibold">获取用户详情</h2>
+            <p className="text-muted-foreground">
+              根据用户 ID 获取特定用户的详细信息
+            </p>
+          </div>
+
+          {/* 参数 */}
+          <div>
+            <h3 className="font-semibold mb-3">路径参数</h3>
+            <div className="space-y-2">
+              <div className="flex items-center gap-3 p-3 bg-muted/50 rounded">
+                <code className="font-mono">id</code>
+                <TypeIndicator type="string" />
+                <span className="text-sm text-muted-foreground">
+                  用户的唯一标识符
+                </span>
+              </div>
+            </div>
+          </div>
+
+          {/* 响应 */}
+          <div>
+            <h3 className="font-semibold mb-3">响应状态码</h3>
+            <div className="space-y-2">
+              <div className="flex items-center gap-3">
+                <StatusCode code={200} />
+                <span className="text-sm">成功返回用户信息</span>
+              </div>
+              <div className="flex items-center gap-3">
+                <StatusCode code={404} />
+                <span className="text-sm">用户不存在</span>
+              </div>
+              <div className="flex items-center gap-3">
+                <StatusCode code={500} />
+                <span className="text-sm">服务器内部错误</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  );
+}
+```
+
+## 下一步
+
+恭喜！您已经成功创建了第一个使用 Pivot UI 的 API 文档页面。接下来您可以：
+
+1. **探索更多组件** - 查看 [组件文档](/docs/components) 了解所有可用组件
+2. **学习最佳实践** - 阅读 [API 文档模板](/docs/templates/api-docs) 了解如何构建完整的文档
+3. **自定义主题** - 根据您的品牌调整颜色和样式
+4. **集成 OpenAPI** - 使用 OpenAPI 规范自动生成文档
+
+需要帮助？查看我们的 [安装指南](/docs/installation) 或浏览 [示例项目](https://github.com/your-repo/pivot-examples)。

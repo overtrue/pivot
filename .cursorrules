@@ -1,0 +1,154 @@
+# Pivot Project - OpenAPI Component Library
+
+这是一个现代化的 OpenAPI 组件库项目。
+
+## 项目架构
+- 基于 Next.js 15 + App Router
+- 使用 shadcn/ui registry 系统进行组件发布
+- TypeScript + Tailwind CSS
+- pnpm 作为包管理器
+- content-collections 管理文档内容
+
+## 目录结构
+- `app/` - Next.js app router 页面和路由
+- `registry/` - 可发布的组件源码（核心组件库）
+- `content/` - MDX 文档内容
+- `__registry__/` - 构建后的 registry 文件（自动生成）
+- `components/` - 网站 UI 组件（非发布组件）
+- `lib/` - 工具函数和配置
+- `hooks/` - React hooks
+- `styles/` - 全局样式
+- `public/` - 静态资源
+
+## 组件分类
+- `registry/pivot/` - 原子组件（atoms）和基础组件 - **用于 OpenAPI 渲染，可分发**
+- `registry/lib/` - registry/pivot 组件专用的工具函数和 hooks - **可分发**
+- `registry/example/` - 复杂组件和布局模板（layouts）
+- `components/` - 文档站点专用组件 - **不分发**
+- `hooks/` - 文档站点专用 hooks - **不分发**
+
+## 🔄 代码复用优先原则 (重要!)
+
+**在编写任何新代码之前，必须首先检查现有的工具函数和 hooks 是否已提供所需功能。**
+
+### 优先级顺序：
+
+#### 对于 `registry/pivot/` 组件：
+1. **现有 registry hooks** (`registry/lib/use-openapi.ts` 等)
+2. **现有 registry 工具函数** (`registry/lib/resolve-ref.ts`, `registry/lib/generate-example.ts` 等)
+3. **第三方库**
+4. **自定义实现** (最后选择)
+
+#### 对于 `components/` 组件（文档站点）：
+1. **现有 hooks** (`hooks/use-openapi.ts`, `lib/i18n.ts` 等)
+2. **现有工具函数** (`lib/utils.ts` 等)
+3. **第三方库**
+4. **自定义实现** (最后选择)
+
+### 🚫 严格禁止的行为：
+
+#### 对于 registry/pivot 组件：
+1. **禁止重复定义工具函数**：
+   - `resolveRef()` - 必须使用 `../lib/resolve-ref`
+   - `generateExample()` - 必须使用 `../lib/generate-example`
+   - `useOpenApi` - 必须使用 `../lib/use-openapi`
+
+2. **禁止使用文档站点的 hooks**：
+   - 不能导入 `@/hooks/` 下的任何 hooks
+   - 必须使用 `registry/lib/` 下的对应版本
+
+#### 对于 components 组件（文档站点）：
+1. **禁止使用 registry/lib 工具**：
+   - 应该使用 `@/hooks/` 和 `@/lib/` 下的工具
+   - 不要导入 `registry/lib/` 下的内容
+
+3. **禁止手动拼接样式类名**：
+   - 必须使用 `cn()` 工具函数合并 className
+
+### ✅ 必须遵循的模式：
+
+#### registry/pivot 组件正确导入：
+```tsx
+// 正确的导入和使用方式
+import { useOpenApi } from "../lib/use-openapi";
+import { resolveRef } from "../lib/resolve-ref";
+import { generateExample } from "../lib/generate-example";
+import { cn } from "@/lib/utils";
+
+// 正确使用现有 hooks
+const openApi = useOpenApi(spec);
+const operations = openApi.getOperationsByTag();
+
+// 正确使用工具函数
+const resolved = resolveRef(reference, components);
+```
+
+#### components 组件正确导入：
+```tsx
+// 正确的导入和使用方式
+import { useOpenApi } from "@/hooks/use-openapi";
+import { useI18n } from "@/lib/i18n";
+import { cn } from "@/lib/utils";
+import { resolveRef } from "@/utils/resolveRef";
+
+// 正确使用现有 hooks
+const openApi = useOpenApi(spec);
+const operations = openApi.getOperationsByTag();
+
+// 正确使用工具函数
+const resolved = resolveRef(reference, components);
+```
+
+## 编码规范
+1. 所有组件必须使用 TypeScript
+2. 使用 Tailwind CSS 进行样式设计
+3. 组件必须有明确的 props 类型定义
+4. 可发布组件放在 registry/ 目录下，并且扁平放置，不要嵌套
+5. 组件文件名使用 kebab-case（如：magic-card.tsx）
+6. 导出的组件使用 PascalCase（如：MagicCard）
+7. 使用 forwardRef 处理 ref 传递
+8. 使用 class-variance-authority 处理变体样式
+
+## 依赖管理
+- 优先使用 @radix-ui 作为无头组件
+- 使用 lucide-react 作为图标库
+- 使用 motion 处理动画效果
+- 使用 tailwind-merge 合并 className
+
+## 🔍 代码审查检查点
+
+### 在审查代码时，必须检查：
+1. **重复代码检查**：
+   - registry/pivot 组件是否有重复的 `resolveRef` 函数定义？
+   - registry/pivot 组件是否有重复的 `useOpenApi` 函数定义？
+   - 是否正确使用了现有的 hooks 和工具函数？
+
+2. **导入检查**：
+   - registry/pivot 组件是否正确导入 `../lib/use-openapi` 而非重复实现？
+   - registry/pivot 组件是否正确导入 `../lib/resolve-ref`？
+   - components 组件是否正确导入 `@/hooks/` 下的 hooks？
+   - 是否正确使用 `cn()` 处理样式？
+
+3. **模式匹配检查**：
+   - 发现 `function resolveRef` 或 `const resolveRef =` → 检查是否在正确位置
+   - 发现 `getOperationsByTag` 本地定义 → 要求使用对应的 `useOpenApi` hook
+   - 发现手动类名拼接 → 要求使用 `cn()` 函数
+
+## 组件发布规范
+- 每个组件需在 registry.json 中注册
+- 组件需要包含 title、description
+- 明确声明依赖关系
+- 提供完整的使用示例
+
+## 文档规范
+- 使用 MDX 编写组件文档
+- 包含组件 API 说明
+- 提供实际使用示例
+- 包含安装和使用指南
+
+## 重要提醒
+- 不要修改现有组件的样式和逻辑，只调整目录结构和引入路径
+- 所有变更仅限于 pivot 目录
+- 严格遵循现代化组件库的组织方式和最佳实践
+- **区分文档站点组件和可分发组件的依赖关系**
+- **每次编写代码前，先检查现有资源，避免重复造轮子**

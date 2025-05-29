@@ -1,0 +1,70 @@
+---
+title: Next.js
+description: 在 Next.js 项目中安装和配置 Pivot 组件库。
+---
+
+本指南将帮助您在 Next.js 项目中安装和配置 Pivot 组件库。
+
+## 创建项目
+
+首先创建一个新的 Next.js 项目：
+
+```bash
+npx create-next-app@latest my-app --typescript --tailwind --eslint
+cd my-app
+```
+
+## 安装依赖
+
+安装必要的依赖包：
+
+```bash
+npm install clsx tailwind-merge class-variance-authority
+npm install @radix-ui/react-slot
+npm install lucide-react
+```
+
+## 配置 utils
+
+创建 `lib/utils.ts` 文件：
+
+```ts title="lib/utils.ts"
+import { type ClassValue, clsx } from "clsx";
+import { twMerge } from "tailwind-merge";
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs));
+}
+```
+
+## 添加组件
+
+现在您可以开始添加 Pivot 组件了：
+
+```bash
+npx shadcn@latest add https://pivotkit.vercel.app/registry.json status-code
+```
+
+## 使用组件
+
+在您的组件中使用 Pivot 组件：
+
+```tsx title="app/page.tsx"
+import { StatusCode } from "@/components/pivot/status-code";
+
+export default function Home() {
+  return (
+    <main className="flex min-h-screen flex-col items-center justify-center p-24">
+      <div className="flex items-center gap-4">
+        <StatusCode code={200} />
+        <StatusCode code={404} />
+        <StatusCode code={500} />
+      </div>
+    </main>
+  );
+}
+```
+
+## 完成
+
+您的 Next.js 项目现在已经配置好了 Pivot 组件库！您可以开始使用各种组件来构建您的 API 文档界面。
