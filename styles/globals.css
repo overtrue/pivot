@@ -569,4 +569,11 @@
   body {
     @apply bg-background text-foreground;
   }
+  button {
+    cursor: pointer;
+  }
+}
+
+.border-grid {
+  @apply border-border/50 dark:border-border;
 }
