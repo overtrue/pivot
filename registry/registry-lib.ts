@@ -23,6 +23,7 @@ const lib: Registry = [
     type: "registry:lib",
     title: "Utils",
     description: "Utility functions for class name merging.",
+    dependencies: ["clsx", "tailwind-merge"],
     files: [
       {
         path: "lib/utils.ts",
@@ -33,7 +34,7 @@ const lib: Registry = [
   },
   {
     name: "use-openapi",
-    type: "registry:lib",
+    type: "registry:hook",
     title: "useOpenApi Hook",
     description: "React hook for processing OpenAPI specifications with utility functions.",
     dependencies: ["react"],
@@ -41,35 +42,35 @@ const lib: Registry = [
     files: [
       {
         path: "registry/lib/use-openapi.ts",
-        type: "registry:lib",
+        type: "registry:hook",
         target: "hooks/use-openapi.ts",
       },
     ],
   },
   {
     name: "use-mounted",
-    type: "registry:lib",
+    type: "registry:hook",
     title: "useMounted Hook",
     description: "React hook for checking if component is mounted.",
     dependencies: ["react"],
     files: [
       {
         path: "registry/lib/use-mounted.ts",
-        type: "registry:lib",
+        type: "registry:hook",
         target: "hooks/use-mounted.ts",
       },
     ],
   },
   {
     name: "use-mobile",
-    type: "registry:lib",
+    type: "registry:hook",
     title: "useIsMobile Hook",
     description: "React hook for detecting mobile breakpoint.",
     dependencies: ["react"],
     files: [
       {
         path: "registry/lib/use-mobile.ts",
-        type: "registry:lib",
+        type: "registry:hook",
         target: "hooks/use-mobile.ts",
       },
     ],

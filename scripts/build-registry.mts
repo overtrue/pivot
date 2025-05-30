@@ -22,6 +22,7 @@ export interface RegistryItem {
 
 export interface Registry {
   name: string;
+  $schema?: string;
   homepage?: string;
   items: RegistryItem[];
 }
@@ -58,6 +59,7 @@ async function buildRegistryIndex() {
 
   const registry = {
     name: "pivot/ui",
+    $schema: "https://ui.shadcn.com/schema/registry.json",
     homepage: "https://pivotkit.vercel.app",
     items: z.array(registryItemSchema).parse(
       [

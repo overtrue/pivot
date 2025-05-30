@@ -19,7 +19,7 @@ export const Index: Record<string, any> = {
     name: "status-code",
     description: "Display HTTP status codes with appropriate styling",
     type: "registry:ui",
-    registryDependencies: undefined,
+    registryDependencies: ["utils"],
     files: [{
       path: "registry/pivot/status-code.tsx",
       type: "registry:ui",
@@ -36,7 +36,7 @@ export const Index: Record<string, any> = {
     name: "method-label",
     description: "Display HTTP methods with color coding",
     type: "registry:ui",
-    registryDependencies: undefined,
+    registryDependencies: ["utils"],
     files: [{
       path: "registry/pivot/method-label.tsx",
       type: "registry:ui",
@@ -53,7 +53,7 @@ export const Index: Record<string, any> = {
     name: "type-indicator",
     description: "Display data types with appropriate styling",
     type: "registry:ui",
-    registryDependencies: undefined,
+    registryDependencies: ["utils"],
     files: [{
       path: "registry/pivot/type-indicator.tsx",
       type: "registry:ui",
@@ -70,7 +70,7 @@ export const Index: Record<string, any> = {
     name: "required-badge",
     description: "Badge to indicate required fields",
     type: "registry:ui",
-    registryDependencies: undefined,
+    registryDependencies: ["utils"],
     files: [{
       path: "registry/pivot/required-badge.tsx",
       type: "registry:ui",
@@ -87,7 +87,7 @@ export const Index: Record<string, any> = {
     name: "deprecated-badge",
     description: "Badge to indicate deprecated fields or operations",
     type: "registry:ui",
-    registryDependencies: undefined,
+    registryDependencies: ["utils"],
     files: [{
       path: "registry/pivot/deprecated-badge.tsx",
       type: "registry:ui",
@@ -104,7 +104,7 @@ export const Index: Record<string, any> = {
     name: "version-badge",
     description: "Display version information",
     type: "registry:ui",
-    registryDependencies: undefined,
+    registryDependencies: ["utils"],
     files: [{
       path: "registry/pivot/version-badge.tsx",
       type: "registry:ui",
@@ -121,7 +121,7 @@ export const Index: Record<string, any> = {
     name: "webhook-label",
     description: "Label for webhook endpoints",
     type: "registry:ui",
-    registryDependencies: undefined,
+    registryDependencies: ["utils"],
     files: [{
       path: "registry/pivot/webhook-label.tsx",
       type: "registry:ui",
@@ -138,7 +138,7 @@ export const Index: Record<string, any> = {
     name: "format-badge",
     description: "Display format information for data types",
     type: "registry:ui",
-    registryDependencies: undefined,
+    registryDependencies: ["utils"],
     files: [{
       path: "registry/pivot/format-badge.tsx",
       type: "registry:ui",
@@ -155,7 +155,7 @@ export const Index: Record<string, any> = {
     name: "style-badge",
     description: "Display style information for parameters",
     type: "registry:ui",
-    registryDependencies: undefined,
+    registryDependencies: ["utils"],
     files: [{
       path: "registry/pivot/style-badge.tsx",
       type: "registry:ui",
@@ -172,7 +172,7 @@ export const Index: Record<string, any> = {
     name: "scheme-type",
     description: "Display security scheme types",
     type: "registry:ui",
-    registryDependencies: undefined,
+    registryDependencies: ["utils"],
     files: [{
       path: "registry/pivot/scheme-type.tsx",
       type: "registry:ui",
@@ -189,7 +189,7 @@ export const Index: Record<string, any> = {
     name: "in-label",
     description: "Label for parameter location",
     type: "registry:ui",
-    registryDependencies: undefined,
+    registryDependencies: ["utils"],
     files: [{
       path: "registry/pivot/in-label.tsx",
       type: "registry:ui",
@@ -206,7 +206,7 @@ export const Index: Record<string, any> = {
     name: "parameter-name",
     description: "Display parameter names with deprecation support",
     type: "registry:ui",
-    registryDependencies: undefined,
+    registryDependencies: ["utils"],
     files: [{
       path: "registry/pivot/parameter-name.tsx",
       type: "registry:ui",
@@ -223,7 +223,7 @@ export const Index: Record<string, any> = {
     name: "parameter-description",
     description: "Display parameter descriptions",
     type: "registry:ui",
-    registryDependencies: undefined,
+    registryDependencies: ["utils"],
     files: [{
       path: "registry/pivot/parameter-description.tsx",
       type: "registry:ui",
@@ -240,7 +240,7 @@ export const Index: Record<string, any> = {
     name: "path-segment",
     description: "Display API path segments with parameter highlighting",
     type: "registry:ui",
-    registryDependencies: undefined,
+    registryDependencies: ["utils"],
     files: [{
       path: "registry/pivot/path-segment.tsx",
       type: "registry:ui",
@@ -253,69 +253,35 @@ export const Index: Record<string, any> = {
     }),
     meta: undefined,
   },
-  "required-marker": {
-    name: "required-marker",
-    description: "Visual marker for required fields",
+  "operation-path": {
+    name: "operation-path",
+    description: "Display operation paths with highlighting",
     type: "registry:ui",
-    registryDependencies: undefined,
+    registryDependencies: ["utils","path-segment"],
     files: [{
-      path: "registry/pivot/required-marker.tsx",
+      path: "registry/pivot/operation-path.tsx",
       type: "registry:ui",
-      target: "components/pivot/required-marker.tsx"
+      target: "components/pivot/operation-path.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/pivot/required-marker.tsx")
+      const mod = await import("@/registry/pivot/operation-path.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
     meta: undefined,
   },
-  "section-title": {
-    name: "section-title",
-    description: "Styled section titles for documentation",
+  "enum-values-display": {
+    name: "enum-values-display",
+    description: "Display enumeration values",
     type: "registry:ui",
-    registryDependencies: undefined,
+    registryDependencies: ["utils"],
     files: [{
-      path: "registry/pivot/section-title.tsx",
+      path: "registry/pivot/enum-values-display.tsx",
       type: "registry:ui",
-      target: "components/pivot/section-title.tsx"
+      target: "components/pivot/enum-values-display.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/pivot/section-title.tsx")
-      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
-      return { default: mod.default || mod[exportName] }
-    }),
-    meta: undefined,
-  },
-  "description-display": {
-    name: "description-display",
-    description: "Display descriptions with markdown support",
-    type: "registry:ui",
-    registryDependencies: undefined,
-    files: [{
-      path: "registry/pivot/description-display.tsx",
-      type: "registry:ui",
-      target: "components/pivot/description-display.tsx"
-    }],
-    component: React.lazy(async () => {
-      const mod = await import("@/registry/pivot/description-display.tsx")
-      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
-      return { default: mod.default || mod[exportName] }
-    }),
-    meta: undefined,
-  },
-  "value-display": {
-    name: "value-display",
-    description: "Display values with proper formatting",
-    type: "registry:ui",
-    registryDependencies: undefined,
-    files: [{
-      path: "registry/pivot/value-display.tsx",
-      type: "registry:ui",
-      target: "components/pivot/value-display.tsx"
-    }],
-    component: React.lazy(async () => {
-      const mod = await import("@/registry/pivot/value-display.tsx")
+      const mod = await import("@/registry/pivot/enum-values-display.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -323,9 +289,9 @@ export const Index: Record<string, any> = {
   },
   "default-value-display": {
     name: "default-value-display",
-    description: "Display default values with proper formatting",
+    description: "Display default values for parameters",
     type: "registry:ui",
-    registryDependencies: ["value-display"],
+    registryDependencies: ["utils"],
     files: [{
       path: "registry/pivot/default-value-display.tsx",
       type: "registry:ui",
@@ -338,69 +304,52 @@ export const Index: Record<string, any> = {
     }),
     meta: undefined,
   },
-  "const-value": {
-    name: "const-value",
-    description: "Display constant values",
+  "constraint-display": {
+    name: "constraint-display",
+    description: "Display schema constraints",
     type: "registry:ui",
-    registryDependencies: undefined,
+    registryDependencies: ["utils"],
     files: [{
-      path: "registry/pivot/const-value.tsx",
+      path: "registry/pivot/constraint-display.tsx",
       type: "registry:ui",
-      target: "components/pivot/const-value.tsx"
+      target: "components/pivot/constraint-display.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/pivot/const-value.tsx")
+      const mod = await import("@/registry/pivot/constraint-display.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
     meta: undefined,
   },
-  "enum-values": {
-    name: "enum-values",
-    description: "Display enumerated values",
+  "expand-collapse": {
+    name: "expand-collapse",
+    description: "Expandable/collapsible content component",
     type: "registry:ui",
-    registryDependencies: undefined,
+    registryDependencies: ["utils"],
     files: [{
-      path: "registry/pivot/enum-values.tsx",
+      path: "registry/pivot/expand-collapse.tsx",
       type: "registry:ui",
-      target: "components/pivot/enum-values.tsx"
+      target: "components/pivot/expand-collapse.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/pivot/enum-values.tsx")
+      const mod = await import("@/registry/pivot/expand-collapse.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
     meta: undefined,
   },
-  "external-docs": {
-    name: "external-docs",
-    description: "Link to external documentation",
+  "description-display": {
+    name: "description-display",
+    description: "Display markdown descriptions",
     type: "registry:ui",
-    registryDependencies: undefined,
+    registryDependencies: ["utils"],
     files: [{
-      path: "registry/pivot/external-docs.tsx",
+      path: "registry/pivot/description-display.tsx",
       type: "registry:ui",
-      target: "components/pivot/external-docs.tsx"
+      target: "components/pivot/description-display.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/pivot/external-docs.tsx")
-      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
-      return { default: mod.default || mod[exportName] }
-    }),
-    meta: undefined,
-  },
-  "oauth-flow": {
-    name: "oauth-flow",
-    description: "Display OAuth flow types",
-    type: "registry:ui",
-    registryDependencies: undefined,
-    files: [{
-      path: "registry/pivot/oauth-flow.tsx",
-      type: "registry:ui",
-      target: "components/pivot/oauth-flow.tsx"
-    }],
-    component: React.lazy(async () => {
-      const mod = await import("@/registry/pivot/oauth-flow.tsx")
+      const mod = await import("@/registry/pivot/description-display.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -410,7 +359,7 @@ export const Index: Record<string, any> = {
     name: "contact-display",
     description: "Display contact information",
     type: "registry:ui",
-    registryDependencies: undefined,
+    registryDependencies: ["utils"],
     files: [{
       path: "registry/pivot/contact-display.tsx",
       type: "registry:ui",
@@ -427,7 +376,7 @@ export const Index: Record<string, any> = {
     name: "license-display",
     description: "Display license information",
     type: "registry:ui",
-    registryDependencies: undefined,
+    registryDependencies: ["utils"],
     files: [{
       path: "registry/pivot/license-display.tsx",
       type: "registry:ui",
@@ -442,9 +391,9 @@ export const Index: Record<string, any> = {
   },
   "terms-of-service": {
     name: "terms-of-service",
-    description: "Link to terms of service",
+    description: "Display terms of service",
     type: "registry:ui",
-    registryDependencies: undefined,
+    registryDependencies: ["utils"],
     files: [{
       path: "registry/pivot/terms-of-service.tsx",
       type: "registry:ui",
@@ -457,11 +406,45 @@ export const Index: Record<string, any> = {
     }),
     meta: undefined,
   },
+  "version-display": {
+    name: "version-display",
+    description: "Display API version",
+    type: "registry:ui",
+    registryDependencies: ["utils"],
+    files: [{
+      path: "registry/pivot/version-display.tsx",
+      type: "registry:ui",
+      target: "components/pivot/version-display.tsx"
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/pivot/version-display.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    meta: undefined,
+  },
+  "section-title": {
+    name: "section-title",
+    description: "Section title component",
+    type: "registry:ui",
+    registryDependencies: ["utils"],
+    files: [{
+      path: "registry/pivot/section-title.tsx",
+      type: "registry:ui",
+      target: "components/pivot/section-title.tsx"
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/pivot/section-title.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    meta: undefined,
+  },
   "server-display": {
     name: "server-display",
     description: "Display server information",
     type: "registry:ui",
-    registryDependencies: undefined,
+    registryDependencies: ["utils"],
     files: [{
       path: "registry/pivot/server-display.tsx",
       type: "registry:ui",
@@ -474,45 +457,11 @@ export const Index: Record<string, any> = {
     }),
     meta: undefined,
   },
-  "operation-path": {
-    name: "operation-path",
-    description: "Display API operation paths with parameter highlighting",
-    type: "registry:ui",
-    registryDependencies: undefined,
-    files: [{
-      path: "registry/pivot/operation-path.tsx",
-      type: "registry:ui",
-      target: "components/pivot/operation-path.tsx"
-    }],
-    component: React.lazy(async () => {
-      const mod = await import("@/registry/pivot/operation-path.tsx")
-      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
-      return { default: mod.default || mod[exportName] }
-    }),
-    meta: undefined,
-  },
-  "enum-values-display": {
-    name: "enum-values-display",
-    description: "Display enumerated values with title",
-    type: "registry:ui",
-    registryDependencies: undefined,
-    files: [{
-      path: "registry/pivot/enum-values-display.tsx",
-      type: "registry:ui",
-      target: "components/pivot/enum-values-display.tsx"
-    }],
-    component: React.lazy(async () => {
-      const mod = await import("@/registry/pivot/enum-values-display.tsx")
-      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
-      return { default: mod.default || mod[exportName] }
-    }),
-    meta: undefined,
-  },
   "external-docs-display": {
     name: "external-docs-display",
     description: "Display external documentation links",
     type: "registry:ui",
-    registryDependencies: undefined,
+    registryDependencies: ["utils"],
     files: [{
       path: "registry/pivot/external-docs-display.tsx",
       type: "registry:ui",
@@ -525,65 +474,14 @@ export const Index: Record<string, any> = {
     }),
     meta: undefined,
   },
-  "constraint-display": {
-    name: "constraint-display",
-    description: "Display JSON Schema constraints and validation rules",
-    type: "registry:ui",
-    registryDependencies: undefined,
-    files: [{
-      path: "registry/pivot/constraint-display.tsx",
-      type: "registry:ui",
-      target: "components/pivot/constraint-display.tsx"
-    }],
-    component: React.lazy(async () => {
-      const mod = await import("@/registry/pivot/constraint-display.tsx")
-      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
-      return { default: mod.default || mod[exportName] }
-    }),
-    meta: undefined,
-  },
-  "media-type-display": {
-    name: "media-type-display",
-    description: "Display media types with appropriate color coding",
-    type: "registry:ui",
-    registryDependencies: undefined,
-    files: [{
-      path: "registry/pivot/media-type-display.tsx",
-      type: "registry:ui",
-      target: "components/pivot/media-type-display.tsx"
-    }],
-    component: React.lazy(async () => {
-      const mod = await import("@/registry/pivot/media-type-display.tsx")
-      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
-      return { default: mod.default || mod[exportName] }
-    }),
-    meta: undefined,
-  },
-  "response-headers-table": {
-    name: "response-headers-table",
-    description: "Display response headers in a table format",
-    type: "registry:ui",
-    registryDependencies: undefined,
-    files: [{
-      path: "registry/pivot/response-headers-table.tsx",
-      type: "registry:ui",
-      target: "components/pivot/response-headers-table.tsx"
-    }],
-    component: React.lazy(async () => {
-      const mod = await import("@/registry/pivot/response-headers-table.tsx")
-      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
-      return { default: mod.default || mod[exportName] }
-    }),
-    meta: undefined,
-  },
   "info-section": {
     name: "info-section",
-    description: "A comprehensive section component for displaying API information including title, version, description, contact, and license details.",
-    type: "registry:ui",
-    registryDependencies: undefined,
+    description: "Display API information section",
+    type: "registry:component",
+    registryDependencies: ["utils","contact-display","description-display","license-display"],
     files: [{
       path: "registry/pivot/info-section.tsx",
-      type: "registry:ui",
+      type: "registry:component",
       target: "components/pivot/info-section.tsx"
     }],
     component: React.lazy(async () => {
@@ -595,12 +493,12 @@ export const Index: Record<string, any> = {
   },
   "servers-section": {
     name: "servers-section",
-    description: "A section component for displaying server information.",
-    type: "registry:ui",
-    registryDependencies: undefined,
+    description: "Display servers section",
+    type: "registry:component",
+    registryDependencies: ["utils","section-title","server-display"],
     files: [{
       path: "registry/pivot/servers-section.tsx",
-      type: "registry:ui",
+      type: "registry:component",
       target: "components/pivot/servers-section.tsx"
     }],
     component: React.lazy(async () => {
@@ -610,130 +508,11 @@ export const Index: Record<string, any> = {
     }),
     meta: undefined,
   },
-  "copy-button": {
-    name: "copy-button",
-    description: "An interactive button component for copying text to clipboard with visual feedback.",
-    type: "registry:ui",
-    registryDependencies: undefined,
-    files: [{
-      path: "registry/pivot/copy-button.tsx",
-      type: "registry:ui",
-      target: "components/pivot/copy-button.tsx"
-    }],
-    component: React.lazy(async () => {
-      const mod = await import("@/registry/pivot/copy-button.tsx")
-      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
-      return { default: mod.default || mod[exportName] }
-    }),
-    meta: undefined,
-  },
-  "expand-collapse": {
-    name: "expand-collapse",
-    description: "A toggle button component for expanding and collapsing content sections.",
-    type: "registry:ui",
-    registryDependencies: undefined,
-    files: [{
-      path: "registry/pivot/expand-collapse.tsx",
-      type: "registry:ui",
-      target: "components/pivot/expand-collapse.tsx"
-    }],
-    component: React.lazy(async () => {
-      const mod = await import("@/registry/pivot/expand-collapse.tsx")
-      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
-      return { default: mod.default || mod[exportName] }
-    }),
-    meta: undefined,
-  },
-  "media-type-selector": {
-    name: "media-type-selector",
-    description: "A tab-style selector component for choosing between different media types.",
-    type: "registry:ui",
-    registryDependencies: undefined,
-    files: [{
-      path: "registry/pivot/media-type-selector.tsx",
-      type: "registry:ui",
-      target: "components/pivot/media-type-selector.tsx"
-    }],
-    component: React.lazy(async () => {
-      const mod = await import("@/registry/pivot/media-type-selector.tsx")
-      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
-      return { default: mod.default || mod[exportName] }
-    }),
-    meta: undefined,
-  },
-  "component-tabs": {
-    name: "component-tabs",
-    description: "A tab navigation component for switching between different component types.",
-    type: "registry:ui",
-    registryDependencies: undefined,
-    files: [{
-      path: "registry/pivot/component-tabs.tsx",
-      type: "registry:ui",
-      target: "components/pivot/component-tabs.tsx"
-    }],
-    component: React.lazy(async () => {
-      const mod = await import("@/registry/pivot/component-tabs.tsx")
-      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
-      return { default: mod.default || mod[exportName] }
-    }),
-    meta: undefined,
-  },
-  "parameter-group": {
-    name: "parameter-group",
-    description: "A collapsible group component for displaying parameters by location type.",
-    type: "registry:ui",
-    registryDependencies: undefined,
-    files: [{
-      path: "registry/pivot/parameter-group.tsx",
-      type: "registry:ui",
-      target: "components/pivot/parameter-group.tsx"
-    }],
-    component: React.lazy(async () => {
-      const mod = await import("@/registry/pivot/parameter-group.tsx")
-      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
-      return { default: mod.default || mod[exportName] }
-    }),
-    meta: undefined,
-  },
-  "link-item": {
-    name: "link-item",
-    description: "A component for displaying OpenAPI link objects with parameters and request body details.",
-    type: "registry:ui",
-    registryDependencies: undefined,
-    files: [{
-      path: "registry/pivot/link-item.tsx",
-      type: "registry:ui",
-      target: "components/pivot/link-item.tsx"
-    }],
-    component: React.lazy(async () => {
-      const mod = await import("@/registry/pivot/link-item.tsx")
-      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
-      return { default: mod.default || mod[exportName] }
-    }),
-    meta: undefined,
-  },
-  "security-scheme": {
-    name: "security-scheme",
-    description: "A component for displaying OpenAPI security scheme configurations with OAuth2 flow support.",
-    type: "registry:ui",
-    registryDependencies: undefined,
-    files: [{
-      path: "registry/pivot/security-scheme.tsx",
-      type: "registry:ui",
-      target: "components/pivot/security-scheme.tsx"
-    }],
-    component: React.lazy(async () => {
-      const mod = await import("@/registry/pivot/security-scheme.tsx")
-      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
-      return { default: mod.default || mod[exportName] }
-    }),
-    meta: undefined,
-  },
   "server-variable": {
     name: "server-variable",
-    description: "A component for displaying server variable information with default values and enum options.",
+    description: "Display server variable",
     type: "registry:ui",
-    registryDependencies: undefined,
+    registryDependencies: ["utils","required-marker","type-indicator","expand-collapse"],
     files: [{
       path: "registry/pivot/server-variable.tsx",
       type: "registry:ui",
@@ -748,12 +527,12 @@ export const Index: Record<string, any> = {
   },
   "server": {
     name: "server",
-    description: "A component for displaying server information with URL interpolation and variable expansion.",
-    type: "registry:ui",
-    registryDependencies: undefined,
+    description: "Display server information with variables",
+    type: "registry:component",
+    registryDependencies: ["utils","description-display","server-display","expand-collapse"],
     files: [{
       path: "registry/pivot/server.tsx",
-      type: "registry:ui",
+      type: "registry:component",
       target: "components/pivot/server.tsx"
     }],
     component: React.lazy(async () => {
@@ -763,18 +542,120 @@ export const Index: Record<string, any> = {
     }),
     meta: undefined,
   },
-  "servers": {
-    name: "servers",
-    description: "A component for displaying a list of servers with section title.",
-    type: "registry:ui",
-    registryDependencies: undefined,
+  "security-scheme-display": {
+    name: "security-scheme-display",
+    description: "Display security scheme details",
+    type: "registry:component",
+    registryDependencies: ["utils","description-display","scheme-type"],
     files: [{
-      path: "registry/pivot/servers.tsx",
-      type: "registry:ui",
-      target: "components/pivot/servers.tsx"
+      path: "registry/pivot/security-scheme-display.tsx",
+      type: "registry:component",
+      target: "components/pivot/security-scheme-display.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/pivot/servers.tsx")
+      const mod = await import("@/registry/pivot/security-scheme-display.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    meta: undefined,
+  },
+  "security-scheme": {
+    name: "security-scheme",
+    description: "Display security scheme",
+    type: "registry:component",
+    registryDependencies: ["utils","description-display"],
+    files: [{
+      path: "registry/pivot/security-scheme.tsx",
+      type: "registry:component",
+      target: "components/pivot/security-scheme.tsx"
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/pivot/security-scheme.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    meta: undefined,
+  },
+  "server-variables-section": {
+    name: "server-variables-section",
+    description: "Display server variables section",
+    type: "registry:component",
+    registryDependencies: ["utils","description-display","expand-collapse","server-variable"],
+    files: [{
+      path: "registry/pivot/server-variables-section.tsx",
+      type: "registry:component",
+      target: "components/pivot/server-variables-section.tsx"
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/pivot/server-variables-section.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    meta: undefined,
+  },
+  "required-marker": {
+    name: "required-marker",
+    description: "Marker for required fields",
+    type: "registry:ui",
+    registryDependencies: ["utils"],
+    files: [{
+      path: "registry/pivot/required-marker.tsx",
+      type: "registry:ui",
+      target: "components/pivot/required-marker.tsx"
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/pivot/required-marker.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    meta: undefined,
+  },
+  "value-display": {
+    name: "value-display",
+    description: "Display values with syntax highlighting",
+    type: "registry:ui",
+    registryDependencies: ["utils"],
+    files: [{
+      path: "registry/pivot/value-display.tsx",
+      type: "registry:ui",
+      target: "components/pivot/value-display.tsx"
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/pivot/value-display.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    meta: undefined,
+  },
+  "example-display": {
+    name: "example-display",
+    description: "Display examples",
+    type: "registry:component",
+    registryDependencies: ["utils","value-display"],
+    files: [{
+      path: "registry/pivot/example-display.tsx",
+      type: "registry:component",
+      target: "components/pivot/example-display.tsx"
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/pivot/example-display.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    meta: undefined,
+  },
+  "examples-display": {
+    name: "examples-display",
+    description: "Display multiple examples",
+    type: "registry:component",
+    registryDependencies: ["utils","resolve-ref"],
+    files: [{
+      path: "registry/pivot/examples-display.tsx",
+      type: "registry:component",
+      target: "components/pivot/examples-display.tsx"
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/pivot/examples-display.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -782,12 +663,12 @@ export const Index: Record<string, any> = {
   },
   "links-section": {
     name: "links-section",
-    description: "A section component for displaying OpenAPI links with reference resolution.",
-    type: "registry:ui",
-    registryDependencies: undefined,
+    description: "Display links section",
+    type: "registry:component",
+    registryDependencies: ["utils","link-item"],
     files: [{
       path: "registry/pivot/links-section.tsx",
-      type: "registry:ui",
+      type: "registry:component",
       target: "components/pivot/links-section.tsx"
     }],
     component: React.lazy(async () => {
@@ -797,14 +678,31 @@ export const Index: Record<string, any> = {
     }),
     meta: undefined,
   },
+  "link-item": {
+    name: "link-item",
+    description: "Display link item",
+    type: "registry:ui",
+    registryDependencies: ["utils"],
+    files: [{
+      path: "registry/pivot/link-item.tsx",
+      type: "registry:ui",
+      target: "components/pivot/link-item.tsx"
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/pivot/link-item.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    meta: undefined,
+  },
   "security-schemes": {
     name: "security-schemes",
-    description: "A section component for displaying multiple security schemes.",
-    type: "registry:ui",
-    registryDependencies: undefined,
+    description: "Display security schemes section",
+    type: "registry:component",
+    registryDependencies: ["utils","section-title","security-scheme"],
     files: [{
       path: "registry/pivot/security-schemes.tsx",
-      type: "registry:ui",
+      type: "registry:component",
       target: "components/pivot/security-schemes.tsx"
     }],
     component: React.lazy(async () => {
@@ -814,14 +712,31 @@ export const Index: Record<string, any> = {
     }),
     meta: undefined,
   },
+  "oauth-flow": {
+    name: "oauth-flow",
+    description: "Display OAuth flow information",
+    type: "registry:ui",
+    registryDependencies: ["utils"],
+    files: [{
+      path: "registry/pivot/oauth-flow.tsx",
+      type: "registry:ui",
+      target: "components/pivot/oauth-flow.tsx"
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/pivot/oauth-flow.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    meta: undefined,
+  },
   "oauth-flow-details": {
     name: "oauth-flow-details",
-    description: "A component for displaying detailed OAuth flow information including URLs and scopes.",
-    type: "registry:ui",
-    registryDependencies: undefined,
+    description: "Display detailed OAuth flow information",
+    type: "registry:component",
+    registryDependencies: ["utils","oauth-flow"],
     files: [{
       path: "registry/pivot/oauth-flow-details.tsx",
-      type: "registry:ui",
+      type: "registry:component",
       target: "components/pivot/oauth-flow-details.tsx"
     }],
     component: React.lazy(async () => {
@@ -831,11 +746,28 @@ export const Index: Record<string, any> = {
     }),
     meta: undefined,
   },
+  "oauth-flows": {
+    name: "oauth-flows",
+    description: "Display OAuth flows",
+    type: "registry:component",
+    registryDependencies: ["utils","oauth-flow-details"],
+    files: [{
+      path: "registry/pivot/oauth-flows.tsx",
+      type: "registry:component",
+      target: "components/pivot/oauth-flows.tsx"
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/pivot/oauth-flows.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    meta: undefined,
+  },
   "security-requirement-item": {
     name: "security-requirement-item",
-    description: "A component for displaying a single security requirement with schemes and scopes.",
+    description: "Display security requirement item",
     type: "registry:ui",
-    registryDependencies: undefined,
+    registryDependencies: ["utils"],
     files: [{
       path: "registry/pivot/security-requirement-item.tsx",
       type: "registry:ui",
@@ -848,290 +780,18 @@ export const Index: Record<string, any> = {
     }),
     meta: undefined,
   },
-  "security-requirements-section": {
-    name: "security-requirements-section",
-    description: "A section component for displaying security requirements.",
-    type: "registry:ui",
-    registryDependencies: undefined,
+  "security-requirements-list": {
+    name: "security-requirements-list",
+    description: "Display list of security requirements",
+    type: "registry:component",
+    registryDependencies: ["utils","security-requirement-item"],
     files: [{
-      path: "registry/pivot/security-requirements-section.tsx",
-      type: "registry:ui",
-      target: "components/pivot/security-requirements-section.tsx"
+      path: "registry/pivot/security-requirements-list.tsx",
+      type: "registry:component",
+      target: "components/pivot/security-requirements-list.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/pivot/security-requirements-section.tsx")
-      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
-      return { default: mod.default || mod[exportName] }
-    }),
-    meta: undefined,
-  },
-  "example-display": {
-    name: "example-display",
-    description: "A component for displaying examples with proper formatting and syntax highlighting.",
-    type: "registry:ui",
-    registryDependencies: undefined,
-    files: [{
-      path: "registry/pivot/example-display.tsx",
-      type: "registry:ui",
-      target: "components/pivot/example-display.tsx"
-    }],
-    component: React.lazy(async () => {
-      const mod = await import("@/registry/pivot/example-display.tsx")
-      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
-      return { default: mod.default || mod[exportName] }
-    }),
-    meta: undefined,
-  },
-  "language-switcher": {
-    name: "language-switcher",
-    description: "A component for switching between different programming languages in code examples.",
-    type: "registry:ui",
-    registryDependencies: undefined,
-    files: [{
-      path: "registry/pivot/language-switcher.tsx",
-      type: "registry:ui",
-      target: "components/pivot/language-switcher.tsx"
-    }],
-    component: React.lazy(async () => {
-      const mod = await import("@/registry/pivot/language-switcher.tsx")
-      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
-      return { default: mod.default || mod[exportName] }
-    }),
-    meta: undefined,
-  },
-  "security-scheme-display": {
-    name: "security-scheme-display",
-    description: "A component for displaying security scheme information with OAuth flow details.",
-    type: "registry:ui",
-    registryDependencies: undefined,
-    files: [{
-      path: "registry/pivot/security-scheme-display.tsx",
-      type: "registry:ui",
-      target: "components/pivot/security-scheme-display.tsx"
-    }],
-    component: React.lazy(async () => {
-      const mod = await import("@/registry/pivot/security-scheme-display.tsx")
-      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
-      return { default: mod.default || mod[exportName] }
-    }),
-    meta: undefined,
-  },
-  "component-items-list": {
-    name: "component-items-list",
-    description: "A list component for displaying component items with filtering.",
-    type: "registry:ui",
-    registryDependencies: undefined,
-    files: [{
-      path: "registry/pivot/component-items-list.tsx",
-      type: "registry:ui",
-      target: "components/pivot/component-items-list.tsx"
-    }],
-    component: React.lazy(async () => {
-      const mod = await import("@/registry/pivot/component-items-list.tsx")
-      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
-      return { default: mod.default || mod[exportName] }
-    }),
-    meta: undefined,
-  },
-  "theme-toggle": {
-    name: "theme-toggle",
-    description: "A toggle button for switching between light and dark themes.",
-    type: "registry:ui",
-    registryDependencies: undefined,
-    files: [{
-      path: "registry/pivot/theme-toggle.tsx",
-      type: "registry:ui",
-      target: "components/pivot/theme-toggle.tsx"
-    }],
-    component: React.lazy(async () => {
-      const mod = await import("@/registry/pivot/theme-toggle.tsx")
-      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
-      return { default: mod.default || mod[exportName] }
-    }),
-    meta: undefined,
-  },
-  "parameter-item": {
-    name: "parameter-item",
-    description: "A component for displaying parameter information with schema details.",
-    type: "registry:ui",
-    registryDependencies: undefined,
-    files: [{
-      path: "registry/pivot/parameter-item.tsx",
-      type: "registry:ui",
-      target: "components/pivot/parameter-item.tsx"
-    }],
-    component: React.lazy(async () => {
-      const mod = await import("@/registry/pivot/parameter-item.tsx")
-      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
-      return { default: mod.default || mod[exportName] }
-    }),
-    meta: undefined,
-  },
-  "response-item": {
-    name: "response-item",
-    description: "A component for displaying response information with content details.",
-    type: "registry:ui",
-    registryDependencies: undefined,
-    files: [{
-      path: "registry/pivot/response-item.tsx",
-      type: "registry:ui",
-      target: "components/pivot/response-item.tsx"
-    }],
-    component: React.lazy(async () => {
-      const mod = await import("@/registry/pivot/response-item.tsx")
-      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
-      return { default: mod.default || mod[exportName] }
-    }),
-    meta: undefined,
-  },
-  "request-body-section": {
-    name: "request-body-section",
-    description: "A section component for displaying request body information.",
-    type: "registry:ui",
-    registryDependencies: undefined,
-    files: [{
-      path: "registry/pivot/request-body-section.tsx",
-      type: "registry:ui",
-      target: "components/pivot/request-body-section.tsx"
-    }],
-    component: React.lazy(async () => {
-      const mod = await import("@/registry/pivot/request-body-section.tsx")
-      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
-      return { default: mod.default || mod[exportName] }
-    }),
-    meta: undefined,
-  },
-  "operation-box": {
-    name: "operation-box",
-    description: "A comprehensive component for displaying API operation information.",
-    type: "registry:ui",
-    registryDependencies: undefined,
-    files: [{
-      path: "registry/pivot/operation-box.tsx",
-      type: "registry:ui",
-      target: "components/pivot/operation-box.tsx"
-    }],
-    component: React.lazy(async () => {
-      const mod = await import("@/registry/pivot/operation-box.tsx")
-      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
-      return { default: mod.default || mod[exportName] }
-    }),
-    meta: undefined,
-  },
-  "responses-section": {
-    name: "responses-section",
-    description: "A section component for displaying API responses.",
-    type: "registry:ui",
-    registryDependencies: undefined,
-    files: [{
-      path: "registry/pivot/responses-section.tsx",
-      type: "registry:ui",
-      target: "components/pivot/responses-section.tsx"
-    }],
-    component: React.lazy(async () => {
-      const mod = await import("@/registry/pivot/responses-section.tsx")
-      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
-      return { default: mod.default || mod[exportName] }
-    }),
-    meta: undefined,
-  },
-  "parameters-section": {
-    name: "parameters-section",
-    description: "A section component for displaying API parameters.",
-    type: "registry:ui",
-    registryDependencies: undefined,
-    files: [{
-      path: "registry/pivot/parameters-section.tsx",
-      type: "registry:ui",
-      target: "components/pivot/parameters-section.tsx"
-    }],
-    component: React.lazy(async () => {
-      const mod = await import("@/registry/pivot/parameters-section.tsx")
-      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
-      return { default: mod.default || mod[exportName] }
-    }),
-    meta: undefined,
-  },
-  "response-content-section": {
-    name: "response-content-section",
-    description: "A section component for displaying response content with media types.",
-    type: "registry:ui",
-    registryDependencies: undefined,
-    files: [{
-      path: "registry/pivot/response-content-section.tsx",
-      type: "registry:ui",
-      target: "components/pivot/response-content-section.tsx"
-    }],
-    component: React.lazy(async () => {
-      const mod = await import("@/registry/pivot/response-content-section.tsx")
-      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
-      return { default: mod.default || mod[exportName] }
-    }),
-    meta: undefined,
-  },
-  "schema-composition-display": {
-    name: "schema-composition-display",
-    description: "A component for displaying schema composition (allOf, oneOf, anyOf).",
-    type: "registry:ui",
-    registryDependencies: undefined,
-    files: [{
-      path: "registry/pivot/schema-composition-display.tsx",
-      type: "registry:ui",
-      target: "components/pivot/schema-composition-display.tsx"
-    }],
-    component: React.lazy(async () => {
-      const mod = await import("@/registry/pivot/schema-composition-display.tsx")
-      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
-      return { default: mod.default || mod[exportName] }
-    }),
-    meta: undefined,
-  },
-  "schema-display": {
-    name: "schema-display",
-    description: "A comprehensive component for displaying OpenAPI schemas with recursive support.",
-    type: "registry:ui",
-    registryDependencies: undefined,
-    files: [{
-      path: "registry/pivot/schema-display.tsx",
-      type: "registry:ui",
-      target: "components/pivot/schema-display.tsx"
-    }],
-    component: React.lazy(async () => {
-      const mod = await import("@/registry/pivot/schema-display.tsx")
-      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
-      return { default: mod.default || mod[exportName] }
-    }),
-    meta: undefined,
-  },
-  "components-section": {
-    name: "components-section",
-    description: "A section component for displaying OpenAPI components.",
-    type: "registry:ui",
-    registryDependencies: undefined,
-    files: [{
-      path: "registry/pivot/components-section.tsx",
-      type: "registry:ui",
-      target: "components/pivot/components-section.tsx"
-    }],
-    component: React.lazy(async () => {
-      const mod = await import("@/registry/pivot/components-section.tsx")
-      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
-      return { default: mod.default || mod[exportName] }
-    }),
-    meta: undefined,
-  },
-  "schema-with-example-viewer": {
-    name: "schema-with-example-viewer",
-    description: "A component for displaying schemas alongside examples.",
-    type: "registry:ui",
-    registryDependencies: undefined,
-    files: [{
-      path: "registry/pivot/schema-with-example-viewer.tsx",
-      type: "registry:ui",
-      target: "components/pivot/schema-with-example-viewer.tsx"
-    }],
-    component: React.lazy(async () => {
-      const mod = await import("@/registry/pivot/schema-with-example-viewer.tsx")
+      const mod = await import("@/registry/pivot/security-requirements-list.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -1139,12 +799,12 @@ export const Index: Record<string, any> = {
   },
   "header-item": {
     name: "header-item",
-    description: "A component for displaying header information with schema details.",
-    type: "registry:ui",
-    registryDependencies: undefined,
+    description: "Display header item with details",
+    type: "registry:component",
+    registryDependencies: ["utils","deprecated-badge","description-display","enum-values-display","format-badge","required-badge","type-indicator","default-value-display","examples-display","expand-collapse"],
     files: [{
       path: "registry/pivot/header-item.tsx",
-      type: "registry:ui",
+      type: "registry:component",
       target: "components/pivot/header-item.tsx"
     }],
     component: React.lazy(async () => {
@@ -1154,35 +814,222 @@ export const Index: Record<string, any> = {
     }),
     meta: undefined,
   },
-  "examples-display": {
-    name: "examples-display",
-    description: "A component for displaying multiple examples with selection.",
+  "status-code-display": {
+    name: "status-code-display",
+    description: "Display HTTP status codes",
     type: "registry:ui",
-    registryDependencies: undefined,
+    registryDependencies: ["utils","status-code","description-display"],
     files: [{
-      path: "registry/pivot/examples-display.tsx",
+      path: "registry/pivot/status-code-display.tsx",
       type: "registry:ui",
-      target: "components/pivot/examples-display.tsx"
+      target: "components/pivot/status-code-display.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/pivot/examples-display.tsx")
+      const mod = await import("@/registry/pivot/status-code-display.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
     meta: undefined,
   },
-  "callback-display": {
-    name: "callback-display",
-    description: "A component for displaying OpenAPI callback objects with operation details.",
-    type: "registry:ui",
-    registryDependencies: undefined,
+  "media-type-selector": {
+    name: "media-type-selector",
+    description: "Selector for media types",
+    type: "registry:component",
+    registryDependencies: ["utils","description-display"],
     files: [{
-      path: "registry/pivot/callback-display.tsx",
-      type: "registry:ui",
-      target: "components/pivot/callback-display.tsx"
+      path: "registry/pivot/media-type-selector.tsx",
+      type: "registry:component",
+      target: "components/pivot/media-type-selector.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/pivot/callback-display.tsx")
+      const mod = await import("@/registry/pivot/media-type-selector.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    meta: undefined,
+  },
+  "operation-summary": {
+    name: "operation-summary",
+    description: "Display operation summary",
+    type: "registry:ui",
+    registryDependencies: ["utils","method-label","operation-path","description-display"],
+    files: [{
+      path: "registry/pivot/operation-summary.tsx",
+      type: "registry:ui",
+      target: "components/pivot/operation-summary.tsx"
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/pivot/operation-summary.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    meta: undefined,
+  },
+  "response-group": {
+    name: "response-group",
+    description: "Group responses by status code",
+    type: "registry:component",
+    registryDependencies: ["utils","response-item"],
+    files: [{
+      path: "registry/pivot/response-group.tsx",
+      type: "registry:component",
+      target: "components/pivot/response-group.tsx"
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/pivot/response-group.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    meta: undefined,
+  },
+  "parameters-section": {
+    name: "parameters-section",
+    description: "Display parameters section",
+    type: "registry:component",
+    registryDependencies: ["utils","parameter-item"],
+    files: [{
+      path: "registry/pivot/parameters-section.tsx",
+      type: "registry:component",
+      target: "components/pivot/parameters-section.tsx"
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/pivot/parameters-section.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    meta: undefined,
+  },
+  "request-body-display": {
+    name: "request-body-display",
+    description: "Display request body",
+    type: "registry:component",
+    registryDependencies: ["utils","media-type-selector"],
+    files: [{
+      path: "registry/pivot/request-body-display.tsx",
+      type: "registry:component",
+      target: "components/pivot/request-body-display.tsx"
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/pivot/request-body-display.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    meta: undefined,
+  },
+  "schema-composition-display": {
+    name: "schema-composition-display",
+    description: "Display schema composition (allOf, oneOf, anyOf)",
+    type: "registry:component",
+    registryDependencies: ["utils","type-indicator","constraint-display"],
+    files: [{
+      path: "registry/pivot/schema-composition-display.tsx",
+      type: "registry:component",
+      target: "components/pivot/schema-composition-display.tsx"
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/pivot/schema-composition-display.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    meta: undefined,
+  },
+  "component-tabs": {
+    name: "component-tabs",
+    description: "Tabs for different component types",
+    type: "registry:component",
+    registryDependencies: ["utils"],
+    files: [{
+      path: "registry/pivot/component-tabs.tsx",
+      type: "registry:component",
+      target: "components/pivot/component-tabs.tsx"
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/pivot/component-tabs.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    meta: undefined,
+  },
+  "schema-with-example-viewer": {
+    name: "schema-with-example-viewer",
+    description: "Display schema with example",
+    type: "registry:component",
+    registryDependencies: ["utils","schema-display","example-display","generate-example","resolve-ref"],
+    files: [{
+      path: "registry/pivot/schema-with-example-viewer.tsx",
+      type: "registry:component",
+      target: "components/pivot/schema-with-example-viewer.tsx"
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/pivot/schema-with-example-viewer.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    meta: undefined,
+  },
+  "schema-display": {
+    name: "schema-display",
+    description: "Display OpenAPI schema",
+    type: "registry:component",
+    registryDependencies: ["utils","schema-display"],
+    files: [{
+      path: "registry/pivot/schema-display.tsx",
+      type: "registry:component",
+      target: "components/pivot/schema-display.tsx"
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/pivot/schema-display.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    meta: undefined,
+  },
+  "parameter-item": {
+    name: "parameter-item",
+    description: "Display parameter item",
+    type: "registry:component",
+    registryDependencies: ["utils","example-display"],
+    files: [{
+      path: "registry/pivot/parameter-item.tsx",
+      type: "registry:component",
+      target: "components/pivot/parameter-item.tsx"
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/pivot/parameter-item.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    meta: undefined,
+  },
+  "operation-box": {
+    name: "operation-box",
+    description: "Display operation in a box layout",
+    type: "registry:component",
+    registryDependencies: ["utils","deprecated-badge","description-display","expand-collapse","external-docs-display","method-label","operation-path","parameters-section","request-body-section","responses-section","security-requirements-section"],
+    files: [{
+      path: "registry/pivot/operation-box.tsx",
+      type: "registry:component",
+      target: "components/pivot/operation-box.tsx"
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/pivot/operation-box.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    meta: undefined,
+  },
+  "webhook-operation": {
+    name: "webhook-operation",
+    description: "Display webhook operation",
+    type: "registry:component",
+    registryDependencies: ["utils","webhook-label","operation-box"],
+    files: [{
+      path: "registry/pivot/webhook-operation.tsx",
+      type: "registry:component",
+      target: "components/pivot/webhook-operation.tsx"
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/pivot/webhook-operation.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -1190,12 +1037,12 @@ export const Index: Record<string, any> = {
   },
   "webhook-display": {
     name: "webhook-display",
-    description: "A component for displaying webhook information.",
-    type: "registry:ui",
-    registryDependencies: undefined,
+    description: "Display webhook information",
+    type: "registry:component",
+    registryDependencies: ["utils","operation-box"],
     files: [{
       path: "registry/pivot/webhook-display.tsx",
-      type: "registry:ui",
+      type: "registry:component",
       target: "components/pivot/webhook-display.tsx"
     }],
     component: React.lazy(async () => {
@@ -1205,52 +1052,69 @@ export const Index: Record<string, any> = {
     }),
     meta: undefined,
   },
-  "path-item-display": {
-    name: "path-item-display",
-    description: "A component for displaying path item information with operations.",
-    type: "registry:ui",
-    registryDependencies: undefined,
+  "security-requirements-section": {
+    name: "security-requirements-section",
+    description: "Display security requirements section",
+    type: "registry:component",
+    registryDependencies: ["utils","security-schemes","security-requirements-section"],
     files: [{
-      path: "registry/pivot/path-item-display.tsx",
-      type: "registry:ui",
-      target: "components/pivot/path-item-display.tsx"
+      path: "registry/pivot/security-requirements-section.tsx",
+      type: "registry:component",
+      target: "components/pivot/security-requirements-section.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/pivot/path-item-display.tsx")
+      const mod = await import("@/registry/pivot/security-requirements-section.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
     meta: undefined,
   },
-  "security-section": {
-    name: "security-section",
-    description: "A comprehensive security section with schemes and requirements.",
-    type: "registry:ui",
-    registryDependencies: undefined,
+  "request-body-section": {
+    name: "request-body-section",
+    description: "Display request body section",
+    type: "registry:component",
+    registryDependencies: ["utils","schema-with-example-viewer","section-title"],
     files: [{
-      path: "registry/pivot/security-section.tsx",
-      type: "registry:ui",
-      target: "components/pivot/security-section.tsx"
+      path: "registry/pivot/request-body-section.tsx",
+      type: "registry:component",
+      target: "components/pivot/request-body-section.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/pivot/security-section.tsx")
+      const mod = await import("@/registry/pivot/request-body-section.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
     meta: undefined,
   },
-  "component-detail": {
-    name: "component-detail",
-    description: "A detailed view component for displaying component information.",
-    type: "registry:ui",
-    registryDependencies: undefined,
+  "responses-section": {
+    name: "responses-section",
+    description: "Display responses section",
+    type: "registry:component",
+    registryDependencies: ["utils","response-group","section-title","status-code"],
     files: [{
-      path: "registry/pivot/component-detail.tsx",
-      type: "registry:ui",
-      target: "components/pivot/component-detail.tsx"
+      path: "registry/pivot/responses-section.tsx",
+      type: "registry:component",
+      target: "components/pivot/responses-section.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/pivot/component-detail.tsx")
+      const mod = await import("@/registry/pivot/responses-section.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    meta: undefined,
+  },
+  "response-item": {
+    name: "response-item",
+    description: "Display response item",
+    type: "registry:component",
+    registryDependencies: ["utils","resolve-ref","description-display","headers-section","links-section","status-code"],
+    files: [{
+      path: "registry/pivot/response-item.tsx",
+      type: "registry:component",
+      target: "components/pivot/response-item.tsx"
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/pivot/response-item.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -1258,12 +1122,12 @@ export const Index: Record<string, any> = {
   },
   "headers-section": {
     name: "headers-section",
-    description: "A section component for displaying HTTP headers.",
-    type: "registry:ui",
-    registryDependencies: undefined,
+    description: "Display headers section",
+    type: "registry:component",
+    registryDependencies: ["utils","header-item"],
     files: [{
       path: "registry/pivot/headers-section.tsx",
-      type: "registry:ui",
+      type: "registry:component",
       target: "components/pivot/headers-section.tsx"
     }],
     component: React.lazy(async () => {
@@ -1273,35 +1137,69 @@ export const Index: Record<string, any> = {
     }),
     meta: undefined,
   },
-  "accordion-components-section": {
-    name: "accordion-components-section",
-    description: "An accordion-style section for displaying components with expandable details.",
-    type: "registry:ui",
-    registryDependencies: undefined,
+  "component-detail": {
+    name: "component-detail",
+    description: "Display component details",
+    type: "registry:component",
+    registryDependencies: ["utils","callback-display","examples-display","header-item","link-item","parameter-item","request-body-section","response-item","schema-display","security-scheme-display","webhook-display"],
     files: [{
-      path: "registry/pivot/accordion-components-section.tsx",
-      type: "registry:ui",
-      target: "components/pivot/accordion-components-section.tsx"
+      path: "registry/pivot/component-detail.tsx",
+      type: "registry:component",
+      target: "components/pivot/component-detail.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/pivot/accordion-components-section.tsx")
+      const mod = await import("@/registry/pivot/component-detail.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
     meta: undefined,
   },
-  "resizable-sidebar": {
-    name: "resizable-sidebar",
-    description: "A resizable sidebar component for navigation and content organization.",
-    type: "registry:ui",
-    registryDependencies: undefined,
+  "callback-display": {
+    name: "callback-display",
+    description: "Display callback information",
+    type: "registry:component",
+    registryDependencies: ["utils"],
     files: [{
-      path: "registry/pivot/resizable-sidebar.tsx",
-      type: "registry:ui",
-      target: "components/pivot/resizable-sidebar.tsx"
+      path: "registry/pivot/callback-display.tsx",
+      type: "registry:component",
+      target: "components/pivot/callback-display.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/pivot/resizable-sidebar.tsx")
+      const mod = await import("@/registry/pivot/callback-display.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    meta: undefined,
+  },
+  "copy-button": {
+    name: "copy-button",
+    description: "Button for copying content to clipboard",
+    type: "registry:ui",
+    registryDependencies: ["utils"],
+    files: [{
+      path: "registry/pivot/copy-button.tsx",
+      type: "registry:ui",
+      target: "components/pivot/copy-button.tsx"
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/pivot/copy-button.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    meta: undefined,
+  },
+  "code-markdown": {
+    name: "code-markdown",
+    description: "Display code with syntax highlighting",
+    type: "registry:ui",
+    registryDependencies: ["utils","copy-button"],
+    files: [{
+      path: "registry/pivot/code-markdown.tsx",
+      type: "registry:ui",
+      target: "components/pivot/code-markdown.tsx"
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/pivot/code-markdown.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -1309,9 +1207,9 @@ export const Index: Record<string, any> = {
   },
   "curl-generator": {
     name: "curl-generator",
-    description: "Generate cURL commands from OpenAPI operations.",
+    description: "Generate cURL commands",
     type: "registry:ui",
-    registryDependencies: undefined,
+    registryDependencies: ["utils"],
     files: [{
       path: "registry/pivot/curl-generator.tsx",
       type: "registry:ui",
@@ -1326,9 +1224,9 @@ export const Index: Record<string, any> = {
   },
   "python-generator": {
     name: "python-generator",
-    description: "Generate Python code from OpenAPI operations.",
+    description: "Generate Python code",
     type: "registry:ui",
-    registryDependencies: undefined,
+    registryDependencies: ["utils"],
     files: [{
       path: "registry/pivot/python-generator.tsx",
       type: "registry:ui",
@@ -1343,9 +1241,9 @@ export const Index: Record<string, any> = {
   },
   "typescript-generator": {
     name: "typescript-generator",
-    description: "Generate TypeScript code from OpenAPI operations.",
+    description: "Generate TypeScript code",
     type: "registry:ui",
-    registryDependencies: undefined,
+    registryDependencies: ["utils"],
     files: [{
       path: "registry/pivot/typescript-generator.tsx",
       type: "registry:ui",
@@ -1360,9 +1258,9 @@ export const Index: Record<string, any> = {
   },
   "php-generator": {
     name: "php-generator",
-    description: "Generate PHP code from OpenAPI operations.",
+    description: "Generate PHP code",
     type: "registry:ui",
-    registryDependencies: undefined,
+    registryDependencies: ["utils"],
     files: [{
       path: "registry/pivot/php-generator.tsx",
       type: "registry:ui",
@@ -1377,9 +1275,9 @@ export const Index: Record<string, any> = {
   },
   "laravel-generator": {
     name: "laravel-generator",
-    description: "Generate Laravel code from OpenAPI operations.",
+    description: "Generate Laravel code",
     type: "registry:ui",
-    registryDependencies: undefined,
+    registryDependencies: ["utils"],
     files: [{
       path: "registry/pivot/laravel-generator.tsx",
       type: "registry:ui",
@@ -1394,12 +1292,12 @@ export const Index: Record<string, any> = {
   },
   "codegen": {
     name: "codegen",
-    description: "A comprehensive code generator supporting multiple programming languages.",
-    type: "registry:ui",
-    registryDependencies: undefined,
+    description: "Multi-language code generator",
+    type: "registry:component",
+    registryDependencies: ["utils","curl-generator","python-generator","typescript-generator","php-generator","laravel-generator","generate-example","resolve-ref","code-markdown"],
     files: [{
       path: "registry/pivot/codegen.tsx",
-      type: "registry:ui",
+      type: "registry:component",
       target: "components/pivot/codegen.tsx"
     }],
     component: React.lazy(async () => {
@@ -1411,12 +1309,12 @@ export const Index: Record<string, any> = {
   },
   "try-it-out-panel": {
     name: "try-it-out-panel",
-    description: "An interactive panel for testing API operations with parameter input and response display.",
-    type: "registry:ui",
-    registryDependencies: undefined,
+    description: "Interactive API testing panel",
+    type: "registry:component",
+    registryDependencies: ["utils","parameter-item","copy-button","codegen","resolve-ref","method-label"],
     files: [{
       path: "registry/pivot/try-it-out-panel.tsx",
-      type: "registry:ui",
+      type: "registry:component",
       target: "components/pivot/try-it-out-panel.tsx"
     }],
     component: React.lazy(async () => {
@@ -1426,14 +1324,82 @@ export const Index: Record<string, any> = {
     }),
     meta: undefined,
   },
+  "operation-list-item": {
+    name: "operation-list-item",
+    description: "List item for operations",
+    type: "registry:component",
+    registryDependencies: ["utils","method-label","expand-collapse"],
+    files: [{
+      path: "registry/pivot/operation-list-item.tsx",
+      type: "registry:component",
+      target: "components/pivot/operation-list-item.tsx"
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/pivot/operation-list-item.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    meta: undefined,
+  },
+  "operation-list-layout": {
+    name: "operation-list-layout",
+    description: "Layout for displaying list of operations",
+    type: "registry:block",
+    registryDependencies: ["utils","use-openapi","operation-box","try-it-out-panel"],
+    files: [{
+      path: "registry/pivot/operation-list-layout.tsx",
+      type: "registry:block",
+      target: "components/pivot/operation-list-layout.tsx"
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/pivot/operation-list-layout.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    meta: undefined,
+  },
+  "operation-detailed-layout": {
+    name: "operation-detailed-layout",
+    description: "Detailed layout for displaying operations",
+    type: "registry:block",
+    registryDependencies: ["utils","codegen","operation-detail","try-it-out-panel"],
+    files: [{
+      path: "registry/pivot/operation-detailed-layout.tsx",
+      type: "registry:block",
+      target: "components/pivot/operation-detailed-layout.tsx"
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/pivot/operation-detailed-layout.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    meta: undefined,
+  },
+  "operation-detail": {
+    name: "operation-detail",
+    description: "Detailed view of API operation",
+    type: "registry:component",
+    registryDependencies: ["utils","deprecated-badge","description-display","external-docs-display","method-label","operation-path","parameters-section","request-body-section","responses-section","security-requirements-section"],
+    files: [{
+      path: "registry/pivot/operation-detail.tsx",
+      type: "registry:component",
+      target: "components/pivot/operation-detail.tsx"
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/pivot/operation-detail.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    meta: undefined,
+  },
   "navigation-sidebar": {
     name: "navigation-sidebar",
-    description: "A comprehensive navigation sidebar with search, filtering, and operation grouping.",
-    type: "registry:ui",
-    registryDependencies: undefined,
+    description: "Sidebar navigation for API documentation",
+    type: "registry:component",
+    registryDependencies: ["utils","method-label"],
     files: [{
       path: "registry/pivot/navigation-sidebar.tsx",
-      type: "registry:ui",
+      type: "registry:component",
       target: "components/pivot/navigation-sidebar.tsx"
     }],
     component: React.lazy(async () => {
@@ -1443,18 +1409,52 @@ export const Index: Record<string, any> = {
     }),
     meta: undefined,
   },
-  "operation-list-layout": {
-    name: "operation-list-layout",
-    description: "A comprehensive layout combining navigation, operation details, and interactive elements with operation list view.",
-    type: "registry:ui",
-    registryDependencies: undefined,
+  "accordion-components-section": {
+    name: "accordion-components-section",
+    description: "Accordion section for components",
+    type: "registry:component",
+    registryDependencies: ["utils"],
     files: [{
-      path: "registry/pivot/operation-list-layout.tsx",
-      type: "registry:ui",
-      target: "components/pivot/operation-list-layout.tsx"
+      path: "registry/pivot/accordion-components-section.tsx",
+      type: "registry:component",
+      target: "components/pivot/accordion-components-section.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/pivot/operation-list-layout.tsx")
+      const mod = await import("@/registry/pivot/accordion-components-section.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    meta: undefined,
+  },
+  "theme-toggle": {
+    name: "theme-toggle",
+    description: "Toggle between light and dark themes",
+    type: "registry:ui",
+    registryDependencies: ["utils"],
+    files: [{
+      path: "registry/pivot/theme-toggle.tsx",
+      type: "registry:ui",
+      target: "components/pivot/theme-toggle.tsx"
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/pivot/theme-toggle.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    meta: undefined,
+  },
+  "language-switcher": {
+    name: "language-switcher",
+    description: "Switch between different languages",
+    type: "registry:ui",
+    registryDependencies: ["utils"],
+    files: [{
+      path: "registry/pivot/language-switcher.tsx",
+      type: "registry:ui",
+      target: "components/pivot/language-switcher.tsx"
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/pivot/language-switcher.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -1472,6 +1472,91 @@ export const Index: Record<string, any> = {
     }],
     component: React.lazy(async () => {
       const mod = await import("@/lib/utils.ts")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    meta: undefined,
+  },
+  "use-openapi": {
+    name: "use-openapi",
+    description: "React hook for processing OpenAPI specifications with utility functions.",
+    type: "registry:hook",
+    registryDependencies: ["resolve-ref"],
+    files: [{
+      path: "registry/lib/use-openapi.ts",
+      type: "registry:hook",
+      target: "hooks/use-openapi.ts"
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/lib/use-openapi.ts")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    meta: undefined,
+  },
+  "use-mounted": {
+    name: "use-mounted",
+    description: "React hook for checking if component is mounted.",
+    type: "registry:hook",
+    registryDependencies: undefined,
+    files: [{
+      path: "registry/lib/use-mounted.ts",
+      type: "registry:hook",
+      target: "hooks/use-mounted.ts"
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/lib/use-mounted.ts")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    meta: undefined,
+  },
+  "use-mobile": {
+    name: "use-mobile",
+    description: "React hook for detecting mobile breakpoint.",
+    type: "registry:hook",
+    registryDependencies: undefined,
+    files: [{
+      path: "registry/lib/use-mobile.ts",
+      type: "registry:hook",
+      target: "hooks/use-mobile.ts"
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/lib/use-mobile.ts")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    meta: undefined,
+  },
+  "resolve-ref": {
+    name: "resolve-ref",
+    description: "Utility function for resolving OpenAPI reference objects.",
+    type: "registry:lib",
+    registryDependencies: undefined,
+    files: [{
+      path: "registry/lib/resolve-ref.ts",
+      type: "registry:lib",
+      target: "utils/resolve-ref.ts"
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/lib/resolve-ref.ts")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    meta: undefined,
+  },
+  "generate-example": {
+    name: "generate-example",
+    description: "Utility function for generating examples from OpenAPI schemas.",
+    type: "registry:lib",
+    registryDependencies: ["resolve-ref"],
+    files: [{
+      path: "registry/lib/generate-example.ts",
+      type: "registry:lib",
+      target: "utils/generate-example.ts"
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/lib/generate-example.ts")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
