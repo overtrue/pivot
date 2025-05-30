@@ -343,20 +343,6 @@ const pivot: Registry = [
     ],
   },
   {
-    name: "version-display",
-    type: "registry:ui",
-    title: "Version Display",
-    description: "Display API version",
-    registryDependencies: ["utils"],
-    files: [
-      {
-        path: "registry/pivot/version-display.tsx",
-        type: "registry:ui",
-        target: "components/pivot/version-display.tsx",
-      },
-    ],
-  },
-  {
     name: "section-title",
     type: "registry:ui",
     title: "Section Title",
@@ -480,20 +466,6 @@ const pivot: Registry = [
         path: "registry/pivot/security-scheme.tsx",
         type: "registry:component",
         target: "components/pivot/security-scheme.tsx",
-      },
-    ],
-  },
-  {
-    name: "server-variables-section",
-    type: "registry:component",
-    title: "Server Variables Section",
-    description: "Display server variables section",
-    registryDependencies: ["utils", "description-display", "expand-collapse", "server-variable"],
-    files: [
-      {
-        path: "registry/pivot/server-variables-section.tsx",
-        type: "registry:component",
-        target: "components/pivot/server-variables-section.tsx",
       },
     ],
   },
@@ -624,20 +596,6 @@ const pivot: Registry = [
     ],
   },
   {
-    name: "oauth-flows",
-    type: "registry:component",
-    title: "OAuth Flows",
-    description: "Display OAuth flows",
-    registryDependencies: ["utils", "oauth-flow-details"],
-    files: [
-      {
-        path: "registry/pivot/oauth-flows.tsx",
-        type: "registry:component",
-        target: "components/pivot/oauth-flows.tsx",
-      },
-    ],
-  },
-  {
     name: "security-requirement-item",
     type: "registry:ui",
     title: "Security Requirement Item",
@@ -648,20 +606,6 @@ const pivot: Registry = [
         path: "registry/pivot/security-requirement-item.tsx",
         type: "registry:ui",
         target: "components/pivot/security-requirement-item.tsx",
-      },
-    ],
-  },
-  {
-    name: "security-requirements-list",
-    type: "registry:component",
-    title: "Security Requirements List",
-    description: "Display list of security requirements",
-    registryDependencies: ["utils", "security-requirement-item"],
-    files: [
-      {
-        path: "registry/pivot/security-requirements-list.tsx",
-        type: "registry:component",
-        target: "components/pivot/security-requirements-list.tsx",
       },
     ],
   },
@@ -680,20 +624,6 @@ const pivot: Registry = [
     ],
   },
   {
-    name: "status-code-display",
-    type: "registry:ui",
-    title: "Status Code Display",
-    description: "Display HTTP status codes",
-    registryDependencies: ["utils", "status-code", "description-display"],
-    files: [
-      {
-        path: "registry/pivot/status-code-display.tsx",
-        type: "registry:ui",
-        target: "components/pivot/status-code-display.tsx",
-      },
-    ],
-  },
-  {
     name: "media-type-selector",
     type: "registry:component",
     title: "Media Type Selector",
@@ -704,20 +634,6 @@ const pivot: Registry = [
         path: "registry/pivot/media-type-selector.tsx",
         type: "registry:component",
         target: "components/pivot/media-type-selector.tsx",
-      },
-    ],
-  },
-  {
-    name: "operation-summary",
-    type: "registry:ui",
-    title: "Operation Summary",
-    description: "Display operation summary",
-    registryDependencies: ["utils", "method-label", "operation-path", "description-display"],
-    files: [
-      {
-        path: "registry/pivot/operation-summary.tsx",
-        type: "registry:ui",
-        target: "components/pivot/operation-summary.tsx",
       },
     ],
   },
@@ -746,20 +662,6 @@ const pivot: Registry = [
         path: "registry/pivot/parameters-section.tsx",
         type: "registry:component",
         target: "components/pivot/parameters-section.tsx",
-      },
-    ],
-  },
-  {
-    name: "request-body-display",
-    type: "registry:component",
-    title: "Request Body Display",
-    description: "Display request body",
-    registryDependencies: ["utils", "media-type-selector"],
-    files: [
-      {
-        path: "registry/pivot/request-body-display.tsx",
-        type: "registry:component",
-        target: "components/pivot/request-body-display.tsx",
       },
     ],
   },
@@ -848,20 +750,6 @@ const pivot: Registry = [
     ],
   },
   {
-    name: "webhook-operation",
-    type: "registry:component",
-    title: "Webhook Operation",
-    description: "Display webhook operation",
-    registryDependencies: ["utils", "webhook-label", "operation-box"],
-    files: [
-      {
-        path: "registry/pivot/webhook-operation.tsx",
-        type: "registry:component",
-        target: "components/pivot/webhook-operation.tsx",
-      },
-    ],
-  },
-  {
     name: "webhook-display",
     type: "registry:component",
     title: "Webhook Display",
@@ -880,7 +768,7 @@ const pivot: Registry = [
     type: "registry:component",
     title: "Security Requirements Section",
     description: "Display security requirements section",
-    registryDependencies: ["utils", "security-schemes", "security-requirements-section"],
+    registryDependencies: ["utils", "security-requirement-item"],
     files: [
       {
         path: "registry/pivot/security-requirements-section.tsx",
@@ -1105,20 +993,6 @@ const pivot: Registry = [
         path: "registry/pivot/try-it-out-panel.tsx",
         type: "registry:component",
         target: "components/pivot/try-it-out-panel.tsx",
-      },
-    ],
-  },
-  {
-    name: "operation-list-item",
-    type: "registry:component",
-    title: "Operation List Item",
-    description: "List item for operations",
-    registryDependencies: ["utils", "method-label", "expand-collapse"],
-    files: [
-      {
-        path: "registry/pivot/operation-list-item.tsx",
-        type: "registry:component",
-        target: "components/pivot/operation-list-item.tsx",
       },
     ],
   },

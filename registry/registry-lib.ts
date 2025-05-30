@@ -55,7 +55,7 @@ const lib: Registry = [
     dependencies: ["react"],
     files: [
       {
-        path: "registry/lib/use-mounted.ts",
+        path: "hooks/use-mounted.ts",
         type: "registry:hook",
         target: "hooks/use-mounted.ts",
       },
@@ -69,7 +69,7 @@ const lib: Registry = [
     dependencies: ["react"],
     files: [
       {
-        path: "registry/lib/use-mobile.ts",
+        path: "hooks/use-mobile.ts",
         type: "registry:hook",
         target: "hooks/use-mobile.ts",
       },
