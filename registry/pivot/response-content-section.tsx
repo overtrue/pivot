@@ -1,12 +1,9 @@
 "use client";
 
 import { useI18n } from "@/lib/i18n";
+import type { ComponentsObject } from "@/types/openapi";
 import React from "react";
 import { SchemaWithExampleViewer } from "./schema-with-example-viewer";
-
-interface ComponentsObject {
-  [key: string]: any;
-}
 
 interface EncodingPropertyObject {
   contentType?: string;

@@ -1,17 +1,6 @@
 import { cn } from "@/lib/utils";
+import type { ComponentsObject, ReferenceObject, SchemaObject } from "@/types/openapi";
 import React from "react";
-
-interface ComponentsObject {
-  [key: string]: any;
-}
-
-interface ReferenceObject {
-  $ref: string;
-}
-
-interface SchemaObject {
-  [key: string]: any;
-}
 
 type SchemaCompositionKeyword = "allOf" | "anyOf" | "oneOf" | "not";
 
@@ -107,10 +96,7 @@ SchemaCompositionDisplay.displayName = "SchemaCompositionDisplay";
 
 export {
   SchemaCompositionDisplay,
-  type ComponentsObject,
-  type ReferenceObject,
   type SchemaCompositionDisplayProps,
-  type SchemaCompositionKeyword,
-  type SchemaObject
+  type SchemaCompositionKeyword
 };
 

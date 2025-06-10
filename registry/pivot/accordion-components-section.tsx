@@ -1,13 +1,10 @@
 "use client";
 
 import { cn } from "@/lib/utils";
+import type { ComponentsObject } from "@/types/openapi";
 import { ChevronDown, ChevronRight } from "lucide-react";
 import React, { useEffect, useMemo, useState } from "react";
 import { ComponentDetail } from "./component-detail";
-
-interface ComponentsObject {
-  [key: string]: any;
-}
 
 type ComponentType =
   | "schemas"

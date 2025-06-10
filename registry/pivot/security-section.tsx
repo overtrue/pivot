@@ -1,5 +1,6 @@
 import { cn } from "@/lib/utils";
 import React from "react";
+import { resolveRef } from "../lib/resolve-ref";
 import { SectionTitle } from "../pivot/section-title";
 import { SecuritySchemeDisplay } from "./security-scheme-display";
 
@@ -18,21 +19,7 @@ interface SecuritySectionProps {
   className?: string;
 }
 
-// Simple ref resolution function
-function resolveRef<T>(
-  obj: T | ReferenceObject,
-  components?: ComponentsObject,
-  section?: string,
-): T | null {
-  if (!obj || typeof obj !== "object") return null;
 
-  if ("$ref" in obj) {
-    // This is a simplified resolution - in real implementation you'd parse the $ref path
-    return null; // For now, return null for references
-  }
-
-  return obj as T;
-}
 
 const SecuritySection = React.forwardRef<HTMLDivElement, SecuritySectionProps>(
   ({ security, securitySchemes, components, className }, ref) => {

@@ -1,5 +1,7 @@
 import { cn } from "@/lib/utils";
+import type { ComponentsObject } from "@/types/openapi";
 import React from "react";
+import { resolveRef } from "../lib/resolve-ref";
 import { CallbackDisplay } from "./callback-display";
 import { ExamplesDisplay } from "./examples-display";
 import { HeaderItem } from "./header-item";
@@ -10,14 +12,6 @@ import { ResponseItem } from "./response-item";
 import { SchemaDisplay } from "./schema-display";
 import { SecuritySchemeDisplay } from "./security-scheme-display";
 import { WebhookDisplay } from "./webhook-display";
-
-interface ComponentsObject {
-  [key: string]: any;
-}
-
-interface ReferenceObject {
-  $ref: string;
-}
 
 type ComponentType =
   | "schemas"
@@ -38,21 +32,7 @@ interface ComponentDetailProps {
   className?: string;
 }
 
-// Simple ref resolution function
-function resolveRef<T>(
-  obj: T | ReferenceObject,
-  components?: ComponentsObject,
-  section?: string,
-): T | null {
-  if (!obj || typeof obj !== "object") return null;
 
-  if ("$ref" in obj) {
-    // This is a simplified resolution - in real implementation you'd parse the $ref path
-    return null; // For now, return null for references
-  }
-
-  return obj as T;
-}
 
 const ComponentDetail = React.forwardRef<HTMLDivElement, ComponentDetailProps>(
   ({ activeType, selectedItemName, components, className }, ref) => {
@@ -197,8 +177,6 @@ ComponentDetail.displayName = "ComponentDetail";
 export {
   ComponentDetail,
   type ComponentDetailProps,
-  type ComponentsObject,
-  type ComponentType,
-  type ReferenceObject
+  type ComponentType
 };
 

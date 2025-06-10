@@ -1,14 +1,11 @@
 "use client";
 
 import { cn } from "@/lib/utils";
+import type { ComponentsObject } from "@/types/openapi";
 import React, { useMemo, useState } from "react";
 import { SectionTitle } from "../pivot/section-title";
 import { ComponentItemsList } from "./component-items-list";
 import { ComponentTabs } from "./component-tabs";
-
-interface ComponentsObject {
-  [key: string]: any;
-}
 
 interface ComponentsSectionProps {
   components: ComponentsObject;
@@ -167,7 +164,6 @@ ComponentsSection.displayName = "ComponentsSection";
 
 export {
   ComponentsSection,
-  type ComponentsObject,
   type ComponentsSectionProps,
   type ComponentType
 };

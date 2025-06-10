@@ -2,16 +2,10 @@
 
 import { useI18n } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
+import type { ComponentsObject, ReferenceObject } from "@/types/openapi";
 import React from "react";
+import { resolveRef } from "../lib/resolve-ref";
 import { LinkItem, type LinkObject } from "./link-item";
-
-interface ReferenceObject {
-  $ref: string;
-}
-
-interface ComponentsObject {
-  links?: Record<string, LinkObject | ReferenceObject>;
-}
 
 interface LinksSectionProps {
   links: Record<string, LinkObject | ReferenceObject>;
@@ -19,22 +13,7 @@ interface LinksSectionProps {
   className?: string;
 }
 
-// Simple ref resolver for links
-const resolveRef = <T,>(
-  obj: T | ReferenceObject,
-  components?: ComponentsObject,
-  type?: string,
-): T | null => {
-  if (obj && typeof obj === "object" && "$ref" in obj) {
-    // Simple ref resolution - in a real implementation this would be more sophisticated
-    const refPath = obj.$ref.split("/").pop();
-    if (refPath && components?.links?.[refPath]) {
-      return components.links[refPath] as T;
-    }
-    return null;
-  }
-  return obj as T;
-};
+
 
 const LinksSection = React.forwardRef<HTMLDivElement, LinksSectionProps>(
   ({ links, components, className }, ref) => {

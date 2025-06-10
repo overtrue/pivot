@@ -2,13 +2,10 @@
 
 import { useI18n } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
+import type { ComponentsObject } from "@/types/openapi";
 import React from "react";
 import { ResponseContentSection } from "./response-content-section";
 import { ResponseHeadersTable } from "./response-headers-table";
-
-interface ComponentsObject {
-  [key: string]: any;
-}
 
 interface ResponseObject {
   description?: string;

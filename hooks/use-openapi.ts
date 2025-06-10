@@ -1,3 +1,4 @@
+import { resolveRef } from "@/lib/resolve-ref";
 import {
   OpenApiSpec,
   OperationObject,
@@ -9,7 +10,6 @@ import {
   SchemaObject,
   ServerObject,
 } from "@/types/openapi";
-import { resolveRef } from "@/utils/resolveRef";
 import { useMemo } from "react";
 
 /**

@@ -87,14 +87,14 @@ export default function AccordionComponentsSectionDemo() {
     },
     securitySchemes: {
       "BearerAuth": {
-        type: "http",
+        type: "http" as const,
         scheme: "bearer",
         bearerFormat: "JWT",
         description: "JWT Bearer Token 认证"
       },
       "ApiKeyAuth": {
-        type: "apiKey",
-        in: "header",
+        type: "apiKey" as const,
+        in: "header" as const,
         name: "X-API-Key",
         description: "API 密钥认证"
       }
@@ -208,7 +208,7 @@ export default function AccordionComponentsSectionDemo() {
     },
     securitySchemes: {
       "PaymentAuth": {
-        type: "oauth2",
+        type: "oauth2" as const,
         flows: {
           authorizationCode: {
             authorizationUrl: "https://payment.example.com/oauth/authorize",

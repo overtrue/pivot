@@ -1,10 +1,18 @@
 "use client";
 
-import { generateExample } from "@/lib/generate-example";
 import { useI18n } from "@/lib/i18n";
-import { resolveRef } from "@/lib/resolve-ref";
 import { cn } from "@/lib/utils";
+import type {
+  ComponentsObject,
+  ExampleObject,
+  MediaTypeObject,
+  ReferenceObject,
+  RequestBodyObject,
+  ResponseObject
+} from "@/types/openapi";
 import React, { useEffect, useState } from "react";
+import { generateExample } from "../lib/generate-example";
+import { resolveRef } from "../lib/resolve-ref";
 import { DescriptionDisplay } from "./description-display";
 import { ExampleDisplay } from "./example-display";
 import { MediaTypeSelector } from "./media-type-selector";
@@ -13,40 +21,7 @@ import { SchemaDisplay } from "./schema-display";
 // Define view modes
 type ViewMode = 'schema' | 'example';
 
-interface ComponentsObject {
-  [key: string]: any;
-}
 
-interface ReferenceObject {
-  $ref: string;
-}
-
-interface ExampleObject {
-  summary?: string;
-  description?: string;
-  value?: any;
-  externalValue?: string;
-}
-
-interface MediaTypeObject {
-  schema?: any;
-  example?: any;
-  examples?: Record<string, ExampleObject | ReferenceObject>;
-  encoding?: Record<string, any>;
-}
-
-interface RequestBodyObject {
-  description?: string;
-  content?: Record<string, MediaTypeObject>;
-  required?: boolean;
-}
-
-interface ResponseObject {
-  description?: string;
-  headers?: Record<string, any>;
-  content?: Record<string, MediaTypeObject>;
-  links?: Record<string, any>;
-}
 
 // ===== SchemaExampleView Component Section =====
 

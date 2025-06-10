@@ -153,7 +153,7 @@ export default function ComponentDetailDemo() {
     type: "parameter",
     component: {
       name: "userId",
-      in: "path",
+      in: "path" as const,
       required: true,
       description: "用户唯一标识符，用于指定要操作的用户",
       schema: {
@@ -182,7 +182,7 @@ export default function ComponentDetailDemo() {
     name: "OAuth2",
     type: "securityScheme",
     component: {
-      type: "oauth2",
+      type: "oauth2" as const,
       description: "OAuth 2.0 授权框架，支持多种授权流程。适用于第三方应用集成和用户授权。",
       flows: {
         authorizationCode: {
@@ -224,7 +224,7 @@ export default function ComponentDetailDemo() {
             properties: {
               file: {
                 type: "string" as const,
-                format: "binary",
+                format: "binary" as const,
                 description: "要上传的文件，支持图片、文档等格式"
               },
               description: {
