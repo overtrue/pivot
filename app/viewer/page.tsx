@@ -12,6 +12,7 @@ import { LanguageSwitcher } from "@/registry/pivot/language-switcher";
 import { NavigationSidebar } from "@/registry/pivot/navigation-sidebar";
 import { OperationDetailedLayout } from "@/registry/pivot/operation-detailed-layout";
 import { OperationListLayout } from "@/registry/pivot/operation-list-layout";
+import { useLocalStorage } from "@uidotdev/usehooks";
 import * as yaml from "js-yaml";
 import { Github, Layout, LayoutTemplate, Loader2 } from "lucide-react";
 import Link from "next/link";
@@ -53,7 +54,7 @@ const API_EXAMPLES: ApiExample[] = [
 ];
 
 export default function ViewerPage() {
-  const [specUrl, setSpecUrl] = useState('https://petstore3.swagger.io/api/v3/openapi.json');
+  const [specUrl, setSpecUrl] = useLocalStorage('pivot-openapi-spec-url', 'https://petstore3.swagger.io/api/v3/openapi.json');
   const [spec, setSpec] = useState<any>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
@@ -65,8 +66,10 @@ export default function ViewerPage() {
 
   // 组件加载时自动加载默认规范
   useEffect(() => {
-    loadSpec();
-  }, []);
+    if (specUrl) {
+      loadSpec();
+    }
+  }, [specUrl]);
 
   // 监听 URL 变化，自动加载
   useEffect(() => {
