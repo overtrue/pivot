@@ -1,37 +1,6 @@
+import type { CodeGenerator, CodeGeneratorParams } from "@/types/project";
 import { Braces } from "lucide-react";
 import React from "react";
-
-// Import types from the centralized types file
-import type { ParameterObject } from "@/types/openapi";
-
-// Reuse types
-export type HttpMethod = "GET" | "POST" | "PUT" | "DELETE" | "PATCH" | "HEAD" | "OPTIONS";
-
-export interface RequestBodyObject {
-  content?: {
-    [mediaType: string]: {
-      schema?: any;
-      example?: any;
-    };
-  };
-  required?: boolean;
-  [key: string]: any;
-}
-
-export interface CodeGeneratorParams {
-  endpoint: string;
-  method: HttpMethod;
-  parameters: ParameterObject[];
-  requestBody?: RequestBodyObject;
-  requestBodyExample: any;
-}
-
-export interface CodeGenerator {
-  id: string;
-  label: string;
-  getIcon(): React.ReactNode;
-  generateCode(params: CodeGeneratorParams): string;
-}
 
 // TypeScriptGenerator implementation
 export class TypeScriptGeneratorClass implements CodeGenerator {

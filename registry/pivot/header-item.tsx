@@ -1,6 +1,7 @@
 "use client";
 
 import { cn } from "@/lib/utils";
+import type { OpenAPIV3 } from 'openapi-types';
 import React, { useState } from "react";
 import { DeprecatedBadge } from "../pivot/deprecated-badge";
 import { DescriptionDisplay } from "../pivot/description-display";
@@ -13,24 +14,18 @@ import { ExamplesDisplay } from "./examples-display";
 import { ExpandCollapse } from "./expand-collapse";
 
 // Import types from the centralized types file
-import type {
-  ComponentsObject,
-  HeaderObject,
-  ReferenceObject,
-  SchemaObject
-} from "@/types/openapi";
 
-// Type guard to check if it's a SchemaObject and not a ReferenceObject
+// Type guard to check if it's a OpenAPIV3.SchemaObject and not a OpenAPIV3.ReferenceObject
 function isSchemaObject(
-  obj: SchemaObject | ReferenceObject,
-): obj is SchemaObject {
+  obj: OpenAPIV3.SchemaObject | OpenAPIV3.ReferenceObject,
+): obj is OpenAPIV3.SchemaObject {
   return obj && !("$ref" in obj);
 }
 
-// HeaderObject already has all necessary fields from ParameterObject except name and in
-interface HeaderItemProps extends HeaderObject {
-  name: string; // Add header name as it's not part of HeaderObject
-  components?: ComponentsObject; // For rendering examples
+// OpenAPIV3.HeaderObject already has all necessary fields from OpenAPIV3.ParameterObject except name and in
+interface HeaderItemProps extends OpenAPIV3.HeaderObject {
+  name: string; // Add header name as it's not part of OpenAPIV3.HeaderObject
+  components?: OpenAPIV3.ComponentsObject; // For rendering examples
   className?: string;
 }
 
@@ -70,7 +65,7 @@ const HeaderItem = React.forwardRef<HTMLDivElement, HeaderItemProps>(
       (examples && Object.keys(examples).length > 0);
 
     // Simple schema constraints display
-    const SchemaConstraints = ({ schema }: { schema: SchemaObject }) => {
+    const SchemaConstraints = ({ schema }: { schema: OpenAPIV3.SchemaObject }) => {
       const constraints = [];
 
       if (schema.minimum !== undefined)
@@ -183,10 +178,6 @@ HeaderItem.displayName = "HeaderItem";
 
 export {
   HeaderItem,
-  type ComponentsObject,
-  type HeaderItemProps,
-  type HeaderObject,
-  type ReferenceObject,
-  type SchemaObject
+  type HeaderItemProps
 };
 

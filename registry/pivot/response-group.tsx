@@ -2,22 +2,16 @@
 
 import { useI18n } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
-import type { ComponentsObject } from "@/types/openapi";
+import type { OpenAPIV3 } from 'openapi-types';
+
 import React from "react";
 import { ResponseContentSection } from "./response-content-section";
 import { ResponseHeadersTable } from "./response-headers-table";
 
-interface ResponseObject {
-  description?: string;
-  headers?: Record<string, any>;
-  content?: Record<string, any>;
-  links?: Record<string, any>;
-}
-
 interface ResponseGroupProps {
   status: string;
-  response: ResponseObject;
-  components?: ComponentsObject;
+  response: OpenAPIV3.ResponseObject;
+  components?: OpenAPIV3.ComponentsObject;
   statusCodeProps?: {
     size?: 'small' | 'medium';
     className?: string;

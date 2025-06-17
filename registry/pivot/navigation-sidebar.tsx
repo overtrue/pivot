@@ -1,5 +1,6 @@
 "use client";
 
+import type { OpenAPIV3 } from 'openapi-types';
 import { Button } from "@/components/ui/button";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { Input } from "@/components/ui/input";
@@ -15,13 +16,9 @@ import {
 import React, { useState } from "react";
 
 // Import types from the centralized types file
-import type {
-  OpenApiSpec,
-  PathItemObject
-} from "@/types/openapi";
 
 interface NavigationSidebarProps {
-  openapi: OpenApiSpec;
+  openapi: OpenAPIV3.Document;
   activePath?: string | null;
   activeMethod?: string | null;
   onSelectOperation?: (path: string, method: string, operation: any) => void;
@@ -140,7 +137,7 @@ const NavigationSidebar = React.forwardRef<HTMLDivElement, NavigationSidebarProp
                           Object.entries(openapi.paths).map(
                             ([path, pathItem]) => {
                               const operations = Object.entries(
-                                pathItem as PathItemObject,
+                                pathItem as OpenAPIV3.PathItemObject,
                               ).filter(([method]) =>
                                 [
                                   "get",
@@ -216,7 +213,7 @@ const NavigationSidebar = React.forwardRef<HTMLDivElement, NavigationSidebarProp
               {openapi.paths &&
                 Object.entries(openapi.paths).map(([path, pathItem]) => {
                   const operations = Object.entries(
-                    pathItem as PathItemObject,
+                    pathItem as OpenAPIV3.PathItemObject,
                   ).filter(([method]) =>
                     ["get", "post", "put", "delete", "patch"].includes(method),
                   );

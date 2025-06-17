@@ -1,10 +1,11 @@
 "use client";
 
+import type { OpenAPIV3 } from 'openapi-types';
 import { OperationDetail } from "@/registry/pivot/operation-detail";
-import type { OperationObject } from "@/types/openapi";
+
 import { useState } from "react";
 
-const sampleOperation: OperationObject = {
+const sampleOperation: OpenAPIV3.OperationObject = {
   operationId: "getUserById",
   summary: "Get user by ID",
   description: "Retrieve a specific user by their unique identifier. This endpoint returns detailed information about a user including their profile data, preferences, and account status.",
@@ -91,7 +92,7 @@ const sampleOperation: OperationObject = {
   }
 };
 
-const deprecatedOperation: OperationObject = {
+const deprecatedOperation: OpenAPIV3.OperationObject = {
   operationId: "getUserByEmail",
   summary: "Get user by email (deprecated)",
   description: "This endpoint is deprecated. Please use GET /users/{id} instead.",

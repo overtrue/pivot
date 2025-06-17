@@ -1,11 +1,12 @@
+import type { OpenAPIV3 } from 'openapi-types';
 import { cn } from "@/lib/utils";
-import type { SecuritySchemeObject } from "@/types/openapi";
+
 import React from "react";
 import { SectionTitle } from "../pivot/section-title";
 import { SecurityScheme } from "./security-scheme";
 
 interface SecuritySchemesProps {
-  schemes: Record<string, SecuritySchemeObject>;
+  schemes: Record<string, OpenAPIV3.SecuritySchemeObject>;
   className?: string;
 }
 

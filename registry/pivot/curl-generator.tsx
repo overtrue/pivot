@@ -1,37 +1,6 @@
+import type { CodeGenerator, CodeGeneratorParams } from "@/types/project";
 import { Terminal } from "lucide-react";
 import React from "react";
-
-// Import types from the centralized types file
-import type { ParameterObject } from "@/types/openapi";
-
-// Type definitions
-export type HttpMethod = "GET" | "POST" | "PUT" | "DELETE" | "PATCH" | "HEAD" | "OPTIONS";
-
-export interface RequestBodyObject {
-  content?: {
-    [mediaType: string]: {
-      schema?: any;
-      example?: any;
-    };
-  };
-  required?: boolean;
-  [key: string]: any;
-}
-
-export interface CodeGeneratorParams {
-  endpoint: string;
-  method: HttpMethod;
-  parameters: ParameterObject[];
-  requestBody?: RequestBodyObject;
-  requestBodyExample: any;
-}
-
-export interface CodeGenerator {
-  id: string; // 唯一标识符，如 'curl', 'php'
-  label: string; // 显示名称，如 'cURL', 'PHP'
-  getIcon(): React.ReactNode; // 返回语言图标
-  generateCode(params: CodeGeneratorParams): string; // 生成代码
-}
 
 // CurlGenerator implementation
 export class CurlGeneratorClass implements CodeGenerator {

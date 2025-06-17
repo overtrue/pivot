@@ -2,19 +2,18 @@
 
 import { useI18n } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
-import type { ComponentsObject, HeaderObject, ReferenceObject } from "@/types/openapi";
+import type { OpenAPIV3 } from 'openapi-types';
+
 import React from "react";
 import { resolveRef } from "../lib/resolve-ref";
-import { HeaderItem } from "./header-item";
+import { HeaderItem } from "../pivot/header-item";
+import { type StyleType } from "../pivot/style-badge";
 
 // Import types from the centralized types file
-import type {
-  StyleType
-} from "@/types/openapi";
 
 interface HeadersSectionProps {
-  headers?: Record<string, HeaderObject | ReferenceObject>;
-  components?: ComponentsObject;
+  headers?: Record<string, OpenAPIV3.HeaderObject | OpenAPIV3.ReferenceObject>;
+  components?: OpenAPIV3.ComponentsObject;
   className?: string;
 }
 
@@ -40,7 +39,7 @@ const HeadersSection = React.forwardRef<HTMLDivElement, HeadersSectionProps>(
         <div className="space-y-3">
           {headerEntries.map(([name, headerOrRef]) => {
             // Resolve header ref
-            const header = resolveRef<HeaderObject>(
+            const header = resolveRef<OpenAPIV3.HeaderObject>(
               headerOrRef,
               components,
               "headers",
@@ -51,7 +50,7 @@ const HeadersSection = React.forwardRef<HTMLDivElement, HeadersSectionProps>(
                 headerOrRef &&
                   typeof headerOrRef === "object" &&
                   "$ref" in headerOrRef
-                  ? (headerOrRef as ReferenceObject).$ref
+                  ? (headerOrRef as OpenAPIV3.ReferenceObject).$ref
                   : t("[unknown reference]");
               console.warn(
                 `[HeadersSection] Failed to resolve header ref: ${refString} for key ${name}`,

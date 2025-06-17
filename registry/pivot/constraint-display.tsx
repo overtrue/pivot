@@ -1,11 +1,11 @@
 import { cn } from "@/lib/utils";
+import type { OpenAPIV3 } from 'openapi-types';
 import React from "react";
 
 // Import types from the centralized types file
-import type { SchemaObject } from "@/types/openapi";
 
 interface ConstraintDisplayProps {
-  schema: SchemaObject;
+  schema: OpenAPIV3.SchemaObject;
   className?: string;
 }
 
@@ -81,4 +81,4 @@ const ConstraintDisplay = React.forwardRef<
 
 ConstraintDisplay.displayName = "ConstraintDisplay";
 
-export { ConstraintDisplay, type SchemaObject };
+export { ConstraintDisplay, type ConstraintDisplayProps };

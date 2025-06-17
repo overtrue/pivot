@@ -1,12 +1,12 @@
 import { cn } from "@/lib/utils";
+import type { OpenAPIV3 } from 'openapi-types';
 import React from "react";
 
-interface SecurityRequirementObject {
-  [key: string]: string[];
-}
+// 类型别名，供其他组件使用
+export type SecurityRequirementObject = OpenAPIV3.SecurityRequirementObject;
 
 interface SecurityRequirementItemProps {
-  requirement?: SecurityRequirementObject;
+  requirement?: OpenAPIV3.SecurityRequirementObject;
   className?: string;
 }
 
@@ -61,4 +61,4 @@ const SecurityRequirementItem = React.forwardRef<
 
 SecurityRequirementItem.displayName = "SecurityRequirementItem";
 
-export { SecurityRequirementItem, type SecurityRequirementObject };
+export { SecurityRequirementItem, type SecurityRequirementItemProps };

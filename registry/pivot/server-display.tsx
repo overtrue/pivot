@@ -2,24 +2,15 @@
 
 import { useI18n } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
+import type { OpenAPIV3 } from 'openapi-types';
 import React from "react";
 import { DescriptionDisplay } from "./description-display";
 
-// Define server object types
-interface ServerVariable {
-  default: string;
-  description?: string;
-  enum?: string[];
-}
-
-interface ServerObject {
-  url: string;
-  description?: string;
-  variables?: Record<string, ServerVariable>;
-}
+// 类型别名，供其他组件使用
+export type ServerObject = OpenAPIV3.ServerObject;
 
 interface ServerDisplayProps {
-  server: ServerObject;
+  server: OpenAPIV3.ServerObject;
   className?: string;
 }
 
@@ -93,4 +84,4 @@ const ServerDisplay = React.forwardRef<HTMLDivElement, ServerDisplayProps>(
 
 ServerDisplay.displayName = "ServerDisplay";
 
-export { ServerDisplay, type ServerObject, type ServerVariable };
+export { ServerDisplay, type ServerDisplayProps };

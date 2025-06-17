@@ -1,42 +1,6 @@
+import type { CodeGenerator, CodeGeneratorParams } from "@/types/project";
 import { Code2 } from "lucide-react";
 import React from "react";
-
-// Reuse types
-export type HttpMethod = "GET" | "POST" | "PUT" | "DELETE" | "PATCH" | "HEAD" | "OPTIONS";
-
-export interface ParameterObject {
-  name: string;
-  in: "query" | "header" | "path" | "cookie";
-  required?: boolean;
-  schema?: any;
-  [key: string]: any;
-}
-
-export interface RequestBodyObject {
-  content?: {
-    [mediaType: string]: {
-      schema?: any;
-      example?: any;
-    };
-  };
-  required?: boolean;
-  [key: string]: any;
-}
-
-export interface CodeGeneratorParams {
-  endpoint: string;
-  method: HttpMethod;
-  parameters: ParameterObject[];
-  requestBody?: RequestBodyObject;
-  requestBodyExample: any;
-}
-
-export interface CodeGenerator {
-  id: string;
-  label: string;
-  getIcon(): React.ReactNode;
-  generateCode(params: CodeGeneratorParams): string;
-}
 
 // LaravelGenerator implementation
 export class LaravelGeneratorClass implements CodeGenerator {

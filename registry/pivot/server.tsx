@@ -1,19 +1,17 @@
 "use client";
 
 import { cn } from "@/lib/utils";
+import type { OpenAPIV3 } from 'openapi-types';
 import React, { useState } from "react";
 import { DescriptionDisplay } from "../pivot/description-display";
 import { ExpandCollapse } from "./expand-collapse";
-import { ServerVariable, type ServerVariableObject } from "./server-variable";
+import { ServerVariable } from "./server-variable";
 
-interface ServerObject {
-  url: string;
-  description?: string;
-  variables?: Record<string, ServerVariableObject>;
-}
+// 类型别名，供其他组件使用
+export type ServerObject = OpenAPIV3.ServerObject;
 
 interface ServerProps {
-  server?: ServerObject;
+  server?: OpenAPIV3.ServerObject;
   className?: string;
 }
 
@@ -38,7 +36,7 @@ const Server = React.forwardRef<HTMLDivElement, ServerProps>(
     // URL解析与插值逻辑
     const interpolateUrl = (
       url: string,
-      variables: Record<string, ServerVariableObject> = {},
+      variables: Record<string, OpenAPIV3.ServerVariableObject> = {},
     ) => {
       let interpolatedUrl = url;
       Object.entries(variables).forEach(([name, variable]) => {
@@ -132,4 +130,4 @@ const Server = React.forwardRef<HTMLDivElement, ServerProps>(
 
 Server.displayName = "Server";
 
-export { Server, type ServerObject };
+export { Server, type ServerProps };

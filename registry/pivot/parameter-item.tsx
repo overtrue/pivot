@@ -1,6 +1,7 @@
 "use client";
 
 import { cn } from "@/lib/utils";
+import type { OpenAPIV3 } from 'openapi-types';
 import React, { useState } from "react";
 import { ConstraintDisplay } from "../pivot/constraint-display";
 import { DefaultValueDisplay } from "../pivot/default-value-display";
@@ -10,31 +11,24 @@ import { FormatBadge } from "../pivot/format-badge";
 import { InLabel } from "../pivot/in-label";
 import { ParameterDescription } from "../pivot/parameter-description";
 import { ParameterName } from "../pivot/parameter-name";
-import { StyleBadge } from "../pivot/style-badge";
+import { StyleBadge, type StyleType } from "../pivot/style-badge";
 import { TypeIndicator } from "../pivot/type-indicator";
 import { ExampleDisplay } from "./example-display";
 import { ExpandCollapse } from "./expand-collapse";
 
 // Import types from the centralized types file
-import type {
-  ComponentsObject,
-  ExampleObject,
-  ReferenceObject,
-  SchemaObject,
-  StyleType
-} from "@/types/openapi";
 
 interface ParameterItemProps {
   name: string;
   in: "query" | "header" | "path" | "cookie";
-  schema: SchemaObject;
+  schema: OpenAPIV3.SchemaObject;
   required?: boolean;
   description?: string;
   deprecated?: boolean;
   style?: StyleType;
   explode?: boolean;
-  examples?: Record<string, ExampleObject | ReferenceObject>;
-  components?: ComponentsObject;
+  examples?: Record<string, OpenAPIV3.ExampleObject | OpenAPIV3.ReferenceObject>;
+  components?: OpenAPIV3.ComponentsObject;
   className?: string;
   expanded?: boolean;
 }

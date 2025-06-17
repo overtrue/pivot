@@ -1,13 +1,9 @@
 import { cn } from "@/lib/utils";
+import type { OpenAPIV3 } from 'openapi-types';
 import React from "react";
 
-interface ExternalDocumentationObject {
-  description?: string;
-  url: string;
-}
-
 interface ExternalDocsDisplayProps {
-  externalDocs: ExternalDocumentationObject;
+  externalDocs: OpenAPIV3.ExternalDocumentationObject;
   className?: string;
 }
 
@@ -31,4 +27,4 @@ const ExternalDocsDisplay = React.forwardRef<
 
 ExternalDocsDisplay.displayName = "ExternalDocsDisplay";
 
-export { ExternalDocsDisplay, type ExternalDocumentationObject };
+export { ExternalDocsDisplay, type ExternalDocsDisplayProps };

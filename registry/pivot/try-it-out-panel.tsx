@@ -1,5 +1,6 @@
 "use client";
 
+import type { OpenAPIV3 } from 'openapi-types';
 import { useI18n } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
 import { ChevronDown, ChevronUp, Send } from "lucide-react";
@@ -8,14 +9,6 @@ import { resolveRef } from "../lib/resolve-ref";
 import { MethodLabel } from "./method-label";
 
 // Import types from the centralized types file
-import type {
-  ComponentsObject,
-  OperationObject,
-  ParameterObject,
-  ResponseData,
-  SecurityRequirementObject,
-  SecuritySchemeObject
-} from "@/types/openapi";
 
 // Local interface definitions that are specific to this component
 interface AuthState {
@@ -26,11 +19,11 @@ interface AuthState {
 }
 
 interface TryItOutPanelProps {
-  operation: OperationObject; // 必需的，不是可选的
+  operation: OpenAPIV3.OperationObject; // 必需的，不是可选的
   method: string;
   path: string;
   baseUrl?: string;
-  components?: ComponentsObject;
+  components?: OpenAPIV3.ComponentsObject;
   collapsible?: boolean;
   defaultCollapsed?: boolean;
   className?: string;
@@ -70,12 +63,12 @@ const TryItOutPanel = React.forwardRef<HTMLDivElement, TryItOutPanelProps>(
     };
 
     const resolveParameters = () => {
-      const resolvedParams: ParameterObject[] = [];
+      const resolvedParams: OpenAPIV3.ParameterObject[] = [];
 
       if (operation.parameters) {
         operation.parameters.forEach((param) => {
           if ('$ref' in param) {
-            const resolvedParam = resolveRef<ParameterObject>(param, components, 'parameters');
+            const resolvedParam = resolveRef<OpenAPIV3.ParameterObject>(param, components, 'parameters');
             if (resolvedParam) {
               resolvedParams.push(resolvedParam);
             }
@@ -94,21 +87,21 @@ const TryItOutPanel = React.forwardRef<HTMLDivElement, TryItOutPanelProps>(
     };
 
     const resolveSecuritySchemes = () => {
-      const securityRequirements: SecurityRequirementObject[] = operation.security ||
-        (components?.securitySchemes ? [Object.keys(components.securitySchemes).reduce((obj: SecurityRequirementObject, key) => {
+      const securityRequirements: OpenAPIV3.SecurityRequirementObject[] = operation.security ||
+        (components?.securitySchemes ? [Object.keys(components.securitySchemes).reduce((obj: OpenAPIV3.SecurityRequirementObject, key) => {
           obj[key] = [];
           return obj;
         }, {})] : []);
 
       if (!securityRequirements.length || !components?.securitySchemes) return [];
 
-      const resolvedSchemes: { name: string; scheme: SecuritySchemeObject; scopes: string[] }[] = [];
+      const resolvedSchemes: { name: string; scheme: OpenAPIV3.SecuritySchemeObject; scopes: string[] }[] = [];
 
       securityRequirements.forEach(requirement => {
         Object.entries(requirement).forEach(([schemeName, scopes]) => {
           const schemeOrRef = components.securitySchemes?.[schemeName];
           if (schemeOrRef) {
-            const scheme = resolveRef<SecuritySchemeObject>(schemeOrRef, components, 'securitySchemes');
+            const scheme = resolveRef<OpenAPIV3.SecuritySchemeObject>(schemeOrRef, components, 'securitySchemes');
             if (scheme) {
               resolvedSchemes.push({
                 name: schemeName,
@@ -141,7 +134,7 @@ const TryItOutPanel = React.forwardRef<HTMLDivElement, TryItOutPanelProps>(
       }));
     };
 
-    const handleAuthChange = (scheme: { name: string; scheme: SecuritySchemeObject; scopes: string[] }, value: string) => {
+    const handleAuthChange = (scheme: { name: string; scheme: OpenAPIV3.SecuritySchemeObject; scopes: string[] }, value: string) => {
       const { name, scheme: schemeObj } = scheme;
 
       setAuthState(prev => {

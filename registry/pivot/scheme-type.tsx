@@ -1,8 +1,6 @@
 import { cn } from "@/lib/utils";
+import type { SecuritySchemeType } from "@/types/project";
 import React from "react";
-
-// Import types from the centralized types file
-import type { SecuritySchemeType } from "@/types/openapi";
 
 interface SchemeTypeProps {
   type: SecuritySchemeType;
@@ -39,4 +37,4 @@ const SchemeType = React.forwardRef<HTMLSpanElement, SchemeTypeProps>(
 
 SchemeType.displayName = "SchemeType";
 
-export { SchemeType };
+export { SchemeType, type SchemeTypeProps };

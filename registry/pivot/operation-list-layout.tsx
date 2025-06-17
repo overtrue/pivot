@@ -1,5 +1,6 @@
 "use client";
 
+import type { OpenAPIV3 } from 'openapi-types';
 import { useI18n } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
 import * as yaml from "js-yaml";
@@ -9,12 +10,6 @@ import { OperationBox } from "./operation-box";
 import { TryItOutPanel } from "./try-it-out-panel";
 
 // Import types from the centralized types file
-import type {
-  OpenApiSpec,
-  OperationObject,
-  PathItemObject,
-  ServerObject
-} from "@/types/openapi";
 
 // Simple components for basic sections
 const SectionTitle = React.forwardRef<HTMLDivElement, { title: string; className?: string }>(
@@ -39,7 +34,7 @@ const InfoSection = React.forwardRef<HTMLDivElement, { info: any }>(
 );
 InfoSection.displayName = "InfoSection";
 
-const ServersSection = React.forwardRef<HTMLDivElement, { servers: ServerObject[] }>(
+const ServersSection = React.forwardRef<HTMLDivElement, { servers: OpenAPIV3.ServerObject[] }>(
   ({ servers }, ref) => (
     <div ref={ref} className="space-y-2">
       {servers.map((server, index) => (
@@ -57,24 +52,24 @@ ServersSection.displayName = "ServersSection";
 
 // 统一的接口定义
 interface OperationListLayoutProps {
-  spec: OpenApiSpec | string | null;
+  spec: OpenAPIV3.Document | string | null;
   selectedPath?: string | null;
   selectedMethod?: string | null;
-  onSelectOperation?: (path: string, method: string, operation: OperationObject) => void;
+  onSelectOperation?: (path: string, method: string, operation: OpenAPIV3.OperationObject) => void;
   className?: string;
 }
 
 interface OperationInfo {
   path: string;
   method: string;
-  operation: OperationObject;
+  operation: OpenAPIV3.OperationObject;
 }
 
 const OperationListLayout = React.forwardRef<HTMLDivElement, OperationListLayoutProps>(
   ({ spec: inputSpec, selectedPath, selectedMethod, onSelectOperation, className }, ref) => {
     const { t } = useI18n();
 
-    const [parsedSpec, setParsedSpec] = useState<OpenApiSpec | null>(null);
+    const [parsedSpec, setParsedSpec] = useState<OpenAPIV3.Document | null>(null);
     const [parseError, setParseError] = useState<string | null>(null);
     const [activeTag, setActiveTag] = useState<string | null>(null);
     const [selectedSchema, setSelectedSchema] = useState<string | null>(null);
@@ -96,7 +91,7 @@ const OperationListLayout = React.forwardRef<HTMLDivElement, OperationListLayout
             try {
               const yamlData = yaml.load(inputSpec);
               if (typeof yamlData === 'object' && yamlData !== null) {
-                setParsedSpec(yamlData as OpenApiSpec);
+                setParsedSpec(yamlData as OpenAPIV3.Document);
                 setParseError(null);
                 return;
               } else {
@@ -136,7 +131,7 @@ const OperationListLayout = React.forwardRef<HTMLDivElement, OperationListLayout
     }, [activeTag, getOperationsByTagMemo]);
 
     // Update the selected operation
-    const handleSelectOperation = useCallback((path: string, method: string, operation: OperationObject) => {
+    const handleSelectOperation = useCallback((path: string, method: string, operation: OpenAPIV3.OperationObject) => {
       if (onSelectOperation) {
         onSelectOperation(path, method, operation);
       }
@@ -186,10 +181,10 @@ const OperationListLayout = React.forwardRef<HTMLDivElement, OperationListLayout
           // Find the operation to get its operationId
           const pathItem = parsedSpec.paths[selectedPath];
           if (pathItem) {
-            const operation = pathItem[selectedMethod.toLowerCase() as keyof PathItemObject];
+            const operation = pathItem[selectedMethod.toLowerCase() as keyof OpenAPIV3.PathItemObject];
             if (operation && typeof operation === 'object') {
               // Use the same operationId generation logic as in the render
-              const operationId = (operation as OperationObject).operationId || `${selectedMethod.toLowerCase()}-${selectedPath}`;
+              const operationId = (operation as OpenAPIV3.OperationObject).operationId || `${selectedMethod.toLowerCase()}-${selectedPath}`;
               const element = document.getElementById(`operation-${operationId}`);
               if (element) {
                 element.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -255,7 +250,7 @@ const OperationListLayout = React.forwardRef<HTMLDivElement, OperationListLayout
                         <h3 className="text-xl font-medium text-neutral-700 dark:text-neutral-300">{tag}</h3>
                       )}
 
-                      {operations.map(({ path, method, operation }: { path: string; method: string; operation: OperationObject }) => {
+                      {operations.map(({ path, method, operation }: { path: string; method: string; operation: OpenAPIV3.OperationObject }) => {
                         const operationId = operation.operationId || `${method}-${path}`;
                         return (
                           <div key={`${method}-${path}`} id={`operation-${operationId}`}>
@@ -286,7 +281,7 @@ const OperationListLayout = React.forwardRef<HTMLDivElement, OperationListLayout
               <div className="sticky top-4">
                 {(() => {
                   const pathItem = parsedSpec.paths[selectedPath];
-                  const operation = pathItem[selectedMethod.toLowerCase() as keyof PathItemObject];
+                  const operation = pathItem[selectedMethod.toLowerCase() as keyof OpenAPIV3.PathItemObject];
                   if (operation && typeof operation === 'object' && 'summary' in operation) {
                     return (
                       <TryItOutPanel

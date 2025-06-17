@@ -1,31 +1,21 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import type { ComponentsObject } from "@/types/openapi";
+import type { ComponentType } from "@/types/project";
+import type { OpenAPIV3 } from 'openapi-types';
+
 import { ChevronDown, ChevronRight } from "lucide-react";
 import React, { useEffect, useMemo, useState } from "react";
 import { ComponentDetail } from "./component-detail";
 
-type ComponentType =
-  | "schemas"
-  | "responses"
-  | "parameters"
-  | "examples"
-  | "requestBodies"
-  | "headers"
-  | "securitySchemes"
-  | "links"
-  | "callbacks"
-  | "webhooks";
-
 interface AccordionComponentsSectionProps {
-  components: ComponentsObject;
+  components: OpenAPIV3.ComponentsObject;
   selectedSchema?: string | null;
   className?: string;
 }
 
 // Helper function to get available components
-function getAvailableComponents(components: ComponentsObject): Record<ComponentType, string[]> {
+function getAvailableComponents(components: OpenAPIV3.ComponentsObject): Record<ComponentType, string[]> {
   const result: Record<ComponentType, string[]> = {
     schemas: [],
     responses: [],
@@ -214,8 +204,6 @@ AccordionComponentsSection.displayName = "AccordionComponentsSection";
 
 export {
   AccordionComponentsSection,
-  type AccordionComponentsSectionProps,
-  type ComponentsObject,
-  type ComponentType
+  type AccordionComponentsSectionProps
 };
 

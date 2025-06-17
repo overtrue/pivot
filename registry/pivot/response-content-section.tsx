@@ -1,27 +1,14 @@
 "use client";
 
 import { useI18n } from "@/lib/i18n";
-import type { ComponentsObject } from "@/types/openapi";
+import type { OpenAPIV3 } from 'openapi-types';
+
 import React from "react";
 import { SchemaWithExampleViewer } from "./schema-with-example-viewer";
 
-interface EncodingPropertyObject {
-  contentType?: string;
-  style?: string;
-  explode?: boolean;
-  allowReserved?: boolean;
-}
-
-interface MediaTypeObject {
-  schema?: any;
-  example?: any;
-  examples?: Record<string, any>;
-  encoding?: Record<string, EncodingPropertyObject>;
-}
-
 interface ResponseContentSectionProps {
-  content: Record<string, MediaTypeObject>;
-  components?: ComponentsObject;
+  content: Record<string, OpenAPIV3.MediaTypeObject>;
+  components?: OpenAPIV3.ComponentsObject;
   className?: string;
 }
 
@@ -30,7 +17,7 @@ const ResponseContentSection = React.forwardRef<HTMLDivElement, ResponseContentS
     const { t } = useI18n();
 
     // 渲染媒体类型的额外信息（如编码）
-    const renderMediaTypeEncoding = (mediaType: MediaTypeObject) => {
+    const renderMediaTypeEncoding = (mediaType: OpenAPIV3.MediaTypeObject) => {
       if (!mediaType.encoding || Object.keys(mediaType.encoding).length === 0) {
         return null;
       }
@@ -39,7 +26,7 @@ const ResponseContentSection = React.forwardRef<HTMLDivElement, ResponseContentS
         <div className="mt-4">
           <h5 className="text-sm font-medium mb-2">{t('Encoding')}</h5>
           <div className="space-y-2">
-            {Object.entries(mediaType.encoding).map(([property, encoding]: [string, EncodingPropertyObject]) => (
+            {Object.entries(mediaType.encoding).map(([property, encoding]: [string, OpenAPIV3.EncodingObject]) => (
               <div key={property} className="border rounded p-2 bg-white dark:bg-neutral-800">
                 <div className="font-mono text-sm mb-1 font-medium">{property}</div>
                 <div className="grid grid-cols-[max-content_1fr] gap-x-2 gap-y-1 text-xs">

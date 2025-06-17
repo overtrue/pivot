@@ -1,5 +1,6 @@
 import { cn } from "@/lib/utils";
-import { ParameterLocation } from "@/types/openapi";
+import type { ParameterLocation } from "@/types/project";
+
 import React from "react";
 
 interface InLabelProps {
@@ -43,4 +44,4 @@ const InLabel = React.forwardRef<HTMLSpanElement, InLabelProps>(
 
 InLabel.displayName = "InLabel";
 
-export { InLabel };
+export { InLabel, type InLabelProps };

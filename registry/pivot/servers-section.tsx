@@ -1,10 +1,11 @@
 import { cn } from "@/lib/utils";
+import type { OpenAPIV3 } from 'openapi-types';
 import React from "react";
 import { SectionTitle } from "../pivot/section-title";
-import { ServerDisplay, type ServerObject } from "../pivot/server-display";
+import { ServerDisplay } from "../pivot/server-display";
 
 interface ServersSectionProps {
-  servers: ServerObject[];
+  servers: OpenAPIV3.ServerObject[];
   className?: string;
 }
 

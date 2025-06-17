@@ -1,10 +1,14 @@
 import { cn } from "@/lib/utils";
+import type { OpenAPIV3 } from 'openapi-types';
 import React from "react";
 import { SectionTitle } from "../pivot/section-title";
-import { Server, type ServerObject } from "./server";
+import { Server } from "./server";
+
+// 类型别名，供其他组件使用
+export type ServerObject = OpenAPIV3.ServerObject;
 
 interface ServersProps {
-  servers: ServerObject[];
+  servers: OpenAPIV3.ServerObject[];
   className?: string;
 }
 

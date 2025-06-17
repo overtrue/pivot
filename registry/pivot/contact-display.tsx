@@ -1,15 +1,9 @@
 import { cn } from "@/lib/utils";
+import type { OpenAPIV3 } from 'openapi-types';
 import React from "react";
 
-// Define contact object type
-interface ContactObject {
-  name?: string;
-  email?: string;
-  url?: string;
-}
-
 interface ContactDisplayProps {
-  contact: ContactObject;
+  contact: OpenAPIV3.ContactObject;
   className?: string;
 }
 
@@ -49,4 +43,4 @@ const ContactDisplay = React.forwardRef<HTMLDivElement, ContactDisplayProps>(
 
 ContactDisplay.displayName = "ContactDisplay";
 
-export { ContactDisplay, type ContactObject };
+export { ContactDisplay, type ContactDisplayProps };

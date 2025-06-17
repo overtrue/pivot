@@ -1,6 +1,7 @@
 "use client";
 
 import { cn } from "@/lib/utils";
+import type { OpenAPIV3 } from 'openapi-types';
 import React, { useState } from "react";
 import { resolveRef } from "../lib/resolve-ref";
 import { ConstraintDisplay } from "../pivot/constraint-display";
@@ -14,15 +15,10 @@ import { TypeIndicator } from "../pivot/type-indicator";
 import { SchemaCompositionDisplay } from "./schema-composition-display";
 
 // Import types from the centralized types file
-import type {
-  ComponentsObject,
-  ReferenceObject,
-  SchemaObject
-} from "@/types/openapi";
 
 interface SchemaDisplayProps {
-  schema: SchemaObject | ReferenceObject;
-  components?: ComponentsObject;
+  schema: OpenAPIV3.SchemaObject | OpenAPIV3.ReferenceObject;
+  components?: OpenAPIV3.ComponentsObject;
   currentDepth?: number;
   maxDepth?: number;
   className?: string;
@@ -50,11 +46,11 @@ const ChevronIcon = ({ isExpanded }: { isExpanded: boolean }) => (
 
 // Helper function to get item type string
 const getItemTypeString = (
-  itemSchemaOrRef: SchemaObject | ReferenceObject | undefined,
-  components: ComponentsObject | undefined,
+  itemSchemaOrRef: OpenAPIV3.SchemaObject | OpenAPIV3.ReferenceObject | undefined,
+  components: OpenAPIV3.ComponentsObject | undefined,
 ): string => {
   if (!itemSchemaOrRef) return "any";
-  const resolvedItemSchema = resolveRef<SchemaObject>(
+  const resolvedItemSchema = resolveRef<OpenAPIV3.SchemaObject>(
     itemSchemaOrRef,
     components,
     "schemas",
@@ -81,9 +77,9 @@ const getItemTypeString = (
 // New Component to render individual properties in the desired format
 const PropertyDisplay: React.FC<{
   propName: string;
-  propSchemaOrRef: SchemaObject | ReferenceObject;
+  propSchemaOrRef: OpenAPIV3.SchemaObject | OpenAPIV3.ReferenceObject;
   isRequired: boolean;
-  components?: ComponentsObject;
+  components?: OpenAPIV3.ComponentsObject;
   currentDepth: number;
   className?: string | string[];
 }> = ({
@@ -97,7 +93,7 @@ const PropertyDisplay: React.FC<{
     const [isExpanded, setIsExpanded] = useState(true);
     const toggleExpansion = () => setIsExpanded(!isExpanded);
 
-    const resolvedPropSchema = resolveRef<SchemaObject>(
+    const resolvedPropSchema = resolveRef<OpenAPIV3.SchemaObject>(
       propSchemaOrRef,
       components,
       "schemas",
@@ -108,7 +104,7 @@ const PropertyDisplay: React.FC<{
         propSchemaOrRef &&
           typeof propSchemaOrRef === "object" &&
           "$ref" in propSchemaOrRef
-          ? (propSchemaOrRef as ReferenceObject).$ref
+          ? (propSchemaOrRef as OpenAPIV3.ReferenceObject).$ref
           : "[invalid schema]";
       return (
         <div className="pl-3 my-2 border-l-2 border-neutral-200 dark:border-neutral-700">
@@ -274,9 +270,9 @@ const PropertyDisplay: React.FC<{
 const SchemaDisplay = React.forwardRef<HTMLDivElement, SchemaDisplayProps>(
   ({ schema: schemaOrRef, components, currentDepth = 0, className }, ref) => {
     const isRef = typeof schemaOrRef === "object" && "$ref" in schemaOrRef;
-    const refName = isRef ? (schemaOrRef as ReferenceObject).$ref : null;
+    const refName = isRef ? (schemaOrRef as OpenAPIV3.ReferenceObject).$ref : null;
 
-    const resolvedSchema = resolveRef<SchemaObject>(
+    const resolvedSchema = resolveRef<OpenAPIV3.SchemaObject>(
       schemaOrRef,
       components,
       "schemas",
@@ -285,7 +281,7 @@ const SchemaDisplay = React.forwardRef<HTMLDivElement, SchemaDisplayProps>(
     if (!resolvedSchema) {
       const refString =
         schemaOrRef && typeof schemaOrRef === "object" && "$ref" in schemaOrRef
-          ? (schemaOrRef as ReferenceObject).$ref
+          ? (schemaOrRef as OpenAPIV3.ReferenceObject).$ref
           : "[invalid schema object]";
       return (
         <div
@@ -478,7 +474,7 @@ const SchemaDisplay = React.forwardRef<HTMLDivElement, SchemaDisplayProps>(
                   ) : (
                     <SchemaDisplay
                       schema={
-                        additionalProperties as SchemaObject | ReferenceObject
+                        additionalProperties as OpenAPIV3.SchemaObject | OpenAPIV3.ReferenceObject
                       }
                       components={components}
                       currentDepth={currentDepth + 1}
@@ -617,9 +613,6 @@ SchemaDisplay.displayName = "SchemaDisplay";
 
 export {
   SchemaDisplay,
-  type ComponentsObject,
-  type ReferenceObject,
-  type SchemaDisplayProps,
-  type SchemaObject
+  type SchemaDisplayProps
 };
 

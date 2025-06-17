@@ -1,14 +1,5 @@
-import {
-  OpenApiSpec,
-  OperationObject,
-  ParameterObject,
-  PathItemObject,
-  ReferenceObject,
-  RequestBodyObject,
-  ResponseObject,
-  SchemaObject,
-  ServerObject,
-} from "@/types/openapi";
+
+import type { OpenAPIV3 } from 'openapi-types';
 import { useMemo } from "react";
 import { resolveRef } from "./resolve-ref";
 
@@ -17,14 +8,14 @@ import { resolveRef } from "./resolve-ref";
  * @param spec OpenAPI规范对象或null
  * @returns 一组处理OpenAPI结构的工具函数
  */
-export function useOpenApi(spec: OpenApiSpec | null) {
+export function useOpenApi(spec: OpenAPIV3.Document | null) {
   // 当spec为null时，返回空的组件
   const components = spec?.components;
 
   // 优化引用解析，避免重复计算
   const resolve = useMemo(() => {
     return function resolve<T>(
-      obj: T | ReferenceObject | undefined,
+      obj: T | OpenAPIV3.ReferenceObject | undefined,
       category?: string,
     ): T | null {
       if (!spec || !components) return null;
@@ -38,11 +29,11 @@ export function useOpenApi(spec: OpenApiSpec | null) {
    * @returns 类型信息字符串
    */
   const getSchemaType = (
-    schema: SchemaObject | ReferenceObject | undefined,
+    schema: OpenAPIV3.SchemaObject | OpenAPIV3.ReferenceObject | undefined,
   ): string => {
     if (!schema) return "未知";
 
-    const resolvedSchema = resolve<SchemaObject>(schema, "schemas");
+    const resolvedSchema = resolve<OpenAPIV3.SchemaObject>(schema, "schemas");
     if (!resolvedSchema) return "未知";
 
     let type = resolvedSchema.type || "";
@@ -83,11 +74,11 @@ export function useOpenApi(spec: OpenApiSpec | null) {
    * @returns 解析后的模式对象
    */
   const getRequestBodySchema = (
-    requestBody: RequestBodyObject | ReferenceObject | undefined,
-  ): SchemaObject | null => {
+    requestBody: OpenAPIV3.RequestBodyObject | OpenAPIV3.ReferenceObject | undefined,
+  ): OpenAPIV3.SchemaObject | null => {
     if (!requestBody) return null;
 
-    const resolvedBody = resolve<RequestBodyObject>(
+    const resolvedBody = resolve<OpenAPIV3.RequestBodyObject>(
       requestBody,
       "requestBodies",
     );
@@ -98,7 +89,7 @@ export function useOpenApi(spec: OpenApiSpec | null) {
     for (const contentType of contentTypes) {
       if (resolvedBody.content[contentType]?.schema) {
         return (
-          resolve<SchemaObject>(
+          resolve<OpenAPIV3.SchemaObject>(
             resolvedBody.content[contentType].schema,
             "schemas",
           ) || null
@@ -110,7 +101,7 @@ export function useOpenApi(spec: OpenApiSpec | null) {
     const firstContentType = Object.keys(resolvedBody.content)[0];
     if (firstContentType && resolvedBody.content[firstContentType]?.schema) {
       return (
-        resolve<SchemaObject>(
+        resolve<OpenAPIV3.SchemaObject>(
           resolvedBody.content[firstContentType].schema,
           "schemas",
         ) || null
@@ -126,11 +117,11 @@ export function useOpenApi(spec: OpenApiSpec | null) {
    * @returns 属性对象集合
    */
   const getSchemaProperties = (
-    schema: SchemaObject | ReferenceObject | undefined,
+    schema: OpenAPIV3.SchemaObject | OpenAPIV3.ReferenceObject | undefined,
   ) => {
     if (!schema) return {};
 
-    const resolvedSchema = resolve<SchemaObject>(schema, "schemas");
+    const resolvedSchema = resolve<OpenAPIV3.SchemaObject>(schema, "schemas");
     if (!resolvedSchema) return {};
 
     // 处理基本对象
@@ -140,7 +131,7 @@ export function useOpenApi(spec: OpenApiSpec | null) {
 
     // 处理数组
     if (resolvedSchema.type === "array" && resolvedSchema.items) {
-      const itemsSchema = resolve<SchemaObject>(
+      const itemsSchema = resolve<OpenAPIV3.SchemaObject>(
         resolvedSchema.items,
         "schemas",
       );
@@ -169,13 +160,13 @@ export function useOpenApi(spec: OpenApiSpec | null) {
    * @returns 按位置分组的参数
    */
   const processParameters = (
-    parameters: (ParameterObject | ReferenceObject)[] | undefined,
+    parameters: (OpenAPIV3.ParameterObject | OpenAPIV3.ReferenceObject)[] | undefined,
   ) => {
     if (!parameters || parameters.length === 0) {
       return {};
     }
 
-    const result: { [key: string]: (ParameterObject | ReferenceObject)[] } = {
+    const result: { [key: string]: (OpenAPIV3.ParameterObject | OpenAPIV3.ReferenceObject)[] } = {
       path: [],
       query: [],
       header: [],
@@ -183,7 +174,7 @@ export function useOpenApi(spec: OpenApiSpec | null) {
     };
 
     for (const param of parameters) {
-      const resolvedParam = resolve<ParameterObject>(param, "parameters");
+      const resolvedParam = resolve<OpenAPIV3.ParameterObject>(param, "parameters");
       if (resolvedParam && resolvedParam.in) {
         const paramIn = resolvedParam.in as keyof typeof result;
         if (paramIn in result && result[paramIn]) {
@@ -201,11 +192,11 @@ export function useOpenApi(spec: OpenApiSpec | null) {
    * @returns 处理后的响应对象
    */
   const processResponse = (
-    response: ResponseObject | ReferenceObject | undefined,
+    response: OpenAPIV3.ResponseObject | OpenAPIV3.ReferenceObject | undefined,
   ) => {
     if (!response) return null;
 
-    const resolvedResponse = resolve<ResponseObject>(response, "responses");
+    const resolvedResponse = resolve<OpenAPIV3.ResponseObject>(response, "responses");
     if (!resolvedResponse) return null;
 
     const result = {
@@ -223,11 +214,11 @@ export function useOpenApi(spec: OpenApiSpec | null) {
    * @returns 约束条件对象
    */
   const getSchemaConstraints = (
-    schema: SchemaObject | ReferenceObject | undefined,
+    schema: OpenAPIV3.SchemaObject | OpenAPIV3.ReferenceObject | undefined,
   ) => {
     if (!schema) return {};
 
-    const resolvedSchema = resolve<SchemaObject>(schema, "schemas");
+    const resolvedSchema = resolve<OpenAPIV3.SchemaObject>(schema, "schemas");
     if (!resolvedSchema) return {};
 
     const constraints: { [key: string]: any } = {};
@@ -291,16 +282,16 @@ export function useOpenApi(spec: OpenApiSpec | null) {
   const getOperation = (
     path: string,
     method: string,
-  ): OperationObject | null => {
+  ): OpenAPIV3.OperationObject | null => {
     if (!spec || !spec.paths || !spec.paths[path]) {
       return null;
     }
 
-    const pathItem = spec.paths[path] as PathItemObject;
-    const operation = pathItem[method.toLowerCase() as keyof PathItemObject];
+    const pathItem = spec.paths[path] as OpenAPIV3.PathItemObject;
+    const operation = pathItem[method.toLowerCase() as keyof OpenAPIV3.PathItemObject];
 
     if (operation && typeof operation === "object" && "responses" in operation) {
-      return operation as OperationObject;
+      return operation as OpenAPIV3.OperationObject;
     }
 
     return null;
@@ -310,7 +301,7 @@ export function useOpenApi(spec: OpenApiSpec | null) {
    * 获取服务器列表
    * @returns 服务器对象数组
    */
-  const getServers = (): ServerObject[] => {
+  const getServers = (): OpenAPIV3.ServerObject[] => {
     return spec?.servers || [];
   };
 
@@ -323,7 +314,7 @@ export function useOpenApi(spec: OpenApiSpec | null) {
       return {};
     }
 
-    const operations: { [tag: string]: Array<{ path: string; method: string; operation: OperationObject }> } = {};
+    const operations: { [tag: string]: Array<{ path: string; method: string; operation: OpenAPIV3.OperationObject }> } = {};
 
     Object.entries(spec.paths).forEach(([path, pathItem]) => {
       if (!pathItem || typeof pathItem !== "object") return;
@@ -331,9 +322,9 @@ export function useOpenApi(spec: OpenApiSpec | null) {
       const methods = ["get", "post", "put", "delete", "patch", "head", "options", "trace"];
 
       methods.forEach((method) => {
-        const operation = pathItem[method as keyof PathItemObject];
+        const operation = pathItem[method as keyof OpenAPIV3.PathItemObject];
         if (operation && typeof operation === "object" && "responses" in operation) {
-          const op = operation as OperationObject;
+          const op = operation as OpenAPIV3.OperationObject;
           const tags = op.tags || ["default"];
 
           tags.forEach((tag) => {

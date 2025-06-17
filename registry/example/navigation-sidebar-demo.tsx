@@ -1,10 +1,11 @@
 "use client";
 
 import { NavigationSidebar } from "@/registry/pivot/navigation-sidebar";
-import type { DataType, OpenApiSpec, ParameterLocation } from "@/types/openapi";
+import type { ParameterLocation } from "@/types/project";
+import type { OpenAPIV3 } from 'openapi-types';
 
 export default function NavigationSidebarDemo() {
-  const mockOpenApi: OpenApiSpec = {
+  const mockOpenApi: OpenAPIV3.Document = {
     openapi: "3.0.0",
     info: {
       title: "示例 API",
@@ -47,7 +48,7 @@ export default function NavigationSidebarDemo() {
               name: "id",
               in: "path" as ParameterLocation,
               required: true,
-              schema: { type: "string" as const as DataType }
+              schema: { type: "string" as const as OpenAPIV3.NonArraySchemaObjectType | OpenAPIV3.ArraySchemaObjectType }
             }
           ],
           responses: {
@@ -117,19 +118,19 @@ export default function NavigationSidebarDemo() {
     components: {
       schemas: {
         User: {
-          type: "object" as const as DataType,
+          type: "object" as const as OpenAPIV3.NonArraySchemaObjectType | OpenAPIV3.ArraySchemaObjectType,
           properties: {
-            id: { type: "string" as const as DataType },
-            name: { type: "string" as const as DataType },
-            email: { type: "string" as const as DataType }
+            id: { type: "string" as const as OpenAPIV3.NonArraySchemaObjectType | OpenAPIV3.ArraySchemaObjectType },
+            name: { type: "string" as const as OpenAPIV3.NonArraySchemaObjectType | OpenAPIV3.ArraySchemaObjectType },
+            email: { type: "string" as const as OpenAPIV3.NonArraySchemaObjectType | OpenAPIV3.ArraySchemaObjectType }
           }
         },
         Order: {
-          type: "object" as const as DataType,
+          type: "object" as const as OpenAPIV3.NonArraySchemaObjectType | OpenAPIV3.ArraySchemaObjectType,
           properties: {
-            id: { type: "string" as const as DataType },
-            userId: { type: "string" as const as DataType },
-            amount: { type: "number" as const as DataType }
+            id: { type: "string" as const as OpenAPIV3.NonArraySchemaObjectType | OpenAPIV3.ArraySchemaObjectType },
+            userId: { type: "string" as const as OpenAPIV3.NonArraySchemaObjectType | OpenAPIV3.ArraySchemaObjectType },
+            amount: { type: "number" as const as OpenAPIV3.NonArraySchemaObjectType | OpenAPIV3.ArraySchemaObjectType }
           }
         }
       }

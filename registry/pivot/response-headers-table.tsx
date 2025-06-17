@@ -2,21 +2,17 @@
 
 import { useI18n } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
+import type { OpenAPIV3 } from 'openapi-types';
 import React from "react";
 import { resolveRef } from "../lib/resolve-ref";
 import { HeaderItem } from "./header-item";
+import { type StyleType } from "./style-badge";
 
 // Import types from the centralized types file
-import type {
-  ComponentsObject,
-  HeaderObject,
-  ReferenceObject,
-  StyleType
-} from "@/types/openapi";
 
 interface ResponseHeadersTableProps {
-  headers: Record<string, HeaderObject | ReferenceObject>;
-  components?: ComponentsObject;
+  headers: Record<string, OpenAPIV3.HeaderObject | OpenAPIV3.ReferenceObject>;
+  components?: OpenAPIV3.ComponentsObject;
   className?: string;
 }
 
@@ -35,7 +31,7 @@ const ResponseHeadersTable = React.forwardRef<HTMLDivElement, ResponseHeadersTab
       <div ref={ref} className={cn("space-y-3", className)}>
         {Object.entries(headers).map(([name, headerOrRef]) => {
           // Resolve header ref
-          const header = resolveRef<HeaderObject>(
+          const header = resolveRef<OpenAPIV3.HeaderObject>(
             headerOrRef,
             components,
             "headers",
@@ -46,7 +42,7 @@ const ResponseHeadersTable = React.forwardRef<HTMLDivElement, ResponseHeadersTab
               headerOrRef &&
                 typeof headerOrRef === "object" &&
                 "$ref" in headerOrRef
-                ? (headerOrRef as ReferenceObject).$ref
+                ? (headerOrRef as OpenAPIV3.ReferenceObject).$ref
                 : t("[unknown reference]");
             console.warn(
               `[ResponseHeadersTable] Failed to resolve header ref: ${refString} for key ${name}`,

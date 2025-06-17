@@ -1,16 +1,11 @@
 import { cn } from "@/lib/utils";
+import type { OpenAPIV3 } from 'openapi-types';
 import React from "react";
 import { DescriptionDisplay } from "../pivot/description-display";
 
-interface ServerVariableObject {
-  description?: string;
-  default: string;
-  enum?: string[];
-}
-
 interface ServerVariableProps {
   name: string;
-  variable?: ServerVariableObject;
+  variable?: OpenAPIV3.ServerVariableObject;
   className?: string;
 }
 
@@ -82,4 +77,4 @@ const ServerVariable = React.forwardRef<HTMLDivElement, ServerVariableProps>(
 
 ServerVariable.displayName = "ServerVariable";
 
-export { ServerVariable, type ServerVariableObject };
+export { ServerVariable, type ServerVariableProps };

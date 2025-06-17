@@ -1,17 +1,14 @@
+import type { OpenAPIV3 } from 'openapi-types';
 import { cn } from "@/lib/utils";
 import React from "react";
 import { DescriptionDisplay } from "../pivot/description-display";
 import { SchemeType } from "../pivot/scheme-type";
 
 // Import types from the centralized types file
-import type {
-  OAuthFlows,
-  SecuritySchemeObject
-} from "@/types/openapi";
 
 interface SecuritySchemeProps {
   name: string;
-  scheme: SecuritySchemeObject;
+  scheme: OpenAPIV3.SecuritySchemeObject;
   className?: string;
 }
 

@@ -1,10 +1,11 @@
 "use client";
 
+import type { OpenAPIV3 } from 'openapi-types';
 import { OperationListLayout } from "@/registry/pivot/operation-list-layout";
-import type { OpenApiSpec } from "@/types/openapi";
+
 import { useState } from "react";
 
-const sampleSpec: OpenApiSpec = {
+const sampleSpec: OpenAPIV3.Document = {
   openapi: "3.0.0",
   info: {
     title: "Sample API",

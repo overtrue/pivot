@@ -1,5 +1,6 @@
 "use client";
 
+import type { OpenAPIV3 } from 'openapi-types';
 import { Badge } from "@/components/ui/badge";
 import { Label } from "@/components/ui/label";
 import { useI18n } from "@/lib/i18n";
@@ -16,16 +17,12 @@ import { SecurityRequirementsSection } from "@/registry/pivot/security-requireme
 import React from "react";
 
 // Import types from the centralized types file
-import type {
-  ComponentsObject,
-  OperationObject
-} from "@/types/openapi";
 
 interface OperationDetailProps {
-  operation: OperationObject;
+  operation: OpenAPIV3.OperationObject;
   path: string;
   method: string;
-  components?: ComponentsObject;
+  components?: OpenAPIV3.ComponentsObject;
   className?: string;
 }
 

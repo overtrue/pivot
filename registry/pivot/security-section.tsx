@@ -1,3 +1,4 @@
+import type { OpenAPIV3 } from 'openapi-types';
 import { cn } from "@/lib/utils";
 import React from "react";
 import { resolveRef } from "../lib/resolve-ref";
@@ -5,21 +6,13 @@ import { SectionTitle } from "../pivot/section-title";
 import { SecuritySchemeDisplay } from "./security-scheme-display";
 
 // Import types from the centralized types file
-import type {
-  ComponentsObject,
-  ReferenceObject,
-  SecurityRequirementObject,
-  SecuritySchemeObject
-} from "@/types/openapi";
 
 interface SecuritySectionProps {
-  security?: SecurityRequirementObject[];
-  securitySchemes?: Record<string, SecuritySchemeObject | ReferenceObject>;
-  components?: ComponentsObject;
+  security?: OpenAPIV3.SecurityRequirementObject[];
+  securitySchemes?: Record<string, OpenAPIV3.SecuritySchemeObject | OpenAPIV3.ReferenceObject>;
+  components?: OpenAPIV3.ComponentsObject;
   className?: string;
 }
-
-
 
 const SecuritySection = React.forwardRef<HTMLDivElement, SecuritySectionProps>(
   ({ security, securitySchemes, components, className }, ref) => {
@@ -33,7 +26,7 @@ const SecuritySection = React.forwardRef<HTMLDivElement, SecuritySectionProps>(
 
     // Helper to render a single requirement (which might be an AND of ORs)
     const renderRequirement = (
-      req: SecurityRequirementObject,
+      req: OpenAPIV3.SecurityRequirementObject,
       index: number,
     ) => {
       const schemes = Object.entries(req);
@@ -96,7 +89,7 @@ const SecuritySection = React.forwardRef<HTMLDivElement, SecuritySectionProps>(
               {Object.entries(securitySchemes).map(
                 ([name, schemeOrRef]) => {
                   // Resolve refs if security schemes can be defined with $ref
-                  const scheme = resolveRef<SecuritySchemeObject>(
+                  const scheme = resolveRef<OpenAPIV3.SecuritySchemeObject>(
                     schemeOrRef,
                     components,
                     "securitySchemes",
@@ -106,7 +99,7 @@ const SecuritySection = React.forwardRef<HTMLDivElement, SecuritySectionProps>(
                       schemeOrRef &&
                         typeof schemeOrRef === "object" &&
                         "$ref" in schemeOrRef
-                        ? (schemeOrRef as ReferenceObject).$ref
+                        ? (schemeOrRef as OpenAPIV3.ReferenceObject).$ref
                         : "[unknown reference]";
                     return (
                       <div

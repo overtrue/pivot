@@ -1,17 +1,18 @@
 "use client";
 
+import type { OpenAPIV3 } from 'openapi-types';
 import { useI18n } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
-import { ComponentsObject, OpenApiSpec, ResponseObject, ResponsesObjectMap } from "@/types/openapi";
+
 import React, { useState } from "react";
 import { ResponseGroup } from "./response-group";
 import { SectionTitle } from "./section-title";
 import { StatusCode } from "./status-code";
 
 interface ResponsesSectionProps {
-  responses: ResponsesObjectMap;
-  components?: ComponentsObject;
-  spec?: OpenApiSpec; // 可选，如果提供则使用完整的OpenAPI规范
+  responses: OpenAPIV3.ResponsesObject;
+  components?: OpenAPIV3.ComponentsObject;
+  spec?: OpenAPIV3.Document; // 可选，如果提供则使用完整的OpenAPI规范
   className?: string;
 }
 
@@ -21,7 +22,7 @@ const ResponsesSection = React.forwardRef<HTMLDivElement, ResponsesSectionProps>
     const [activeStatus, setActiveStatus] = useState<string | null>(null);
 
     // 简化的解析逻辑，如果没有 useOpenApi hook 可用
-    const resolveResponse = (response: any): ResponseObject | null => {
+    const resolveResponse = (response: any): OpenAPIV3.ResponseObject | null => {
       if (!response) return null;
 
       // 如果是引用对象，尝试解析
@@ -30,7 +31,7 @@ const ResponsesSection = React.forwardRef<HTMLDivElement, ResponsesSectionProps>
         return null; // 在实际应用中需要完整的引用解析
       }
 
-      return response as ResponseObject;
+      return response as OpenAPIV3.ResponseObject;
     };
 
     // 对状态码进行分组
@@ -78,7 +79,7 @@ const ResponsesSection = React.forwardRef<HTMLDivElement, ResponsesSectionProps>
     const allStatusCodes = Object.values(statusGroups).flat();
 
     // 通过状态码获取响应对象
-    const getResponseByStatus = (status: string): ResponseObject | null => {
+    const getResponseByStatus = (status: string): OpenAPIV3.ResponseObject | null => {
       const response = responses[status];
       if (!response) return null;
       return resolveResponse(response);

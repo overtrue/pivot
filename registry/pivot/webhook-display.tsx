@@ -1,3 +1,4 @@
+import type { OpenAPIV3 } from 'openapi-types';
 import { cn } from "@/lib/utils";
 import React from "react";
 import { DescriptionDisplay } from "../pivot/description-display";
@@ -5,15 +6,11 @@ import { WebhookLabel } from "../pivot/webhook-label";
 import { OperationBox } from "./operation-box";
 
 // Import types from the centralized types file
-import type {
-  ComponentsObject,
-  PathItemObject
-} from "@/types/openapi";
 
 interface WebhookDisplayProps {
   name: string;
-  pathItem: PathItemObject;
-  components?: ComponentsObject;
+  pathItem: OpenAPIV3.PathItemObject;
+  components?: OpenAPIV3.ComponentsObject;
   className?: string;
 }
 

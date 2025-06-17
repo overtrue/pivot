@@ -1,15 +1,9 @@
 "use client";
 
+import type { OpenAPIV3 } from 'openapi-types';
 import { useI18n } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
-import type {
-  ComponentsObject,
-  ExampleObject,
-  MediaTypeObject,
-  ReferenceObject,
-  RequestBodyObject,
-  ResponseObject
-} from "@/types/openapi";
+
 import React, { useEffect, useState } from "react";
 import { generateExample } from "../lib/generate-example";
 import { resolveRef } from "../lib/resolve-ref";
@@ -21,14 +15,12 @@ import { SchemaDisplay } from "./schema-display";
 // Define view modes
 type ViewMode = 'schema' | 'example';
 
-
-
 // ===== SchemaExampleView Component Section =====
 
 interface SchemaExampleViewProps {
-  mediaType: MediaTypeObject;
+  mediaType: OpenAPIV3.MediaTypeObject;
   mediaTypeName?: string;
-  components?: ComponentsObject;
+  components?: OpenAPIV3.ComponentsObject;
   className?: string;
   buttonClassName?: string;
   contentClassName?: string;
@@ -77,7 +69,7 @@ const SchemaExampleView = React.forwardRef<HTMLDivElement, SchemaExampleViewProp
 
     // Get current selected example
     const currentExample = selectedExample && hasExamples
-      ? resolveRef<ExampleObject>(mediaType.examples![selectedExample], components, 'examples')
+      ? resolveRef<OpenAPIV3.ExampleObject>(mediaType.examples![selectedExample], components, 'examples')
       : null;
 
     // Example display content - prefer provided example, otherwise generate from schema
@@ -154,7 +146,7 @@ const SchemaExampleView = React.forwardRef<HTMLDivElement, SchemaExampleViewProp
                 onClick={(e) => e.stopPropagation()}
               >
                 {examplesKeys.map(key => {
-                  const example = resolveRef<ExampleObject>(mediaType.examples![key], components, 'examples');
+                  const example = resolveRef<OpenAPIV3.ExampleObject>(mediaType.examples![key], components, 'examples');
                   const displayName = example?.summary || key;
                   return (
                     <option key={key} value={key} className="dark:bg-neutral-700">
@@ -197,14 +189,14 @@ SchemaExampleView.displayName = "SchemaExampleView";
 
 interface SchemaWithExampleViewerProps {
   // Content can be a request body or response body
-  content: RequestBodyObject | ReferenceObject | ResponseObject | Record<string, MediaTypeObject>;
-  components?: ComponentsObject;
+  content: OpenAPIV3.RequestBodyObject | OpenAPIV3.ReferenceObject | OpenAPIV3.ResponseObject | Record<string, OpenAPIV3.MediaTypeObject>;
+  components?: OpenAPIV3.ComponentsObject;
   className?: string;
   title?: string;
   showTitle?: boolean;
   contentType?: 'requestBody' | 'response' | 'mediaTypes';
   renderHeader?: () => React.ReactNode;
-  renderFooter?: (mediaType: MediaTypeObject) => React.ReactNode;
+  renderFooter?: (mediaType: OpenAPIV3.MediaTypeObject) => React.ReactNode;
 }
 
 /**
@@ -223,18 +215,18 @@ const SchemaWithExampleViewer = React.forwardRef<HTMLDivElement, SchemaWithExamp
     const { t } = useI18n();
 
     // Based on content type, get the media type mapping
-    const getMediaTypes = (): Record<string, MediaTypeObject> => {
+    const getMediaTypes = (): Record<string, OpenAPIV3.MediaTypeObject> => {
       if (contentType === 'mediaTypes' && typeof content === 'object') {
-        return content as Record<string, MediaTypeObject>;
+        return content as Record<string, OpenAPIV3.MediaTypeObject>;
       }
 
       if (contentType === 'requestBody') {
-        const resolvedBody = resolveRef<RequestBodyObject>(content as RequestBodyObject | ReferenceObject, components, 'requestBodies');
+        const resolvedBody = resolveRef<OpenAPIV3.RequestBodyObject>(content as OpenAPIV3.RequestBodyObject | OpenAPIV3.ReferenceObject, components, 'requestBodies');
         return resolvedBody?.content || {};
       }
 
       if (contentType === 'response') {
-        const resolvedResponse = resolveRef<ResponseObject>(content as ResponseObject | ReferenceObject, components, 'responses');
+        const resolvedResponse = resolveRef<OpenAPIV3.ResponseObject>(content as OpenAPIV3.ResponseObject | OpenAPIV3.ReferenceObject, components, 'responses');
         return resolvedResponse?.content || {};
       }
 
@@ -286,12 +278,12 @@ const SchemaWithExampleViewer = React.forwardRef<HTMLDivElement, SchemaWithExamp
     // Get description (if available)
     const getDescription = () => {
       if (contentType === 'requestBody') {
-        const resolvedBody = resolveRef<RequestBodyObject>(content as RequestBodyObject | ReferenceObject, components, 'requestBodies');
+        const resolvedBody = resolveRef<OpenAPIV3.RequestBodyObject>(content as OpenAPIV3.RequestBodyObject | OpenAPIV3.ReferenceObject, components, 'requestBodies');
         return resolvedBody?.description;
       }
 
       if (contentType === 'response') {
-        const resolvedResponse = resolveRef<ResponseObject>(content as ResponseObject | ReferenceObject, components, 'responses');
+        const resolvedResponse = resolveRef<OpenAPIV3.ResponseObject>(content as OpenAPIV3.ResponseObject | OpenAPIV3.ReferenceObject, components, 'responses');
         return resolvedResponse?.description;
       }
 

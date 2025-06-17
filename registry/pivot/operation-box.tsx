@@ -1,5 +1,6 @@
 "use client";
 
+import type { OpenAPIV3 } from 'openapi-types';
 import { useI18n } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
 import React, { useState } from "react";
@@ -15,20 +16,15 @@ import { ResponsesSection } from "./responses-section";
 import { SecurityRequirementsSection } from "./security-requirements-section";
 
 // Import types from the centralized types file
-import type {
-  ComponentsObject,
-  OpenApiSpec,
-  OperationObject
-} from "@/types/openapi";
 
 interface OperationBoxProps {
   path: string;
   method: string;
-  operation: OperationObject;
-  components?: ComponentsObject;
+  operation: OpenAPIV3.OperationObject;
+  components?: OpenAPIV3.ComponentsObject;
   className?: string;
   onSelectOperation?: () => void;
-  spec?: OpenApiSpec;
+  spec?: OpenAPIV3.Document;
 }
 
 const OperationBox = React.forwardRef<HTMLDivElement, OperationBoxProps>(

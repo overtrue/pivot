@@ -1,18 +1,15 @@
 import { cn } from "@/lib/utils";
+import type { OpenAPIV3 } from 'openapi-types';
 import React from "react";
 import { DescriptionDisplay } from "../pivot/description-display";
 import { OperationBox } from "./operation-box";
 
 // Import types from the centralized types file
-import type {
-  ComponentsObject,
-  PathItemObject
-} from "@/types/openapi";
 
 interface PathItemDisplayProps {
   path: string;
-  pathItem?: PathItemObject;
-  components?: ComponentsObject;
+  pathItem?: OpenAPIV3.PathItemObject;
+  components?: OpenAPIV3.ComponentsObject;
   className?: string;
 }
 
@@ -77,8 +74,6 @@ PathItemDisplay.displayName = "PathItemDisplay";
 
 export {
   PathItemDisplay,
-  type ComponentsObject,
-  type PathItemDisplayProps,
-  type PathItemObject
+  type PathItemDisplayProps
 };
 

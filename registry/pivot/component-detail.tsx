@@ -1,5 +1,7 @@
 import { cn } from "@/lib/utils";
-import type { ComponentsObject } from "@/types/openapi";
+import type { ComponentType } from "@/types/project";
+import type { OpenAPIV3 } from 'openapi-types';
+
 import React from "react";
 import { resolveRef } from "../lib/resolve-ref";
 import { CallbackDisplay } from "./callback-display";
@@ -13,26 +15,12 @@ import { SchemaDisplay } from "./schema-display";
 import { SecuritySchemeDisplay } from "./security-scheme-display";
 import { WebhookDisplay } from "./webhook-display";
 
-type ComponentType =
-  | "schemas"
-  | "responses"
-  | "parameters"
-  | "examples"
-  | "requestBodies"
-  | "headers"
-  | "securitySchemes"
-  | "links"
-  | "callbacks"
-  | "webhooks";
-
 interface ComponentDetailProps {
   activeType: ComponentType | null;
   selectedItemName: string | null;
-  components: ComponentsObject;
+  components: OpenAPIV3.ComponentsObject;
   className?: string;
 }
-
-
 
 const ComponentDetail = React.forwardRef<HTMLDivElement, ComponentDetailProps>(
   ({ activeType, selectedItemName, components, className }, ref) => {
@@ -176,7 +164,6 @@ ComponentDetail.displayName = "ComponentDetail";
 
 export {
   ComponentDetail,
-  type ComponentDetailProps,
-  type ComponentType
+  type ComponentDetailProps
 };
 

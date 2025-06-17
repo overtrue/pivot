@@ -1,5 +1,6 @@
 "use client";
 
+import type { OpenAPIV3 } from 'openapi-types';
 import { useI18n } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
 import React from "react";
@@ -7,15 +8,10 @@ import { resolveRef } from "../lib/resolve-ref";
 import { DescriptionDisplay } from "../pivot/description-display";
 
 // Import types from the centralized types file
-import type {
-  ComponentsObject,
-  ExampleObject,
-  ReferenceObject
-} from "@/types/openapi";
 
 interface ExamplesDisplayProps {
-  examples: Record<string, ExampleObject | ReferenceObject>;
-  components?: ComponentsObject;
+  examples: Record<string, OpenAPIV3.ExampleObject | OpenAPIV3.ReferenceObject>;
+  components?: OpenAPIV3.ComponentsObject;
   className?: string;
 }
 
@@ -26,7 +22,7 @@ const ExamplesDisplay = React.forwardRef<HTMLDivElement, ExamplesDisplayProps>(
     const resolvedExamples = Object.entries(examples)
       .map(([key, exampleOrRef]) => {
         // Use the generic resolver
-        const resolved = resolveRef<ExampleObject>(
+        const resolved = resolveRef<OpenAPIV3.ExampleObject>(
           exampleOrRef,
           components,
           "examples",
@@ -37,7 +33,7 @@ const ExamplesDisplay = React.forwardRef<HTMLDivElement, ExamplesDisplayProps>(
             exampleOrRef &&
               typeof exampleOrRef === "object" &&
               "$ref" in exampleOrRef
-              ? (exampleOrRef as ReferenceObject).$ref
+              ? (exampleOrRef as OpenAPIV3.ReferenceObject).$ref
               : t("[unknown reference]");
           console.warn(
             t("[ExamplesDisplay] Failed to resolve example ref: %s for key %s").replace("%s", refString).replace("%s", key),
@@ -47,7 +43,7 @@ const ExamplesDisplay = React.forwardRef<HTMLDivElement, ExamplesDisplayProps>(
         return { key, ...resolved };
       })
       .filter(
-        (example): example is ExampleObject & { key: string } =>
+        (example): example is OpenAPIV3.ExampleObject & { key: string } =>
           example !== null,
       );
 

@@ -1,11 +1,11 @@
 "use client";
 
+import type { OpenAPIV3 } from 'openapi-types';
 import { I18nProvider } from "@/lib/i18n/I18nProvider";
 import { ResponseContentSection } from "@/registry/pivot/response-content-section";
-import { OpenApiSpec } from "@/types/openapi";
 
 // 示例 OpenAPI 规范
-const exampleSpec: OpenApiSpec = {
+const exampleSpec: OpenAPIV3.Document = {
   openapi: "3.0.0",
   info: {
     title: "Example API",
@@ -110,7 +110,7 @@ const exampleSpec: OpenApiSpec = {
       },
     },
   },
-} as OpenApiSpec;
+} as OpenAPIV3.Document;
 
 export default function ResponseContentSectionDemo() {
   // 从 spec 中提取响应内容

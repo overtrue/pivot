@@ -2,18 +2,17 @@
 
 import { useI18n } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
-import type { ComponentsObject, ReferenceObject } from "@/types/openapi";
+import type { OpenAPIV3 } from 'openapi-types';
+
 import React from "react";
 import { resolveRef } from "../lib/resolve-ref";
-import { LinkItem, type LinkObject } from "./link-item";
+import { LinkItem } from "./link-item";
 
 interface LinksSectionProps {
-  links: Record<string, LinkObject | ReferenceObject>;
-  components?: ComponentsObject;
+  links: Record<string, OpenAPIV3.LinkObject | OpenAPIV3.ReferenceObject>;
+  components?: OpenAPIV3.ComponentsObject;
   className?: string;
 }
-
-
 
 const LinksSection = React.forwardRef<HTMLDivElement, LinksSectionProps>(
   ({ links, components, className }, ref) => {
@@ -37,14 +36,14 @@ const LinksSection = React.forwardRef<HTMLDivElement, LinksSectionProps>(
         <div className="space-y-3">
           {linkEntries.map(([name, linkOrRef]) => {
             // Resolve link ref
-            const link = resolveRef<LinkObject>(linkOrRef, components, "links");
+            const link = resolveRef<OpenAPIV3.LinkObject>(linkOrRef, components, "links");
 
             if (!link) {
               const refString =
                 linkOrRef &&
                   typeof linkOrRef === "object" &&
                   "$ref" in linkOrRef
-                  ? (linkOrRef as ReferenceObject).$ref
+                  ? (linkOrRef as OpenAPIV3.ReferenceObject).$ref
                   : t("[unknown reference]");
               console.warn(
                 `[LinksSection] Failed to resolve link ref: ${refString} for key ${name}`,

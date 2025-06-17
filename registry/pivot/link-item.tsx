@@ -2,22 +2,20 @@
 
 import { useI18n } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
+import type { OpenAPIV3 } from 'openapi-types';
 import React, { useState } from "react";
 import { DescriptionDisplay } from "../pivot/description-display";
-import { ServerDisplay, type ServerObject } from "../pivot/server-display";
+import { ServerDisplay } from "../pivot/server-display";
 import { ExpandCollapse } from "./expand-collapse";
 
-interface LinkObject {
+interface LinkItemProps {
+  name: string;
   operationId?: string;
   operationRef?: string;
   parameters?: Record<string, any>;
   requestBody?: any;
   description?: string;
-  server?: ServerObject;
-}
-
-interface LinkItemProps extends LinkObject {
-  name: string;
+  server?: OpenAPIV3.ServerObject;
   className?: string;
 }
 
@@ -155,4 +153,4 @@ const LinkItem = React.forwardRef<HTMLDivElement, LinkItemProps>(
 
 LinkItem.displayName = "LinkItem";
 
-export { LinkItem, type LinkObject };
+export { LinkItem, type LinkItemProps };

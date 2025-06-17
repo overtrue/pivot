@@ -1,5 +1,5 @@
+import type { OpenAPIV3 } from 'openapi-types';
 import { SecuritySection } from "@/registry/pivot/security-section";
-import type { SecurityRequirementObject } from "@/types/openapi";
 
 export default function SecuritySectionDemo() {
   // API 密钥认证示例
@@ -32,7 +32,7 @@ export default function SecuritySectionDemo() {
   ];
 
   // 可选认证示例（API Key 或 OAuth2）
-  const optionalAuthSecurity: SecurityRequirementObject[] = [
+  const optionalAuthSecurity: OpenAPIV3.SecurityRequirementObject[] = [
     {
       "ApiKeyAuth": []
     },

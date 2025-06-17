@@ -1,31 +1,21 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import type { ComponentsObject } from "@/types/openapi";
+import type { ComponentType } from "@/types/project";
+import type { OpenAPIV3 } from 'openapi-types';
 import React, { useMemo, useState } from "react";
+import { ComponentItemsList } from "../pivot/component-items-list";
+import { ComponentTabs } from "../pivot/component-tabs";
 import { SectionTitle } from "../pivot/section-title";
-import { ComponentItemsList } from "./component-items-list";
-import { ComponentTabs } from "./component-tabs";
 
 interface ComponentsSectionProps {
-  components: ComponentsObject;
+  components: OpenAPIV3.ComponentsObject;
   className?: string;
 }
 
-type ComponentType =
-  | "schemas"
-  | "responses"
-  | "parameters"
-  | "examples"
-  | "requestBodies"
-  | "headers"
-  | "securitySchemes"
-  | "links"
-  | "callbacks";
-
 // Helper function to get available components
 const getAvailableComponents = (
-  components: ComponentsObject,
+  components: OpenAPIV3.ComponentsObject,
 ): Record<ComponentType, string[]> => {
   const availableComponents: Record<ComponentType, string[]> = {
     schemas: [],
@@ -91,7 +81,7 @@ const ComponentsSection = React.forwardRef<
   }: {
     activeType: ComponentType | null;
     selectedItemName: string | null;
-    components: ComponentsObject;
+    components: OpenAPIV3.ComponentsObject;
   }) => {
     if (!activeType || !selectedItemName) {
       return (
@@ -164,7 +154,6 @@ ComponentsSection.displayName = "ComponentsSection";
 
 export {
   ComponentsSection,
-  type ComponentsSectionProps,
-  type ComponentType
+  type ComponentsSectionProps
 };
 

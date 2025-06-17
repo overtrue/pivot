@@ -1,15 +1,9 @@
 import { cn } from "@/lib/utils";
+import type { OpenAPIV3 } from 'openapi-types';
 import React from "react";
 
-// Define license object type
-interface LicenseObject {
-  name: string;
-  identifier?: string;
-  url?: string;
-}
-
 interface LicenseDisplayProps {
-  license: LicenseObject;
+  license: OpenAPIV3.LicenseObject;
   className?: string;
 }
 
@@ -44,4 +38,4 @@ const LicenseDisplay = React.forwardRef<HTMLDivElement, LicenseDisplayProps>(
 
 LicenseDisplay.displayName = "LicenseDisplay";
 
-export { LicenseDisplay, type LicenseObject };
+export { LicenseDisplay, type LicenseDisplayProps };

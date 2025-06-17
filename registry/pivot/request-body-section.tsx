@@ -1,16 +1,17 @@
 "use client";
 
+import type { OpenAPIV3 } from 'openapi-types';
 import { useI18n } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
-import { ComponentsObject, OpenApiSpec, ReferenceObject, RequestBodyObject } from "@/types/openapi";
+
 import React from "react";
 import { SchemaWithExampleViewer } from "./schema-with-example-viewer";
 import { SectionTitle } from "./section-title";
 
 interface RequestBodySectionProps {
-  requestBody: RequestBodyObject | ReferenceObject;
-  components?: ComponentsObject;
-  spec?: OpenApiSpec; // 可选，如果提供则使用完整的OpenAPI规范
+  requestBody: OpenAPIV3.RequestBodyObject | OpenAPIV3.ReferenceObject;
+  components?: OpenAPIV3.ComponentsObject;
+  spec?: OpenAPIV3.Document; // 可选，如果提供则使用完整的OpenAPI规范
   className?: string;
   titleClassName?: string;
 }
@@ -20,7 +21,7 @@ const RequestBodySection = React.forwardRef<HTMLDivElement, RequestBodySectionPr
     const { t } = useI18n();
 
     // 简化的解析逻辑，如果没有 useOpenApi hook 可用
-    const resolveRequestBody = (body: RequestBodyObject | ReferenceObject): RequestBodyObject | null => {
+    const resolveRequestBody = (body: OpenAPIV3.RequestBodyObject | OpenAPIV3.ReferenceObject): OpenAPIV3.RequestBodyObject | null => {
       if (!body) return null;
 
       // 如果是引用对象，尝试解析
@@ -29,7 +30,7 @@ const RequestBodySection = React.forwardRef<HTMLDivElement, RequestBodySectionPr
         return null; // 在实际应用中需要完整的引用解析
       }
 
-      return body as RequestBodyObject;
+      return body as OpenAPIV3.RequestBodyObject;
     };
 
     // 解析引用对象

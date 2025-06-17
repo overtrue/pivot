@@ -1,5 +1,6 @@
 "use client";
 
+import type { OpenAPIV3 } from 'openapi-types';
 import { useI18n } from "@/lib/i18n";
 import { Codegen } from "@/registry/pivot/codegen";
 import { OperationDetail } from "@/registry/pivot/operation-detail";
@@ -8,17 +9,13 @@ import * as yaml from "js-yaml";
 import React, { useEffect, useState } from "react";
 
 // Import types from the centralized types file
-import type {
-  OpenApiSpec,
-  OperationObject
-} from "@/types/openapi";
 
 // 统一的接口定义
 interface OperationDetailedLayoutProps {
-  spec: OpenApiSpec | string | null;
+  spec: OpenAPIV3.Document | string | null;
   selectedPath?: string | null;
   selectedMethod?: string | null;
-  onSelectOperation?: (path: string, method: string, operation: OperationObject) => void;
+  onSelectOperation?: (path: string, method: string, operation: OpenAPIV3.OperationObject) => void;
   className?: string;
 }
 
@@ -26,7 +23,7 @@ export const OperationDetailedLayout = React.forwardRef<HTMLDivElement, Operatio
   ({ spec: inputSpec, selectedPath, selectedMethod, onSelectOperation, className }, ref) => {
     const { t } = useI18n();
 
-    const [parsedSpec, setParsedSpec] = useState<OpenApiSpec | null>(null);
+    const [parsedSpec, setParsedSpec] = useState<OpenAPIV3.Document | null>(null);
     const [parseError, setParseError] = useState<string | null>(null);
     const [selectedServer, setSelectedServer] = useState<string>('');
 
@@ -45,7 +42,7 @@ export const OperationDetailedLayout = React.forwardRef<HTMLDivElement, Operatio
             try {
               const yamlData = yaml.load(inputSpec);
               if (typeof yamlData === 'object' && yamlData !== null) {
-                setParsedSpec(yamlData as OpenApiSpec);
+                setParsedSpec(yamlData as OpenAPIV3.Document);
                 setParseError(null);
                 return;
               } else {
@@ -158,7 +155,7 @@ export const OperationDetailedLayout = React.forwardRef<HTMLDivElement, Operatio
           {/* 左侧内容面板 */}
           <div className="flex-1">
             <OperationDetail
-              operation={operation as OperationObject}
+              operation={operation as OpenAPIV3.OperationObject}
               path={selectedPath}
               method={normalizedMethod}
               components={resolvedComponents}

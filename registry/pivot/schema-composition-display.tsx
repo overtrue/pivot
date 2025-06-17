@@ -1,13 +1,14 @@
+import type { OpenAPIV3 } from 'openapi-types';
 import { cn } from "@/lib/utils";
-import type { ComponentsObject, ReferenceObject, SchemaObject } from "@/types/openapi";
+
 import React from "react";
 
 type SchemaCompositionKeyword = "allOf" | "anyOf" | "oneOf" | "not";
 
 interface SchemaCompositionDisplayProps {
   keyword: SchemaCompositionKeyword;
-  subschemas: (SchemaObject | ReferenceObject)[];
-  components?: ComponentsObject;
+  subschemas: (OpenAPIV3.SchemaObject | OpenAPIV3.ReferenceObject)[];
+  components?: OpenAPIV3.ComponentsObject;
   currentDepth: number;
   className?: string;
 }
@@ -65,7 +66,7 @@ const SchemaCompositionDisplay = React.forwardRef<
             subschema !== null &&
             "$ref" in subschema;
           const refName = isRef
-            ? extractRefName((subschema as ReferenceObject).$ref)
+            ? extractRefName((subschema as OpenAPIV3.ReferenceObject).$ref)
             : null;
 
           return (

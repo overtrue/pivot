@@ -1,27 +1,22 @@
+import type { OpenAPIV3 } from 'openapi-types';
 import { cn } from "@/lib/utils";
 import React from "react";
 import { resolveRef } from "../lib/resolve-ref";
 import { OperationBox } from "./operation-box";
 
 // Import types from the centralized types file
-import type {
-  CallbackObject,
-  ComponentsObject,
-  PathItemObject,
-  ReferenceObject
-} from "@/types/openapi";
 
 interface CallbackDisplayProps {
   name: string;
-  callback: CallbackObject | ReferenceObject;
-  components?: ComponentsObject;
+  callback: OpenAPIV3.CallbackObject | OpenAPIV3.ReferenceObject;
+  components?: OpenAPIV3.ComponentsObject;
   className?: string;
 }
 
 const CallbackDisplay = React.forwardRef<HTMLDivElement, CallbackDisplayProps>(
   ({ name, callback: callbackOrRef, components, className }, ref) => {
     // Resolve callback ref if necessary
-    const callback = resolveRef<CallbackObject>(
+    const callback = resolveRef<OpenAPIV3.CallbackObject>(
       callbackOrRef,
       components,
       "callbacks",
@@ -32,7 +27,7 @@ const CallbackDisplay = React.forwardRef<HTMLDivElement, CallbackDisplayProps>(
         callbackOrRef &&
           typeof callbackOrRef === "object" &&
           "$ref" in callbackOrRef
-          ? (callbackOrRef as ReferenceObject).$ref
+          ? (callbackOrRef as OpenAPIV3.ReferenceObject).$ref
           : "[invalid callback object]";
       return (
         <div
@@ -66,7 +61,7 @@ const CallbackDisplay = React.forwardRef<HTMLDivElement, CallbackDisplayProps>(
             </h4>
             {/* Resolve PathItem ref */}
             {(() => {
-              const pathItem = resolveRef<PathItemObject>(
+              const pathItem = resolveRef<OpenAPIV3.PathItemObject>(
                 pathItemOrRef,
                 components,
                 "pathItems",
@@ -76,7 +71,7 @@ const CallbackDisplay = React.forwardRef<HTMLDivElement, CallbackDisplayProps>(
                   pathItemOrRef &&
                     typeof pathItemOrRef === "object" &&
                     "$ref" in pathItemOrRef
-                    ? (pathItemOrRef as ReferenceObject).$ref
+                    ? (pathItemOrRef as OpenAPIV3.ReferenceObject).$ref
                     : "[invalid pathItem object]";
                 return (
                   <div className="text-xs text-red-500 dark:text-red-400">

@@ -1,22 +1,13 @@
 import { cn } from "@/lib/utils";
 import { Book, FileText, Info, Users } from "lucide-react";
+import type { OpenAPIV3 } from 'openapi-types';
 import React from "react";
-import { ContactDisplay, type ContactObject } from "../pivot/contact-display";
+import { ContactDisplay } from "../pivot/contact-display";
 import { DescriptionDisplay } from "../pivot/description-display";
-import { LicenseDisplay, type LicenseObject } from "../pivot/license-display";
-
-// Define info object type
-interface InfoObject {
-  title: string;
-  version: string;
-  description?: string;
-  termsOfService?: string;
-  contact?: ContactObject;
-  license?: LicenseObject;
-}
+import { LicenseDisplay } from "../pivot/license-display";
 
 interface InfoSectionProps {
-  info: InfoObject;
+  info: OpenAPIV3.InfoObject;
   className?: string;
 }
 
@@ -111,4 +102,4 @@ const InfoSection = React.forwardRef<HTMLDivElement, InfoSectionProps>(
 
 InfoSection.displayName = "InfoSection";
 
-export { InfoSection, type InfoObject };
+export { InfoSection, type InfoSectionProps };

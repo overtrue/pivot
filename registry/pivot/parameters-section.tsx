@@ -2,20 +2,19 @@
 
 import { useI18n } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
-import type { ComponentsObject, ParameterObject, ReferenceObject } from "@/types/openapi";
+import type { OpenAPIV3 } from 'openapi-types';
+
 import React from "react";
 import { resolveRef } from "../lib/resolve-ref";
+import { type StyleType } from "../pivot/style-badge";
 import { ParameterItem } from "./parameter-item";
 import { SectionTitle } from "./section-title";
 
 // Import types from the centralized types file
-import type {
-  StyleType
-} from "@/types/openapi";
 
 interface ParametersSectionProps {
-  parameters: (ParameterObject | ReferenceObject)[];
-  components?: ComponentsObject;
+  parameters: (OpenAPIV3.ParameterObject | OpenAPIV3.ReferenceObject)[];
+  components?: OpenAPIV3.ComponentsObject;
   className?: string;
   expanded?: boolean;
 }
@@ -36,11 +35,11 @@ const ParametersSection = React.forwardRef<
       <div className="space-y-3">
         {parameters.map((paramOrRef, index) => {
           // Resolve parameter ref
-          const parameter = resolveRef<ParameterObject>(paramOrRef, components, 'parameters');
+          const parameter = resolveRef<OpenAPIV3.ParameterObject>(paramOrRef, components, 'parameters');
 
           if (!parameter) {
             const refString = (paramOrRef && typeof paramOrRef === 'object' && '$ref' in paramOrRef)
-              ? (paramOrRef as ReferenceObject).$ref
+              ? (paramOrRef as OpenAPIV3.ReferenceObject).$ref
               : `[invalid parameter at index ${index}]`;
             return (
               <div key={index} className="text-xs text-red-500 dark:text-red-400 p-1 border border-dashed dark:border-red-700 rounded">

@@ -1,5 +1,5 @@
+import type { OpenAPIV3 } from 'openapi-types';
 import { Codegen } from "@/registry/pivot/codegen";
-import { DataType, FormatType } from "@/types/openapi";
 
 export default function CodegenDemo() {
   // 真实的 API 示例数据
@@ -11,16 +11,16 @@ export default function CodegenDemo() {
         name: "userId",
         in: "path" as const,
         required: true,
-        schema: { type: "string" as const as DataType, format: "uuid" as const as FormatType }
+        schema: { type: "string" as const as OpenAPIV3.NonArraySchemaObjectType | OpenAPIV3.ArraySchemaObjectType, format: "uuid" as const as FormatType }
       },
       {
         name: "include",
         in: "query" as const,
         required: false,
         schema: {
-          type: "array" as const as DataType,
+          type: "array" as const as OpenAPIV3.NonArraySchemaObjectType | OpenAPIV3.ArraySchemaObjectType,
           items: {
-            type: "string" as const as DataType,
+            type: "string" as const as OpenAPIV3.NonArraySchemaObjectType | OpenAPIV3.ArraySchemaObjectType,
             enum: ["profile", "permissions", "preferences"]
           }
         }
@@ -29,7 +29,7 @@ export default function CodegenDemo() {
         name: "X-API-Key",
         in: "header" as const,
         required: true,
-        schema: { type: "string" as const as DataType }
+        schema: { type: "string" as const as OpenAPIV3.NonArraySchemaObjectType | OpenAPIV3.ArraySchemaObjectType }
       }
     ]
   };
@@ -42,7 +42,7 @@ export default function CodegenDemo() {
         name: "X-API-Key",
         in: "header" as const,
         required: true,
-        schema: { type: "string" as const as DataType }
+        schema: { type: "string" as const as OpenAPIV3.NonArraySchemaObjectType | OpenAPIV3.ArraySchemaObjectType }
       }
     ],
     requestBody: {
@@ -50,33 +50,33 @@ export default function CodegenDemo() {
       content: {
         "application/json": {
           schema: {
-            type: "object" as const as DataType,
+            type: "object" as const as OpenAPIV3.NonArraySchemaObjectType | OpenAPIV3.ArraySchemaObjectType,
             required: ["email", "name"],
             properties: {
               email: {
-                type: "string" as const as DataType,
+                type: "string" as const as OpenAPIV3.NonArraySchemaObjectType | OpenAPIV3.ArraySchemaObjectType,
                 format: "email" as const as FormatType
               },
               name: {
-                type: "string" as const as DataType,
+                type: "string" as const as OpenAPIV3.NonArraySchemaObjectType | OpenAPIV3.ArraySchemaObjectType,
                 minLength: 1,
                 maxLength: 100
               },
               age: {
-                type: "integer" as const as DataType,
+                type: "integer" as const as OpenAPIV3.NonArraySchemaObjectType | OpenAPIV3.ArraySchemaObjectType,
                 minimum: 0,
                 maximum: 150
               },
               preferences: {
-                type: "object" as const as DataType,
+                type: "object" as const as OpenAPIV3.NonArraySchemaObjectType | OpenAPIV3.ArraySchemaObjectType,
                 properties: {
                   theme: {
-                    type: "string" as const as DataType,
+                    type: "string" as const as OpenAPIV3.NonArraySchemaObjectType | OpenAPIV3.ArraySchemaObjectType,
                     enum: ["light", "dark"],
                     default: "light"
                   },
                   notifications: {
-                    type: "boolean" as const as DataType,
+                    type: "boolean" as const as OpenAPIV3.NonArraySchemaObjectType | OpenAPIV3.ArraySchemaObjectType,
                     default: true
                   }
                 }
@@ -96,13 +96,13 @@ export default function CodegenDemo() {
         name: "userId",
         in: "path" as const,
         required: true,
-        schema: { type: "string" as const as DataType, format: "uuid" as const as FormatType }
+        schema: { type: "string" as const as OpenAPIV3.NonArraySchemaObjectType | OpenAPIV3.ArraySchemaObjectType, format: "uuid" as const as FormatType }
       },
       {
         name: "X-API-Key",
         in: "header" as const,
         required: true,
-        schema: { type: "string" as const as DataType }
+        schema: { type: "string" as const as OpenAPIV3.NonArraySchemaObjectType | OpenAPIV3.ArraySchemaObjectType }
       }
     ],
     requestBody: {
@@ -110,12 +110,12 @@ export default function CodegenDemo() {
       content: {
         "application/json": {
           schema: {
-            type: "object" as const as DataType,
+            type: "object" as const as OpenAPIV3.NonArraySchemaObjectType | OpenAPIV3.ArraySchemaObjectType,
             properties: {
-              name: { type: "string" as const as DataType },
-              age: { type: "integer" as const as DataType, minimum: 0 },
+              name: { type: "string" as const as OpenAPIV3.NonArraySchemaObjectType | OpenAPIV3.ArraySchemaObjectType },
+              age: { type: "integer" as const as OpenAPIV3.NonArraySchemaObjectType | OpenAPIV3.ArraySchemaObjectType, minimum: 0 },
               status: {
-                type: "string" as const as DataType,
+                type: "string" as const as OpenAPIV3.NonArraySchemaObjectType | OpenAPIV3.ArraySchemaObjectType,
                 enum: ["active", "inactive", "pending"]
               }
             }

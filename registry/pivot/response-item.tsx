@@ -2,7 +2,8 @@
 
 import { useI18n } from "@/lib/i18n";
 import { cn } from '@/lib/utils';
-import type { ComponentsObject, HeaderObject, LinkObject, MediaTypeObject, ReferenceObject, ResponseObject } from '@/types/openapi';
+import type { OpenAPIV3 } from 'openapi-types';
+
 import React from 'react';
 import { resolveRef } from '../lib/resolve-ref';
 import { DescriptionDisplay } from './description-display';
@@ -13,8 +14,8 @@ import { StatusCode } from './status-code';
 // 修改接口，接受原始响应对象或引用
 interface ResponseItemProps {
   code: string; // 状态码
-  response: ResponseObject | ReferenceObject; // 可能是引用或已解析的响应对象
-  components?: ComponentsObject; // 用于解析引用
+  response: OpenAPIV3.ResponseObject | OpenAPIV3.ReferenceObject; // 可能是引用或已解析的响应对象
+  components?: OpenAPIV3.ComponentsObject; // 用于解析引用
   className?: string;
 }
 
@@ -153,12 +154,6 @@ ResponseItem.displayName = "ResponseItem";
 
 export {
   ResponseItem,
-  type ComponentsObject,
-  type HeaderObject,
-  type LinkObject,
-  type MediaTypeObject,
-  type ReferenceObject,
-  type ResponseItemProps,
-  type ResponseObject
+  type ResponseItemProps
 };
 

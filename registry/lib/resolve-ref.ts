@@ -1,4 +1,4 @@
-import { ComponentsObject, ReferenceObject } from "@/types/openapi";
+import type { OpenAPIV3 } from 'openapi-types';
 
 /**
  * 解析OpenAPI中的引用对象
@@ -8,15 +8,15 @@ import { ComponentsObject, ReferenceObject } from "@/types/openapi";
  * @returns 解析后的对象或原始对象
  */
 export function resolveRef<T>(
-  obj: T | ReferenceObject | undefined,
-  components?: ComponentsObject,
+  obj: T | OpenAPIV3.ReferenceObject | undefined,
+  components?: OpenAPIV3.ComponentsObject,
   category?: string,
 ): T | null {
   if (!obj) return null;
 
   // 检查是否是引用对象
   if (typeof obj === "object" && obj !== null && "$ref" in obj) {
-    const refObj = obj as ReferenceObject;
+    const refObj = obj as OpenAPIV3.ReferenceObject;
     const refPath = refObj.$ref;
 
     // 处理标准格式的引用 #/components/{category}/{name}
@@ -38,7 +38,7 @@ export function resolveRef<T>(
 
       // 根据类别获取组件集合
       const componentCollection =
-        components[refCategory as keyof ComponentsObject];
+        components[refCategory as keyof OpenAPIV3.ComponentsObject];
 
       if (componentCollection && typeof componentCollection === "object") {
         // 解析引用对象
@@ -52,7 +52,7 @@ export function resolveRef<T>(
             "$ref" in resolved
           ) {
             return resolveRef<T>(
-              resolved as ReferenceObject,
+              resolved as OpenAPIV3.ReferenceObject,
               components,
               category,
             );

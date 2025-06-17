@@ -1,28 +1,14 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { ComponentsObject, HttpMethod, ParameterObject, ReferenceObject, RequestBodyObject } from '@/types/openapi';
+import type { CodeGenerator, CodeGeneratorParams } from "@/types/project";
+import type { OpenAPIV3 } from 'openapi-types';
+
 import { Braces, ChevronDown, Code2, Terminal } from 'lucide-react';
 import React, { useState } from 'react';
 import { generateExample } from '../lib/generate-example';
 import { resolveRef } from '../lib/resolve-ref';
 import { CodeMarkdown } from './code-markdown';
-
-// Type definitions
-export interface CodeGeneratorParams {
-  endpoint: string;
-  method: HttpMethod;
-  parameters: ParameterObject[];
-  requestBody?: RequestBodyObject;
-  requestBodyExample: any;
-}
-
-export interface CodeGenerator {
-  id: string;
-  label: string;
-  getIcon(): React.ReactNode;
-  generateCode(params: CodeGeneratorParams): string;
-}
 
 // Code Generators
 class CurlGenerator implements CodeGenerator {
@@ -215,10 +201,10 @@ const codeGenerators: CodeGenerator[] = [
 
 interface CodegenProps {
   endpoint: string;
-  method: HttpMethod;
-  parameters?: (ParameterObject | ReferenceObject)[];
-  requestBody?: RequestBodyObject | ReferenceObject;
-  components?: ComponentsObject;
+  method: OpenAPIV3.HttpMethods;
+  parameters?: (OpenAPIV3.ParameterObject | OpenAPIV3.ReferenceObject)[];
+  requestBody?: OpenAPIV3.RequestBodyObject | OpenAPIV3.ReferenceObject;
+  components?: OpenAPIV3.ComponentsObject;
   collapsible?: boolean;
   defaultCollapsed?: boolean;
 }
@@ -267,7 +253,7 @@ const Codegen: React.FC<CodegenProps> = ({
   // 解析参数
   const resolvedParameters = parameters.map(param =>
     resolveRef(param, components, 'parameters')
-  ).filter(Boolean) as ParameterObject[];
+  ).filter(Boolean) as OpenAPIV3.ParameterObject[];
 
   // 生成请求体示例数据
   const getRequestBodyExample = () => {
