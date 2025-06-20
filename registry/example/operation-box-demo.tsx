@@ -14,7 +14,7 @@ export default function OperationBoxDemo() {
         required: true,
         description: "用户的唯一标识符",
         schema: {
-          type: "string" as const as OpenAPIV3.NonArraySchemaObjectType | OpenAPIV3.ArraySchemaObjectType,
+          type: "string",
           format: "uuid" as const,
           example: "123e4567-e89b-12d3-a456-426614174000"
         }
@@ -25,9 +25,9 @@ export default function OperationBoxDemo() {
         required: false,
         description: "指定要包含的额外信息",
         schema: {
-          type: "array" as const as OpenAPIV3.NonArraySchemaObjectType | OpenAPIV3.ArraySchemaObjectType,
+          type: "array",
           items: {
-            type: "string" as const as OpenAPIV3.NonArraySchemaObjectType | OpenAPIV3.ArraySchemaObjectType,
+            type: "string",
             enum: ["profile", "permissions", "preferences"]
           },
           example: ["profile", "permissions"]
@@ -40,17 +40,17 @@ export default function OperationBoxDemo() {
         content: {
           "application/json": {
             schema: {
-              type: "object" as const as OpenAPIV3.NonArraySchemaObjectType | OpenAPIV3.ArraySchemaObjectType,
+              type: "object",
               properties: {
-                id: { type: "string" as const as OpenAPIV3.NonArraySchemaObjectType | OpenAPIV3.ArraySchemaObjectType, format: "uuid" as const },
-                username: { type: "string" as const as OpenAPIV3.NonArraySchemaObjectType | OpenAPIV3.ArraySchemaObjectType },
-                email: { type: "string" as const as OpenAPIV3.NonArraySchemaObjectType | OpenAPIV3.ArraySchemaObjectType, format: "email" as const },
+                id: { type: "string", format: "uuid" as const },
+                username: { type: "string" },
+                email: { type: "string", format: "email" as const },
                 profile: {
-                  type: "object" as const as OpenAPIV3.NonArraySchemaObjectType | OpenAPIV3.ArraySchemaObjectType,
+                  type: "object",
                   properties: {
-                    firstName: { type: "string" as const as OpenAPIV3.NonArraySchemaObjectType | OpenAPIV3.ArraySchemaObjectType },
-                    lastName: { type: "string" as const as OpenAPIV3.NonArraySchemaObjectType | OpenAPIV3.ArraySchemaObjectType },
-                    avatar: { type: "string" as const as OpenAPIV3.NonArraySchemaObjectType | OpenAPIV3.ArraySchemaObjectType, format: "uri" as const }
+                    firstName: { type: "string" },
+                    lastName: { type: "string" },
+                    avatar: { type: "string", format: "uri" as const }
                   }
                 }
               }
@@ -73,10 +73,10 @@ export default function OperationBoxDemo() {
         content: {
           "application/json": {
             schema: {
-              type: "object" as const as OpenAPIV3.NonArraySchemaObjectType | OpenAPIV3.ArraySchemaObjectType,
+              type: "object",
               properties: {
-                error: { type: "string" as const as OpenAPIV3.NonArraySchemaObjectType | OpenAPIV3.ArraySchemaObjectType },
-                message: { type: "string" as const as OpenAPIV3.NonArraySchemaObjectType | OpenAPIV3.ArraySchemaObjectType }
+                error: { type: "string" },
+                message: { type: "string" }
               }
             },
             example: {
@@ -107,29 +107,29 @@ export default function OperationBoxDemo() {
       content: {
         "application/json": {
           schema: {
-            type: "object" as const as OpenAPIV3.NonArraySchemaObjectType | OpenAPIV3.ArraySchemaObjectType,
+            type: "object",
             required: ["username", "email", "password"],
             properties: {
               username: {
-                type: "string" as const as OpenAPIV3.NonArraySchemaObjectType | OpenAPIV3.ArraySchemaObjectType,
+                type: "string",
                 minLength: 3,
                 maxLength: 50,
                 pattern: "^[a-zA-Z0-9_]+$"
               },
               email: {
-                type: "string" as const as OpenAPIV3.NonArraySchemaObjectType | OpenAPIV3.ArraySchemaObjectType,
+                type: "string",
                 format: "email" as const
               },
               password: {
-                type: "string" as const as OpenAPIV3.NonArraySchemaObjectType | OpenAPIV3.ArraySchemaObjectType,
+                type: "string",
                 minLength: 8,
                 description: "密码必须至少包含 8 个字符"
               },
               profile: {
-                type: "object" as const as OpenAPIV3.NonArraySchemaObjectType | OpenAPIV3.ArraySchemaObjectType,
+                type: "object",
                 properties: {
-                  firstName: { type: "string" as const as OpenAPIV3.NonArraySchemaObjectType | OpenAPIV3.ArraySchemaObjectType },
-                  lastName: { type: "string" as const as OpenAPIV3.NonArraySchemaObjectType | OpenAPIV3.ArraySchemaObjectType }
+                  firstName: { type: "string" },
+                  lastName: { type: "string" }
                 }
               }
             }
@@ -152,12 +152,12 @@ export default function OperationBoxDemo() {
         content: {
           "application/json": {
             schema: {
-              type: "object" as const as OpenAPIV3.NonArraySchemaObjectType | OpenAPIV3.ArraySchemaObjectType,
+              type: "object",
               properties: {
-                id: { type: "string" as const as OpenAPIV3.NonArraySchemaObjectType | OpenAPIV3.ArraySchemaObjectType, format: "uuid" as const },
-                username: { type: "string" as const as OpenAPIV3.NonArraySchemaObjectType | OpenAPIV3.ArraySchemaObjectType },
-                email: { type: "string" as const as OpenAPIV3.NonArraySchemaObjectType | OpenAPIV3.ArraySchemaObjectType },
-                createdAt: { type: "string" as const as OpenAPIV3.NonArraySchemaObjectType | OpenAPIV3.ArraySchemaObjectType, format: "date-time" as const }
+                id: { type: "string", format: "uuid" as const },
+                username: { type: "string" },
+                email: { type: "string" },
+                createdAt: { type: "string", format: "date-time" as const }
               }
             }
           }
@@ -168,12 +168,12 @@ export default function OperationBoxDemo() {
         content: {
           "application/json": {
             schema: {
-              type: "object" as const as OpenAPIV3.NonArraySchemaObjectType | OpenAPIV3.ArraySchemaObjectType,
+              type: "object",
               properties: {
-                error: { type: "string" as const as OpenAPIV3.NonArraySchemaObjectType | OpenAPIV3.ArraySchemaObjectType },
+                error: { type: "string" },
                 details: {
-                  type: "array" as const as OpenAPIV3.NonArraySchemaObjectType | OpenAPIV3.ArraySchemaObjectType,
-                  items: { type: "string" as const as OpenAPIV3.NonArraySchemaObjectType | OpenAPIV3.ArraySchemaObjectType }
+                  type: "array",
+                  items: { type: "string" }
                 }
               }
             }
@@ -199,7 +199,7 @@ export default function OperationBoxDemo() {
       {
         name: "limit",
         in: "query" as ParameterLocation,
-        schema: { type: "integer" as const as OpenAPIV3.NonArraySchemaObjectType | OpenAPIV3.ArraySchemaObjectType, maximum: 100 }
+        schema: { type: "integer", maximum: 100 }
       }
     ],
     responses: {
@@ -208,12 +208,12 @@ export default function OperationBoxDemo() {
         content: {
           "application/json": {
             schema: {
-              type: "array" as const as OpenAPIV3.NonArraySchemaObjectType | OpenAPIV3.ArraySchemaObjectType,
+              type: "array",
               items: {
-                type: "object" as const as OpenAPIV3.NonArraySchemaObjectType | OpenAPIV3.ArraySchemaObjectType,
+                type: "object",
                 properties: {
-                  id: { type: "string" as const as OpenAPIV3.NonArraySchemaObjectType | OpenAPIV3.ArraySchemaObjectType },
-                  username: { type: "string" as const as OpenAPIV3.NonArraySchemaObjectType | OpenAPIV3.ArraySchemaObjectType }
+                  id: { type: "string" },
+                  username: { type: "string" }
                 }
               }
             }

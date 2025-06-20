@@ -84,9 +84,9 @@ export default function ComponentsSectionDemo() {
     },
     securitySchemes: {
       "BearerAuth": {
-        type: "http",
-        scheme: "bearer",
-        bearerFormat: "JWT"
+        type: "http" as const,
+        scheme: "bearer" as const,
+        bearerFormat: "JWT" as const
       }
     }
   };
@@ -224,7 +224,7 @@ export default function ComponentsSectionDemo() {
     },
     securitySchemes: {
       "PaymentAuth": {
-        type: "oauth2",
+        type: "oauth2" as const,
         flows: {
           authorizationCode: {
             authorizationUrl: "https://payment.example.com/oauth/authorize",

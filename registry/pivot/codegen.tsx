@@ -1,14 +1,14 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import type { CodeGenerator, CodeGeneratorParams } from "@/types/project";
+import type { CodeGenerator, CodeGeneratorParams, HttpMethod } from "@/types/project";
 import type { OpenAPIV3 } from 'openapi-types';
 
-import { Braces, ChevronDown, Code2, Terminal } from 'lucide-react';
-import React, { useState } from 'react';
 import { generateExample } from '@/registry/lib/utils/generate-example';
 import { resolveRef } from '@/registry/lib/utils/resolve-ref';
 import { CodeMarkdown } from '@/registry/pivot/code-markdown';
+import { Braces, ChevronDown, Code2, Terminal } from 'lucide-react';
+import React, { useState } from 'react';
 
 // Code Generators
 class CurlGenerator implements CodeGenerator {
@@ -201,7 +201,7 @@ const codeGenerators: CodeGenerator[] = [
 
 interface CodegenProps {
   endpoint: string;
-  method: OpenAPIV3.HttpMethods;
+  method: "get" | "post" | "put" | "delete" | "patch" | "head" | "options" | "trace";
   parameters?: (OpenAPIV3.ParameterObject | OpenAPIV3.ReferenceObject)[];
   requestBody?: OpenAPIV3.RequestBodyObject | OpenAPIV3.ReferenceObject;
   components?: OpenAPIV3.ComponentsObject;
@@ -286,7 +286,7 @@ const Codegen: React.FC<CodegenProps> = ({
 
     return generator.generateCode({
       endpoint,
-      method,
+      method: method.toUpperCase() as HttpMethod,
       parameters: resolvedParameters,
       requestBody: resolvedRequestBody || undefined,
       requestBodyExample

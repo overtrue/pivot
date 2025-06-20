@@ -48,7 +48,7 @@ export default function NavigationSidebarDemo() {
               name: "id",
               in: "path" as ParameterLocation,
               required: true,
-              schema: { type: "string" as const as OpenAPIV3.NonArraySchemaObjectType | OpenAPIV3.ArraySchemaObjectType }
+              schema: { type: "string" }
             }
           ],
           responses: {
@@ -118,19 +118,19 @@ export default function NavigationSidebarDemo() {
     components: {
       schemas: {
         User: {
-          type: "object" as const as OpenAPIV3.NonArraySchemaObjectType | OpenAPIV3.ArraySchemaObjectType,
+          type: "object",
           properties: {
-            id: { type: "string" as const as OpenAPIV3.NonArraySchemaObjectType | OpenAPIV3.ArraySchemaObjectType },
-            name: { type: "string" as const as OpenAPIV3.NonArraySchemaObjectType | OpenAPIV3.ArraySchemaObjectType },
-            email: { type: "string" as const as OpenAPIV3.NonArraySchemaObjectType | OpenAPIV3.ArraySchemaObjectType }
+            id: { type: "string" },
+            name: { type: "string" },
+            email: { type: "string" }
           }
         },
         Order: {
-          type: "object" as const as OpenAPIV3.NonArraySchemaObjectType | OpenAPIV3.ArraySchemaObjectType,
+          type: "object",
           properties: {
-            id: { type: "string" as const as OpenAPIV3.NonArraySchemaObjectType | OpenAPIV3.ArraySchemaObjectType },
-            userId: { type: "string" as const as OpenAPIV3.NonArraySchemaObjectType | OpenAPIV3.ArraySchemaObjectType },
-            amount: { type: "number" as const as OpenAPIV3.NonArraySchemaObjectType | OpenAPIV3.ArraySchemaObjectType }
+            id: { type: "string" },
+            userId: { type: "string" },
+            amount: { type: "number" }
           }
         }
       }

@@ -68,6 +68,7 @@ function getItems(node: UnistNode, current: Partial<Item>): Items {
 }
 
 const getToc = () => (node: UnistNode, file: { data?: unknown }) => {
+  // @ts-expect-error - toc function expects mdast Node type, but we use UnistNode for simplicity
   const table = toc(node);
   file.data = getItems(table.map as UnistNode, {});
 };

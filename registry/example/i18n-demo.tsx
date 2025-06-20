@@ -111,6 +111,23 @@ const ComponentWithProvider = () => {
                     }
                   }
                 }
+              },
+              responses: {
+                "201": {
+                  description: "User created successfully",
+                  content: {
+                    "application/json": {
+                      schema: {
+                        type: "object" as const,
+                        properties: {
+                          id: { type: "string" as const },
+                          name: { type: "string" as const },
+                          email: { type: "string" as const }
+                        }
+                      }
+                    }
+                  }
+                }
               }
             }}
             collapsible={true}
