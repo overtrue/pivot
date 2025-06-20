@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "parameter-name-demo",
+  "type": "registry:example",
+  "registryDependencies": [
+    "https://pivotkit.vercel.app/r/parameter-name"
+  ],
+  "files": [
+    {
+      "path": "registry/example/parameter-name-demo.tsx",
+      "content": "import { ParameterName } from \"@/registry/pivot/parameter-name\";\n\nexport default function ParameterNameDemo() {\n  return (\n    <div className=\"space-y-2 min-w-md\">\n      <ParameterName name=\"userId\" />\n      <ParameterName name=\"email\" />\n      <ParameterName name=\"oldField\" deprecated={true} />\n      <ParameterName name=\"apiKey\" />\n    </div>\n  );\n}\n",
+      "type": "registry:example",
+      "target": "components/example/parameter-name-demo.tsx"
+    }
+  ]
+}

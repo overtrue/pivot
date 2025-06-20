@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "response-item-demo",
+  "type": "registry:example",
+  "registryDependencies": [
+    "https://pivotkit.vercel.app/r/response-item"
+  ],
+  "files": [
+    {
+      "path": "registry/example/response-item-demo.tsx",
+      "content": "import { ResponseItem } from \"@/registry/pivot/response-item\";\n\nexport default function ResponseItemDemo() {\n  const successResponse = {\n    description: \"Successful response\",\n    headers: {\n      \"X-Rate-Limit\": {\n        description: \"Number of requests allowed per hour\",\n        schema: { type: \"integer\" as const }\n      },\n      \"X-Request-ID\": {\n        description: \"Unique identifier for the request\",\n        schema: { type: \"string\" as const, format: \"uuid\" as const }\n      }\n    },\n    content: {\n      \"application/json\": {\n        schema: {\n          type: \"object\" as const,\n          properties: {\n            id: { type: \"integer\" as const },\n            name: { type: \"string\" as const },\n            email: { type: \"string\" as const, format: \"email\" as const }\n          }\n        }\n      }\n    },\n    links: {\n      \"GetUserByUserId\": {\n        operationId: \"getUser\",\n        parameters: {\n          userId: \"$response.body#/id\"\n        },\n        description: \"Get user details using the returned user ID\"\n      }\n    }\n  };\n\n  const errorResponse = {\n    description: \"Error response\",\n    content: {\n      \"application/json\": {\n        schema: {\n          type: \"object\" as const,\n          properties: {\n            error: { type: \"string\" as const },\n            message: { type: \"string\" as const }\n          }\n        }\n      }\n    }\n  };\n\n  const simpleResponse = {\n    description: \"Simple response without additional details\"\n  };\n\n  return (\n    <div className=\"space-y-4 min-w-md\">\n      <div>\n        <h4 className=\"text-sm font-medium mb-2\">Success Response (200)</h4>\n        <ResponseItem code=\"200\" response={successResponse as any} />\n      </div>\n\n      <div>\n        <h4 className=\"text-sm font-medium mb-2\">Error Response (400)</h4>\n        <ResponseItem code=\"400\" response={errorResponse as any} />\n      </div>\n\n      <div>\n        <h4 className=\"text-sm font-medium mb-2\">Simple Response (204)</h4>\n        <ResponseItem code=\"204\" response={simpleResponse as any} />\n      </div>\n    </div>\n  );\n}\n",
+      "type": "registry:example",
+      "target": "components/example/response-item-demo.tsx"
+    }
+  ]
+}

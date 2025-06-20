@@ -3,16 +3,16 @@
 import { cn } from "@/lib/utils";
 import type { OpenAPIV3 } from 'openapi-types';
 import React, { useState } from "react";
-import { resolveRef } from "../lib/resolve-ref";
-import { ConstraintDisplay } from "../pivot/constraint-display";
-import { DefaultValueDisplay } from "../pivot/default-value-display";
-import { DeprecatedBadge } from "../pivot/deprecated-badge";
-import { DescriptionDisplay } from "../pivot/description-display";
-import { EnumValuesDisplay } from "../pivot/enum-values-display";
-import { FormatBadge } from "../pivot/format-badge";
-import { RequiredBadge } from "../pivot/required-badge";
-import { TypeIndicator } from "../pivot/type-indicator";
-import { SchemaCompositionDisplay } from "./schema-composition-display";
+import { resolveRef } from "@/registry/lib/utils/resolve-ref";
+import { ConstraintDisplay } from "@/registry/pivot/constraint-display";
+import { DefaultValueDisplay } from "@/registry/pivot/default-value-display";
+import { DeprecatedBadge } from "@/registry/pivot/deprecated-badge";
+import { DescriptionDisplay } from "@/registry/pivot/description-display";
+import { EnumValuesDisplay } from "@/registry/pivot/enum-values-display";
+import { FormatBadge } from "@/registry/pivot/format-badge";
+import { RequiredBadge } from "@/registry/pivot/required-badge";
+import { TypeIndicator } from "@/registry/pivot/type-indicator";
+import { SchemaCompositionDisplay } from "@/registry/pivot/schema-composition-display";
 
 // Import types from the centralized types file
 

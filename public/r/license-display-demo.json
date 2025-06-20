@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "license-display-demo",
+  "type": "registry:example",
+  "registryDependencies": [
+    "https://pivotkit.vercel.app/r/license-display"
+  ],
+  "files": [
+    {
+      "path": "registry/example/license-display-demo.tsx",
+      "content": "import { LicenseDisplay } from \"@/registry/pivot/license-display\";\n\nexport default function LicenseDisplayDemo() {\n  const mitLicense = {\n    name: \"MIT License\",\n    identifier: \"MIT\",\n    url: \"https://opensource.org/licenses/MIT\"\n  };\n\n  const apacheLicense = {\n    name: \"Apache License 2.0\",\n    identifier: \"Apache-2.0\",\n    url: \"https://www.apache.org/licenses/LICENSE-2.0\"\n  };\n\n  const customLicense = {\n    name: \"Custom License\",\n    url: \"https://example.com/license\"\n  };\n\n  const simpleLicense = {\n    name: \"Proprietary License\"\n  };\n\n  return (\n    <div className=\"space-y-4 min-w-md\">\n      <div>\n        <h4 className=\"text-sm font-medium mb-2\">MIT License</h4>\n        <LicenseDisplay license={mitLicense} />\n      </div>\n\n      <div>\n        <h4 className=\"text-sm font-medium mb-2\">Apache License</h4>\n        <LicenseDisplay license={apacheLicense} />\n      </div>\n\n      <div>\n        <h4 className=\"text-sm font-medium mb-2\">Custom License</h4>\n        <LicenseDisplay license={customLicense} />\n      </div>\n\n      <div>\n        <h4 className=\"text-sm font-medium mb-2\">Simple License</h4>\n        <LicenseDisplay license={simpleLicense} />\n      </div>\n    </div>\n  );\n}\n",
+      "type": "registry:example",
+      "target": "components/example/license-display-demo.tsx"
+    }
+  ]
+}

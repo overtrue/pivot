@@ -1,8 +1,8 @@
-import type { OpenAPIV3 } from 'openapi-types';
 import { cn } from "@/lib/utils";
+import type { OpenAPIV3 } from 'openapi-types';
 import React from "react";
-import { resolveRef } from "../lib/resolve-ref";
-import { OperationBox } from "./operation-box";
+import { resolveRef } from "@/registry/lib/utils/resolve-ref";
+import { OperationBox } from "@/registry/pivot/operation-box";
 
 // Import types from the centralized types file
 

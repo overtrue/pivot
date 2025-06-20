@@ -40,3 +40,4 @@ yarn-error.log*
 *storybook.log
 .content-collections
 .content-collections
+example-app

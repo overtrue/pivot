@@ -1,9 +1,9 @@
-import type { OpenAPIV3 } from 'openapi-types';
 import { cn } from "@/lib/utils";
+import type { OpenAPIV3 } from 'openapi-types';
 import React from "react";
-import { resolveRef } from "../lib/resolve-ref";
-import { SectionTitle } from "../pivot/section-title";
-import { SecuritySchemeDisplay } from "./security-scheme-display";
+import { resolveRef } from "@/registry/lib/utils/resolve-ref";
+import { SectionTitle } from "@/registry/pivot/section-title";
+import { SecuritySchemeDisplay } from "@/registry/pivot/security-scheme-display";
 
 // Import types from the centralized types file
 

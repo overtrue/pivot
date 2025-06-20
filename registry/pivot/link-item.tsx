@@ -4,9 +4,9 @@ import { useI18n } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
 import type { OpenAPIV3 } from 'openapi-types';
 import React, { useState } from "react";
-import { DescriptionDisplay } from "../pivot/description-display";
-import { ServerDisplay } from "../pivot/server-display";
-import { ExpandCollapse } from "./expand-collapse";
+import { DescriptionDisplay } from "@/registry/pivot/description-display";
+import { ServerDisplay } from "@/registry/pivot/server-display";
+import { ExpandCollapse } from "@/registry/pivot/expand-collapse";
 
 interface LinkItemProps {
   name: string;

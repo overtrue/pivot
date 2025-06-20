@@ -3,11 +3,11 @@
 import { useI18n } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
 import React from "react";
-import { SectionTitle } from "./section-title";
+import { SectionTitle } from "@/registry/pivot/section-title";
 import {
   SecurityRequirementItem,
   type SecurityRequirementObject,
-} from "./security-requirement-item";
+} from "@/registry/pivot/security-requirement-item";
 
 interface SecurityRequirementsSectionProps {
   security?: SecurityRequirementObject[];

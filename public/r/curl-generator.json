@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "curl-generator",
+  "type": "registry:ui",
+  "dependencies": [
+    "lucide-react",
+    "react"
+  ],
+  "files": [
+    {
+      "path": "registry/pivot/curl-generator.tsx",
+      "content": "import type { CodeGenerator, CodeGeneratorParams } from \"@/types/project\";\nimport { Terminal } from \"lucide-react\";\nimport React from \"react\";\n\n// CurlGenerator implementation\nexport class CurlGeneratorClass implements CodeGenerator {\n  id = \"curl\";\n  label = \"cURL\";\n\n  getIcon() {\n    return <Terminal size={16} />;\n  }\n\n  generateCode(params: CodeGeneratorParams): string {\n    const { endpoint, method, parameters, requestBodyExample, requestBody } =\n      params;\n    let code = `curl -X ${method} \"${endpoint}\"`;\n\n    // 添加请求头\n    code += '\\n  -H \"Content-Type: application/json\"';\n\n    // 添加查询参数\n    const queryParams = parameters.filter((p) => p.in === \"query\");\n    if (queryParams.length > 0) {\n      const queryString = queryParams.map((p) => `${p.name}=value`).join(\"&\");\n      code += `?${queryString}`;\n    }\n\n    // 添加请求体\n    if ([\"POST\", \"PUT\", \"PATCH\"].includes(method) && requestBody) {\n      code += `\\n  -d '${JSON.stringify(requestBodyExample, null, 2)}'`;\n    }\n\n    return code;\n  }\n}\n\n// React component wrapper\ninterface CurlGeneratorProps {\n  params: CodeGeneratorParams;\n  className?: string;\n}\n\nconst CurlGeneratorComponent = React.forwardRef<HTMLDivElement, CurlGeneratorProps>(\n  ({ params, className }, ref) => {\n    const generator = new CurlGeneratorClass();\n    const code = generator.generateCode(params);\n\n    return (\n      <div ref={ref} className={className}>\n        <div className=\"flex items-center gap-2 mb-2\">\n          {generator.getIcon()}\n          <span className=\"font-medium\">{generator.label}</span>\n        </div>\n        <pre className=\"bg-neutral-100 dark:bg-neutral-800 p-4 rounded-md overflow-x-auto\">\n          <code className=\"text-sm\">{code}</code>\n        </pre>\n      </div>\n    );\n  },\n);\n\nCurlGeneratorComponent.displayName = \"CurlGenerator\";\n\nexport {\n  CurlGeneratorComponent as CurlGenerator,\n  type CurlGeneratorProps\n};\n\n",
+      "type": "registry:component",
+      "target": "components/pivot/curl-generator.tsx"
+    }
+  ]
+}

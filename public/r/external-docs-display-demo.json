@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "external-docs-display-demo",
+  "type": "registry:example",
+  "registryDependencies": [
+    "https://pivotkit.vercel.app/r/external-docs-display"
+  ],
+  "files": [
+    {
+      "path": "registry/example/external-docs-display-demo.tsx",
+      "content": "import { ExternalDocsDisplay } from \"@/registry/pivot/external-docs-display\";\n\nexport default function ExternalDocsDisplayDemo() {\n  const externalDocs = {\n    description: \"API 完整文档\",\n    url: \"https://docs.example.com/api\"\n  };\n\n  const externalDocsWithoutDescription = {\n    url: \"https://github.com/example/api\"\n  };\n\n  return (\n    <div className=\"space-y-4 min-w-md\">\n      <div>\n        <h4 className=\"text-sm font-medium mb-2\">带描述的外部文档</h4>\n        <ExternalDocsDisplay externalDocs={externalDocs} />\n      </div>\n\n      <div>\n        <h4 className=\"text-sm font-medium mb-2\">仅链接的外部文档</h4>\n        <ExternalDocsDisplay externalDocs={externalDocsWithoutDescription} />\n      </div>\n    </div>\n  );\n}\n",
+      "type": "registry:example",
+      "target": "components/example/external-docs-display-demo.tsx"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "curl-generator-demo",
+  "type": "registry:example",
+  "registryDependencies": [
+    "https://pivotkit.vercel.app/r/curl-generator"
+  ],
+  "files": [
+    {
+      "path": "registry/example/curl-generator-demo.tsx",
+      "content": "import { CurlGenerator } from \"@/registry/pivot/curl-generator\";\n\nexport default function CurlGeneratorDemo() {\n  const params = {\n    endpoint: \"https://api.example.com/users\",\n    method: \"POST\" as const,\n    parameters: [\n      {\n        name: \"page\",\n        in: \"query\" as const,\n        required: false,\n        schema: { type: \"integer\" as const }\n      },\n      {\n        name: \"Authorization\",\n        in: \"header\" as const,\n        required: true,\n        schema: { type: \"string\" as const }\n      }\n    ],\n    requestBody: {\n      content: {\n        \"application/json\": {\n          schema: {\n            type: \"object\" as const,\n            properties: {\n              name: { type: \"string\" as const },\n              email: { type: \"string\" as const }\n            }\n          }\n        }\n      },\n      required: true\n    },\n    requestBodyExample: {\n      name: \"张三\",\n      email: \"zhangsan@example.com\"\n    }\n  };\n\n  return (\n    <div className=\"space-y-4 min-w-md\">\n      <CurlGenerator params={params} />\n    </div>\n  );\n}\n",
+      "type": "registry:example",
+      "target": "components/example/curl-generator-demo.tsx"
+    }
+  ]
+}

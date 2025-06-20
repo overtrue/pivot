@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "required-marker",
+  "type": "registry:ui",
+  "dependencies": [
+    "react"
+  ],
+  "files": [
+    {
+      "path": "registry/pivot/required-marker.tsx",
+      "content": "import { cn } from \"@/lib/utils\";\nimport React from \"react\";\n\ninterface RequiredMarkerProps {\n  className?: string;\n}\n\nconst RequiredMarker = React.forwardRef<HTMLSpanElement, RequiredMarkerProps>(\n  ({ className }, ref) => {\n    return (\n      <span\n        ref={ref}\n        className={cn(\"text-red-600 dark:text-red-400 font-bold\", className)}\n        title=\"Required\"\n      >\n        *\n      </span>\n    );\n  }\n);\n\nRequiredMarker.displayName = \"RequiredMarker\";\n\nexport { RequiredMarker };\n",
+      "type": "registry:component",
+      "target": "components/pivot/required-marker.tsx"
+    }
+  ]
+}

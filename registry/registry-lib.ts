@@ -1,107 +1,71 @@
-// Define registry types locally
-export interface RegistryItem {
-  name: string;
-  type: string;
-  title?: string;
-  description?: string;
-  dependencies?: string[];
-  registryDependencies?: string[];
-  files?: Array<{
-    path: string;
-    type: string;
-    target?: string;
-  }>;
-  cssVars?: Record<string, any>;
-  meta?: Record<string, any>;
-}
+import { type Registry } from "shadcn/registry";
 
-export type Registry = RegistryItem[];
-
-const lib: Registry = [
+export const lib: Registry["items"] = [
   {
-    name: "utils",
-    type: "registry:lib",
-    title: "Utils",
-    description: "Utility functions for class name merging.",
-    dependencies: ["clsx", "tailwind-merge"],
-    files: [
+    "name": "hooks",
+    "type": "registry:lib",
+    "files": [
       {
-        path: "lib/utils.ts",
-        type: "registry:lib",
-        target: "lib/utils.ts",
+        "path": "registry/lib/hooks/index.ts",
+        "type": "registry:lib"
       },
+      {
+        "path": "registry/lib/hooks/use-openapi.ts",
+        "type": "registry:lib"
+      },
+      {
+        "path": "registry/lib/hooks/use-operation.ts",
+        "type": "registry:lib"
+      },
+      {
+        "path": "registry/lib/hooks/use-schema.ts",
+        "type": "registry:lib"
+      }
     ],
+    "dependencies": [
+      "openapi-types",
+      "react"
+    ],
+    "registryDependencies": [
+      "https://pivotkit.vercel.app/r/use-openapi",
+      "https://pivotkit.vercel.app/r/use-operation",
+      "https://pivotkit.vercel.app/r/use-schema",
+      "https://pivotkit.vercel.app/r/resolve-ref"
+    ]
   },
   {
-    name: "use-openapi",
-    type: "registry:hook",
-    title: "useOpenApi Hook",
-    description: "React hook for processing OpenAPI specifications with utility functions.",
-    dependencies: ["react"],
-    registryDependencies: ["resolve-ref"],
-    files: [
+    "name": "utils",
+    "type": "registry:lib",
+    "files": [
       {
-        path: "registry/lib/use-openapi.ts",
-        type: "registry:hook",
-        target: "hooks/use-openapi.ts",
+        "path": "registry/lib/utils/generate-example.ts",
+        "type": "registry:lib"
       },
-    ],
-  },
-  {
-    name: "use-mounted",
-    type: "registry:hook",
-    title: "useMounted Hook",
-    description: "React hook for checking if component is mounted.",
-    dependencies: ["react"],
-    files: [
       {
-        path: "hooks/use-mounted.ts",
-        type: "registry:hook",
-        target: "hooks/use-mounted.ts",
+        "path": "registry/lib/utils/index.ts",
+        "type": "registry:lib"
       },
-    ],
-  },
-  {
-    name: "use-mobile",
-    type: "registry:hook",
-    title: "useIsMobile Hook",
-    description: "React hook for detecting mobile breakpoint.",
-    dependencies: ["react"],
-    files: [
       {
-        path: "hooks/use-mobile.ts",
-        type: "registry:hook",
-        target: "hooks/use-mobile.ts",
+        "path": "registry/lib/utils/resolve-ref.ts",
+        "type": "registry:lib"
       },
-    ],
-  },
-  {
-    name: "resolve-ref",
-    type: "registry:lib",
-    title: "resolveRef",
-    description: "Utility function for resolving OpenAPI reference objects.",
-    files: [
       {
-        path: "registry/lib/resolve-ref.ts",
-        type: "registry:lib",
-        target: "utils/resolve-ref.ts",
+        "path": "registry/lib/utils/schema-utils.ts",
+        "type": "registry:lib"
       },
-    ],
-  },
-  {
-    name: "generate-example",
-    type: "registry:lib",
-    title: "generateExample",
-    description: "Utility function for generating examples from OpenAPI schemas.",
-    registryDependencies: ["resolve-ref"],
-    files: [
       {
-        path: "registry/lib/generate-example.ts",
-        type: "registry:lib",
-        target: "utils/generate-example.ts",
-      },
+        "path": "registry/lib/utils/type-utils.ts",
+        "type": "registry:lib"
+      }
     ],
-  },
+    "dependencies": [
+      "@faker-js/faker",
+      "openapi-types"
+    ],
+    "registryDependencies": [
+      "https://pivotkit.vercel.app/r/resolve-ref",
+      "https://pivotkit.vercel.app/r/schema-utils",
+      "https://pivotkit.vercel.app/r/type-utils"
+    ]
+  }
 ];
-
-export { lib };

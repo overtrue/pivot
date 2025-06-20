@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "in-label-demo",
+  "type": "registry:example",
+  "registryDependencies": [
+    "https://pivotkit.vercel.app/r/in-label"
+  ],
+  "files": [
+    {
+      "path": "registry/example/in-label-demo.tsx",
+      "content": "import { InLabel } from \"@/registry/pivot/in-label\";\n\nexport default function InLabelDemo() {\n  const parameterLocations = [\n    { type: \"query\", description: \"查询参数\" },\n    { type: \"path\", description: \"路径参数\" },\n    { type: \"header\", description: \"请求头参数\" },\n    { type: \"cookie\", description: \"Cookie 参数\" }\n  ] as const;\n\n  return (\n    <div className=\"space-y-4 min-w-md\">\n      <div>\n        <h4 className=\"text-sm font-medium mb-3\">参数位置标签</h4>\n        <div className=\"space-y-3\">\n          {parameterLocations.map((location) => (\n            <div key={location.type} className=\"flex items-center gap-3\">\n              <InLabel type={location.type} />\n              <span className=\"text-sm text-muted-foreground\">\n                {location.description}\n              </span>\n            </div>\n          ))}\n        </div>\n      </div>\n\n      <div>\n        <h4 className=\"text-sm font-medium mb-3\">在参数列表中使用</h4>\n        <div className=\"space-y-2 p-3 border rounded-lg bg-neutral-50 dark:bg-neutral-900/50\">\n          <div className=\"flex items-center gap-2\">\n            <code className=\"text-sm font-mono\">userId</code>\n            <InLabel type=\"path\" />\n            <span className=\"text-xs text-muted-foreground\">用户ID</span>\n          </div>\n          <div className=\"flex items-center gap-2\">\n            <code className=\"text-sm font-mono\">limit</code>\n            <InLabel type=\"query\" />\n            <span className=\"text-xs text-muted-foreground\">返回数量限制</span>\n          </div>\n          <div className=\"flex items-center gap-2\">\n            <code className=\"text-sm font-mono\">Authorization</code>\n            <InLabel type=\"header\" />\n            <span className=\"text-xs text-muted-foreground\">认证令牌</span>\n          </div>\n          <div className=\"flex items-center gap-2\">\n            <code className=\"text-sm font-mono\">sessionId</code>\n            <InLabel type=\"cookie\" />\n            <span className=\"text-xs text-muted-foreground\">会话标识</span>\n          </div>\n        </div>\n      </div>\n\n      <div>\n        <h4 className=\"text-sm font-medium mb-3\">自定义样式</h4>\n        <div className=\"flex flex-wrap gap-2\">\n          <InLabel\n            type=\"query\"\n            className=\"border border-blue-300\"\n          />\n          <InLabel\n            type=\"path\"\n            className=\"rounded-full\"\n          />\n          <InLabel\n            type=\"header\"\n            className=\"font-bold\"\n          />\n        </div>\n      </div>\n    </div>\n  );\n}\n",
+      "type": "registry:example",
+      "target": "components/example/in-label-demo.tsx"
+    }
+  ]
+}

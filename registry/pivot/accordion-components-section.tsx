@@ -6,7 +6,7 @@ import type { OpenAPIV3 } from 'openapi-types';
 
 import { ChevronDown, ChevronRight } from "lucide-react";
 import React, { useEffect, useMemo, useState } from "react";
-import { ComponentDetail } from "./component-detail";
+import { ComponentDetail } from "@/registry/pivot/component-detail";
 
 interface AccordionComponentsSectionProps {
   components: OpenAPIV3.ComponentsObject;

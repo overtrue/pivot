@@ -1,8 +1,8 @@
 import type { OpenAPIV3 } from 'openapi-types';
 import { cn } from "@/lib/utils";
 import React from "react";
-import { DescriptionDisplay } from "../pivot/description-display";
-import { SchemeType } from "../pivot/scheme-type";
+import { DescriptionDisplay } from "@/registry/pivot/description-display";
+import { SchemeType } from "@/registry/pivot/scheme-type";
 
 // Import types from the centralized types file
 

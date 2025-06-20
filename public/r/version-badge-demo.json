@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "version-badge-demo",
+  "type": "registry:example",
+  "registryDependencies": [
+    "https://pivotkit.vercel.app/r/version-badge"
+  ],
+  "files": [
+    {
+      "path": "registry/example/version-badge-demo.tsx",
+      "content": "import { VersionBadge } from \"@/registry/pivot/version-badge\";\n\nexport default function VersionBadgeDemo() {\n  const versions = [\n    \"1.0.0\",\n    \"2.1.3\",\n    \"3.0.0-beta.1\",\n    \"1.2.3-alpha\",\n    \"4.5.6-rc.2\"\n  ];\n\n  return (\n    <div className=\"space-y-4 min-w-md\">\n      <div>\n        <h4 className=\"text-sm font-medium mb-3\">不同版本号</h4>\n        <div className=\"flex flex-wrap gap-2\">\n          {versions.map((version) => (\n            <VersionBadge key={version} version={version} />\n          ))}\n        </div>\n      </div>\n\n      <div>\n        <h4 className=\"text-sm font-medium mb-3\">自定义样式</h4>\n        <div className=\"flex flex-wrap gap-2\">\n          <VersionBadge\n            version=\"1.0.0\"\n            className=\"bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-400\"\n          />\n          <VersionBadge\n            version=\"2.0.0\"\n            className=\"bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-400\"\n          />\n          <VersionBadge\n            version=\"3.0.0\"\n            className=\"bg-orange-100 text-orange-800 dark:bg-orange-900/30 dark:text-orange-400\"\n          />\n        </div>\n      </div>\n\n      <div>\n        <h4 className=\"text-sm font-medium mb-3\">在文本中使用</h4>\n        <div className=\"space-y-2\">\n          <p className=\"text-sm\">\n            当前 API 版本: <VersionBadge version=\"1.2.3\" />\n          </p>\n          <p className=\"text-sm\">\n            最新稳定版: <VersionBadge version=\"2.0.0\" />\n            <span className=\"ml-2\">测试版: <VersionBadge version=\"2.1.0-beta.1\" /></span>\n          </p>\n        </div>\n      </div>\n    </div>\n  );\n}\n",
+      "type": "registry:example",
+      "target": "components/example/version-badge-demo.tsx"
+    }
+  ]
+}

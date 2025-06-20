@@ -1,7 +1,7 @@
 import type { OpenAPIV3 } from 'openapi-types';
 import { cn } from "@/lib/utils";
 import React from "react";
-import { DescriptionDisplay } from "../pivot/description-display";
+import { DescriptionDisplay } from "@/registry/pivot/description-display";
 
 // Import types from the centralized types file
 

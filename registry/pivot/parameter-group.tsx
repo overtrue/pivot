@@ -2,9 +2,9 @@
 
 import { cn } from "@/lib/utils";
 import React from "react";
-import { RequiredMarker } from "../pivot/required-marker";
-import { TypeIndicator, type DataType } from "../pivot/type-indicator";
-import { ExpandCollapse } from "./expand-collapse";
+import { RequiredMarker } from "@/registry/pivot/required-marker";
+import { TypeIndicator, type DataType } from "@/registry/pivot/type-indicator";
+import { ExpandCollapse } from "@/registry/pivot/expand-collapse";
 
 interface Parameter {
   name: string;

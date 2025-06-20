@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "schema-composition-display",
+  "type": "registry:ui",
+  "dependencies": [
+    "openapi-types",
+    "react"
+  ],
+  "files": [
+    {
+      "path": "registry/pivot/schema-composition-display.tsx",
+      "content": "import type { OpenAPIV3 } from 'openapi-types';\nimport { cn } from \"@/lib/utils\";\n\nimport React from \"react\";\n\ntype SchemaCompositionKeyword = \"allOf\" | \"anyOf\" | \"oneOf\" | \"not\";\n\ninterface SchemaCompositionDisplayProps {\n  keyword: SchemaCompositionKeyword;\n  subschemas: (OpenAPIV3.SchemaObject | OpenAPIV3.ReferenceObject)[];\n  components?: OpenAPIV3.ComponentsObject;\n  currentDepth: number;\n  className?: string;\n}\n\n// 辅助函数：从引用路径中提取引用名称\nconst extractRefName = (ref: string): string | null => {\n  const refMatch = ref.match(/^#\\/components\\/([^/]+)\\/(.+)$/);\n  if (refMatch && refMatch[2]) {\n    return refMatch[2]; // 返回引用名称\n  }\n  return null;\n};\n\nconst SchemaCompositionDisplay = React.forwardRef<\n  HTMLDivElement,\n  SchemaCompositionDisplayProps\n>(({ keyword, subschemas, components, currentDepth, className }, ref) => {\n  if (!subschemas || subschemas.length === 0) {\n    return null;\n  }\n\n  const keywordTitles = {\n    allOf: \"All Of\",\n    anyOf: \"Any Of\",\n    oneOf: \"One Of\",\n    not: \"Not\",\n  };\n\n  const title = keywordTitles[keyword];\n  const borderColor = {\n    allOf: \"border-blue-300 dark:border-blue-700\",\n    anyOf: \"border-green-300 dark:border-green-700\",\n    oneOf: \"border-purple-300 dark:border-purple-700\",\n    not: \"border-red-300 dark:border-red-700\",\n  }[keyword];\n\n  return (\n    <div\n      ref={ref}\n      className={cn(\n        \"mt-3 p-3 border rounded\",\n        borderColor,\n        \"bg-white dark:bg-neutral-800\",\n        className,\n      )}\n    >\n      <h4 className=\"text-sm font-semibold mb-2 text-neutral-700 dark:text-neutral-200\">\n        {title}\n      </h4>\n      <div className=\"space-y-3\">\n        {subschemas.map((subschema, index) => {\n          // 检查是否是引用对象并提取引用名称\n          const isRef =\n            typeof subschema === \"object\" &&\n            subschema !== null &&\n            \"$ref\" in subschema;\n          const refName = isRef\n            ? extractRefName((subschema as OpenAPIV3.ReferenceObject).$ref)\n            : null;\n\n          return (\n            <div key={index}>\n              {refName && (\n                <div className=\"text-xs font-medium text-neutral-500 dark:text-neutral-400 mb-1\">\n                  Reference: {refName}\n                </div>\n              )}\n              <div className=\"text-xs text-neutral-600 dark:text-neutral-300 p-2 bg-neutral-50 dark:bg-neutral-700 rounded\">\n                Schema composition subschema #{index + 1}\n                {/* Note: In real implementation, this would recursively call SchemaDisplay */}\n                {/* <SchemaDisplay\n                  schema={subschema}\n                  components={components}\n                  currentDepth={currentDepth + 1}\n                /> */}\n              </div>\n            </div>\n          );\n        })}\n      </div>\n    </div>\n  );\n});\n\nSchemaCompositionDisplay.displayName = \"SchemaCompositionDisplay\";\n\nexport {\n  SchemaCompositionDisplay,\n  type SchemaCompositionDisplayProps,\n  type SchemaCompositionKeyword\n};\n\n",
+      "type": "registry:component",
+      "target": "components/pivot/schema-composition-display.tsx"
+    }
+  ]
+}

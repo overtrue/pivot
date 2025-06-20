@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils";
 import type { OpenAPIV3 } from 'openapi-types';
 import React from "react";
-import { DescriptionDisplay } from "../pivot/description-display";
+import { DescriptionDisplay } from "@/registry/pivot/description-display";
 
 interface ServerVariableProps {
   name: string;

@@ -5,8 +5,8 @@ import { cn } from "@/lib/utils";
 import type { OpenAPIV3 } from 'openapi-types';
 
 import React from "react";
-import { resolveRef } from "../lib/resolve-ref";
-import { LinkItem } from "./link-item";
+import { resolveRef } from "@/registry/lib/utils/resolve-ref";
+import { LinkItem } from "@/registry/pivot/link-item";
 
 interface LinksSectionProps {
   links: Record<string, OpenAPIV3.LinkObject | OpenAPIV3.ReferenceObject>;

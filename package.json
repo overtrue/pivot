@@ -5,6 +5,7 @@
   "main": "./dist/pivot.umd.js",
   "module": "./dist/pivot.es.js",
   "types": "./dist/index.d.ts",
+  "type": "module",
   "engines": {
     "node": ">=18.0.0",
     "pnpm": ">=9.0.0"
@@ -15,9 +16,10 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "shadcn:build": "shadcn build",
     "start": "next start",
     "lint": "next lint",
-    "build:registry": "tsx scripts/build-registry.mts",
+    "build:registry": "npx tsx ./scripts/build-registry.mts",
     "prepublishOnly": "npm run build"
   },
   "dependencies": {
@@ -140,6 +142,8 @@
     "eslint-config-next": "15.3.3",
     "openapi-types": "^12.1.3",
     "postcss": "^8.5.4",
+    "rimraf": "^6.0.1",
+    "shadcn": "2.7.0-canary.0",
     "tailwindcss": "^4.1.8",
     "tsx": "^4.19.4",
     "typescript": "^5.8.3",

@@ -5,11 +5,11 @@ import { cn } from '@/lib/utils';
 import type { OpenAPIV3 } from 'openapi-types';
 
 import React from 'react';
-import { resolveRef } from '../lib/resolve-ref';
-import { DescriptionDisplay } from './description-display';
-import { HeadersSection } from './headers-section';
-import { LinksSection } from './links-section';
-import { StatusCode } from './status-code';
+import { resolveRef } from '@/registry/lib/utils/resolve-ref';
+import { DescriptionDisplay } from '@/registry/pivot/description-display';
+import { HeadersSection } from '@/registry/pivot/headers-section';
+import { LinksSection } from '@/registry/pivot/links-section';
+import { StatusCode } from '@/registry/pivot/status-code';
 
 // 修改接口，接受原始响应对象或引用
 interface ResponseItemProps {

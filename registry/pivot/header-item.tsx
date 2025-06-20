@@ -3,15 +3,15 @@
 import { cn } from "@/lib/utils";
 import type { OpenAPIV3 } from 'openapi-types';
 import React, { useState } from "react";
-import { DeprecatedBadge } from "../pivot/deprecated-badge";
-import { DescriptionDisplay } from "../pivot/description-display";
-import { EnumValuesDisplay } from "../pivot/enum-values-display";
-import { FormatBadge } from "../pivot/format-badge";
-import { RequiredBadge } from "../pivot/required-badge";
-import { TypeIndicator } from "../pivot/type-indicator";
-import { DefaultValueDisplay } from "./default-value-display";
-import { ExamplesDisplay } from "./examples-display";
-import { ExpandCollapse } from "./expand-collapse";
+import { DeprecatedBadge } from "@/registry/pivot/deprecated-badge";
+import { DescriptionDisplay } from "@/registry/pivot/description-display";
+import { EnumValuesDisplay } from "@/registry/pivot/enum-values-display";
+import { FormatBadge } from "@/registry/pivot/format-badge";
+import { RequiredBadge } from "@/registry/pivot/required-badge";
+import { TypeIndicator } from "@/registry/pivot/type-indicator";
+import { DefaultValueDisplay } from "@/registry/pivot/default-value-display";
+import { ExamplesDisplay } from "@/registry/pivot/examples-display";
+import { ExpandCollapse } from "@/registry/pivot/expand-collapse";
 
 // Import types from the centralized types file
 

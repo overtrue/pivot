@@ -6,9 +6,9 @@ import type { OpenAPIV3 } from 'openapi-types';
 
 import { Braces, ChevronDown, Code2, Terminal } from 'lucide-react';
 import React, { useState } from 'react';
-import { generateExample } from '../lib/generate-example';
-import { resolveRef } from '../lib/resolve-ref';
-import { CodeMarkdown } from './code-markdown';
+import { generateExample } from '@/registry/lib/utils/generate-example';
+import { resolveRef } from '@/registry/lib/utils/resolve-ref';
+import { CodeMarkdown } from '@/registry/pivot/code-markdown';
 
 // Code Generators
 class CurlGenerator implements CodeGenerator {

@@ -4,16 +4,16 @@ import type { OpenAPIV3 } from 'openapi-types';
 import { useI18n } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
 import React, { useState } from "react";
-import { DeprecatedBadge } from "./deprecated-badge";
-import { DescriptionDisplay } from "./description-display";
-import { ExpandCollapse } from "./expand-collapse";
-import { ExternalDocsDisplay } from "./external-docs-display";
-import { MethodLabel } from "./method-label";
-import { OperationPath } from "./operation-path";
-import { ParametersSection } from "./parameters-section";
-import { RequestBodySection } from "./request-body-section";
-import { ResponsesSection } from "./responses-section";
-import { SecurityRequirementsSection } from "./security-requirements-section";
+import { DeprecatedBadge } from "@/registry/pivot/deprecated-badge";
+import { DescriptionDisplay } from "@/registry/pivot/description-display";
+import { ExpandCollapse } from "@/registry/pivot/expand-collapse";
+import { ExternalDocsDisplay } from "@/registry/pivot/external-docs-display";
+import { MethodLabel } from "@/registry/pivot/method-label";
+import { OperationPath } from "@/registry/pivot/operation-path";
+import { ParametersSection } from "@/registry/pivot/parameters-section";
+import { RequestBodySection } from "@/registry/pivot/request-body-section";
+import { ResponsesSection } from "@/registry/pivot/responses-section";
+import { SecurityRequirementsSection } from "@/registry/pivot/security-requirements-section";
 
 // Import types from the centralized types file
 

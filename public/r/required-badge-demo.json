@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "required-badge-demo",
+  "type": "registry:example",
+  "registryDependencies": [
+    "https://pivotkit.vercel.app/r/required-badge"
+  ],
+  "files": [
+    {
+      "path": "registry/example/required-badge-demo.tsx",
+      "content": "import { RequiredBadge } from \"@/registry/pivot/required-badge\";\n\nexport default function RequiredBadgeDemo() {\n  return (\n    <div className=\"flex flex-wrap gap-2 min-w-md\">\n      <RequiredBadge />\n      <RequiredBadge>必填</RequiredBadge>\n      <RequiredBadge>Required Field</RequiredBadge>\n    </div>\n  );\n}\n",
+      "type": "registry:example",
+      "target": "components/example/required-badge-demo.tsx"
+    }
+  ]
+}

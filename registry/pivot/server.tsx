@@ -3,9 +3,9 @@
 import { cn } from "@/lib/utils";
 import type { OpenAPIV3 } from 'openapi-types';
 import React, { useState } from "react";
-import { DescriptionDisplay } from "../pivot/description-display";
-import { ExpandCollapse } from "./expand-collapse";
-import { ServerVariable } from "./server-variable";
+import { DescriptionDisplay } from "@/registry/pivot/description-display";
+import { ExpandCollapse } from "@/registry/pivot/expand-collapse";
+import { ServerVariable } from "@/registry/pivot/server-variable";
 
 // 类型别名，供其他组件使用
 export type ServerObject = OpenAPIV3.ServerObject;

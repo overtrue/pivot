@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "value-display",
+  "type": "registry:ui",
+  "dependencies": [
+    "react"
+  ],
+  "files": [
+    {
+      "path": "registry/pivot/value-display.tsx",
+      "content": "import { cn } from \"@/lib/utils\";\nimport React from \"react\";\n\ninterface ValueDisplayProps {\n  value: any;\n  className?: string;\n}\n\nconst ValueDisplay = React.forwardRef<HTMLElement, ValueDisplayProps>(\n  ({ value, className = \"\" }, ref) => {\n    const displayValue =\n      typeof value === \"object\"\n        ? JSON.stringify(value, null, 2)\n        : String(value);\n\n    return (\n      <code\n        ref={ref}\n        className={cn(\n          \"text-xs bg-neutral-100 dark:bg-neutral-800 px-2 py-1 rounded font-mono break-all\",\n          className,\n        )}\n      >\n        {displayValue}\n      </code>\n    );\n  },\n);\n\nValueDisplay.displayName = \"ValueDisplay\";\n\nexport { ValueDisplay };\n",
+      "type": "registry:component",
+      "target": "components/pivot/value-display.tsx"
+    }
+  ]
+}

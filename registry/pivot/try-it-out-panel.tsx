@@ -1,12 +1,12 @@
 "use client";
 
-import type { OpenAPIV3 } from 'openapi-types';
 import { useI18n } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
 import { ChevronDown, ChevronUp, Send } from "lucide-react";
+import type { OpenAPIV3 } from 'openapi-types';
 import React, { useState } from "react";
-import { resolveRef } from "../lib/resolve-ref";
-import { MethodLabel } from "./method-label";
+import { resolveRef } from "@/registry/lib/utils/resolve-ref";
+import { MethodLabel } from "@/registry/pivot/method-label";
 
 // Import types from the centralized types file
 

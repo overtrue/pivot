@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "enum-values-demo",
+  "type": "registry:example",
+  "registryDependencies": [
+    "https://pivotkit.vercel.app/r/enum-values"
+  ],
+  "files": [
+    {
+      "path": "registry/example/enum-values-demo.tsx",
+      "content": "import { EnumValues } from \"@/registry/pivot/enum-values\";\n\nexport default function EnumValuesDemo() {\n  const values = [\"active\", \"inactive\", \"pending\", \"archived\"];\n\n  return (\n    <div className=\"space-y-4 min-w-md\">\n      <EnumValues values={values} />\n    </div>\n  );\n}\n",
+      "type": "registry:example",
+      "target": "components/example/enum-values-demo.tsx"
+    }
+  ]
+}

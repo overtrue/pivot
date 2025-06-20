@@ -1,5 +1,5 @@
 import type { OpenAPIV3 } from 'openapi-types';
-import { generateExample } from '../lib/generate-example';
+import { generateExample } from '@/registry/lib/utils/generate-example';
 
 export default function FakerExampleDemo() {
   // 用户信息 Schema 示例

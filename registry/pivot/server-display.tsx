@@ -4,7 +4,7 @@ import { useI18n } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
 import type { OpenAPIV3 } from 'openapi-types';
 import React from "react";
-import { DescriptionDisplay } from "./description-display";
+import { DescriptionDisplay } from "@/registry/pivot/description-display";
 
 // 类型别名，供其他组件使用
 export type ServerObject = OpenAPIV3.ServerObject;

@@ -5,8 +5,8 @@ import { useI18n } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
 
 import React from "react";
-import { SchemaWithExampleViewer } from "./schema-with-example-viewer";
-import { SectionTitle } from "./section-title";
+import { SchemaWithExampleViewer } from "@/registry/pivot/schema-with-example-viewer";
+import { SectionTitle } from "@/registry/pivot/section-title";
 
 interface RequestBodySectionProps {
   requestBody: OpenAPIV3.RequestBodyObject | OpenAPIV3.ReferenceObject;

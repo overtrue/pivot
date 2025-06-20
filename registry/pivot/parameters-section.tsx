@@ -5,10 +5,10 @@ import { cn } from "@/lib/utils";
 import type { OpenAPIV3 } from 'openapi-types';
 
 import React from "react";
-import { resolveRef } from "../lib/resolve-ref";
-import { type StyleType } from "../pivot/style-badge";
-import { ParameterItem } from "./parameter-item";
-import { SectionTitle } from "./section-title";
+import { resolveRef } from "@/registry/lib/utils/resolve-ref";
+import { type StyleType } from "@/registry/pivot/style-badge";
+import { ParameterItem } from "@/registry/pivot/parameter-item";
+import { SectionTitle } from "@/registry/pivot/section-title";
 
 // Import types from the centralized types file
 

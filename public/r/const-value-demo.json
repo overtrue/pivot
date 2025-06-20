@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "const-value-demo",
+  "type": "registry:example",
+  "registryDependencies": [
+    "https://pivotkit.vercel.app/r/const-value"
+  ],
+  "files": [
+    {
+      "path": "registry/example/const-value-demo.tsx",
+      "content": "import { ConstValue } from \"@/registry/pivot/const-value\";\n\nexport default function ConstValueDemo() {\n  return (\n    <div className=\"space-y-4 min-w-md\">\n      <ConstValue value=\"application/json\" />\n      <ConstValue value={42} />\n      <ConstValue value={true} />\n      <ConstValue value={[\"GET\", \"POST\", \"PUT\"]} />\n    </div>\n  );\n}\n",
+      "type": "registry:example",
+      "target": "components/example/const-value-demo.tsx"
+    }
+  ]
+}

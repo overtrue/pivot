@@ -2,9 +2,9 @@ import { cn } from "@/lib/utils";
 import { Book, FileText, Info, Users } from "lucide-react";
 import type { OpenAPIV3 } from 'openapi-types';
 import React from "react";
-import { ContactDisplay } from "../pivot/contact-display";
-import { DescriptionDisplay } from "../pivot/description-display";
-import { LicenseDisplay } from "../pivot/license-display";
+import { ContactDisplay } from "@/registry/pivot/contact-display";
+import { DescriptionDisplay } from "@/registry/pivot/description-display";
+import { LicenseDisplay } from "@/registry/pivot/license-display";
 
 interface InfoSectionProps {
   info: OpenAPIV3.InfoObject;

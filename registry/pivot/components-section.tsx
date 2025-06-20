@@ -4,9 +4,9 @@ import { cn } from "@/lib/utils";
 import type { ComponentType } from "@/types/project";
 import type { OpenAPIV3 } from 'openapi-types';
 import React, { useMemo, useState } from "react";
-import { ComponentItemsList } from "../pivot/component-items-list";
-import { ComponentTabs } from "../pivot/component-tabs";
-import { SectionTitle } from "../pivot/section-title";
+import { ComponentItemsList } from "@/registry/pivot/component-items-list";
+import { ComponentTabs } from "@/registry/pivot/component-tabs";
+import { SectionTitle } from "@/registry/pivot/section-title";
 
 interface ComponentsSectionProps {
   components: OpenAPIV3.ComponentsObject;

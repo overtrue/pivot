@@ -5,9 +5,9 @@ import { useI18n } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
 import * as yaml from "js-yaml";
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { useOpenApi } from "../lib/use-openapi";
-import { OperationBox } from "./operation-box";
-import { TryItOutPanel } from "./try-it-out-panel";
+import { useOpenApi } from "@/registry/lib/use-openapi";
+import { OperationBox } from "@/registry/pivot/operation-box";
+import { TryItOutPanel } from "@/registry/pivot/try-it-out-panel";
 
 // Import types from the centralized types file
 

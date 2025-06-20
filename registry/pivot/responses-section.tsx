@@ -5,9 +5,9 @@ import { useI18n } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
 
 import React, { useState } from "react";
-import { ResponseGroup } from "./response-group";
-import { SectionTitle } from "./section-title";
-import { StatusCode } from "./status-code";
+import { ResponseGroup } from "@/registry/pivot/response-group";
+import { SectionTitle } from "@/registry/pivot/section-title";
+import { StatusCode } from "@/registry/pivot/status-code";
 
 interface ResponsesSectionProps {
   responses: OpenAPIV3.ResponsesObject;

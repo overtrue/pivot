@@ -15,290 +15,154 @@ export const Index: Record<string, any> = {
     component: null,
     meta: undefined,
   },
-  "status-code": {
-    name: "status-code",
-    description: "Display HTTP status codes with appropriate styling",
+  "accordion-components-section": {
+    name: "accordion-components-section",
+    description: "",
     type: "registry:ui",
-    registryDependencies: ["utils"],
+    registryDependencies: ["https://pivotkit.vercel.app/r/component-detail"],
     files: [{
-      path: "registry/pivot/status-code.tsx",
-      type: "registry:ui",
-      target: "components/pivot/status-code.tsx"
+      path: "registry/pivot/accordion-components-section.tsx",
+      type: "registry:component",
+      target: "components/pivot/accordion-components-section.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/pivot/status-code.tsx")
+      const mod = await import("@/registry/pivot/accordion-components-section.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
     meta: undefined,
   },
-  "method-label": {
-    name: "method-label",
-    description: "Display HTTP methods with color coding",
+  "callback-display": {
+    name: "callback-display",
+    description: "",
     type: "registry:ui",
-    registryDependencies: ["utils"],
+    registryDependencies: ["https://pivotkit.vercel.app/r/operation-box"],
     files: [{
-      path: "registry/pivot/method-label.tsx",
-      type: "registry:ui",
-      target: "components/pivot/method-label.tsx"
+      path: "registry/pivot/callback-display.tsx",
+      type: "registry:component",
+      target: "components/pivot/callback-display.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/pivot/method-label.tsx")
+      const mod = await import("@/registry/pivot/callback-display.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
     meta: undefined,
   },
-  "type-indicator": {
-    name: "type-indicator",
-    description: "Display data types with appropriate styling",
+  "code-markdown": {
+    name: "code-markdown",
+    description: "",
     type: "registry:ui",
-    registryDependencies: ["utils"],
+    registryDependencies: ["https://pivotkit.vercel.app/r/copy-button"],
     files: [{
-      path: "registry/pivot/type-indicator.tsx",
-      type: "registry:ui",
-      target: "components/pivot/type-indicator.tsx"
+      path: "registry/pivot/code-markdown.tsx",
+      type: "registry:component",
+      target: "components/pivot/code-markdown.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/pivot/type-indicator.tsx")
+      const mod = await import("@/registry/pivot/code-markdown.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
     meta: undefined,
   },
-  "required-badge": {
-    name: "required-badge",
-    description: "Badge to indicate required fields",
+  "codegen": {
+    name: "codegen",
+    description: "",
     type: "registry:ui",
-    registryDependencies: ["utils"],
+    registryDependencies: ["https://pivotkit.vercel.app/r/code-markdown"],
     files: [{
-      path: "registry/pivot/required-badge.tsx",
-      type: "registry:ui",
-      target: "components/pivot/required-badge.tsx"
+      path: "registry/pivot/codegen.tsx",
+      type: "registry:component",
+      target: "components/pivot/codegen.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/pivot/required-badge.tsx")
+      const mod = await import("@/registry/pivot/codegen.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
     meta: undefined,
   },
-  "deprecated-badge": {
-    name: "deprecated-badge",
-    description: "Badge to indicate deprecated fields or operations",
+  "component-detail": {
+    name: "component-detail",
+    description: "",
     type: "registry:ui",
-    registryDependencies: ["utils"],
+    registryDependencies: ["https://pivotkit.vercel.app/r/callback-display","https://pivotkit.vercel.app/r/examples-display","https://pivotkit.vercel.app/r/header-item","https://pivotkit.vercel.app/r/link-item","https://pivotkit.vercel.app/r/parameter-item","https://pivotkit.vercel.app/r/request-body-section","https://pivotkit.vercel.app/r/response-item","https://pivotkit.vercel.app/r/schema-display","https://pivotkit.vercel.app/r/security-scheme-display","https://pivotkit.vercel.app/r/webhook-display"],
     files: [{
-      path: "registry/pivot/deprecated-badge.tsx",
-      type: "registry:ui",
-      target: "components/pivot/deprecated-badge.tsx"
+      path: "registry/pivot/component-detail.tsx",
+      type: "registry:component",
+      target: "components/pivot/component-detail.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/pivot/deprecated-badge.tsx")
+      const mod = await import("@/registry/pivot/component-detail.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
     meta: undefined,
   },
-  "version-badge": {
-    name: "version-badge",
-    description: "Display version information",
+  "component-items-list": {
+    name: "component-items-list",
+    description: "",
     type: "registry:ui",
-    registryDependencies: ["utils"],
+    registryDependencies: undefined,
     files: [{
-      path: "registry/pivot/version-badge.tsx",
-      type: "registry:ui",
-      target: "components/pivot/version-badge.tsx"
+      path: "registry/pivot/component-items-list.tsx",
+      type: "registry:component",
+      target: "components/pivot/component-items-list.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/pivot/version-badge.tsx")
+      const mod = await import("@/registry/pivot/component-items-list.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
     meta: undefined,
   },
-  "webhook-label": {
-    name: "webhook-label",
-    description: "Label for webhook endpoints",
+  "component-tabs": {
+    name: "component-tabs",
+    description: "",
     type: "registry:ui",
-    registryDependencies: ["utils"],
+    registryDependencies: undefined,
     files: [{
-      path: "registry/pivot/webhook-label.tsx",
-      type: "registry:ui",
-      target: "components/pivot/webhook-label.tsx"
+      path: "registry/pivot/component-tabs.tsx",
+      type: "registry:component",
+      target: "components/pivot/component-tabs.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/pivot/webhook-label.tsx")
+      const mod = await import("@/registry/pivot/component-tabs.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
     meta: undefined,
   },
-  "format-badge": {
-    name: "format-badge",
-    description: "Display format information for data types",
+  "components-section": {
+    name: "components-section",
+    description: "",
     type: "registry:ui",
-    registryDependencies: ["utils"],
+    registryDependencies: ["https://pivotkit.vercel.app/r/component-items-list","https://pivotkit.vercel.app/r/component-tabs","https://pivotkit.vercel.app/r/section-title"],
     files: [{
-      path: "registry/pivot/format-badge.tsx",
-      type: "registry:ui",
-      target: "components/pivot/format-badge.tsx"
+      path: "registry/pivot/components-section.tsx",
+      type: "registry:component",
+      target: "components/pivot/components-section.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/pivot/format-badge.tsx")
+      const mod = await import("@/registry/pivot/components-section.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
     meta: undefined,
   },
-  "style-badge": {
-    name: "style-badge",
-    description: "Display style information for parameters",
+  "const-value": {
+    name: "const-value",
+    description: "",
     type: "registry:ui",
-    registryDependencies: ["utils"],
+    registryDependencies: ["https://pivotkit.vercel.app/r/copy-button"],
     files: [{
-      path: "registry/pivot/style-badge.tsx",
-      type: "registry:ui",
-      target: "components/pivot/style-badge.tsx"
+      path: "registry/pivot/const-value.tsx",
+      type: "registry:component",
+      target: "components/pivot/const-value.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/pivot/style-badge.tsx")
-      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
-      return { default: mod.default || mod[exportName] }
-    }),
-    meta: undefined,
-  },
-  "scheme-type": {
-    name: "scheme-type",
-    description: "Display security scheme types",
-    type: "registry:ui",
-    registryDependencies: ["utils"],
-    files: [{
-      path: "registry/pivot/scheme-type.tsx",
-      type: "registry:ui",
-      target: "components/pivot/scheme-type.tsx"
-    }],
-    component: React.lazy(async () => {
-      const mod = await import("@/registry/pivot/scheme-type.tsx")
-      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
-      return { default: mod.default || mod[exportName] }
-    }),
-    meta: undefined,
-  },
-  "in-label": {
-    name: "in-label",
-    description: "Label for parameter location",
-    type: "registry:ui",
-    registryDependencies: ["utils"],
-    files: [{
-      path: "registry/pivot/in-label.tsx",
-      type: "registry:ui",
-      target: "components/pivot/in-label.tsx"
-    }],
-    component: React.lazy(async () => {
-      const mod = await import("@/registry/pivot/in-label.tsx")
-      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
-      return { default: mod.default || mod[exportName] }
-    }),
-    meta: undefined,
-  },
-  "parameter-name": {
-    name: "parameter-name",
-    description: "Display parameter names with deprecation support",
-    type: "registry:ui",
-    registryDependencies: ["utils"],
-    files: [{
-      path: "registry/pivot/parameter-name.tsx",
-      type: "registry:ui",
-      target: "components/pivot/parameter-name.tsx"
-    }],
-    component: React.lazy(async () => {
-      const mod = await import("@/registry/pivot/parameter-name.tsx")
-      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
-      return { default: mod.default || mod[exportName] }
-    }),
-    meta: undefined,
-  },
-  "parameter-description": {
-    name: "parameter-description",
-    description: "Display parameter descriptions",
-    type: "registry:ui",
-    registryDependencies: ["utils"],
-    files: [{
-      path: "registry/pivot/parameter-description.tsx",
-      type: "registry:ui",
-      target: "components/pivot/parameter-description.tsx"
-    }],
-    component: React.lazy(async () => {
-      const mod = await import("@/registry/pivot/parameter-description.tsx")
-      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
-      return { default: mod.default || mod[exportName] }
-    }),
-    meta: undefined,
-  },
-  "path-segment": {
-    name: "path-segment",
-    description: "Display API path segments with parameter highlighting",
-    type: "registry:ui",
-    registryDependencies: ["utils"],
-    files: [{
-      path: "registry/pivot/path-segment.tsx",
-      type: "registry:ui",
-      target: "components/pivot/path-segment.tsx"
-    }],
-    component: React.lazy(async () => {
-      const mod = await import("@/registry/pivot/path-segment.tsx")
-      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
-      return { default: mod.default || mod[exportName] }
-    }),
-    meta: undefined,
-  },
-  "operation-path": {
-    name: "operation-path",
-    description: "Display operation paths with highlighting",
-    type: "registry:ui",
-    registryDependencies: ["utils","path-segment"],
-    files: [{
-      path: "registry/pivot/operation-path.tsx",
-      type: "registry:ui",
-      target: "components/pivot/operation-path.tsx"
-    }],
-    component: React.lazy(async () => {
-      const mod = await import("@/registry/pivot/operation-path.tsx")
-      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
-      return { default: mod.default || mod[exportName] }
-    }),
-    meta: undefined,
-  },
-  "enum-values-display": {
-    name: "enum-values-display",
-    description: "Display enumeration values",
-    type: "registry:ui",
-    registryDependencies: ["utils"],
-    files: [{
-      path: "registry/pivot/enum-values-display.tsx",
-      type: "registry:ui",
-      target: "components/pivot/enum-values-display.tsx"
-    }],
-    component: React.lazy(async () => {
-      const mod = await import("@/registry/pivot/enum-values-display.tsx")
-      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
-      return { default: mod.default || mod[exportName] }
-    }),
-    meta: undefined,
-  },
-  "default-value-display": {
-    name: "default-value-display",
-    description: "Display default values for parameters",
-    type: "registry:ui",
-    registryDependencies: ["utils"],
-    files: [{
-      path: "registry/pivot/default-value-display.tsx",
-      type: "registry:ui",
-      target: "components/pivot/default-value-display.tsx"
-    }],
-    component: React.lazy(async () => {
-      const mod = await import("@/registry/pivot/default-value-display.tsx")
+      const mod = await import("@/registry/pivot/const-value.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -306,12 +170,12 @@ export const Index: Record<string, any> = {
   },
   "constraint-display": {
     name: "constraint-display",
-    description: "Display schema constraints",
+    description: "",
     type: "registry:ui",
-    registryDependencies: ["utils"],
+    registryDependencies: undefined,
     files: [{
       path: "registry/pivot/constraint-display.tsx",
-      type: "registry:ui",
+      type: "registry:component",
       target: "components/pivot/constraint-display.tsx"
     }],
     component: React.lazy(async () => {
@@ -321,48 +185,14 @@ export const Index: Record<string, any> = {
     }),
     meta: undefined,
   },
-  "expand-collapse": {
-    name: "expand-collapse",
-    description: "Expandable/collapsible content component",
-    type: "registry:ui",
-    registryDependencies: ["utils"],
-    files: [{
-      path: "registry/pivot/expand-collapse.tsx",
-      type: "registry:ui",
-      target: "components/pivot/expand-collapse.tsx"
-    }],
-    component: React.lazy(async () => {
-      const mod = await import("@/registry/pivot/expand-collapse.tsx")
-      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
-      return { default: mod.default || mod[exportName] }
-    }),
-    meta: undefined,
-  },
-  "description-display": {
-    name: "description-display",
-    description: "Display markdown descriptions",
-    type: "registry:ui",
-    registryDependencies: ["utils"],
-    files: [{
-      path: "registry/pivot/description-display.tsx",
-      type: "registry:ui",
-      target: "components/pivot/description-display.tsx"
-    }],
-    component: React.lazy(async () => {
-      const mod = await import("@/registry/pivot/description-display.tsx")
-      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
-      return { default: mod.default || mod[exportName] }
-    }),
-    meta: undefined,
-  },
   "contact-display": {
     name: "contact-display",
-    description: "Display contact information",
+    description: "",
     type: "registry:ui",
-    registryDependencies: ["utils"],
+    registryDependencies: undefined,
     files: [{
       path: "registry/pivot/contact-display.tsx",
-      type: "registry:ui",
+      type: "registry:component",
       target: "components/pivot/contact-display.tsx"
     }],
     component: React.lazy(async () => {
@@ -372,222 +202,120 @@ export const Index: Record<string, any> = {
     }),
     meta: undefined,
   },
-  "license-display": {
-    name: "license-display",
-    description: "Display license information",
+  "copy-button": {
+    name: "copy-button",
+    description: "",
     type: "registry:ui",
-    registryDependencies: ["utils"],
+    registryDependencies: undefined,
     files: [{
-      path: "registry/pivot/license-display.tsx",
-      type: "registry:ui",
-      target: "components/pivot/license-display.tsx"
-    }],
-    component: React.lazy(async () => {
-      const mod = await import("@/registry/pivot/license-display.tsx")
-      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
-      return { default: mod.default || mod[exportName] }
-    }),
-    meta: undefined,
-  },
-  "terms-of-service": {
-    name: "terms-of-service",
-    description: "Display terms of service",
-    type: "registry:ui",
-    registryDependencies: ["utils"],
-    files: [{
-      path: "registry/pivot/terms-of-service.tsx",
-      type: "registry:ui",
-      target: "components/pivot/terms-of-service.tsx"
-    }],
-    component: React.lazy(async () => {
-      const mod = await import("@/registry/pivot/terms-of-service.tsx")
-      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
-      return { default: mod.default || mod[exportName] }
-    }),
-    meta: undefined,
-  },
-  "section-title": {
-    name: "section-title",
-    description: "Section title component",
-    type: "registry:ui",
-    registryDependencies: ["utils"],
-    files: [{
-      path: "registry/pivot/section-title.tsx",
-      type: "registry:ui",
-      target: "components/pivot/section-title.tsx"
-    }],
-    component: React.lazy(async () => {
-      const mod = await import("@/registry/pivot/section-title.tsx")
-      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
-      return { default: mod.default || mod[exportName] }
-    }),
-    meta: undefined,
-  },
-  "server-display": {
-    name: "server-display",
-    description: "Display server information",
-    type: "registry:ui",
-    registryDependencies: ["utils"],
-    files: [{
-      path: "registry/pivot/server-display.tsx",
-      type: "registry:ui",
-      target: "components/pivot/server-display.tsx"
-    }],
-    component: React.lazy(async () => {
-      const mod = await import("@/registry/pivot/server-display.tsx")
-      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
-      return { default: mod.default || mod[exportName] }
-    }),
-    meta: undefined,
-  },
-  "external-docs-display": {
-    name: "external-docs-display",
-    description: "Display external documentation links",
-    type: "registry:ui",
-    registryDependencies: ["utils"],
-    files: [{
-      path: "registry/pivot/external-docs-display.tsx",
-      type: "registry:ui",
-      target: "components/pivot/external-docs-display.tsx"
-    }],
-    component: React.lazy(async () => {
-      const mod = await import("@/registry/pivot/external-docs-display.tsx")
-      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
-      return { default: mod.default || mod[exportName] }
-    }),
-    meta: undefined,
-  },
-  "info-section": {
-    name: "info-section",
-    description: "Display API information section",
-    type: "registry:component",
-    registryDependencies: ["utils","contact-display","description-display","license-display"],
-    files: [{
-      path: "registry/pivot/info-section.tsx",
+      path: "registry/pivot/copy-button.tsx",
       type: "registry:component",
-      target: "components/pivot/info-section.tsx"
+      target: "components/pivot/copy-button.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/pivot/info-section.tsx")
+      const mod = await import("@/registry/pivot/copy-button.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
     meta: undefined,
   },
-  "servers-section": {
-    name: "servers-section",
-    description: "Display servers section",
-    type: "registry:component",
-    registryDependencies: ["utils","section-title","server-display"],
-    files: [{
-      path: "registry/pivot/servers-section.tsx",
-      type: "registry:component",
-      target: "components/pivot/servers-section.tsx"
-    }],
-    component: React.lazy(async () => {
-      const mod = await import("@/registry/pivot/servers-section.tsx")
-      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
-      return { default: mod.default || mod[exportName] }
-    }),
-    meta: undefined,
-  },
-  "server-variable": {
-    name: "server-variable",
-    description: "Display server variable",
+  "curl-generator": {
+    name: "curl-generator",
+    description: "",
     type: "registry:ui",
-    registryDependencies: ["utils","required-marker","type-indicator","expand-collapse"],
+    registryDependencies: undefined,
     files: [{
-      path: "registry/pivot/server-variable.tsx",
-      type: "registry:ui",
-      target: "components/pivot/server-variable.tsx"
-    }],
-    component: React.lazy(async () => {
-      const mod = await import("@/registry/pivot/server-variable.tsx")
-      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
-      return { default: mod.default || mod[exportName] }
-    }),
-    meta: undefined,
-  },
-  "server": {
-    name: "server",
-    description: "Display server information with variables",
-    type: "registry:component",
-    registryDependencies: ["utils","description-display","server-display","expand-collapse"],
-    files: [{
-      path: "registry/pivot/server.tsx",
+      path: "registry/pivot/curl-generator.tsx",
       type: "registry:component",
-      target: "components/pivot/server.tsx"
+      target: "components/pivot/curl-generator.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/pivot/server.tsx")
+      const mod = await import("@/registry/pivot/curl-generator.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
     meta: undefined,
   },
-  "security-scheme-display": {
-    name: "security-scheme-display",
-    description: "Display security scheme details",
-    type: "registry:component",
-    registryDependencies: ["utils","description-display","scheme-type"],
-    files: [{
-      path: "registry/pivot/security-scheme-display.tsx",
-      type: "registry:component",
-      target: "components/pivot/security-scheme-display.tsx"
-    }],
-    component: React.lazy(async () => {
-      const mod = await import("@/registry/pivot/security-scheme-display.tsx")
-      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
-      return { default: mod.default || mod[exportName] }
-    }),
-    meta: undefined,
-  },
-  "security-scheme": {
-    name: "security-scheme",
-    description: "Display security scheme",
-    type: "registry:component",
-    registryDependencies: ["utils","description-display"],
-    files: [{
-      path: "registry/pivot/security-scheme.tsx",
-      type: "registry:component",
-      target: "components/pivot/security-scheme.tsx"
-    }],
-    component: React.lazy(async () => {
-      const mod = await import("@/registry/pivot/security-scheme.tsx")
-      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
-      return { default: mod.default || mod[exportName] }
-    }),
-    meta: undefined,
-  },
-  "required-marker": {
-    name: "required-marker",
-    description: "Marker for required fields",
+  "default-value-display": {
+    name: "default-value-display",
+    description: "",
     type: "registry:ui",
-    registryDependencies: ["utils"],
+    registryDependencies: ["https://pivotkit.vercel.app/r/value-display"],
     files: [{
-      path: "registry/pivot/required-marker.tsx",
-      type: "registry:ui",
-      target: "components/pivot/required-marker.tsx"
+      path: "registry/pivot/default-value-display.tsx",
+      type: "registry:component",
+      target: "components/pivot/default-value-display.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/pivot/required-marker.tsx")
+      const mod = await import("@/registry/pivot/default-value-display.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
     meta: undefined,
   },
-  "value-display": {
-    name: "value-display",
-    description: "Display values with syntax highlighting",
+  "deprecated-badge": {
+    name: "deprecated-badge",
+    description: "",
     type: "registry:ui",
-    registryDependencies: ["utils"],
+    registryDependencies: undefined,
     files: [{
-      path: "registry/pivot/value-display.tsx",
-      type: "registry:ui",
-      target: "components/pivot/value-display.tsx"
+      path: "registry/pivot/deprecated-badge.tsx",
+      type: "registry:component",
+      target: "components/pivot/deprecated-badge.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/pivot/value-display.tsx")
+      const mod = await import("@/registry/pivot/deprecated-badge.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    meta: undefined,
+  },
+  "description-display": {
+    name: "description-display",
+    description: "",
+    type: "registry:ui",
+    registryDependencies: undefined,
+    files: [{
+      path: "registry/pivot/description-display.tsx",
+      type: "registry:component",
+      target: "components/pivot/description-display.tsx"
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/pivot/description-display.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    meta: undefined,
+  },
+  "enum-values-display": {
+    name: "enum-values-display",
+    description: "",
+    type: "registry:ui",
+    registryDependencies: ["https://pivotkit.vercel.app/r/enum-values"],
+    files: [{
+      path: "registry/pivot/enum-values-display.tsx",
+      type: "registry:component",
+      target: "components/pivot/enum-values-display.tsx"
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/pivot/enum-values-display.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    meta: undefined,
+  },
+  "enum-values": {
+    name: "enum-values",
+    description: "",
+    type: "registry:ui",
+    registryDependencies: ["https://pivotkit.vercel.app/r/value-display"],
+    files: [{
+      path: "registry/pivot/enum-values.tsx",
+      type: "registry:component",
+      target: "components/pivot/enum-values.tsx"
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/pivot/enum-values.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -595,9 +323,9 @@ export const Index: Record<string, any> = {
   },
   "example-display": {
     name: "example-display",
-    description: "Display examples",
-    type: "registry:component",
-    registryDependencies: ["utils","value-display"],
+    description: "",
+    type: "registry:ui",
+    registryDependencies: ["https://pivotkit.vercel.app/r/code-markdown"],
     files: [{
       path: "registry/pivot/example-display.tsx",
       type: "registry:component",
@@ -612,9 +340,9 @@ export const Index: Record<string, any> = {
   },
   "examples-display": {
     name: "examples-display",
-    description: "Display multiple examples",
-    type: "registry:component",
-    registryDependencies: ["utils","resolve-ref"],
+    description: "",
+    type: "registry:ui",
+    registryDependencies: ["https://pivotkit.vercel.app/r/description-display"],
     files: [{
       path: "registry/pivot/examples-display.tsx",
       type: "registry:component",
@@ -627,103 +355,69 @@ export const Index: Record<string, any> = {
     }),
     meta: undefined,
   },
-  "links-section": {
-    name: "links-section",
-    description: "Display links section",
-    type: "registry:component",
-    registryDependencies: ["utils","link-item"],
-    files: [{
-      path: "registry/pivot/links-section.tsx",
-      type: "registry:component",
-      target: "components/pivot/links-section.tsx"
-    }],
-    component: React.lazy(async () => {
-      const mod = await import("@/registry/pivot/links-section.tsx")
-      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
-      return { default: mod.default || mod[exportName] }
-    }),
-    meta: undefined,
-  },
-  "link-item": {
-    name: "link-item",
-    description: "Display link item",
+  "expand-collapse": {
+    name: "expand-collapse",
+    description: "",
     type: "registry:ui",
-    registryDependencies: ["utils"],
+    registryDependencies: undefined,
     files: [{
-      path: "registry/pivot/link-item.tsx",
-      type: "registry:ui",
-      target: "components/pivot/link-item.tsx"
-    }],
-    component: React.lazy(async () => {
-      const mod = await import("@/registry/pivot/link-item.tsx")
-      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
-      return { default: mod.default || mod[exportName] }
-    }),
-    meta: undefined,
-  },
-  "security-schemes": {
-    name: "security-schemes",
-    description: "Display security schemes section",
-    type: "registry:component",
-    registryDependencies: ["utils","section-title","security-scheme"],
-    files: [{
-      path: "registry/pivot/security-schemes.tsx",
+      path: "registry/pivot/expand-collapse.tsx",
       type: "registry:component",
-      target: "components/pivot/security-schemes.tsx"
+      target: "components/pivot/expand-collapse.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/pivot/security-schemes.tsx")
+      const mod = await import("@/registry/pivot/expand-collapse.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
     meta: undefined,
   },
-  "oauth-flow": {
-    name: "oauth-flow",
-    description: "Display OAuth flow information",
+  "external-docs-display": {
+    name: "external-docs-display",
+    description: "",
     type: "registry:ui",
-    registryDependencies: ["utils"],
+    registryDependencies: undefined,
     files: [{
-      path: "registry/pivot/oauth-flow.tsx",
-      type: "registry:ui",
-      target: "components/pivot/oauth-flow.tsx"
-    }],
-    component: React.lazy(async () => {
-      const mod = await import("@/registry/pivot/oauth-flow.tsx")
-      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
-      return { default: mod.default || mod[exportName] }
-    }),
-    meta: undefined,
-  },
-  "oauth-flow-details": {
-    name: "oauth-flow-details",
-    description: "Display detailed OAuth flow information",
-    type: "registry:component",
-    registryDependencies: ["utils","oauth-flow"],
-    files: [{
-      path: "registry/pivot/oauth-flow-details.tsx",
+      path: "registry/pivot/external-docs-display.tsx",
       type: "registry:component",
-      target: "components/pivot/oauth-flow-details.tsx"
+      target: "components/pivot/external-docs-display.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/pivot/oauth-flow-details.tsx")
+      const mod = await import("@/registry/pivot/external-docs-display.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
     meta: undefined,
   },
-  "security-requirement-item": {
-    name: "security-requirement-item",
-    description: "Display security requirement item",
+  "external-docs": {
+    name: "external-docs",
+    description: "",
     type: "registry:ui",
-    registryDependencies: ["utils"],
+    registryDependencies: undefined,
     files: [{
-      path: "registry/pivot/security-requirement-item.tsx",
-      type: "registry:ui",
-      target: "components/pivot/security-requirement-item.tsx"
+      path: "registry/pivot/external-docs.tsx",
+      type: "registry:component",
+      target: "components/pivot/external-docs.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/pivot/security-requirement-item.tsx")
+      const mod = await import("@/registry/pivot/external-docs.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    meta: undefined,
+  },
+  "format-badge": {
+    name: "format-badge",
+    description: "",
+    type: "registry:ui",
+    registryDependencies: undefined,
+    files: [{
+      path: "registry/pivot/format-badge.tsx",
+      type: "registry:component",
+      target: "components/pivot/format-badge.tsx"
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/pivot/format-badge.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -731,9 +425,9 @@ export const Index: Record<string, any> = {
   },
   "header-item": {
     name: "header-item",
-    description: "Display header item with details",
-    type: "registry:component",
-    registryDependencies: ["utils","deprecated-badge","description-display","enum-values-display","format-badge","required-badge","type-indicator","default-value-display","examples-display","expand-collapse"],
+    description: "",
+    type: "registry:ui",
+    registryDependencies: ["https://pivotkit.vercel.app/r/deprecated-badge","https://pivotkit.vercel.app/r/description-display","https://pivotkit.vercel.app/r/enum-values-display","https://pivotkit.vercel.app/r/format-badge","https://pivotkit.vercel.app/r/required-badge","https://pivotkit.vercel.app/r/type-indicator","https://pivotkit.vercel.app/r/default-value-display","https://pivotkit.vercel.app/r/examples-display","https://pivotkit.vercel.app/r/expand-collapse"],
     files: [{
       path: "registry/pivot/header-item.tsx",
       type: "registry:component",
@@ -746,249 +440,11 @@ export const Index: Record<string, any> = {
     }),
     meta: undefined,
   },
-  "media-type-selector": {
-    name: "media-type-selector",
-    description: "Selector for media types",
-    type: "registry:component",
-    registryDependencies: ["utils","description-display"],
-    files: [{
-      path: "registry/pivot/media-type-selector.tsx",
-      type: "registry:component",
-      target: "components/pivot/media-type-selector.tsx"
-    }],
-    component: React.lazy(async () => {
-      const mod = await import("@/registry/pivot/media-type-selector.tsx")
-      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
-      return { default: mod.default || mod[exportName] }
-    }),
-    meta: undefined,
-  },
-  "response-group": {
-    name: "response-group",
-    description: "Group responses by status code",
-    type: "registry:component",
-    registryDependencies: ["utils","response-item"],
-    files: [{
-      path: "registry/pivot/response-group.tsx",
-      type: "registry:component",
-      target: "components/pivot/response-group.tsx"
-    }],
-    component: React.lazy(async () => {
-      const mod = await import("@/registry/pivot/response-group.tsx")
-      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
-      return { default: mod.default || mod[exportName] }
-    }),
-    meta: undefined,
-  },
-  "parameters-section": {
-    name: "parameters-section",
-    description: "Display parameters section",
-    type: "registry:component",
-    registryDependencies: ["utils","parameter-item"],
-    files: [{
-      path: "registry/pivot/parameters-section.tsx",
-      type: "registry:component",
-      target: "components/pivot/parameters-section.tsx"
-    }],
-    component: React.lazy(async () => {
-      const mod = await import("@/registry/pivot/parameters-section.tsx")
-      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
-      return { default: mod.default || mod[exportName] }
-    }),
-    meta: undefined,
-  },
-  "schema-composition-display": {
-    name: "schema-composition-display",
-    description: "Display schema composition (allOf, oneOf, anyOf)",
-    type: "registry:component",
-    registryDependencies: ["utils","type-indicator","constraint-display"],
-    files: [{
-      path: "registry/pivot/schema-composition-display.tsx",
-      type: "registry:component",
-      target: "components/pivot/schema-composition-display.tsx"
-    }],
-    component: React.lazy(async () => {
-      const mod = await import("@/registry/pivot/schema-composition-display.tsx")
-      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
-      return { default: mod.default || mod[exportName] }
-    }),
-    meta: undefined,
-  },
-  "component-tabs": {
-    name: "component-tabs",
-    description: "Tabs for different component types",
-    type: "registry:component",
-    registryDependencies: ["utils"],
-    files: [{
-      path: "registry/pivot/component-tabs.tsx",
-      type: "registry:component",
-      target: "components/pivot/component-tabs.tsx"
-    }],
-    component: React.lazy(async () => {
-      const mod = await import("@/registry/pivot/component-tabs.tsx")
-      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
-      return { default: mod.default || mod[exportName] }
-    }),
-    meta: undefined,
-  },
-  "schema-with-example-viewer": {
-    name: "schema-with-example-viewer",
-    description: "Display schema with example",
-    type: "registry:component",
-    registryDependencies: ["utils","schema-display","example-display","generate-example","resolve-ref"],
-    files: [{
-      path: "registry/pivot/schema-with-example-viewer.tsx",
-      type: "registry:component",
-      target: "components/pivot/schema-with-example-viewer.tsx"
-    }],
-    component: React.lazy(async () => {
-      const mod = await import("@/registry/pivot/schema-with-example-viewer.tsx")
-      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
-      return { default: mod.default || mod[exportName] }
-    }),
-    meta: undefined,
-  },
-  "schema-display": {
-    name: "schema-display",
-    description: "Display OpenAPI schema",
-    type: "registry:component",
-    registryDependencies: ["utils","schema-display"],
-    files: [{
-      path: "registry/pivot/schema-display.tsx",
-      type: "registry:component",
-      target: "components/pivot/schema-display.tsx"
-    }],
-    component: React.lazy(async () => {
-      const mod = await import("@/registry/pivot/schema-display.tsx")
-      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
-      return { default: mod.default || mod[exportName] }
-    }),
-    meta: undefined,
-  },
-  "parameter-item": {
-    name: "parameter-item",
-    description: "Display parameter item",
-    type: "registry:component",
-    registryDependencies: ["utils","example-display"],
-    files: [{
-      path: "registry/pivot/parameter-item.tsx",
-      type: "registry:component",
-      target: "components/pivot/parameter-item.tsx"
-    }],
-    component: React.lazy(async () => {
-      const mod = await import("@/registry/pivot/parameter-item.tsx")
-      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
-      return { default: mod.default || mod[exportName] }
-    }),
-    meta: undefined,
-  },
-  "operation-box": {
-    name: "operation-box",
-    description: "Display operation in a box layout",
-    type: "registry:component",
-    registryDependencies: ["utils","deprecated-badge","description-display","expand-collapse","external-docs-display","method-label","operation-path","parameters-section","request-body-section","responses-section","security-requirements-section"],
-    files: [{
-      path: "registry/pivot/operation-box.tsx",
-      type: "registry:component",
-      target: "components/pivot/operation-box.tsx"
-    }],
-    component: React.lazy(async () => {
-      const mod = await import("@/registry/pivot/operation-box.tsx")
-      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
-      return { default: mod.default || mod[exportName] }
-    }),
-    meta: undefined,
-  },
-  "webhook-display": {
-    name: "webhook-display",
-    description: "Display webhook information",
-    type: "registry:component",
-    registryDependencies: ["utils","operation-box"],
-    files: [{
-      path: "registry/pivot/webhook-display.tsx",
-      type: "registry:component",
-      target: "components/pivot/webhook-display.tsx"
-    }],
-    component: React.lazy(async () => {
-      const mod = await import("@/registry/pivot/webhook-display.tsx")
-      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
-      return { default: mod.default || mod[exportName] }
-    }),
-    meta: undefined,
-  },
-  "security-requirements-section": {
-    name: "security-requirements-section",
-    description: "Display security requirements section",
-    type: "registry:component",
-    registryDependencies: ["utils","security-requirement-item"],
-    files: [{
-      path: "registry/pivot/security-requirements-section.tsx",
-      type: "registry:component",
-      target: "components/pivot/security-requirements-section.tsx"
-    }],
-    component: React.lazy(async () => {
-      const mod = await import("@/registry/pivot/security-requirements-section.tsx")
-      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
-      return { default: mod.default || mod[exportName] }
-    }),
-    meta: undefined,
-  },
-  "request-body-section": {
-    name: "request-body-section",
-    description: "Display request body section",
-    type: "registry:component",
-    registryDependencies: ["utils","schema-with-example-viewer","section-title"],
-    files: [{
-      path: "registry/pivot/request-body-section.tsx",
-      type: "registry:component",
-      target: "components/pivot/request-body-section.tsx"
-    }],
-    component: React.lazy(async () => {
-      const mod = await import("@/registry/pivot/request-body-section.tsx")
-      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
-      return { default: mod.default || mod[exportName] }
-    }),
-    meta: undefined,
-  },
-  "responses-section": {
-    name: "responses-section",
-    description: "Display responses section",
-    type: "registry:component",
-    registryDependencies: ["utils","response-group","section-title","status-code"],
-    files: [{
-      path: "registry/pivot/responses-section.tsx",
-      type: "registry:component",
-      target: "components/pivot/responses-section.tsx"
-    }],
-    component: React.lazy(async () => {
-      const mod = await import("@/registry/pivot/responses-section.tsx")
-      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
-      return { default: mod.default || mod[exportName] }
-    }),
-    meta: undefined,
-  },
-  "response-item": {
-    name: "response-item",
-    description: "Display response item",
-    type: "registry:component",
-    registryDependencies: ["utils","resolve-ref","description-display","headers-section","links-section","status-code"],
-    files: [{
-      path: "registry/pivot/response-item.tsx",
-      type: "registry:component",
-      target: "components/pivot/response-item.tsx"
-    }],
-    component: React.lazy(async () => {
-      const mod = await import("@/registry/pivot/response-item.tsx")
-      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
-      return { default: mod.default || mod[exportName] }
-    }),
-    meta: undefined,
-  },
   "headers-section": {
     name: "headers-section",
-    description: "Display headers section",
-    type: "registry:component",
-    registryDependencies: ["utils","header-item"],
+    description: "",
+    type: "registry:ui",
+    registryDependencies: ["https://pivotkit.vercel.app/r/header-item","https://pivotkit.vercel.app/r/style-badge"],
     files: [{
       path: "registry/pivot/headers-section.tsx",
       type: "registry:component",
@@ -1001,137 +457,52 @@ export const Index: Record<string, any> = {
     }),
     meta: undefined,
   },
-  "component-detail": {
-    name: "component-detail",
-    description: "Display component details",
-    type: "registry:component",
-    registryDependencies: ["utils","callback-display","examples-display","header-item","link-item","parameter-item","request-body-section","response-item","schema-display","security-scheme-display","webhook-display"],
+  "in-label": {
+    name: "in-label",
+    description: "",
+    type: "registry:ui",
+    registryDependencies: undefined,
     files: [{
-      path: "registry/pivot/component-detail.tsx",
+      path: "registry/pivot/in-label.tsx",
       type: "registry:component",
-      target: "components/pivot/component-detail.tsx"
+      target: "components/pivot/in-label.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/pivot/component-detail.tsx")
+      const mod = await import("@/registry/pivot/in-label.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
     meta: undefined,
   },
-  "callback-display": {
-    name: "callback-display",
-    description: "Display callback information",
-    type: "registry:component",
-    registryDependencies: ["utils"],
+  "info-section": {
+    name: "info-section",
+    description: "",
+    type: "registry:ui",
+    registryDependencies: ["https://pivotkit.vercel.app/r/contact-display","https://pivotkit.vercel.app/r/description-display","https://pivotkit.vercel.app/r/license-display"],
     files: [{
-      path: "registry/pivot/callback-display.tsx",
+      path: "registry/pivot/info-section.tsx",
       type: "registry:component",
-      target: "components/pivot/callback-display.tsx"
+      target: "components/pivot/info-section.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/pivot/callback-display.tsx")
+      const mod = await import("@/registry/pivot/info-section.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
     meta: undefined,
   },
-  "copy-button": {
-    name: "copy-button",
-    description: "Button for copying content to clipboard",
+  "language-switcher": {
+    name: "language-switcher",
+    description: "",
     type: "registry:ui",
-    registryDependencies: ["utils"],
+    registryDependencies: undefined,
     files: [{
-      path: "registry/pivot/copy-button.tsx",
-      type: "registry:ui",
-      target: "components/pivot/copy-button.tsx"
+      path: "registry/pivot/language-switcher.tsx",
+      type: "registry:component",
+      target: "components/pivot/language-switcher.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/pivot/copy-button.tsx")
-      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
-      return { default: mod.default || mod[exportName] }
-    }),
-    meta: undefined,
-  },
-  "code-markdown": {
-    name: "code-markdown",
-    description: "Display code with syntax highlighting",
-    type: "registry:ui",
-    registryDependencies: ["utils","copy-button"],
-    files: [{
-      path: "registry/pivot/code-markdown.tsx",
-      type: "registry:ui",
-      target: "components/pivot/code-markdown.tsx"
-    }],
-    component: React.lazy(async () => {
-      const mod = await import("@/registry/pivot/code-markdown.tsx")
-      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
-      return { default: mod.default || mod[exportName] }
-    }),
-    meta: undefined,
-  },
-  "curl-generator": {
-    name: "curl-generator",
-    description: "Generate cURL commands",
-    type: "registry:ui",
-    registryDependencies: ["utils"],
-    files: [{
-      path: "registry/pivot/curl-generator.tsx",
-      type: "registry:ui",
-      target: "components/pivot/curl-generator.tsx"
-    }],
-    component: React.lazy(async () => {
-      const mod = await import("@/registry/pivot/curl-generator.tsx")
-      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
-      return { default: mod.default || mod[exportName] }
-    }),
-    meta: undefined,
-  },
-  "python-generator": {
-    name: "python-generator",
-    description: "Generate Python code",
-    type: "registry:ui",
-    registryDependencies: ["utils"],
-    files: [{
-      path: "registry/pivot/python-generator.tsx",
-      type: "registry:ui",
-      target: "components/pivot/python-generator.tsx"
-    }],
-    component: React.lazy(async () => {
-      const mod = await import("@/registry/pivot/python-generator.tsx")
-      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
-      return { default: mod.default || mod[exportName] }
-    }),
-    meta: undefined,
-  },
-  "typescript-generator": {
-    name: "typescript-generator",
-    description: "Generate TypeScript code",
-    type: "registry:ui",
-    registryDependencies: ["utils"],
-    files: [{
-      path: "registry/pivot/typescript-generator.tsx",
-      type: "registry:ui",
-      target: "components/pivot/typescript-generator.tsx"
-    }],
-    component: React.lazy(async () => {
-      const mod = await import("@/registry/pivot/typescript-generator.tsx")
-      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
-      return { default: mod.default || mod[exportName] }
-    }),
-    meta: undefined,
-  },
-  "php-generator": {
-    name: "php-generator",
-    description: "Generate PHP code",
-    type: "registry:ui",
-    registryDependencies: ["utils"],
-    files: [{
-      path: "registry/pivot/php-generator.tsx",
-      type: "registry:ui",
-      target: "components/pivot/php-generator.tsx"
-    }],
-    component: React.lazy(async () => {
-      const mod = await import("@/registry/pivot/php-generator.tsx")
+      const mod = await import("@/registry/pivot/language-switcher.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -1139,12 +510,12 @@ export const Index: Record<string, any> = {
   },
   "laravel-generator": {
     name: "laravel-generator",
-    description: "Generate Laravel code",
+    description: "",
     type: "registry:ui",
-    registryDependencies: ["utils"],
+    registryDependencies: undefined,
     files: [{
       path: "registry/pivot/laravel-generator.tsx",
-      type: "registry:ui",
+      type: "registry:component",
       target: "components/pivot/laravel-generator.tsx"
     }],
     component: React.lazy(async () => {
@@ -1154,86 +525,103 @@ export const Index: Record<string, any> = {
     }),
     meta: undefined,
   },
-  "codegen": {
-    name: "codegen",
-    description: "Multi-language code generator",
-    type: "registry:component",
-    registryDependencies: ["utils","curl-generator","python-generator","typescript-generator","php-generator","laravel-generator","generate-example","resolve-ref","code-markdown"],
+  "license-display": {
+    name: "license-display",
+    description: "",
+    type: "registry:ui",
+    registryDependencies: undefined,
     files: [{
-      path: "registry/pivot/codegen.tsx",
+      path: "registry/pivot/license-display.tsx",
       type: "registry:component",
-      target: "components/pivot/codegen.tsx"
+      target: "components/pivot/license-display.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/pivot/codegen.tsx")
+      const mod = await import("@/registry/pivot/license-display.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
     meta: undefined,
   },
-  "try-it-out-panel": {
-    name: "try-it-out-panel",
-    description: "Interactive API testing panel",
-    type: "registry:component",
-    registryDependencies: ["utils","parameter-item","copy-button","codegen","resolve-ref","method-label"],
+  "link-item": {
+    name: "link-item",
+    description: "",
+    type: "registry:ui",
+    registryDependencies: ["https://pivotkit.vercel.app/r/description-display","https://pivotkit.vercel.app/r/server-display","https://pivotkit.vercel.app/r/expand-collapse"],
     files: [{
-      path: "registry/pivot/try-it-out-panel.tsx",
+      path: "registry/pivot/link-item.tsx",
       type: "registry:component",
-      target: "components/pivot/try-it-out-panel.tsx"
+      target: "components/pivot/link-item.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/pivot/try-it-out-panel.tsx")
+      const mod = await import("@/registry/pivot/link-item.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
     meta: undefined,
   },
-  "operation-list-layout": {
-    name: "operation-list-layout",
-    description: "Layout for displaying list of operations",
-    type: "registry:block",
-    registryDependencies: ["utils","use-openapi","operation-box","try-it-out-panel"],
+  "links-section": {
+    name: "links-section",
+    description: "",
+    type: "registry:ui",
+    registryDependencies: ["https://pivotkit.vercel.app/r/link-item"],
     files: [{
-      path: "registry/pivot/operation-list-layout.tsx",
-      type: "registry:block",
-      target: "components/pivot/operation-list-layout.tsx"
-    }],
-    component: React.lazy(async () => {
-      const mod = await import("@/registry/pivot/operation-list-layout.tsx")
-      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
-      return { default: mod.default || mod[exportName] }
-    }),
-    meta: undefined,
-  },
-  "operation-detailed-layout": {
-    name: "operation-detailed-layout",
-    description: "Detailed layout for displaying operations",
-    type: "registry:block",
-    registryDependencies: ["utils","codegen","operation-detail","try-it-out-panel"],
-    files: [{
-      path: "registry/pivot/operation-detailed-layout.tsx",
-      type: "registry:block",
-      target: "components/pivot/operation-detailed-layout.tsx"
-    }],
-    component: React.lazy(async () => {
-      const mod = await import("@/registry/pivot/operation-detailed-layout.tsx")
-      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
-      return { default: mod.default || mod[exportName] }
-    }),
-    meta: undefined,
-  },
-  "operation-detail": {
-    name: "operation-detail",
-    description: "Detailed view of API operation",
-    type: "registry:component",
-    registryDependencies: ["utils","deprecated-badge","description-display","external-docs-display","method-label","operation-path","parameters-section","request-body-section","responses-section","security-requirements-section"],
-    files: [{
-      path: "registry/pivot/operation-detail.tsx",
+      path: "registry/pivot/links-section.tsx",
       type: "registry:component",
-      target: "components/pivot/operation-detail.tsx"
+      target: "components/pivot/links-section.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/pivot/operation-detail.tsx")
+      const mod = await import("@/registry/pivot/links-section.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    meta: undefined,
+  },
+  "media-type-display": {
+    name: "media-type-display",
+    description: "",
+    type: "registry:ui",
+    registryDependencies: undefined,
+    files: [{
+      path: "registry/pivot/media-type-display.tsx",
+      type: "registry:component",
+      target: "components/pivot/media-type-display.tsx"
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/pivot/media-type-display.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    meta: undefined,
+  },
+  "media-type-selector": {
+    name: "media-type-selector",
+    description: "",
+    type: "registry:ui",
+    registryDependencies: undefined,
+    files: [{
+      path: "registry/pivot/media-type-selector.tsx",
+      type: "registry:component",
+      target: "components/pivot/media-type-selector.tsx"
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/pivot/media-type-selector.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    meta: undefined,
+  },
+  "method-label": {
+    name: "method-label",
+    description: "",
+    type: "registry:ui",
+    registryDependencies: undefined,
+    files: [{
+      path: "registry/pivot/method-label.tsx",
+      type: "registry:component",
+      target: "components/pivot/method-label.tsx"
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/pivot/method-label.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -1241,9 +629,9 @@ export const Index: Record<string, any> = {
   },
   "navigation-sidebar": {
     name: "navigation-sidebar",
-    description: "Sidebar navigation for API documentation",
-    type: "registry:component",
-    registryDependencies: ["utils","method-label"],
+    description: "",
+    type: "registry:ui",
+    registryDependencies: ["https://pivotkit.vercel.app/r/method-label"],
     files: [{
       path: "registry/pivot/navigation-sidebar.tsx",
       type: "registry:component",
@@ -1256,18 +644,749 @@ export const Index: Record<string, any> = {
     }),
     meta: undefined,
   },
-  "accordion-components-section": {
-    name: "accordion-components-section",
-    description: "Accordion section for components",
-    type: "registry:component",
-    registryDependencies: ["utils"],
+  "oauth-flow-details": {
+    name: "oauth-flow-details",
+    description: "",
+    type: "registry:ui",
+    registryDependencies: undefined,
     files: [{
-      path: "registry/pivot/accordion-components-section.tsx",
+      path: "registry/pivot/oauth-flow-details.tsx",
       type: "registry:component",
-      target: "components/pivot/accordion-components-section.tsx"
+      target: "components/pivot/oauth-flow-details.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/pivot/accordion-components-section.tsx")
+      const mod = await import("@/registry/pivot/oauth-flow-details.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    meta: undefined,
+  },
+  "oauth-flow": {
+    name: "oauth-flow",
+    description: "",
+    type: "registry:ui",
+    registryDependencies: undefined,
+    files: [{
+      path: "registry/pivot/oauth-flow.tsx",
+      type: "registry:component",
+      target: "components/pivot/oauth-flow.tsx"
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/pivot/oauth-flow.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    meta: undefined,
+  },
+  "operation-box": {
+    name: "operation-box",
+    description: "",
+    type: "registry:ui",
+    registryDependencies: ["https://pivotkit.vercel.app/r/deprecated-badge","https://pivotkit.vercel.app/r/description-display","https://pivotkit.vercel.app/r/expand-collapse","https://pivotkit.vercel.app/r/external-docs-display","https://pivotkit.vercel.app/r/method-label","https://pivotkit.vercel.app/r/operation-path","https://pivotkit.vercel.app/r/parameters-section","https://pivotkit.vercel.app/r/request-body-section","https://pivotkit.vercel.app/r/responses-section","https://pivotkit.vercel.app/r/security-requirements-section"],
+    files: [{
+      path: "registry/pivot/operation-box.tsx",
+      type: "registry:component",
+      target: "components/pivot/operation-box.tsx"
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/pivot/operation-box.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    meta: undefined,
+  },
+  "operation-detail": {
+    name: "operation-detail",
+    description: "",
+    type: "registry:ui",
+    registryDependencies: ["https://pivotkit.vercel.app/r/deprecated-badge","https://pivotkit.vercel.app/r/description-display","https://pivotkit.vercel.app/r/external-docs-display","https://pivotkit.vercel.app/r/method-label","https://pivotkit.vercel.app/r/operation-path","https://pivotkit.vercel.app/r/parameters-section","https://pivotkit.vercel.app/r/request-body-section","https://pivotkit.vercel.app/r/responses-section","https://pivotkit.vercel.app/r/security-requirements-section"],
+    files: [{
+      path: "registry/pivot/operation-detail.tsx",
+      type: "registry:component",
+      target: "components/pivot/operation-detail.tsx"
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/pivot/operation-detail.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    meta: undefined,
+  },
+  "operation-detailed-layout": {
+    name: "operation-detailed-layout",
+    description: "",
+    type: "registry:ui",
+    registryDependencies: ["https://pivotkit.vercel.app/r/codegen","https://pivotkit.vercel.app/r/operation-detail","https://pivotkit.vercel.app/r/try-it-out-panel"],
+    files: [{
+      path: "registry/pivot/operation-detailed-layout.tsx",
+      type: "registry:component",
+      target: "components/pivot/operation-detailed-layout.tsx"
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/pivot/operation-detailed-layout.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    meta: undefined,
+  },
+  "operation-list-layout": {
+    name: "operation-list-layout",
+    description: "",
+    type: "registry:ui",
+    registryDependencies: ["https://pivotkit.vercel.app/r/operation-box","https://pivotkit.vercel.app/r/try-it-out-panel"],
+    files: [{
+      path: "registry/pivot/operation-list-layout.tsx",
+      type: "registry:component",
+      target: "components/pivot/operation-list-layout.tsx"
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/pivot/operation-list-layout.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    meta: undefined,
+  },
+  "operation-path": {
+    name: "operation-path",
+    description: "",
+    type: "registry:ui",
+    registryDependencies: ["https://pivotkit.vercel.app/r/path-segment"],
+    files: [{
+      path: "registry/pivot/operation-path.tsx",
+      type: "registry:component",
+      target: "components/pivot/operation-path.tsx"
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/pivot/operation-path.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    meta: undefined,
+  },
+  "parameter-description": {
+    name: "parameter-description",
+    description: "",
+    type: "registry:ui",
+    registryDependencies: undefined,
+    files: [{
+      path: "registry/pivot/parameter-description.tsx",
+      type: "registry:component",
+      target: "components/pivot/parameter-description.tsx"
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/pivot/parameter-description.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    meta: undefined,
+  },
+  "parameter-group": {
+    name: "parameter-group",
+    description: "",
+    type: "registry:ui",
+    registryDependencies: ["https://pivotkit.vercel.app/r/required-marker","https://pivotkit.vercel.app/r/type-indicator","https://pivotkit.vercel.app/r/expand-collapse"],
+    files: [{
+      path: "registry/pivot/parameter-group.tsx",
+      type: "registry:component",
+      target: "components/pivot/parameter-group.tsx"
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/pivot/parameter-group.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    meta: undefined,
+  },
+  "parameter-item": {
+    name: "parameter-item",
+    description: "",
+    type: "registry:ui",
+    registryDependencies: ["https://pivotkit.vercel.app/r/constraint-display","https://pivotkit.vercel.app/r/default-value-display","https://pivotkit.vercel.app/r/deprecated-badge","https://pivotkit.vercel.app/r/enum-values-display","https://pivotkit.vercel.app/r/format-badge","https://pivotkit.vercel.app/r/in-label","https://pivotkit.vercel.app/r/parameter-description","https://pivotkit.vercel.app/r/parameter-name","https://pivotkit.vercel.app/r/style-badge","https://pivotkit.vercel.app/r/type-indicator","https://pivotkit.vercel.app/r/example-display","https://pivotkit.vercel.app/r/expand-collapse"],
+    files: [{
+      path: "registry/pivot/parameter-item.tsx",
+      type: "registry:component",
+      target: "components/pivot/parameter-item.tsx"
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/pivot/parameter-item.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    meta: undefined,
+  },
+  "parameter-name": {
+    name: "parameter-name",
+    description: "",
+    type: "registry:ui",
+    registryDependencies: undefined,
+    files: [{
+      path: "registry/pivot/parameter-name.tsx",
+      type: "registry:component",
+      target: "components/pivot/parameter-name.tsx"
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/pivot/parameter-name.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    meta: undefined,
+  },
+  "parameters-section": {
+    name: "parameters-section",
+    description: "",
+    type: "registry:ui",
+    registryDependencies: ["https://pivotkit.vercel.app/r/style-badge","https://pivotkit.vercel.app/r/parameter-item","https://pivotkit.vercel.app/r/section-title"],
+    files: [{
+      path: "registry/pivot/parameters-section.tsx",
+      type: "registry:component",
+      target: "components/pivot/parameters-section.tsx"
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/pivot/parameters-section.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    meta: undefined,
+  },
+  "path-item-display": {
+    name: "path-item-display",
+    description: "",
+    type: "registry:ui",
+    registryDependencies: ["https://pivotkit.vercel.app/r/description-display","https://pivotkit.vercel.app/r/operation-box"],
+    files: [{
+      path: "registry/pivot/path-item-display.tsx",
+      type: "registry:component",
+      target: "components/pivot/path-item-display.tsx"
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/pivot/path-item-display.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    meta: undefined,
+  },
+  "path-segment": {
+    name: "path-segment",
+    description: "",
+    type: "registry:ui",
+    registryDependencies: undefined,
+    files: [{
+      path: "registry/pivot/path-segment.tsx",
+      type: "registry:component",
+      target: "components/pivot/path-segment.tsx"
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/pivot/path-segment.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    meta: undefined,
+  },
+  "php-generator": {
+    name: "php-generator",
+    description: "",
+    type: "registry:ui",
+    registryDependencies: undefined,
+    files: [{
+      path: "registry/pivot/php-generator.tsx",
+      type: "registry:component",
+      target: "components/pivot/php-generator.tsx"
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/pivot/php-generator.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    meta: undefined,
+  },
+  "python-generator": {
+    name: "python-generator",
+    description: "",
+    type: "registry:ui",
+    registryDependencies: undefined,
+    files: [{
+      path: "registry/pivot/python-generator.tsx",
+      type: "registry:component",
+      target: "components/pivot/python-generator.tsx"
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/pivot/python-generator.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    meta: undefined,
+  },
+  "request-body-section": {
+    name: "request-body-section",
+    description: "",
+    type: "registry:ui",
+    registryDependencies: ["https://pivotkit.vercel.app/r/schema-with-example-viewer","https://pivotkit.vercel.app/r/section-title"],
+    files: [{
+      path: "registry/pivot/request-body-section.tsx",
+      type: "registry:component",
+      target: "components/pivot/request-body-section.tsx"
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/pivot/request-body-section.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    meta: undefined,
+  },
+  "required-badge": {
+    name: "required-badge",
+    description: "",
+    type: "registry:ui",
+    registryDependencies: undefined,
+    files: [{
+      path: "registry/pivot/required-badge.tsx",
+      type: "registry:component",
+      target: "components/pivot/required-badge.tsx"
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/pivot/required-badge.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    meta: undefined,
+  },
+  "required-marker": {
+    name: "required-marker",
+    description: "",
+    type: "registry:ui",
+    registryDependencies: undefined,
+    files: [{
+      path: "registry/pivot/required-marker.tsx",
+      type: "registry:component",
+      target: "components/pivot/required-marker.tsx"
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/pivot/required-marker.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    meta: undefined,
+  },
+  "resizable-sidebar": {
+    name: "resizable-sidebar",
+    description: "",
+    type: "registry:ui",
+    registryDependencies: undefined,
+    files: [{
+      path: "registry/pivot/resizable-sidebar.tsx",
+      type: "registry:component",
+      target: "components/pivot/resizable-sidebar.tsx"
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/pivot/resizable-sidebar.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    meta: undefined,
+  },
+  "response-content-section": {
+    name: "response-content-section",
+    description: "",
+    type: "registry:ui",
+    registryDependencies: ["https://pivotkit.vercel.app/r/schema-with-example-viewer"],
+    files: [{
+      path: "registry/pivot/response-content-section.tsx",
+      type: "registry:component",
+      target: "components/pivot/response-content-section.tsx"
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/pivot/response-content-section.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    meta: undefined,
+  },
+  "response-group": {
+    name: "response-group",
+    description: "",
+    type: "registry:ui",
+    registryDependencies: ["https://pivotkit.vercel.app/r/response-content-section","https://pivotkit.vercel.app/r/response-headers-table"],
+    files: [{
+      path: "registry/pivot/response-group.tsx",
+      type: "registry:component",
+      target: "components/pivot/response-group.tsx"
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/pivot/response-group.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    meta: undefined,
+  },
+  "response-headers-table": {
+    name: "response-headers-table",
+    description: "",
+    type: "registry:ui",
+    registryDependencies: ["https://pivotkit.vercel.app/r/header-item","https://pivotkit.vercel.app/r/style-badge"],
+    files: [{
+      path: "registry/pivot/response-headers-table.tsx",
+      type: "registry:component",
+      target: "components/pivot/response-headers-table.tsx"
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/pivot/response-headers-table.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    meta: undefined,
+  },
+  "response-item": {
+    name: "response-item",
+    description: "",
+    type: "registry:ui",
+    registryDependencies: ["https://pivotkit.vercel.app/r/description-display","https://pivotkit.vercel.app/r/headers-section","https://pivotkit.vercel.app/r/links-section","https://pivotkit.vercel.app/r/status-code"],
+    files: [{
+      path: "registry/pivot/response-item.tsx",
+      type: "registry:component",
+      target: "components/pivot/response-item.tsx"
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/pivot/response-item.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    meta: undefined,
+  },
+  "responses-section": {
+    name: "responses-section",
+    description: "",
+    type: "registry:ui",
+    registryDependencies: ["https://pivotkit.vercel.app/r/response-group","https://pivotkit.vercel.app/r/section-title","https://pivotkit.vercel.app/r/status-code"],
+    files: [{
+      path: "registry/pivot/responses-section.tsx",
+      type: "registry:component",
+      target: "components/pivot/responses-section.tsx"
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/pivot/responses-section.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    meta: undefined,
+  },
+  "schema-composition-display": {
+    name: "schema-composition-display",
+    description: "",
+    type: "registry:ui",
+    registryDependencies: undefined,
+    files: [{
+      path: "registry/pivot/schema-composition-display.tsx",
+      type: "registry:component",
+      target: "components/pivot/schema-composition-display.tsx"
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/pivot/schema-composition-display.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    meta: undefined,
+  },
+  "schema-display": {
+    name: "schema-display",
+    description: "",
+    type: "registry:ui",
+    registryDependencies: ["https://pivotkit.vercel.app/r/constraint-display","https://pivotkit.vercel.app/r/default-value-display","https://pivotkit.vercel.app/r/deprecated-badge","https://pivotkit.vercel.app/r/description-display","https://pivotkit.vercel.app/r/enum-values-display","https://pivotkit.vercel.app/r/format-badge","https://pivotkit.vercel.app/r/required-badge","https://pivotkit.vercel.app/r/type-indicator","https://pivotkit.vercel.app/r/schema-composition-display"],
+    files: [{
+      path: "registry/pivot/schema-display.tsx",
+      type: "registry:component",
+      target: "components/pivot/schema-display.tsx"
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/pivot/schema-display.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    meta: undefined,
+  },
+  "schema-with-example-viewer": {
+    name: "schema-with-example-viewer",
+    description: "",
+    type: "registry:ui",
+    registryDependencies: ["https://pivotkit.vercel.app/r/description-display","https://pivotkit.vercel.app/r/example-display","https://pivotkit.vercel.app/r/media-type-selector","https://pivotkit.vercel.app/r/schema-display"],
+    files: [{
+      path: "registry/pivot/schema-with-example-viewer.tsx",
+      type: "registry:component",
+      target: "components/pivot/schema-with-example-viewer.tsx"
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/pivot/schema-with-example-viewer.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    meta: undefined,
+  },
+  "scheme-type": {
+    name: "scheme-type",
+    description: "",
+    type: "registry:ui",
+    registryDependencies: undefined,
+    files: [{
+      path: "registry/pivot/scheme-type.tsx",
+      type: "registry:component",
+      target: "components/pivot/scheme-type.tsx"
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/pivot/scheme-type.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    meta: undefined,
+  },
+  "section-title": {
+    name: "section-title",
+    description: "",
+    type: "registry:ui",
+    registryDependencies: undefined,
+    files: [{
+      path: "registry/pivot/section-title.tsx",
+      type: "registry:component",
+      target: "components/pivot/section-title.tsx"
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/pivot/section-title.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    meta: undefined,
+  },
+  "security-requirement-item": {
+    name: "security-requirement-item",
+    description: "",
+    type: "registry:ui",
+    registryDependencies: undefined,
+    files: [{
+      path: "registry/pivot/security-requirement-item.tsx",
+      type: "registry:component",
+      target: "components/pivot/security-requirement-item.tsx"
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/pivot/security-requirement-item.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    meta: undefined,
+  },
+  "security-requirements-section": {
+    name: "security-requirements-section",
+    description: "",
+    type: "registry:ui",
+    registryDependencies: ["https://pivotkit.vercel.app/r/section-title","https://pivotkit.vercel.app/r/security-requirement-item"],
+    files: [{
+      path: "registry/pivot/security-requirements-section.tsx",
+      type: "registry:component",
+      target: "components/pivot/security-requirements-section.tsx"
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/pivot/security-requirements-section.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    meta: undefined,
+  },
+  "security-scheme-display": {
+    name: "security-scheme-display",
+    description: "",
+    type: "registry:ui",
+    registryDependencies: ["https://pivotkit.vercel.app/r/description-display"],
+    files: [{
+      path: "registry/pivot/security-scheme-display.tsx",
+      type: "registry:component",
+      target: "components/pivot/security-scheme-display.tsx"
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/pivot/security-scheme-display.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    meta: undefined,
+  },
+  "security-scheme": {
+    name: "security-scheme",
+    description: "",
+    type: "registry:ui",
+    registryDependencies: ["https://pivotkit.vercel.app/r/description-display","https://pivotkit.vercel.app/r/scheme-type"],
+    files: [{
+      path: "registry/pivot/security-scheme.tsx",
+      type: "registry:component",
+      target: "components/pivot/security-scheme.tsx"
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/pivot/security-scheme.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    meta: undefined,
+  },
+  "security-schemes": {
+    name: "security-schemes",
+    description: "",
+    type: "registry:ui",
+    registryDependencies: ["https://pivotkit.vercel.app/r/section-title","https://pivotkit.vercel.app/r/security-scheme"],
+    files: [{
+      path: "registry/pivot/security-schemes.tsx",
+      type: "registry:component",
+      target: "components/pivot/security-schemes.tsx"
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/pivot/security-schemes.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    meta: undefined,
+  },
+  "security-section": {
+    name: "security-section",
+    description: "",
+    type: "registry:ui",
+    registryDependencies: ["https://pivotkit.vercel.app/r/section-title","https://pivotkit.vercel.app/r/security-scheme-display"],
+    files: [{
+      path: "registry/pivot/security-section.tsx",
+      type: "registry:component",
+      target: "components/pivot/security-section.tsx"
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/pivot/security-section.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    meta: undefined,
+  },
+  "server-display": {
+    name: "server-display",
+    description: "",
+    type: "registry:ui",
+    registryDependencies: ["https://pivotkit.vercel.app/r/description-display"],
+    files: [{
+      path: "registry/pivot/server-display.tsx",
+      type: "registry:component",
+      target: "components/pivot/server-display.tsx"
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/pivot/server-display.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    meta: undefined,
+  },
+  "server-variable": {
+    name: "server-variable",
+    description: "",
+    type: "registry:ui",
+    registryDependencies: ["https://pivotkit.vercel.app/r/description-display"],
+    files: [{
+      path: "registry/pivot/server-variable.tsx",
+      type: "registry:component",
+      target: "components/pivot/server-variable.tsx"
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/pivot/server-variable.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    meta: undefined,
+  },
+  "server": {
+    name: "server",
+    description: "",
+    type: "registry:ui",
+    registryDependencies: ["https://pivotkit.vercel.app/r/description-display","https://pivotkit.vercel.app/r/expand-collapse","https://pivotkit.vercel.app/r/server-variable"],
+    files: [{
+      path: "registry/pivot/server.tsx",
+      type: "registry:component",
+      target: "components/pivot/server.tsx"
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/pivot/server.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    meta: undefined,
+  },
+  "servers-section": {
+    name: "servers-section",
+    description: "",
+    type: "registry:ui",
+    registryDependencies: ["https://pivotkit.vercel.app/r/section-title","https://pivotkit.vercel.app/r/server-display"],
+    files: [{
+      path: "registry/pivot/servers-section.tsx",
+      type: "registry:component",
+      target: "components/pivot/servers-section.tsx"
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/pivot/servers-section.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    meta: undefined,
+  },
+  "servers": {
+    name: "servers",
+    description: "",
+    type: "registry:ui",
+    registryDependencies: ["https://pivotkit.vercel.app/r/section-title","https://pivotkit.vercel.app/r/server"],
+    files: [{
+      path: "registry/pivot/servers.tsx",
+      type: "registry:component",
+      target: "components/pivot/servers.tsx"
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/pivot/servers.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    meta: undefined,
+  },
+  "status-code": {
+    name: "status-code",
+    description: "",
+    type: "registry:ui",
+    registryDependencies: undefined,
+    files: [{
+      path: "registry/pivot/status-code.tsx",
+      type: "registry:component",
+      target: "components/pivot/status-code.tsx"
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/pivot/status-code.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    meta: undefined,
+  },
+  "style-badge": {
+    name: "style-badge",
+    description: "",
+    type: "registry:ui",
+    registryDependencies: undefined,
+    files: [{
+      path: "registry/pivot/style-badge.tsx",
+      type: "registry:component",
+      target: "components/pivot/style-badge.tsx"
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/pivot/style-badge.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    meta: undefined,
+  },
+  "terms-of-service": {
+    name: "terms-of-service",
+    description: "",
+    type: "registry:ui",
+    registryDependencies: undefined,
+    files: [{
+      path: "registry/pivot/terms-of-service.tsx",
+      type: "registry:component",
+      target: "components/pivot/terms-of-service.tsx"
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/pivot/terms-of-service.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -1275,12 +1394,12 @@ export const Index: Record<string, any> = {
   },
   "theme-toggle": {
     name: "theme-toggle",
-    description: "Toggle between light and dark themes",
+    description: "",
     type: "registry:ui",
-    registryDependencies: ["utils"],
+    registryDependencies: undefined,
     files: [{
       path: "registry/pivot/theme-toggle.tsx",
-      type: "registry:ui",
+      type: "registry:component",
       target: "components/pivot/theme-toggle.tsx"
     }],
     component: React.lazy(async () => {
@@ -1290,120 +1409,120 @@ export const Index: Record<string, any> = {
     }),
     meta: undefined,
   },
-  "language-switcher": {
-    name: "language-switcher",
-    description: "Switch between different languages",
+  "try-it-out-panel": {
+    name: "try-it-out-panel",
+    description: "",
     type: "registry:ui",
-    registryDependencies: ["utils"],
+    registryDependencies: ["https://pivotkit.vercel.app/r/method-label"],
     files: [{
-      path: "registry/pivot/language-switcher.tsx",
-      type: "registry:ui",
-      target: "components/pivot/language-switcher.tsx"
+      path: "registry/pivot/try-it-out-panel.tsx",
+      type: "registry:component",
+      target: "components/pivot/try-it-out-panel.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/pivot/language-switcher.tsx")
+      const mod = await import("@/registry/pivot/try-it-out-panel.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
     meta: undefined,
   },
-  "utils": {
-    name: "utils",
-    description: "Utility functions for class name merging.",
-    type: "registry:lib",
+  "type-indicator": {
+    name: "type-indicator",
+    description: "",
+    type: "registry:ui",
     registryDependencies: undefined,
     files: [{
-      path: "lib/utils.ts",
-      type: "registry:lib",
-      target: "lib/utils.ts"
+      path: "registry/pivot/type-indicator.tsx",
+      type: "registry:component",
+      target: "components/pivot/type-indicator.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/lib/utils.ts")
+      const mod = await import("@/registry/pivot/type-indicator.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
     meta: undefined,
   },
-  "use-openapi": {
-    name: "use-openapi",
-    description: "React hook for processing OpenAPI specifications with utility functions.",
-    type: "registry:hook",
-    registryDependencies: ["resolve-ref"],
-    files: [{
-      path: "registry/lib/use-openapi.ts",
-      type: "registry:hook",
-      target: "hooks/use-openapi.ts"
-    }],
-    component: React.lazy(async () => {
-      const mod = await import("@/registry/lib/use-openapi.ts")
-      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
-      return { default: mod.default || mod[exportName] }
-    }),
-    meta: undefined,
-  },
-  "use-mounted": {
-    name: "use-mounted",
-    description: "React hook for checking if component is mounted.",
-    type: "registry:hook",
+  "typescript-generator": {
+    name: "typescript-generator",
+    description: "",
+    type: "registry:ui",
     registryDependencies: undefined,
     files: [{
-      path: "hooks/use-mounted.ts",
-      type: "registry:hook",
-      target: "hooks/use-mounted.ts"
+      path: "registry/pivot/typescript-generator.tsx",
+      type: "registry:component",
+      target: "components/pivot/typescript-generator.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/hooks/use-mounted.ts")
+      const mod = await import("@/registry/pivot/typescript-generator.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
     meta: undefined,
   },
-  "use-mobile": {
-    name: "use-mobile",
-    description: "React hook for detecting mobile breakpoint.",
-    type: "registry:hook",
+  "value-display": {
+    name: "value-display",
+    description: "",
+    type: "registry:ui",
     registryDependencies: undefined,
     files: [{
-      path: "hooks/use-mobile.ts",
-      type: "registry:hook",
-      target: "hooks/use-mobile.ts"
+      path: "registry/pivot/value-display.tsx",
+      type: "registry:component",
+      target: "components/pivot/value-display.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/hooks/use-mobile.ts")
+      const mod = await import("@/registry/pivot/value-display.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
     meta: undefined,
   },
-  "resolve-ref": {
-    name: "resolve-ref",
-    description: "Utility function for resolving OpenAPI reference objects.",
-    type: "registry:lib",
+  "version-badge": {
+    name: "version-badge",
+    description: "",
+    type: "registry:ui",
     registryDependencies: undefined,
     files: [{
-      path: "registry/lib/resolve-ref.ts",
-      type: "registry:lib",
-      target: "utils/resolve-ref.ts"
+      path: "registry/pivot/version-badge.tsx",
+      type: "registry:component",
+      target: "components/pivot/version-badge.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/lib/resolve-ref.ts")
+      const mod = await import("@/registry/pivot/version-badge.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
     meta: undefined,
   },
-  "generate-example": {
-    name: "generate-example",
-    description: "Utility function for generating examples from OpenAPI schemas.",
-    type: "registry:lib",
-    registryDependencies: ["resolve-ref"],
+  "webhook-display": {
+    name: "webhook-display",
+    description: "",
+    type: "registry:ui",
+    registryDependencies: ["https://pivotkit.vercel.app/r/description-display","https://pivotkit.vercel.app/r/webhook-label","https://pivotkit.vercel.app/r/operation-box"],
     files: [{
-      path: "registry/lib/generate-example.ts",
-      type: "registry:lib",
-      target: "utils/generate-example.ts"
+      path: "registry/pivot/webhook-display.tsx",
+      type: "registry:component",
+      target: "components/pivot/webhook-display.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/lib/generate-example.ts")
+      const mod = await import("@/registry/pivot/webhook-display.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    meta: undefined,
+  },
+  "webhook-label": {
+    name: "webhook-label",
+    description: "",
+    type: "registry:ui",
+    registryDependencies: undefined,
+    files: [{
+      path: "registry/pivot/webhook-label.tsx",
+      type: "registry:component",
+      target: "components/pivot/webhook-label.tsx"
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/pivot/webhook-label.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -1411,9 +1530,9 @@ export const Index: Record<string, any> = {
   },
   "accordion-components-section-demo": {
     name: "accordion-components-section-demo",
-    description: "Example showing accordion components-section component",
+    description: "",
     type: "registry:example",
-    registryDependencies: undefined,
+    registryDependencies: ["https://pivotkit.vercel.app/r/accordion-components-section"],
     files: [{
       path: "registry/example/accordion-components-section-demo.tsx",
       type: "registry:example",
@@ -1426,28 +1545,11 @@ export const Index: Record<string, any> = {
     }),
     meta: undefined,
   },
-  "operation-list-layout-demo": {
-    name: "operation-list-layout-demo",
-    description: "Example showing operation list layout component",
-    type: "registry:example",
-    registryDependencies: undefined,
-    files: [{
-      path: "registry/example/operation-list-layout-demo.tsx",
-      type: "registry:example",
-      target: "components/example/operation-list-layout-demo.tsx"
-    }],
-    component: React.lazy(async () => {
-      const mod = await import("@/registry/example/operation-list-layout-demo.tsx")
-      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
-      return { default: mod.default || mod[exportName] }
-    }),
-    meta: undefined,
-  },
   "callback-display-demo": {
     name: "callback-display-demo",
-    description: "Example showing callback display component",
+    description: "",
     type: "registry:example",
-    registryDependencies: undefined,
+    registryDependencies: ["https://pivotkit.vercel.app/r/callback-display"],
     files: [{
       path: "registry/example/callback-display-demo.tsx",
       type: "registry:example",
@@ -1460,11 +1562,28 @@ export const Index: Record<string, any> = {
     }),
     meta: undefined,
   },
+  "code-markdown-demo": {
+    name: "code-markdown-demo",
+    description: "",
+    type: "registry:example",
+    registryDependencies: ["https://pivotkit.vercel.app/r/code-markdown"],
+    files: [{
+      path: "registry/example/code-markdown-demo.tsx",
+      type: "registry:example",
+      target: "components/example/code-markdown-demo.tsx"
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/example/code-markdown-demo.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    meta: undefined,
+  },
   "codegen-demo": {
     name: "codegen-demo",
-    description: "Example showing codegen component",
+    description: "",
     type: "registry:example",
-    registryDependencies: undefined,
+    registryDependencies: ["https://pivotkit.vercel.app/r/codegen"],
     files: [{
       path: "registry/example/codegen-demo.tsx",
       type: "registry:example",
@@ -1479,9 +1598,9 @@ export const Index: Record<string, any> = {
   },
   "component-detail-demo": {
     name: "component-detail-demo",
-    description: "Example showing component detail component",
+    description: "",
     type: "registry:example",
-    registryDependencies: undefined,
+    registryDependencies: ["https://pivotkit.vercel.app/r/component-detail"],
     files: [{
       path: "registry/example/component-detail-demo.tsx",
       type: "registry:example",
@@ -1496,9 +1615,9 @@ export const Index: Record<string, any> = {
   },
   "component-items-list-demo": {
     name: "component-items-list-demo",
-    description: "Example showing component items-list component",
+    description: "",
     type: "registry:example",
-    registryDependencies: undefined,
+    registryDependencies: ["https://pivotkit.vercel.app/r/component-items-list"],
     files: [{
       path: "registry/example/component-items-list-demo.tsx",
       type: "registry:example",
@@ -1513,9 +1632,9 @@ export const Index: Record<string, any> = {
   },
   "component-tabs-demo": {
     name: "component-tabs-demo",
-    description: "Example showing component tabs component",
+    description: "",
     type: "registry:example",
-    registryDependencies: undefined,
+    registryDependencies: ["https://pivotkit.vercel.app/r/component-tabs"],
     files: [{
       path: "registry/example/component-tabs-demo.tsx",
       type: "registry:example",
@@ -1530,9 +1649,9 @@ export const Index: Record<string, any> = {
   },
   "components-section-demo": {
     name: "components-section-demo",
-    description: "Example showing components section component",
+    description: "",
     type: "registry:example",
-    registryDependencies: undefined,
+    registryDependencies: ["https://pivotkit.vercel.app/r/components-section"],
     files: [{
       path: "registry/example/components-section-demo.tsx",
       type: "registry:example",
@@ -1547,9 +1666,9 @@ export const Index: Record<string, any> = {
   },
   "const-value-demo": {
     name: "const-value-demo",
-    description: "Example showing const value component",
+    description: "",
     type: "registry:example",
-    registryDependencies: undefined,
+    registryDependencies: ["https://pivotkit.vercel.app/r/const-value"],
     files: [{
       path: "registry/example/const-value-demo.tsx",
       type: "registry:example",
@@ -1564,9 +1683,9 @@ export const Index: Record<string, any> = {
   },
   "constraint-display-demo": {
     name: "constraint-display-demo",
-    description: "Example showing constraint display component",
+    description: "",
     type: "registry:example",
-    registryDependencies: undefined,
+    registryDependencies: ["https://pivotkit.vercel.app/r/constraint-display"],
     files: [{
       path: "registry/example/constraint-display-demo.tsx",
       type: "registry:example",
@@ -1581,9 +1700,9 @@ export const Index: Record<string, any> = {
   },
   "contact-display-demo": {
     name: "contact-display-demo",
-    description: "Example showing contact display component",
+    description: "",
     type: "registry:example",
-    registryDependencies: undefined,
+    registryDependencies: ["https://pivotkit.vercel.app/r/contact-display"],
     files: [{
       path: "registry/example/contact-display-demo.tsx",
       type: "registry:example",
@@ -1598,9 +1717,9 @@ export const Index: Record<string, any> = {
   },
   "copy-button-demo": {
     name: "copy-button-demo",
-    description: "Example showing copy button component",
+    description: "",
     type: "registry:example",
-    registryDependencies: undefined,
+    registryDependencies: ["https://pivotkit.vercel.app/r/copy-button","https://pivotkit.vercel.app/r/example-display"],
     files: [{
       path: "registry/example/copy-button-demo.tsx",
       type: "registry:example",
@@ -1615,9 +1734,9 @@ export const Index: Record<string, any> = {
   },
   "curl-generator-demo": {
     name: "curl-generator-demo",
-    description: "Example showing curl generator component",
+    description: "",
     type: "registry:example",
-    registryDependencies: undefined,
+    registryDependencies: ["https://pivotkit.vercel.app/r/curl-generator"],
     files: [{
       path: "registry/example/curl-generator-demo.tsx",
       type: "registry:example",
@@ -1632,9 +1751,9 @@ export const Index: Record<string, any> = {
   },
   "default-value-display-demo": {
     name: "default-value-display-demo",
-    description: "Example showing default value-display component",
+    description: "",
     type: "registry:example",
-    registryDependencies: undefined,
+    registryDependencies: ["https://pivotkit.vercel.app/r/default-value-display"],
     files: [{
       path: "registry/example/default-value-display-demo.tsx",
       type: "registry:example",
@@ -1649,9 +1768,9 @@ export const Index: Record<string, any> = {
   },
   "deprecated-badge-demo": {
     name: "deprecated-badge-demo",
-    description: "Example showing deprecated badge component",
+    description: "",
     type: "registry:example",
-    registryDependencies: undefined,
+    registryDependencies: ["https://pivotkit.vercel.app/r/deprecated-badge"],
     files: [{
       path: "registry/example/deprecated-badge-demo.tsx",
       type: "registry:example",
@@ -1666,9 +1785,9 @@ export const Index: Record<string, any> = {
   },
   "description-display-demo": {
     name: "description-display-demo",
-    description: "Example showing description display component",
+    description: "",
     type: "registry:example",
-    registryDependencies: undefined,
+    registryDependencies: ["https://pivotkit.vercel.app/r/description-display"],
     files: [{
       path: "registry/example/description-display-demo.tsx",
       type: "registry:example",
@@ -1683,9 +1802,9 @@ export const Index: Record<string, any> = {
   },
   "enum-values-demo": {
     name: "enum-values-demo",
-    description: "Example showing enum values component",
+    description: "",
     type: "registry:example",
-    registryDependencies: undefined,
+    registryDependencies: ["https://pivotkit.vercel.app/r/enum-values"],
     files: [{
       path: "registry/example/enum-values-demo.tsx",
       type: "registry:example",
@@ -1700,9 +1819,9 @@ export const Index: Record<string, any> = {
   },
   "enum-values-display-demo": {
     name: "enum-values-display-demo",
-    description: "Example showing enum values-display component",
+    description: "",
     type: "registry:example",
-    registryDependencies: undefined,
+    registryDependencies: ["https://pivotkit.vercel.app/r/enum-values-display"],
     files: [{
       path: "registry/example/enum-values-display-demo.tsx",
       type: "registry:example",
@@ -1717,9 +1836,9 @@ export const Index: Record<string, any> = {
   },
   "example-display-demo": {
     name: "example-display-demo",
-    description: "Example showing example display component",
+    description: "",
     type: "registry:example",
-    registryDependencies: undefined,
+    registryDependencies: ["https://pivotkit.vercel.app/r/example-display"],
     files: [{
       path: "registry/example/example-display-demo.tsx",
       type: "registry:example",
@@ -1734,9 +1853,9 @@ export const Index: Record<string, any> = {
   },
   "examples-display-demo": {
     name: "examples-display-demo",
-    description: "Example showing examples display component",
+    description: "",
     type: "registry:example",
-    registryDependencies: undefined,
+    registryDependencies: ["https://pivotkit.vercel.app/r/examples-display"],
     files: [{
       path: "registry/example/examples-display-demo.tsx",
       type: "registry:example",
@@ -1751,9 +1870,9 @@ export const Index: Record<string, any> = {
   },
   "expand-collapse-demo": {
     name: "expand-collapse-demo",
-    description: "Example showing expand collapse component",
+    description: "",
     type: "registry:example",
-    registryDependencies: undefined,
+    registryDependencies: ["https://pivotkit.vercel.app/r/expand-collapse"],
     files: [{
       path: "registry/example/expand-collapse-demo.tsx",
       type: "registry:example",
@@ -1768,9 +1887,9 @@ export const Index: Record<string, any> = {
   },
   "external-docs-demo": {
     name: "external-docs-demo",
-    description: "Example showing external docs component",
+    description: "",
     type: "registry:example",
-    registryDependencies: undefined,
+    registryDependencies: ["https://pivotkit.vercel.app/r/external-docs"],
     files: [{
       path: "registry/example/external-docs-demo.tsx",
       type: "registry:example",
@@ -1785,9 +1904,9 @@ export const Index: Record<string, any> = {
   },
   "external-docs-display-demo": {
     name: "external-docs-display-demo",
-    description: "Example showing external docs-display component",
+    description: "",
     type: "registry:example",
-    registryDependencies: undefined,
+    registryDependencies: ["https://pivotkit.vercel.app/r/external-docs-display"],
     files: [{
       path: "registry/example/external-docs-display-demo.tsx",
       type: "registry:example",
@@ -1800,11 +1919,28 @@ export const Index: Record<string, any> = {
     }),
     meta: undefined,
   },
-  "format-badge-demo": {
-    name: "format-badge-demo",
-    description: "Example showing format badge component",
+  "faker-example-demo": {
+    name: "faker-example-demo",
+    description: "",
     type: "registry:example",
     registryDependencies: undefined,
+    files: [{
+      path: "registry/example/faker-example-demo.tsx",
+      type: "registry:example",
+      target: "components/example/faker-example-demo.tsx"
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/example/faker-example-demo.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    meta: undefined,
+  },
+  "format-badge-demo": {
+    name: "format-badge-demo",
+    description: "",
+    type: "registry:example",
+    registryDependencies: ["https://pivotkit.vercel.app/r/format-badge"],
     files: [{
       path: "registry/example/format-badge-demo.tsx",
       type: "registry:example",
@@ -1819,9 +1955,9 @@ export const Index: Record<string, any> = {
   },
   "header-item-demo": {
     name: "header-item-demo",
-    description: "Example showing header item component",
+    description: "",
     type: "registry:example",
-    registryDependencies: undefined,
+    registryDependencies: ["https://pivotkit.vercel.app/r/header-item"],
     files: [{
       path: "registry/example/header-item-demo.tsx",
       type: "registry:example",
@@ -1836,9 +1972,9 @@ export const Index: Record<string, any> = {
   },
   "headers-section-demo": {
     name: "headers-section-demo",
-    description: "Example showing headers section component",
+    description: "",
     type: "registry:example",
-    registryDependencies: undefined,
+    registryDependencies: ["https://pivotkit.vercel.app/r/headers-section"],
     files: [{
       path: "registry/example/headers-section-demo.tsx",
       type: "registry:example",
@@ -1851,11 +1987,28 @@ export const Index: Record<string, any> = {
     }),
     meta: undefined,
   },
+  "i18n-demo": {
+    name: "i18n-demo",
+    description: "",
+    type: "registry:example",
+    registryDependencies: ["https://pivotkit.vercel.app/r/required-marker","https://pivotkit.vercel.app/r/try-it-out-panel"],
+    files: [{
+      path: "registry/example/i18n-demo.tsx",
+      type: "registry:example",
+      target: "components/example/i18n-demo.tsx"
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/example/i18n-demo.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    meta: undefined,
+  },
   "in-label-demo": {
     name: "in-label-demo",
-    description: "Example showing in label component",
+    description: "",
     type: "registry:example",
-    registryDependencies: undefined,
+    registryDependencies: ["https://pivotkit.vercel.app/r/in-label"],
     files: [{
       path: "registry/example/in-label-demo.tsx",
       type: "registry:example",
@@ -1870,9 +2023,9 @@ export const Index: Record<string, any> = {
   },
   "info-section-demo": {
     name: "info-section-demo",
-    description: "Example showing info section component",
+    description: "",
     type: "registry:example",
-    registryDependencies: undefined,
+    registryDependencies: ["https://pivotkit.vercel.app/r/info-section"],
     files: [{
       path: "registry/example/info-section-demo.tsx",
       type: "registry:example",
@@ -1887,9 +2040,9 @@ export const Index: Record<string, any> = {
   },
   "language-switcher-demo": {
     name: "language-switcher-demo",
-    description: "Example showing language switcher component",
+    description: "",
     type: "registry:example",
-    registryDependencies: undefined,
+    registryDependencies: ["https://pivotkit.vercel.app/r/language-switcher"],
     files: [{
       path: "registry/example/language-switcher-demo.tsx",
       type: "registry:example",
@@ -1904,9 +2057,9 @@ export const Index: Record<string, any> = {
   },
   "laravel-generator-demo": {
     name: "laravel-generator-demo",
-    description: "Example showing laravel generator component",
+    description: "",
     type: "registry:example",
-    registryDependencies: undefined,
+    registryDependencies: ["https://pivotkit.vercel.app/r/laravel-generator"],
     files: [{
       path: "registry/example/laravel-generator-demo.tsx",
       type: "registry:example",
@@ -1921,9 +2074,9 @@ export const Index: Record<string, any> = {
   },
   "license-display-demo": {
     name: "license-display-demo",
-    description: "Example showing license display component",
+    description: "",
     type: "registry:example",
-    registryDependencies: undefined,
+    registryDependencies: ["https://pivotkit.vercel.app/r/license-display"],
     files: [{
       path: "registry/example/license-display-demo.tsx",
       type: "registry:example",
@@ -1938,9 +2091,9 @@ export const Index: Record<string, any> = {
   },
   "link-item-demo": {
     name: "link-item-demo",
-    description: "Example showing link item component",
+    description: "",
     type: "registry:example",
-    registryDependencies: undefined,
+    registryDependencies: ["https://pivotkit.vercel.app/r/link-item"],
     files: [{
       path: "registry/example/link-item-demo.tsx",
       type: "registry:example",
@@ -1955,9 +2108,9 @@ export const Index: Record<string, any> = {
   },
   "links-section-demo": {
     name: "links-section-demo",
-    description: "Example showing links section component",
+    description: "",
     type: "registry:example",
-    registryDependencies: undefined,
+    registryDependencies: ["https://pivotkit.vercel.app/r/links-section"],
     files: [{
       path: "registry/example/links-section-demo.tsx",
       type: "registry:example",
@@ -1972,9 +2125,9 @@ export const Index: Record<string, any> = {
   },
   "media-type-display-demo": {
     name: "media-type-display-demo",
-    description: "Example showing media type-display component",
+    description: "",
     type: "registry:example",
-    registryDependencies: undefined,
+    registryDependencies: ["https://pivotkit.vercel.app/r/media-type-display"],
     files: [{
       path: "registry/example/media-type-display-demo.tsx",
       type: "registry:example",
@@ -1989,9 +2142,9 @@ export const Index: Record<string, any> = {
   },
   "media-type-selector-demo": {
     name: "media-type-selector-demo",
-    description: "Example showing media type-selector component",
+    description: "",
     type: "registry:example",
-    registryDependencies: undefined,
+    registryDependencies: ["https://pivotkit.vercel.app/r/media-type-selector"],
     files: [{
       path: "registry/example/media-type-selector-demo.tsx",
       type: "registry:example",
@@ -2006,9 +2159,9 @@ export const Index: Record<string, any> = {
   },
   "method-label-demo": {
     name: "method-label-demo",
-    description: "Example showing method label component",
+    description: "",
     type: "registry:example",
-    registryDependencies: undefined,
+    registryDependencies: ["https://pivotkit.vercel.app/r/method-label"],
     files: [{
       path: "registry/example/method-label-demo.tsx",
       type: "registry:example",
@@ -2023,9 +2176,9 @@ export const Index: Record<string, any> = {
   },
   "navigation-sidebar-demo": {
     name: "navigation-sidebar-demo",
-    description: "Example showing navigation sidebar component",
+    description: "",
     type: "registry:example",
-    registryDependencies: undefined,
+    registryDependencies: ["https://pivotkit.vercel.app/r/navigation-sidebar"],
     files: [{
       path: "registry/example/navigation-sidebar-demo.tsx",
       type: "registry:example",
@@ -2040,9 +2193,9 @@ export const Index: Record<string, any> = {
   },
   "oauth-flow-demo": {
     name: "oauth-flow-demo",
-    description: "Example showing oauth flow component",
+    description: "",
     type: "registry:example",
-    registryDependencies: undefined,
+    registryDependencies: ["https://pivotkit.vercel.app/r/oauth-flow"],
     files: [{
       path: "registry/example/oauth-flow-demo.tsx",
       type: "registry:example",
@@ -2057,9 +2210,9 @@ export const Index: Record<string, any> = {
   },
   "oauth-flow-details-demo": {
     name: "oauth-flow-details-demo",
-    description: "Example showing oauth flow-details component",
+    description: "",
     type: "registry:example",
-    registryDependencies: undefined,
+    registryDependencies: ["https://pivotkit.vercel.app/r/oauth-flow-details"],
     files: [{
       path: "registry/example/oauth-flow-details-demo.tsx",
       type: "registry:example",
@@ -2074,9 +2227,9 @@ export const Index: Record<string, any> = {
   },
   "operation-box-demo": {
     name: "operation-box-demo",
-    description: "Example showing operation box component",
+    description: "",
     type: "registry:example",
-    registryDependencies: undefined,
+    registryDependencies: ["https://pivotkit.vercel.app/r/operation-box"],
     files: [{
       path: "registry/example/operation-box-demo.tsx",
       type: "registry:example",
@@ -2089,11 +2242,62 @@ export const Index: Record<string, any> = {
     }),
     meta: undefined,
   },
+  "operation-detail-demo": {
+    name: "operation-detail-demo",
+    description: "",
+    type: "registry:example",
+    registryDependencies: ["https://pivotkit.vercel.app/r/operation-detail"],
+    files: [{
+      path: "registry/example/operation-detail-demo.tsx",
+      type: "registry:example",
+      target: "components/example/operation-detail-demo.tsx"
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/example/operation-detail-demo.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    meta: undefined,
+  },
+  "operation-detailed-layout-demo": {
+    name: "operation-detailed-layout-demo",
+    description: "",
+    type: "registry:example",
+    registryDependencies: ["https://pivotkit.vercel.app/r/operation-detailed-layout"],
+    files: [{
+      path: "registry/example/operation-detailed-layout-demo.tsx",
+      type: "registry:example",
+      target: "components/example/operation-detailed-layout-demo.tsx"
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/example/operation-detailed-layout-demo.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    meta: undefined,
+  },
+  "operation-list-layout-demo": {
+    name: "operation-list-layout-demo",
+    description: "",
+    type: "registry:example",
+    registryDependencies: ["https://pivotkit.vercel.app/r/operation-list-layout"],
+    files: [{
+      path: "registry/example/operation-list-layout-demo.tsx",
+      type: "registry:example",
+      target: "components/example/operation-list-layout-demo.tsx"
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/example/operation-list-layout-demo.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    meta: undefined,
+  },
   "operation-path-demo": {
     name: "operation-path-demo",
-    description: "Example showing operation path component",
+    description: "",
     type: "registry:example",
-    registryDependencies: undefined,
+    registryDependencies: ["https://pivotkit.vercel.app/r/operation-path"],
     files: [{
       path: "registry/example/operation-path-demo.tsx",
       type: "registry:example",
@@ -2108,9 +2312,9 @@ export const Index: Record<string, any> = {
   },
   "parameter-description-demo": {
     name: "parameter-description-demo",
-    description: "Example showing parameter description component",
+    description: "",
     type: "registry:example",
-    registryDependencies: undefined,
+    registryDependencies: ["https://pivotkit.vercel.app/r/parameter-description"],
     files: [{
       path: "registry/example/parameter-description-demo.tsx",
       type: "registry:example",
@@ -2125,9 +2329,9 @@ export const Index: Record<string, any> = {
   },
   "parameter-group-demo": {
     name: "parameter-group-demo",
-    description: "Example showing parameter group component",
+    description: "",
     type: "registry:example",
-    registryDependencies: undefined,
+    registryDependencies: ["https://pivotkit.vercel.app/r/parameter-group"],
     files: [{
       path: "registry/example/parameter-group-demo.tsx",
       type: "registry:example",
@@ -2142,9 +2346,9 @@ export const Index: Record<string, any> = {
   },
   "parameter-item-demo": {
     name: "parameter-item-demo",
-    description: "Example showing parameter item component",
+    description: "",
     type: "registry:example",
-    registryDependencies: undefined,
+    registryDependencies: ["https://pivotkit.vercel.app/r/parameter-item"],
     files: [{
       path: "registry/example/parameter-item-demo.tsx",
       type: "registry:example",
@@ -2159,9 +2363,9 @@ export const Index: Record<string, any> = {
   },
   "parameter-name-demo": {
     name: "parameter-name-demo",
-    description: "Example showing parameter name component",
+    description: "",
     type: "registry:example",
-    registryDependencies: undefined,
+    registryDependencies: ["https://pivotkit.vercel.app/r/parameter-name"],
     files: [{
       path: "registry/example/parameter-name-demo.tsx",
       type: "registry:example",
@@ -2176,9 +2380,9 @@ export const Index: Record<string, any> = {
   },
   "parameters-section-demo": {
     name: "parameters-section-demo",
-    description: "Example showing parameters section component",
+    description: "",
     type: "registry:example",
-    registryDependencies: undefined,
+    registryDependencies: ["https://pivotkit.vercel.app/r/parameters-section"],
     files: [{
       path: "registry/example/parameters-section-demo.tsx",
       type: "registry:example",
@@ -2193,9 +2397,9 @@ export const Index: Record<string, any> = {
   },
   "path-segment-demo": {
     name: "path-segment-demo",
-    description: "Example showing path segment component",
+    description: "",
     type: "registry:example",
-    registryDependencies: undefined,
+    registryDependencies: ["https://pivotkit.vercel.app/r/path-segment"],
     files: [{
       path: "registry/example/path-segment-demo.tsx",
       type: "registry:example",
@@ -2210,9 +2414,9 @@ export const Index: Record<string, any> = {
   },
   "php-generator-demo": {
     name: "php-generator-demo",
-    description: "Example showing php generator component",
+    description: "",
     type: "registry:example",
-    registryDependencies: undefined,
+    registryDependencies: ["https://pivotkit.vercel.app/r/php-generator"],
     files: [{
       path: "registry/example/php-generator-demo.tsx",
       type: "registry:example",
@@ -2227,9 +2431,9 @@ export const Index: Record<string, any> = {
   },
   "python-generator-demo": {
     name: "python-generator-demo",
-    description: "Example showing python generator component",
+    description: "",
     type: "registry:example",
-    registryDependencies: undefined,
+    registryDependencies: ["https://pivotkit.vercel.app/r/python-generator"],
     files: [{
       path: "registry/example/python-generator-demo.tsx",
       type: "registry:example",
@@ -2244,9 +2448,9 @@ export const Index: Record<string, any> = {
   },
   "request-body-section-demo": {
     name: "request-body-section-demo",
-    description: "Example showing request body-section component",
+    description: "",
     type: "registry:example",
-    registryDependencies: undefined,
+    registryDependencies: ["https://pivotkit.vercel.app/r/request-body-section"],
     files: [{
       path: "registry/example/request-body-section-demo.tsx",
       type: "registry:example",
@@ -2261,9 +2465,9 @@ export const Index: Record<string, any> = {
   },
   "required-badge-demo": {
     name: "required-badge-demo",
-    description: "Example showing required badge component",
+    description: "",
     type: "registry:example",
-    registryDependencies: undefined,
+    registryDependencies: ["https://pivotkit.vercel.app/r/required-badge"],
     files: [{
       path: "registry/example/required-badge-demo.tsx",
       type: "registry:example",
@@ -2278,9 +2482,9 @@ export const Index: Record<string, any> = {
   },
   "required-marker-demo": {
     name: "required-marker-demo",
-    description: "Example showing required marker component",
+    description: "",
     type: "registry:example",
-    registryDependencies: undefined,
+    registryDependencies: ["https://pivotkit.vercel.app/r/required-marker"],
     files: [{
       path: "registry/example/required-marker-demo.tsx",
       type: "registry:example",
@@ -2295,9 +2499,9 @@ export const Index: Record<string, any> = {
   },
   "resizable-sidebar-demo": {
     name: "resizable-sidebar-demo",
-    description: "Example showing resizable sidebar component",
+    description: "",
     type: "registry:example",
-    registryDependencies: undefined,
+    registryDependencies: ["https://pivotkit.vercel.app/r/resizable-sidebar"],
     files: [{
       path: "registry/example/resizable-sidebar-demo.tsx",
       type: "registry:example",
@@ -2312,9 +2516,9 @@ export const Index: Record<string, any> = {
   },
   "response-content-section-demo": {
     name: "response-content-section-demo",
-    description: "Example showing response content-section component",
+    description: "",
     type: "registry:example",
-    registryDependencies: undefined,
+    registryDependencies: ["https://pivotkit.vercel.app/r/response-content-section"],
     files: [{
       path: "registry/example/response-content-section-demo.tsx",
       type: "registry:example",
@@ -2329,9 +2533,9 @@ export const Index: Record<string, any> = {
   },
   "response-headers-table-demo": {
     name: "response-headers-table-demo",
-    description: "Example showing response headers-table component",
+    description: "",
     type: "registry:example",
-    registryDependencies: undefined,
+    registryDependencies: ["https://pivotkit.vercel.app/r/response-headers-table"],
     files: [{
       path: "registry/example/response-headers-table-demo.tsx",
       type: "registry:example",
@@ -2346,9 +2550,9 @@ export const Index: Record<string, any> = {
   },
   "response-item-demo": {
     name: "response-item-demo",
-    description: "Example showing response item component",
+    description: "",
     type: "registry:example",
-    registryDependencies: undefined,
+    registryDependencies: ["https://pivotkit.vercel.app/r/response-item"],
     files: [{
       path: "registry/example/response-item-demo.tsx",
       type: "registry:example",
@@ -2363,9 +2567,9 @@ export const Index: Record<string, any> = {
   },
   "responses-section-demo": {
     name: "responses-section-demo",
-    description: "Example showing responses section component",
+    description: "",
     type: "registry:example",
-    registryDependencies: undefined,
+    registryDependencies: ["https://pivotkit.vercel.app/r/responses-section"],
     files: [{
       path: "registry/example/responses-section-demo.tsx",
       type: "registry:example",
@@ -2380,9 +2584,9 @@ export const Index: Record<string, any> = {
   },
   "schema-composition-display-demo": {
     name: "schema-composition-display-demo",
-    description: "Example showing schema composition-display component",
+    description: "",
     type: "registry:example",
-    registryDependencies: undefined,
+    registryDependencies: ["https://pivotkit.vercel.app/r/schema-composition-display"],
     files: [{
       path: "registry/example/schema-composition-display-demo.tsx",
       type: "registry:example",
@@ -2397,9 +2601,9 @@ export const Index: Record<string, any> = {
   },
   "schema-display-demo": {
     name: "schema-display-demo",
-    description: "Example showing schema display component",
+    description: "",
     type: "registry:example",
-    registryDependencies: undefined,
+    registryDependencies: ["https://pivotkit.vercel.app/r/schema-display"],
     files: [{
       path: "registry/example/schema-display-demo.tsx",
       type: "registry:example",
@@ -2414,9 +2618,9 @@ export const Index: Record<string, any> = {
   },
   "schema-with-example-viewer-demo": {
     name: "schema-with-example-viewer-demo",
-    description: "Example showing schema with-example-viewer component",
+    description: "",
     type: "registry:example",
-    registryDependencies: undefined,
+    registryDependencies: ["https://pivotkit.vercel.app/r/schema-with-example-viewer"],
     files: [{
       path: "registry/example/schema-with-example-viewer-demo.tsx",
       type: "registry:example",
@@ -2431,9 +2635,9 @@ export const Index: Record<string, any> = {
   },
   "scheme-type-demo": {
     name: "scheme-type-demo",
-    description: "Example showing scheme type component",
+    description: "",
     type: "registry:example",
-    registryDependencies: undefined,
+    registryDependencies: ["https://pivotkit.vercel.app/r/scheme-type"],
     files: [{
       path: "registry/example/scheme-type-demo.tsx",
       type: "registry:example",
@@ -2448,9 +2652,9 @@ export const Index: Record<string, any> = {
   },
   "section-title-demo": {
     name: "section-title-demo",
-    description: "Example showing section title component",
+    description: "",
     type: "registry:example",
-    registryDependencies: undefined,
+    registryDependencies: ["https://pivotkit.vercel.app/r/section-title"],
     files: [{
       path: "registry/example/section-title-demo.tsx",
       type: "registry:example",
@@ -2465,9 +2669,9 @@ export const Index: Record<string, any> = {
   },
   "security-requirement-item-demo": {
     name: "security-requirement-item-demo",
-    description: "Example showing security requirement-item component",
+    description: "",
     type: "registry:example",
-    registryDependencies: undefined,
+    registryDependencies: ["https://pivotkit.vercel.app/r/security-requirement-item"],
     files: [{
       path: "registry/example/security-requirement-item-demo.tsx",
       type: "registry:example",
@@ -2482,9 +2686,9 @@ export const Index: Record<string, any> = {
   },
   "security-requirements-section-demo": {
     name: "security-requirements-section-demo",
-    description: "Example showing security requirements-section component",
+    description: "",
     type: "registry:example",
-    registryDependencies: undefined,
+    registryDependencies: ["https://pivotkit.vercel.app/r/security-requirements-section"],
     files: [{
       path: "registry/example/security-requirements-section-demo.tsx",
       type: "registry:example",
@@ -2499,9 +2703,9 @@ export const Index: Record<string, any> = {
   },
   "security-scheme-demo": {
     name: "security-scheme-demo",
-    description: "Example showing security scheme component",
+    description: "",
     type: "registry:example",
-    registryDependencies: undefined,
+    registryDependencies: ["https://pivotkit.vercel.app/r/security-scheme"],
     files: [{
       path: "registry/example/security-scheme-demo.tsx",
       type: "registry:example",
@@ -2516,9 +2720,9 @@ export const Index: Record<string, any> = {
   },
   "security-scheme-display-demo": {
     name: "security-scheme-display-demo",
-    description: "Example showing security scheme-display component",
+    description: "",
     type: "registry:example",
-    registryDependencies: undefined,
+    registryDependencies: ["https://pivotkit.vercel.app/r/security-scheme-display"],
     files: [{
       path: "registry/example/security-scheme-display-demo.tsx",
       type: "registry:example",
@@ -2533,9 +2737,9 @@ export const Index: Record<string, any> = {
   },
   "security-schemes-demo": {
     name: "security-schemes-demo",
-    description: "Example showing security schemes component",
+    description: "",
     type: "registry:example",
-    registryDependencies: undefined,
+    registryDependencies: ["https://pivotkit.vercel.app/r/security-schemes"],
     files: [{
       path: "registry/example/security-schemes-demo.tsx",
       type: "registry:example",
@@ -2550,9 +2754,9 @@ export const Index: Record<string, any> = {
   },
   "security-section-demo": {
     name: "security-section-demo",
-    description: "Example showing security section component",
+    description: "",
     type: "registry:example",
-    registryDependencies: undefined,
+    registryDependencies: ["https://pivotkit.vercel.app/r/security-section"],
     files: [{
       path: "registry/example/security-section-demo.tsx",
       type: "registry:example",
@@ -2567,9 +2771,9 @@ export const Index: Record<string, any> = {
   },
   "server-demo": {
     name: "server-demo",
-    description: "Example showing server component",
+    description: "",
     type: "registry:example",
-    registryDependencies: undefined,
+    registryDependencies: ["https://pivotkit.vercel.app/r/server"],
     files: [{
       path: "registry/example/server-demo.tsx",
       type: "registry:example",
@@ -2584,9 +2788,9 @@ export const Index: Record<string, any> = {
   },
   "server-display-demo": {
     name: "server-display-demo",
-    description: "Example showing server display component",
+    description: "",
     type: "registry:example",
-    registryDependencies: undefined,
+    registryDependencies: ["https://pivotkit.vercel.app/r/server-display"],
     files: [{
       path: "registry/example/server-display-demo.tsx",
       type: "registry:example",
@@ -2601,9 +2805,9 @@ export const Index: Record<string, any> = {
   },
   "server-variable-demo": {
     name: "server-variable-demo",
-    description: "Example showing server variable component",
+    description: "",
     type: "registry:example",
-    registryDependencies: undefined,
+    registryDependencies: ["https://pivotkit.vercel.app/r/server-variable"],
     files: [{
       path: "registry/example/server-variable-demo.tsx",
       type: "registry:example",
@@ -2618,9 +2822,9 @@ export const Index: Record<string, any> = {
   },
   "servers-demo": {
     name: "servers-demo",
-    description: "Example showing servers component",
+    description: "",
     type: "registry:example",
-    registryDependencies: undefined,
+    registryDependencies: ["https://pivotkit.vercel.app/r/server","https://pivotkit.vercel.app/r/servers"],
     files: [{
       path: "registry/example/servers-demo.tsx",
       type: "registry:example",
@@ -2635,9 +2839,9 @@ export const Index: Record<string, any> = {
   },
   "servers-section-demo": {
     name: "servers-section-demo",
-    description: "Example showing servers section component",
+    description: "",
     type: "registry:example",
-    registryDependencies: undefined,
+    registryDependencies: ["https://pivotkit.vercel.app/r/server","https://pivotkit.vercel.app/r/servers-section"],
     files: [{
       path: "registry/example/servers-section-demo.tsx",
       type: "registry:example",
@@ -2652,9 +2856,9 @@ export const Index: Record<string, any> = {
   },
   "status-code-demo": {
     name: "status-code-demo",
-    description: "Example showing status code component",
+    description: "",
     type: "registry:example",
-    registryDependencies: undefined,
+    registryDependencies: ["https://pivotkit.vercel.app/r/status-code"],
     files: [{
       path: "registry/example/status-code-demo.tsx",
       type: "registry:example",
@@ -2669,9 +2873,9 @@ export const Index: Record<string, any> = {
   },
   "style-badge-demo": {
     name: "style-badge-demo",
-    description: "Example showing style badge component",
+    description: "",
     type: "registry:example",
-    registryDependencies: undefined,
+    registryDependencies: ["https://pivotkit.vercel.app/r/style-badge"],
     files: [{
       path: "registry/example/style-badge-demo.tsx",
       type: "registry:example",
@@ -2686,9 +2890,9 @@ export const Index: Record<string, any> = {
   },
   "terms-of-service-demo": {
     name: "terms-of-service-demo",
-    description: "Example showing terms of-service component",
+    description: "",
     type: "registry:example",
-    registryDependencies: undefined,
+    registryDependencies: ["https://pivotkit.vercel.app/r/terms-of-service"],
     files: [{
       path: "registry/example/terms-of-service-demo.tsx",
       type: "registry:example",
@@ -2703,9 +2907,9 @@ export const Index: Record<string, any> = {
   },
   "theme-toggle-demo": {
     name: "theme-toggle-demo",
-    description: "Example showing theme toggle component",
+    description: "",
     type: "registry:example",
-    registryDependencies: undefined,
+    registryDependencies: ["https://pivotkit.vercel.app/r/theme-toggle"],
     files: [{
       path: "registry/example/theme-toggle-demo.tsx",
       type: "registry:example",
@@ -2720,9 +2924,9 @@ export const Index: Record<string, any> = {
   },
   "try-it-out-panel-demo": {
     name: "try-it-out-panel-demo",
-    description: "Example showing try it-out-panel component",
+    description: "",
     type: "registry:example",
-    registryDependencies: undefined,
+    registryDependencies: ["https://pivotkit.vercel.app/r/try-it-out-panel"],
     files: [{
       path: "registry/example/try-it-out-panel-demo.tsx",
       type: "registry:example",
@@ -2737,9 +2941,9 @@ export const Index: Record<string, any> = {
   },
   "type-indicator-demo": {
     name: "type-indicator-demo",
-    description: "Example showing type indicator component",
+    description: "",
     type: "registry:example",
-    registryDependencies: undefined,
+    registryDependencies: ["https://pivotkit.vercel.app/r/type-indicator"],
     files: [{
       path: "registry/example/type-indicator-demo.tsx",
       type: "registry:example",
@@ -2754,9 +2958,9 @@ export const Index: Record<string, any> = {
   },
   "typescript-generator-demo": {
     name: "typescript-generator-demo",
-    description: "Example showing typescript generator component",
+    description: "",
     type: "registry:example",
-    registryDependencies: undefined,
+    registryDependencies: ["https://pivotkit.vercel.app/r/typescript-generator"],
     files: [{
       path: "registry/example/typescript-generator-demo.tsx",
       type: "registry:example",
@@ -2771,9 +2975,9 @@ export const Index: Record<string, any> = {
   },
   "value-display-demo": {
     name: "value-display-demo",
-    description: "Example showing value display component",
+    description: "",
     type: "registry:example",
-    registryDependencies: undefined,
+    registryDependencies: ["https://pivotkit.vercel.app/r/value-display"],
     files: [{
       path: "registry/example/value-display-demo.tsx",
       type: "registry:example",
@@ -2788,9 +2992,9 @@ export const Index: Record<string, any> = {
   },
   "version-badge-demo": {
     name: "version-badge-demo",
-    description: "Example showing version badge component",
+    description: "",
     type: "registry:example",
-    registryDependencies: undefined,
+    registryDependencies: ["https://pivotkit.vercel.app/r/version-badge"],
     files: [{
       path: "registry/example/version-badge-demo.tsx",
       type: "registry:example",
@@ -2805,9 +3009,9 @@ export const Index: Record<string, any> = {
   },
   "webhook-label-demo": {
     name: "webhook-label-demo",
-    description: "Example showing webhook label component",
+    description: "",
     type: "registry:example",
-    registryDependencies: undefined,
+    registryDependencies: ["https://pivotkit.vercel.app/r/webhook-label"],
     files: [{
       path: "registry/example/webhook-label-demo.tsx",
       type: "registry:example",
@@ -2815,6 +3019,68 @@ export const Index: Record<string, any> = {
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/example/webhook-label-demo.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    meta: undefined,
+  },
+  "hooks": {
+    name: "hooks",
+    description: "",
+    type: "registry:lib",
+    registryDependencies: ["https://pivotkit.vercel.app/r/use-openapi","https://pivotkit.vercel.app/r/use-operation","https://pivotkit.vercel.app/r/use-schema","https://pivotkit.vercel.app/r/resolve-ref"],
+    files: [{
+      path: "registry/lib/hooks/index.ts",
+      type: "registry:lib",
+      target: ""
+    },{
+      path: "registry/lib/hooks/use-openapi.ts",
+      type: "registry:lib",
+      target: ""
+    },{
+      path: "registry/lib/hooks/use-operation.ts",
+      type: "registry:lib",
+      target: ""
+    },{
+      path: "registry/lib/hooks/use-schema.ts",
+      type: "registry:lib",
+      target: ""
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/lib/hooks/index.ts")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    meta: undefined,
+  },
+  "utils": {
+    name: "utils",
+    description: "",
+    type: "registry:lib",
+    registryDependencies: ["https://pivotkit.vercel.app/r/resolve-ref","https://pivotkit.vercel.app/r/schema-utils","https://pivotkit.vercel.app/r/type-utils"],
+    files: [{
+      path: "registry/lib/utils/generate-example.ts",
+      type: "registry:lib",
+      target: ""
+    },{
+      path: "registry/lib/utils/index.ts",
+      type: "registry:lib",
+      target: ""
+    },{
+      path: "registry/lib/utils/resolve-ref.ts",
+      type: "registry:lib",
+      target: ""
+    },{
+      path: "registry/lib/utils/schema-utils.ts",
+      type: "registry:lib",
+      target: ""
+    },{
+      path: "registry/lib/utils/type-utils.ts",
+      type: "registry:lib",
+      target: ""
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/lib/utils/generate-example.ts")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),

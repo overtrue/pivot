@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "security-requirements-section",
+  "type": "registry:ui",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "https://pivotkit.vercel.app/r/section-title",
+    "https://pivotkit.vercel.app/r/security-requirement-item"
+  ],
+  "files": [
+    {
+      "path": "registry/pivot/security-requirements-section.tsx",
+      "content": "\"use client\";\n\nimport { useI18n } from \"@/lib/i18n\";\nimport { cn } from \"@/lib/utils\";\nimport React from \"react\";\nimport { SectionTitle } from \"@/registry/pivot/section-title\";\nimport {\n  SecurityRequirementItem,\n  type SecurityRequirementObject,\n} from \"@/registry/pivot/security-requirement-item\";\n\ninterface SecurityRequirementsSectionProps {\n  security?: SecurityRequirementObject[];\n  className?: string;\n}\n\nconst SecurityRequirementsSection = React.forwardRef<\n  HTMLDivElement,\n  SecurityRequirementsSectionProps\n>(({ security, className }, ref) => {\n  const { t } = useI18n();\n\n  if (!security || security.length === 0) {\n    // Or display \"None\"?\n    return null;\n  }\n\n  return (\n    <div ref={ref} className={cn(className)}>\n      <SectionTitle title={t('Security Requirements')} className=\"dark:text-white\" />\n      <div className=\"space-y-2 mt-3\">\n        {security.map((requirement, index) => (\n          <SecurityRequirementItem key={index} requirement={requirement} />\n        ))}\n        {security.length > 1 && (\n          <p className=\"text-xs text-neutral-500 dark:text-neutral-400 mt-2 italic\">\n            {t('Note: Multiple security requirements represent OR logic. Multiple schemes within a requirement represent AND logic.')}\n          </p>\n        )}\n      </div>\n    </div>\n  );\n});\n\nSecurityRequirementsSection.displayName = \"SecurityRequirementsSection\";\n\nexport { SecurityRequirementsSection };\n",
+      "type": "registry:component",
+      "target": "components/pivot/security-requirements-section.tsx"
+    }
+  ]
+}

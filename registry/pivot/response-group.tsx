@@ -5,8 +5,8 @@ import { cn } from "@/lib/utils";
 import type { OpenAPIV3 } from 'openapi-types';
 
 import React from "react";
-import { ResponseContentSection } from "./response-content-section";
-import { ResponseHeadersTable } from "./response-headers-table";
+import { ResponseContentSection } from "@/registry/pivot/response-content-section";
+import { ResponseHeadersTable } from "@/registry/pivot/response-headers-table";
 
 interface ResponseGroupProps {
   status: string;

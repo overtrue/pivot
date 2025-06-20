@@ -3,17 +3,17 @@ import type { ComponentType } from "@/types/project";
 import type { OpenAPIV3 } from 'openapi-types';
 
 import React from "react";
-import { resolveRef } from "../lib/resolve-ref";
-import { CallbackDisplay } from "./callback-display";
-import { ExamplesDisplay } from "./examples-display";
-import { HeaderItem } from "./header-item";
-import { LinkItem } from "./link-item";
-import { ParameterItem } from "./parameter-item";
-import { RequestBodySection } from "./request-body-section";
-import { ResponseItem } from "./response-item";
-import { SchemaDisplay } from "./schema-display";
-import { SecuritySchemeDisplay } from "./security-scheme-display";
-import { WebhookDisplay } from "./webhook-display";
+import { resolveRef } from "@/registry/lib/utils/resolve-ref";
+import { CallbackDisplay } from "@/registry/pivot/callback-display";
+import { ExamplesDisplay } from "@/registry/pivot/examples-display";
+import { HeaderItem } from "@/registry/pivot/header-item";
+import { LinkItem } from "@/registry/pivot/link-item";
+import { ParameterItem } from "@/registry/pivot/parameter-item";
+import { RequestBodySection } from "@/registry/pivot/request-body-section";
+import { ResponseItem } from "@/registry/pivot/response-item";
+import { SchemaDisplay } from "@/registry/pivot/schema-display";
+import { SecuritySchemeDisplay } from "@/registry/pivot/security-scheme-display";
+import { WebhookDisplay } from "@/registry/pivot/webhook-display";
 
 interface ComponentDetailProps {
   activeType: ComponentType | null;

@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "parameter-item-demo",
+  "type": "registry:example",
+  "registryDependencies": [
+    "https://pivotkit.vercel.app/r/parameter-item"
+  ],
+  "files": [
+    {
+      "path": "registry/example/parameter-item-demo.tsx",
+      "content": "import { ParameterItem, type ParameterItemProps } from \"@/registry/pivot/parameter-item\";\n\nexport default function ParameterItemDemo() {\n  // 真实的 API 参数示例\n  const userIdParam: ParameterItemProps = {\n    name: \"userId\",\n    in: \"path\" as const,\n    required: true,\n    description: \"用户的唯一标识符\",\n    schema: {\n      type: \"string\" as const,\n      format: \"uuid\" as const,\n      example: \"123e4567-e89b-12d3-a456-426614174000\"\n    }\n  };\n\n  const limitParam: ParameterItemProps = {\n    name: \"limit\",\n    in: \"query\" as const,\n    required: false,\n    description: \"返回结果的最大数量\",\n    schema: {\n      type: \"number\" as const,\n      minimum: 1,\n      maximum: 100,\n      default: 20\n    }\n  };\n\n  const apiKeyParam: ParameterItemProps = {\n    name: \"X-API-Key\",\n    in: \"header\" as const,\n    required: true,\n    description: \"API 访问密钥\",\n    schema: {\n      type: \"string\" as const,\n      pattern: \"^[a-zA-Z0-9]{32}$\"\n    }\n  };\n\n  const statusParam: ParameterItemProps = {\n    name: \"status\",\n    in: \"query\" as const,\n    required: false,\n    description: \"用户状态筛选\",\n    schema: {\n      type: \"string\" as const,\n      enum: [\"active\", \"inactive\", \"pending\"],\n      default: \"active\"\n    }\n  };\n\n  const deprecatedParam: ParameterItemProps = {\n    name: \"oldFormat\",\n    in: \"query\" as const,\n    required: false,\n    deprecated: true,\n    description: \"旧版本的格式参数，请使用 format 参数代替\",\n    schema: {\n      type: \"boolean\" as const,\n      default: false\n    }\n  };\n\n  return (\n    <div className=\"space-y-6 min-w-md\">\n      <div>\n        <h4 className=\"text-sm font-medium mb-3\">路径参数</h4>\n        <ParameterItem {...userIdParam} />\n      </div>\n\n      <div>\n        <h4 className=\"text-sm font-medium mb-3\">查询参数</h4>\n        <div className=\"space-y-3\">\n          <ParameterItem {...limitParam} />\n          <ParameterItem {...statusParam} />\n        </div>\n      </div>\n\n      <div>\n        <h4 className=\"text-sm font-medium mb-3\">请求头参数</h4>\n        <ParameterItem {...apiKeyParam} />\n      </div>\n\n      <div>\n        <h4 className=\"text-sm font-medium mb-3\">已弃用参数</h4>\n        <ParameterItem {...deprecatedParam} />\n      </div>\n    </div>\n  );\n}\n",
+      "type": "registry:example",
+      "target": "components/example/parameter-item-demo.tsx"
+    }
+  ]
+}

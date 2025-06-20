@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "style-badge-demo",
+  "type": "registry:example",
+  "registryDependencies": [
+    "https://pivotkit.vercel.app/r/style-badge"
+  ],
+  "files": [
+    {
+      "path": "registry/example/style-badge-demo.tsx",
+      "content": "import { StyleBadge } from \"@/registry/pivot/style-badge\";\n\nexport default function StyleBadgeDemo() {\n  return (\n    <div className=\"flex flex-wrap gap-2 min-w-md\">\n      <StyleBadge style=\"form\" />\n      <StyleBadge style=\"simple\" />\n      <StyleBadge style=\"matrix\" />\n      <StyleBadge style=\"label\" />\n      <StyleBadge style=\"spaceDelimited\" />\n      <StyleBadge style=\"pipeDelimited\" />\n      <StyleBadge style=\"deepObject\" />\n    </div>\n  );\n}\n",
+      "type": "registry:example",
+      "target": "components/example/style-badge-demo.tsx"
+    }
+  ]
+}

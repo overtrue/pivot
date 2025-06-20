@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "security-scheme-demo",
+  "type": "registry:example",
+  "registryDependencies": [
+    "https://pivotkit.vercel.app/r/security-scheme"
+  ],
+  "files": [
+    {
+      "path": "registry/example/security-scheme-demo.tsx",
+      "content": "import { SecurityScheme } from \"@/registry/pivot/security-scheme\";\n\nexport default function SecuritySchemeDemo() {\n  const apiKeyScheme = {\n    type: \"apiKey\" as const,\n    description: \"API key authentication\",\n    name: \"X-API-Key\",\n    in: \"header\" as const\n  };\n\n  const httpScheme = {\n    type: \"http\" as const,\n    description: \"Bearer token authentication\",\n    scheme: \"bearer\",\n    bearerFormat: \"JWT\"\n  };\n\n  const oauth2Scheme = {\n    type: \"oauth2\" as const,\n    description: \"OAuth2 authentication\",\n    flows: {\n      authorizationCode: {\n        authorizationUrl: \"https://example.com/oauth/authorize\",\n        tokenUrl: \"https://example.com/oauth/token\",\n        scopes: {\n          \"read\": \"Read access to resources\",\n          \"write\": \"Write access to resources\",\n          \"admin\": \"Administrative access\"\n        }\n      }\n    }\n  };\n\n  return (\n    <div className=\"space-y-6 min-w-md\">\n      <div>\n        <h4 className=\"text-sm font-medium mb-2\">API Key Authentication</h4>\n        <SecurityScheme name=\"ApiKeyAuth\" scheme={apiKeyScheme} />\n      </div>\n\n      <div>\n        <h4 className=\"text-sm font-medium mb-2\">HTTP Bearer Authentication</h4>\n        <SecurityScheme name=\"BearerAuth\" scheme={httpScheme} />\n      </div>\n\n      <div>\n        <h4 className=\"text-sm font-medium mb-2\">OAuth2 Authentication</h4>\n        <SecurityScheme name=\"OAuth2\" scheme={oauth2Scheme} />\n      </div>\n    </div>\n  );\n}\n",
+      "type": "registry:example",
+      "target": "components/example/security-scheme-demo.tsx"
+    }
+  ]
+}

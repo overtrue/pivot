@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 import React from "react";
-import { EnumValues } from "./enum-values";
+import { EnumValues } from "@/registry/pivot/enum-values";
 
 interface EnumValuesDisplayProps {
   values: any[];

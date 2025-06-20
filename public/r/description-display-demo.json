@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "description-display-demo",
+  "type": "registry:example",
+  "registryDependencies": [
+    "https://pivotkit.vercel.app/r/description-display"
+  ],
+  "files": [
+    {
+      "path": "registry/example/description-display-demo.tsx",
+      "content": "import { DescriptionDisplay } from \"@/registry/pivot/description-display\";\n\nexport default function DescriptionDisplayDemo() {\n  const description = `这是一个**示例描述**，支持 Markdown 格式。\n\n可以包含：\n- 列表项目\n- **粗体文本**\n- *斜体文本*\n- \\`代码片段\\`\n\n还可以包含链接：[示例链接](https://example.com)`;\n\n  return (\n    <div className=\"space-y-4 min-w-md\">\n      <DescriptionDisplay description={description} />\n    </div>\n  );\n}\n",
+      "type": "registry:example",
+      "target": "components/example/description-display-demo.tsx"
+    }
+  ]
+}

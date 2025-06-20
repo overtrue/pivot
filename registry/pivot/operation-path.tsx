@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 import React from "react";
-import { PathSegment } from "./path-segment";
+import { PathSegment } from "@/registry/pivot/path-segment";
 
 interface OperationPathProps {
   path: string;

@@ -4,7 +4,7 @@ import { useI18n } from "@/lib/i18n";
 import type { OpenAPIV3 } from 'openapi-types';
 
 import React from "react";
-import { SchemaWithExampleViewer } from "./schema-with-example-viewer";
+import { SchemaWithExampleViewer } from "@/registry/pivot/schema-with-example-viewer";
 
 interface ResponseContentSectionProps {
   content: Record<string, OpenAPIV3.MediaTypeObject>;

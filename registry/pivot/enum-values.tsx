@@ -2,7 +2,7 @@
 
 import { cn } from "@/lib/utils";
 import React, { useState } from "react";
-import { ValueDisplay } from "./value-display";
+import { ValueDisplay } from "@/registry/pivot/value-display";
 
 interface EnumValuesProps {
   values: any[];

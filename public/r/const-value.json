@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "const-value",
+  "type": "registry:ui",
+  "dependencies": [
+    "react"
+  ],
+  "registryDependencies": [
+    "https://pivotkit.vercel.app/r/copy-button"
+  ],
+  "files": [
+    {
+      "path": "registry/pivot/const-value.tsx",
+      "content": "import { cn } from \"@/lib/utils\";\nimport React from \"react\";\n// import { CopyButton } from \"../interactive/copy-button\";\n\ninterface ConstValueProps {\n  value: any;\n  className?: string;\n}\n\nconst ConstValue = React.forwardRef<HTMLDivElement, ConstValueProps>(\n  ({ value, className }, ref) => {\n    const stringValue = JSON.stringify(value);\n\n    return (\n      <div ref={ref} className={cn(\"flex items-center space-x-2\", className)}>\n        <span className=\"font-mono text-sm bg-neutral-100 dark:bg-neutral-800 text-neutral-900 dark:text-neutral-100 px-2 py-1 rounded\">\n          const: {stringValue}\n        </span>\n        {/* <CopyButton text={stringValue} /> */}\n      </div>\n    );\n  }\n);\n\nConstValue.displayName = \"ConstValue\";\n\nexport { ConstValue };\n",
+      "type": "registry:component",
+      "target": "components/pivot/const-value.tsx"
+    }
+  ]
+}

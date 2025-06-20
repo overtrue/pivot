@@ -5,7 +5,7 @@ import { useTheme } from "next-themes";
 import React from "react";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import { atomOneDark, atomOneLight } from "react-syntax-highlighter/dist/esm/styles/hljs";
-import { CopyButton } from "./copy-button";
+import { CopyButton } from "@/registry/pivot/copy-button";
 
 interface CodeMarkdownProps {
   code: string;

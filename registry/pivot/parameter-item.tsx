@@ -3,18 +3,18 @@
 import { cn } from "@/lib/utils";
 import type { OpenAPIV3 } from 'openapi-types';
 import React, { useState } from "react";
-import { ConstraintDisplay } from "../pivot/constraint-display";
-import { DefaultValueDisplay } from "../pivot/default-value-display";
-import { DeprecatedBadge } from "../pivot/deprecated-badge";
-import { EnumValuesDisplay } from "../pivot/enum-values-display";
-import { FormatBadge } from "../pivot/format-badge";
-import { InLabel } from "../pivot/in-label";
-import { ParameterDescription } from "../pivot/parameter-description";
-import { ParameterName } from "../pivot/parameter-name";
-import { StyleBadge, type StyleType } from "../pivot/style-badge";
-import { TypeIndicator } from "../pivot/type-indicator";
-import { ExampleDisplay } from "./example-display";
-import { ExpandCollapse } from "./expand-collapse";
+import { ConstraintDisplay } from "@/registry/pivot/constraint-display";
+import { DefaultValueDisplay } from "@/registry/pivot/default-value-display";
+import { DeprecatedBadge } from "@/registry/pivot/deprecated-badge";
+import { EnumValuesDisplay } from "@/registry/pivot/enum-values-display";
+import { FormatBadge } from "@/registry/pivot/format-badge";
+import { InLabel } from "@/registry/pivot/in-label";
+import { ParameterDescription } from "@/registry/pivot/parameter-description";
+import { ParameterName } from "@/registry/pivot/parameter-name";
+import { StyleBadge, type StyleType } from "@/registry/pivot/style-badge";
+import { TypeIndicator } from "@/registry/pivot/type-indicator";
+import { ExampleDisplay } from "@/registry/pivot/example-display";
+import { ExpandCollapse } from "@/registry/pivot/expand-collapse";
 
 // Import types from the centralized types file
 

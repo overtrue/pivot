@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "type-indicator-demo",
+  "type": "registry:example",
+  "registryDependencies": [
+    "https://pivotkit.vercel.app/r/type-indicator"
+  ],
+  "files": [
+    {
+      "path": "registry/example/type-indicator-demo.tsx",
+      "content": "import { TypeIndicator } from \"@/registry/pivot/type-indicator\";\n\nexport default function TypeIndicatorDemo() {\n  const dataTypes = [\n    \"string\",\n    \"number\",\n    \"integer\",\n    \"boolean\",\n    \"array\",\n    \"object\",\n    \"null\"\n  ] as const;\n\n  const themes = [\n    \"primary\",\n    \"secondary\",\n    \"success\",\n    \"warning\",\n    \"danger\",\n    \"info\",\n    \"neutral\"\n  ] as const;\n\n  return (\n    <div className=\"space-y-6 min-w-md\">\n      <div>\n        <h4 className=\"text-sm font-medium mb-3\">自动主题（根据数据类型）</h4>\n        <div className=\"flex flex-wrap gap-2\">\n          {dataTypes.map((type) => (\n            <div key={type} className=\"flex items-center gap-2 p-2 border rounded\">\n              <TypeIndicator type={type} />\n              <span className=\"text-xs text-muted-foreground\">({type})</span>\n            </div>\n          ))}\n        </div>\n      </div>\n\n      <div>\n        <h4 className=\"text-sm font-medium mb-3\">自定义主题</h4>\n        <div className=\"grid grid-cols-2 gap-4\">\n          {themes.map((theme) => (\n            <div key={theme} className=\"flex items-center gap-2 p-2 border rounded\">\n              <TypeIndicator type=\"string\" theme={theme} />\n              <span className=\"text-xs text-muted-foreground\">({theme})</span>\n            </div>\n          ))}\n        </div>\n      </div>\n\n      <div>\n        <h4 className=\"text-sm font-medium mb-3\">自定义内容</h4>\n        <div className=\"flex flex-wrap gap-2\">\n          <TypeIndicator type=\"string\">\n            String[]\n          </TypeIndicator>\n          <TypeIndicator type=\"object\">\n            User\n          </TypeIndicator>\n          <TypeIndicator type=\"array\">\n            Array&lt;number&gt;\n          </TypeIndicator>\n        </div>\n      </div>\n    </div>\n  );\n}\n",
+      "type": "registry:example",
+      "target": "components/example/type-indicator-demo.tsx"
+    }
+  ]
+}
