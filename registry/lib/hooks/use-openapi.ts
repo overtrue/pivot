@@ -1,7 +1,7 @@
 
+import { resolveRef } from "@/registry/lib/utils/resolve-ref";
 import type { OpenAPIV3 } from 'openapi-types';
 import { useMemo } from "react";
-import { resolveRef } from "./resolve-ref";
 
 /**
  * 自定义钩子，简化OpenAPI结构的处理

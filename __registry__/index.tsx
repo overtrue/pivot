@@ -3057,7 +3057,7 @@ export const Index: Record<string, any> = {
     name: "utils",
     description: "",
     type: "registry:lib",
-    registryDependencies: ["https://pivotkit.vercel.app/r/resolve-ref","https://pivotkit.vercel.app/r/schema-utils","https://pivotkit.vercel.app/r/type-utils"],
+    registryDependencies: ["https://pivotkit.vercel.app/r/schema-utils","https://pivotkit.vercel.app/r/type-utils"],
     files: [{
       path: "registry/lib/utils/generate-example.ts",
       type: "registry:lib",

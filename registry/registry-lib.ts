@@ -63,7 +63,6 @@ export const lib: Registry["items"] = [
       "openapi-types"
     ],
     "registryDependencies": [
-      "https://pivotkit.vercel.app/r/resolve-ref",
       "https://pivotkit.vercel.app/r/schema-utils",
       "https://pivotkit.vercel.app/r/type-utils"
     ]

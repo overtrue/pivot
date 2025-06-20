@@ -1,6 +1,6 @@
+import { resolveRef } from "@/registry/lib/utils/resolve-ref";
 import { faker } from '@faker-js/faker';
 import type { OpenAPIV3 } from 'openapi-types';
-import { resolveRef } from "./resolve-ref";
 
 // 配置 faker.js
 // 注意：@faker-js/faker 8.x 版本不再支持 setLocale，使用默认语言

@@ -737,8 +737,8 @@ export const ui: Registry["items"] = [
       }
     ],
     "dependencies": [
-      "openapi-types",
       "js-yaml",
+      "openapi-types",
       "react"
     ],
     "registryDependencies": [

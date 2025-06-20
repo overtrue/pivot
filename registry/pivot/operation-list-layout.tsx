@@ -1,13 +1,13 @@
 "use client";
 
-import type { OpenAPIV3 } from 'openapi-types';
 import { useI18n } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
-import * as yaml from "js-yaml";
-import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { useOpenApi } from "@/registry/lib/use-openapi";
+import { useOpenApi } from "@/registry/lib/hooks/use-openapi";
 import { OperationBox } from "@/registry/pivot/operation-box";
 import { TryItOutPanel } from "@/registry/pivot/try-it-out-panel";
+import * as yaml from "js-yaml";
+import type { OpenAPIV3 } from 'openapi-types';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 // Import types from the centralized types file
 
