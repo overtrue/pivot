@@ -4,11 +4,11 @@ import { useI18n } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
 import type { OpenAPIV3 } from 'openapi-types';
 
-import React from "react";
 import { resolveRef } from "@/registry/lib/utils/resolve-ref";
-import { type StyleType } from "@/registry/pivot/style-badge";
 import { ParameterItem } from "@/registry/pivot/parameter-item";
 import { SectionTitle } from "@/registry/pivot/section-title";
+import { type StyleType } from "@/registry/pivot/style-badge";
+import React from "react";
 
 // Import types from the centralized types file
 
@@ -52,7 +52,7 @@ const ParametersSection = React.forwardRef<
             <ParameterItem
               key={`${parameter.name}-${parameter.in}-${index}`}
               name={parameter.name}
-              in={parameter.in}
+              in={parameter.in as "path" | "header" | "query" | "cookie"}
               required={parameter.required ?? false}
               description={parameter.description}
               deprecated={parameter.deprecated}

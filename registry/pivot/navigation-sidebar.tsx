@@ -1,6 +1,5 @@
 "use client";
 
-import type { OpenAPIV3 } from 'openapi-types';
 import { Button } from "@/components/ui/button";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { Input } from "@/components/ui/input";
@@ -13,6 +12,7 @@ import {
   FolderOpen,
   Search,
 } from "lucide-react";
+import type { OpenAPIV3 } from 'openapi-types';
 import React, { useState } from "react";
 
 // Import types from the centralized types file
@@ -150,9 +150,14 @@ const NavigationSidebar = React.forwardRef<HTMLDivElement, NavigationSidebarProp
 
                               return operations
                                 .map(([method, operation]) => {
+                                  // Type check: ensure operation is an OperationObject
+                                  if (typeof operation !== 'object' || !operation || Array.isArray(operation) || !('responses' in operation)) {
+                                    return null;
+                                  }
+
                                   // Filter tags and search query
                                   if (
-                                    !operation.tags?.includes(tag.name) ||
+                                    !(operation as any).tags?.includes(tag.name) ||
                                     !filterPaths(path, method, operation)
                                   ) {
                                     return null;
@@ -184,9 +189,9 @@ const NavigationSidebar = React.forwardRef<HTMLDivElement, NavigationSidebarProp
                                         <span className="font-mono text-xs truncate w-full text-left">
                                           {path}
                                         </span>
-                                        {operation.summary && (
+                                        {(operation as any).summary && (
                                           <span className="text-xs text-muted-foreground truncate w-full text-left">
-                                            {operation.summary}
+                                            {(operation as any).summary}
                                           </span>
                                         )}
                                       </div>
@@ -220,6 +225,11 @@ const NavigationSidebar = React.forwardRef<HTMLDivElement, NavigationSidebarProp
 
                   return operations
                     .map(([method, operation]) => {
+                      // Type check: ensure operation is an OperationObject
+                      if (typeof operation !== 'object' || !operation || Array.isArray(operation) || !('responses' in operation)) {
+                        return null;
+                      }
+
                       if (!filterPaths(path, method, operation)) return null;
 
                       const isActive =
@@ -243,9 +253,9 @@ const NavigationSidebar = React.forwardRef<HTMLDivElement, NavigationSidebarProp
                             <span className="font-mono text-xs truncate w-full text-left">
                               {path}
                             </span>
-                            {operation.summary && (
+                            {(operation as any).summary && (
                               <span className="text-xs text-muted-foreground truncate w-full text-left">
-                                {operation.summary}
+                                {(operation as any).summary}
                               </span>
                             )}
                           </div>

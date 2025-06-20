@@ -88,8 +88,10 @@ export default function SecuritySchemesDemo() {
       bearerFormat: "JWT"
     },
     "MutualTLS": {
-      type: "mutualTLS" as const,
-      description: "双向 TLS 认证，提供最高级别的安全保护。客户端和服务器都需要验证证书。"
+      type: "http" as const,
+      description: "双向 TLS 认证（客户端证书），提供最高级别的安全保护。客户端和服务器都需要验证证书。",
+      scheme: "bearer",
+      bearerFormat: "X.509"
     },
     "InternalApiKey": {
       type: "apiKey" as const,

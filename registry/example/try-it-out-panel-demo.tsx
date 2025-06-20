@@ -1,9 +1,8 @@
 import { TryItOutPanel } from "@/registry/pivot/try-it-out-panel";
 import type { ParameterLocation } from "@/types/project";
-import type { OpenAPIV3 } from 'openapi-types';
+import type { OpenAPIV3 } from "openapi-types";
 
 export default function TryItOutPanelDemo() {
-  // 真实的 API 操作示例
   const createUserOperation: OpenAPIV3.OperationObject = {
     operationId: "createUser",
     summary: "创建新用户",
@@ -15,7 +14,7 @@ export default function TryItOutPanelDemo() {
         required: true,
         description: "API 访问密钥",
         schema: {
-          type: "string" as const as OpenAPIV3.NonArraySchemaObjectType | OpenAPIV3.ArraySchemaObjectType,
+          type: "string",
           pattern: "^[a-zA-Z0-9]{32}$"
         }
       },
@@ -25,8 +24,8 @@ export default function TryItOutPanelDemo() {
         required: false,
         description: "请求追踪 ID",
         schema: {
-          type: "string" as const as OpenAPIV3.NonArraySchemaObjectType | OpenAPIV3.ArraySchemaObjectType,
-          format: "uuid" as const
+          type: "string",
+          format: "uuid"
         }
       }
     ],
@@ -36,49 +35,49 @@ export default function TryItOutPanelDemo() {
       content: {
         "application/json": {
           schema: {
-            type: "object" as const as OpenAPIV3.NonArraySchemaObjectType | OpenAPIV3.ArraySchemaObjectType,
+            type: "object",
             required: ["email", "name"],
             properties: {
               email: {
-                type: "string" as const as OpenAPIV3.NonArraySchemaObjectType | OpenAPIV3.ArraySchemaObjectType,
-                format: "email" as const,
+                type: "string",
+                format: "email",
                 description: "用户邮箱地址"
               },
               name: {
-                type: "string" as const as OpenAPIV3.NonArraySchemaObjectType | OpenAPIV3.ArraySchemaObjectType,
+                type: "string",
                 minLength: 1,
                 maxLength: 100,
                 description: "用户姓名"
               },
               age: {
-                type: "integer" as const as OpenAPIV3.NonArraySchemaObjectType | OpenAPIV3.ArraySchemaObjectType,
+                type: "integer",
                 minimum: 0,
                 maximum: 150,
                 description: "用户年龄"
               },
               phone: {
-                type: "string" as const as OpenAPIV3.NonArraySchemaObjectType | OpenAPIV3.ArraySchemaObjectType,
+                type: "string",
                 pattern: "^\\+?[1-9]\\d{1,14}$",
                 description: "手机号码"
               },
               preferences: {
-                type: "object" as const as OpenAPIV3.NonArraySchemaObjectType | OpenAPIV3.ArraySchemaObjectType,
+                type: "object",
                 description: "用户偏好设置",
                 properties: {
                   theme: {
-                    type: "string" as const as OpenAPIV3.NonArraySchemaObjectType | OpenAPIV3.ArraySchemaObjectType,
+                    type: "string",
                     enum: ["light", "dark", "auto"],
                     default: "auto",
                     description: "界面主题"
                   },
                   language: {
-                    type: "string" as const as OpenAPIV3.NonArraySchemaObjectType | OpenAPIV3.ArraySchemaObjectType,
+                    type: "string",
                     enum: ["zh-CN", "en-US", "ja-JP"],
                     default: "zh-CN",
                     description: "界面语言"
                   },
                   notifications: {
-                    type: "boolean" as const as OpenAPIV3.NonArraySchemaObjectType | OpenAPIV3.ArraySchemaObjectType,
+                    type: "boolean",
                     default: true,
                     description: "是否接收通知"
                   }
@@ -106,25 +105,25 @@ export default function TryItOutPanelDemo() {
         content: {
           "application/json": {
             schema: {
-              type: "object" as const as OpenAPIV3.NonArraySchemaObjectType | OpenAPIV3.ArraySchemaObjectType,
+              type: "object",
               properties: {
                 id: {
-                  type: "string" as const as OpenAPIV3.NonArraySchemaObjectType | OpenAPIV3.ArraySchemaObjectType,
-                  format: "uuid" as const
+                  type: "string",
+                  format: "uuid"
                 },
                 email: {
-                  type: "string" as const as OpenAPIV3.NonArraySchemaObjectType | OpenAPIV3.ArraySchemaObjectType,
-                  format: "email" as const
+                  type: "string",
+                  format: "email"
                 },
                 name: {
-                  type: "string" as const as OpenAPIV3.NonArraySchemaObjectType | OpenAPIV3.ArraySchemaObjectType
+                  type: "string"
                 },
                 createdAt: {
-                  type: "string" as const as OpenAPIV3.NonArraySchemaObjectType | OpenAPIV3.ArraySchemaObjectType,
-                  format: "date-time" as const
+                  type: "string",
+                  format: "date-time"
                 },
                 status: {
-                  type: "string" as const as OpenAPIV3.NonArraySchemaObjectType | OpenAPIV3.ArraySchemaObjectType,
+                  type: "string",
                   enum: ["active", "pending"]
                 }
               }
@@ -157,8 +156,8 @@ export default function TryItOutPanelDemo() {
         required: true,
         description: "用户 ID",
         schema: {
-          type: "string" as const as OpenAPIV3.NonArraySchemaObjectType | OpenAPIV3.ArraySchemaObjectType,
-          format: "uuid" as const
+          type: "string",
+          format: "uuid"
         }
       },
       {
@@ -167,9 +166,9 @@ export default function TryItOutPanelDemo() {
         required: false,
         description: "包含的额外信息",
         schema: {
-          type: "array" as const as OpenAPIV3.NonArraySchemaObjectType | OpenAPIV3.ArraySchemaObjectType,
+          type: "array",
           items: {
-            type: "string" as const as OpenAPIV3.NonArraySchemaObjectType | OpenAPIV3.ArraySchemaObjectType,
+            type: "string",
             enum: ["profile", "preferences", "permissions"]
           }
         }
@@ -180,7 +179,7 @@ export default function TryItOutPanelDemo() {
         required: true,
         description: "API 访问密钥",
         schema: {
-          type: "string" as const as OpenAPIV3.NonArraySchemaObjectType | OpenAPIV3.ArraySchemaObjectType
+          type: "string"
         }
       }
     ],

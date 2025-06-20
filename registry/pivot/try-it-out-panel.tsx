@@ -2,11 +2,12 @@
 
 import { useI18n } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
+import { resolveRef } from "@/registry/lib/utils/resolve-ref";
+import { MethodLabel } from "@/registry/pivot/method-label";
+import type { ResponseData } from "@/types/project";
 import { ChevronDown, ChevronUp, Send } from "lucide-react";
 import type { OpenAPIV3 } from 'openapi-types';
 import React, { useState } from "react";
-import { resolveRef } from "@/registry/lib/utils/resolve-ref";
-import { MethodLabel } from "@/registry/pivot/method-label";
 
 // Import types from the centralized types file
 
@@ -310,7 +311,7 @@ const TryItOutPanel = React.forwardRef<HTMLDivElement, TryItOutPanelProps>(
           status: response.status,
           statusText: response.statusText,
           headers: responseHeaders,
-          body: responseBody,
+          data: responseBody,
           time: duration,
         });
 
@@ -679,7 +680,7 @@ const TryItOutPanel = React.forwardRef<HTMLDivElement, TryItOutPanelProps>(
                     <h4 className="text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">{t('Response')}</h4>
                     <div className="bg-neutral-900 text-neutral-100 p-3 rounded-md overflow-x-auto">
                       <pre className="text-xs font-mono whitespace-pre-wrap">
-                        {response.body}
+                        {response.data}
                       </pre>
                     </div>
                   </div>

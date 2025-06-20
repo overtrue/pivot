@@ -2,7 +2,6 @@ import { cn } from "@/lib/utils";
 import type { ComponentType } from "@/types/project";
 import type { OpenAPIV3 } from 'openapi-types';
 
-import React from "react";
 import { resolveRef } from "@/registry/lib/utils/resolve-ref";
 import { CallbackDisplay } from "@/registry/pivot/callback-display";
 import { ExamplesDisplay } from "@/registry/pivot/examples-display";
@@ -14,6 +13,7 @@ import { ResponseItem } from "@/registry/pivot/response-item";
 import { SchemaDisplay } from "@/registry/pivot/schema-display";
 import { SecuritySchemeDisplay } from "@/registry/pivot/security-scheme-display";
 import { WebhookDisplay } from "@/registry/pivot/webhook-display";
+import React from "react";
 
 interface ComponentDetailProps {
   activeType: ComponentType | null;
@@ -27,8 +27,8 @@ const ComponentDetail = React.forwardRef<HTMLDivElement, ComponentDetailProps>(
     if (
       !activeType ||
       !selectedItemName ||
-      !components[activeType] ||
-      !components[activeType]?.[selectedItemName]
+      !(components as any)[activeType] ||
+      !(components as any)[activeType]?.[selectedItemName]
     ) {
       return (
         <div
@@ -40,7 +40,7 @@ const ComponentDetail = React.forwardRef<HTMLDivElement, ComponentDetailProps>(
       );
     }
 
-    const item = components[activeType]?.[selectedItemName];
+    const item = (components as any)[activeType]?.[selectedItemName];
     if (!item)
       return (
         <div ref={ref} className={cn("text-red-500 p-4", className)}>

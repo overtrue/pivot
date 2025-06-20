@@ -14,11 +14,6 @@ const LicenseDisplay = React.forwardRef<HTMLDivElement, LicenseDisplayProps>(
         <div className="font-semibold dark:text-neutral-200">
           {license.name}
         </div>
-        {license.identifier && (
-          <div className="text-xs text-neutral-600 dark:text-neutral-400">
-            Identifier: {license.identifier}
-          </div>
-        )}
         {license.url && (
           <div>
             <a

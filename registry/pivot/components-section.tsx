@@ -1,12 +1,12 @@
 "use client";
 
 import { cn } from "@/lib/utils";
+import { ComponentItemsList } from "@/registry/pivot/component-items-list";
+import { ComponentTabs, type OpenApiComponentType } from "@/registry/pivot/component-tabs";
+import { SectionTitle } from "@/registry/pivot/section-title";
 import type { ComponentType } from "@/types/project";
 import type { OpenAPIV3 } from 'openapi-types';
 import React, { useMemo, useState } from "react";
-import { ComponentItemsList } from "@/registry/pivot/component-items-list";
-import { ComponentTabs } from "@/registry/pivot/component-tabs";
-import { SectionTitle } from "@/registry/pivot/section-title";
 
 interface ComponentsSectionProps {
   components: OpenAPIV3.ComponentsObject;
@@ -27,6 +27,7 @@ const getAvailableComponents = (
     securitySchemes: [],
     links: [],
     callbacks: [],
+    webhooks: [], // Note: webhooks aren't part of OpenAPI 3.0 components but included for completeness
   };
 
   if (components) {
@@ -34,7 +35,7 @@ const getAvailableComponents = (
       if (componentType in availableComponents) {
         const typedKey = componentType as ComponentType;
         availableComponents[typedKey] = Object.keys(
-          components[componentType] || {},
+          (components as any)[componentType] || {},
         );
       }
     });
@@ -54,12 +55,14 @@ const ComponentsSection = React.forwardRef<
   const availableTypes = useMemo(
     () =>
       Object.keys(availableComponents).filter(
-        (type) => availableComponents[type as ComponentType].length > 0,
-      ) as ComponentType[],
+        (type) =>
+          availableComponents[type as ComponentType].length > 0 &&
+          type !== "webhooks" // Filter out webhooks as it's not part of standard OpenAPI 3.0 components
+      ) as OpenApiComponentType[],
     [availableComponents],
   );
 
-  const [activeType, setActiveType] = useState<ComponentType | null>(
+  const [activeType, setActiveType] = useState<OpenApiComponentType | null>(
     availableTypes[0] || null,
   );
   const [selectedItemName, setSelectedItemName] = useState<string | null>(null);
@@ -79,7 +82,7 @@ const ComponentsSection = React.forwardRef<
     selectedItemName,
     components,
   }: {
-    activeType: ComponentType | null;
+    activeType: OpenApiComponentType | null;
     selectedItemName: string | null;
     components: OpenAPIV3.ComponentsObject;
   }) => {
@@ -91,7 +94,7 @@ const ComponentsSection = React.forwardRef<
       );
     }
 
-    const componentData = components[activeType]?.[selectedItemName];
+    const componentData = (components as any)[activeType]?.[selectedItemName];
     if (!componentData) {
       return (
         <div className="text-red-500 dark:text-red-400 text-sm">
@@ -131,7 +134,7 @@ const ComponentsSection = React.forwardRef<
 
           {/* List of items for the active type */}
           <ComponentItemsList
-            items={activeType ? availableComponents[activeType] : undefined}
+            items={activeType ? availableComponents[activeType as ComponentType] : undefined}
             selectedItem={selectedItemName}
             onSelectItem={setSelectedItemName}
           />

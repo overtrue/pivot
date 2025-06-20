@@ -1,8 +1,8 @@
-import type { OpenAPIV3 } from 'openapi-types';
 import { cn } from "@/lib/utils";
-import React from "react";
 import { DescriptionDisplay } from "@/registry/pivot/description-display";
 import { SchemeType } from "@/registry/pivot/scheme-type";
+import type { OpenAPIV3 } from 'openapi-types';
+import React from "react";
 
 // Import types from the centralized types file
 
@@ -17,16 +17,18 @@ const SecurityScheme = React.forwardRef<HTMLDivElement, SecuritySchemeProps>(
     const {
       type,
       description,
-      in: paramIn,
-      name: apiKeyName,
-      scheme: httpScheme,
-      bearerFormat,
-      flows,
-      openIdConnectUrl,
     } = scheme;
 
+    // Access type-specific properties safely
+    const paramIn = 'in' in scheme ? scheme.in : undefined;
+    const apiKeyName = 'name' in scheme ? scheme.name : undefined;
+    const httpScheme = 'scheme' in scheme ? scheme.scheme : undefined;
+    const bearerFormat = 'bearerFormat' in scheme ? scheme.bearerFormat : undefined;
+    const flows = 'flows' in scheme ? scheme.flows : undefined;
+    const openIdConnectUrl = 'openIdConnectUrl' in scheme ? scheme.openIdConnectUrl : undefined;
+
     // OAuth2流类型的渲染
-    const renderOAuth2Flows = (flows?: OAuthFlows) => {
+    const renderOAuth2Flows = (flows?: any) => {
       if (!flows) return null;
 
       // 获取所有非空的flow
@@ -50,37 +52,37 @@ const SecurityScheme = React.forwardRef<HTMLDivElement, SecuritySchemeProps>(
                 {name} Flow
               </h5>
               <div className="space-y-2 text-sm">
-                {flow.authorizationUrl && (
+                {(flow as any).authorizationUrl && (
                   <div className="grid grid-cols-[max-content_1fr] gap-2">
                     <span className="font-semibold">Authorization URL:</span>
                     <a
-                      href={flow.authorizationUrl}
+                      href={(flow as any).authorizationUrl}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-blue-600 dark:text-blue-400 hover:underline break-all"
                     >
-                      {flow.authorizationUrl}
+                      {(flow as any).authorizationUrl}
                     </a>
                   </div>
                 )}
-                {flow.tokenUrl && (
+                {(flow as any).tokenUrl && (
                   <div className="grid grid-cols-[max-content_1fr] gap-2">
                     <span className="font-semibold">Token URL:</span>
                     <a
-                      href={flow.tokenUrl}
+                      href={(flow as any).tokenUrl}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-blue-600 dark:text-blue-400 hover:underline break-all"
                     >
-                      {flow.tokenUrl}
+                      {(flow as any).tokenUrl}
                     </a>
                   </div>
                 )}
-                {Object.keys(flow.scopes).length > 0 && (
+                {Object.keys((flow as any).scopes).length > 0 && (
                   <div>
                     <span className="font-semibold">Scopes:</span>
                     <ul className="list-disc list-inside ml-4 mt-1">
-                      {(Object.entries(flow.scopes) as [string, string][]).map(
+                      {(Object.entries((flow as any).scopes) as [string, string][]).map(
                         ([scope, description]) => (
                           <li key={scope} className="text-sm">
                             <code className="font-mono">{scope}</code>

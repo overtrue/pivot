@@ -39,7 +39,7 @@ export function useOpenApi(spec: OpenAPIV3.Document | null) {
     let type = resolvedSchema.type || "";
 
     // 处理数组类型
-    if (type === "array" && resolvedSchema.items) {
+    if (type === "array" && 'items' in resolvedSchema && resolvedSchema.items) {
       const itemType = getSchemaType(resolvedSchema.items);
       return `${type}<${itemType}>`;
     }
@@ -130,7 +130,7 @@ export function useOpenApi(spec: OpenAPIV3.Document | null) {
     }
 
     // 处理数组
-    if (resolvedSchema.type === "array" && resolvedSchema.items) {
+    if (resolvedSchema.type === "array" && 'items' in resolvedSchema && resolvedSchema.items) {
       const itemsSchema = resolve<OpenAPIV3.SchemaObject>(
         resolvedSchema.items,
         "schemas",

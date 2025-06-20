@@ -1,7 +1,7 @@
-import type { OpenAPIV3 } from 'openapi-types';
 import { cn } from "@/lib/utils";
-import React from "react";
 import { DescriptionDisplay } from "@/registry/pivot/description-display";
+import type { OpenAPIV3 } from 'openapi-types';
+import React from "react";
 
 // Import types from the centralized types file
 
@@ -82,7 +82,7 @@ const SecuritySchemeDisplay = React.forwardRef<
                       {flowType}
                     </h6>
                     <div className="grid grid-cols-[max-content_1fr] gap-x-2 gap-y-1 text-xs dark:text-neutral-300">
-                      {flow?.authorizationUrl && (
+                      {'authorizationUrl' in flow && flow.authorizationUrl && (
                         <>
                           <span className="text-neutral-600 dark:text-neutral-400">
                             Authorization URL:
@@ -92,7 +92,7 @@ const SecuritySchemeDisplay = React.forwardRef<
                           </code>
                         </>
                       )}
-                      {flow?.tokenUrl && (
+                      {'tokenUrl' in flow && flow.tokenUrl && (
                         <>
                           <span className="text-neutral-600 dark:text-neutral-400">
                             Token URL:
@@ -100,7 +100,7 @@ const SecuritySchemeDisplay = React.forwardRef<
                           <code className="break-all">{flow.tokenUrl}</code>
                         </>
                       )}
-                      {flow?.refreshUrl && (
+                      {'refreshUrl' in flow && flow.refreshUrl && (
                         <>
                           <span className="text-neutral-600 dark:text-neutral-400">
                             Refresh URL:
@@ -151,16 +151,10 @@ const SecuritySchemeDisplay = React.forwardRef<
             </a>
           </div>
         );
-      case "mutualTLS":
-        return (
-          <p className="text-neutral-600 dark:text-neutral-400 italic">
-            Details for mutualTLS not specifically rendered.
-          </p>
-        );
       default:
         return (
           <p className="text-red-500 dark:text-red-400">
-            Unknown security scheme type: {scheme.type}
+            Unknown security scheme type: {(scheme as any).type}
           </p>
         );
     }

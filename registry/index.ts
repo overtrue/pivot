@@ -1,3 +1,3 @@
-import { pivot } from "./registry-ui";
+import { ui } from "./registry-ui";
 
-export const registry = [...pivot];
+export const registry = [...ui];

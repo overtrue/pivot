@@ -1,8 +1,8 @@
 import { cn } from "@/lib/utils";
-import type { OpenAPIV3 } from 'openapi-types';
-import React from "react";
 import { resolveRef } from "@/registry/lib/utils/resolve-ref";
 import { OperationBox } from "@/registry/pivot/operation-box";
+import type { OpenAPIV3 } from 'openapi-types';
+import React from "react";
 
 // Import types from the centralized types file
 
@@ -94,14 +94,27 @@ const CallbackDisplay = React.forwardRef<HTMLDivElement, CallbackDisplayProps>(
                         "head",
                         "patch",
                         "trace",
-                      ].includes(method.toLowerCase())
+                      ].includes(method.toLowerCase()) &&
+                      operationOrRef &&
+                      typeof operationOrRef === "object"
                     ) {
+                      // Resolve operation reference if necessary
+                      const operation = resolveRef<OpenAPIV3.OperationObject>(
+                        operationOrRef as OpenAPIV3.OperationObject | OpenAPIV3.ReferenceObject,
+                        components,
+                        "operations",
+                      );
+
+                      if (!operation) {
+                        return null;
+                      }
+
                       return (
                         <OperationBox
                           key={`${method}-${expression}`}
                           path={expression} // Use expression as path context
                           method={method.toUpperCase()}
-                          operation={operationOrRef} // Pass potentially unresolved operation
+                          operation={operation} // Pass resolved operation
                           components={components}
                           className="shadow-none border-neutral-300 dark:border-neutral-600"
                         />

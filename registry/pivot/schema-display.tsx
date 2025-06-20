@@ -1,8 +1,6 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import type { OpenAPIV3 } from 'openapi-types';
-import React, { useState } from "react";
 import { resolveRef } from "@/registry/lib/utils/resolve-ref";
 import { ConstraintDisplay } from "@/registry/pivot/constraint-display";
 import { DefaultValueDisplay } from "@/registry/pivot/default-value-display";
@@ -11,8 +9,10 @@ import { DescriptionDisplay } from "@/registry/pivot/description-display";
 import { EnumValuesDisplay } from "@/registry/pivot/enum-values-display";
 import { FormatBadge } from "@/registry/pivot/format-badge";
 import { RequiredBadge } from "@/registry/pivot/required-badge";
-import { TypeIndicator } from "@/registry/pivot/type-indicator";
 import { SchemaCompositionDisplay } from "@/registry/pivot/schema-composition-display";
+import { TypeIndicator } from "@/registry/pivot/type-indicator";
+import type { OpenAPIV3 } from 'openapi-types';
+import React, { useState } from "react";
 
 // Import types from the centralized types file
 
@@ -63,7 +63,7 @@ const getItemTypeString = (
     typeof resolvedItemSchema.additionalProperties === "object"
   )
     return "object"; // Infer object
-  if (resolvedItemSchema.items) return "array"; // Infer array
+  if ('items' in resolvedItemSchema && resolvedItemSchema.items) return "array"; // Infer array
   if (
     resolvedItemSchema.allOf ||
     resolvedItemSchema.anyOf ||
@@ -125,10 +125,12 @@ const PropertyDisplay: React.FC<{
       default: defaultValue,
       enum: enumValues,
       deprecated,
-      items, // For potential inline array display
       properties, // To decide if recursive call is needed
       ...otherConstraints
     } = resolvedPropSchema;
+
+    // Access items safely
+    const items = 'items' in resolvedPropSchema ? resolvedPropSchema.items : undefined;
 
     // Determine display type and collapsibility
     let displayTypeString = type || "any";
@@ -319,7 +321,6 @@ const SchemaDisplay = React.forwardRef<HTMLDivElement, SchemaDisplayProps>(
       deprecated,
       properties,
       required,
-      items,
       additionalProperties,
       allOf,
       anyOf,
@@ -327,6 +328,9 @@ const SchemaDisplay = React.forwardRef<HTMLDivElement, SchemaDisplayProps>(
       not,
       ...otherConstraints
     } = resolvedSchema;
+
+    // Access items safely
+    const items = 'items' in resolvedSchema ? resolvedSchema.items : undefined;
 
     const renderComposition = () => (
       <>
@@ -387,7 +391,6 @@ const SchemaDisplay = React.forwardRef<HTMLDivElement, SchemaDisplayProps>(
       case "number":
       case "integer":
       case "boolean":
-      case "null":
         return (
           <div
             ref={ref}
@@ -577,6 +580,7 @@ const SchemaDisplay = React.forwardRef<HTMLDivElement, SchemaDisplayProps>(
           const inferredArraySchema = {
             ...resolvedSchema,
             type: "array" as const,
+            items,
           };
           return (
             <SchemaDisplay

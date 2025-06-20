@@ -130,7 +130,7 @@ export function generateExample(
       } else if (format === "byte") {
         return faker.string.alphanumeric(8);
       } else if (format === "binary") {
-        return faker.string.binary(16);
+        return faker.string.binary({ length: 16 });
       } else if (resolvedSchema.pattern) {
         // 对于有模式的，尝试生成符合模式的示例
         return `${faker.lorem.word()}_${faker.string.alphanumeric(6)}`;
@@ -302,9 +302,6 @@ export function generateExample(
 
     case "boolean":
       return faker.datatype.boolean();
-
-    case "null":
-      return null;
 
     case "array": {
       // 检查items定义

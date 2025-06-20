@@ -1,4 +1,5 @@
 import { SchemaCompositionDisplay } from "@/registry/pivot/schema-composition-display";
+import type { OpenAPIV3 } from 'openapi-types';
 
 export default function SchemaCompositionDisplayDemo() {
   // allOf 组合 - 用户完整信息
@@ -61,7 +62,7 @@ export default function SchemaCompositionDisplayDemo() {
           }
         }
       }
-    ]
+    ] as OpenAPIV3.SchemaObject[]
   };
 
   // oneOf 组合 - 支付方式
@@ -147,7 +148,7 @@ export default function SchemaCompositionDisplayDemo() {
           }
         }
       }
-    ]
+    ] as OpenAPIV3.SchemaObject[]
   };
 
   // anyOf 组合 - 联系方式
@@ -202,14 +203,9 @@ export default function SchemaCompositionDisplayDemo() {
               city: {
                 type: "string" as const,
                 description: "城市",
-                example: "北京"
+                example: "北京市"
               },
-              country: {
-                type: "string" as const,
-                description: "国家",
-                example: "中国"
-              },
-              zipCode: {
+              postalCode: {
                 type: "string" as const,
                 description: "邮政编码",
                 example: "100080"
@@ -218,7 +214,7 @@ export default function SchemaCompositionDisplayDemo() {
           }
         }
       }
-    ]
+    ] as OpenAPIV3.SchemaObject[]
   };
 
   // 复杂组合 - 产品变体
@@ -232,17 +228,22 @@ export default function SchemaCompositionDisplayDemo() {
           id: {
             type: "string" as const,
             description: "产品 ID",
-            example: "prod_987fcdeb-51a2-4567"
+            example: "prod_clothing_001"
           },
           name: {
             type: "string" as const,
             description: "产品名称",
-            example: "iPhone 15 Pro"
+            example: "经典棉质 T 恤"
+          },
+          description: {
+            type: "string" as const,
+            description: "产品描述",
+            example: "100% 纯棉材质，舒适透气，适合日常穿着"
           },
           price: {
             type: "number" as const,
-            description: "基础价格",
-            example: 7999.00
+            description: "产品价格（分）",
+            example: 9900
           },
           currency: {
             type: "string" as const,
@@ -255,6 +256,41 @@ export default function SchemaCompositionDisplayDemo() {
         oneOf: [
           {
             type: "object" as const,
+            title: "服装变体",
+            properties: {
+              category: {
+                type: "string" as const,
+                enum: ["clothing"],
+                example: "clothing"
+              },
+              size: {
+                type: "string" as const,
+                enum: ["XS", "S", "M", "L", "XL", "XXL"],
+                description: "尺码",
+                example: "M"
+              },
+              color: {
+                type: "string" as const,
+                description: "颜色",
+                example: "黑色"
+              },
+              material: {
+                type: "string" as const,
+                description: "材质",
+                example: "100% 纯棉"
+              },
+              careInstructions: {
+                type: "array" as const,
+                items: {
+                  type: "string" as const
+                },
+                description: "护理说明",
+                example: ["机洗", "低温烘干", "不可漂白"]
+              }
+            }
+          },
+          {
+            type: "object" as const,
             title: "电子产品变体",
             properties: {
               category: {
@@ -262,25 +298,21 @@ export default function SchemaCompositionDisplayDemo() {
                 enum: ["electronics"],
                 example: "electronics"
               },
-              specifications: {
-                type: "object" as const,
-                properties: {
-                  display: {
-                    type: "string" as const,
-                    description: "显示屏规格",
-                    example: "6.1英寸 Super Retina XDR"
-                  },
-                  storage: {
-                    type: "string" as const,
-                    description: "存储容量",
-                    example: "256GB"
-                  },
-                  color: {
-                    type: "string" as const,
-                    description: "颜色",
-                    example: "天然钛金属色"
-                  }
-                }
+              model: {
+                type: "string" as const,
+                description: "型号",
+                example: "iPhone 15 Pro"
+              },
+              storage: {
+                type: "string" as const,
+                enum: ["128GB", "256GB", "512GB", "1TB"],
+                description: "存储容量",
+                example: "256GB"
+              },
+              color: {
+                type: "string" as const,
+                description: "颜色",
+                example: "深空黑色"
               },
               warranty: {
                 type: "object" as const,
@@ -292,8 +324,9 @@ export default function SchemaCompositionDisplayDemo() {
                   },
                   type: {
                     type: "string" as const,
+                    enum: ["standard", "extended"],
                     description: "保修类型",
-                    example: "manufacturer"
+                    example: "standard"
                   }
                 }
               }
@@ -301,47 +334,45 @@ export default function SchemaCompositionDisplayDemo() {
           },
           {
             type: "object" as const,
-            title: "服装产品变体",
+            title: "图书变体",
             properties: {
               category: {
                 type: "string" as const,
-                enum: ["clothing"],
-                example: "clothing"
+                enum: ["books"],
+                example: "books"
               },
-              specifications: {
-                type: "object" as const,
-                properties: {
-                  size: {
-                    type: "string" as const,
-                    enum: ["XS", "S", "M", "L", "XL", "XXL"],
-                    description: "尺码",
-                    example: "M"
-                  },
-                  color: {
-                    type: "string" as const,
-                    description: "颜色",
-                    example: "黑色"
-                  },
-                  material: {
-                    type: "string" as const,
-                    description: "材质",
-                    example: "100% 纯棉"
-                  }
-                }
+              isbn: {
+                type: "string" as const,
+                pattern: "^(?:ISBN(?:-1[03])?:? )?(?=[0-9X]{10}$|(?=(?:[0-9]+[- ]){3})[- 0-9X]{13}$|97[89][0-9]{10}$|(?=(?:[0-9]+[- ]){4})[- 0-9]{17}$)(?:97[89][- ]?)?[0-9]{1,5}[- ]?[0-9]+[- ]?[0-9]+[- ]?[0-9X]$",
+                description: "ISBN 编号",
+                example: "978-0-13-601970-1"
               },
-              careInstructions: {
-                type: "array" as const,
-                items: {
-                  type: "string" as const
-                },
-                description: "护理说明",
-                example: ["机洗", "低温烘干", "不可漂白"]
+              author: {
+                type: "string" as const,
+                description: "作者",
+                example: "Robert C. Martin"
+              },
+              publisher: {
+                type: "string" as const,
+                description: "出版社",
+                example: "Prentice Hall"
+              },
+              language: {
+                type: "string" as const,
+                description: "语言",
+                example: "中文"
+              },
+              format: {
+                type: "string" as const,
+                enum: ["hardcover", "paperback", "ebook"],
+                description: "版本格式",
+                example: "paperback"
               }
             }
           }
         ]
       }
-    ]
+    ] as OpenAPIV3.SchemaObject[]
   };
 
   // 嵌套组合 - API 响应
@@ -442,7 +473,7 @@ export default function SchemaCompositionDisplayDemo() {
           }
         ]
       }
-    ]
+    ] as OpenAPIV3.SchemaObject[]
   };
 
   return (

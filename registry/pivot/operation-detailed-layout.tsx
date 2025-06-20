@@ -1,11 +1,11 @@
 "use client";
 
-import type { OpenAPIV3 } from 'openapi-types';
 import { useI18n } from "@/lib/i18n";
 import { Codegen } from "@/registry/pivot/codegen";
 import { OperationDetail } from "@/registry/pivot/operation-detail";
 import { TryItOutPanel } from "@/registry/pivot/try-it-out-panel";
 import * as yaml from "js-yaml";
+import type { OpenAPIV3 } from 'openapi-types';
 import React, { useEffect, useState } from "react";
 
 // Import types from the centralized types file
@@ -146,6 +146,7 @@ export const OperationDetailedLayout = React.forwardRef<HTMLDivElement, Operatio
 
     // 确保 selectedMethod 是有效的 HTTP 方法
     const normalizedMethod = selectedMethod.toUpperCase() as "GET" | "POST" | "PUT" | "DELETE" | "PATCH" | "OPTIONS" | "HEAD";
+    const normalizedMethodLowercase = selectedMethod.toLowerCase() as "get" | "post" | "put" | "delete" | "patch" | "options" | "head";
 
     const resolvedComponents = parsedSpec.components;
 
@@ -168,7 +169,7 @@ export const OperationDetailedLayout = React.forwardRef<HTMLDivElement, Operatio
               {/* 代码生成器面板 */}
               <Codegen
                 endpoint={`${selectedServer}${selectedPath}`}
-                method={normalizedMethod}
+                method={normalizedMethodLowercase}
                 parameters={operation.parameters || []}
                 requestBody={operation.requestBody}
                 components={resolvedComponents}
