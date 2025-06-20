@@ -12,7 +12,6 @@ import { LanguageSwitcher } from "@/registry/pivot/language-switcher";
 import { NavigationSidebar } from "@/registry/pivot/navigation-sidebar";
 import { OperationDetailedLayout } from "@/registry/pivot/operation-detailed-layout";
 import { OperationListLayout } from "@/registry/pivot/operation-list-layout";
-import { useLocalStorage } from "@uidotdev/usehooks";
 import * as yaml from "js-yaml";
 import { Github, Layout, LayoutTemplate, Loader2 } from "lucide-react";
 import Link from "next/link";
@@ -55,15 +54,33 @@ const API_EXAMPLES: ApiExample[] = [
 ];
 
 export default function ViewerPage() {
-  const [specUrl, setSpecUrl] = useLocalStorage('pivot-openapi-spec-url', 'https://petstore3.swagger.io/api/v3/openapi.json');
+  // 使用常规 useState 初始化，然后在 useEffect 中从 localStorage 加载
+  const [specUrl, setSpecUrl] = useState('https://petstore3.swagger.io/api/v3/openapi.json');
   const [spec, setSpec] = useState<OpenAPIV3.Document | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [layoutType, setLayoutType] = useState<'operationList' | 'operationDetail'>('operationDetail');
   const [selectedPath, setSelectedPath] = useState<string | null>(null);
   const [selectedMethod, setSelectedMethod] = useState<string | null>(null);
+  const [isClient, setIsClient] = useState(false);
   const prevUrlRef = useRef<string>('');
   const debounceTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  // 客户端初始化：从 localStorage 加载保存的 URL
+  useEffect(() => {
+    setIsClient(true);
+    const savedUrl = localStorage.getItem('pivot-openapi-spec-url');
+    if (savedUrl) {
+      setSpecUrl(savedUrl);
+    }
+  }, []);
+
+  // 保存 URL 到 localStorage
+  useEffect(() => {
+    if (isClient && specUrl) {
+      localStorage.setItem('pivot-openapi-spec-url', specUrl);
+    }
+  }, [specUrl, isClient]);
 
   const loadSpec = React.useCallback(async () => {
     if (!specUrl) return;
