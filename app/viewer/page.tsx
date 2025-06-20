@@ -19,10 +19,6 @@ import Link from "next/link";
 import type { OpenAPIV3 } from 'openapi-types';
 import React, { useEffect, useRef, useState } from "react";
 
-// 禁用静态生成，因为页面使用了客户端状态
-export const dynamic = 'force-dynamic';
-export const runtime = 'edge';
-
 // 预定义的API示例列表
 interface ApiExample {
   name: string;
