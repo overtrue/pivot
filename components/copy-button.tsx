@@ -86,7 +86,6 @@ export function CopyWithClassNames({
   value,
   classNames,
   className,
-  ...props
 }: CopyWithClassNamesProps) {
   const [hasCopied, setHasCopied] = React.useState(false);
 
@@ -139,7 +138,6 @@ interface CopyNpmCommandButtonProps extends DropdownMenuTriggerProps {
 export function CopyNpmCommandButton({
   commands,
   className,
-  ...props
 }: CopyNpmCommandButtonProps) {
   const [hasCopied, setHasCopied] = React.useState(false);
 

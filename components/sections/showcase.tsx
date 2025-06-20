@@ -1,4 +1,5 @@
 import { ChevronRightIcon } from "@radix-ui/react-icons";
+import Image from "next/image";
 import Link from "next/link";
 import { Marquee } from "../magicui/marquee";
 
@@ -20,7 +21,7 @@ export function ShowcaseCard({
       href={href}
       className="group relative flex cursor-pointer flex-col gap-2 overflow-hidden"
     >
-      <img
+      <Image
         src={image}
         alt={title}
         width={500}

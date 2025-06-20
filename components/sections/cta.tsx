@@ -1,4 +1,5 @@
 import { ChevronRight, Code2 } from "lucide-react";
+import Link from "next/link";
 
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -16,7 +17,7 @@ export default function CTASection() {
               准备开始构建 API 文档？
             </h1>
             <p className="mt-2">立即体验 Pivot UI 组件库</p>
-            <a
+            <Link
               href="/docs"
               className={cn(
                 buttonVariants({
@@ -28,7 +29,7 @@ export default function CTASection() {
             >
               开始使用 Pivot UI
               <ChevronRight className="ml-1 size-4 transition-all duration-300 ease-out group-hover:translate-x-1" />
-            </a>
+            </Link>
           </div>
           <div className="absolute inset-x-0 bottom-0 h-full bg-gradient-to-b from-transparent to-white to-70% dark:to-black" />
         </div>

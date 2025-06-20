@@ -20,7 +20,7 @@ import { ComponentSource } from "./component-source";
 import { CopyButton } from "./copy-button";
 import { TweetCard } from "./magicui/tweet-card";
 
-const CustomLink = (props: any) => {
+const CustomLink = (props: React.ComponentProps<"a">) => {
   const href = props.href;
 
   // 如果 href 为 undefined 或 null，返回普通的 span 元素
@@ -55,7 +55,7 @@ const components = {
   Image,
   Tweet: ({ id }: { id: string }) => <TweetCard id={id} className="mx-auto" />,
   ComponentPreview,
-  ComponentSource: (props: any) => <ComponentSource {...props} />,
+  ComponentSource: (props: React.ComponentProps<typeof ComponentSource>) => <ComponentSource {...props} />,
   h1: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
     <h1
       className={cn(
@@ -239,7 +239,6 @@ const components = {
     __withMeta__,
     __src__,
     __event__,
-    __name__,
     ...props
   }: React.HTMLAttributes<HTMLPreElement> & {
     __rawString__?: string;

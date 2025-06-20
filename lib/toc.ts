@@ -4,11 +4,18 @@ import { visit } from "unist-util-visit";
 
 const textTypes = ["text", "emphasis", "strong", "inlineCode"];
 
-function flattenNode(node: any) {
-  const p: any[] = [];
-  visit(node, (node) => {
+interface UnistNode {
+  type: string;
+  value?: string;
+  children?: UnistNode[];
+  url?: string;
+}
+
+function flattenNode(node: UnistNode) {
+  const p: string[] = [];
+  visit(node, (node: UnistNode) => {
     if (!textTypes.includes(node.type)) return;
-    p.push(node.value);
+    if (node.value) p.push(node.value);
   });
   return p.join(``);
 }
@@ -23,13 +30,13 @@ interface Items {
   items?: Item[];
 }
 
-function getItems(node: any, current: any): Items {
+function getItems(node: UnistNode, current: Partial<Item>): Items {
   if (!node) {
     return {};
   }
 
   if (node.type === "paragraph") {
-    visit(node, (item) => {
+    visit(node, (item: UnistNode) => {
       if (item.type === "link") {
         current.url = item.url;
         current.title = flattenNode(node);
@@ -44,13 +51,13 @@ function getItems(node: any, current: any): Items {
   }
 
   if (node.type === "list") {
-    current.items = node.children.map((i: any) => getItems(i, {}));
+    current.items = node.children?.map((i: UnistNode) => getItems(i, {})) as Item[];
 
     return current;
   } else if (node.type === "listItem") {
-    const heading = getItems(node.children[0], {});
+    const heading = getItems(node.children?.[0] as UnistNode, {});
 
-    if (node.children.length > 1) {
+    if (node.children && node.children.length > 1) {
       getItems(node.children[1], heading);
     }
 
@@ -60,9 +67,9 @@ function getItems(node: any, current: any): Items {
   return {};
 }
 
-const getToc = () => (node: any, file: any) => {
+const getToc = () => (node: UnistNode, file: { data?: unknown }) => {
   const table = toc(node);
-  file.data = getItems(table.map, {});
+  file.data = getItems(table.map as UnistNode, {});
 };
 
 export type TableOfContents = Items;

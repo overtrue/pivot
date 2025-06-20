@@ -16,7 +16,8 @@ import { useLocalStorage } from "@uidotdev/usehooks";
 import * as yaml from "js-yaml";
 import { Github, Layout, LayoutTemplate, Loader2 } from "lucide-react";
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import type { OpenAPIV3 } from 'openapi-types';
+import React, { useEffect, useRef, useState } from "react";
 
 // 预定义的API示例列表
 interface ApiExample {
@@ -55,7 +56,7 @@ const API_EXAMPLES: ApiExample[] = [
 
 export default function ViewerPage() {
   const [specUrl, setSpecUrl] = useLocalStorage('pivot-openapi-spec-url', 'https://petstore3.swagger.io/api/v3/openapi.json');
-  const [spec, setSpec] = useState<any>(null);
+  const [spec, setSpec] = useState<OpenAPIV3.Document | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [layoutType, setLayoutType] = useState<'operationList' | 'operationDetail'>('operationDetail');
@@ -64,40 +65,7 @@ export default function ViewerPage() {
   const prevUrlRef = useRef<string>('');
   const debounceTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  // 组件加载时自动加载默认规范
-  useEffect(() => {
-    if (specUrl) {
-      loadSpec();
-    }
-  }, [specUrl]);
-
-  // 监听 URL 变化，自动加载
-  useEffect(() => {
-    // 跳过初始加载和相同 URL 的重复加载
-    if (specUrl === prevUrlRef.current) {
-      return;
-    }
-
-    prevUrlRef.current = specUrl;
-
-    // 清除之前的定时器
-    if (debounceTimerRef.current) {
-      clearTimeout(debounceTimerRef.current);
-    }
-
-    // 设置防抖定时器，避免频繁请求
-    debounceTimerRef.current = setTimeout(() => {
-      loadSpec();
-    }, 800);
-
-    return () => {
-      if (debounceTimerRef.current) {
-        clearTimeout(debounceTimerRef.current);
-      }
-    };
-  }, [specUrl]);
-
-  const loadSpec = async () => {
+  const loadSpec = React.useCallback(async () => {
     if (!specUrl) return;
 
     try {
@@ -119,7 +87,7 @@ export default function ViewerPage() {
         parsedSpec = JSON.parse(text);
       } catch {
         // 如果JSON解析失败，尝试YAML解析
-        parsedSpec = yaml.load(text) as any;
+        parsedSpec = yaml.load(text) as OpenAPIV3.Document;
       }
 
       setSpec(parsedSpec);
@@ -149,9 +117,42 @@ export default function ViewerPage() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [specUrl]);
 
-  const handleSelectOperation = (path: string, method: string, operation: any) => {
+  // 组件加载时自动加载默认规范
+  useEffect(() => {
+    if (specUrl) {
+      loadSpec();
+    }
+  }, [specUrl, loadSpec]);
+
+  // 监听 URL 变化，自动加载
+  useEffect(() => {
+    // 跳过初始加载和相同 URL 的重复加载
+    if (specUrl === prevUrlRef.current) {
+      return;
+    }
+
+    prevUrlRef.current = specUrl;
+
+    // 清除之前的定时器
+    if (debounceTimerRef.current) {
+      clearTimeout(debounceTimerRef.current);
+    }
+
+    // 设置防抖定时器，避免频繁请求
+    debounceTimerRef.current = setTimeout(() => {
+      loadSpec();
+    }, 800);
+
+    return () => {
+      if (debounceTimerRef.current) {
+        clearTimeout(debounceTimerRef.current);
+      }
+    };
+  }, [specUrl, loadSpec]);
+
+  const handleSelectOperation = (path: string, method: string) => {
     setSelectedPath(path);
     setSelectedMethod(method.toUpperCase());
   };

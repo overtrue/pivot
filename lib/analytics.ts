@@ -1,7 +1,7 @@
 import { env } from "@/env.mjs";
 
 // Google Analytics 事件追踪
-export const gtag = (...args: any[]) => {
+export const gtag = (...args: unknown[]) => {
   if (typeof window !== "undefined" && window.gtag) {
     window.gtag(...args);
   }
@@ -46,6 +46,6 @@ export const trackDocumentView = (documentPath: string) => {
 // 扩展 Window 接口以包含 gtag
 declare global {
   interface Window {
-    gtag: (...args: any[]) => void;
+    gtag: (...args: unknown[]) => void;
   }
 }

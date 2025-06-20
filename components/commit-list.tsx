@@ -1,10 +1,19 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { formatDistanceToNow } from "date-fns";
+import { useEffect, useState } from "react";
 import { toast } from "sonner";
 
 import { Badge } from "@/components/ui/badge";
+
+interface GitHubCommit {
+  commit: {
+    message: string;
+    author: {
+      date: string;
+    };
+  };
+}
 
 export default function CommitList({
   repo,
@@ -13,12 +22,10 @@ export default function CommitList({
   repo: string;
   owner: string;
 }) {
-  const [loading, setLoading] = useState(false);
-  const [commits, setCommits] = useState<any[]>([]);
+  const [commits, setCommits] = useState<GitHubCommit[]>([]);
 
   useEffect(() => {
     const loadCommits = async () => {
-      setLoading(true);
       try {
         const response = await fetch(
           `${process.env.NEXT_PUBLIC_APP_URL}/api/repo/commits`,
@@ -38,8 +45,6 @@ export default function CommitList({
       } catch (error) {
         toast.error("Error occurred while loading commits. Please try again.");
         console.error("error", error);
-      } finally {
-        setLoading(false);
       }
     };
     loadCommits();
