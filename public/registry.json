@@ -1,10 +1,12 @@
 {
-  "name": "shadcn/ui",
+  "name": "shadcn",
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
   "homepage": "https://ui.shadcn.com",
   "items": [
     {
       "name": "index",
       "type": "registry:style",
+      "title": "Index",
       "dependencies": [
         "tw-animate-css",
         "class-variance-authority",
@@ -624,8 +626,8 @@
       "name": "navigation-sidebar",
       "type": "registry:ui",
       "dependencies": [
-        "openapi-types",
         "lucide-react",
+        "openapi-types",
         "react"
       ],
       "registryDependencies": [
@@ -724,8 +726,8 @@
       "name": "operation-detailed-layout",
       "type": "registry:ui",
       "dependencies": [
-        "openapi-types",
         "js-yaml",
+        "openapi-types",
         "react"
       ],
       "registryDependencies": [
@@ -862,9 +864,9 @@
         "react"
       ],
       "registryDependencies": [
-        "https://pivotkit.vercel.app/r/style-badge",
         "https://pivotkit.vercel.app/r/parameter-item",
-        "https://pivotkit.vercel.app/r/section-title"
+        "https://pivotkit.vercel.app/r/section-title",
+        "https://pivotkit.vercel.app/r/style-badge"
       ],
       "files": [
         {
@@ -1125,8 +1127,8 @@
         "https://pivotkit.vercel.app/r/enum-values-display",
         "https://pivotkit.vercel.app/r/format-badge",
         "https://pivotkit.vercel.app/r/required-badge",
-        "https://pivotkit.vercel.app/r/type-indicator",
-        "https://pivotkit.vercel.app/r/schema-composition-display"
+        "https://pivotkit.vercel.app/r/schema-composition-display",
+        "https://pivotkit.vercel.app/r/type-indicator"
       ],
       "files": [
         {
@@ -2469,6 +2471,9 @@
     {
       "name": "schema-composition-display-demo",
       "type": "registry:example",
+      "dependencies": [
+        "openapi-types"
+      ],
       "registryDependencies": [
         "https://pivotkit.vercel.app/r/schema-composition-display"
       ],

@@ -616,8 +616,8 @@ export const ui: Registry["items"] = [
       }
     ],
     "dependencies": [
-      "openapi-types",
       "lucide-react",
+      "openapi-types",
       "react"
     ],
     "registryDependencies": [
@@ -716,8 +716,8 @@ export const ui: Registry["items"] = [
       }
     ],
     "dependencies": [
-      "openapi-types",
       "js-yaml",
+      "openapi-types",
       "react"
     ],
     "registryDependencies": [
@@ -854,9 +854,9 @@ export const ui: Registry["items"] = [
       "react"
     ],
     "registryDependencies": [
-      "https://pivotkit.vercel.app/r/style-badge",
       "https://pivotkit.vercel.app/r/parameter-item",
-      "https://pivotkit.vercel.app/r/section-title"
+      "https://pivotkit.vercel.app/r/section-title",
+      "https://pivotkit.vercel.app/r/style-badge"
     ]
   },
   {
@@ -1117,8 +1117,8 @@ export const ui: Registry["items"] = [
       "https://pivotkit.vercel.app/r/enum-values-display",
       "https://pivotkit.vercel.app/r/format-badge",
       "https://pivotkit.vercel.app/r/required-badge",
-      "https://pivotkit.vercel.app/r/type-indicator",
-      "https://pivotkit.vercel.app/r/schema-composition-display"
+      "https://pivotkit.vercel.app/r/schema-composition-display",
+      "https://pivotkit.vercel.app/r/type-indicator"
     ]
   },
   {

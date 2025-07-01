@@ -364,8 +364,8 @@ importers:
         specifier: ^6.0.1
         version: 6.0.1
       shadcn:
-        specifier: 2.7.0-canary.0
-        version: 2.7.0-canary.0(@types/node@22.15.26)(typescript@5.8.3)
+        specifier: 2.7.0
+        version: 2.7.0(@types/node@22.15.26)(typescript@5.8.3)
       tailwindcss:
         specifier: ^4.1.8
         version: 4.1.8
@@ -5213,8 +5213,8 @@ packages:
   setprototypeof@1.2.0:
     resolution: {integrity: sha512-E5LDX7Wrp85Kil5bhZv46j8jOeboKq5JMmYM3gVGdGH8xFpPWXUMsNrlODCrkoxMEeNi/XZIwuRvY4XNwYMJpw==}
 
-  shadcn@2.7.0-canary.0:
-    resolution: {integrity: sha512-jZv1mZkAESECTOJ/7hLdEir1URVMricZ9P3TZg3aPRLf8JN1x79o9nDiXRuCldG31D7dXcp+afvciIJup/bi2A==}
+  shadcn@2.7.0:
+    resolution: {integrity: sha512-NzkUf58HI3AxcrdnmAgdN3oT0f2J5CyFKMi2exdVLtoRW+A5GxADxWqhWKRvBmdWoiPDuqYeb3ScZxhlS9aflA==}
     hasBin: true
 
   sharp@0.34.2:
@@ -11497,7 +11497,7 @@ snapshots:
 
   setprototypeof@1.2.0: {}
 
-  shadcn@2.7.0-canary.0(@types/node@22.15.26)(typescript@5.8.3):
+  shadcn@2.7.0(@types/node@22.15.26)(typescript@5.8.3):
     dependencies:
       '@antfu/ni': 23.3.1
       '@babel/core': 7.27.3

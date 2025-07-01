@@ -923,6 +923,9 @@ export const examples: Registry["items"] = [
         "target": "components/example/schema-composition-display-demo.tsx"
       }
     ],
+    "dependencies": [
+      "openapi-types"
+    ],
     "registryDependencies": [
       "https://pivotkit.vercel.app/r/schema-composition-display"
     ]

@@ -363,6 +363,7 @@ export const Index: Record<string, any> = {`;
     index += `
   "${item.name}": {
     name: "${item.name}",
+    title: "${item.title ?? item.name}",
     description: "${item.description ?? ""}",
     type: "${item.type}",
     registryDependencies: ${JSON.stringify(item.registryDependencies)},
@@ -454,13 +455,15 @@ async function main(): Promise<void> {
 
     // Step 2: Build complete registry configuration
     const registry: Registry = {
-      name: "shadcn/ui",
+      name: "shadcn",
+      "$schema": "https://ui.shadcn.com/schema/registry.json",
       homepage: "https://ui.shadcn.com",
       items: z.array(registryItemSchema).parse(
         [
           {
             name: "index",
             type: "registry:style",
+            title: "Index",
             dependencies: [
               "tw-animate-css",
               "class-variance-authority",
