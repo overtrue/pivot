@@ -106,7 +106,7 @@ async function generateRegistryUI(): Promise<Registry["items"]> {
       files: [
         {
           path: `registry/pivot/${file}`,
-          type: "registry:component" as const,
+          type: "registry:ui" as const,
           target: `components/pivot/${file}`
         }
       ],

@@ -10,7 +10,7 @@
     {
       "path": "registry/pivot/language-switcher.tsx",
       "content": "\"use client\";\n\nimport { useI18n } from \"@/lib/i18n\";\nimport { cn } from \"@/lib/utils\";\nimport { Globe } from \"lucide-react\";\nimport React from \"react\";\n\ninterface LanguageSwitcherProps {\n  className?: string;\n  onLanguageChange?: (language: string) => void;\n}\n\nconst LanguageSwitcher = React.forwardRef<\n  HTMLButtonElement,\n  LanguageSwitcherProps\n>(({ className, onLanguageChange }, ref) => {\n  const { locale, setLocale } = useI18n();\n\n  const toggleLanguage = () => {\n    const newLanguage = locale === \"en\" ? \"zh\" : \"en\";\n    setLocale(newLanguage);\n    onLanguageChange?.(newLanguage);\n  };\n\n  return (\n    <button\n      ref={ref}\n      onClick={toggleLanguage}\n      className={cn(\n        \"flex items-center px-3 py-1.5 text-sm text-foreground hover:bg-accent hover:text-accent-foreground transition-colors rounded-md\",\n        className,\n      )}\n      aria-label=\"Switch Language\"\n    >\n      <Globe className=\"w-4 h-4 mr-1.5\" />\n      {locale === \"en\" ? \"中文\" : \"English\"}\n    </button>\n  );\n});\n\nLanguageSwitcher.displayName = \"LanguageSwitcher\";\n\nexport { LanguageSwitcher };\n",
-      "type": "registry:component",
+      "type": "registry:ui",
       "target": "components/pivot/language-switcher.tsx"
     }
   ]

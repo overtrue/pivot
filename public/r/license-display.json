@@ -10,7 +10,7 @@
     {
       "path": "registry/pivot/license-display.tsx",
       "content": "import { cn } from \"@/lib/utils\";\nimport type { OpenAPIV3 } from 'openapi-types';\nimport React from \"react\";\n\ninterface LicenseDisplayProps {\n  license: OpenAPIV3.LicenseObject;\n  className?: string;\n}\n\nconst LicenseDisplay = React.forwardRef<HTMLDivElement, LicenseDisplayProps>(\n  ({ license, className }, ref) => {\n    return (\n      <div ref={ref} className={cn(\"text-sm\", className)}>\n        <div className=\"font-semibold dark:text-neutral-200\">\n          {license.name}\n        </div>\n        {license.url && (\n          <div>\n            <a\n              href={license.url}\n              target=\"_blank\"\n              rel=\"noopener noreferrer\"\n              className=\"text-blue-600 dark:text-blue-400 hover:underline break-all\"\n            >\n              {license.url}\n            </a>\n          </div>\n        )}\n      </div>\n    );\n  },\n);\n\nLicenseDisplay.displayName = \"LicenseDisplay\";\n\nexport { LicenseDisplay, type LicenseDisplayProps };\n",
-      "type": "registry:component",
+      "type": "registry:ui",
       "target": "components/pivot/license-display.tsx"
     }
   ]

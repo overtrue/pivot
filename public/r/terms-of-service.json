@@ -9,7 +9,7 @@
     {
       "path": "registry/pivot/terms-of-service.tsx",
       "content": "import { cn } from \"@/lib/utils\";\nimport React from \"react\";\n\ninterface TermsOfServiceProps {\n  url: string;\n  className?: string;\n  children?: React.ReactNode;\n}\n\nconst TermsOfService = React.forwardRef<HTMLAnchorElement, TermsOfServiceProps>(\n  ({ url, className, children }, ref) => {\n    return (\n      <a\n        ref={ref}\n        href={url}\n        target=\"_blank\"\n        rel=\"noopener noreferrer\"\n        className={cn(\n          \"text-blue-600 dark:text-blue-400 hover:underline text-sm\",\n          className,\n        )}\n      >\n        {children || \"Terms of Service\"}\n      </a>\n    );\n  },\n);\n\nTermsOfService.displayName = \"TermsOfService\";\n\nexport { TermsOfService };\n",
-      "type": "registry:component",
+      "type": "registry:ui",
       "target": "components/pivot/terms-of-service.tsx"
     }
   ]

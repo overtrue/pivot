@@ -9,7 +9,7 @@
     {
       "path": "registry/pivot/component-items-list.tsx",
       "content": "import { cn } from \"@/lib/utils\";\nimport React from \"react\";\n\ninterface ComponentItemsListProps {\n  items: string[] | undefined;\n  selectedItem: string | null;\n  onSelectItem: (item: string) => void;\n  className?: string;\n}\n\nconst ComponentItemsList = React.forwardRef<\n  HTMLUListElement,\n  ComponentItemsListProps\n>(({ items, selectedItem, onSelectItem, className }, ref) => {\n  if (!items || items.length === 0) {\n    return <div className=\"text-neutral-500 italic\">No items available</div>;\n  }\n\n  return (\n    <ul ref={ref} className={cn(\"space-y-1 text-sm\", className)}>\n      {items.map((itemName) => (\n        <li key={itemName}>\n          <button\n            onClick={() => onSelectItem(itemName)}\n            className={cn(\n              \"w-full text-left px-3 py-1.5 rounded hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors\",\n              selectedItem === itemName\n                ? \"bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 font-semibold\"\n                : \"text-neutral-700 dark:text-neutral-300\",\n            )}\n          >\n            {itemName}\n          </button>\n        </li>\n      ))}\n    </ul>\n  );\n});\n\nComponentItemsList.displayName = \"ComponentItemsList\";\n\nexport { ComponentItemsList };\n",
-      "type": "registry:component",
+      "type": "registry:ui",
       "target": "components/pivot/component-items-list.tsx"
     }
   ]

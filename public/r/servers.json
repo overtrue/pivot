@@ -14,7 +14,7 @@
     {
       "path": "registry/pivot/servers.tsx",
       "content": "import { cn } from \"@/lib/utils\";\nimport type { OpenAPIV3 } from 'openapi-types';\nimport React from \"react\";\nimport { SectionTitle } from \"@/registry/pivot/section-title\";\nimport { Server } from \"@/registry/pivot/server\";\n\n// 类型别名，供其他组件使用\nexport type ServerObject = OpenAPIV3.ServerObject;\n\ninterface ServersProps {\n  servers: OpenAPIV3.ServerObject[];\n  className?: string;\n}\n\nconst Servers = React.forwardRef<HTMLDivElement, ServersProps>(\n  ({ servers, className }, ref) => {\n    if (!servers || servers.length === 0) {\n      return null;\n    }\n\n    return (\n      <div ref={ref} className={cn(\"dark:text-neutral-200\", className)}>\n        <SectionTitle title=\"Servers\" />\n        <div className=\"mt-3\">\n          {servers.map((server, index) => (\n            <Server key={index} server={server} />\n          ))}\n        </div>\n      </div>\n    );\n  },\n);\n\nServers.displayName = \"Servers\";\n\nexport { Servers };\n",
-      "type": "registry:component",
+      "type": "registry:ui",
       "target": "components/pivot/servers.tsx"
     }
   ]

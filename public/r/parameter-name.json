@@ -9,7 +9,7 @@
     {
       "path": "registry/pivot/parameter-name.tsx",
       "content": "import { cn } from \"@/lib/utils\";\nimport React from \"react\";\n\ninterface ParameterNameProps {\n  name: string;\n  deprecated?: boolean;\n  className?: string;\n}\n\nconst ParameterName = React.forwardRef<HTMLSpanElement, ParameterNameProps>(\n  ({ name, deprecated, className }, ref) => {\n    return (\n      <span\n        ref={ref}\n        className={cn(\n          \"font-mono text-sm font-medium\",\n          deprecated\n            ? \"line-through text-red-500 dark:text-red-400\"\n            : \"dark:text-neutral-200\",\n          className,\n        )}\n      >\n        {name}\n      </span>\n    );\n  },\n);\n\nParameterName.displayName = \"ParameterName\";\n\nexport { ParameterName };\n",
-      "type": "registry:component",
+      "type": "registry:ui",
       "target": "components/pivot/parameter-name.tsx"
     }
   ]

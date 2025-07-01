@@ -24,7 +24,7 @@ export const Index: Record<string, any> = {
     registryDependencies: ["https://pivotkit.vercel.app/r/component-detail"],
     files: [{
       path: "registry/pivot/accordion-components-section.tsx",
-      type: "registry:component",
+      type: "registry:ui",
       target: "components/pivot/accordion-components-section.tsx"
     }],
     component: React.lazy(async () => {
@@ -42,7 +42,7 @@ export const Index: Record<string, any> = {
     registryDependencies: ["https://pivotkit.vercel.app/r/operation-box"],
     files: [{
       path: "registry/pivot/callback-display.tsx",
-      type: "registry:component",
+      type: "registry:ui",
       target: "components/pivot/callback-display.tsx"
     }],
     component: React.lazy(async () => {
@@ -60,7 +60,7 @@ export const Index: Record<string, any> = {
     registryDependencies: ["https://pivotkit.vercel.app/r/copy-button"],
     files: [{
       path: "registry/pivot/code-markdown.tsx",
-      type: "registry:component",
+      type: "registry:ui",
       target: "components/pivot/code-markdown.tsx"
     }],
     component: React.lazy(async () => {
@@ -78,7 +78,7 @@ export const Index: Record<string, any> = {
     registryDependencies: ["https://pivotkit.vercel.app/r/code-markdown"],
     files: [{
       path: "registry/pivot/codegen.tsx",
-      type: "registry:component",
+      type: "registry:ui",
       target: "components/pivot/codegen.tsx"
     }],
     component: React.lazy(async () => {
@@ -96,7 +96,7 @@ export const Index: Record<string, any> = {
     registryDependencies: ["https://pivotkit.vercel.app/r/callback-display","https://pivotkit.vercel.app/r/examples-display","https://pivotkit.vercel.app/r/header-item","https://pivotkit.vercel.app/r/link-item","https://pivotkit.vercel.app/r/parameter-item","https://pivotkit.vercel.app/r/request-body-section","https://pivotkit.vercel.app/r/response-item","https://pivotkit.vercel.app/r/schema-display","https://pivotkit.vercel.app/r/security-scheme-display","https://pivotkit.vercel.app/r/webhook-display"],
     files: [{
       path: "registry/pivot/component-detail.tsx",
-      type: "registry:component",
+      type: "registry:ui",
       target: "components/pivot/component-detail.tsx"
     }],
     component: React.lazy(async () => {
@@ -114,7 +114,7 @@ export const Index: Record<string, any> = {
     registryDependencies: undefined,
     files: [{
       path: "registry/pivot/component-items-list.tsx",
-      type: "registry:component",
+      type: "registry:ui",
       target: "components/pivot/component-items-list.tsx"
     }],
     component: React.lazy(async () => {
@@ -132,7 +132,7 @@ export const Index: Record<string, any> = {
     registryDependencies: undefined,
     files: [{
       path: "registry/pivot/component-tabs.tsx",
-      type: "registry:component",
+      type: "registry:ui",
       target: "components/pivot/component-tabs.tsx"
     }],
     component: React.lazy(async () => {
@@ -150,7 +150,7 @@ export const Index: Record<string, any> = {
     registryDependencies: ["https://pivotkit.vercel.app/r/component-items-list","https://pivotkit.vercel.app/r/component-tabs","https://pivotkit.vercel.app/r/section-title"],
     files: [{
       path: "registry/pivot/components-section.tsx",
-      type: "registry:component",
+      type: "registry:ui",
       target: "components/pivot/components-section.tsx"
     }],
     component: React.lazy(async () => {
@@ -168,7 +168,7 @@ export const Index: Record<string, any> = {
     registryDependencies: ["https://pivotkit.vercel.app/r/copy-button"],
     files: [{
       path: "registry/pivot/const-value.tsx",
-      type: "registry:component",
+      type: "registry:ui",
       target: "components/pivot/const-value.tsx"
     }],
     component: React.lazy(async () => {
@@ -186,7 +186,7 @@ export const Index: Record<string, any> = {
     registryDependencies: undefined,
     files: [{
       path: "registry/pivot/constraint-display.tsx",
-      type: "registry:component",
+      type: "registry:ui",
       target: "components/pivot/constraint-display.tsx"
     }],
     component: React.lazy(async () => {
@@ -204,7 +204,7 @@ export const Index: Record<string, any> = {
     registryDependencies: undefined,
     files: [{
       path: "registry/pivot/contact-display.tsx",
-      type: "registry:component",
+      type: "registry:ui",
       target: "components/pivot/contact-display.tsx"
     }],
     component: React.lazy(async () => {
@@ -222,7 +222,7 @@ export const Index: Record<string, any> = {
     registryDependencies: undefined,
     files: [{
       path: "registry/pivot/copy-button.tsx",
-      type: "registry:component",
+      type: "registry:ui",
       target: "components/pivot/copy-button.tsx"
     }],
     component: React.lazy(async () => {
@@ -240,7 +240,7 @@ export const Index: Record<string, any> = {
     registryDependencies: undefined,
     files: [{
       path: "registry/pivot/curl-generator.tsx",
-      type: "registry:component",
+      type: "registry:ui",
       target: "components/pivot/curl-generator.tsx"
     }],
     component: React.lazy(async () => {
@@ -258,7 +258,7 @@ export const Index: Record<string, any> = {
     registryDependencies: ["https://pivotkit.vercel.app/r/value-display"],
     files: [{
       path: "registry/pivot/default-value-display.tsx",
-      type: "registry:component",
+      type: "registry:ui",
       target: "components/pivot/default-value-display.tsx"
     }],
     component: React.lazy(async () => {
@@ -276,7 +276,7 @@ export const Index: Record<string, any> = {
     registryDependencies: undefined,
     files: [{
       path: "registry/pivot/deprecated-badge.tsx",
-      type: "registry:component",
+      type: "registry:ui",
       target: "components/pivot/deprecated-badge.tsx"
     }],
     component: React.lazy(async () => {
@@ -294,7 +294,7 @@ export const Index: Record<string, any> = {
     registryDependencies: undefined,
     files: [{
       path: "registry/pivot/description-display.tsx",
-      type: "registry:component",
+      type: "registry:ui",
       target: "components/pivot/description-display.tsx"
     }],
     component: React.lazy(async () => {
@@ -312,7 +312,7 @@ export const Index: Record<string, any> = {
     registryDependencies: ["https://pivotkit.vercel.app/r/enum-values"],
     files: [{
       path: "registry/pivot/enum-values-display.tsx",
-      type: "registry:component",
+      type: "registry:ui",
       target: "components/pivot/enum-values-display.tsx"
     }],
     component: React.lazy(async () => {
@@ -330,7 +330,7 @@ export const Index: Record<string, any> = {
     registryDependencies: ["https://pivotkit.vercel.app/r/value-display"],
     files: [{
       path: "registry/pivot/enum-values.tsx",
-      type: "registry:component",
+      type: "registry:ui",
       target: "components/pivot/enum-values.tsx"
     }],
     component: React.lazy(async () => {
@@ -348,7 +348,7 @@ export const Index: Record<string, any> = {
     registryDependencies: ["https://pivotkit.vercel.app/r/code-markdown"],
     files: [{
       path: "registry/pivot/example-display.tsx",
-      type: "registry:component",
+      type: "registry:ui",
       target: "components/pivot/example-display.tsx"
     }],
     component: React.lazy(async () => {
@@ -366,7 +366,7 @@ export const Index: Record<string, any> = {
     registryDependencies: ["https://pivotkit.vercel.app/r/description-display"],
     files: [{
       path: "registry/pivot/examples-display.tsx",
-      type: "registry:component",
+      type: "registry:ui",
       target: "components/pivot/examples-display.tsx"
     }],
     component: React.lazy(async () => {
@@ -384,7 +384,7 @@ export const Index: Record<string, any> = {
     registryDependencies: undefined,
     files: [{
       path: "registry/pivot/expand-collapse.tsx",
-      type: "registry:component",
+      type: "registry:ui",
       target: "components/pivot/expand-collapse.tsx"
     }],
     component: React.lazy(async () => {
@@ -402,7 +402,7 @@ export const Index: Record<string, any> = {
     registryDependencies: undefined,
     files: [{
       path: "registry/pivot/external-docs-display.tsx",
-      type: "registry:component",
+      type: "registry:ui",
       target: "components/pivot/external-docs-display.tsx"
     }],
     component: React.lazy(async () => {
@@ -420,7 +420,7 @@ export const Index: Record<string, any> = {
     registryDependencies: undefined,
     files: [{
       path: "registry/pivot/external-docs.tsx",
-      type: "registry:component",
+      type: "registry:ui",
       target: "components/pivot/external-docs.tsx"
     }],
     component: React.lazy(async () => {
@@ -438,7 +438,7 @@ export const Index: Record<string, any> = {
     registryDependencies: undefined,
     files: [{
       path: "registry/pivot/format-badge.tsx",
-      type: "registry:component",
+      type: "registry:ui",
       target: "components/pivot/format-badge.tsx"
     }],
     component: React.lazy(async () => {
@@ -456,7 +456,7 @@ export const Index: Record<string, any> = {
     registryDependencies: ["https://pivotkit.vercel.app/r/deprecated-badge","https://pivotkit.vercel.app/r/description-display","https://pivotkit.vercel.app/r/enum-values-display","https://pivotkit.vercel.app/r/format-badge","https://pivotkit.vercel.app/r/required-badge","https://pivotkit.vercel.app/r/type-indicator","https://pivotkit.vercel.app/r/default-value-display","https://pivotkit.vercel.app/r/examples-display","https://pivotkit.vercel.app/r/expand-collapse"],
     files: [{
       path: "registry/pivot/header-item.tsx",
-      type: "registry:component",
+      type: "registry:ui",
       target: "components/pivot/header-item.tsx"
     }],
     component: React.lazy(async () => {
@@ -474,7 +474,7 @@ export const Index: Record<string, any> = {
     registryDependencies: ["https://pivotkit.vercel.app/r/header-item","https://pivotkit.vercel.app/r/style-badge"],
     files: [{
       path: "registry/pivot/headers-section.tsx",
-      type: "registry:component",
+      type: "registry:ui",
       target: "components/pivot/headers-section.tsx"
     }],
     component: React.lazy(async () => {
@@ -492,7 +492,7 @@ export const Index: Record<string, any> = {
     registryDependencies: undefined,
     files: [{
       path: "registry/pivot/in-label.tsx",
-      type: "registry:component",
+      type: "registry:ui",
       target: "components/pivot/in-label.tsx"
     }],
     component: React.lazy(async () => {
@@ -510,7 +510,7 @@ export const Index: Record<string, any> = {
     registryDependencies: ["https://pivotkit.vercel.app/r/contact-display","https://pivotkit.vercel.app/r/description-display","https://pivotkit.vercel.app/r/license-display"],
     files: [{
       path: "registry/pivot/info-section.tsx",
-      type: "registry:component",
+      type: "registry:ui",
       target: "components/pivot/info-section.tsx"
     }],
     component: React.lazy(async () => {
@@ -528,7 +528,7 @@ export const Index: Record<string, any> = {
     registryDependencies: undefined,
     files: [{
       path: "registry/pivot/language-switcher.tsx",
-      type: "registry:component",
+      type: "registry:ui",
       target: "components/pivot/language-switcher.tsx"
     }],
     component: React.lazy(async () => {
@@ -546,7 +546,7 @@ export const Index: Record<string, any> = {
     registryDependencies: undefined,
     files: [{
       path: "registry/pivot/laravel-generator.tsx",
-      type: "registry:component",
+      type: "registry:ui",
       target: "components/pivot/laravel-generator.tsx"
     }],
     component: React.lazy(async () => {
@@ -564,7 +564,7 @@ export const Index: Record<string, any> = {
     registryDependencies: undefined,
     files: [{
       path: "registry/pivot/license-display.tsx",
-      type: "registry:component",
+      type: "registry:ui",
       target: "components/pivot/license-display.tsx"
     }],
     component: React.lazy(async () => {
@@ -582,7 +582,7 @@ export const Index: Record<string, any> = {
     registryDependencies: ["https://pivotkit.vercel.app/r/description-display","https://pivotkit.vercel.app/r/server-display","https://pivotkit.vercel.app/r/expand-collapse"],
     files: [{
       path: "registry/pivot/link-item.tsx",
-      type: "registry:component",
+      type: "registry:ui",
       target: "components/pivot/link-item.tsx"
     }],
     component: React.lazy(async () => {
@@ -600,7 +600,7 @@ export const Index: Record<string, any> = {
     registryDependencies: ["https://pivotkit.vercel.app/r/link-item"],
     files: [{
       path: "registry/pivot/links-section.tsx",
-      type: "registry:component",
+      type: "registry:ui",
       target: "components/pivot/links-section.tsx"
     }],
     component: React.lazy(async () => {
@@ -618,7 +618,7 @@ export const Index: Record<string, any> = {
     registryDependencies: undefined,
     files: [{
       path: "registry/pivot/media-type-display.tsx",
-      type: "registry:component",
+      type: "registry:ui",
       target: "components/pivot/media-type-display.tsx"
     }],
     component: React.lazy(async () => {
@@ -636,7 +636,7 @@ export const Index: Record<string, any> = {
     registryDependencies: undefined,
     files: [{
       path: "registry/pivot/media-type-selector.tsx",
-      type: "registry:component",
+      type: "registry:ui",
       target: "components/pivot/media-type-selector.tsx"
     }],
     component: React.lazy(async () => {
@@ -654,7 +654,7 @@ export const Index: Record<string, any> = {
     registryDependencies: undefined,
     files: [{
       path: "registry/pivot/method-label.tsx",
-      type: "registry:component",
+      type: "registry:ui",
       target: "components/pivot/method-label.tsx"
     }],
     component: React.lazy(async () => {
@@ -672,7 +672,7 @@ export const Index: Record<string, any> = {
     registryDependencies: ["https://pivotkit.vercel.app/r/method-label"],
     files: [{
       path: "registry/pivot/navigation-sidebar.tsx",
-      type: "registry:component",
+      type: "registry:ui",
       target: "components/pivot/navigation-sidebar.tsx"
     }],
     component: React.lazy(async () => {
@@ -690,7 +690,7 @@ export const Index: Record<string, any> = {
     registryDependencies: undefined,
     files: [{
       path: "registry/pivot/oauth-flow-details.tsx",
-      type: "registry:component",
+      type: "registry:ui",
       target: "components/pivot/oauth-flow-details.tsx"
     }],
     component: React.lazy(async () => {
@@ -708,7 +708,7 @@ export const Index: Record<string, any> = {
     registryDependencies: undefined,
     files: [{
       path: "registry/pivot/oauth-flow.tsx",
-      type: "registry:component",
+      type: "registry:ui",
       target: "components/pivot/oauth-flow.tsx"
     }],
     component: React.lazy(async () => {
@@ -726,7 +726,7 @@ export const Index: Record<string, any> = {
     registryDependencies: ["https://pivotkit.vercel.app/r/deprecated-badge","https://pivotkit.vercel.app/r/description-display","https://pivotkit.vercel.app/r/expand-collapse","https://pivotkit.vercel.app/r/external-docs-display","https://pivotkit.vercel.app/r/method-label","https://pivotkit.vercel.app/r/operation-path","https://pivotkit.vercel.app/r/parameters-section","https://pivotkit.vercel.app/r/request-body-section","https://pivotkit.vercel.app/r/responses-section","https://pivotkit.vercel.app/r/security-requirements-section"],
     files: [{
       path: "registry/pivot/operation-box.tsx",
-      type: "registry:component",
+      type: "registry:ui",
       target: "components/pivot/operation-box.tsx"
     }],
     component: React.lazy(async () => {
@@ -744,7 +744,7 @@ export const Index: Record<string, any> = {
     registryDependencies: ["https://pivotkit.vercel.app/r/deprecated-badge","https://pivotkit.vercel.app/r/description-display","https://pivotkit.vercel.app/r/external-docs-display","https://pivotkit.vercel.app/r/method-label","https://pivotkit.vercel.app/r/operation-path","https://pivotkit.vercel.app/r/parameters-section","https://pivotkit.vercel.app/r/request-body-section","https://pivotkit.vercel.app/r/responses-section","https://pivotkit.vercel.app/r/security-requirements-section"],
     files: [{
       path: "registry/pivot/operation-detail.tsx",
-      type: "registry:component",
+      type: "registry:ui",
       target: "components/pivot/operation-detail.tsx"
     }],
     component: React.lazy(async () => {
@@ -762,7 +762,7 @@ export const Index: Record<string, any> = {
     registryDependencies: ["https://pivotkit.vercel.app/r/codegen","https://pivotkit.vercel.app/r/operation-detail","https://pivotkit.vercel.app/r/try-it-out-panel"],
     files: [{
       path: "registry/pivot/operation-detailed-layout.tsx",
-      type: "registry:component",
+      type: "registry:ui",
       target: "components/pivot/operation-detailed-layout.tsx"
     }],
     component: React.lazy(async () => {
@@ -780,7 +780,7 @@ export const Index: Record<string, any> = {
     registryDependencies: ["https://pivotkit.vercel.app/r/operation-box","https://pivotkit.vercel.app/r/try-it-out-panel"],
     files: [{
       path: "registry/pivot/operation-list-layout.tsx",
-      type: "registry:component",
+      type: "registry:ui",
       target: "components/pivot/operation-list-layout.tsx"
     }],
     component: React.lazy(async () => {
@@ -798,7 +798,7 @@ export const Index: Record<string, any> = {
     registryDependencies: ["https://pivotkit.vercel.app/r/path-segment"],
     files: [{
       path: "registry/pivot/operation-path.tsx",
-      type: "registry:component",
+      type: "registry:ui",
       target: "components/pivot/operation-path.tsx"
     }],
     component: React.lazy(async () => {
@@ -816,7 +816,7 @@ export const Index: Record<string, any> = {
     registryDependencies: undefined,
     files: [{
       path: "registry/pivot/parameter-description.tsx",
-      type: "registry:component",
+      type: "registry:ui",
       target: "components/pivot/parameter-description.tsx"
     }],
     component: React.lazy(async () => {
@@ -834,7 +834,7 @@ export const Index: Record<string, any> = {
     registryDependencies: ["https://pivotkit.vercel.app/r/required-marker","https://pivotkit.vercel.app/r/type-indicator","https://pivotkit.vercel.app/r/expand-collapse"],
     files: [{
       path: "registry/pivot/parameter-group.tsx",
-      type: "registry:component",
+      type: "registry:ui",
       target: "components/pivot/parameter-group.tsx"
     }],
     component: React.lazy(async () => {
@@ -852,7 +852,7 @@ export const Index: Record<string, any> = {
     registryDependencies: ["https://pivotkit.vercel.app/r/constraint-display","https://pivotkit.vercel.app/r/default-value-display","https://pivotkit.vercel.app/r/deprecated-badge","https://pivotkit.vercel.app/r/enum-values-display","https://pivotkit.vercel.app/r/format-badge","https://pivotkit.vercel.app/r/in-label","https://pivotkit.vercel.app/r/parameter-description","https://pivotkit.vercel.app/r/parameter-name","https://pivotkit.vercel.app/r/style-badge","https://pivotkit.vercel.app/r/type-indicator","https://pivotkit.vercel.app/r/example-display","https://pivotkit.vercel.app/r/expand-collapse"],
     files: [{
       path: "registry/pivot/parameter-item.tsx",
-      type: "registry:component",
+      type: "registry:ui",
       target: "components/pivot/parameter-item.tsx"
     }],
     component: React.lazy(async () => {
@@ -870,7 +870,7 @@ export const Index: Record<string, any> = {
     registryDependencies: undefined,
     files: [{
       path: "registry/pivot/parameter-name.tsx",
-      type: "registry:component",
+      type: "registry:ui",
       target: "components/pivot/parameter-name.tsx"
     }],
     component: React.lazy(async () => {
@@ -888,7 +888,7 @@ export const Index: Record<string, any> = {
     registryDependencies: ["https://pivotkit.vercel.app/r/parameter-item","https://pivotkit.vercel.app/r/section-title","https://pivotkit.vercel.app/r/style-badge"],
     files: [{
       path: "registry/pivot/parameters-section.tsx",
-      type: "registry:component",
+      type: "registry:ui",
       target: "components/pivot/parameters-section.tsx"
     }],
     component: React.lazy(async () => {
@@ -906,7 +906,7 @@ export const Index: Record<string, any> = {
     registryDependencies: ["https://pivotkit.vercel.app/r/description-display","https://pivotkit.vercel.app/r/operation-box"],
     files: [{
       path: "registry/pivot/path-item-display.tsx",
-      type: "registry:component",
+      type: "registry:ui",
       target: "components/pivot/path-item-display.tsx"
     }],
     component: React.lazy(async () => {
@@ -924,7 +924,7 @@ export const Index: Record<string, any> = {
     registryDependencies: undefined,
     files: [{
       path: "registry/pivot/path-segment.tsx",
-      type: "registry:component",
+      type: "registry:ui",
       target: "components/pivot/path-segment.tsx"
     }],
     component: React.lazy(async () => {
@@ -942,7 +942,7 @@ export const Index: Record<string, any> = {
     registryDependencies: undefined,
     files: [{
       path: "registry/pivot/php-generator.tsx",
-      type: "registry:component",
+      type: "registry:ui",
       target: "components/pivot/php-generator.tsx"
     }],
     component: React.lazy(async () => {
@@ -960,7 +960,7 @@ export const Index: Record<string, any> = {
     registryDependencies: undefined,
     files: [{
       path: "registry/pivot/python-generator.tsx",
-      type: "registry:component",
+      type: "registry:ui",
       target: "components/pivot/python-generator.tsx"
     }],
     component: React.lazy(async () => {
@@ -978,7 +978,7 @@ export const Index: Record<string, any> = {
     registryDependencies: ["https://pivotkit.vercel.app/r/schema-with-example-viewer","https://pivotkit.vercel.app/r/section-title"],
     files: [{
       path: "registry/pivot/request-body-section.tsx",
-      type: "registry:component",
+      type: "registry:ui",
       target: "components/pivot/request-body-section.tsx"
     }],
     component: React.lazy(async () => {
@@ -996,7 +996,7 @@ export const Index: Record<string, any> = {
     registryDependencies: undefined,
     files: [{
       path: "registry/pivot/required-badge.tsx",
-      type: "registry:component",
+      type: "registry:ui",
       target: "components/pivot/required-badge.tsx"
     }],
     component: React.lazy(async () => {
@@ -1014,7 +1014,7 @@ export const Index: Record<string, any> = {
     registryDependencies: undefined,
     files: [{
       path: "registry/pivot/required-marker.tsx",
-      type: "registry:component",
+      type: "registry:ui",
       target: "components/pivot/required-marker.tsx"
     }],
     component: React.lazy(async () => {
@@ -1032,7 +1032,7 @@ export const Index: Record<string, any> = {
     registryDependencies: undefined,
     files: [{
       path: "registry/pivot/resizable-sidebar.tsx",
-      type: "registry:component",
+      type: "registry:ui",
       target: "components/pivot/resizable-sidebar.tsx"
     }],
     component: React.lazy(async () => {
@@ -1050,7 +1050,7 @@ export const Index: Record<string, any> = {
     registryDependencies: ["https://pivotkit.vercel.app/r/schema-with-example-viewer"],
     files: [{
       path: "registry/pivot/response-content-section.tsx",
-      type: "registry:component",
+      type: "registry:ui",
       target: "components/pivot/response-content-section.tsx"
     }],
     component: React.lazy(async () => {
@@ -1068,7 +1068,7 @@ export const Index: Record<string, any> = {
     registryDependencies: ["https://pivotkit.vercel.app/r/response-content-section","https://pivotkit.vercel.app/r/response-headers-table"],
     files: [{
       path: "registry/pivot/response-group.tsx",
-      type: "registry:component",
+      type: "registry:ui",
       target: "components/pivot/response-group.tsx"
     }],
     component: React.lazy(async () => {
@@ -1086,7 +1086,7 @@ export const Index: Record<string, any> = {
     registryDependencies: ["https://pivotkit.vercel.app/r/header-item","https://pivotkit.vercel.app/r/style-badge"],
     files: [{
       path: "registry/pivot/response-headers-table.tsx",
-      type: "registry:component",
+      type: "registry:ui",
       target: "components/pivot/response-headers-table.tsx"
     }],
     component: React.lazy(async () => {
@@ -1104,7 +1104,7 @@ export const Index: Record<string, any> = {
     registryDependencies: ["https://pivotkit.vercel.app/r/description-display","https://pivotkit.vercel.app/r/headers-section","https://pivotkit.vercel.app/r/links-section","https://pivotkit.vercel.app/r/status-code"],
     files: [{
       path: "registry/pivot/response-item.tsx",
-      type: "registry:component",
+      type: "registry:ui",
       target: "components/pivot/response-item.tsx"
     }],
     component: React.lazy(async () => {
@@ -1122,7 +1122,7 @@ export const Index: Record<string, any> = {
     registryDependencies: ["https://pivotkit.vercel.app/r/response-group","https://pivotkit.vercel.app/r/section-title","https://pivotkit.vercel.app/r/status-code"],
     files: [{
       path: "registry/pivot/responses-section.tsx",
-      type: "registry:component",
+      type: "registry:ui",
       target: "components/pivot/responses-section.tsx"
     }],
     component: React.lazy(async () => {
@@ -1140,7 +1140,7 @@ export const Index: Record<string, any> = {
     registryDependencies: undefined,
     files: [{
       path: "registry/pivot/schema-composition-display.tsx",
-      type: "registry:component",
+      type: "registry:ui",
       target: "components/pivot/schema-composition-display.tsx"
     }],
     component: React.lazy(async () => {
@@ -1158,7 +1158,7 @@ export const Index: Record<string, any> = {
     registryDependencies: ["https://pivotkit.vercel.app/r/constraint-display","https://pivotkit.vercel.app/r/default-value-display","https://pivotkit.vercel.app/r/deprecated-badge","https://pivotkit.vercel.app/r/description-display","https://pivotkit.vercel.app/r/enum-values-display","https://pivotkit.vercel.app/r/format-badge","https://pivotkit.vercel.app/r/required-badge","https://pivotkit.vercel.app/r/schema-composition-display","https://pivotkit.vercel.app/r/type-indicator"],
     files: [{
       path: "registry/pivot/schema-display.tsx",
-      type: "registry:component",
+      type: "registry:ui",
       target: "components/pivot/schema-display.tsx"
     }],
     component: React.lazy(async () => {
@@ -1176,7 +1176,7 @@ export const Index: Record<string, any> = {
     registryDependencies: ["https://pivotkit.vercel.app/r/description-display","https://pivotkit.vercel.app/r/example-display","https://pivotkit.vercel.app/r/media-type-selector","https://pivotkit.vercel.app/r/schema-display"],
     files: [{
       path: "registry/pivot/schema-with-example-viewer.tsx",
-      type: "registry:component",
+      type: "registry:ui",
       target: "components/pivot/schema-with-example-viewer.tsx"
     }],
     component: React.lazy(async () => {
@@ -1194,7 +1194,7 @@ export const Index: Record<string, any> = {
     registryDependencies: undefined,
     files: [{
       path: "registry/pivot/scheme-type.tsx",
-      type: "registry:component",
+      type: "registry:ui",
       target: "components/pivot/scheme-type.tsx"
     }],
     component: React.lazy(async () => {
@@ -1212,7 +1212,7 @@ export const Index: Record<string, any> = {
     registryDependencies: undefined,
     files: [{
       path: "registry/pivot/section-title.tsx",
-      type: "registry:component",
+      type: "registry:ui",
       target: "components/pivot/section-title.tsx"
     }],
     component: React.lazy(async () => {
@@ -1230,7 +1230,7 @@ export const Index: Record<string, any> = {
     registryDependencies: undefined,
     files: [{
       path: "registry/pivot/security-requirement-item.tsx",
-      type: "registry:component",
+      type: "registry:ui",
       target: "components/pivot/security-requirement-item.tsx"
     }],
     component: React.lazy(async () => {
@@ -1248,7 +1248,7 @@ export const Index: Record<string, any> = {
     registryDependencies: ["https://pivotkit.vercel.app/r/section-title","https://pivotkit.vercel.app/r/security-requirement-item"],
     files: [{
       path: "registry/pivot/security-requirements-section.tsx",
-      type: "registry:component",
+      type: "registry:ui",
       target: "components/pivot/security-requirements-section.tsx"
     }],
     component: React.lazy(async () => {
@@ -1266,7 +1266,7 @@ export const Index: Record<string, any> = {
     registryDependencies: ["https://pivotkit.vercel.app/r/description-display"],
     files: [{
       path: "registry/pivot/security-scheme-display.tsx",
-      type: "registry:component",
+      type: "registry:ui",
       target: "components/pivot/security-scheme-display.tsx"
     }],
     component: React.lazy(async () => {
@@ -1284,7 +1284,7 @@ export const Index: Record<string, any> = {
     registryDependencies: ["https://pivotkit.vercel.app/r/description-display","https://pivotkit.vercel.app/r/scheme-type"],
     files: [{
       path: "registry/pivot/security-scheme.tsx",
-      type: "registry:component",
+      type: "registry:ui",
       target: "components/pivot/security-scheme.tsx"
     }],
     component: React.lazy(async () => {
@@ -1302,7 +1302,7 @@ export const Index: Record<string, any> = {
     registryDependencies: ["https://pivotkit.vercel.app/r/section-title","https://pivotkit.vercel.app/r/security-scheme"],
     files: [{
       path: "registry/pivot/security-schemes.tsx",
-      type: "registry:component",
+      type: "registry:ui",
       target: "components/pivot/security-schemes.tsx"
     }],
     component: React.lazy(async () => {
@@ -1320,7 +1320,7 @@ export const Index: Record<string, any> = {
     registryDependencies: ["https://pivotkit.vercel.app/r/section-title","https://pivotkit.vercel.app/r/security-scheme-display"],
     files: [{
       path: "registry/pivot/security-section.tsx",
-      type: "registry:component",
+      type: "registry:ui",
       target: "components/pivot/security-section.tsx"
     }],
     component: React.lazy(async () => {
@@ -1338,7 +1338,7 @@ export const Index: Record<string, any> = {
     registryDependencies: ["https://pivotkit.vercel.app/r/description-display"],
     files: [{
       path: "registry/pivot/server-display.tsx",
-      type: "registry:component",
+      type: "registry:ui",
       target: "components/pivot/server-display.tsx"
     }],
     component: React.lazy(async () => {
@@ -1356,7 +1356,7 @@ export const Index: Record<string, any> = {
     registryDependencies: ["https://pivotkit.vercel.app/r/description-display"],
     files: [{
       path: "registry/pivot/server-variable.tsx",
-      type: "registry:component",
+      type: "registry:ui",
       target: "components/pivot/server-variable.tsx"
     }],
     component: React.lazy(async () => {
@@ -1374,7 +1374,7 @@ export const Index: Record<string, any> = {
     registryDependencies: ["https://pivotkit.vercel.app/r/description-display","https://pivotkit.vercel.app/r/expand-collapse","https://pivotkit.vercel.app/r/server-variable"],
     files: [{
       path: "registry/pivot/server.tsx",
-      type: "registry:component",
+      type: "registry:ui",
       target: "components/pivot/server.tsx"
     }],
     component: React.lazy(async () => {
@@ -1392,7 +1392,7 @@ export const Index: Record<string, any> = {
     registryDependencies: ["https://pivotkit.vercel.app/r/section-title","https://pivotkit.vercel.app/r/server-display"],
     files: [{
       path: "registry/pivot/servers-section.tsx",
-      type: "registry:component",
+      type: "registry:ui",
       target: "components/pivot/servers-section.tsx"
     }],
     component: React.lazy(async () => {
@@ -1410,7 +1410,7 @@ export const Index: Record<string, any> = {
     registryDependencies: ["https://pivotkit.vercel.app/r/section-title","https://pivotkit.vercel.app/r/server"],
     files: [{
       path: "registry/pivot/servers.tsx",
-      type: "registry:component",
+      type: "registry:ui",
       target: "components/pivot/servers.tsx"
     }],
     component: React.lazy(async () => {
@@ -1428,7 +1428,7 @@ export const Index: Record<string, any> = {
     registryDependencies: undefined,
     files: [{
       path: "registry/pivot/status-code.tsx",
-      type: "registry:component",
+      type: "registry:ui",
       target: "components/pivot/status-code.tsx"
     }],
     component: React.lazy(async () => {
@@ -1446,7 +1446,7 @@ export const Index: Record<string, any> = {
     registryDependencies: undefined,
     files: [{
       path: "registry/pivot/style-badge.tsx",
-      type: "registry:component",
+      type: "registry:ui",
       target: "components/pivot/style-badge.tsx"
     }],
     component: React.lazy(async () => {
@@ -1464,7 +1464,7 @@ export const Index: Record<string, any> = {
     registryDependencies: undefined,
     files: [{
       path: "registry/pivot/terms-of-service.tsx",
-      type: "registry:component",
+      type: "registry:ui",
       target: "components/pivot/terms-of-service.tsx"
     }],
     component: React.lazy(async () => {
@@ -1482,7 +1482,7 @@ export const Index: Record<string, any> = {
     registryDependencies: undefined,
     files: [{
       path: "registry/pivot/theme-toggle.tsx",
-      type: "registry:component",
+      type: "registry:ui",
       target: "components/pivot/theme-toggle.tsx"
     }],
     component: React.lazy(async () => {
@@ -1500,7 +1500,7 @@ export const Index: Record<string, any> = {
     registryDependencies: ["https://pivotkit.vercel.app/r/method-label"],
     files: [{
       path: "registry/pivot/try-it-out-panel.tsx",
-      type: "registry:component",
+      type: "registry:ui",
       target: "components/pivot/try-it-out-panel.tsx"
     }],
     component: React.lazy(async () => {
@@ -1518,7 +1518,7 @@ export const Index: Record<string, any> = {
     registryDependencies: undefined,
     files: [{
       path: "registry/pivot/type-indicator.tsx",
-      type: "registry:component",
+      type: "registry:ui",
       target: "components/pivot/type-indicator.tsx"
     }],
     component: React.lazy(async () => {
@@ -1536,7 +1536,7 @@ export const Index: Record<string, any> = {
     registryDependencies: undefined,
     files: [{
       path: "registry/pivot/typescript-generator.tsx",
-      type: "registry:component",
+      type: "registry:ui",
       target: "components/pivot/typescript-generator.tsx"
     }],
     component: React.lazy(async () => {
@@ -1554,7 +1554,7 @@ export const Index: Record<string, any> = {
     registryDependencies: undefined,
     files: [{
       path: "registry/pivot/value-display.tsx",
-      type: "registry:component",
+      type: "registry:ui",
       target: "components/pivot/value-display.tsx"
     }],
     component: React.lazy(async () => {
@@ -1572,7 +1572,7 @@ export const Index: Record<string, any> = {
     registryDependencies: undefined,
     files: [{
       path: "registry/pivot/version-badge.tsx",
-      type: "registry:component",
+      type: "registry:ui",
       target: "components/pivot/version-badge.tsx"
     }],
     component: React.lazy(async () => {
@@ -1590,7 +1590,7 @@ export const Index: Record<string, any> = {
     registryDependencies: ["https://pivotkit.vercel.app/r/description-display","https://pivotkit.vercel.app/r/webhook-label","https://pivotkit.vercel.app/r/operation-box"],
     files: [{
       path: "registry/pivot/webhook-display.tsx",
-      type: "registry:component",
+      type: "registry:ui",
       target: "components/pivot/webhook-display.tsx"
     }],
     component: React.lazy(async () => {
@@ -1608,7 +1608,7 @@ export const Index: Record<string, any> = {
     registryDependencies: undefined,
     files: [{
       path: "registry/pivot/webhook-label.tsx",
-      type: "registry:component",
+      type: "registry:ui",
       target: "components/pivot/webhook-label.tsx"
     }],
     component: React.lazy(async () => {

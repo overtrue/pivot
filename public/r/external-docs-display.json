@@ -10,7 +10,7 @@
     {
       "path": "registry/pivot/external-docs-display.tsx",
       "content": "import { cn } from \"@/lib/utils\";\nimport type { OpenAPIV3 } from 'openapi-types';\nimport React from \"react\";\n\ninterface ExternalDocsDisplayProps {\n  externalDocs: OpenAPIV3.ExternalDocumentationObject;\n  className?: string;\n}\n\nconst ExternalDocsDisplay = React.forwardRef<\n  HTMLDivElement,\n  ExternalDocsDisplayProps\n>(({ externalDocs, className }, ref) => {\n  return (\n    <div ref={ref} className={cn(\"text-sm\", className)}>\n      <a\n        href={externalDocs.url}\n        target=\"_blank\"\n        rel=\"noopener noreferrer\"\n        className=\"text-blue-600 dark:text-blue-400 hover:underline\"\n      >\n        {externalDocs.description || \"External Documentation\"}\n      </a>\n    </div>\n  );\n});\n\nExternalDocsDisplay.displayName = \"ExternalDocsDisplay\";\n\nexport { ExternalDocsDisplay, type ExternalDocsDisplayProps };\n",
-      "type": "registry:component",
+      "type": "registry:ui",
       "target": "components/pivot/external-docs-display.tsx"
     }
   ]
