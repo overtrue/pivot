@@ -28,12 +28,12 @@
       "@/*": [
         "./*"
       ],
-      // "@/components/pivot/*": [
-      //   "registry/pivot/*"
-      // ],
-      // "@/components/example/*": [
-      //   "registry/example/*"
-      // ],
+      "@/components/pivot/*": [
+        "registry/pivot/*"
+      ],
+      "@/components/example/*": [
+        "registry/example/*"
+      ],
       "content-collections": [
         "./.content-collections/generated"
       ]

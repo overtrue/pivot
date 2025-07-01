@@ -631,6 +631,9 @@
         "react"
       ],
       "registryDependencies": [
+        "button",
+        "collapsible",
+        "input",
         "https://pivotkit.vercel.app/r/method-label"
       ],
       "files": [
@@ -704,6 +707,8 @@
         "react"
       ],
       "registryDependencies": [
+        "badge",
+        "label",
         "https://pivotkit.vercel.app/r/deprecated-badge",
         "https://pivotkit.vercel.app/r/description-display",
         "https://pivotkit.vercel.app/r/external-docs-display",
@@ -1957,6 +1962,8 @@
         "react"
       ],
       "registryDependencies": [
+        "button",
+        "card",
         "https://pivotkit.vercel.app/r/required-marker",
         "https://pivotkit.vercel.app/r/try-it-out-panel"
       ],

@@ -8,6 +8,9 @@
     "react"
   ],
   "registryDependencies": [
+    "button",
+    "collapsible",
+    "input",
     "https://pivotkit.vercel.app/r/method-label"
   ],
   "files": [

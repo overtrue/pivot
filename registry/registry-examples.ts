@@ -409,6 +409,8 @@ export const examples: Registry["items"] = [
       "react"
     ],
     "registryDependencies": [
+      "button",
+      "card",
       "https://pivotkit.vercel.app/r/required-marker",
       "https://pivotkit.vercel.app/r/try-it-out-panel"
     ]

@@ -621,6 +621,9 @@ export const ui: Registry["items"] = [
       "react"
     ],
     "registryDependencies": [
+      "button",
+      "collapsible",
+      "input",
       "https://pivotkit.vercel.app/r/method-label"
     ]
   },
@@ -694,6 +697,8 @@ export const ui: Registry["items"] = [
       "react"
     ],
     "registryDependencies": [
+      "badge",
+      "label",
       "https://pivotkit.vercel.app/r/deprecated-badge",
       "https://pivotkit.vercel.app/r/description-display",
       "https://pivotkit.vercel.app/r/external-docs-display",

@@ -669,7 +669,7 @@ export const Index: Record<string, any> = {
     title: "navigation-sidebar",
     description: "",
     type: "registry:ui",
-    registryDependencies: ["https://pivotkit.vercel.app/r/method-label"],
+    registryDependencies: ["button","collapsible","input","https://pivotkit.vercel.app/r/method-label"],
     files: [{
       path: "registry/pivot/navigation-sidebar.tsx",
       type: "registry:ui",
@@ -741,7 +741,7 @@ export const Index: Record<string, any> = {
     title: "operation-detail",
     description: "",
     type: "registry:ui",
-    registryDependencies: ["https://pivotkit.vercel.app/r/deprecated-badge","https://pivotkit.vercel.app/r/description-display","https://pivotkit.vercel.app/r/external-docs-display","https://pivotkit.vercel.app/r/method-label","https://pivotkit.vercel.app/r/operation-path","https://pivotkit.vercel.app/r/parameters-section","https://pivotkit.vercel.app/r/request-body-section","https://pivotkit.vercel.app/r/responses-section","https://pivotkit.vercel.app/r/security-requirements-section"],
+    registryDependencies: ["badge","label","https://pivotkit.vercel.app/r/deprecated-badge","https://pivotkit.vercel.app/r/description-display","https://pivotkit.vercel.app/r/external-docs-display","https://pivotkit.vercel.app/r/method-label","https://pivotkit.vercel.app/r/operation-path","https://pivotkit.vercel.app/r/parameters-section","https://pivotkit.vercel.app/r/request-body-section","https://pivotkit.vercel.app/r/responses-section","https://pivotkit.vercel.app/r/security-requirements-section"],
     files: [{
       path: "registry/pivot/operation-detail.tsx",
       type: "registry:ui",
@@ -2109,7 +2109,7 @@ export const Index: Record<string, any> = {
     title: "i18n-demo",
     description: "",
     type: "registry:example",
-    registryDependencies: ["https://pivotkit.vercel.app/r/required-marker","https://pivotkit.vercel.app/r/try-it-out-panel"],
+    registryDependencies: ["button","card","https://pivotkit.vercel.app/r/required-marker","https://pivotkit.vercel.app/r/try-it-out-panel"],
     files: [{
       path: "registry/example/i18n-demo.tsx",
       type: "registry:example",
