@@ -45,6 +45,8 @@
         "react"
       ],
       "registryDependencies": [
+        "https://pivotkit.vercel.app/r/utils",
+        "https://pivotkit.vercel.app/r/hooks",
         "https://pivotkit.vercel.app/r/operation-box"
       ],
       "files": [
@@ -83,6 +85,8 @@
         "react"
       ],
       "registryDependencies": [
+        "https://pivotkit.vercel.app/r/utils",
+        "https://pivotkit.vercel.app/r/hooks",
         "https://pivotkit.vercel.app/r/code-markdown"
       ],
       "files": [
@@ -101,6 +105,8 @@
         "react"
       ],
       "registryDependencies": [
+        "https://pivotkit.vercel.app/r/utils",
+        "https://pivotkit.vercel.app/r/hooks",
         "https://pivotkit.vercel.app/r/callback-display",
         "https://pivotkit.vercel.app/r/examples-display",
         "https://pivotkit.vercel.app/r/header-item",
@@ -350,6 +356,8 @@
         "react"
       ],
       "registryDependencies": [
+        "https://pivotkit.vercel.app/r/utils",
+        "https://pivotkit.vercel.app/r/hooks",
         "https://pivotkit.vercel.app/r/description-display"
       ],
       "files": [
@@ -451,6 +459,8 @@
         "react"
       ],
       "registryDependencies": [
+        "https://pivotkit.vercel.app/r/utils",
+        "https://pivotkit.vercel.app/r/hooks",
         "https://pivotkit.vercel.app/r/header-item",
         "https://pivotkit.vercel.app/r/style-badge"
       ],
@@ -570,6 +580,8 @@
         "react"
       ],
       "registryDependencies": [
+        "https://pivotkit.vercel.app/r/utils",
+        "https://pivotkit.vercel.app/r/hooks",
         "https://pivotkit.vercel.app/r/link-item"
       ],
       "files": [
@@ -757,6 +769,8 @@
         "react"
       ],
       "registryDependencies": [
+        "https://pivotkit.vercel.app/r/utils",
+        "https://pivotkit.vercel.app/r/hooks",
         "https://pivotkit.vercel.app/r/operation-box",
         "https://pivotkit.vercel.app/r/try-it-out-panel"
       ],
@@ -869,6 +883,8 @@
         "react"
       ],
       "registryDependencies": [
+        "https://pivotkit.vercel.app/r/utils",
+        "https://pivotkit.vercel.app/r/hooks",
         "https://pivotkit.vercel.app/r/parameter-item",
         "https://pivotkit.vercel.app/r/section-title",
         "https://pivotkit.vercel.app/r/style-badge"
@@ -1050,6 +1066,8 @@
         "react"
       ],
       "registryDependencies": [
+        "https://pivotkit.vercel.app/r/utils",
+        "https://pivotkit.vercel.app/r/hooks",
         "https://pivotkit.vercel.app/r/header-item",
         "https://pivotkit.vercel.app/r/style-badge"
       ],
@@ -1069,6 +1087,8 @@
         "react"
       ],
       "registryDependencies": [
+        "https://pivotkit.vercel.app/r/utils",
+        "https://pivotkit.vercel.app/r/hooks",
         "https://pivotkit.vercel.app/r/description-display",
         "https://pivotkit.vercel.app/r/headers-section",
         "https://pivotkit.vercel.app/r/links-section",
@@ -1125,6 +1145,8 @@
         "react"
       ],
       "registryDependencies": [
+        "https://pivotkit.vercel.app/r/utils",
+        "https://pivotkit.vercel.app/r/hooks",
         "https://pivotkit.vercel.app/r/constraint-display",
         "https://pivotkit.vercel.app/r/default-value-display",
         "https://pivotkit.vercel.app/r/deprecated-badge",
@@ -1151,6 +1173,8 @@
         "react"
       ],
       "registryDependencies": [
+        "https://pivotkit.vercel.app/r/utils",
+        "https://pivotkit.vercel.app/r/hooks",
         "https://pivotkit.vercel.app/r/description-display",
         "https://pivotkit.vercel.app/r/example-display",
         "https://pivotkit.vercel.app/r/media-type-selector",
@@ -1289,6 +1313,8 @@
         "react"
       ],
       "registryDependencies": [
+        "https://pivotkit.vercel.app/r/utils",
+        "https://pivotkit.vercel.app/r/hooks",
         "https://pivotkit.vercel.app/r/section-title",
         "https://pivotkit.vercel.app/r/security-scheme-display"
       ],
@@ -1460,6 +1486,8 @@
         "react"
       ],
       "registryDependencies": [
+        "https://pivotkit.vercel.app/r/utils",
+        "https://pivotkit.vercel.app/r/hooks",
         "https://pivotkit.vercel.app/r/method-label"
       ],
       "files": [
@@ -1904,6 +1932,10 @@
       "type": "registry:example",
       "dependencies": [
         "openapi-types"
+      ],
+      "registryDependencies": [
+        "https://pivotkit.vercel.app/r/utils",
+        "https://pivotkit.vercel.app/r/hooks"
       ],
       "files": [
         {
@@ -2852,33 +2884,28 @@
     },
     {
       "name": "hooks",
-      "type": "registry:lib",
+      "type": "registry:hook",
       "dependencies": [
         "openapi-types",
         "react"
       ],
       "registryDependencies": [
-        "https://pivotkit.vercel.app/r/use-openapi",
-        "https://pivotkit.vercel.app/r/use-operation",
-        "https://pivotkit.vercel.app/r/use-schema",
+        "https://pivotkit.vercel.app/r/utils",
+        "https://pivotkit.vercel.app/r/hooks",
         "https://pivotkit.vercel.app/r/resolve-ref"
       ],
       "files": [
         {
-          "path": "registry/lib/hooks/index.ts",
-          "type": "registry:lib"
-        },
-        {
           "path": "registry/lib/hooks/use-openapi.ts",
-          "type": "registry:lib"
+          "type": "registry:hook"
         },
         {
           "path": "registry/lib/hooks/use-operation.ts",
-          "type": "registry:lib"
+          "type": "registry:hook"
         },
         {
           "path": "registry/lib/hooks/use-schema.ts",
-          "type": "registry:lib"
+          "type": "registry:hook"
         }
       ]
     },
@@ -2890,16 +2917,12 @@
         "openapi-types"
       ],
       "registryDependencies": [
-        "https://pivotkit.vercel.app/r/schema-utils",
-        "https://pivotkit.vercel.app/r/type-utils"
+        "https://pivotkit.vercel.app/r/utils",
+        "https://pivotkit.vercel.app/r/hooks"
       ],
       "files": [
         {
           "path": "registry/lib/utils/generate-example.ts",
-          "type": "registry:lib"
-        },
-        {
-          "path": "registry/lib/utils/index.ts",
           "type": "registry:lib"
         },
         {

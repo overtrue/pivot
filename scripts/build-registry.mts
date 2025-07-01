@@ -64,6 +64,15 @@ async function analyzeFileDependencies(filePath: string): Promise<DependencyAnal
             registryDependencies.add(`${REGISTRY_BASE_URL}/${componentName}`);
           }
         }
+        // Check if it's a registry component import (@/registry/lib/...)
+        else if (importPath.startsWith('@/registry/lib/')) {
+          const componentName = path.basename(importPath, '.tsx');
+          if (componentName) {
+            registryDependencies.add(`${REGISTRY_BASE_URL}/utils`);
+            registryDependencies.add(`${REGISTRY_BASE_URL}/hooks`);
+          }
+        }
+
         // Check if it's an npm package (not starting with . or / or @/)
         else if (!importPath.startsWith('.') && !importPath.startsWith('/') && !importPath.startsWith('@/')) {
           // Extract package name (handle scoped packages like @faker-js/faker)
@@ -155,6 +164,7 @@ async function generateRegistryLib(): Promise<Registry["items"]> {
 
       const categoryName = dirent.name;
       const categoryPath = path.join(libDir, categoryName);
+      const type = categoryName === "utils" ? "registry:lib" : "registry:hook";
       const files = await fs.readdir(categoryPath);
       const tsFiles = files.filter(f => f.endsWith('.ts'));
 
@@ -175,13 +185,13 @@ async function generateRegistryLib(): Promise<Registry["items"]> {
       // Build file list
       const fileList = tsFiles.map(file => ({
         path: `registry/lib/${categoryName}/${file}`,
-        type: "registry:lib" as const
+        type: type
       }));
 
       // Create registry item
       const item = {
         name: categoryName,
-        type: "registry:lib" as const,
+        type: type,
         files: fileList,
         ...(allDependencies.size > 0 && { dependencies: Array.from(allDependencies) }),
         ...(allRegistryDependencies.size > 0 && { registryDependencies: Array.from(allRegistryDependencies) })
@@ -209,12 +219,12 @@ async function generateRegistryLib(): Promise<Registry["items"]> {
 
         const fileList = tsFiles.map(file => ({
           path: `registry/lib/${file}`,
-          type: "registry:lib" as const
+          type: "registry:lib"
         }));
 
         const item = {
           name: "lib",
-          type: "registry:lib" as const,
+          type: "registry:lib",
           files: fileList,
           ...(allDependencies.size > 0 && { dependencies: Array.from(allDependencies) }),
           ...(allRegistryDependencies.size > 0 && { registryDependencies: Array.from(allRegistryDependencies) })
@@ -233,7 +243,6 @@ async function generateRegistryLib(): Promise<Registry["items"]> {
         name: "utils",
         type: "registry:lib" as const,
         files: [
-          { path: "registry/lib/utils/index.ts", type: "registry:lib" as const },
           { path: "registry/lib/utils/schema-utils.ts", type: "registry:lib" as const },
           { path: "registry/lib/utils/type-utils.ts", type: "registry:lib" as const },
           { path: "registry/lib/utils/resolve-ref.ts", type: "registry:lib" as const },
@@ -246,7 +255,6 @@ async function generateRegistryLib(): Promise<Registry["items"]> {
         dependencies: ["react"],
         registryDependencies: ["resolve-ref"],
         files: [
-          { path: "registry/lib/hooks/index.ts", type: "registry:lib" as const },
           { path: "registry/lib/hooks/use-operation.ts", type: "registry:lib" as const },
           { path: "registry/lib/hooks/use-schema.ts", type: "registry:lib" as const },
           { path: "registry/lib/hooks/use-openapi.ts", type: "registry:lib" as const },

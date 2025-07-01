@@ -35,6 +35,8 @@ export const ui: Registry["items"] = [
       "react"
     ],
     "registryDependencies": [
+      "https://pivotkit.vercel.app/r/utils",
+      "https://pivotkit.vercel.app/r/hooks",
       "https://pivotkit.vercel.app/r/operation-box"
     ]
   },
@@ -73,6 +75,8 @@ export const ui: Registry["items"] = [
       "react"
     ],
     "registryDependencies": [
+      "https://pivotkit.vercel.app/r/utils",
+      "https://pivotkit.vercel.app/r/hooks",
       "https://pivotkit.vercel.app/r/code-markdown"
     ]
   },
@@ -91,6 +95,8 @@ export const ui: Registry["items"] = [
       "react"
     ],
     "registryDependencies": [
+      "https://pivotkit.vercel.app/r/utils",
+      "https://pivotkit.vercel.app/r/hooks",
       "https://pivotkit.vercel.app/r/callback-display",
       "https://pivotkit.vercel.app/r/examples-display",
       "https://pivotkit.vercel.app/r/header-item",
@@ -340,6 +346,8 @@ export const ui: Registry["items"] = [
       "react"
     ],
     "registryDependencies": [
+      "https://pivotkit.vercel.app/r/utils",
+      "https://pivotkit.vercel.app/r/hooks",
       "https://pivotkit.vercel.app/r/description-display"
     ]
   },
@@ -441,6 +449,8 @@ export const ui: Registry["items"] = [
       "react"
     ],
     "registryDependencies": [
+      "https://pivotkit.vercel.app/r/utils",
+      "https://pivotkit.vercel.app/r/hooks",
       "https://pivotkit.vercel.app/r/header-item",
       "https://pivotkit.vercel.app/r/style-badge"
     ]
@@ -560,6 +570,8 @@ export const ui: Registry["items"] = [
       "react"
     ],
     "registryDependencies": [
+      "https://pivotkit.vercel.app/r/utils",
+      "https://pivotkit.vercel.app/r/hooks",
       "https://pivotkit.vercel.app/r/link-item"
     ]
   },
@@ -747,6 +759,8 @@ export const ui: Registry["items"] = [
       "react"
     ],
     "registryDependencies": [
+      "https://pivotkit.vercel.app/r/utils",
+      "https://pivotkit.vercel.app/r/hooks",
       "https://pivotkit.vercel.app/r/operation-box",
       "https://pivotkit.vercel.app/r/try-it-out-panel"
     ]
@@ -859,6 +873,8 @@ export const ui: Registry["items"] = [
       "react"
     ],
     "registryDependencies": [
+      "https://pivotkit.vercel.app/r/utils",
+      "https://pivotkit.vercel.app/r/hooks",
       "https://pivotkit.vercel.app/r/parameter-item",
       "https://pivotkit.vercel.app/r/section-title",
       "https://pivotkit.vercel.app/r/style-badge"
@@ -1040,6 +1056,8 @@ export const ui: Registry["items"] = [
       "react"
     ],
     "registryDependencies": [
+      "https://pivotkit.vercel.app/r/utils",
+      "https://pivotkit.vercel.app/r/hooks",
       "https://pivotkit.vercel.app/r/header-item",
       "https://pivotkit.vercel.app/r/style-badge"
     ]
@@ -1059,6 +1077,8 @@ export const ui: Registry["items"] = [
       "react"
     ],
     "registryDependencies": [
+      "https://pivotkit.vercel.app/r/utils",
+      "https://pivotkit.vercel.app/r/hooks",
       "https://pivotkit.vercel.app/r/description-display",
       "https://pivotkit.vercel.app/r/headers-section",
       "https://pivotkit.vercel.app/r/links-section",
@@ -1115,6 +1135,8 @@ export const ui: Registry["items"] = [
       "react"
     ],
     "registryDependencies": [
+      "https://pivotkit.vercel.app/r/utils",
+      "https://pivotkit.vercel.app/r/hooks",
       "https://pivotkit.vercel.app/r/constraint-display",
       "https://pivotkit.vercel.app/r/default-value-display",
       "https://pivotkit.vercel.app/r/deprecated-badge",
@@ -1141,6 +1163,8 @@ export const ui: Registry["items"] = [
       "react"
     ],
     "registryDependencies": [
+      "https://pivotkit.vercel.app/r/utils",
+      "https://pivotkit.vercel.app/r/hooks",
       "https://pivotkit.vercel.app/r/description-display",
       "https://pivotkit.vercel.app/r/example-display",
       "https://pivotkit.vercel.app/r/media-type-selector",
@@ -1279,6 +1303,8 @@ export const ui: Registry["items"] = [
       "react"
     ],
     "registryDependencies": [
+      "https://pivotkit.vercel.app/r/utils",
+      "https://pivotkit.vercel.app/r/hooks",
       "https://pivotkit.vercel.app/r/section-title",
       "https://pivotkit.vercel.app/r/security-scheme-display"
     ]
@@ -1450,6 +1476,8 @@ export const ui: Registry["items"] = [
       "react"
     ],
     "registryDependencies": [
+      "https://pivotkit.vercel.app/r/utils",
+      "https://pivotkit.vercel.app/r/hooks",
       "https://pivotkit.vercel.app/r/method-label"
     ]
   },

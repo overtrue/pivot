@@ -3,23 +3,19 @@ import { type Registry } from "shadcn/registry";
 export const lib: Registry["items"] = [
   {
     "name": "hooks",
-    "type": "registry:lib",
+    "type": "registry:hook",
     "files": [
       {
-        "path": "registry/lib/hooks/index.ts",
-        "type": "registry:lib"
-      },
-      {
         "path": "registry/lib/hooks/use-openapi.ts",
-        "type": "registry:lib"
+        "type": "registry:hook"
       },
       {
         "path": "registry/lib/hooks/use-operation.ts",
-        "type": "registry:lib"
+        "type": "registry:hook"
       },
       {
         "path": "registry/lib/hooks/use-schema.ts",
-        "type": "registry:lib"
+        "type": "registry:hook"
       }
     ],
     "dependencies": [
@@ -27,9 +23,8 @@ export const lib: Registry["items"] = [
       "react"
     ],
     "registryDependencies": [
-      "https://pivotkit.vercel.app/r/use-openapi",
-      "https://pivotkit.vercel.app/r/use-operation",
-      "https://pivotkit.vercel.app/r/use-schema",
+      "https://pivotkit.vercel.app/r/utils",
+      "https://pivotkit.vercel.app/r/hooks",
       "https://pivotkit.vercel.app/r/resolve-ref"
     ]
   },
@@ -39,10 +34,6 @@ export const lib: Registry["items"] = [
     "files": [
       {
         "path": "registry/lib/utils/generate-example.ts",
-        "type": "registry:lib"
-      },
-      {
-        "path": "registry/lib/utils/index.ts",
         "type": "registry:lib"
       },
       {
@@ -63,8 +54,8 @@ export const lib: Registry["items"] = [
       "openapi-types"
     ],
     "registryDependencies": [
-      "https://pivotkit.vercel.app/r/schema-utils",
-      "https://pivotkit.vercel.app/r/type-utils"
+      "https://pivotkit.vercel.app/r/utils",
+      "https://pivotkit.vercel.app/r/hooks"
     ]
   }
 ];

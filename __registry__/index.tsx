@@ -39,7 +39,7 @@ export const Index: Record<string, any> = {
     title: "callback-display",
     description: "",
     type: "registry:ui",
-    registryDependencies: ["https://pivotkit.vercel.app/r/operation-box"],
+    registryDependencies: ["https://pivotkit.vercel.app/r/utils","https://pivotkit.vercel.app/r/hooks","https://pivotkit.vercel.app/r/operation-box"],
     files: [{
       path: "registry/pivot/callback-display.tsx",
       type: "registry:ui",
@@ -75,7 +75,7 @@ export const Index: Record<string, any> = {
     title: "codegen",
     description: "",
     type: "registry:ui",
-    registryDependencies: ["https://pivotkit.vercel.app/r/code-markdown"],
+    registryDependencies: ["https://pivotkit.vercel.app/r/utils","https://pivotkit.vercel.app/r/hooks","https://pivotkit.vercel.app/r/code-markdown"],
     files: [{
       path: "registry/pivot/codegen.tsx",
       type: "registry:ui",
@@ -93,7 +93,7 @@ export const Index: Record<string, any> = {
     title: "component-detail",
     description: "",
     type: "registry:ui",
-    registryDependencies: ["https://pivotkit.vercel.app/r/callback-display","https://pivotkit.vercel.app/r/examples-display","https://pivotkit.vercel.app/r/header-item","https://pivotkit.vercel.app/r/link-item","https://pivotkit.vercel.app/r/parameter-item","https://pivotkit.vercel.app/r/request-body-section","https://pivotkit.vercel.app/r/response-item","https://pivotkit.vercel.app/r/schema-display","https://pivotkit.vercel.app/r/security-scheme-display","https://pivotkit.vercel.app/r/webhook-display"],
+    registryDependencies: ["https://pivotkit.vercel.app/r/utils","https://pivotkit.vercel.app/r/hooks","https://pivotkit.vercel.app/r/callback-display","https://pivotkit.vercel.app/r/examples-display","https://pivotkit.vercel.app/r/header-item","https://pivotkit.vercel.app/r/link-item","https://pivotkit.vercel.app/r/parameter-item","https://pivotkit.vercel.app/r/request-body-section","https://pivotkit.vercel.app/r/response-item","https://pivotkit.vercel.app/r/schema-display","https://pivotkit.vercel.app/r/security-scheme-display","https://pivotkit.vercel.app/r/webhook-display"],
     files: [{
       path: "registry/pivot/component-detail.tsx",
       type: "registry:ui",
@@ -363,7 +363,7 @@ export const Index: Record<string, any> = {
     title: "examples-display",
     description: "",
     type: "registry:ui",
-    registryDependencies: ["https://pivotkit.vercel.app/r/description-display"],
+    registryDependencies: ["https://pivotkit.vercel.app/r/utils","https://pivotkit.vercel.app/r/hooks","https://pivotkit.vercel.app/r/description-display"],
     files: [{
       path: "registry/pivot/examples-display.tsx",
       type: "registry:ui",
@@ -471,7 +471,7 @@ export const Index: Record<string, any> = {
     title: "headers-section",
     description: "",
     type: "registry:ui",
-    registryDependencies: ["https://pivotkit.vercel.app/r/header-item","https://pivotkit.vercel.app/r/style-badge"],
+    registryDependencies: ["https://pivotkit.vercel.app/r/utils","https://pivotkit.vercel.app/r/hooks","https://pivotkit.vercel.app/r/header-item","https://pivotkit.vercel.app/r/style-badge"],
     files: [{
       path: "registry/pivot/headers-section.tsx",
       type: "registry:ui",
@@ -597,7 +597,7 @@ export const Index: Record<string, any> = {
     title: "links-section",
     description: "",
     type: "registry:ui",
-    registryDependencies: ["https://pivotkit.vercel.app/r/link-item"],
+    registryDependencies: ["https://pivotkit.vercel.app/r/utils","https://pivotkit.vercel.app/r/hooks","https://pivotkit.vercel.app/r/link-item"],
     files: [{
       path: "registry/pivot/links-section.tsx",
       type: "registry:ui",
@@ -777,7 +777,7 @@ export const Index: Record<string, any> = {
     title: "operation-list-layout",
     description: "",
     type: "registry:ui",
-    registryDependencies: ["https://pivotkit.vercel.app/r/operation-box","https://pivotkit.vercel.app/r/try-it-out-panel"],
+    registryDependencies: ["https://pivotkit.vercel.app/r/utils","https://pivotkit.vercel.app/r/hooks","https://pivotkit.vercel.app/r/operation-box","https://pivotkit.vercel.app/r/try-it-out-panel"],
     files: [{
       path: "registry/pivot/operation-list-layout.tsx",
       type: "registry:ui",
@@ -885,7 +885,7 @@ export const Index: Record<string, any> = {
     title: "parameters-section",
     description: "",
     type: "registry:ui",
-    registryDependencies: ["https://pivotkit.vercel.app/r/parameter-item","https://pivotkit.vercel.app/r/section-title","https://pivotkit.vercel.app/r/style-badge"],
+    registryDependencies: ["https://pivotkit.vercel.app/r/utils","https://pivotkit.vercel.app/r/hooks","https://pivotkit.vercel.app/r/parameter-item","https://pivotkit.vercel.app/r/section-title","https://pivotkit.vercel.app/r/style-badge"],
     files: [{
       path: "registry/pivot/parameters-section.tsx",
       type: "registry:ui",
@@ -1083,7 +1083,7 @@ export const Index: Record<string, any> = {
     title: "response-headers-table",
     description: "",
     type: "registry:ui",
-    registryDependencies: ["https://pivotkit.vercel.app/r/header-item","https://pivotkit.vercel.app/r/style-badge"],
+    registryDependencies: ["https://pivotkit.vercel.app/r/utils","https://pivotkit.vercel.app/r/hooks","https://pivotkit.vercel.app/r/header-item","https://pivotkit.vercel.app/r/style-badge"],
     files: [{
       path: "registry/pivot/response-headers-table.tsx",
       type: "registry:ui",
@@ -1101,7 +1101,7 @@ export const Index: Record<string, any> = {
     title: "response-item",
     description: "",
     type: "registry:ui",
-    registryDependencies: ["https://pivotkit.vercel.app/r/description-display","https://pivotkit.vercel.app/r/headers-section","https://pivotkit.vercel.app/r/links-section","https://pivotkit.vercel.app/r/status-code"],
+    registryDependencies: ["https://pivotkit.vercel.app/r/utils","https://pivotkit.vercel.app/r/hooks","https://pivotkit.vercel.app/r/description-display","https://pivotkit.vercel.app/r/headers-section","https://pivotkit.vercel.app/r/links-section","https://pivotkit.vercel.app/r/status-code"],
     files: [{
       path: "registry/pivot/response-item.tsx",
       type: "registry:ui",
@@ -1155,7 +1155,7 @@ export const Index: Record<string, any> = {
     title: "schema-display",
     description: "",
     type: "registry:ui",
-    registryDependencies: ["https://pivotkit.vercel.app/r/constraint-display","https://pivotkit.vercel.app/r/default-value-display","https://pivotkit.vercel.app/r/deprecated-badge","https://pivotkit.vercel.app/r/description-display","https://pivotkit.vercel.app/r/enum-values-display","https://pivotkit.vercel.app/r/format-badge","https://pivotkit.vercel.app/r/required-badge","https://pivotkit.vercel.app/r/schema-composition-display","https://pivotkit.vercel.app/r/type-indicator"],
+    registryDependencies: ["https://pivotkit.vercel.app/r/utils","https://pivotkit.vercel.app/r/hooks","https://pivotkit.vercel.app/r/constraint-display","https://pivotkit.vercel.app/r/default-value-display","https://pivotkit.vercel.app/r/deprecated-badge","https://pivotkit.vercel.app/r/description-display","https://pivotkit.vercel.app/r/enum-values-display","https://pivotkit.vercel.app/r/format-badge","https://pivotkit.vercel.app/r/required-badge","https://pivotkit.vercel.app/r/schema-composition-display","https://pivotkit.vercel.app/r/type-indicator"],
     files: [{
       path: "registry/pivot/schema-display.tsx",
       type: "registry:ui",
@@ -1173,7 +1173,7 @@ export const Index: Record<string, any> = {
     title: "schema-with-example-viewer",
     description: "",
     type: "registry:ui",
-    registryDependencies: ["https://pivotkit.vercel.app/r/description-display","https://pivotkit.vercel.app/r/example-display","https://pivotkit.vercel.app/r/media-type-selector","https://pivotkit.vercel.app/r/schema-display"],
+    registryDependencies: ["https://pivotkit.vercel.app/r/utils","https://pivotkit.vercel.app/r/hooks","https://pivotkit.vercel.app/r/description-display","https://pivotkit.vercel.app/r/example-display","https://pivotkit.vercel.app/r/media-type-selector","https://pivotkit.vercel.app/r/schema-display"],
     files: [{
       path: "registry/pivot/schema-with-example-viewer.tsx",
       type: "registry:ui",
@@ -1317,7 +1317,7 @@ export const Index: Record<string, any> = {
     title: "security-section",
     description: "",
     type: "registry:ui",
-    registryDependencies: ["https://pivotkit.vercel.app/r/section-title","https://pivotkit.vercel.app/r/security-scheme-display"],
+    registryDependencies: ["https://pivotkit.vercel.app/r/utils","https://pivotkit.vercel.app/r/hooks","https://pivotkit.vercel.app/r/section-title","https://pivotkit.vercel.app/r/security-scheme-display"],
     files: [{
       path: "registry/pivot/security-section.tsx",
       type: "registry:ui",
@@ -1497,7 +1497,7 @@ export const Index: Record<string, any> = {
     title: "try-it-out-panel",
     description: "",
     type: "registry:ui",
-    registryDependencies: ["https://pivotkit.vercel.app/r/method-label"],
+    registryDependencies: ["https://pivotkit.vercel.app/r/utils","https://pivotkit.vercel.app/r/hooks","https://pivotkit.vercel.app/r/method-label"],
     files: [{
       path: "registry/pivot/try-it-out-panel.tsx",
       type: "registry:ui",
@@ -2037,7 +2037,7 @@ export const Index: Record<string, any> = {
     title: "faker-example-demo",
     description: "",
     type: "registry:example",
-    registryDependencies: undefined,
+    registryDependencies: ["https://pivotkit.vercel.app/r/utils","https://pivotkit.vercel.app/r/hooks"],
     files: [{
       path: "registry/example/faker-example-demo.tsx",
       type: "registry:example",
@@ -3206,27 +3206,23 @@ export const Index: Record<string, any> = {
     name: "hooks",
     title: "hooks",
     description: "",
-    type: "registry:lib",
-    registryDependencies: ["https://pivotkit.vercel.app/r/use-openapi","https://pivotkit.vercel.app/r/use-operation","https://pivotkit.vercel.app/r/use-schema","https://pivotkit.vercel.app/r/resolve-ref"],
+    type: "registry:hook",
+    registryDependencies: ["https://pivotkit.vercel.app/r/utils","https://pivotkit.vercel.app/r/hooks","https://pivotkit.vercel.app/r/resolve-ref"],
     files: [{
-      path: "registry/lib/hooks/index.ts",
-      type: "registry:lib",
-      target: ""
-    },{
       path: "registry/lib/hooks/use-openapi.ts",
-      type: "registry:lib",
+      type: "registry:hook",
       target: ""
     },{
       path: "registry/lib/hooks/use-operation.ts",
-      type: "registry:lib",
+      type: "registry:hook",
       target: ""
     },{
       path: "registry/lib/hooks/use-schema.ts",
-      type: "registry:lib",
+      type: "registry:hook",
       target: ""
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/lib/hooks/index.ts")
+      const mod = await import("@/registry/lib/hooks/use-openapi.ts")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -3237,13 +3233,9 @@ export const Index: Record<string, any> = {
     title: "utils",
     description: "",
     type: "registry:lib",
-    registryDependencies: ["https://pivotkit.vercel.app/r/schema-utils","https://pivotkit.vercel.app/r/type-utils"],
+    registryDependencies: ["https://pivotkit.vercel.app/r/utils","https://pivotkit.vercel.app/r/hooks"],
     files: [{
       path: "registry/lib/utils/generate-example.ts",
-      type: "registry:lib",
-      target: ""
-    },{
-      path: "registry/lib/utils/index.ts",
       type: "registry:lib",
       target: ""
     },{

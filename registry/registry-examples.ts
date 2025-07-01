@@ -351,6 +351,10 @@ export const examples: Registry["items"] = [
     ],
     "dependencies": [
       "openapi-types"
+    ],
+    "registryDependencies": [
+      "https://pivotkit.vercel.app/r/utils",
+      "https://pivotkit.vercel.app/r/hooks"
     ]
   },
   {

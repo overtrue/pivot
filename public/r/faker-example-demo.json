@@ -5,6 +5,10 @@
   "dependencies": [
     "openapi-types"
   ],
+  "registryDependencies": [
+    "https://pivotkit.vercel.app/r/utils",
+    "https://pivotkit.vercel.app/r/hooks"
+  ],
   "files": [
     {
       "path": "registry/example/faker-example-demo.tsx",
