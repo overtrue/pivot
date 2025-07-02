@@ -19,51 +19,190 @@ Pivot 是一个现代化的 React UI 组件库，专门为 OpenAPI 规范设计�
 
 **优秀的文档设计表明团队对细节的关注**。这让开发者相信："如果他们对文档都如此用心，那么 API 的质量一定也很可靠！"
 
-## 特性
+## 核心特性
 
-- **现代化设计** - 基于 Tailwind CSS 的美观组件
+### 🚀 丰富的组件库
+
+- **89+ 专业组件** - 涵盖 OpenAPI 规范的各个方面
+- **原子化设计** - 可组合的小组件，灵活构建复杂界面
+- **类型安全** - 完整的 TypeScript 类型定义
+
+### 🎨 现代化设计
+
 - **暗色模式** - 完整的暗色主题支持
-- **TypeScript** - 完整的类型定义和类型安全
 - **响应式** - 移动端友好的设计
-- **可定制** - 易于定制和扩展
+- **可定制** - 基于 Tailwind CSS，易于定制和扩展
 - **无障碍** - 遵循 WAI-ARIA 标准
+
+### 🛠️ 完善的工具链
+
+- **智能工具函数** - resolveRef、generateExample 等专业工具
+- **强大的 Hooks** - useOpenApi、useOperation、useSchema 等
+- **国际化支持** - 内置中英文翻译，可扩展多语言
+- **代码生成** - 支持 cURL、Python、PHP、Laravel 等多种语言
+
+### 📦 Registry 系统
+
+- **按需安装** - 只安装需要的组件，减少包体积
+- **源码透明** - 所有组件源码可见，方便定制
+- **版本管理** - 通过 registry 系统管理组件版本
 
 ## 项目架构
 
-Pivot 采用了与 shadcn/ui 类似的 registry 系统：
+Pivot 采用了与 shadcn/ui 类似的 registry 系统，但专为 OpenAPI 场景优化：
 
-- **组件发布** - 通过 registry 系统发布和管理组件
-- **按需引入** - 只安装需要的组件，减少包体积
-- **源码透明** - 所有组件源码可见，方便定制
-- **文档驱动** - 基于 MDX 的文档系统
+### 目录结构
+
+```
+pivot/
+├── registry/              # 可分发组件库
+│   ├── pivot/            # 89+ 原子组件（OpenAPI 专用）
+│   ├── lib/              # 工具函数和 hooks（可分发）
+│   │   ├── hooks/        # useOpenApi、useOperation 等
+│   │   ├── utils/        # resolveRef、generateExample 等
+│   │   └── i18n/         # 国际化系统
+│   └── example/          # 复杂示例组件
+├── components/           # 文档站点组件（不分发）
+├── content/docs/         # MDX 文档内容
+└── app/                 # Next.js App Router 页面
+```
+
+### 组件分类
+
+#### 可分发组件（registry/pivot/）
+
+专为 OpenAPI 设计的原子组件，包括：
+
+- **状态与标识**：`status-code`、`method-label`、`required-badge`、`deprecated-badge`
+- **数据展示**：`schema-display`、`parameter-item`、`response-item`、`example-display`
+- **交互组件**：`copy-button`、`expand-collapse`、`try-it-out-panel`
+- **布局容器**：`operation-box`、`section-title`、`navigation-sidebar`
+- **代码生成**：`curl-generator`、`python-generator`、`php-generator`
+
+#### 工具库（registry/lib/）
+
+可复用的工具函数和 hooks：
+
+- **Hooks**：`useOpenApi`、`useOperation`、`useSchema`
+- **工具函数**：`resolveRef`、`generateExample`、`schema-utils`
+- **国际化**：完整的 i18n 系统，支持中英文
+
+#### 文档站点组件（components/）
+
+专用于文档站点的组件，不对外分发。
 
 本项目深受 [shadcn/ui](https://ui.shadcn.com) 的启发。
 
 ## 安装
 
+### 快速开始
+
 ```bash
-npm install @pivot/ui
+npx shadcn@latest add https://pivotkit.vercel.app/registry.json status-code
 ```
 
-## 使用
+### 手动安装
+
+```bash
+npm install clsx tailwind-merge class-variance-authority
+npm install @radix-ui/react-slot lucide-react
+```
+
+## 使用示例
 
 ```tsx
-import { StatusCode } from "@pivot/ui";
+import { StatusCode } from "@/components/pivot/status-code";
+import { MethodLabel } from "@/components/pivot/method-label";
+import { useOpenApi } from "@/registry/lib/hooks/use-openapi";
 
-export default function MyComponent() {
-  return <StatusCode code={200} />;
+export default function ApiEndpoint({ spec }) {
+  const openApi = useOpenApi(spec);
+  const operations = openApi.getOperationsByTag();
+
+  return (
+    <div className="space-y-4">
+      <div className="flex items-center gap-3">
+        <MethodLabel method="GET" />
+        <StatusCode code={200} />
+      </div>
+      {/* 更多组件... */}
+    </div>
+  );
 }
 ```
 
-## 组件分类
+## 组件生态
 
-### 原子组件 (Atoms)
+### 🔧 工具 Hooks
 
-基础的、可复用的小组件，如状态码、方法标签等。
+```tsx
+// 强大的 OpenAPI 处理 hook
+const openApi = useOpenApi(spec);
+const operations = openApi.getOperationsByTag();
+const resolved = openApi.resolve(reference);
 
-### 布局组件 (Layouts)
+// 操作专用 hook
+const operation = useOperation(operationData, path, method);
+const parameters = operation.getParameters();
 
-复杂的布局组件和模板，如 API 文档布局、侧边栏等。
+// Schema 处理 hook
+const schema = useSchema(schemaData, components);
+const properties = schema.getProperties();
+```
+
+### 🌍 国际化支持
+
+```tsx
+import { useI18n } from "@/registry/lib/i18n";
+
+function MyComponent() {
+  const { t, locale, setLocale } = useI18n();
+
+  return (
+    <div>
+      <p>{t("operation.parameters")}</p>
+      <button onClick={() => setLocale("zh")}>中文</button>
+    </div>
+  );
+}
+```
+
+### 🎯 代码生成
+
+```tsx
+import { generateExample } from "@/registry/lib/utils/generate-example";
+
+// 根据 OpenAPI Schema 生成示例数据
+const example = generateExample(schema, components, {
+  maxDepth: 3,
+  includeReadOnly: false,
+});
+```
+
+## 最佳实践
+
+### 1. 遵循组件层次
+
+- **registry/pivot** 组件：使用 `../lib/` 下的工具
+- **components** 组件：使用 `@/hooks/` 和 `@/lib/` 下的工具
+
+### 2. 样式处理
+
+```tsx
+import { cn } from "@/lib/utils";
+
+// 正确使用 cn() 合并样式
+<div className={cn("base-styles", "additional-styles", className)} />;
+```
+
+### 3. 引用解析
+
+```tsx
+import { resolveRef } from "@/registry/lib/utils/resolve-ref";
+
+// 始终使用 resolveRef 处理 OpenAPI 引用
+const resolved = resolveRef(reference, components, "schemas");
+```
 
 ## 贡献
 

@@ -3,60 +3,199 @@ title: 组件
 description: 可复制粘贴的组件集合，使用 Radix UI 和 Tailwind CSS 构建。
 ---
 
-这里是所有可用组件的列表。每个组件都经过精心设计，可以直接复制到您的项目中使用。
+这里是所有可用组件的列表。Pivot 提供了 **89+** 个专为 OpenAPI 设计的组件，每个组件都经过精心设计，可以直接复制到您的项目中使用。
 
-## 基础组件
+## 🎯 状态与标识组件
 
-这些是构建界面的基础组件：
+用于显示 API 状态、方法和重要标识的组件：
 
-- [Button](/docs/components/button) - 按钮组件，支持多种变体和大小
-- [Card](/docs/components/card) - 卡片容器组件
-- [Badge](/docs/components/badge) - 徽章组件，用于状态显示
-- [Input](/docs/components/input) - 输入框组件
-- [Textarea](/docs/components/textarea) - 文本域组件
+- [**Status Code**](/docs/components/status-code) - HTTP 状态码显示，支持颜色编码
+- [**Method Label**](/docs/components/method-label) - HTTP 方法标签（GET、POST、PUT 等）
+- [**Required Badge**](/docs/components/required-badge) - 必填参数标识
+- [**Deprecated Badge**](/docs/components/deprecated-badge) - 废弃 API 标识
+- [**Format Badge**](/docs/components/format-badge) - 数据格式标识
+- [**Style Badge**](/docs/components/style-badge) - 样式类型标识
+- [**Version Badge**](/docs/components/version-badge) - 版本标识
+- [**Required Marker**](/docs/components/required-marker) - 简单的必填标记
 
-## 布局组件
+## 📊 数据展示组件
 
-用于构建页面布局的组件：
+用于展示和处理 OpenAPI 数据结构的核心组件：
 
-- [Container](/docs/components/container) - 容器组件，用于页面布局
-- [Grid](/docs/components/grid) - 网格布局组件
-- [Stack](/docs/components/stack) - 堆叠布局组件
+- [**Schema Display**](/docs/components/schema-display) - OpenAPI Schema 数据展示
+- [**Schema Composition Display**](/docs/components/schema-composition-display) - 复合模式显示
+- [**Schema with Example Viewer**](/docs/components/schema-with-example-viewer) - 带示例的模式查看器
+- [**Parameter Item**](/docs/components/parameter-item) - API 参数条目
+- [**Parameter Group**](/docs/components/parameter-group) - 参数分组显示
+- [**Parameter Name**](/docs/components/parameter-name) - 参数名称显示
+- [**Parameter Description**](/docs/components/parameter-description) - 参数描述
+- [**Response Item**](/docs/components/response-item) - 响应条目
+- [**Response Group**](/docs/components/response-group) - 响应分组
+- [**Type Indicator**](/docs/components/type-indicator) - 数据类型指示器
 
-## 数据展示
+## 📝 内容展示组件
 
-用于展示数据的组件：
+用于展示文档内容、示例和描述的组件：
 
-- [Table](/docs/components/table) - 表格组件
-- [List](/docs/components/list) - 列表组件
-- [Tooltip](/docs/components/tooltip) - 提示框组件
+- [**Example Display**](/docs/components/example-display) - 示例数据显示
+- [**Examples Display**](/docs/components/examples-display) - 多个示例展示
+- [**Description Display**](/docs/components/description-display) - 描述信息展示
+- [**Default Value Display**](/docs/components/default-value-display) - 默认值显示
+- [**Const Value**](/docs/components/const-value) - 常量值显示
+- [**Value Display**](/docs/components/value-display) - 通用值显示
+- [**Constraint Display**](/docs/components/constraint-display) - 约束条件显示
+- [**Enum Values**](/docs/components/enum-values) - 枚举值显示
+- [**Enum Values Display**](/docs/components/enum-values-display) - 枚举值详细显示
 
-## 反馈组件
+## 🔧 交互功能组件
 
-用于用户反馈的组件：
+提供用户交互功能的组件：
 
-- [Alert](/docs/components/alert) - 警告提示组件
-- [Toast](/docs/components/toast) - 消息提示组件
-- [Modal](/docs/components/modal) - 模态框组件
+- [**Copy Button**](/docs/components/copy-button) - 一键复制按钮
+- [**Expand Collapse**](/docs/components/expand-collapse) - 展开/折叠切换
+- [**Theme Toggle**](/docs/components/theme-toggle) - 主题切换按钮
+- [**Language Switcher**](/docs/components/language-switcher) - 语言切换器
+- [**Media Type Selector**](/docs/components/media-type-selector) - 媒体类型选择器
+- [**Try It Out Panel**](/docs/components/try-it-out-panel) - API 在线测试面板
 
-## OpenAPI 专用组件
+## 🏗️ 布局容器组件
 
-专门为 OpenAPI 文档设计的组件：
+用于组织和布局其他组件的容器：
 
-- [API Explorer](/docs/components/api-explorer) - API 接口浏览器
-- [Schema Viewer](/docs/components/schema-viewer) - 数据模型查看器
-- [Code Block](/docs/components/code-block) - 代码块组件
-- [Response Viewer](/docs/components/response-viewer) - 响应结果查看器
+- [**Operation Box**](/docs/components/operation-box) - API 操作容器
+- [**Operation Detail**](/docs/components/operation-detail) - 操作详情容器
+- [**Section Title**](/docs/components/section-title) - 章节标题
+- [**Navigation Sidebar**](/docs/components/navigation-sidebar) - 导航侧边栏
+- [**Resizable Sidebar**](/docs/components/resizable-sidebar) - 可调整大小的侧边栏
+- [**Component Tabs**](/docs/components/component-tabs) - 组件标签页
 
-## 特殊效果
+## 🌍 API 结构组件
 
-增强用户体验的动效组件：
+用于展示 OpenAPI 规范各部分结构的组件：
 
-- [Magic Card](/docs/components/magic-card) - 魔法卡片效果
-- [Shimmer](/docs/components/shimmer) - 闪光效果
-- [Ripple](/docs/components/ripple) - 水波纹效果
+### 📋 章节组件
 
-## 使用指南
+- [**Info Section**](/docs/components/info-section) - API 基本信息
+- [**Parameters Section**](/docs/components/parameters-section) - 参数章节
+- [**Request Body Section**](/docs/components/request-body-section) - 请求体章节
+- [**Responses Section**](/docs/components/responses-section) - 响应章节
+- [**Response Content Section**](/docs/components/response-content-section) - 响应内容章节
+- [**Headers Section**](/docs/components/headers-section) - 请求头章节
+- [**Security Section**](/docs/components/security-section) - 安全章节
+- [**Security Requirements Section**](/docs/components/security-requirements-section) - 安全要求章节
+- [**Servers Section**](/docs/components/servers-section) - 服务器章节
+- [**Components Section**](/docs/components/components-section) - 组件章节
+- [**Links Section**](/docs/components/links-section) - 链接章节
+
+### 🏗️ 结构组件
+
+- [**Server**](/docs/components/server) - 服务器定义
+- [**Server Display**](/docs/components/server-display) - 服务器信息显示
+- [**Server Variable**](/docs/components/server-variable) - 服务器变量
+- [**Security Scheme**](/docs/components/security-scheme) - 安全模式
+- [**Security Scheme Display**](/docs/components/security-scheme-display) - 安全模式显示
+- [**Security Requirement Item**](/docs/components/security-requirement-item) - 安全要求条目
+- [**OAuth Flow**](/docs/components/oauth-flow) - OAuth 流程
+- [**OAuth Flow Details**](/docs/components/oauth-flow-details) - OAuth 流程详情
+
+## 🛠️ 实用工具组件
+
+辅助功能和工具类组件：
+
+### 📄 文档相关
+
+- [**License Display**](/docs/components/license-display) - 许可证显示
+- [**Terms of Service**](/docs/components/terms-of-service) - 服务条款
+- [**Contact Display**](/docs/components/contact-display) - 联系信息显示
+- [**External Docs**](/docs/components/external-docs) - 外部文档链接
+- [**External Docs Display**](/docs/components/external-docs-display) - 外部文档展示
+
+### 🔗 链接与路径
+
+- [**Link Item**](/docs/components/link-item) - 链接条目
+- [**Operation Path**](/docs/components/operation-path) - 操作路径
+- [**Path Segment**](/docs/components/path-segment) - 路径片段
+- [**In Label**](/docs/components/in-label) - 参数位置标签
+
+### 📊 表格与列表
+
+- [**Response Headers Table**](/docs/components/response-headers-table) - 响应头表格
+- [**Header Item**](/docs/components/header-item) - 头部条目
+- [**Component Items List**](/docs/components/component-items-list) - 组件列表
+- [**Component Detail**](/docs/components/component-detail) - 组件详情
+
+## 🎨 布局模板组件
+
+完整的页面布局和复杂组合：
+
+- [**Operation List Layout**](/docs/components/operation-list-layout) - 操作列表布局
+- [**Operation Detailed Layout**](/docs/components/operation-detailed-layout) - 操作详情布局
+- [**Accordion Components Section**](/docs/components/accordion-components-section) - 手风琴组件章节
+
+## 💻 代码生成组件
+
+支持多种编程语言的代码生成：
+
+- [**cURL Generator**](/docs/components/curl-generator) - cURL 命令生成
+- [**Python Generator**](/docs/components/python-generator) - Python 代码生成
+- [**PHP Generator**](/docs/components/php-generator) - PHP 代码生成
+- [**Laravel Generator**](/docs/components/laravel-generator) - Laravel 代码生成
+- [**TypeScript Generator**](/docs/components/typescript-generator) - TypeScript 代码生成
+- [**Codegen**](/docs/components/codegen) - 通用代码生成器
+
+## 🔄 高级功能组件
+
+专业的高级功能组件：
+
+- [**Callback Display**](/docs/components/callback-display) - 回调函数显示
+- [**Webhook Display**](/docs/components/webhook-display) - Webhook 显示
+- [**Webhook Label**](/docs/components/webhook-label) - Webhook 标签
+- [**Media Type Display**](/docs/components/media-type-display) - 媒体类型显示
+- [**Code Markdown**](/docs/components/code-markdown) - Markdown 代码块
+- [**Scheme Type**](/docs/components/scheme-type) - 模式类型
+
+## 📚 Hooks 和工具
+
+除了组件，Pivot 还提供了强大的 hooks 和工具函数：
+
+### 🎣 React Hooks
+
+```tsx
+import { useOpenApi } from "@/registry/lib/hooks/use-openapi";
+import { useOperation } from "@/registry/lib/hooks/use-operation";
+import { useSchema } from "@/registry/lib/hooks/use-schema";
+```
+
+### 🛠️ 工具函数
+
+```tsx
+import { resolveRef } from "@/registry/lib/utils/resolve-ref";
+import { generateExample } from "@/registry/lib/utils/generate-example";
+import { isReferenceObject } from "@/registry/lib/utils/schema-utils";
+```
+
+### 🌍 国际化
+
+```tsx
+import { useI18n, t } from "@/registry/lib/i18n";
+```
+
+## 🚀 快速安装
+
+### 单个组件
+
+```bash
+npx shadcn@latest add https://pivotkit.vercel.app/registry.json status-code
+```
+
+### 工具函数
+
+```bash
+npx shadcn@latest add https://pivotkit.vercel.app/registry.json hooks
+npx shadcn@latest add https://pivotkit.vercel.app/registry.json resolve-ref
+```
+
+## 📖 使用指南
 
 每个组件页面都包含：
 
@@ -64,8 +203,9 @@ description: 可复制粘贴的组件集合，使用 Radix UI 和 Tailwind CSS �
 2. **API 文档** - 完整的属性和方法说明
 3. **使用示例** - 多种使用场景的代码示例
 4. **最佳实践** - 使用建议和注意事项
+5. **组合示例** - 与其他组件的组合使用
 
-## 贡献指南
+## 🤝 贡献指南
 
 如果您想为 Pivot 贡献新组件或改进现有组件，请参考我们的 [贡献指南](/docs/contributing)。
 
@@ -75,3 +215,4 @@ description: 可复制粘贴的组件集合，使用 Radix UI 和 Tailwind CSS �
 - Bug 修复
 - 文档改进
 - 性能优化
+- 国际化翻译

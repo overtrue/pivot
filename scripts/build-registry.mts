@@ -4,6 +4,7 @@ import path from "path";
 import { rimraf } from "rimraf";
 import { registryItemSchema, type Registry } from "shadcn/registry";
 import { z } from "zod";
+import { lib } from "../registry/registry-lib";
 
 // =============================================================================
 // CONFIGURATION
@@ -147,152 +148,6 @@ export default ui;
 }
 
 /**
- * Generate registry configuration for library utilities
- * Scans registry/lib directory structure
- */
-async function generateRegistryLib(): Promise<Registry["items"]> {
-  console.log('🔍 Analyzing library components...');
-
-  const libDir = path.join(process.cwd(), 'registry/lib');
-  let libItems: Registry["items"] = [];
-
-  try {
-    const subDirs = await fs.readdir(libDir, { withFileTypes: true });
-
-    // Process each subdirectory (utils, hooks, i18n, etc.)
-    for (const dirent of subDirs) {
-      if (!dirent.isDirectory()) continue;
-
-      const categoryName = dirent.name;
-      const categoryPath = path.join(libDir, categoryName);
-      const type = categoryName === "hooks" ? "registry:hook" : "registry:lib";
-      const files = await fs.readdir(categoryPath);
-
-      // For i18n directory, also include .tsx files and subdirectories
-      let allFiles: string[] = [];
-      if (categoryName === "i18n") {
-        allFiles = files.filter(f => f.endsWith('.ts') || f.endsWith('.tsx'));
-
-        // Also include locale files from subdirectories
-        const localesDir = path.join(categoryPath, 'locales');
-        try {
-          const localeFiles = await fs.readdir(localesDir);
-          const tsLocaleFiles = localeFiles.filter(f => f.endsWith('.ts'));
-          allFiles.push(...tsLocaleFiles.map(f => `locales/${f}`));
-        } catch (error) {
-          // locales directory might not exist
-        }
-      } else {
-        allFiles = files.filter(f => f.endsWith('.ts'));
-      }
-
-      if (allFiles.length === 0) continue;
-
-      // Analyze dependencies for all files in this category
-      const allDependencies = new Set<string>();
-      const allRegistryDependencies = new Set<string>();
-
-      for (const file of allFiles) {
-        const filePath = path.join(categoryPath, file);
-        const { npmDependencies, registryDependencies } = await analyzeFileDependencies(filePath);
-
-        npmDependencies.forEach(dep => allDependencies.add(dep));
-        registryDependencies.forEach(dep => allRegistryDependencies.add(dep));
-      }
-
-      // Build file list
-      const fileList = allFiles.map(file => ({
-        path: `registry/lib/${categoryName}/${file}`,
-        type: type
-      }));
-
-      // Create registry item
-      const item = {
-        name: categoryName,
-        type: type,
-        files: fileList,
-        ...(allDependencies.size > 0 && { dependencies: Array.from(allDependencies) }),
-        ...(allRegistryDependencies.size > 0 && { registryDependencies: Array.from(allRegistryDependencies) })
-      };
-
-      libItems.push(item);
-    }
-
-    // Fallback: check for direct .ts files if no subdirectories found
-    if (libItems.length === 0) {
-      const files = await fs.readdir(libDir);
-      const tsFiles = files.filter(f => f.endsWith('.ts'));
-
-      if (tsFiles.length > 0) {
-        const allDependencies = new Set<string>();
-        const allRegistryDependencies = new Set<string>();
-
-        for (const file of tsFiles) {
-          const filePath = path.join(libDir, file);
-          const { npmDependencies, registryDependencies } = await analyzeFileDependencies(filePath);
-
-          npmDependencies.forEach(dep => allDependencies.add(dep));
-          registryDependencies.forEach(dep => allRegistryDependencies.add(dep));
-        }
-
-        const fileList = tsFiles.map(file => ({
-          path: `registry/lib/${file}`,
-          type: "registry:lib"
-        }));
-
-        const item = {
-          name: "lib",
-          type: "registry:lib",
-          files: fileList,
-          ...(allDependencies.size > 0 && { dependencies: Array.from(allDependencies) }),
-          ...(allRegistryDependencies.size > 0 && { registryDependencies: Array.from(allRegistryDependencies) })
-        };
-
-        libItems.push(item);
-      }
-    }
-
-  } catch (error) {
-    console.warn('⚠️ Failed to scan lib directory, using fallback configuration:', error);
-
-    // Fallback configuration
-    libItems = [
-      {
-        name: "utils",
-        type: "registry:lib" as const,
-        files: [
-          { path: "registry/lib/utils/schema-utils.ts", type: "registry:lib" as const },
-          { path: "registry/lib/utils/type-utils.ts", type: "registry:lib" as const },
-          { path: "registry/lib/utils/resolve-ref.ts", type: "registry:lib" as const },
-          { path: "registry/lib/utils/generate-example.ts", type: "registry:lib" as const },
-        ],
-      },
-      {
-        name: "hooks",
-        type: "registry:lib" as const,
-        dependencies: ["react"],
-        registryDependencies: ["resolve-ref"],
-        files: [
-          { path: "registry/lib/hooks/use-operation.ts", type: "registry:lib" as const },
-          { path: "registry/lib/hooks/use-schema.ts", type: "registry:lib" as const },
-          { path: "registry/lib/hooks/use-openapi.ts", type: "registry:lib" as const },
-        ],
-      }
-    ];
-  }
-
-  const content = `import { type Registry } from "shadcn/registry";
-
-export const lib: Registry["items"] = ${JSON.stringify(libItems, null, 2)};
-`;
-
-  await fs.writeFile(path.join(process.cwd(), 'registry/registry-lib.ts'), content);
-  console.log(`✅ Generated ${libItems.length} library configurations`);
-
-  return libItems;
-}
-
-/**
  * Generate registry configuration for example components
  * Scans registry/example directory for .tsx files
  */
@@ -350,20 +205,18 @@ export const examples: Registry["items"] = ${JSON.stringify(exampleItems, null, 
  */
 async function generateAllRegistryFiles(): Promise<{
   ui: Registry["items"];
-  lib: Registry["items"];
   examples: Registry["items"];
 }> {
   console.log('🚀 Starting automatic registry generation...');
 
   try {
-    const [ui, lib, examples] = await Promise.all([
+    const [ui, examples] = await Promise.all([
       generateRegistryUI(),
-      generateRegistryLib(),
       generateRegistryExamples()
     ]);
 
     console.log('✅ All registry files generated successfully');
-    return { ui, lib, examples };
+    return { ui, examples };
   } catch (error) {
     console.error('❌ Failed to generate registry files:', error);
     throw error;
@@ -485,7 +338,7 @@ async function main(): Promise<void> {
     console.log("🗂️ Building registry...");
 
     // Step 1: Generate all registry files
-    const { ui, lib, examples } = await generateAllRegistryFiles();
+    const { ui, examples } = await generateAllRegistryFiles();
 
     // Step 2: Build complete registry configuration
     const registry: Registry = {

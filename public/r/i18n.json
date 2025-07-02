@@ -5,11 +5,6 @@
   "dependencies": [
     "react"
   ],
-  "registryDependencies": [
-    "https://pivotkit.vercel.app/r/en",
-    "https://pivotkit.vercel.app/r/zh",
-    "https://pivotkit.vercel.app/r/I18nProvider"
-  ],
   "files": [
     {
       "path": "registry/lib/i18n/I18nProvider.tsx",

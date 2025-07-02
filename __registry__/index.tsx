@@ -3207,7 +3207,7 @@ export const Index: Record<string, any> = {
     title: "hooks",
     description: "",
     type: "registry:hook",
-    registryDependencies: ["https://pivotkit.vercel.app/r/utils","https://pivotkit.vercel.app/r/hooks","https://pivotkit.vercel.app/r/i18n","https://pivotkit.vercel.app/r/resolve-ref"],
+    registryDependencies: undefined,
     files: [{
       path: "registry/lib/hooks/use-openapi.ts",
       type: "registry:hook",
@@ -3233,7 +3233,7 @@ export const Index: Record<string, any> = {
     title: "i18n",
     description: "",
     type: "registry:lib",
-    registryDependencies: ["https://pivotkit.vercel.app/r/en","https://pivotkit.vercel.app/r/zh","https://pivotkit.vercel.app/r/I18nProvider"],
+    registryDependencies: undefined,
     files: [{
       path: "registry/lib/i18n/I18nProvider.tsx",
       type: "registry:lib",
@@ -3263,7 +3263,7 @@ export const Index: Record<string, any> = {
     title: "utils",
     description: "",
     type: "registry:lib",
-    registryDependencies: ["https://pivotkit.vercel.app/r/utils","https://pivotkit.vercel.app/r/hooks","https://pivotkit.vercel.app/r/i18n"],
+    registryDependencies: undefined,
     files: [{
       path: "registry/lib/utils/generate-example.ts",
       type: "registry:lib",

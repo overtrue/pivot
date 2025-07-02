@@ -20,8 +20,8 @@ cd my-api-docs
 
 ```bash
 npm install clsx tailwind-merge class-variance-authority
-npm install @radix-ui/react-slot
-npm install lucide-react
+npm install @radix-ui/react-slot lucide-react
+npm install openapi-types @faker-js/faker
 ```
 
 ## 第三步：配置 utils
@@ -37,9 +37,9 @@ export function cn(...inputs: ClassValue[]) {
 }
 ```
 
-## 第四步：添加第一个组件
+## 第四步：添加核心组件
 
-添加 Status Code 组件：
+### 安装状态码组件
 
 ```bash
 npx shadcn@latest add https://pivotkit.vercel.app/registry.json status-code
@@ -86,7 +86,7 @@ export interface StatusCodeProps
 
 const StatusCode = React.forwardRef<HTMLDivElement, StatusCodeProps>(
   ({ className, variant, code, ...props }, ref) => {
-    const colorClass = variant === "default" ? getStatusCodeColor(code) : "";
+    const colorClass = getStatusCodeColor(code);
 
     return (
       <div
@@ -101,17 +101,144 @@ const StatusCode = React.forwardRef<HTMLDivElement, StatusCodeProps>(
 );
 StatusCode.displayName = "StatusCode";
 
-export { StatusCode };
+export { StatusCode, statusCodeVariants };
+```
+
+### 安装方法标签组件
+
+```bash
+npx shadcn@latest add https://pivotkit.vercel.app/registry.json method-label
+```
+
+### 安装 OpenAPI 处理 Hook
+
+```bash
+npx shadcn@latest add https://pivotkit.vercel.app/registry.json hooks
+npx shadcn@latest add https://pivotkit.vercel.app/registry.json resolve-ref
 ```
 
 ## 第五步：创建您的第一个 API 文档页面
 
-更新 `app/page.tsx`：
+创建 `pages/api-docs.tsx`（或在 App Router 中创建 `app/api-docs/page.tsx`）：
 
-```tsx title="app/page.tsx"
+```tsx title="app/api-docs/page.tsx"
+"use client";
+
 import { StatusCode } from "@/components/pivot/status-code";
+import { MethodLabel } from "@/components/pivot/method-label";
+import { useOpenApi } from "@/registry/lib/hooks/use-openapi";
+import type { OpenAPIV3 } from "openapi-types";
 
-export default function Home() {
+// 示例 OpenAPI 规范（简化版）
+const sampleSpec: OpenAPIV3.Document = {
+  openapi: "3.0.0",
+  info: {
+    title: "用户管理 API",
+    version: "1.0.0",
+    description: "一个简单的用户管理 API 示例",
+  },
+  paths: {
+    "/api/users": {
+      get: {
+        summary: "获取用户列表",
+        description: "获取系统中所有用户的分页列表",
+        tags: ["用户管理"],
+        parameters: [
+          {
+            name: "page",
+            in: "query",
+            schema: { type: "integer", default: 1 },
+            description: "页码",
+          },
+          {
+            name: "limit",
+            in: "query",
+            schema: { type: "integer", default: 20 },
+            description: "每页数量",
+          },
+        ],
+        responses: {
+          "200": {
+            description: "成功返回用户列表",
+            content: {
+              "application/json": {
+                schema: {
+                  type: "object",
+                  properties: {
+                    users: {
+                      type: "array",
+                      items: { $ref: "#/components/schemas/User" },
+                    },
+                    total: { type: "integer" },
+                  },
+                },
+              },
+            },
+          },
+          "400": { description: "请求参数错误" },
+          "500": { description: "服务器内部错误" },
+        },
+      },
+      post: {
+        summary: "创建新用户",
+        description: "在系统中创建一个新的用户账户",
+        tags: ["用户管理"],
+        requestBody: {
+          required: true,
+          content: {
+            "application/json": {
+              schema: { $ref: "#/components/schemas/CreateUser" },
+            },
+          },
+        },
+        responses: {
+          "201": {
+            description: "用户创建成功",
+            content: {
+              "application/json": {
+                schema: { $ref: "#/components/schemas/User" },
+              },
+            },
+          },
+          "400": { description: "请求数据无效" },
+          "409": { description: "用户已存在" },
+        },
+      },
+    },
+  },
+  components: {
+    schemas: {
+      User: {
+        type: "object",
+        required: ["id", "email", "name"],
+        properties: {
+          id: { type: "string", description: "用户唯一标识" },
+          email: { type: "string", format: "email", description: "用户邮箱" },
+          name: { type: "string", description: "用户姓名" },
+          createdAt: {
+            type: "string",
+            format: "date-time",
+            description: "创建时间",
+          },
+        },
+      },
+      CreateUser: {
+        type: "object",
+        required: ["email", "name"],
+        properties: {
+          email: { type: "string", format: "email", description: "用户邮箱" },
+          name: { type: "string", description: "用户姓名" },
+          password: { type: "string", minLength: 8, description: "用户密码" },
+        },
+      },
+    },
+  },
+};
+
+export default function ApiDocsPage() {
+  const openApi = useOpenApi(sampleSpec);
+  const operationsByTag = openApi.getOperationsByTag();
+
   return (
     <main className="container mx-auto px-4 py-8">
       <div className="max-w-4xl mx-auto space-y-8">
@@ -121,75 +248,93 @@ export default function Home() {
           <p className="text-xl text-muted-foreground">
             使用 Pivot UI 构建的现代化 API 文档
           </p>
-        </div>
-
-        {/* API 端点示例 */}
-        <div className="space-y-6">
-          <h2 className="text-2xl font-semibold">用户管理 API</h2>
-
-          {/* GET /api/users */}
-          <div className="border rounded-lg p-6 space-y-4">
-            <div className="flex items-center gap-3">
-              <span className="bg-green-100 text-green-800 px-2 py-1 rounded text-sm font-semibold">
-                GET
-              </span>
-              <code className="text-lg font-mono">/api/users</code>
-            </div>
-
-            <div>
-              <h3 className="text-lg font-semibold">获取用户列表</h3>
-              <p className="text-muted-foreground">
-                获取系统中所有用户的分页列表
-              </p>
-            </div>
-
-            <div>
-              <h4 className="font-semibold mb-2">响应状态码</h4>
-              <div className="flex gap-2">
-                <StatusCode code={200} />
-                <StatusCode code={400} />
-                <StatusCode code={500} />
-              </div>
-            </div>
-          </div>
-
-          {/* POST /api/users */}
-          <div className="border rounded-lg p-6 space-y-4">
-            <div className="flex items-center gap-3">
-              <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded text-sm font-semibold">
-                POST
-              </span>
-              <code className="text-lg font-mono">/api/users</code>
-            </div>
-
-            <div>
-              <h3 className="text-lg font-semibold">创建新用户</h3>
-              <p className="text-muted-foreground">
-                在系统中创建一个新的用户账户
-              </p>
-            </div>
-
-            <div>
-              <h4 className="font-semibold mb-2">响应状态码</h4>
-              <div className="flex gap-2">
-                <StatusCode code={201} />
-                <StatusCode code={400} />
-                <StatusCode code={409} />
-                <StatusCode code={500} />
-              </div>
-            </div>
+          <div className="text-sm text-muted-foreground">
+            版本: {openApi.getInfo()?.version} | 标题:{" "}
+            {openApi.getInfo()?.title}
           </div>
         </div>
 
-        {/* 下一步 */}
-        <div className="bg-muted/50 rounded-lg p-6 space-y-4">
-          <h2 className="text-xl font-semibold">下一步</h2>
-          <ul className="space-y-2 text-muted-foreground">
-            <li>• 添加更多 Pivot UI 组件</li>
-            <li>• 配置主题和样式</li>
-            <li>• 集成 OpenAPI 规范</li>
-            <li>• 添加交互式 API 测试功能</li>
-          </ul>
+        {/* API 端点列表 */}
+        <div className="space-y-8">
+          {Object.entries(operationsByTag).map(([tag, operations]) => (
+            <div key={tag} className="space-y-4">
+              <h2 className="text-2xl font-semibold border-b pb-2">{tag}</h2>
+
+              {operations.map((op, index) => (
+                <div key={index} className="border rounded-lg p-6 space-y-4">
+                  {/* 端点标题 */}
+                  <div className="flex items-center gap-3">
+                    <MethodLabel method={op.method as any} />
+                    <code className="text-lg font-mono text-muted-foreground">
+                      {op.path}
+                    </code>
+                  </div>
+
+                  {/* 操作信息 */}
+                  <div>
+                    <h3 className="text-lg font-semibold">
+                      {op.operation.summary}
+                    </h3>
+                    {op.operation.description && (
+                      <p className="text-muted-foreground mt-1">
+                        {op.operation.description}
+                      </p>
+                    )}
+                  </div>
+
+                  {/* 参数信息 */}
+                  {op.operation.parameters &&
+                    op.operation.parameters.length > 0 && (
+                      <div>
+                        <h4 className="font-semibold mb-2">查询参数</h4>
+                        <div className="space-y-2">
+                          {op.operation.parameters.map(
+                            (param: any, pIndex: number) => (
+                              <div
+                                key={pIndex}
+                                className="flex items-center gap-3 p-3 bg-muted/50 rounded"
+                              >
+                                <code className="font-mono text-sm">
+                                  {param.name}
+                                </code>
+                                <span className="text-xs px-2 py-1 bg-blue-100 text-blue-800 rounded">
+                                  {param.schema?.type || "string"}
+                                </span>
+                                <span className="text-sm text-muted-foreground flex-1">
+                                  {param.description}
+                                </span>
+                                {param.required && (
+                                  <span className="text-xs px-2 py-1 bg-red-100 text-red-800 rounded">
+                                    必填
+                                  </span>
+                                )}
+                              </div>
+                            )
+                          )}
+                        </div>
+                      </div>
+                    )}
+
+                  {/* 响应状态码 */}
+                  <div>
+                    <h4 className="font-semibold mb-3">响应状态码</h4>
+                    <div className="space-y-2">
+                      {Object.entries(op.operation.responses || {}).map(
+                        ([status, response]: [string, any]) => (
+                          <div key={status} className="flex items-center gap-3">
+                            <StatusCode code={parseInt(status)} />
+                            <span className="text-sm">
+                              {response.description || "无描述"}
+                            </span>
+                          </div>
+                        )
+                      )}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          ))}
         </div>
       </div>
     </main>
@@ -197,79 +342,40 @@ export default function Home() {
 }
 ```
 
-## 第六步：运行项目
+## 第六步：添加更多组件
 
-启动开发服务器：
-
-```bash
-npm run dev
-```
-
-打开浏览器访问 `http://localhost:3000`，您应该能看到一个简单但功能完整的 API 文档页面！
-
-## 添加更多组件
-
-现在您可以继续添加更多 Pivot UI 组件来增强您的 API 文档：
-
-### Method Label 组件
-
-```bash
-npx shadcn@latest add https://pivotkit.vercel.app/registry.json method-label
-```
-
-```tsx
-import { MethodLabel } from "@/components/pivot/method-label";
-
-<MethodLabel method="GET" />
-<MethodLabel method="POST" />
-<MethodLabel method="PUT" />
-<MethodLabel method="DELETE" />
-```
-
-### Copy Button 组件
+### 复制按钮
 
 ```bash
 npx shadcn@latest add https://pivotkit.vercel.app/registry.json copy-button
 ```
 
-```tsx
-import { CopyButton } from "@/components/pivot/copy-button";
-
-<div className="flex items-center gap-2">
-  <code>/api/users</code>
-  <CopyButton text="/api/users" />
-</div>;
-```
-
-### Type Indicator 组件
+### 参数展示组件
 
 ```bash
-npx shadcn@latest add https://pivotkit.vercel.app/registry.json type-indicator
+npx shadcn@latest add https://pivotkit.vercel.app/registry.json parameter-item
 ```
 
-```tsx
-import { TypeIndicator } from "@/components/pivot/type-indicator";
+### 高级示例页面
 
-<TypeIndicator type="string" />
-<TypeIndicator type="number" />
-<TypeIndicator type="boolean" />
-```
+创建一个更复杂的示例：
 
-## 完整示例
+```tsx title="app/advanced-api/page.tsx"
+"use client";
 
-将所有组件组合在一起：
-
-```tsx title="app/page.tsx"
+import { useOpenApi } from "@/registry/lib/hooks/use-openapi";
 import { StatusCode } from "@/components/pivot/status-code";
 import { MethodLabel } from "@/components/pivot/method-label";
 import { CopyButton } from "@/components/pivot/copy-button";
-import { TypeIndicator } from "@/components/pivot/type-indicator";
+import { ParameterItem } from "@/components/pivot/parameter-item";
 
-export default function ApiDocsPage() {
+export default function AdvancedApiPage() {
+  const openApi = useOpenApi(sampleSpec); // 使用上面定义的 spec
+
   return (
     <main className="container mx-auto px-4 py-8">
       <div className="max-w-4xl mx-auto space-y-8">
-        <h1 className="text-4xl font-bold text-center">API 文档</h1>
+        <h1 className="text-4xl font-bold text-center">高级 API 文档示例</h1>
 
         <div className="border rounded-lg p-6 space-y-6">
           {/* 端点标题 */}
@@ -287,21 +393,22 @@ export default function ApiDocsPage() {
             </p>
           </div>
 
-          {/* 参数 */}
+          {/* 路径参数 */}
           <div>
             <h3 className="font-semibold mb-3">路径参数</h3>
-            <div className="space-y-2">
-              <div className="flex items-center gap-3 p-3 bg-muted/50 rounded">
-                <code className="font-mono">id</code>
-                <TypeIndicator type="string" />
-                <span className="text-sm text-muted-foreground">
-                  用户的唯一标识符
-                </span>
-              </div>
-            </div>
+            <ParameterItem
+              parameter={{
+                name: "id",
+                in: "path",
+                required: true,
+                schema: { type: "string" },
+                description: "用户的唯一标识符",
+              }}
+              components={openApi.getComponents()}
+            />
           </div>
 
-          {/* 响应 */}
+          {/* 响应示例 */}
           <div>
             <h3 className="font-semibold mb-3">响应状态码</h3>
             <div className="space-y-2">
@@ -319,9 +426,59 @@ export default function ApiDocsPage() {
               </div>
             </div>
           </div>
+
+          {/* 示例响应数据 */}
+          <div>
+            <h3 className="font-semibold mb-3">示例响应</h3>
+            <div className="bg-slate-950 text-slate-50 p-4 rounded-lg overflow-x-auto">
+              <pre className="text-sm">
+                {`{
+  "id": "user_123",
+  "email": "user@example.com",
+  "name": "张三",
+  "createdAt": "2024-01-15T10:30:00Z"
+}`}
+              </pre>
+              <div className="mt-2">
+                <CopyButton
+                  text='{"id":"user_123","email":"user@example.com","name":"张三","createdAt":"2024-01-15T10:30:00Z"}'
+                  variant="ghost"
+                  size="sm"
+                />
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </main>
+  );
+}
+```
+
+## 第七步：国际化支持
+
+如果需要多语言支持：
+
+```bash
+npx shadcn@latest add https://pivotkit.vercel.app/registry.json i18n
+```
+
+然后在应用中使用：
+
+```tsx title="app/layout.tsx"
+import { I18nProvider } from "@/registry/lib/i18n";
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <html lang="en">
+      <body>
+        <I18nProvider>{children}</I18nProvider>
+      </body>
+    </html>
   );
 }
 ```
@@ -330,9 +487,54 @@ export default function ApiDocsPage() {
 
 恭喜！您已经成功创建了第一个使用 Pivot UI 的 API 文档页面。接下来您可以：
 
-1. **探索更多组件** - 查看 [组件文档](/docs/components) 了解所有可用组件
-2. **学习最佳实践** - 阅读 [API 文档模板](/docs/templates/api-docs) 了解如何构建完整的文档
-3. **自定义主题** - 根据您的品牌调整颜色和样式
-4. **集成 OpenAPI** - 使用 OpenAPI 规范自动生成文档
+### 1. 探索更多组件
 
-需要帮助？查看我们的 [安装指南](/docs/installation) 或浏览 [示例项目](https://github.com/your-repo/pivot-examples)。
+查看 [组件文档](/docs/components) 了解所有可用的 89+ 组件：
+
+- **数据展示**：`schema-display`、`example-display`、`response-item`
+- **交互功能**：`try-it-out-panel`、`theme-toggle`、`language-switcher`
+- **代码生成**：`curl-generator`、`python-generator`、`php-generator`
+- **布局容器**：`navigation-sidebar`、`operation-box`、`section-title`
+
+### 2. 学习工具函数
+
+了解 [Hooks 和工具函数](/docs/hooks-and-utils) 来处理复杂的 OpenAPI 数据：
+
+```bash
+# 安装示例生成工具
+npx shadcn@latest add https://pivotkit.vercel.app/registry.json generate-example
+
+# 使用示例
+import { generateExample } from "@/registry/lib/utils/generate-example";
+const example = generateExample(schema, components);
+```
+
+### 3. 构建完整应用
+
+参考 [API 文档模板](/docs/templates/api-docs) 了解如何构建完整的文档应用。
+
+### 4. 自定义主题
+
+根据您的品牌调整颜色和样式：
+
+```css title="styles/globals.css"
+:root {
+  --status-success: #10b981;
+  --status-error: #ef4444;
+  --status-warning: #f59e0b;
+}
+```
+
+### 5. 集成真实 API
+
+将示例数据替换为您的真实 OpenAPI 规范：
+
+```tsx
+// 从 URL 加载
+const spec = await fetch("/api/openapi.json").then((r) => r.json());
+
+// 或从文件导入
+import spec from "./openapi.json";
+```
+
+需要帮助？查看我们的 [安装指南](/docs/installation) 或浏览 [在线查看器](/viewer) 查看更多示例。
