@@ -229,7 +229,7 @@ const required = isPropertyRequired(schema, "email");
 完整的国际化支持，内置中英文翻译。
 
 ```tsx
-import { useI18n } from "@/lib/i18n";
+import { useI18n } from "@/registry/lib/i18n/";
 
 function MyComponent() {
   const { t, locale, setLocale } = useI18n();
@@ -251,7 +251,7 @@ function MyComponent() {
 ### 独立翻译函数
 
 ```tsx
-import { t, createTranslator } from "@/lib/i18n";
+import { t, createTranslator } from "@/registry/lib/i18n/";
 
 // 使用默认翻译函数（英文）
 const title = t("api.title");
@@ -266,7 +266,7 @@ const chineseTitle = zhTranslator("api.title");
 在应用根部包装以启用语言切换功能。
 
 ```tsx
-import { I18nProvider } from "@/lib/i18n";
+import { I18nProvider } from "@/registry/lib/i18n/";
 
 function App() {
   return (
@@ -311,7 +311,7 @@ import { resolveRef } from "@/lib/utils/resolve-ref";
 import { generateExample } from "@/lib/utils/generate-example";
 
 // 国际化
-import { useI18n, t } from "@/lib/i18n";
+import { useI18n, t } from "@/registry/lib/i18n/";
 ```
 
 ## 🔄 与组件的集成

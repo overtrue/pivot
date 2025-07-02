@@ -466,7 +466,7 @@ npx shadcn@latest add https://pivotkit.vercel.app/registry.json i18n
 然后在应用中使用：
 
 ```tsx title="app/layout.tsx"
-import { I18nProvider } from "@/lib/i18n";
+import { I18nProvider } from "@/registry/lib/i18n/";
 
 export default function RootLayout({
   children,
