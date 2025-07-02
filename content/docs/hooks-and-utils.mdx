@@ -12,7 +12,7 @@ Pivot 不仅提供了丰富的组件，还内置了一套强大的 **React Hooks
 最核心的 Hook，提供了处理 OpenAPI 规范的完整功能。
 
 ```tsx
-import { useOpenApi } from "@/registry/lib/hooks/use-openapi";
+import { useOpenApi } from "@/lib/hooks/use-openapi";
 import type { OpenAPIV3 } from "openapi-types";
 
 function ApiComponent({ spec }: { spec: OpenAPIV3.Document }) {
@@ -61,7 +61,7 @@ function ApiComponent({ spec }: { spec: OpenAPIV3.Document }) {
 专门处理单个 API 操作的 Hook。
 
 ```tsx
-import { useOperation } from "@/registry/lib/hooks/use-operation";
+import { useOperation } from "@/lib/hooks/use-operation";
 
 function OperationComponent({ operation, path, method }) {
   const op = useOperation(operation, path, method);
@@ -88,7 +88,7 @@ function OperationComponent({ operation, path, method }) {
 处理 OpenAPI Schema 对象的专用 Hook。
 
 ```tsx
-import { useSchema } from "@/registry/lib/hooks/use-schema";
+import { useSchema } from "@/lib/hooks/use-schema";
 
 function SchemaComponent({ schema, components }) {
   const schemaData = useSchema(schema, components);
@@ -120,7 +120,7 @@ function SchemaComponent({ schema, components }) {
 解析 OpenAPI 中的 `$ref` 引用。
 
 ```tsx
-import { resolveRef } from "@/registry/lib/utils/resolve-ref";
+import { resolveRef } from "@/lib/utils/resolve-ref";
 import type { OpenAPIV3 } from "openapi-types";
 
 // 解析 Schema 引用
@@ -157,7 +157,7 @@ const resolvedResponse = resolveRef<OpenAPIV3.ResponseObject>(
 根据 OpenAPI Schema 自动生成示例数据。
 
 ```tsx
-import { generateExample } from "@/registry/lib/utils/generate-example";
+import { generateExample } from "@/lib/utils/generate-example";
 
 // 基本用法
 const example = generateExample(schema, components);
@@ -204,7 +204,7 @@ import {
   isSchemaObjectNotRef,
   getSchemaType,
   isPropertyRequired,
-} from "@/registry/lib/utils/schema-utils";
+} from "@/lib/utils/schema-utils";
 
 // 类型检查
 if (isReferenceObject(obj)) {
@@ -229,7 +229,7 @@ const required = isPropertyRequired(schema, "email");
 完整的国际化支持，内置中英文翻译。
 
 ```tsx
-import { useI18n } from "@/registry/lib/i18n";
+import { useI18n } from "@/lib/i18n";
 
 function MyComponent() {
   const { t, locale, setLocale } = useI18n();
@@ -251,7 +251,7 @@ function MyComponent() {
 ### 独立翻译函数
 
 ```tsx
-import { t, createTranslator } from "@/registry/lib/i18n";
+import { t, createTranslator } from "@/lib/i18n";
 
 // 使用默认翻译函数（英文）
 const title = t("api.title");
@@ -266,7 +266,7 @@ const chineseTitle = zhTranslator("api.title");
 在应用根部包装以启用语言切换功能。
 
 ```tsx
-import { I18nProvider } from "@/registry/lib/i18n";
+import { I18nProvider } from "@/lib/i18n";
 
 function App() {
   return (
@@ -302,16 +302,16 @@ npx shadcn@latest add https://pivotkit.vercel.app/registry.json i18n
 
 ```tsx
 // Hooks
-import { useOpenApi } from "@/registry/lib/hooks/use-openapi";
-import { useOperation } from "@/registry/lib/hooks/use-operation";
-import { useSchema } from "@/registry/lib/hooks/use-schema";
+import { useOpenApi } from "@/lib/hooks/use-openapi";
+import { useOperation } from "@/lib/hooks/use-operation";
+import { useSchema } from "@/lib/hooks/use-schema";
 
 // 工具函数
-import { resolveRef } from "@/registry/lib/utils/resolve-ref";
-import { generateExample } from "@/registry/lib/utils/generate-example";
+import { resolveRef } from "@/lib/utils/resolve-ref";
+import { generateExample } from "@/lib/utils/generate-example";
 
 // 国际化
-import { useI18n, t } from "@/registry/lib/i18n";
+import { useI18n, t } from "@/lib/i18n";
 ```
 
 ## 🔄 与组件的集成
@@ -319,7 +319,7 @@ import { useI18n, t } from "@/registry/lib/i18n";
 这些工具与 Pivot 组件无缝集成：
 
 ```tsx
-import { useOpenApi } from "@/registry/lib/hooks/use-openapi";
+import { useOpenApi } from "@/lib/hooks/use-openapi";
 import { StatusCode } from "@/components/pivot/status-code";
 import { MethodLabel } from "@/components/pivot/method-label";
 import { ParameterItem } from "@/components/pivot/parameter-item";

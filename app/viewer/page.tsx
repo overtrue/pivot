@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { siteConfig } from "@/config/site";
-import { I18nProvider } from "@/registry/lib/i18n";
+import { I18nProvider } from "@/lib/i18n";
 import { LanguageSwitcher } from "@/registry/pivot/language-switcher";
 import { NavigationSidebar } from "@/registry/pivot/navigation-sidebar";
 import { OperationDetailedLayout } from "@/registry/pivot/operation-detailed-layout";

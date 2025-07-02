@@ -126,7 +126,7 @@ npx shadcn@latest add https://pivotkit.vercel.app/registry.json resolve-ref
 
 import { StatusCode } from "@/components/pivot/status-code";
 import { MethodLabel } from "@/components/pivot/method-label";
-import { useOpenApi } from "@/registry/lib/hooks/use-openapi";
+import { useOpenApi } from "@/lib/hooks/use-openapi";
 import type { OpenAPIV3 } from "openapi-types";
 
 // 示例 OpenAPI 规范（简化版）
@@ -363,7 +363,7 @@ npx shadcn@latest add https://pivotkit.vercel.app/registry.json parameter-item
 ```tsx title="app/advanced-api/page.tsx"
 "use client";
 
-import { useOpenApi } from "@/registry/lib/hooks/use-openapi";
+import { useOpenApi } from "@/lib/hooks/use-openapi";
 import { StatusCode } from "@/components/pivot/status-code";
 import { MethodLabel } from "@/components/pivot/method-label";
 import { CopyButton } from "@/components/pivot/copy-button";
@@ -466,7 +466,7 @@ npx shadcn@latest add https://pivotkit.vercel.app/registry.json i18n
 然后在应用中使用：
 
 ```tsx title="app/layout.tsx"
-import { I18nProvider } from "@/registry/lib/i18n";
+import { I18nProvider } from "@/lib/i18n";
 
 export default function RootLayout({
   children,
@@ -505,7 +505,7 @@ export default function RootLayout({
 npx shadcn@latest add https://pivotkit.vercel.app/registry.json generate-example
 
 # 使用示例
-import { generateExample } from "@/registry/lib/utils/generate-example";
+import { generateExample } from "@/lib/utils/generate-example";
 const example = generateExample(schema, components);
 ```
 

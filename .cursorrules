@@ -87,7 +87,7 @@ const resolved = resolveRef(reference, components);
 ```tsx
 // 正确的导入和使用方式
 import { useOpenApi } from "@/hooks/use-openapi";
-import { useI18n } from "@/registry/lib/i18n";
+import { useI18n } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
 import { resolveRef } from "@/utils/resolveRef";
 

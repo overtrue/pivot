@@ -9,9 +9,6 @@
   "registryDependencies": [
     "badge",
     "label",
-    "https://pivotkit.vercel.app/r/utils",
-    "https://pivotkit.vercel.app/r/hooks",
-    "https://pivotkit.vercel.app/r/i18n",
     "https://pivotkit.vercel.app/r/deprecated-badge",
     "https://pivotkit.vercel.app/r/description-display",
     "https://pivotkit.vercel.app/r/external-docs-display",

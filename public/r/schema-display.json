@@ -7,9 +7,6 @@
     "react"
   ],
   "registryDependencies": [
-    "https://pivotkit.vercel.app/r/utils",
-    "https://pivotkit.vercel.app/r/hooks",
-    "https://pivotkit.vercel.app/r/i18n",
     "https://pivotkit.vercel.app/r/constraint-display",
     "https://pivotkit.vercel.app/r/default-value-display",
     "https://pivotkit.vercel.app/r/deprecated-badge",

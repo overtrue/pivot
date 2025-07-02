@@ -65,15 +65,15 @@ async function analyzeFileDependencies(filePath: string): Promise<DependencyAnal
             registryDependencies.add(`${REGISTRY_BASE_URL}/${componentName}`);
           }
         }
-        // Check if it's a registry component import (@/registry/lib/...)
-        else if (importPath.startsWith('@/registry/lib/')) {
-          const componentName = path.basename(importPath, '.tsx');
-          if (componentName) {
-            registryDependencies.add(`${REGISTRY_BASE_URL}/utils`);
-            registryDependencies.add(`${REGISTRY_BASE_URL}/hooks`);
-            registryDependencies.add(`${REGISTRY_BASE_URL}/i18n`);
-          }
-        }
+        // // Check if it's a registry component import (@/lib/...)
+        // else if (importPath.startsWith('@/lib/')) {
+        //   const componentName = path.basename(importPath, '.tsx');
+        //   if (componentName) {
+        //     registryDependencies.add(`${REGISTRY_BASE_URL}/utils`);
+        //     registryDependencies.add(`${REGISTRY_BASE_URL}/hooks`);
+        //     registryDependencies.add(`${REGISTRY_BASE_URL}/i18n`);
+        //   }
+        // }
 
         // Check if it's an npm package (not starting with . or / or @/)
         else if (!importPath.startsWith('.') && !importPath.startsWith('/') && !importPath.startsWith('@/')) {
@@ -125,7 +125,7 @@ async function generateRegistryUI(): Promise<Registry["items"]> {
         {
           path: `registry/pivot/${file}`,
           type: "registry:ui" as const,
-          target: `components/pivot/${file}`
+          // target: `components/pivot/${file}`
         }
       ],
       ...(npmDependencies.length > 0 && { dependencies: npmDependencies }),

@@ -1,6 +1,6 @@
 "use client";
 
-import { I18nProvider } from "@/registry/lib/i18n/I18nProvider";
+import { I18nProvider } from "@/lib/i18n/I18nProvider";
 import { CopyButton } from "@/registry/pivot/copy-button";
 import { ExampleDisplay } from "@/registry/pivot/example-display";
 

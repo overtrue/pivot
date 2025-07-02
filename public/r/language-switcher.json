@@ -6,11 +6,6 @@
     "lucide-react",
     "react"
   ],
-  "registryDependencies": [
-    "https://pivotkit.vercel.app/r/utils",
-    "https://pivotkit.vercel.app/r/hooks",
-    "https://pivotkit.vercel.app/r/i18n"
-  ],
   "files": [
     {
       "path": "registry/pivot/language-switcher.tsx",

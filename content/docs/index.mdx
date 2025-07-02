@@ -113,7 +113,7 @@ npm install @radix-ui/react-slot lucide-react
 ```tsx
 import { StatusCode } from "@/components/pivot/status-code";
 import { MethodLabel } from "@/components/pivot/method-label";
-import { useOpenApi } from "@/registry/lib/hooks/use-openapi";
+import { useOpenApi } from "@/lib/hooks/use-openapi";
 
 export default function ApiEndpoint({ spec }) {
   const openApi = useOpenApi(spec);
@@ -153,7 +153,7 @@ const properties = schema.getProperties();
 ### 🌍 国际化支持
 
 ```tsx
-import { useI18n } from "@/registry/lib/i18n";
+import { useI18n } from "@/lib/i18n";
 
 function MyComponent() {
   const { t, locale, setLocale } = useI18n();
@@ -170,7 +170,7 @@ function MyComponent() {
 ### 🎯 代码生成
 
 ```tsx
-import { generateExample } from "@/registry/lib/utils/generate-example";
+import { generateExample } from "@/lib/utils/generate-example";
 
 // 根据 OpenAPI Schema 生成示例数据
 const example = generateExample(schema, components, {
@@ -198,7 +198,7 @@ import { cn } from "@/lib/utils";
 ### 3. 引用解析
 
 ```tsx
-import { resolveRef } from "@/registry/lib/utils/resolve-ref";
+import { resolveRef } from "@/lib/utils/resolve-ref";
 
 // 始终使用 resolveRef 处理 OpenAPI 引用
 const resolved = resolveRef(reference, components, "schemas");
