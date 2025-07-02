@@ -9,8 +9,7 @@
     {
       "path": "registry/pivot/section-title.tsx",
       "content": "import { cn } from \"@/lib/utils\";\nimport React from \"react\";\n\ninterface SectionTitleProps {\n  title: string;\n  className?: string;\n}\n\nconst SectionTitle = React.forwardRef<HTMLHeadingElement, SectionTitleProps>(\n  ({ title, className }, ref) => {\n    return (\n      <h4\n        ref={ref}\n        className={cn(\"font-semibold text-sm dark:text-neutral-200\", className)}\n      >\n        {title}\n      </h4>\n    );\n  }\n);\n\nSectionTitle.displayName = \"SectionTitle\";\n\nexport { SectionTitle };\n",
-      "type": "registry:ui",
-      "target": "components/pivot/section-title.tsx"
+      "type": "registry:ui"
     }
   ]
 }

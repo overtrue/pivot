@@ -9,8 +9,7 @@
     {
       "path": "registry/pivot/component-tabs.tsx",
       "content": "import { cn } from \"@/lib/utils\";\nimport React from \"react\";\n\n// Define component types\ntype OpenApiComponentType =\n  | \"schemas\"\n  | \"responses\"\n  | \"parameters\"\n  | \"examples\"\n  | \"requestBodies\"\n  | \"headers\"\n  | \"securitySchemes\"\n  | \"links\"\n  | \"callbacks\";\n\ninterface ComponentTabsProps {\n  availableTypes: OpenApiComponentType[];\n  activeType: OpenApiComponentType | null;\n  onSelectType: (type: OpenApiComponentType) => void;\n  className?: string;\n}\n\nconst ComponentTabs = React.forwardRef<HTMLDivElement, ComponentTabsProps>(\n  ({ availableTypes, activeType, onSelectType, className }, ref) => {\n    return (\n      <div ref={ref} className={cn(\"mb-4 border-b\", className)}>\n        <ul className=\"flex flex-wrap -mb-px text-sm font-medium text-center\">\n          {availableTypes.map((type) => (\n            <li key={type} className=\"mr-2\">\n              <button\n                onClick={() => onSelectType(type)}\n                className={cn(\n                  \"inline-block p-2 border-b-2 rounded-t-lg capitalize\",\n                  activeType === type\n                    ? \"text-blue-600 dark:text-blue-400 border-blue-600 dark:border-blue-400\"\n                    : \"border-transparent hover:text-neutral-600 dark:hover:text-neutral-300 hover:border-neutral-300 dark:hover:border-neutral-600\",\n                )}\n              >\n                {type}\n              </button>\n            </li>\n          ))}\n        </ul>\n      </div>\n    );\n  },\n);\n\nComponentTabs.displayName = \"ComponentTabs\";\n\nexport { ComponentTabs, type OpenApiComponentType };\n",
-      "type": "registry:ui",
-      "target": "components/pivot/component-tabs.tsx"
+      "type": "registry:ui"
     }
   ]
 }

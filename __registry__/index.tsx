@@ -25,7 +25,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/accordion-components-section.tsx",
       type: "registry:ui",
-      target: "components/pivot/accordion-components-section.tsx"
+      target: ""
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/accordion-components-section.tsx")
@@ -43,7 +43,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/callback-display.tsx",
       type: "registry:ui",
-      target: "components/pivot/callback-display.tsx"
+      target: ""
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/callback-display.tsx")
@@ -61,7 +61,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/code-markdown.tsx",
       type: "registry:ui",
-      target: "components/pivot/code-markdown.tsx"
+      target: ""
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/code-markdown.tsx")
@@ -79,7 +79,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/codegen.tsx",
       type: "registry:ui",
-      target: "components/pivot/codegen.tsx"
+      target: ""
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/codegen.tsx")
@@ -97,7 +97,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/component-detail.tsx",
       type: "registry:ui",
-      target: "components/pivot/component-detail.tsx"
+      target: ""
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/component-detail.tsx")
@@ -115,7 +115,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/component-items-list.tsx",
       type: "registry:ui",
-      target: "components/pivot/component-items-list.tsx"
+      target: ""
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/component-items-list.tsx")
@@ -133,7 +133,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/component-tabs.tsx",
       type: "registry:ui",
-      target: "components/pivot/component-tabs.tsx"
+      target: ""
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/component-tabs.tsx")
@@ -151,7 +151,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/components-section.tsx",
       type: "registry:ui",
-      target: "components/pivot/components-section.tsx"
+      target: ""
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/components-section.tsx")
@@ -169,7 +169,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/const-value.tsx",
       type: "registry:ui",
-      target: "components/pivot/const-value.tsx"
+      target: ""
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/const-value.tsx")
@@ -187,7 +187,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/constraint-display.tsx",
       type: "registry:ui",
-      target: "components/pivot/constraint-display.tsx"
+      target: ""
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/constraint-display.tsx")
@@ -205,7 +205,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/contact-display.tsx",
       type: "registry:ui",
-      target: "components/pivot/contact-display.tsx"
+      target: ""
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/contact-display.tsx")
@@ -223,7 +223,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/copy-button.tsx",
       type: "registry:ui",
-      target: "components/pivot/copy-button.tsx"
+      target: ""
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/copy-button.tsx")
@@ -241,7 +241,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/curl-generator.tsx",
       type: "registry:ui",
-      target: "components/pivot/curl-generator.tsx"
+      target: ""
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/curl-generator.tsx")
@@ -259,7 +259,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/default-value-display.tsx",
       type: "registry:ui",
-      target: "components/pivot/default-value-display.tsx"
+      target: ""
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/default-value-display.tsx")
@@ -277,7 +277,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/deprecated-badge.tsx",
       type: "registry:ui",
-      target: "components/pivot/deprecated-badge.tsx"
+      target: ""
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/deprecated-badge.tsx")
@@ -295,7 +295,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/description-display.tsx",
       type: "registry:ui",
-      target: "components/pivot/description-display.tsx"
+      target: ""
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/description-display.tsx")
@@ -313,7 +313,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/enum-values-display.tsx",
       type: "registry:ui",
-      target: "components/pivot/enum-values-display.tsx"
+      target: ""
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/enum-values-display.tsx")
@@ -331,7 +331,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/enum-values.tsx",
       type: "registry:ui",
-      target: "components/pivot/enum-values.tsx"
+      target: ""
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/enum-values.tsx")
@@ -349,7 +349,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/example-display.tsx",
       type: "registry:ui",
-      target: "components/pivot/example-display.tsx"
+      target: ""
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/example-display.tsx")
@@ -367,7 +367,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/examples-display.tsx",
       type: "registry:ui",
-      target: "components/pivot/examples-display.tsx"
+      target: ""
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/examples-display.tsx")
@@ -385,7 +385,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/expand-collapse.tsx",
       type: "registry:ui",
-      target: "components/pivot/expand-collapse.tsx"
+      target: ""
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/expand-collapse.tsx")
@@ -403,7 +403,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/external-docs-display.tsx",
       type: "registry:ui",
-      target: "components/pivot/external-docs-display.tsx"
+      target: ""
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/external-docs-display.tsx")
@@ -421,7 +421,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/external-docs.tsx",
       type: "registry:ui",
-      target: "components/pivot/external-docs.tsx"
+      target: ""
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/external-docs.tsx")
@@ -439,7 +439,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/format-badge.tsx",
       type: "registry:ui",
-      target: "components/pivot/format-badge.tsx"
+      target: ""
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/format-badge.tsx")
@@ -457,7 +457,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/header-item.tsx",
       type: "registry:ui",
-      target: "components/pivot/header-item.tsx"
+      target: ""
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/header-item.tsx")
@@ -475,7 +475,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/headers-section.tsx",
       type: "registry:ui",
-      target: "components/pivot/headers-section.tsx"
+      target: ""
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/headers-section.tsx")
@@ -493,7 +493,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/in-label.tsx",
       type: "registry:ui",
-      target: "components/pivot/in-label.tsx"
+      target: ""
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/in-label.tsx")
@@ -511,7 +511,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/info-section.tsx",
       type: "registry:ui",
-      target: "components/pivot/info-section.tsx"
+      target: ""
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/info-section.tsx")
@@ -529,7 +529,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/language-switcher.tsx",
       type: "registry:ui",
-      target: "components/pivot/language-switcher.tsx"
+      target: ""
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/language-switcher.tsx")
@@ -547,7 +547,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/laravel-generator.tsx",
       type: "registry:ui",
-      target: "components/pivot/laravel-generator.tsx"
+      target: ""
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/laravel-generator.tsx")
@@ -565,7 +565,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/license-display.tsx",
       type: "registry:ui",
-      target: "components/pivot/license-display.tsx"
+      target: ""
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/license-display.tsx")
@@ -583,7 +583,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/link-item.tsx",
       type: "registry:ui",
-      target: "components/pivot/link-item.tsx"
+      target: ""
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/link-item.tsx")
@@ -601,7 +601,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/links-section.tsx",
       type: "registry:ui",
-      target: "components/pivot/links-section.tsx"
+      target: ""
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/links-section.tsx")
@@ -619,7 +619,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/media-type-display.tsx",
       type: "registry:ui",
-      target: "components/pivot/media-type-display.tsx"
+      target: ""
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/media-type-display.tsx")
@@ -637,7 +637,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/media-type-selector.tsx",
       type: "registry:ui",
-      target: "components/pivot/media-type-selector.tsx"
+      target: ""
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/media-type-selector.tsx")
@@ -655,7 +655,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/method-label.tsx",
       type: "registry:ui",
-      target: "components/pivot/method-label.tsx"
+      target: ""
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/method-label.tsx")
@@ -673,7 +673,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/navigation-sidebar.tsx",
       type: "registry:ui",
-      target: "components/pivot/navigation-sidebar.tsx"
+      target: ""
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/navigation-sidebar.tsx")
@@ -691,7 +691,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/oauth-flow-details.tsx",
       type: "registry:ui",
-      target: "components/pivot/oauth-flow-details.tsx"
+      target: ""
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/oauth-flow-details.tsx")
@@ -709,7 +709,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/oauth-flow.tsx",
       type: "registry:ui",
-      target: "components/pivot/oauth-flow.tsx"
+      target: ""
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/oauth-flow.tsx")
@@ -727,7 +727,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/operation-box.tsx",
       type: "registry:ui",
-      target: "components/pivot/operation-box.tsx"
+      target: ""
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/operation-box.tsx")
@@ -745,7 +745,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/operation-detail.tsx",
       type: "registry:ui",
-      target: "components/pivot/operation-detail.tsx"
+      target: ""
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/operation-detail.tsx")
@@ -763,7 +763,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/operation-detailed-layout.tsx",
       type: "registry:ui",
-      target: "components/pivot/operation-detailed-layout.tsx"
+      target: ""
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/operation-detailed-layout.tsx")
@@ -781,7 +781,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/operation-list-layout.tsx",
       type: "registry:ui",
-      target: "components/pivot/operation-list-layout.tsx"
+      target: ""
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/operation-list-layout.tsx")
@@ -799,7 +799,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/operation-path.tsx",
       type: "registry:ui",
-      target: "components/pivot/operation-path.tsx"
+      target: ""
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/operation-path.tsx")
@@ -817,7 +817,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/parameter-description.tsx",
       type: "registry:ui",
-      target: "components/pivot/parameter-description.tsx"
+      target: ""
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/parameter-description.tsx")
@@ -835,7 +835,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/parameter-group.tsx",
       type: "registry:ui",
-      target: "components/pivot/parameter-group.tsx"
+      target: ""
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/parameter-group.tsx")
@@ -853,7 +853,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/parameter-item.tsx",
       type: "registry:ui",
-      target: "components/pivot/parameter-item.tsx"
+      target: ""
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/parameter-item.tsx")
@@ -871,7 +871,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/parameter-name.tsx",
       type: "registry:ui",
-      target: "components/pivot/parameter-name.tsx"
+      target: ""
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/parameter-name.tsx")
@@ -889,7 +889,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/parameters-section.tsx",
       type: "registry:ui",
-      target: "components/pivot/parameters-section.tsx"
+      target: ""
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/parameters-section.tsx")
@@ -907,7 +907,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/path-item-display.tsx",
       type: "registry:ui",
-      target: "components/pivot/path-item-display.tsx"
+      target: ""
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/path-item-display.tsx")
@@ -925,7 +925,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/path-segment.tsx",
       type: "registry:ui",
-      target: "components/pivot/path-segment.tsx"
+      target: ""
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/path-segment.tsx")
@@ -943,7 +943,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/php-generator.tsx",
       type: "registry:ui",
-      target: "components/pivot/php-generator.tsx"
+      target: ""
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/php-generator.tsx")
@@ -961,7 +961,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/python-generator.tsx",
       type: "registry:ui",
-      target: "components/pivot/python-generator.tsx"
+      target: ""
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/python-generator.tsx")
@@ -979,7 +979,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/request-body-section.tsx",
       type: "registry:ui",
-      target: "components/pivot/request-body-section.tsx"
+      target: ""
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/request-body-section.tsx")
@@ -997,7 +997,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/required-badge.tsx",
       type: "registry:ui",
-      target: "components/pivot/required-badge.tsx"
+      target: ""
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/required-badge.tsx")
@@ -1015,7 +1015,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/required-marker.tsx",
       type: "registry:ui",
-      target: "components/pivot/required-marker.tsx"
+      target: ""
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/required-marker.tsx")
@@ -1033,7 +1033,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/resizable-sidebar.tsx",
       type: "registry:ui",
-      target: "components/pivot/resizable-sidebar.tsx"
+      target: ""
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/resizable-sidebar.tsx")
@@ -1051,7 +1051,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/response-content-section.tsx",
       type: "registry:ui",
-      target: "components/pivot/response-content-section.tsx"
+      target: ""
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/response-content-section.tsx")
@@ -1069,7 +1069,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/response-group.tsx",
       type: "registry:ui",
-      target: "components/pivot/response-group.tsx"
+      target: ""
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/response-group.tsx")
@@ -1087,7 +1087,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/response-headers-table.tsx",
       type: "registry:ui",
-      target: "components/pivot/response-headers-table.tsx"
+      target: ""
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/response-headers-table.tsx")
@@ -1105,7 +1105,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/response-item.tsx",
       type: "registry:ui",
-      target: "components/pivot/response-item.tsx"
+      target: ""
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/response-item.tsx")
@@ -1123,7 +1123,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/responses-section.tsx",
       type: "registry:ui",
-      target: "components/pivot/responses-section.tsx"
+      target: ""
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/responses-section.tsx")
@@ -1141,7 +1141,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/schema-composition-display.tsx",
       type: "registry:ui",
-      target: "components/pivot/schema-composition-display.tsx"
+      target: ""
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/schema-composition-display.tsx")
@@ -1159,7 +1159,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/schema-display.tsx",
       type: "registry:ui",
-      target: "components/pivot/schema-display.tsx"
+      target: ""
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/schema-display.tsx")
@@ -1177,7 +1177,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/schema-with-example-viewer.tsx",
       type: "registry:ui",
-      target: "components/pivot/schema-with-example-viewer.tsx"
+      target: ""
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/schema-with-example-viewer.tsx")
@@ -1195,7 +1195,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/scheme-type.tsx",
       type: "registry:ui",
-      target: "components/pivot/scheme-type.tsx"
+      target: ""
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/scheme-type.tsx")
@@ -1213,7 +1213,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/section-title.tsx",
       type: "registry:ui",
-      target: "components/pivot/section-title.tsx"
+      target: ""
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/section-title.tsx")
@@ -1231,7 +1231,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/security-requirement-item.tsx",
       type: "registry:ui",
-      target: "components/pivot/security-requirement-item.tsx"
+      target: ""
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/security-requirement-item.tsx")
@@ -1249,7 +1249,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/security-requirements-section.tsx",
       type: "registry:ui",
-      target: "components/pivot/security-requirements-section.tsx"
+      target: ""
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/security-requirements-section.tsx")
@@ -1267,7 +1267,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/security-scheme-display.tsx",
       type: "registry:ui",
-      target: "components/pivot/security-scheme-display.tsx"
+      target: ""
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/security-scheme-display.tsx")
@@ -1285,7 +1285,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/security-scheme.tsx",
       type: "registry:ui",
-      target: "components/pivot/security-scheme.tsx"
+      target: ""
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/security-scheme.tsx")
@@ -1303,7 +1303,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/security-schemes.tsx",
       type: "registry:ui",
-      target: "components/pivot/security-schemes.tsx"
+      target: ""
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/security-schemes.tsx")
@@ -1321,7 +1321,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/security-section.tsx",
       type: "registry:ui",
-      target: "components/pivot/security-section.tsx"
+      target: ""
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/security-section.tsx")
@@ -1339,7 +1339,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/server-display.tsx",
       type: "registry:ui",
-      target: "components/pivot/server-display.tsx"
+      target: ""
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/server-display.tsx")
@@ -1357,7 +1357,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/server-variable.tsx",
       type: "registry:ui",
-      target: "components/pivot/server-variable.tsx"
+      target: ""
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/server-variable.tsx")
@@ -1375,7 +1375,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/server.tsx",
       type: "registry:ui",
-      target: "components/pivot/server.tsx"
+      target: ""
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/server.tsx")
@@ -1393,7 +1393,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/servers-section.tsx",
       type: "registry:ui",
-      target: "components/pivot/servers-section.tsx"
+      target: ""
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/servers-section.tsx")
@@ -1411,7 +1411,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/servers.tsx",
       type: "registry:ui",
-      target: "components/pivot/servers.tsx"
+      target: ""
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/servers.tsx")
@@ -1429,7 +1429,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/status-code.tsx",
       type: "registry:ui",
-      target: "components/pivot/status-code.tsx"
+      target: ""
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/status-code.tsx")
@@ -1447,7 +1447,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/style-badge.tsx",
       type: "registry:ui",
-      target: "components/pivot/style-badge.tsx"
+      target: ""
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/style-badge.tsx")
@@ -1465,7 +1465,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/terms-of-service.tsx",
       type: "registry:ui",
-      target: "components/pivot/terms-of-service.tsx"
+      target: ""
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/terms-of-service.tsx")
@@ -1483,7 +1483,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/theme-toggle.tsx",
       type: "registry:ui",
-      target: "components/pivot/theme-toggle.tsx"
+      target: ""
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/theme-toggle.tsx")
@@ -1501,7 +1501,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/try-it-out-panel.tsx",
       type: "registry:ui",
-      target: "components/pivot/try-it-out-panel.tsx"
+      target: ""
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/try-it-out-panel.tsx")
@@ -1519,7 +1519,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/type-indicator.tsx",
       type: "registry:ui",
-      target: "components/pivot/type-indicator.tsx"
+      target: ""
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/type-indicator.tsx")
@@ -1537,7 +1537,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/typescript-generator.tsx",
       type: "registry:ui",
-      target: "components/pivot/typescript-generator.tsx"
+      target: ""
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/typescript-generator.tsx")
@@ -1555,7 +1555,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/value-display.tsx",
       type: "registry:ui",
-      target: "components/pivot/value-display.tsx"
+      target: ""
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/value-display.tsx")
@@ -1573,7 +1573,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/version-badge.tsx",
       type: "registry:ui",
-      target: "components/pivot/version-badge.tsx"
+      target: ""
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/version-badge.tsx")
@@ -1591,7 +1591,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/webhook-display.tsx",
       type: "registry:ui",
-      target: "components/pivot/webhook-display.tsx"
+      target: ""
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/webhook-display.tsx")
@@ -1609,7 +1609,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/webhook-label.tsx",
       type: "registry:ui",
-      target: "components/pivot/webhook-label.tsx"
+      target: ""
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/webhook-label.tsx")

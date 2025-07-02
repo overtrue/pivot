@@ -9,8 +9,7 @@
     {
       "path": "registry/pivot/style-badge.tsx",
       "content": "import { cn } from \"@/lib/utils\";\nimport React from \"react\";\n\n// Define style types for OpenAPI\ntype StyleType =\n  | \"form\"\n  | \"simple\"\n  | \"matrix\"\n  | \"label\"\n  | \"spaceDelimited\"\n  | \"pipeDelimited\"\n  | \"deepObject\"\n  | string;\n\ninterface StyleBadgeProps {\n  style: StyleType;\n  className?: string;\n}\n\nconst StyleBadge = React.forwardRef<HTMLSpanElement, StyleBadgeProps>(\n  ({ style, className }, ref) => {\n    return (\n      <span\n        ref={ref}\n        className={cn(\n          \"px-2 py-0.5 rounded text-xs font-medium bg-indigo-100 dark:bg-indigo-900/50 text-indigo-800 dark:text-indigo-300\",\n          className,\n        )}\n      >\n        {style}\n      </span>\n    );\n  },\n);\n\nStyleBadge.displayName = \"StyleBadge\";\n\nexport { StyleBadge, type StyleType };\n",
-      "type": "registry:ui",
-      "target": "components/pivot/style-badge.tsx"
+      "type": "registry:ui"
     }
   ]
 }

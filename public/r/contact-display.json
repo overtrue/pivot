@@ -10,8 +10,7 @@
     {
       "path": "registry/pivot/contact-display.tsx",
       "content": "import { cn } from \"@/lib/utils\";\nimport type { OpenAPIV3 } from 'openapi-types';\nimport React from \"react\";\n\ninterface ContactDisplayProps {\n  contact: OpenAPIV3.ContactObject;\n  className?: string;\n}\n\nconst ContactDisplay = React.forwardRef<HTMLDivElement, ContactDisplayProps>(\n  ({ contact, className }, ref) => {\n    return (\n      <div ref={ref} className={cn(\"text-sm\", className)}>\n        {contact.name && <div className=\"font-semibold\">{contact.name}</div>}\n        {contact.email && (\n          <div className=\"text-neutral-700 dark:text-neutral-300\">\n            Email:{\" \"}\n            <a\n              href={`mailto:${contact.email}`}\n              className=\"text-blue-600 dark:text-blue-400 hover:underline\"\n            >\n              {contact.email}\n            </a>\n          </div>\n        )}\n        {contact.url && (\n          <div className=\"text-neutral-700 dark:text-neutral-300\">\n            URL:{\" \"}\n            <a\n              href={contact.url}\n              target=\"_blank\"\n              rel=\"noopener noreferrer\"\n              className=\"text-blue-600 dark:text-blue-400 hover:underline break-all\"\n            >\n              {contact.url}\n            </a>\n          </div>\n        )}\n      </div>\n    );\n  },\n);\n\nContactDisplay.displayName = \"ContactDisplay\";\n\nexport { ContactDisplay, type ContactDisplayProps };\n",
-      "type": "registry:ui",
-      "target": "components/pivot/contact-display.tsx"
+      "type": "registry:ui"
     }
   ]
 }
