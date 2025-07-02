@@ -45,7 +45,7 @@ This file contains guidance for GitHub Copilot when working with internationaliz
 3. **Component Usage**: Always use the `useI18n` hook and `t()` function for any user-facing text.
    ```tsx
    // CORRECT
-   import { useI18n } from '@/lib/i18n/I18nProvider';
+   import { useI18n } from '@/registry/lib/i18n/I18nProvider';
 
    const MyComponent = () => {
      const { t } = useI18n();

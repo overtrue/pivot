@@ -1,12 +1,12 @@
 "use client";
 
-import { useI18n } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
+import { useI18n } from "@/registry/lib/i18n";
 import type { OpenAPIV3 } from 'openapi-types';
 
-import React from "react";
 import { resolveRef } from "@/registry/lib/utils/resolve-ref";
 import { LinkItem } from "@/registry/pivot/link-item";
+import React from "react";
 
 interface LinksSectionProps {
   links: Record<string, OpenAPIV3.LinkObject | OpenAPIV3.ReferenceObject>;

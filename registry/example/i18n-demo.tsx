@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { I18nProvider, useI18n } from "@/lib/i18n";
+import { I18nProvider, useI18n } from "@/registry/lib/i18n";
 import { RequiredMarker } from "@/registry/pivot/required-marker";
 import { TryItOutPanel } from "@/registry/pivot/try-it-out-panel";
 import { useState } from "react";
@@ -197,10 +197,10 @@ export default function I18nDemo() {
 const { t } = useI18n();
 
 // 在组件外部使用
-import { t } from "@/lib/i18n";
+import { t } from "@/registry/lib/i18n";
 
 // 创建特定语言的翻译函数
-import { createTranslator } from "@/lib/i18n";
+import { createTranslator } from "@/registry/lib/i18n";
 const tZh = createTranslator("zh");`}
             </pre>
           </div>

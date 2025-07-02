@@ -1,13 +1,13 @@
 "use client";
 
-import type { OpenAPIV3 } from 'openapi-types';
-import { useI18n } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
+import { useI18n } from "@/registry/lib/i18n";
+import type { OpenAPIV3 } from 'openapi-types';
 
-import React, { useState } from "react";
 import { ResponseGroup } from "@/registry/pivot/response-group";
 import { SectionTitle } from "@/registry/pivot/section-title";
 import { StatusCode } from "@/registry/pivot/status-code";
+import React, { useState } from "react";
 
 interface ResponsesSectionProps {
   responses: OpenAPIV3.ResponsesObject;

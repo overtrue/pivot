@@ -1,12 +1,12 @@
 "use client";
 
-import { useI18n } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
+import { useI18n } from "@/registry/lib/i18n";
+import { DescriptionDisplay } from "@/registry/pivot/description-display";
+import { ExpandCollapse } from "@/registry/pivot/expand-collapse";
+import { ServerDisplay } from "@/registry/pivot/server-display";
 import type { OpenAPIV3 } from 'openapi-types';
 import React, { useState } from "react";
-import { DescriptionDisplay } from "@/registry/pivot/description-display";
-import { ServerDisplay } from "@/registry/pivot/server-display";
-import { ExpandCollapse } from "@/registry/pivot/expand-collapse";
 
 interface LinkItemProps {
   name: string;

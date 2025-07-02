@@ -1,10 +1,9 @@
 "use client";
 
-import type { OpenAPIV3 } from 'openapi-types';
 import { Badge } from "@/components/ui/badge";
 import { Label } from "@/components/ui/label";
-import { useI18n } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
+import { useI18n } from "@/registry/lib/i18n";
 import { DeprecatedBadge } from "@/registry/pivot/deprecated-badge";
 import { DescriptionDisplay } from "@/registry/pivot/description-display";
 import { ExternalDocsDisplay } from "@/registry/pivot/external-docs-display";
@@ -14,6 +13,7 @@ import { ParametersSection } from "@/registry/pivot/parameters-section";
 import { RequestBodySection } from "@/registry/pivot/request-body-section";
 import { ResponsesSection } from "@/registry/pivot/responses-section";
 import { SecurityRequirementsSection } from "@/registry/pivot/security-requirements-section";
+import type { OpenAPIV3 } from 'openapi-types';
 import React from "react";
 
 // Import types from the centralized types file

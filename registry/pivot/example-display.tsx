@@ -1,9 +1,9 @@
 "use client";
 
-import { useI18n } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
-import React from "react";
+import { useI18n } from "@/registry/lib/i18n";
 import { CodeMarkdown } from "@/registry/pivot/code-markdown";
+import React from "react";
 
 interface ExampleDisplayProps {
   example: any;

@@ -70,6 +70,7 @@ async function analyzeFileDependencies(filePath: string): Promise<DependencyAnal
           if (componentName) {
             registryDependencies.add(`${REGISTRY_BASE_URL}/utils`);
             registryDependencies.add(`${REGISTRY_BASE_URL}/hooks`);
+            registryDependencies.add(`${REGISTRY_BASE_URL}/i18n`);
           }
         }
 
@@ -158,23 +159,40 @@ async function generateRegistryLib(): Promise<Registry["items"]> {
   try {
     const subDirs = await fs.readdir(libDir, { withFileTypes: true });
 
-    // Process each subdirectory (utils, hooks, etc.)
+    // Process each subdirectory (utils, hooks, i18n, etc.)
     for (const dirent of subDirs) {
       if (!dirent.isDirectory()) continue;
 
       const categoryName = dirent.name;
       const categoryPath = path.join(libDir, categoryName);
-      const type = categoryName === "utils" ? "registry:lib" : "registry:hook";
+      const type = categoryName === "hooks" ? "registry:hook" : "registry:lib";
       const files = await fs.readdir(categoryPath);
-      const tsFiles = files.filter(f => f.endsWith('.ts'));
 
-      if (tsFiles.length === 0) continue;
+      // For i18n directory, also include .tsx files and subdirectories
+      let allFiles: string[] = [];
+      if (categoryName === "i18n") {
+        allFiles = files.filter(f => f.endsWith('.ts') || f.endsWith('.tsx'));
+
+        // Also include locale files from subdirectories
+        const localesDir = path.join(categoryPath, 'locales');
+        try {
+          const localeFiles = await fs.readdir(localesDir);
+          const tsLocaleFiles = localeFiles.filter(f => f.endsWith('.ts'));
+          allFiles.push(...tsLocaleFiles.map(f => `locales/${f}`));
+        } catch (error) {
+          // locales directory might not exist
+        }
+      } else {
+        allFiles = files.filter(f => f.endsWith('.ts'));
+      }
+
+      if (allFiles.length === 0) continue;
 
       // Analyze dependencies for all files in this category
       const allDependencies = new Set<string>();
       const allRegistryDependencies = new Set<string>();
 
-      for (const file of tsFiles) {
+      for (const file of allFiles) {
         const filePath = path.join(categoryPath, file);
         const { npmDependencies, registryDependencies } = await analyzeFileDependencies(filePath);
 
@@ -183,7 +201,7 @@ async function generateRegistryLib(): Promise<Registry["items"]> {
       }
 
       // Build file list
-      const fileList = tsFiles.map(file => ({
+      const fileList = allFiles.map(file => ({
         path: `registry/lib/${categoryName}/${file}`,
         type: type
       }));
@@ -418,6 +436,7 @@ export const Index: Record<string, any> = {`;
 async function buildRegistryJsonFile(registry: Registry): Promise<void> {
   const fixedRegistry = {
     ...registry,
+    "$schema": "https://ui.shadcn.com/schema/registry.json",
     items: registry.items.map((item) => {
       const files = item.files?.map((file) => ({
         ...file,
@@ -471,7 +490,6 @@ async function main(): Promise<void> {
     // Step 2: Build complete registry configuration
     const registry: Registry = {
       name: "shadcn",
-      "$schema": "https://ui.shadcn.com/schema/registry.json",
       homepage: "https://ui.shadcn.com",
       items: z.array(registryItemSchema).parse(
         [

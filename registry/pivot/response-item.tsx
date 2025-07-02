@@ -1,15 +1,15 @@
 "use client";
 
-import { useI18n } from "@/lib/i18n";
 import { cn } from '@/lib/utils';
+import { useI18n } from "@/registry/lib/i18n";
 import type { OpenAPIV3 } from 'openapi-types';
 
-import React from 'react';
 import { resolveRef } from '@/registry/lib/utils/resolve-ref';
 import { DescriptionDisplay } from '@/registry/pivot/description-display';
 import { HeadersSection } from '@/registry/pivot/headers-section';
 import { LinksSection } from '@/registry/pivot/links-section';
 import { StatusCode } from '@/registry/pivot/status-code';
+import React from 'react';
 
 // 修改接口，接受原始响应对象或引用
 interface ResponseItemProps {

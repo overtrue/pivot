@@ -3,8 +3,8 @@
 import { Button } from "@/components/ui/button";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { Input } from "@/components/ui/input";
-import { useI18n } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
+import { useI18n } from "@/registry/lib/i18n";
 import { MethodLabel } from "@/registry/pivot/method-label";
 import {
   ChevronRight,

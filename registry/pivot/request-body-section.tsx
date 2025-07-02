@@ -1,12 +1,12 @@
 "use client";
 
-import type { OpenAPIV3 } from 'openapi-types';
-import { useI18n } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
+import { useI18n } from "@/registry/lib/i18n";
+import type { OpenAPIV3 } from 'openapi-types';
 
-import React from "react";
 import { SchemaWithExampleViewer } from "@/registry/pivot/schema-with-example-viewer";
 import { SectionTitle } from "@/registry/pivot/section-title";
+import React from "react";
 
 interface RequestBodySectionProps {
   requestBody: OpenAPIV3.RequestBodyObject | OpenAPIV3.ReferenceObject;

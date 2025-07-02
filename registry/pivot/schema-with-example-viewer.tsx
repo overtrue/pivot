@@ -1,16 +1,16 @@
 "use client";
 
-import { useI18n } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
+import { useI18n } from "@/registry/lib/i18n";
 import type { OpenAPIV3 } from 'openapi-types';
 
-import React, { useEffect, useState } from "react";
 import { generateExample } from "@/registry/lib/utils/generate-example";
 import { resolveRef } from "@/registry/lib/utils/resolve-ref";
 import { DescriptionDisplay } from "@/registry/pivot/description-display";
 import { ExampleDisplay } from "@/registry/pivot/example-display";
 import { MediaTypeSelector } from "@/registry/pivot/media-type-selector";
 import { SchemaDisplay } from "@/registry/pivot/schema-display";
+import React, { useEffect, useState } from "react";
 
 // Define view modes
 type ViewMode = 'schema' | 'example';

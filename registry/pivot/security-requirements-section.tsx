@@ -1,13 +1,13 @@
 "use client";
 
-import { useI18n } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
-import React from "react";
+import { useI18n } from "@/registry/lib/i18n";
 import { SectionTitle } from "@/registry/pivot/section-title";
 import {
   SecurityRequirementItem,
   type SecurityRequirementObject,
 } from "@/registry/pivot/security-requirement-item";
+import React from "react";
 
 interface SecurityRequirementsSectionProps {
   security?: SecurityRequirementObject[];

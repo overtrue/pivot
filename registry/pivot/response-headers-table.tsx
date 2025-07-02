@@ -1,12 +1,12 @@
 "use client";
 
-import { useI18n } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
-import type { OpenAPIV3 } from 'openapi-types';
-import React from "react";
+import { useI18n } from "@/registry/lib/i18n";
 import { resolveRef } from "@/registry/lib/utils/resolve-ref";
 import { HeaderItem } from "@/registry/pivot/header-item";
 import { type StyleType } from "@/registry/pivot/style-badge";
+import type { OpenAPIV3 } from 'openapi-types';
+import React from "react";
 
 // Import types from the centralized types file
 

@@ -1,6 +1,6 @@
 "use client";
 
-import { useI18n } from "@/lib/i18n";
+import { useI18n } from "@/registry/lib/i18n";
 import { Codegen } from "@/registry/pivot/codegen";
 import { OperationDetail } from "@/registry/pivot/operation-detail";
 import { TryItOutPanel } from "@/registry/pivot/try-it-out-panel";

@@ -1,7 +1,7 @@
 "use client";
 
-import { useI18n } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
+import { useI18n } from "@/registry/lib/i18n";
 import { Globe } from "lucide-react";
 import React from "react";
 

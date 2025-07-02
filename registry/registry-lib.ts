@@ -25,7 +25,38 @@ export const lib: Registry["items"] = [
     "registryDependencies": [
       "https://pivotkit.vercel.app/r/utils",
       "https://pivotkit.vercel.app/r/hooks",
+      "https://pivotkit.vercel.app/r/i18n",
       "https://pivotkit.vercel.app/r/resolve-ref"
+    ]
+  },
+  {
+    "name": "i18n",
+    "type": "registry:lib",
+    "files": [
+      {
+        "path": "registry/lib/i18n/I18nProvider.tsx",
+        "type": "registry:lib"
+      },
+      {
+        "path": "registry/lib/i18n/index.ts",
+        "type": "registry:lib"
+      },
+      {
+        "path": "registry/lib/i18n/locales/en.ts",
+        "type": "registry:lib"
+      },
+      {
+        "path": "registry/lib/i18n/locales/zh.ts",
+        "type": "registry:lib"
+      }
+    ],
+    "dependencies": [
+      "react"
+    ],
+    "registryDependencies": [
+      "https://pivotkit.vercel.app/r/en",
+      "https://pivotkit.vercel.app/r/zh",
+      "https://pivotkit.vercel.app/r/I18nProvider"
     ]
   },
   {
@@ -55,7 +86,8 @@ export const lib: Registry["items"] = [
     ],
     "registryDependencies": [
       "https://pivotkit.vercel.app/r/utils",
-      "https://pivotkit.vercel.app/r/hooks"
+      "https://pivotkit.vercel.app/r/hooks",
+      "https://pivotkit.vercel.app/r/i18n"
     ]
   }
 ];

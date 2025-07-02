@@ -1,7 +1,7 @@
 "use client";
 
 import type { OpenAPIV3 } from 'openapi-types';
-import { I18nProvider } from "@/lib/i18n/I18nProvider";
+import { I18nProvider } from "@/registry/lib/i18n/I18nProvider";
 import { ResponseContentSection } from "@/registry/pivot/response-content-section";
 
 // 示例 OpenAPI 规范

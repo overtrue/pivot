@@ -1,7 +1,7 @@
 "use client";
 
-import { useI18n } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
+import { useI18n } from "@/registry/lib/i18n";
 import { Clipboard, ClipboardCheck } from "lucide-react";
 import React, { useEffect, useState } from "react";
 

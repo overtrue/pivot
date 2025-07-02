@@ -1,7 +1,7 @@
 "use client";
 
-import { useI18n } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
+import { useI18n } from "@/registry/lib/i18n";
 import { resolveRef } from "@/registry/lib/utils/resolve-ref";
 import { MethodLabel } from "@/registry/pivot/method-label";
 import type { ResponseData } from "@/types/project";

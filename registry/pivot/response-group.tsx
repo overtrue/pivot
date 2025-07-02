@@ -1,12 +1,12 @@
 "use client";
 
-import { useI18n } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
+import { useI18n } from "@/registry/lib/i18n";
 import type { OpenAPIV3 } from 'openapi-types';
 
-import React from "react";
 import { ResponseContentSection } from "@/registry/pivot/response-content-section";
 import { ResponseHeadersTable } from "@/registry/pivot/response-headers-table";
+import React from "react";
 
 interface ResponseGroupProps {
   status: string;
