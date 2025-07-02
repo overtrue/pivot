@@ -1,4 +1,4 @@
-import { resolveRef } from "@/lib/utils/resolve-ref";
+import { resolveRef } from "@/registry/lib/utils/resolve-ref";
 import { faker } from '@faker-js/faker';
 import type { OpenAPIV3 } from 'openapi-types';
 
