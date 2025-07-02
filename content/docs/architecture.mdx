@@ -1,0 +1,490 @@
+---
+title: 项目架构
+description: 深入了解 Pivot 的设计理念、代码组织和最佳实践。
+---
+
+# 项目架构
+
+Pivot 采用现代化的组件库架构，深受 [shadcn/ui](https://ui.shadcn.com) 启发，但专为 OpenAPI 规范优化。本文档将详细介绍项目的设计理念、目录结构和开发规范。
+
+## 🏗️ 总体架构
+
+### 设计原则
+
+1. **组件分离**：明确区分可分发组件和站点专用组件
+2. **原子化设计**：构建可组合的小组件，灵活组合成复杂界面
+3. **类型安全**：完整的 TypeScript 支持，确保开发时的类型安全
+4. **按需引入**：只安装需要的组件，减少包体积
+5. **源码透明**：所有组件源码可见，方便定制和学习
+
+### 架构层次
+
+```
+┌─────────────────────────────────────────┐
+│                用户界面                  │
+├─────────────────────────────────────────┤
+│            Registry 组件库               │
+│  ┌─────────────┬──────────────────────┐  │
+│  │   pivot/    │      example/        │  │
+│  │  (89+ 组件) │    (复杂示例)        │  │
+│  └─────────────┴──────────────────────┘  │
+├─────────────────────────────────────────┤
+│              工具层 (lib/)               │
+│  ┌─────────┬──────────┬──────────────┐  │
+│  │ hooks/  │ utils/   │    i18n/     │  │
+│  └─────────┴──────────┴──────────────┘  │
+├─────────────────────────────────────────┤
+│           基础设施 (Next.js)             │
+└─────────────────────────────────────────┘
+```
+
+## 📁 目录结构详解
+
+### 可分发组件 (`registry/`)
+
+这是项目的核心，包含所有可以对外分发的组件和工具：
+
+```
+registry/
+├── pivot/                    # 89+ 原子组件
+│   ├── status-code.tsx       # HTTP 状态码组件
+│   ├── method-label.tsx      # HTTP 方法标签
+│   ├── schema-display.tsx    # Schema 展示组件
+│   ├── try-it-out-panel.tsx  # API 测试面板
+│   └── ...                   # 更多组件
+├── lib/                      # 工具库
+│   ├── hooks/                # React Hooks
+│   │   ├── use-openapi.ts    # 主要的 OpenAPI 处理 Hook
+│   │   ├── use-operation.ts  # 操作处理 Hook
+│   │   └── use-schema.ts     # Schema 处理 Hook
+│   ├── utils/                # 工具函数
+│   │   ├── resolve-ref.ts    # 引用解析
+│   │   ├── generate-example.ts # 示例生成
+│   │   └── schema-utils.ts   # Schema 工具函数
+│   └── i18n/                 # 国际化系统
+│       ├── I18nProvider.tsx  # 国际化 Provider
+│       └── locales/          # 语言包
+└── example/                  # 复杂示例组件
+    └── operation-list-layout-demo.tsx
+```
+
+### 文档站点 (`components/`, `app/`, `content/`)
+
+专用于文档站点的组件和内容：
+
+```
+components/                   # 站点专用组件（不分发）
+├── ui/                      # shadcn/ui 基础组件
+├── magicui/                 # 特效组件
+├── site-header.tsx          # 站点头部
+├── sidebar-nav.tsx          # 文档侧边栏
+└── component-preview.tsx    # 组件预览
+
+content/docs/                # MDX 文档内容
+├── index.mdx               # 主文档页面
+├── components/             # 组件文档
+├── installation/           # 安装指南
+└── templates/              # 模板文档
+
+app/                        # Next.js App Router
+├── (docs)/                 # 文档路由组
+├── viewer/                 # OpenAPI 查看器
+└── page.tsx               # 主页
+```
+
+## 🔄 代码复用策略
+
+### 严格的分层原则
+
+Pivot 采用严格的分层架构，确保代码的清晰性和可维护性：
+
+#### Registry 组件层 (`registry/pivot/`)
+
+**只能使用**：
+
+- `../lib/` 下的工具和 hooks
+- 第三方库
+- 自身定义的类型和函数
+
+**禁止使用**：
+
+- `@/hooks/` 下的站点专用 hooks
+- `@/components/` 下的站点组件
+
+```tsx title="registry/pivot/example-component.tsx"
+// ✅ 正确的导入
+import { useOpenApi } from "../lib/hooks/use-openapi";
+import { resolveRef } from "../lib/utils/resolve-ref";
+import { cn } from "@/lib/utils";
+
+// ❌ 错误的导入
+import { useConfig } from "@/hooks/use-config"; // 站点专用 hook
+```
+
+#### 站点组件层 (`components/`)
+
+**只能使用**：
+
+- `@/hooks/` 和 `@/lib/` 下的站点工具
+- `@/components/ui/` 下的基础组件
+- Registry 组件（作为依赖）
+
+**禁止使用**：
+
+- 直接导入 `registry/lib/` 下的工具
+
+```tsx title="components/example-site-component.tsx"
+// ✅ 正确的导入
+import { useConfig } from "@/hooks/use-config";
+import { StatusCode } from "@/components/pivot/status-code";
+
+// ❌ 错误的导入
+import { useOpenApi } from "@/registry/lib/hooks/use-openapi";
+```
+
+### 工具函数分布
+
+#### Registry 工具 (`registry/lib/`)
+
+专为 OpenAPI 处理设计，可分发：
+
+```tsx
+// OpenAPI 专用工具
+export function resolveRef(obj, components, category) {
+  // 处理 $ref 引用的专业逻辑
+}
+
+export function generateExample(schema, components, options) {
+  // 根据 Schema 生成示例数据
+}
+```
+
+#### 站点工具 (`lib/`, `hooks/`)
+
+站点专用工具，不分发：
+
+```tsx
+// 站点配置
+export function useConfig() {
+  // 站点配置逻辑
+}
+
+// 文档相关工具
+export function getTableOfContents(content) {
+  // 提取文档目录
+}
+```
+
+## 🎨 样式和主题系统
+
+### Tailwind CSS 配置
+
+基于 Tailwind CSS v4，支持暗色模式：
+
+```js title="tailwind.config.js"
+module.exports = {
+  content: [
+    "./pages/**/*.{js,ts,jsx,tsx,mdx}",
+    "./components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./registry/**/*.{js,ts,jsx,tsx,mdx}",
+    "./app/**/*.{js,ts,jsx,tsx,mdx}",
+  ],
+  theme: {
+    extend: {
+      colors: {
+        // 状态码颜色
+        status: {
+          info: "#3b82f6",
+          success: "#10b981",
+          redirect: "#f59e0b",
+          client: "#f97316",
+          server: "#ef4444",
+        },
+      },
+    },
+  },
+};
+```
+
+### 组件变体系统
+
+使用 `class-variance-authority` 管理组件变体：
+
+```tsx title="示例：status-code.tsx"
+const statusCodeVariants = cva(
+  "inline-flex items-center rounded-md border px-2.5 py-0.5 text-xs font-semibold",
+  {
+    variants: {
+      variant: {
+        default: "border-transparent text-primary-foreground",
+        outline: "text-foreground",
+      },
+      size: {
+        sm: "px-2 py-0.5 text-xs",
+        md: "px-2.5 py-0.5 text-xs",
+        lg: "px-3 py-1 text-sm",
+      },
+    },
+    defaultVariants: {
+      variant: "default",
+      size: "md",
+    },
+  }
+);
+```
+
+## 🎣 Hooks 设计模式
+
+### useOpenApi - 核心 Hook
+
+提供 OpenAPI 数据处理的完整功能：
+
+```tsx
+export function useOpenApi(spec: OpenAPIV3.Document | null) {
+  // 缓存组件
+  const components = spec?.components;
+
+  // 优化的引用解析
+  const resolve = useMemo(() => {
+    return function resolve<T>(
+      obj: T | OpenAPIV3.ReferenceObject,
+      category?: string
+    ): T | null {
+      return resolveRef<T>(obj, components, category);
+    };
+  }, [components, spec]);
+
+  // 返回完整的 API
+  return {
+    spec,
+    components,
+    resolve,
+    getSchemaType,
+    getOperationsByTag,
+    // ... 更多方法
+  };
+}
+```
+
+### Hook 组合模式
+
+鼓励 hooks 之间的组合使用：
+
+```tsx
+function ApiEndpoint({ spec, path, method }) {
+  // 主 Hook
+  const openApi = useOpenApi(spec);
+
+  // 专用 Hook
+  const operation = useOperation(
+    openApi.getOperation(path, method),
+    path,
+    method
+  );
+
+  // 模式 Hook
+  const requestSchema = useSchema(
+    operation.getRequestBody()?.content?.["application/json"]?.schema,
+    openApi.getComponents()
+  );
+
+  return <div>{/* 使用组合的数据 */}</div>;
+}
+```
+
+## 🌍 国际化架构
+
+### 分布式翻译系统
+
+```tsx title="registry/lib/i18n/I18nProvider.tsx"
+export const I18nProvider: React.FC<{ children: React.ReactNode }> = ({
+  children,
+}) => {
+  const [locale, setLocale] = useState<"en" | "zh">("en");
+
+  const t = (key: string): string => {
+    return locales[locale]?.[key] || key;
+  };
+
+  return (
+    <I18nContext.Provider value={{ locale, setLocale, t }}>
+      {children}
+    </I18nContext.Provider>
+  );
+};
+```
+
+### 无 Provider 支持
+
+Hook 设计为即使没有 Provider 也能工作：
+
+```tsx
+export const useI18n = (): I18nContextProps => {
+  const context = useContext(I18nContext);
+
+  // 没有 provider 时的降级策略
+  if (!context) {
+    return {
+      locale: "en",
+      setLocale: () =>
+        console.warn("useI18n: setLocale called outside of provider"),
+      t: createDefaultTranslator("en"),
+    };
+  }
+
+  return context;
+};
+```
+
+## 📦 Registry 系统
+
+### 组件注册
+
+每个组件都在 `registry.json` 中注册：
+
+```json
+{
+  "name": "status-code",
+  "type": "registry:ui",
+  "dependencies": ["react", "class-variance-authority"],
+  "files": [
+    {
+      "path": "registry/pivot/status-code.tsx",
+      "type": "registry:ui"
+    }
+  ]
+}
+```
+
+### 依赖管理
+
+支持组件间的依赖关系：
+
+```json
+{
+  "name": "parameter-item",
+  "registryDependencies": ["status-code", "type-indicator", "required-badge"]
+}
+```
+
+## 🚀 性能优化策略
+
+### 1. 代码分割
+
+```tsx
+// 懒加载重型组件
+const TryItOutPanel = dynamic(
+  () => import("@/components/pivot/try-it-out-panel"),
+  { loading: () => <div>Loading...</div> }
+);
+```
+
+### 2. 记忆化缓存
+
+```tsx
+// 缓存复杂计算
+const operationsByTag = useMemo(() => {
+  return openApi.getOperationsByTag();
+}, [openApi]);
+```
+
+### 3. 引用解析优化
+
+```tsx
+// 避免重复解析
+const resolveRef = useMemo(() => {
+  const cache = new Map();
+  return function resolve(obj, category) {
+    const key = `${obj.$ref}-${category}`;
+    if (cache.has(key)) return cache.get(key);
+
+    const result = resolveRefImpl(obj, components, category);
+    cache.set(key, result);
+    return result;
+  };
+}, [components]);
+```
+
+## 🔍 质量保证
+
+### TypeScript 严格模式
+
+```json title="tsconfig.json"
+{
+  "compilerOptions": {
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "exactOptionalPropertyTypes": true
+  }
+}
+```
+
+### 组件 Props 验证
+
+```tsx
+interface StatusCodeProps extends React.HTMLAttributes<HTMLDivElement> {
+  code: number;
+  variant?: "default" | "outline";
+  size?: "sm" | "md" | "lg";
+}
+
+// 运行时验证（开发模式）
+if (process.env.NODE_ENV === "development") {
+  if (code < 100 || code > 599) {
+    console.warn(`Invalid HTTP status code: ${code}`);
+  }
+}
+```
+
+### 错误边界
+
+```tsx
+export function ErrorBoundary({ children, fallback }) {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <ErrorBoundaryImpl fallback={fallback}>{children}</ErrorBoundaryImpl>
+    </Suspense>
+  );
+}
+```
+
+## 📚 开发工作流
+
+### 1. 组件开发
+
+```bash
+# 创建新组件
+touch registry/pivot/new-component.tsx
+
+# 添加到 registry
+echo '{"name": "new-component", ...}' >> registry.json
+
+# 构建 registry
+npm run build:registry
+```
+
+### 2. 文档编写
+
+```bash
+# 创建组件文档
+touch content/docs/components/new-component.mdx
+
+# 添加示例
+touch registry/example/new-component-demo.tsx
+```
+
+### 3. 测试验证
+
+```bash
+# 类型检查
+npm run type-check
+
+# 构建验证
+npm run build
+
+# 组件测试
+npm run test:components
+```
+
+这个架构确保了 Pivot 的可扩展性、可维护性和开发者体验。通过清晰的分层和严格的规范，我们能够提供一个既强大又易于使用的 OpenAPI 组件库。
