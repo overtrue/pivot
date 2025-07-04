@@ -9,7 +9,8 @@
     {
       "path": "registry/pivot/external-docs.tsx",
       "content": "import { cn } from \"@/lib/utils\";\nimport React from \"react\";\n\ninterface ExternalDocsProps {\n  url: string;\n  description?: string;\n  className?: string;\n}\n\nconst ExternalDocs = React.forwardRef<HTMLDivElement, ExternalDocsProps>(\n  ({ url, description, className }, ref) => {\n    return (\n      <div\n        ref={ref}\n        className={cn(\n          \"p-4 border rounded bg-neutral-50 dark:bg-neutral-800 dark:border-neutral-700\",\n          className,\n        )}\n      >\n        <h2 className=\"text-lg font-bold mb-2 dark:text-white\">\n          External Documentation\n        </h2>\n        <p className=\"text-sm text-neutral-600 dark:text-neutral-400\">\n          {description || \"Additional information can be found here:\"}\n        </p>\n        <a\n          href={url}\n          target=\"_blank\"\n          rel=\"noopener noreferrer\"\n          className=\"text-blue-600 dark:text-blue-400 hover:underline\"\n        >\n          {url}\n        </a>\n      </div>\n    );\n  }\n);\n\nExternalDocs.displayName = \"ExternalDocs\";\n\nexport { ExternalDocs };\n",
-      "type": "registry:ui"
+      "type": "registry:ui",
+      "target": "registry/pivot/external-docs.tsx"
     }
   ]
 }

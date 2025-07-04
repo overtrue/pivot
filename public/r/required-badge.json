@@ -9,7 +9,8 @@
     {
       "path": "registry/pivot/required-badge.tsx",
       "content": "import { cn } from \"@/lib/utils\";\nimport React from \"react\";\n\ninterface RequiredBadgeProps {\n  className?: string;\n  children?: React.ReactNode;\n}\n\nconst RequiredBadge = React.forwardRef<HTMLSpanElement, RequiredBadgeProps>(\n  ({ className, children }, ref) => {\n    return (\n      <span\n        ref={ref}\n        className={cn(\n          \"bg-red-100 dark:bg-red-900/30 text-red-800 dark:text-red-400 px-2 py-0.5 text-xs rounded font-semibold\",\n          className,\n        )}\n      >\n        {children || \"Required\"}\n      </span>\n    );\n  },\n);\n\nRequiredBadge.displayName = \"RequiredBadge\";\n\nexport { RequiredBadge };\n",
-      "type": "registry:ui"
+      "type": "registry:ui",
+      "target": "registry/pivot/required-badge.tsx"
     }
   ]
 }

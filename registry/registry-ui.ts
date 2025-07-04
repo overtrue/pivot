@@ -7,7 +7,8 @@ export const ui: Registry["items"] = [
     "files": [
       {
         "path": "registry/pivot/accordion-components-section.tsx",
-        "type": "registry:ui"
+        "type": "registry:ui",
+        "target": "registry/pivot/accordion-components-section.tsx"
       }
     ],
     "dependencies": [
@@ -25,7 +26,8 @@ export const ui: Registry["items"] = [
     "files": [
       {
         "path": "registry/pivot/callback-display.tsx",
-        "type": "registry:ui"
+        "type": "registry:ui",
+        "target": "registry/pivot/callback-display.tsx"
       }
     ],
     "dependencies": [
@@ -42,7 +44,8 @@ export const ui: Registry["items"] = [
     "files": [
       {
         "path": "registry/pivot/code-markdown.tsx",
-        "type": "registry:ui"
+        "type": "registry:ui",
+        "target": "registry/pivot/code-markdown.tsx"
       }
     ],
     "dependencies": [
@@ -60,7 +63,8 @@ export const ui: Registry["items"] = [
     "files": [
       {
         "path": "registry/pivot/codegen.tsx",
-        "type": "registry:ui"
+        "type": "registry:ui",
+        "target": "registry/pivot/codegen.tsx"
       }
     ],
     "dependencies": [
@@ -78,7 +82,8 @@ export const ui: Registry["items"] = [
     "files": [
       {
         "path": "registry/pivot/component-detail.tsx",
-        "type": "registry:ui"
+        "type": "registry:ui",
+        "target": "registry/pivot/component-detail.tsx"
       }
     ],
     "dependencies": [
@@ -104,7 +109,8 @@ export const ui: Registry["items"] = [
     "files": [
       {
         "path": "registry/pivot/component-items-list.tsx",
-        "type": "registry:ui"
+        "type": "registry:ui",
+        "target": "registry/pivot/component-items-list.tsx"
       }
     ],
     "dependencies": [
@@ -117,7 +123,8 @@ export const ui: Registry["items"] = [
     "files": [
       {
         "path": "registry/pivot/component-tabs.tsx",
-        "type": "registry:ui"
+        "type": "registry:ui",
+        "target": "registry/pivot/component-tabs.tsx"
       }
     ],
     "dependencies": [
@@ -130,7 +137,8 @@ export const ui: Registry["items"] = [
     "files": [
       {
         "path": "registry/pivot/components-section.tsx",
-        "type": "registry:ui"
+        "type": "registry:ui",
+        "target": "registry/pivot/components-section.tsx"
       }
     ],
     "dependencies": [
@@ -149,7 +157,8 @@ export const ui: Registry["items"] = [
     "files": [
       {
         "path": "registry/pivot/const-value.tsx",
-        "type": "registry:ui"
+        "type": "registry:ui",
+        "target": "registry/pivot/const-value.tsx"
       }
     ],
     "dependencies": [
@@ -165,7 +174,8 @@ export const ui: Registry["items"] = [
     "files": [
       {
         "path": "registry/pivot/constraint-display.tsx",
-        "type": "registry:ui"
+        "type": "registry:ui",
+        "target": "registry/pivot/constraint-display.tsx"
       }
     ],
     "dependencies": [
@@ -179,7 +189,8 @@ export const ui: Registry["items"] = [
     "files": [
       {
         "path": "registry/pivot/contact-display.tsx",
-        "type": "registry:ui"
+        "type": "registry:ui",
+        "target": "registry/pivot/contact-display.tsx"
       }
     ],
     "dependencies": [
@@ -193,7 +204,8 @@ export const ui: Registry["items"] = [
     "files": [
       {
         "path": "registry/pivot/copy-button.tsx",
-        "type": "registry:ui"
+        "type": "registry:ui",
+        "target": "registry/pivot/copy-button.tsx"
       }
     ],
     "dependencies": [
@@ -207,7 +219,8 @@ export const ui: Registry["items"] = [
     "files": [
       {
         "path": "registry/pivot/curl-generator.tsx",
-        "type": "registry:ui"
+        "type": "registry:ui",
+        "target": "registry/pivot/curl-generator.tsx"
       }
     ],
     "dependencies": [
@@ -221,7 +234,8 @@ export const ui: Registry["items"] = [
     "files": [
       {
         "path": "registry/pivot/default-value-display.tsx",
-        "type": "registry:ui"
+        "type": "registry:ui",
+        "target": "registry/pivot/default-value-display.tsx"
       }
     ],
     "dependencies": [
@@ -237,7 +251,8 @@ export const ui: Registry["items"] = [
     "files": [
       {
         "path": "registry/pivot/deprecated-badge.tsx",
-        "type": "registry:ui"
+        "type": "registry:ui",
+        "target": "registry/pivot/deprecated-badge.tsx"
       }
     ],
     "dependencies": [
@@ -250,7 +265,8 @@ export const ui: Registry["items"] = [
     "files": [
       {
         "path": "registry/pivot/description-display.tsx",
-        "type": "registry:ui"
+        "type": "registry:ui",
+        "target": "registry/pivot/description-display.tsx"
       }
     ],
     "dependencies": [
@@ -264,7 +280,8 @@ export const ui: Registry["items"] = [
     "files": [
       {
         "path": "registry/pivot/enum-values-display.tsx",
-        "type": "registry:ui"
+        "type": "registry:ui",
+        "target": "registry/pivot/enum-values-display.tsx"
       }
     ],
     "dependencies": [
@@ -280,7 +297,8 @@ export const ui: Registry["items"] = [
     "files": [
       {
         "path": "registry/pivot/enum-values.tsx",
-        "type": "registry:ui"
+        "type": "registry:ui",
+        "target": "registry/pivot/enum-values.tsx"
       }
     ],
     "dependencies": [
@@ -296,7 +314,8 @@ export const ui: Registry["items"] = [
     "files": [
       {
         "path": "registry/pivot/example-display.tsx",
-        "type": "registry:ui"
+        "type": "registry:ui",
+        "target": "registry/pivot/example-display.tsx"
       }
     ],
     "dependencies": [
@@ -312,7 +331,8 @@ export const ui: Registry["items"] = [
     "files": [
       {
         "path": "registry/pivot/examples-display.tsx",
-        "type": "registry:ui"
+        "type": "registry:ui",
+        "target": "registry/pivot/examples-display.tsx"
       }
     ],
     "dependencies": [
@@ -329,7 +349,8 @@ export const ui: Registry["items"] = [
     "files": [
       {
         "path": "registry/pivot/expand-collapse.tsx",
-        "type": "registry:ui"
+        "type": "registry:ui",
+        "target": "registry/pivot/expand-collapse.tsx"
       }
     ],
     "dependencies": [
@@ -342,7 +363,8 @@ export const ui: Registry["items"] = [
     "files": [
       {
         "path": "registry/pivot/external-docs-display.tsx",
-        "type": "registry:ui"
+        "type": "registry:ui",
+        "target": "registry/pivot/external-docs-display.tsx"
       }
     ],
     "dependencies": [
@@ -356,7 +378,8 @@ export const ui: Registry["items"] = [
     "files": [
       {
         "path": "registry/pivot/external-docs.tsx",
-        "type": "registry:ui"
+        "type": "registry:ui",
+        "target": "registry/pivot/external-docs.tsx"
       }
     ],
     "dependencies": [
@@ -369,7 +392,8 @@ export const ui: Registry["items"] = [
     "files": [
       {
         "path": "registry/pivot/format-badge.tsx",
-        "type": "registry:ui"
+        "type": "registry:ui",
+        "target": "registry/pivot/format-badge.tsx"
       }
     ],
     "dependencies": [
@@ -382,7 +406,8 @@ export const ui: Registry["items"] = [
     "files": [
       {
         "path": "registry/pivot/header-item.tsx",
-        "type": "registry:ui"
+        "type": "registry:ui",
+        "target": "registry/pivot/header-item.tsx"
       }
     ],
     "dependencies": [
@@ -407,7 +432,8 @@ export const ui: Registry["items"] = [
     "files": [
       {
         "path": "registry/pivot/headers-section.tsx",
-        "type": "registry:ui"
+        "type": "registry:ui",
+        "target": "registry/pivot/headers-section.tsx"
       }
     ],
     "dependencies": [
@@ -425,7 +451,8 @@ export const ui: Registry["items"] = [
     "files": [
       {
         "path": "registry/pivot/in-label.tsx",
-        "type": "registry:ui"
+        "type": "registry:ui",
+        "target": "registry/pivot/in-label.tsx"
       }
     ],
     "dependencies": [
@@ -438,7 +465,8 @@ export const ui: Registry["items"] = [
     "files": [
       {
         "path": "registry/pivot/info-section.tsx",
-        "type": "registry:ui"
+        "type": "registry:ui",
+        "target": "registry/pivot/info-section.tsx"
       }
     ],
     "dependencies": [
@@ -458,7 +486,8 @@ export const ui: Registry["items"] = [
     "files": [
       {
         "path": "registry/pivot/language-switcher.tsx",
-        "type": "registry:ui"
+        "type": "registry:ui",
+        "target": "registry/pivot/language-switcher.tsx"
       }
     ],
     "dependencies": [
@@ -472,7 +501,8 @@ export const ui: Registry["items"] = [
     "files": [
       {
         "path": "registry/pivot/laravel-generator.tsx",
-        "type": "registry:ui"
+        "type": "registry:ui",
+        "target": "registry/pivot/laravel-generator.tsx"
       }
     ],
     "dependencies": [
@@ -486,7 +516,8 @@ export const ui: Registry["items"] = [
     "files": [
       {
         "path": "registry/pivot/license-display.tsx",
-        "type": "registry:ui"
+        "type": "registry:ui",
+        "target": "registry/pivot/license-display.tsx"
       }
     ],
     "dependencies": [
@@ -500,7 +531,8 @@ export const ui: Registry["items"] = [
     "files": [
       {
         "path": "registry/pivot/link-item.tsx",
-        "type": "registry:ui"
+        "type": "registry:ui",
+        "target": "registry/pivot/link-item.tsx"
       }
     ],
     "dependencies": [
@@ -519,7 +551,8 @@ export const ui: Registry["items"] = [
     "files": [
       {
         "path": "registry/pivot/links-section.tsx",
-        "type": "registry:ui"
+        "type": "registry:ui",
+        "target": "registry/pivot/links-section.tsx"
       }
     ],
     "dependencies": [
@@ -536,7 +569,8 @@ export const ui: Registry["items"] = [
     "files": [
       {
         "path": "registry/pivot/media-type-display.tsx",
-        "type": "registry:ui"
+        "type": "registry:ui",
+        "target": "registry/pivot/media-type-display.tsx"
       }
     ],
     "dependencies": [
@@ -549,7 +583,8 @@ export const ui: Registry["items"] = [
     "files": [
       {
         "path": "registry/pivot/media-type-selector.tsx",
-        "type": "registry:ui"
+        "type": "registry:ui",
+        "target": "registry/pivot/media-type-selector.tsx"
       }
     ],
     "dependencies": [
@@ -562,7 +597,8 @@ export const ui: Registry["items"] = [
     "files": [
       {
         "path": "registry/pivot/method-label.tsx",
-        "type": "registry:ui"
+        "type": "registry:ui",
+        "target": "registry/pivot/method-label.tsx"
       }
     ],
     "dependencies": [
@@ -575,7 +611,8 @@ export const ui: Registry["items"] = [
     "files": [
       {
         "path": "registry/pivot/navigation-sidebar.tsx",
-        "type": "registry:ui"
+        "type": "registry:ui",
+        "target": "registry/pivot/navigation-sidebar.tsx"
       }
     ],
     "dependencies": [
@@ -596,7 +633,8 @@ export const ui: Registry["items"] = [
     "files": [
       {
         "path": "registry/pivot/oauth-flow-details.tsx",
-        "type": "registry:ui"
+        "type": "registry:ui",
+        "target": "registry/pivot/oauth-flow-details.tsx"
       }
     ],
     "dependencies": [
@@ -609,7 +647,8 @@ export const ui: Registry["items"] = [
     "files": [
       {
         "path": "registry/pivot/oauth-flow.tsx",
-        "type": "registry:ui"
+        "type": "registry:ui",
+        "target": "registry/pivot/oauth-flow.tsx"
       }
     ],
     "dependencies": [
@@ -622,7 +661,8 @@ export const ui: Registry["items"] = [
     "files": [
       {
         "path": "registry/pivot/operation-box.tsx",
-        "type": "registry:ui"
+        "type": "registry:ui",
+        "target": "registry/pivot/operation-box.tsx"
       }
     ],
     "dependencies": [
@@ -648,7 +688,8 @@ export const ui: Registry["items"] = [
     "files": [
       {
         "path": "registry/pivot/operation-detail.tsx",
-        "type": "registry:ui"
+        "type": "registry:ui",
+        "target": "registry/pivot/operation-detail.tsx"
       }
     ],
     "dependencies": [
@@ -675,7 +716,8 @@ export const ui: Registry["items"] = [
     "files": [
       {
         "path": "registry/pivot/operation-detailed-layout.tsx",
-        "type": "registry:ui"
+        "type": "registry:ui",
+        "target": "registry/pivot/operation-detailed-layout.tsx"
       }
     ],
     "dependencies": [
@@ -695,7 +737,8 @@ export const ui: Registry["items"] = [
     "files": [
       {
         "path": "registry/pivot/operation-list-layout.tsx",
-        "type": "registry:ui"
+        "type": "registry:ui",
+        "target": "registry/pivot/operation-list-layout.tsx"
       }
     ],
     "dependencies": [
@@ -714,7 +757,8 @@ export const ui: Registry["items"] = [
     "files": [
       {
         "path": "registry/pivot/operation-path.tsx",
-        "type": "registry:ui"
+        "type": "registry:ui",
+        "target": "registry/pivot/operation-path.tsx"
       }
     ],
     "dependencies": [
@@ -730,7 +774,8 @@ export const ui: Registry["items"] = [
     "files": [
       {
         "path": "registry/pivot/parameter-description.tsx",
-        "type": "registry:ui"
+        "type": "registry:ui",
+        "target": "registry/pivot/parameter-description.tsx"
       }
     ],
     "dependencies": [
@@ -743,7 +788,8 @@ export const ui: Registry["items"] = [
     "files": [
       {
         "path": "registry/pivot/parameter-group.tsx",
-        "type": "registry:ui"
+        "type": "registry:ui",
+        "target": "registry/pivot/parameter-group.tsx"
       }
     ],
     "dependencies": [
@@ -761,7 +807,8 @@ export const ui: Registry["items"] = [
     "files": [
       {
         "path": "registry/pivot/parameter-item.tsx",
-        "type": "registry:ui"
+        "type": "registry:ui",
+        "target": "registry/pivot/parameter-item.tsx"
       }
     ],
     "dependencies": [
@@ -789,7 +836,8 @@ export const ui: Registry["items"] = [
     "files": [
       {
         "path": "registry/pivot/parameter-name.tsx",
-        "type": "registry:ui"
+        "type": "registry:ui",
+        "target": "registry/pivot/parameter-name.tsx"
       }
     ],
     "dependencies": [
@@ -802,7 +850,8 @@ export const ui: Registry["items"] = [
     "files": [
       {
         "path": "registry/pivot/parameters-section.tsx",
-        "type": "registry:ui"
+        "type": "registry:ui",
+        "target": "registry/pivot/parameters-section.tsx"
       }
     ],
     "dependencies": [
@@ -821,7 +870,8 @@ export const ui: Registry["items"] = [
     "files": [
       {
         "path": "registry/pivot/path-item-display.tsx",
-        "type": "registry:ui"
+        "type": "registry:ui",
+        "target": "registry/pivot/path-item-display.tsx"
       }
     ],
     "dependencies": [
@@ -839,7 +889,8 @@ export const ui: Registry["items"] = [
     "files": [
       {
         "path": "registry/pivot/path-segment.tsx",
-        "type": "registry:ui"
+        "type": "registry:ui",
+        "target": "registry/pivot/path-segment.tsx"
       }
     ],
     "dependencies": [
@@ -852,7 +903,8 @@ export const ui: Registry["items"] = [
     "files": [
       {
         "path": "registry/pivot/php-generator.tsx",
-        "type": "registry:ui"
+        "type": "registry:ui",
+        "target": "registry/pivot/php-generator.tsx"
       }
     ],
     "dependencies": [
@@ -866,7 +918,8 @@ export const ui: Registry["items"] = [
     "files": [
       {
         "path": "registry/pivot/python-generator.tsx",
-        "type": "registry:ui"
+        "type": "registry:ui",
+        "target": "registry/pivot/python-generator.tsx"
       }
     ],
     "dependencies": [
@@ -880,7 +933,8 @@ export const ui: Registry["items"] = [
     "files": [
       {
         "path": "registry/pivot/request-body-section.tsx",
-        "type": "registry:ui"
+        "type": "registry:ui",
+        "target": "registry/pivot/request-body-section.tsx"
       }
     ],
     "dependencies": [
@@ -898,7 +952,8 @@ export const ui: Registry["items"] = [
     "files": [
       {
         "path": "registry/pivot/required-badge.tsx",
-        "type": "registry:ui"
+        "type": "registry:ui",
+        "target": "registry/pivot/required-badge.tsx"
       }
     ],
     "dependencies": [
@@ -911,7 +966,8 @@ export const ui: Registry["items"] = [
     "files": [
       {
         "path": "registry/pivot/required-marker.tsx",
-        "type": "registry:ui"
+        "type": "registry:ui",
+        "target": "registry/pivot/required-marker.tsx"
       }
     ],
     "dependencies": [
@@ -924,7 +980,8 @@ export const ui: Registry["items"] = [
     "files": [
       {
         "path": "registry/pivot/resizable-sidebar.tsx",
-        "type": "registry:ui"
+        "type": "registry:ui",
+        "target": "registry/pivot/resizable-sidebar.tsx"
       }
     ],
     "dependencies": [
@@ -937,7 +994,8 @@ export const ui: Registry["items"] = [
     "files": [
       {
         "path": "registry/pivot/response-content-section.tsx",
-        "type": "registry:ui"
+        "type": "registry:ui",
+        "target": "registry/pivot/response-content-section.tsx"
       }
     ],
     "dependencies": [
@@ -954,7 +1012,8 @@ export const ui: Registry["items"] = [
     "files": [
       {
         "path": "registry/pivot/response-group.tsx",
-        "type": "registry:ui"
+        "type": "registry:ui",
+        "target": "registry/pivot/response-group.tsx"
       }
     ],
     "dependencies": [
@@ -972,7 +1031,8 @@ export const ui: Registry["items"] = [
     "files": [
       {
         "path": "registry/pivot/response-headers-table.tsx",
-        "type": "registry:ui"
+        "type": "registry:ui",
+        "target": "registry/pivot/response-headers-table.tsx"
       }
     ],
     "dependencies": [
@@ -990,7 +1050,8 @@ export const ui: Registry["items"] = [
     "files": [
       {
         "path": "registry/pivot/response-item.tsx",
-        "type": "registry:ui"
+        "type": "registry:ui",
+        "target": "registry/pivot/response-item.tsx"
       }
     ],
     "dependencies": [
@@ -1010,7 +1071,8 @@ export const ui: Registry["items"] = [
     "files": [
       {
         "path": "registry/pivot/responses-section.tsx",
-        "type": "registry:ui"
+        "type": "registry:ui",
+        "target": "registry/pivot/responses-section.tsx"
       }
     ],
     "dependencies": [
@@ -1029,7 +1091,8 @@ export const ui: Registry["items"] = [
     "files": [
       {
         "path": "registry/pivot/schema-composition-display.tsx",
-        "type": "registry:ui"
+        "type": "registry:ui",
+        "target": "registry/pivot/schema-composition-display.tsx"
       }
     ],
     "dependencies": [
@@ -1043,7 +1106,8 @@ export const ui: Registry["items"] = [
     "files": [
       {
         "path": "registry/pivot/schema-display.tsx",
-        "type": "registry:ui"
+        "type": "registry:ui",
+        "target": "registry/pivot/schema-display.tsx"
       }
     ],
     "dependencies": [
@@ -1068,7 +1132,8 @@ export const ui: Registry["items"] = [
     "files": [
       {
         "path": "registry/pivot/schema-with-example-viewer.tsx",
-        "type": "registry:ui"
+        "type": "registry:ui",
+        "target": "registry/pivot/schema-with-example-viewer.tsx"
       }
     ],
     "dependencies": [
@@ -1088,7 +1153,8 @@ export const ui: Registry["items"] = [
     "files": [
       {
         "path": "registry/pivot/scheme-type.tsx",
-        "type": "registry:ui"
+        "type": "registry:ui",
+        "target": "registry/pivot/scheme-type.tsx"
       }
     ],
     "dependencies": [
@@ -1101,7 +1167,8 @@ export const ui: Registry["items"] = [
     "files": [
       {
         "path": "registry/pivot/section-title.tsx",
-        "type": "registry:ui"
+        "type": "registry:ui",
+        "target": "registry/pivot/section-title.tsx"
       }
     ],
     "dependencies": [
@@ -1114,7 +1181,8 @@ export const ui: Registry["items"] = [
     "files": [
       {
         "path": "registry/pivot/security-requirement-item.tsx",
-        "type": "registry:ui"
+        "type": "registry:ui",
+        "target": "registry/pivot/security-requirement-item.tsx"
       }
     ],
     "dependencies": [
@@ -1128,7 +1196,8 @@ export const ui: Registry["items"] = [
     "files": [
       {
         "path": "registry/pivot/security-requirements-section.tsx",
-        "type": "registry:ui"
+        "type": "registry:ui",
+        "target": "registry/pivot/security-requirements-section.tsx"
       }
     ],
     "dependencies": [
@@ -1145,7 +1214,8 @@ export const ui: Registry["items"] = [
     "files": [
       {
         "path": "registry/pivot/security-scheme-display.tsx",
-        "type": "registry:ui"
+        "type": "registry:ui",
+        "target": "registry/pivot/security-scheme-display.tsx"
       }
     ],
     "dependencies": [
@@ -1162,7 +1232,8 @@ export const ui: Registry["items"] = [
     "files": [
       {
         "path": "registry/pivot/security-scheme.tsx",
-        "type": "registry:ui"
+        "type": "registry:ui",
+        "target": "registry/pivot/security-scheme.tsx"
       }
     ],
     "dependencies": [
@@ -1180,7 +1251,8 @@ export const ui: Registry["items"] = [
     "files": [
       {
         "path": "registry/pivot/security-schemes.tsx",
-        "type": "registry:ui"
+        "type": "registry:ui",
+        "target": "registry/pivot/security-schemes.tsx"
       }
     ],
     "dependencies": [
@@ -1198,7 +1270,8 @@ export const ui: Registry["items"] = [
     "files": [
       {
         "path": "registry/pivot/security-section.tsx",
-        "type": "registry:ui"
+        "type": "registry:ui",
+        "target": "registry/pivot/security-section.tsx"
       }
     ],
     "dependencies": [
@@ -1216,7 +1289,8 @@ export const ui: Registry["items"] = [
     "files": [
       {
         "path": "registry/pivot/server-display.tsx",
-        "type": "registry:ui"
+        "type": "registry:ui",
+        "target": "registry/pivot/server-display.tsx"
       }
     ],
     "dependencies": [
@@ -1233,7 +1307,8 @@ export const ui: Registry["items"] = [
     "files": [
       {
         "path": "registry/pivot/server-variable.tsx",
-        "type": "registry:ui"
+        "type": "registry:ui",
+        "target": "registry/pivot/server-variable.tsx"
       }
     ],
     "dependencies": [
@@ -1250,7 +1325,8 @@ export const ui: Registry["items"] = [
     "files": [
       {
         "path": "registry/pivot/server.tsx",
-        "type": "registry:ui"
+        "type": "registry:ui",
+        "target": "registry/pivot/server.tsx"
       }
     ],
     "dependencies": [
@@ -1269,7 +1345,8 @@ export const ui: Registry["items"] = [
     "files": [
       {
         "path": "registry/pivot/servers-section.tsx",
-        "type": "registry:ui"
+        "type": "registry:ui",
+        "target": "registry/pivot/servers-section.tsx"
       }
     ],
     "dependencies": [
@@ -1287,7 +1364,8 @@ export const ui: Registry["items"] = [
     "files": [
       {
         "path": "registry/pivot/servers.tsx",
-        "type": "registry:ui"
+        "type": "registry:ui",
+        "target": "registry/pivot/servers.tsx"
       }
     ],
     "dependencies": [
@@ -1305,7 +1383,8 @@ export const ui: Registry["items"] = [
     "files": [
       {
         "path": "registry/pivot/status-code.tsx",
-        "type": "registry:ui"
+        "type": "registry:ui",
+        "target": "registry/pivot/status-code.tsx"
       }
     ],
     "dependencies": [
@@ -1318,7 +1397,8 @@ export const ui: Registry["items"] = [
     "files": [
       {
         "path": "registry/pivot/style-badge.tsx",
-        "type": "registry:ui"
+        "type": "registry:ui",
+        "target": "registry/pivot/style-badge.tsx"
       }
     ],
     "dependencies": [
@@ -1331,7 +1411,8 @@ export const ui: Registry["items"] = [
     "files": [
       {
         "path": "registry/pivot/terms-of-service.tsx",
-        "type": "registry:ui"
+        "type": "registry:ui",
+        "target": "registry/pivot/terms-of-service.tsx"
       }
     ],
     "dependencies": [
@@ -1344,7 +1425,8 @@ export const ui: Registry["items"] = [
     "files": [
       {
         "path": "registry/pivot/theme-toggle.tsx",
-        "type": "registry:ui"
+        "type": "registry:ui",
+        "target": "registry/pivot/theme-toggle.tsx"
       }
     ],
     "dependencies": [
@@ -1358,7 +1440,8 @@ export const ui: Registry["items"] = [
     "files": [
       {
         "path": "registry/pivot/try-it-out-panel.tsx",
-        "type": "registry:ui"
+        "type": "registry:ui",
+        "target": "registry/pivot/try-it-out-panel.tsx"
       }
     ],
     "dependencies": [
@@ -1376,7 +1459,8 @@ export const ui: Registry["items"] = [
     "files": [
       {
         "path": "registry/pivot/type-indicator.tsx",
-        "type": "registry:ui"
+        "type": "registry:ui",
+        "target": "registry/pivot/type-indicator.tsx"
       }
     ],
     "dependencies": [
@@ -1389,7 +1473,8 @@ export const ui: Registry["items"] = [
     "files": [
       {
         "path": "registry/pivot/typescript-generator.tsx",
-        "type": "registry:ui"
+        "type": "registry:ui",
+        "target": "registry/pivot/typescript-generator.tsx"
       }
     ],
     "dependencies": [
@@ -1403,7 +1488,8 @@ export const ui: Registry["items"] = [
     "files": [
       {
         "path": "registry/pivot/value-display.tsx",
-        "type": "registry:ui"
+        "type": "registry:ui",
+        "target": "registry/pivot/value-display.tsx"
       }
     ],
     "dependencies": [
@@ -1416,7 +1502,8 @@ export const ui: Registry["items"] = [
     "files": [
       {
         "path": "registry/pivot/version-badge.tsx",
-        "type": "registry:ui"
+        "type": "registry:ui",
+        "target": "registry/pivot/version-badge.tsx"
       }
     ],
     "dependencies": [
@@ -1429,7 +1516,8 @@ export const ui: Registry["items"] = [
     "files": [
       {
         "path": "registry/pivot/webhook-display.tsx",
-        "type": "registry:ui"
+        "type": "registry:ui",
+        "target": "registry/pivot/webhook-display.tsx"
       }
     ],
     "dependencies": [
@@ -1448,7 +1536,8 @@ export const ui: Registry["items"] = [
     "files": [
       {
         "path": "registry/pivot/webhook-label.tsx",
-        "type": "registry:ui"
+        "type": "registry:ui",
+        "target": "registry/pivot/webhook-label.tsx"
       }
     ],
     "dependencies": [

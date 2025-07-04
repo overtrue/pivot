@@ -9,7 +9,8 @@
     {
       "path": "registry/pivot/deprecated-badge.tsx",
       "content": "import { cn } from \"@/lib/utils\";\nimport React from \"react\";\n\ninterface DeprecatedBadgeProps {\n  className?: string;\n  children?: React.ReactNode;\n}\n\nconst DeprecatedBadge = React.forwardRef<HTMLSpanElement, DeprecatedBadgeProps>(\n  ({ className, children }, ref) => {\n    return (\n      <span\n        ref={ref}\n        className={cn(\n          \"bg-red-100 dark:bg-red-900/30 text-red-800 dark:text-red-400 px-2 py-0.5 text-xs rounded font-semibold\",\n          className,\n        )}\n      >\n        {children || \"Deprecated\"}\n      </span>\n    );\n  },\n);\n\nDeprecatedBadge.displayName = \"DeprecatedBadge\";\n\nexport { DeprecatedBadge };\n",
-      "type": "registry:ui"
+      "type": "registry:ui",
+      "target": "registry/pivot/deprecated-badge.tsx"
     }
   ]
 }

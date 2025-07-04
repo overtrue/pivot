@@ -25,7 +25,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/accordion-components-section.tsx",
       type: "registry:ui",
-      target: ""
+      target: "registry/pivot/accordion-components-section.tsx"
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/accordion-components-section.tsx")
@@ -43,7 +43,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/callback-display.tsx",
       type: "registry:ui",
-      target: ""
+      target: "registry/pivot/callback-display.tsx"
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/callback-display.tsx")
@@ -61,7 +61,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/code-markdown.tsx",
       type: "registry:ui",
-      target: ""
+      target: "registry/pivot/code-markdown.tsx"
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/code-markdown.tsx")
@@ -79,7 +79,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/codegen.tsx",
       type: "registry:ui",
-      target: ""
+      target: "registry/pivot/codegen.tsx"
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/codegen.tsx")
@@ -97,7 +97,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/component-detail.tsx",
       type: "registry:ui",
-      target: ""
+      target: "registry/pivot/component-detail.tsx"
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/component-detail.tsx")
@@ -115,7 +115,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/component-items-list.tsx",
       type: "registry:ui",
-      target: ""
+      target: "registry/pivot/component-items-list.tsx"
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/component-items-list.tsx")
@@ -133,7 +133,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/component-tabs.tsx",
       type: "registry:ui",
-      target: ""
+      target: "registry/pivot/component-tabs.tsx"
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/component-tabs.tsx")
@@ -151,7 +151,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/components-section.tsx",
       type: "registry:ui",
-      target: ""
+      target: "registry/pivot/components-section.tsx"
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/components-section.tsx")
@@ -169,7 +169,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/const-value.tsx",
       type: "registry:ui",
-      target: ""
+      target: "registry/pivot/const-value.tsx"
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/const-value.tsx")
@@ -187,7 +187,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/constraint-display.tsx",
       type: "registry:ui",
-      target: ""
+      target: "registry/pivot/constraint-display.tsx"
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/constraint-display.tsx")
@@ -205,7 +205,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/contact-display.tsx",
       type: "registry:ui",
-      target: ""
+      target: "registry/pivot/contact-display.tsx"
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/contact-display.tsx")
@@ -223,7 +223,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/copy-button.tsx",
       type: "registry:ui",
-      target: ""
+      target: "registry/pivot/copy-button.tsx"
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/copy-button.tsx")
@@ -241,7 +241,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/curl-generator.tsx",
       type: "registry:ui",
-      target: ""
+      target: "registry/pivot/curl-generator.tsx"
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/curl-generator.tsx")
@@ -259,7 +259,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/default-value-display.tsx",
       type: "registry:ui",
-      target: ""
+      target: "registry/pivot/default-value-display.tsx"
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/default-value-display.tsx")
@@ -277,7 +277,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/deprecated-badge.tsx",
       type: "registry:ui",
-      target: ""
+      target: "registry/pivot/deprecated-badge.tsx"
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/deprecated-badge.tsx")
@@ -295,7 +295,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/description-display.tsx",
       type: "registry:ui",
-      target: ""
+      target: "registry/pivot/description-display.tsx"
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/description-display.tsx")
@@ -313,7 +313,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/enum-values-display.tsx",
       type: "registry:ui",
-      target: ""
+      target: "registry/pivot/enum-values-display.tsx"
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/enum-values-display.tsx")
@@ -331,7 +331,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/enum-values.tsx",
       type: "registry:ui",
-      target: ""
+      target: "registry/pivot/enum-values.tsx"
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/enum-values.tsx")
@@ -349,7 +349,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/example-display.tsx",
       type: "registry:ui",
-      target: ""
+      target: "registry/pivot/example-display.tsx"
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/example-display.tsx")
@@ -367,7 +367,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/examples-display.tsx",
       type: "registry:ui",
-      target: ""
+      target: "registry/pivot/examples-display.tsx"
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/examples-display.tsx")
@@ -385,7 +385,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/expand-collapse.tsx",
       type: "registry:ui",
-      target: ""
+      target: "registry/pivot/expand-collapse.tsx"
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/expand-collapse.tsx")
@@ -403,7 +403,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/external-docs-display.tsx",
       type: "registry:ui",
-      target: ""
+      target: "registry/pivot/external-docs-display.tsx"
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/external-docs-display.tsx")
@@ -421,7 +421,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/external-docs.tsx",
       type: "registry:ui",
-      target: ""
+      target: "registry/pivot/external-docs.tsx"
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/external-docs.tsx")
@@ -439,7 +439,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/format-badge.tsx",
       type: "registry:ui",
-      target: ""
+      target: "registry/pivot/format-badge.tsx"
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/format-badge.tsx")
@@ -457,7 +457,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/header-item.tsx",
       type: "registry:ui",
-      target: ""
+      target: "registry/pivot/header-item.tsx"
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/header-item.tsx")
@@ -475,7 +475,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/headers-section.tsx",
       type: "registry:ui",
-      target: ""
+      target: "registry/pivot/headers-section.tsx"
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/headers-section.tsx")
@@ -493,7 +493,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/in-label.tsx",
       type: "registry:ui",
-      target: ""
+      target: "registry/pivot/in-label.tsx"
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/in-label.tsx")
@@ -511,7 +511,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/info-section.tsx",
       type: "registry:ui",
-      target: ""
+      target: "registry/pivot/info-section.tsx"
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/info-section.tsx")
@@ -529,7 +529,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/language-switcher.tsx",
       type: "registry:ui",
-      target: ""
+      target: "registry/pivot/language-switcher.tsx"
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/language-switcher.tsx")
@@ -547,7 +547,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/laravel-generator.tsx",
       type: "registry:ui",
-      target: ""
+      target: "registry/pivot/laravel-generator.tsx"
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/laravel-generator.tsx")
@@ -565,7 +565,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/license-display.tsx",
       type: "registry:ui",
-      target: ""
+      target: "registry/pivot/license-display.tsx"
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/license-display.tsx")
@@ -583,7 +583,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/link-item.tsx",
       type: "registry:ui",
-      target: ""
+      target: "registry/pivot/link-item.tsx"
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/link-item.tsx")
@@ -601,7 +601,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/links-section.tsx",
       type: "registry:ui",
-      target: ""
+      target: "registry/pivot/links-section.tsx"
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/links-section.tsx")
@@ -619,7 +619,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/media-type-display.tsx",
       type: "registry:ui",
-      target: ""
+      target: "registry/pivot/media-type-display.tsx"
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/media-type-display.tsx")
@@ -637,7 +637,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/media-type-selector.tsx",
       type: "registry:ui",
-      target: ""
+      target: "registry/pivot/media-type-selector.tsx"
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/media-type-selector.tsx")
@@ -655,7 +655,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/method-label.tsx",
       type: "registry:ui",
-      target: ""
+      target: "registry/pivot/method-label.tsx"
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/method-label.tsx")
@@ -673,7 +673,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/navigation-sidebar.tsx",
       type: "registry:ui",
-      target: ""
+      target: "registry/pivot/navigation-sidebar.tsx"
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/navigation-sidebar.tsx")
@@ -691,7 +691,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/oauth-flow-details.tsx",
       type: "registry:ui",
-      target: ""
+      target: "registry/pivot/oauth-flow-details.tsx"
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/oauth-flow-details.tsx")
@@ -709,7 +709,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/oauth-flow.tsx",
       type: "registry:ui",
-      target: ""
+      target: "registry/pivot/oauth-flow.tsx"
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/oauth-flow.tsx")
@@ -727,7 +727,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/operation-box.tsx",
       type: "registry:ui",
-      target: ""
+      target: "registry/pivot/operation-box.tsx"
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/operation-box.tsx")
@@ -745,7 +745,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/operation-detail.tsx",
       type: "registry:ui",
-      target: ""
+      target: "registry/pivot/operation-detail.tsx"
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/operation-detail.tsx")
@@ -763,7 +763,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/operation-detailed-layout.tsx",
       type: "registry:ui",
-      target: ""
+      target: "registry/pivot/operation-detailed-layout.tsx"
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/operation-detailed-layout.tsx")
@@ -781,7 +781,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/operation-list-layout.tsx",
       type: "registry:ui",
-      target: ""
+      target: "registry/pivot/operation-list-layout.tsx"
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/operation-list-layout.tsx")
@@ -799,7 +799,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/operation-path.tsx",
       type: "registry:ui",
-      target: ""
+      target: "registry/pivot/operation-path.tsx"
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/operation-path.tsx")
@@ -817,7 +817,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/parameter-description.tsx",
       type: "registry:ui",
-      target: ""
+      target: "registry/pivot/parameter-description.tsx"
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/parameter-description.tsx")
@@ -835,7 +835,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/parameter-group.tsx",
       type: "registry:ui",
-      target: ""
+      target: "registry/pivot/parameter-group.tsx"
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/parameter-group.tsx")
@@ -853,7 +853,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/parameter-item.tsx",
       type: "registry:ui",
-      target: ""
+      target: "registry/pivot/parameter-item.tsx"
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/parameter-item.tsx")
@@ -871,7 +871,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/parameter-name.tsx",
       type: "registry:ui",
-      target: ""
+      target: "registry/pivot/parameter-name.tsx"
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/parameter-name.tsx")
@@ -889,7 +889,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/parameters-section.tsx",
       type: "registry:ui",
-      target: ""
+      target: "registry/pivot/parameters-section.tsx"
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/parameters-section.tsx")
@@ -907,7 +907,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/path-item-display.tsx",
       type: "registry:ui",
-      target: ""
+      target: "registry/pivot/path-item-display.tsx"
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/path-item-display.tsx")
@@ -925,7 +925,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/path-segment.tsx",
       type: "registry:ui",
-      target: ""
+      target: "registry/pivot/path-segment.tsx"
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/path-segment.tsx")
@@ -943,7 +943,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/php-generator.tsx",
       type: "registry:ui",
-      target: ""
+      target: "registry/pivot/php-generator.tsx"
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/php-generator.tsx")
@@ -961,7 +961,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/python-generator.tsx",
       type: "registry:ui",
-      target: ""
+      target: "registry/pivot/python-generator.tsx"
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/python-generator.tsx")
@@ -979,7 +979,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/request-body-section.tsx",
       type: "registry:ui",
-      target: ""
+      target: "registry/pivot/request-body-section.tsx"
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/request-body-section.tsx")
@@ -997,7 +997,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/required-badge.tsx",
       type: "registry:ui",
-      target: ""
+      target: "registry/pivot/required-badge.tsx"
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/required-badge.tsx")
@@ -1015,7 +1015,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/required-marker.tsx",
       type: "registry:ui",
-      target: ""
+      target: "registry/pivot/required-marker.tsx"
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/required-marker.tsx")
@@ -1033,7 +1033,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/resizable-sidebar.tsx",
       type: "registry:ui",
-      target: ""
+      target: "registry/pivot/resizable-sidebar.tsx"
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/resizable-sidebar.tsx")
@@ -1051,7 +1051,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/response-content-section.tsx",
       type: "registry:ui",
-      target: ""
+      target: "registry/pivot/response-content-section.tsx"
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/response-content-section.tsx")
@@ -1069,7 +1069,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/response-group.tsx",
       type: "registry:ui",
-      target: ""
+      target: "registry/pivot/response-group.tsx"
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/response-group.tsx")
@@ -1087,7 +1087,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/response-headers-table.tsx",
       type: "registry:ui",
-      target: ""
+      target: "registry/pivot/response-headers-table.tsx"
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/response-headers-table.tsx")
@@ -1105,7 +1105,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/response-item.tsx",
       type: "registry:ui",
-      target: ""
+      target: "registry/pivot/response-item.tsx"
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/response-item.tsx")
@@ -1123,7 +1123,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/responses-section.tsx",
       type: "registry:ui",
-      target: ""
+      target: "registry/pivot/responses-section.tsx"
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/responses-section.tsx")
@@ -1141,7 +1141,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/schema-composition-display.tsx",
       type: "registry:ui",
-      target: ""
+      target: "registry/pivot/schema-composition-display.tsx"
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/schema-composition-display.tsx")
@@ -1159,7 +1159,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/schema-display.tsx",
       type: "registry:ui",
-      target: ""
+      target: "registry/pivot/schema-display.tsx"
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/schema-display.tsx")
@@ -1177,7 +1177,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/schema-with-example-viewer.tsx",
       type: "registry:ui",
-      target: ""
+      target: "registry/pivot/schema-with-example-viewer.tsx"
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/schema-with-example-viewer.tsx")
@@ -1195,7 +1195,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/scheme-type.tsx",
       type: "registry:ui",
-      target: ""
+      target: "registry/pivot/scheme-type.tsx"
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/scheme-type.tsx")
@@ -1213,7 +1213,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/section-title.tsx",
       type: "registry:ui",
-      target: ""
+      target: "registry/pivot/section-title.tsx"
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/section-title.tsx")
@@ -1231,7 +1231,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/security-requirement-item.tsx",
       type: "registry:ui",
-      target: ""
+      target: "registry/pivot/security-requirement-item.tsx"
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/security-requirement-item.tsx")
@@ -1249,7 +1249,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/security-requirements-section.tsx",
       type: "registry:ui",
-      target: ""
+      target: "registry/pivot/security-requirements-section.tsx"
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/security-requirements-section.tsx")
@@ -1267,7 +1267,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/security-scheme-display.tsx",
       type: "registry:ui",
-      target: ""
+      target: "registry/pivot/security-scheme-display.tsx"
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/security-scheme-display.tsx")
@@ -1285,7 +1285,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/security-scheme.tsx",
       type: "registry:ui",
-      target: ""
+      target: "registry/pivot/security-scheme.tsx"
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/security-scheme.tsx")
@@ -1303,7 +1303,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/security-schemes.tsx",
       type: "registry:ui",
-      target: ""
+      target: "registry/pivot/security-schemes.tsx"
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/security-schemes.tsx")
@@ -1321,7 +1321,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/security-section.tsx",
       type: "registry:ui",
-      target: ""
+      target: "registry/pivot/security-section.tsx"
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/security-section.tsx")
@@ -1339,7 +1339,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/server-display.tsx",
       type: "registry:ui",
-      target: ""
+      target: "registry/pivot/server-display.tsx"
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/server-display.tsx")
@@ -1357,7 +1357,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/server-variable.tsx",
       type: "registry:ui",
-      target: ""
+      target: "registry/pivot/server-variable.tsx"
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/server-variable.tsx")
@@ -1375,7 +1375,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/server.tsx",
       type: "registry:ui",
-      target: ""
+      target: "registry/pivot/server.tsx"
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/server.tsx")
@@ -1393,7 +1393,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/servers-section.tsx",
       type: "registry:ui",
-      target: ""
+      target: "registry/pivot/servers-section.tsx"
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/servers-section.tsx")
@@ -1411,7 +1411,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/servers.tsx",
       type: "registry:ui",
-      target: ""
+      target: "registry/pivot/servers.tsx"
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/servers.tsx")
@@ -1429,7 +1429,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/status-code.tsx",
       type: "registry:ui",
-      target: ""
+      target: "registry/pivot/status-code.tsx"
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/status-code.tsx")
@@ -1447,7 +1447,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/style-badge.tsx",
       type: "registry:ui",
-      target: ""
+      target: "registry/pivot/style-badge.tsx"
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/style-badge.tsx")
@@ -1465,7 +1465,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/terms-of-service.tsx",
       type: "registry:ui",
-      target: ""
+      target: "registry/pivot/terms-of-service.tsx"
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/terms-of-service.tsx")
@@ -1483,7 +1483,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/theme-toggle.tsx",
       type: "registry:ui",
-      target: ""
+      target: "registry/pivot/theme-toggle.tsx"
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/theme-toggle.tsx")
@@ -1501,7 +1501,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/try-it-out-panel.tsx",
       type: "registry:ui",
-      target: ""
+      target: "registry/pivot/try-it-out-panel.tsx"
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/try-it-out-panel.tsx")
@@ -1519,7 +1519,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/type-indicator.tsx",
       type: "registry:ui",
-      target: ""
+      target: "registry/pivot/type-indicator.tsx"
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/type-indicator.tsx")
@@ -1537,7 +1537,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/typescript-generator.tsx",
       type: "registry:ui",
-      target: ""
+      target: "registry/pivot/typescript-generator.tsx"
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/typescript-generator.tsx")
@@ -1555,7 +1555,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/value-display.tsx",
       type: "registry:ui",
-      target: ""
+      target: "registry/pivot/value-display.tsx"
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/value-display.tsx")
@@ -1573,7 +1573,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/version-badge.tsx",
       type: "registry:ui",
-      target: ""
+      target: "registry/pivot/version-badge.tsx"
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/version-badge.tsx")
@@ -1591,7 +1591,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/webhook-display.tsx",
       type: "registry:ui",
-      target: ""
+      target: "registry/pivot/webhook-display.tsx"
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/webhook-display.tsx")
@@ -1609,7 +1609,7 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/pivot/webhook-label.tsx",
       type: "registry:ui",
-      target: ""
+      target: "registry/pivot/webhook-label.tsx"
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/pivot/webhook-label.tsx")
@@ -1630,7 +1630,7 @@ export const Index: Record<string, any> = {
       target: "components/example/accordion-components-section-demo.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/example/accordion-components-section-demo.tsx")
+      const mod = await import("@/registry/pivot/accordion-components-section-demo.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -1648,7 +1648,7 @@ export const Index: Record<string, any> = {
       target: "components/example/callback-display-demo.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/example/callback-display-demo.tsx")
+      const mod = await import("@/registry/pivot/callback-display-demo.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -1666,7 +1666,7 @@ export const Index: Record<string, any> = {
       target: "components/example/code-markdown-demo.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/example/code-markdown-demo.tsx")
+      const mod = await import("@/registry/pivot/code-markdown-demo.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -1684,7 +1684,7 @@ export const Index: Record<string, any> = {
       target: "components/example/codegen-demo.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/example/codegen-demo.tsx")
+      const mod = await import("@/registry/pivot/codegen-demo.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -1702,7 +1702,7 @@ export const Index: Record<string, any> = {
       target: "components/example/component-detail-demo.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/example/component-detail-demo.tsx")
+      const mod = await import("@/registry/pivot/component-detail-demo.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -1720,7 +1720,7 @@ export const Index: Record<string, any> = {
       target: "components/example/component-items-list-demo.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/example/component-items-list-demo.tsx")
+      const mod = await import("@/registry/pivot/component-items-list-demo.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -1738,7 +1738,7 @@ export const Index: Record<string, any> = {
       target: "components/example/component-tabs-demo.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/example/component-tabs-demo.tsx")
+      const mod = await import("@/registry/pivot/component-tabs-demo.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -1756,7 +1756,7 @@ export const Index: Record<string, any> = {
       target: "components/example/components-section-demo.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/example/components-section-demo.tsx")
+      const mod = await import("@/registry/pivot/components-section-demo.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -1774,7 +1774,7 @@ export const Index: Record<string, any> = {
       target: "components/example/const-value-demo.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/example/const-value-demo.tsx")
+      const mod = await import("@/registry/pivot/const-value-demo.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -1792,7 +1792,7 @@ export const Index: Record<string, any> = {
       target: "components/example/constraint-display-demo.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/example/constraint-display-demo.tsx")
+      const mod = await import("@/registry/pivot/constraint-display-demo.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -1810,7 +1810,7 @@ export const Index: Record<string, any> = {
       target: "components/example/contact-display-demo.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/example/contact-display-demo.tsx")
+      const mod = await import("@/registry/pivot/contact-display-demo.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -1828,7 +1828,7 @@ export const Index: Record<string, any> = {
       target: "components/example/copy-button-demo.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/example/copy-button-demo.tsx")
+      const mod = await import("@/registry/pivot/copy-button-demo.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -1846,7 +1846,7 @@ export const Index: Record<string, any> = {
       target: "components/example/curl-generator-demo.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/example/curl-generator-demo.tsx")
+      const mod = await import("@/registry/pivot/curl-generator-demo.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -1864,7 +1864,7 @@ export const Index: Record<string, any> = {
       target: "components/example/default-value-display-demo.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/example/default-value-display-demo.tsx")
+      const mod = await import("@/registry/pivot/default-value-display-demo.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -1882,7 +1882,7 @@ export const Index: Record<string, any> = {
       target: "components/example/deprecated-badge-demo.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/example/deprecated-badge-demo.tsx")
+      const mod = await import("@/registry/pivot/deprecated-badge-demo.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -1900,7 +1900,7 @@ export const Index: Record<string, any> = {
       target: "components/example/description-display-demo.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/example/description-display-demo.tsx")
+      const mod = await import("@/registry/pivot/description-display-demo.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -1918,7 +1918,7 @@ export const Index: Record<string, any> = {
       target: "components/example/enum-values-demo.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/example/enum-values-demo.tsx")
+      const mod = await import("@/registry/pivot/enum-values-demo.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -1936,7 +1936,7 @@ export const Index: Record<string, any> = {
       target: "components/example/enum-values-display-demo.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/example/enum-values-display-demo.tsx")
+      const mod = await import("@/registry/pivot/enum-values-display-demo.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -1954,7 +1954,7 @@ export const Index: Record<string, any> = {
       target: "components/example/example-display-demo.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/example/example-display-demo.tsx")
+      const mod = await import("@/registry/pivot/example-display-demo.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -1972,7 +1972,7 @@ export const Index: Record<string, any> = {
       target: "components/example/examples-display-demo.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/example/examples-display-demo.tsx")
+      const mod = await import("@/registry/pivot/examples-display-demo.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -1990,7 +1990,7 @@ export const Index: Record<string, any> = {
       target: "components/example/expand-collapse-demo.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/example/expand-collapse-demo.tsx")
+      const mod = await import("@/registry/pivot/expand-collapse-demo.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -2008,7 +2008,7 @@ export const Index: Record<string, any> = {
       target: "components/example/external-docs-demo.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/example/external-docs-demo.tsx")
+      const mod = await import("@/registry/pivot/external-docs-demo.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -2026,7 +2026,7 @@ export const Index: Record<string, any> = {
       target: "components/example/external-docs-display-demo.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/example/external-docs-display-demo.tsx")
+      const mod = await import("@/registry/pivot/external-docs-display-demo.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -2044,7 +2044,7 @@ export const Index: Record<string, any> = {
       target: "components/example/faker-example-demo.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/example/faker-example-demo.tsx")
+      const mod = await import("@/registry/pivot/faker-example-demo.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -2062,7 +2062,7 @@ export const Index: Record<string, any> = {
       target: "components/example/format-badge-demo.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/example/format-badge-demo.tsx")
+      const mod = await import("@/registry/pivot/format-badge-demo.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -2080,7 +2080,7 @@ export const Index: Record<string, any> = {
       target: "components/example/header-item-demo.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/example/header-item-demo.tsx")
+      const mod = await import("@/registry/pivot/header-item-demo.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -2098,7 +2098,7 @@ export const Index: Record<string, any> = {
       target: "components/example/headers-section-demo.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/example/headers-section-demo.tsx")
+      const mod = await import("@/registry/pivot/headers-section-demo.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -2116,7 +2116,7 @@ export const Index: Record<string, any> = {
       target: "components/example/i18n-demo.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/example/i18n-demo.tsx")
+      const mod = await import("@/registry/pivot/i18n-demo.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -2134,7 +2134,7 @@ export const Index: Record<string, any> = {
       target: "components/example/in-label-demo.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/example/in-label-demo.tsx")
+      const mod = await import("@/registry/pivot/in-label-demo.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -2152,7 +2152,7 @@ export const Index: Record<string, any> = {
       target: "components/example/info-section-demo.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/example/info-section-demo.tsx")
+      const mod = await import("@/registry/pivot/info-section-demo.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -2170,7 +2170,7 @@ export const Index: Record<string, any> = {
       target: "components/example/language-switcher-demo.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/example/language-switcher-demo.tsx")
+      const mod = await import("@/registry/pivot/language-switcher-demo.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -2188,7 +2188,7 @@ export const Index: Record<string, any> = {
       target: "components/example/laravel-generator-demo.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/example/laravel-generator-demo.tsx")
+      const mod = await import("@/registry/pivot/laravel-generator-demo.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -2206,7 +2206,7 @@ export const Index: Record<string, any> = {
       target: "components/example/license-display-demo.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/example/license-display-demo.tsx")
+      const mod = await import("@/registry/pivot/license-display-demo.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -2224,7 +2224,7 @@ export const Index: Record<string, any> = {
       target: "components/example/link-item-demo.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/example/link-item-demo.tsx")
+      const mod = await import("@/registry/pivot/link-item-demo.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -2242,7 +2242,7 @@ export const Index: Record<string, any> = {
       target: "components/example/links-section-demo.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/example/links-section-demo.tsx")
+      const mod = await import("@/registry/pivot/links-section-demo.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -2260,7 +2260,7 @@ export const Index: Record<string, any> = {
       target: "components/example/media-type-display-demo.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/example/media-type-display-demo.tsx")
+      const mod = await import("@/registry/pivot/media-type-display-demo.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -2278,7 +2278,7 @@ export const Index: Record<string, any> = {
       target: "components/example/media-type-selector-demo.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/example/media-type-selector-demo.tsx")
+      const mod = await import("@/registry/pivot/media-type-selector-demo.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -2296,7 +2296,7 @@ export const Index: Record<string, any> = {
       target: "components/example/method-label-demo.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/example/method-label-demo.tsx")
+      const mod = await import("@/registry/pivot/method-label-demo.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -2314,7 +2314,7 @@ export const Index: Record<string, any> = {
       target: "components/example/navigation-sidebar-demo.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/example/navigation-sidebar-demo.tsx")
+      const mod = await import("@/registry/pivot/navigation-sidebar-demo.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -2332,7 +2332,7 @@ export const Index: Record<string, any> = {
       target: "components/example/oauth-flow-demo.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/example/oauth-flow-demo.tsx")
+      const mod = await import("@/registry/pivot/oauth-flow-demo.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -2350,7 +2350,7 @@ export const Index: Record<string, any> = {
       target: "components/example/oauth-flow-details-demo.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/example/oauth-flow-details-demo.tsx")
+      const mod = await import("@/registry/pivot/oauth-flow-details-demo.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -2368,7 +2368,7 @@ export const Index: Record<string, any> = {
       target: "components/example/operation-box-demo.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/example/operation-box-demo.tsx")
+      const mod = await import("@/registry/pivot/operation-box-demo.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -2386,7 +2386,7 @@ export const Index: Record<string, any> = {
       target: "components/example/operation-detail-demo.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/example/operation-detail-demo.tsx")
+      const mod = await import("@/registry/pivot/operation-detail-demo.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -2404,7 +2404,7 @@ export const Index: Record<string, any> = {
       target: "components/example/operation-detailed-layout-demo.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/example/operation-detailed-layout-demo.tsx")
+      const mod = await import("@/registry/pivot/operation-detailed-layout-demo.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -2422,7 +2422,7 @@ export const Index: Record<string, any> = {
       target: "components/example/operation-list-layout-demo.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/example/operation-list-layout-demo.tsx")
+      const mod = await import("@/registry/pivot/operation-list-layout-demo.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -2440,7 +2440,7 @@ export const Index: Record<string, any> = {
       target: "components/example/operation-path-demo.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/example/operation-path-demo.tsx")
+      const mod = await import("@/registry/pivot/operation-path-demo.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -2458,7 +2458,7 @@ export const Index: Record<string, any> = {
       target: "components/example/parameter-description-demo.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/example/parameter-description-demo.tsx")
+      const mod = await import("@/registry/pivot/parameter-description-demo.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -2476,7 +2476,7 @@ export const Index: Record<string, any> = {
       target: "components/example/parameter-group-demo.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/example/parameter-group-demo.tsx")
+      const mod = await import("@/registry/pivot/parameter-group-demo.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -2494,7 +2494,7 @@ export const Index: Record<string, any> = {
       target: "components/example/parameter-item-demo.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/example/parameter-item-demo.tsx")
+      const mod = await import("@/registry/pivot/parameter-item-demo.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -2512,7 +2512,7 @@ export const Index: Record<string, any> = {
       target: "components/example/parameter-name-demo.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/example/parameter-name-demo.tsx")
+      const mod = await import("@/registry/pivot/parameter-name-demo.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -2530,7 +2530,7 @@ export const Index: Record<string, any> = {
       target: "components/example/parameters-section-demo.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/example/parameters-section-demo.tsx")
+      const mod = await import("@/registry/pivot/parameters-section-demo.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -2548,7 +2548,7 @@ export const Index: Record<string, any> = {
       target: "components/example/path-segment-demo.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/example/path-segment-demo.tsx")
+      const mod = await import("@/registry/pivot/path-segment-demo.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -2566,7 +2566,7 @@ export const Index: Record<string, any> = {
       target: "components/example/php-generator-demo.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/example/php-generator-demo.tsx")
+      const mod = await import("@/registry/pivot/php-generator-demo.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -2584,7 +2584,7 @@ export const Index: Record<string, any> = {
       target: "components/example/python-generator-demo.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/example/python-generator-demo.tsx")
+      const mod = await import("@/registry/pivot/python-generator-demo.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -2602,7 +2602,7 @@ export const Index: Record<string, any> = {
       target: "components/example/request-body-section-demo.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/example/request-body-section-demo.tsx")
+      const mod = await import("@/registry/pivot/request-body-section-demo.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -2620,7 +2620,7 @@ export const Index: Record<string, any> = {
       target: "components/example/required-badge-demo.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/example/required-badge-demo.tsx")
+      const mod = await import("@/registry/pivot/required-badge-demo.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -2638,7 +2638,7 @@ export const Index: Record<string, any> = {
       target: "components/example/required-marker-demo.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/example/required-marker-demo.tsx")
+      const mod = await import("@/registry/pivot/required-marker-demo.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -2656,7 +2656,7 @@ export const Index: Record<string, any> = {
       target: "components/example/resizable-sidebar-demo.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/example/resizable-sidebar-demo.tsx")
+      const mod = await import("@/registry/pivot/resizable-sidebar-demo.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -2674,7 +2674,7 @@ export const Index: Record<string, any> = {
       target: "components/example/response-content-section-demo.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/example/response-content-section-demo.tsx")
+      const mod = await import("@/registry/pivot/response-content-section-demo.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -2692,7 +2692,7 @@ export const Index: Record<string, any> = {
       target: "components/example/response-headers-table-demo.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/example/response-headers-table-demo.tsx")
+      const mod = await import("@/registry/pivot/response-headers-table-demo.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -2710,7 +2710,7 @@ export const Index: Record<string, any> = {
       target: "components/example/response-item-demo.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/example/response-item-demo.tsx")
+      const mod = await import("@/registry/pivot/response-item-demo.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -2728,7 +2728,7 @@ export const Index: Record<string, any> = {
       target: "components/example/responses-section-demo.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/example/responses-section-demo.tsx")
+      const mod = await import("@/registry/pivot/responses-section-demo.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -2746,7 +2746,7 @@ export const Index: Record<string, any> = {
       target: "components/example/schema-composition-display-demo.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/example/schema-composition-display-demo.tsx")
+      const mod = await import("@/registry/pivot/schema-composition-display-demo.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -2764,7 +2764,7 @@ export const Index: Record<string, any> = {
       target: "components/example/schema-display-demo.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/example/schema-display-demo.tsx")
+      const mod = await import("@/registry/pivot/schema-display-demo.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -2782,7 +2782,7 @@ export const Index: Record<string, any> = {
       target: "components/example/schema-with-example-viewer-demo.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/example/schema-with-example-viewer-demo.tsx")
+      const mod = await import("@/registry/pivot/schema-with-example-viewer-demo.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -2800,7 +2800,7 @@ export const Index: Record<string, any> = {
       target: "components/example/scheme-type-demo.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/example/scheme-type-demo.tsx")
+      const mod = await import("@/registry/pivot/scheme-type-demo.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -2818,7 +2818,7 @@ export const Index: Record<string, any> = {
       target: "components/example/section-title-demo.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/example/section-title-demo.tsx")
+      const mod = await import("@/registry/pivot/section-title-demo.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -2836,7 +2836,7 @@ export const Index: Record<string, any> = {
       target: "components/example/security-requirement-item-demo.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/example/security-requirement-item-demo.tsx")
+      const mod = await import("@/registry/pivot/security-requirement-item-demo.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -2854,7 +2854,7 @@ export const Index: Record<string, any> = {
       target: "components/example/security-requirements-section-demo.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/example/security-requirements-section-demo.tsx")
+      const mod = await import("@/registry/pivot/security-requirements-section-demo.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -2872,7 +2872,7 @@ export const Index: Record<string, any> = {
       target: "components/example/security-scheme-demo.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/example/security-scheme-demo.tsx")
+      const mod = await import("@/registry/pivot/security-scheme-demo.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -2890,7 +2890,7 @@ export const Index: Record<string, any> = {
       target: "components/example/security-scheme-display-demo.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/example/security-scheme-display-demo.tsx")
+      const mod = await import("@/registry/pivot/security-scheme-display-demo.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -2908,7 +2908,7 @@ export const Index: Record<string, any> = {
       target: "components/example/security-schemes-demo.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/example/security-schemes-demo.tsx")
+      const mod = await import("@/registry/pivot/security-schemes-demo.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -2926,7 +2926,7 @@ export const Index: Record<string, any> = {
       target: "components/example/security-section-demo.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/example/security-section-demo.tsx")
+      const mod = await import("@/registry/pivot/security-section-demo.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -2944,7 +2944,7 @@ export const Index: Record<string, any> = {
       target: "components/example/server-demo.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/example/server-demo.tsx")
+      const mod = await import("@/registry/pivot/server-demo.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -2962,7 +2962,7 @@ export const Index: Record<string, any> = {
       target: "components/example/server-display-demo.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/example/server-display-demo.tsx")
+      const mod = await import("@/registry/pivot/server-display-demo.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -2980,7 +2980,7 @@ export const Index: Record<string, any> = {
       target: "components/example/server-variable-demo.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/example/server-variable-demo.tsx")
+      const mod = await import("@/registry/pivot/server-variable-demo.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -2998,7 +2998,7 @@ export const Index: Record<string, any> = {
       target: "components/example/servers-demo.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/example/servers-demo.tsx")
+      const mod = await import("@/registry/pivot/servers-demo.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -3016,7 +3016,7 @@ export const Index: Record<string, any> = {
       target: "components/example/servers-section-demo.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/example/servers-section-demo.tsx")
+      const mod = await import("@/registry/pivot/servers-section-demo.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -3034,7 +3034,7 @@ export const Index: Record<string, any> = {
       target: "components/example/status-code-demo.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/example/status-code-demo.tsx")
+      const mod = await import("@/registry/pivot/status-code-demo.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -3052,7 +3052,7 @@ export const Index: Record<string, any> = {
       target: "components/example/style-badge-demo.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/example/style-badge-demo.tsx")
+      const mod = await import("@/registry/pivot/style-badge-demo.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -3070,7 +3070,7 @@ export const Index: Record<string, any> = {
       target: "components/example/terms-of-service-demo.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/example/terms-of-service-demo.tsx")
+      const mod = await import("@/registry/pivot/terms-of-service-demo.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -3088,7 +3088,7 @@ export const Index: Record<string, any> = {
       target: "components/example/theme-toggle-demo.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/example/theme-toggle-demo.tsx")
+      const mod = await import("@/registry/pivot/theme-toggle-demo.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -3106,7 +3106,7 @@ export const Index: Record<string, any> = {
       target: "components/example/try-it-out-panel-demo.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/example/try-it-out-panel-demo.tsx")
+      const mod = await import("@/registry/pivot/try-it-out-panel-demo.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -3124,7 +3124,7 @@ export const Index: Record<string, any> = {
       target: "components/example/type-indicator-demo.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/example/type-indicator-demo.tsx")
+      const mod = await import("@/registry/pivot/type-indicator-demo.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -3142,7 +3142,7 @@ export const Index: Record<string, any> = {
       target: "components/example/typescript-generator-demo.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/example/typescript-generator-demo.tsx")
+      const mod = await import("@/registry/pivot/typescript-generator-demo.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -3160,7 +3160,7 @@ export const Index: Record<string, any> = {
       target: "components/example/value-display-demo.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/example/value-display-demo.tsx")
+      const mod = await import("@/registry/pivot/value-display-demo.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -3178,7 +3178,7 @@ export const Index: Record<string, any> = {
       target: "components/example/version-badge-demo.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/example/version-badge-demo.tsx")
+      const mod = await import("@/registry/pivot/version-badge-demo.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -3196,7 +3196,7 @@ export const Index: Record<string, any> = {
       target: "components/example/webhook-label-demo.tsx"
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/example/webhook-label-demo.tsx")
+      const mod = await import("@/registry/pivot/webhook-label-demo.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -3211,18 +3211,18 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/lib/hooks/use-openapi.ts",
       type: "registry:hook",
-      target: ""
+      target: "registry/lib/hooks/use-openapi.ts"
     },{
       path: "registry/lib/hooks/use-operation.ts",
       type: "registry:hook",
-      target: ""
+      target: "registry/lib/hooks/use-operation.ts"
     },{
       path: "registry/lib/hooks/use-schema.ts",
       type: "registry:hook",
-      target: ""
+      target: "registry/lib/hooks/use-schema.ts"
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/lib/hooks/use-openapi.ts")
+      const mod = await import("@/registry/pivot/use-openapi.ts")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -3237,22 +3237,22 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/lib/i18n/I18nProvider.tsx",
       type: "registry:lib",
-      target: ""
+      target: "registry/lib/i18n/I18nProvider.tsx"
     },{
       path: "registry/lib/i18n/index.ts",
       type: "registry:lib",
-      target: ""
+      target: "registry/lib/i18n/index.ts"
     },{
       path: "registry/lib/i18n/locales/en.ts",
       type: "registry:lib",
-      target: ""
+      target: "registry/lib/i18n/locales/en.ts"
     },{
       path: "registry/lib/i18n/locales/zh.ts",
       type: "registry:lib",
-      target: ""
+      target: "registry/lib/i18n/locales/zh.ts"
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/lib/i18n/I18nProvider.tsx")
+      const mod = await import("@/registry/pivot/I18nProvider.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -3267,22 +3267,22 @@ export const Index: Record<string, any> = {
     files: [{
       path: "registry/lib/utils/generate-example.ts",
       type: "registry:lib",
-      target: ""
+      target: "registry/lib/utils/generate-example.ts"
     },{
       path: "registry/lib/utils/resolve-ref.ts",
       type: "registry:lib",
-      target: ""
+      target: "registry/lib/utils/resolve-ref.ts"
     },{
       path: "registry/lib/utils/schema-utils.ts",
       type: "registry:lib",
-      target: ""
+      target: "registry/lib/utils/schema-utils.ts"
     },{
       path: "registry/lib/utils/type-utils.ts",
       type: "registry:lib",
-      target: ""
+      target: "registry/lib/utils/type-utils.ts"
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/lib/utils/generate-example.ts")
+      const mod = await import("@/registry/pivot/generate-example.ts")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),

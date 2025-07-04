@@ -9,7 +9,8 @@
     {
       "path": "registry/pivot/webhook-label.tsx",
       "content": "import { cn } from \"@/lib/utils\";\nimport React from \"react\";\n\ninterface WebhookLabelProps {\n  className?: string;\n  children?: React.ReactNode;\n}\n\nconst WebhookLabel = React.forwardRef<HTMLSpanElement, WebhookLabelProps>(\n  ({ className, children }, ref) => {\n    return (\n      <span\n        ref={ref}\n        className={cn(\n          \"px-2 py-1 text-xs font-semibold rounded\",\n          \"bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-400\",\n          className,\n        )}\n      >\n        {children || \"Webhook\"}\n      </span>\n    );\n  },\n);\n\nWebhookLabel.displayName = \"WebhookLabel\";\n\nexport { WebhookLabel };\n",
-      "type": "registry:ui"
+      "type": "registry:ui",
+      "target": "registry/pivot/webhook-label.tsx"
     }
   ]
 }

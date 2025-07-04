@@ -9,7 +9,8 @@
     {
       "path": "registry/pivot/parameter-description.tsx",
       "content": "import { cn } from \"@/lib/utils\";\nimport React from \"react\";\n\ninterface ParameterDescriptionProps {\n  description: string;\n  className?: string;\n}\n\nconst ParameterDescription = React.forwardRef<\n  HTMLDivElement,\n  ParameterDescriptionProps\n>(({ description, className }, ref) => {\n  return (\n    <div\n      ref={ref}\n      className={cn(\n        \"text-sm text-neutral-500 dark:text-neutral-400 prose dark:prose-invert max-w-none\",\n        className,\n      )}\n    >\n      {description}\n    </div>\n  );\n});\n\nParameterDescription.displayName = \"ParameterDescription\";\n\nexport { ParameterDescription };\n",
-      "type": "registry:ui"
+      "type": "registry:ui",
+      "target": "registry/pivot/parameter-description.tsx"
     }
   ]
 }

@@ -12,7 +12,8 @@
     {
       "path": "registry/pivot/enum-values-display.tsx",
       "content": "import { cn } from \"@/lib/utils\";\nimport React from \"react\";\nimport { EnumValues } from \"@/registry/pivot/enum-values\";\n\ninterface EnumValuesDisplayProps {\n  values: any[];\n  className?: string;\n}\n\nconst EnumValuesDisplay = React.forwardRef<\n  HTMLDivElement,\n  EnumValuesDisplayProps\n>(({ values, className }, ref) => {\n  if (!values || values.length === 0) {\n    return null;\n  }\n\n  return (\n    <div ref={ref} className={cn(className)}>\n      <h4 className=\"text-xs font-semibold mb-1 text-neutral-500 dark:text-neutral-400\">\n        Allowed Values\n      </h4>\n      <EnumValues values={values} className=\"flex flex-wrap gap-1\" />\n    </div>\n  );\n});\n\nEnumValuesDisplay.displayName = \"EnumValuesDisplay\";\n\nexport { EnumValuesDisplay };\n",
-      "type": "registry:ui"
+      "type": "registry:ui",
+      "target": "registry/pivot/enum-values-display.tsx"
     }
   ]
 }

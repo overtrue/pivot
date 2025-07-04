@@ -10,7 +10,8 @@
     {
       "path": "registry/pivot/description-display.tsx",
       "content": "import { cn } from \"@/lib/utils\";\nimport React from \"react\";\nimport ReactMarkdown from \"react-markdown\";\n\ninterface DescriptionDisplayProps {\n  description: string;\n  className?: string;\n}\n\nconst DescriptionDisplay = React.forwardRef<HTMLDivElement, DescriptionDisplayProps>(\n  ({ description, className }, ref) => {\n    return (\n      <div\n        ref={ref}\n        className={cn(\n          `text-sm text-neutral-500 dark:text-neutral-300 prose dark:prose-invert max-w-none`,\n          className,\n        )}\n      >\n        <ReactMarkdown>{description}</ReactMarkdown>\n      </div>\n    );\n  }\n);\n\nDescriptionDisplay.displayName = \"DescriptionDisplay\";\n\nexport { DescriptionDisplay };\n",
-      "type": "registry:ui"
+      "type": "registry:ui",
+      "target": "registry/pivot/description-display.tsx"
     }
   ]
 }
