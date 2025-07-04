@@ -7,6 +7,8 @@
     "react"
   ],
   "registryDependencies": [
+    "https://pivotkit.vercel.app/r/i18n",
+    "https://pivotkit.vercel.app/r/resolve-ref",
     "https://pivotkit.vercel.app/r/link-item"
   ],
   "files": [

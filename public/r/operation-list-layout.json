@@ -8,6 +8,8 @@
     "react"
   ],
   "registryDependencies": [
+    "https://pivotkit.vercel.app/r/use-openapi",
+    "https://pivotkit.vercel.app/r/i18n",
     "https://pivotkit.vercel.app/r/operation-box",
     "https://pivotkit.vercel.app/r/try-it-out-panel"
   ],

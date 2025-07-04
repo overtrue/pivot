@@ -58,8 +58,8 @@ async function analyzeFileDependencies(filePath: string): Promise<DependencyAnal
             registryDependencies.add(componentName);
           }
         }
-        // Check if it's a registry component import (@/registry/pivot/...)
-        else if (importPath.startsWith('@/registry/pivot/')) {
+        // Check if it's a registry component import (@/registry/...)
+        else if (importPath.startsWith('@/registry/')) {
           const componentName = path.basename(importPath, '.tsx');
           if (componentName) {
             registryDependencies.add(`${REGISTRY_BASE_URL}/${componentName}`);

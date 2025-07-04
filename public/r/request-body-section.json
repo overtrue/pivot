@@ -7,6 +7,7 @@
     "react"
   ],
   "registryDependencies": [
+    "https://pivotkit.vercel.app/r/i18n",
     "https://pivotkit.vercel.app/r/schema-with-example-viewer",
     "https://pivotkit.vercel.app/r/section-title"
   ],

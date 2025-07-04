@@ -8,6 +8,7 @@
   "registryDependencies": [
     "button",
     "card",
+    "https://pivotkit.vercel.app/r/i18n",
     "https://pivotkit.vercel.app/r/required-marker",
     "https://pivotkit.vercel.app/r/try-it-out-panel"
   ],

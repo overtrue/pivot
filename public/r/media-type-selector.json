@@ -5,6 +5,9 @@
   "dependencies": [
     "react"
   ],
+  "registryDependencies": [
+    "https://pivotkit.vercel.app/r/i18n"
+  ],
   "files": [
     {
       "path": "registry/pivot/media-type-selector.tsx",
