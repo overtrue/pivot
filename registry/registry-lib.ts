@@ -8,17 +8,17 @@ export const lib: Registry["items"] = [
       {
         "path": "registry/lib/hooks/use-openapi.ts",
         "type": "registry:hook",
-        "target": "registry/lib/hooks/use-openapi.ts"
+        "target": "lib/hooks/use-openapi.ts"
       },
       {
         "path": "registry/lib/hooks/use-operation.ts",
         "type": "registry:hook",
-        "target": "registry/lib/hooks/use-operation.ts"
+        "target": "lib/hooks/use-operation.ts"
       },
       {
         "path": "registry/lib/hooks/use-schema.ts",
         "type": "registry:hook",
-        "target": "registry/lib/hooks/use-schema.ts"
+        "target": "lib/hooks/use-schema.ts"
       }
     ],
     "dependencies": [
@@ -33,22 +33,22 @@ export const lib: Registry["items"] = [
       {
         "path": "registry/lib/i18n/I18nProvider.tsx",
         "type": "registry:lib",
-        "target": "registry/lib/i18n/I18nProvider.tsx"
+        "target": "lib/i18n/I18nProvider.tsx"
       },
       {
         "path": "registry/lib/i18n/index.ts",
         "type": "registry:lib",
-        "target": "registry/lib/i18n/index.ts"
+        "target": "lib/i18n/index.ts"
       },
       {
         "path": "registry/lib/i18n/locales/en.ts",
         "type": "registry:lib",
-        "target": "registry/lib/i18n/locales/en.ts"
+        "target": "lib/i18n/locales/en.ts"
       },
       {
         "path": "registry/lib/i18n/locales/zh.ts",
         "type": "registry:lib",
-        "target": "registry/lib/i18n/locales/zh.ts"
+        "target": "lib/i18n/locales/zh.ts"
       }
     ],
     "dependencies": [
@@ -62,22 +62,22 @@ export const lib: Registry["items"] = [
       {
         "path": "registry/lib/utils/generate-example.ts",
         "type": "registry:lib",
-        "target": "registry/lib/utils/generate-example.ts"
+        "target": "lib/utils/generate-example.ts"
       },
       {
         "path": "registry/lib/utils/resolve-ref.ts",
         "type": "registry:lib",
-        "target": "registry/lib/utils/resolve-ref.ts"
+        "target": "lib/utils/resolve-ref.ts"
       },
       {
         "path": "registry/lib/utils/schema-utils.ts",
         "type": "registry:lib",
-        "target": "registry/lib/utils/schema-utils.ts"
+        "target": "lib/utils/schema-utils.ts"
       },
       {
         "path": "registry/lib/utils/type-utils.ts",
         "type": "registry:lib",
-        "target": "registry/lib/utils/type-utils.ts"
+        "target": "lib/utils/type-utils.ts"
       }
     ],
     "dependencies": [
