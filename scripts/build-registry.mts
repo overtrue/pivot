@@ -45,8 +45,11 @@ async function analyzeFileDependencies(filePath: string): Promise<DependencyAnal
 
         // Check if it's a relative import (internal component)
         if (importPath.startsWith('./') || importPath.startsWith('../')) {
-          const componentName = path.basename(importPath, '.tsx').replace(/^\.\//, '');
+          let componentName = path.basename(importPath, '.tsx').replace(/^\.\//, '');
           if (componentName && !componentName.startsWith('lib/') && !componentName.startsWith('utils/')) {
+            if (importPath.startsWith('@/registry/lib/')) {
+              componentName = 'lib';
+            }
             registryDependencies.add(`${REGISTRY_BASE_URL}/${componentName}`);
           }
         }
