@@ -7,7 +7,7 @@
     "react"
   ],
   "registryDependencies": [
-    "https://pivotkit.vercel.app/r/resolve-ref",
+    "https://pivotkit.vercel.app/r/lib",
     "https://pivotkit.vercel.app/r/callback-display",
     "https://pivotkit.vercel.app/r/examples-display",
     "https://pivotkit.vercel.app/r/header-item",

@@ -43,7 +43,7 @@ export const examples: Registry["items"] = [
       }
     ],
     "registryDependencies": [
-      "https://pivotkit.vercel.app/r/I18nProvider",
+      "https://pivotkit.vercel.app/r/lib",
       "https://pivotkit.vercel.app/r/code-markdown"
     ]
   },
@@ -179,7 +179,7 @@ export const examples: Registry["items"] = [
       }
     ],
     "registryDependencies": [
-      "https://pivotkit.vercel.app/r/I18nProvider",
+      "https://pivotkit.vercel.app/r/lib",
       "https://pivotkit.vercel.app/r/copy-button",
       "https://pivotkit.vercel.app/r/example-display"
     ]
@@ -279,7 +279,7 @@ export const examples: Registry["items"] = [
       }
     ],
     "registryDependencies": [
-      "https://pivotkit.vercel.app/r/I18nProvider",
+      "https://pivotkit.vercel.app/r/lib",
       "https://pivotkit.vercel.app/r/example-display"
     ]
   },
@@ -356,7 +356,7 @@ export const examples: Registry["items"] = [
       "openapi-types"
     ],
     "registryDependencies": [
-      "https://pivotkit.vercel.app/r/generate-example"
+      "https://pivotkit.vercel.app/r/lib"
     ]
   },
   {
@@ -417,7 +417,7 @@ export const examples: Registry["items"] = [
     "registryDependencies": [
       "button",
       "card",
-      "https://pivotkit.vercel.app/r/i18n",
+      "https://pivotkit.vercel.app/r/lib",
       "https://pivotkit.vercel.app/r/required-marker",
       "https://pivotkit.vercel.app/r/try-it-out-panel"
     ]
@@ -877,7 +877,7 @@ export const examples: Registry["items"] = [
       "openapi-types"
     ],
     "registryDependencies": [
-      "https://pivotkit.vercel.app/r/I18nProvider",
+      "https://pivotkit.vercel.app/r/lib",
       "https://pivotkit.vercel.app/r/response-content-section"
     ]
   },

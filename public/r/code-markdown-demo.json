@@ -3,7 +3,7 @@
   "name": "code-markdown-demo",
   "type": "registry:example",
   "registryDependencies": [
-    "https://pivotkit.vercel.app/r/I18nProvider",
+    "https://pivotkit.vercel.app/r/lib",
     "https://pivotkit.vercel.app/r/code-markdown"
   ],
   "files": [

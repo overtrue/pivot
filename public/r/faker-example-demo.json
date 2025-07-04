@@ -6,7 +6,7 @@
     "openapi-types"
   ],
   "registryDependencies": [
-    "https://pivotkit.vercel.app/r/generate-example"
+    "https://pivotkit.vercel.app/r/lib"
   ],
   "files": [
     {
