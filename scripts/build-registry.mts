@@ -116,7 +116,7 @@ async function generateRegistryUI(): Promise<Registry["items"]> {
         {
           path: `registry/pivot/${file}`,
           type: "registry:ui" as const,
-          target: `registry/pivot/${file}`
+          target: `components/pivot/${file}`
         }
       ],
       ...(npmDependencies.length > 0 && { dependencies: npmDependencies }),
@@ -235,9 +235,7 @@ export const Index: Record<string, any> = {`;
     const resolveFiles = item.files?.map((file) => `${file.path}`);
     if (!resolveFiles) continue;
 
-    const componentPath = item.files?.[0]?.path
-      ? `@/registry/pivot/${path.basename(item.files[0].path)}`
-      : "";
+    const componentPath = item.files?.[0]?.path ? `@/${item.files[0].path}` : "";
 
     index += `
   "${item.name}": {

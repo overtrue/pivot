@@ -10,7 +10,7 @@
       "path": "registry/pivot/scheme-type.tsx",
       "content": "import { cn } from \"@/lib/utils\";\nimport type { SecuritySchemeType } from \"@/types/project\";\nimport React from \"react\";\n\ninterface SchemeTypeProps {\n  type: SecuritySchemeType;\n  className?: string;\n}\n\nconst schemeColors: Record<SecuritySchemeType, string> = {\n  apiKey:\n    \"bg-yellow-100 dark:bg-yellow-900/50 text-yellow-800 dark:text-yellow-300\",\n  http: \"bg-blue-100 dark:bg-blue-900/50 text-blue-800 dark:text-blue-300\",\n  oauth2:\n    \"bg-green-100 dark:bg-green-900/50 text-green-800 dark:text-green-300\",\n  openIdConnect:\n    \"bg-purple-100 dark:bg-purple-900/50 text-purple-800 dark:text-purple-300\",\n  mutualTLS: \"bg-red-100 dark:bg-red-900/50 text-red-800 dark:text-red-300\",\n};\n\nconst SchemeType = React.forwardRef<HTMLSpanElement, SchemeTypeProps>(\n  ({ type, className }, ref) => {\n    return (\n      <span\n        ref={ref}\n        className={cn(\n          \"px-2 py-1 text-xs font-semibold rounded\",\n          schemeColors[type],\n          className,\n        )}\n      >\n        {type}\n      </span>\n    );\n  },\n);\n\nSchemeType.displayName = \"SchemeType\";\n\nexport { SchemeType, type SchemeTypeProps };\n",
       "type": "registry:ui",
-      "target": "registry/pivot/scheme-type.tsx"
+      "target": "components/pivot/scheme-type.tsx"
     }
   ]
 }

@@ -10,7 +10,7 @@
       "path": "registry/pivot/oauth-flow.tsx",
       "content": "import { cn } from \"@/lib/utils\";\nimport React from \"react\";\n\n// Define OAuth flow types\ntype OAuthFlowType =\n  | \"implicit\"\n  | \"password\"\n  | \"clientCredentials\"\n  | \"authorizationCode\";\n\ninterface OAuthFlowProps {\n  flow: OAuthFlowType;\n  className?: string;\n}\n\nconst flowColors: Record<OAuthFlowType, string> = {\n  implicit:\n    \"bg-orange-100 dark:bg-orange-900/50 text-orange-800 dark:text-orange-300\",\n  password: \"bg-red-100 dark:bg-red-900/50 text-red-800 dark:text-red-300\",\n  clientCredentials:\n    \"bg-green-100 dark:bg-green-900/50 text-green-800 dark:text-green-300\",\n  authorizationCode:\n    \"bg-blue-100 dark:bg-blue-900/50 text-blue-800 dark:text-blue-300\",\n};\n\nconst OAuthFlow = React.forwardRef<HTMLSpanElement, OAuthFlowProps>(\n  ({ flow, className }, ref) => {\n    return (\n      <span\n        ref={ref}\n        className={cn(\n          \"px-2 py-1 text-xs font-semibold rounded\",\n          flowColors[flow],\n          className,\n        )}\n      >\n        {flow}\n      </span>\n    );\n  },\n);\n\nOAuthFlow.displayName = \"OAuthFlow\";\n\nexport { OAuthFlow, type OAuthFlowType };\n",
       "type": "registry:ui",
-      "target": "registry/pivot/oauth-flow.tsx"
+      "target": "components/pivot/oauth-flow.tsx"
     }
   ]
 }

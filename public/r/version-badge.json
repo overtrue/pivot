@@ -10,7 +10,7 @@
       "path": "registry/pivot/version-badge.tsx",
       "content": "import { cn } from \"@/lib/utils\";\nimport React from \"react\";\n\ninterface VersionBadgeProps {\n  version: string;\n  className?: string;\n}\n\nconst VersionBadge = React.forwardRef<HTMLSpanElement, VersionBadgeProps>(\n  ({ version, className }, ref) => {\n    return (\n      <span\n        ref={ref}\n        className={cn(\n          \"px-2 py-1 text-xs font-semibold rounded\",\n          \"bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400\",\n          className,\n        )}\n      >\n        v{version}\n      </span>\n    );\n  }\n);\n\nVersionBadge.displayName = \"VersionBadge\";\n\nexport { VersionBadge };\n",
       "type": "registry:ui",
-      "target": "registry/pivot/version-badge.tsx"
+      "target": "components/pivot/version-badge.tsx"
     }
   ]
 }
