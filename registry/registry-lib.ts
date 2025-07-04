@@ -52,11 +52,5 @@ export const lib: Registry["items"] = [{
     "@faker-js/faker",
     "openapi-types",
     "react"
-  ],
-  "registryDependencies": [
-    "https://pivotkit.vercel.app/r/en",
-    "https://pivotkit.vercel.app/r/lib",
-    "https://pivotkit.vercel.app/r/resolve-ref",
-    "https://pivotkit.vercel.app/r/zh"
   ]
 }];

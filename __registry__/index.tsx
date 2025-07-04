@@ -3207,7 +3207,7 @@ export const Index: Record<string, any> = {
     title: "lib",
     description: "Core library components and utilities",
     type: "registry:lib",
-    registryDependencies: ["https://pivotkit.vercel.app/r/en","https://pivotkit.vercel.app/r/lib","https://pivotkit.vercel.app/r/resolve-ref","https://pivotkit.vercel.app/r/zh"],
+    registryDependencies: undefined,
     files: [{
       path: "registry/lib/hooks/use-openapi.ts",
       type: "registry:lib",

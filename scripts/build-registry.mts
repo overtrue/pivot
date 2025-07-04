@@ -219,7 +219,6 @@ async function generateRegistryLib(): Promise<Registry["items"]> {
     target: string;
   }[] = [];
   const allDependencies = new Set<string>();
-  const allRegistryDependencies = new Set<string>();
 
   // 获取所有子目录
   const subDirs = await fs.readdir(libDir);
@@ -247,7 +246,6 @@ async function generateRegistryLib(): Promise<Registry["items"]> {
 
       // 收集所有依赖
       npmDependencies.forEach(dep => allDependencies.add(dep));
-      registryDependencies.forEach(dep => allRegistryDependencies.add(dep));
     }
   }
 
@@ -258,7 +256,6 @@ async function generateRegistryLib(): Promise<Registry["items"]> {
     description: 'Core library components and utilities',
     files: files.sort((a, b) => a.path.localeCompare(b.path)),
     dependencies: Array.from(allDependencies).sort(),
-    registryDependencies: Array.from(allRegistryDependencies).sort()
   };
 
   const content = `import { type Registry } from "shadcn/registry";
