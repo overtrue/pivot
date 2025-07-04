@@ -28,6 +28,16 @@ export const lib: Registry["items"] = [{
       "target": "lib/i18n/I18nProvider.tsx"
     },
     {
+      "path": "registry/lib/i18n/locales/en.ts",
+      "type": "registry:lib",
+      "target": "lib/i18n/locales/en.ts"
+    },
+    {
+      "path": "registry/lib/i18n/locales/zh.ts",
+      "type": "registry:lib",
+      "target": "lib/i18n/locales/zh.ts"
+    },
+    {
       "path": "registry/lib/utils/generate-example.ts",
       "type": "registry:lib",
       "target": "lib/utils/generate-example.ts"

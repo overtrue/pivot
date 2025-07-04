@@ -206,6 +206,25 @@ export const examples: Registry["items"] = ${JSON.stringify(exampleItems, null, 
 }
 
 /**
+ * 递归获取目录下的所有文件
+ */
+async function getAllFiles(dir: string): Promise<string[]> {
+  const files: string[] = [];
+  const entries = await fs.readdir(dir, { withFileTypes: true });
+
+  for (const entry of entries) {
+    const fullPath = path.join(dir, entry.name);
+    if (entry.isDirectory()) {
+      files.push(...(await getAllFiles(fullPath)));
+    } else if ((entry.name.endsWith('.ts') || entry.name.endsWith('.tsx')) && entry.name !== 'index.ts') {
+      files.push(fullPath);
+    }
+  }
+
+  return files;
+}
+
+/**
  * Generate registry configuration for lib components
  * Scans registry/lib directory for .ts/.tsx files
  */
@@ -220,33 +239,26 @@ async function generateRegistryLib(): Promise<Registry["items"]> {
   }[] = [];
   const allDependencies = new Set<string>();
 
-  // 获取所有子目录
-  const subDirs = await fs.readdir(libDir);
-  for (const dir of subDirs) {
-    const dirPath = path.join(libDir, dir);
-    const dirStat = await fs.stat(dirPath);
+  // 递归获取所有文件
+  const allFiles = await getAllFiles(libDir);
 
-    if (!dirStat.isDirectory()) continue;
+  // 收集所有文件
+  for (const filePath of allFiles) {
+    const { npmDependencies } = await analyzeFileDependencies(filePath);
 
-    // 读取每个子目录下的所有文件
-    const dirFiles = await fs.readdir(dirPath);
-    const tsFiles = dirFiles.filter(f => (f.endsWith('.ts') || f.endsWith('.tsx')) && f !== 'index.ts');
+    // 计算相对路径
+    const relativePath = path.relative(process.cwd(), filePath);
+    const targetPath = relativePath.replace(/^registry\//, '');
 
-    // 收集所有文件
-    for (const file of tsFiles) {
-      const filePath = path.join(dirPath, file);
-      const { npmDependencies, registryDependencies } = await analyzeFileDependencies(filePath);
+    // 添加文件
+    files.push({
+      path: relativePath,
+      type: 'registry:lib',
+      target: targetPath
+    });
 
-      // 添加文件
-      files.push({
-        path: `registry/lib/${dir}/${file}`,
-        type: 'registry:lib',
-        target: `lib/${dir}/${file}`
-      });
-
-      // 收集所有依赖
-      npmDependencies.forEach(dep => allDependencies.add(dep));
-    }
+    // 收集所有依赖
+    npmDependencies.forEach(dep => allDependencies.add(dep));
   }
 
   // 创建单个 lib 组件
@@ -255,7 +267,7 @@ async function generateRegistryLib(): Promise<Registry["items"]> {
     type: 'registry:lib',
     description: 'Core library components and utilities',
     files: files.sort((a, b) => a.path.localeCompare(b.path)),
-    dependencies: Array.from(allDependencies).sort(),
+    dependencies: Array.from(allDependencies).sort()
   };
 
   const content = `import { type Registry } from "shadcn/registry";
