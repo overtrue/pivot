@@ -2,8 +2,13 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "language-switcher",
   "type": "registry:ui",
-  "dependencies": ["lucide-react", "react"],
-  "registryDependencies": ["https://pivotkit.vercel.app/r/i18n.json"],
+  "dependencies": [
+    "lucide-react",
+    "react"
+  ],
+  "registryDependencies": [
+    "https://pivotkit.vercel.app/r/i18n.json"
+  ],
   "files": [
     {
       "path": "registry/default/ui/language-switcher.tsx",

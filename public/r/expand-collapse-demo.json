@@ -2,7 +2,9 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "expand-collapse-demo",
   "type": "registry:example",
-  "dependencies": ["react"],
+  "dependencies": [
+    "react"
+  ],
   "registryDependencies": [
     "https://pivotkit.vercel.app/r/expand-collapse.json"
   ],

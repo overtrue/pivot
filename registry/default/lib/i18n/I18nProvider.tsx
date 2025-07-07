@@ -1,8 +1,8 @@
 "use client";
 
 import React, { createContext, useContext, useState } from "react";
-import en from "@/registry/default/ui/locales/en/locales/en";
-import zh from "@/registry/default/ui/locales/zh/locales/zh";
+import en from "@/registry/default/lib/i18n/locales/en";
+import zh from "@/registry/default/lib/i18n/locales/zh";
 
 type LocaleStrings = Record<string, string>;
 const locales: Record<string, LocaleStrings> = { en, zh };

@@ -2,7 +2,9 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "method-label",
   "type": "registry:ui",
-  "dependencies": ["react"],
+  "dependencies": [
+    "react"
+  ],
   "files": [
     {
       "path": "registry/default/ui/method-label.tsx",

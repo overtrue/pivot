@@ -8,7 +8,7 @@
   "files": [
     {
       "path": "registry/default/example/contact-display-demo.tsx",
-      "content": "import { ContactDisplay } from \"@/registry/default/ui/contact-display\";\n\nexport default function ContactDisplayDemo() {\n  const contact = {\n    name: \"API Support Team\",\n    email: \"support@example.com\",\n    url: \"https://example.com/support\"\n  };\n\n  return (\n    <div className=\"space-y-4 min-w-md\">\n      <ContactDisplay contact={contact} />\n    </div>\n  );\n}\n",
+      "content": "import { ContactDisplay } from \"@/registry/default/ui/contact-display\";\n\nexport default function ContactDisplayDemo() {\n  const contact = {\n    name: \"API Support Team\",\n    email: \"support@example.com\",\n    url: \"https://example.com/support\",\n  };\n\n  return (\n    <div className=\"space-y-4 min-w-md\">\n      <ContactDisplay contact={contact} />\n    </div>\n  );\n}\n",
       "type": "registry:example",
       "target": "components/example/contact-display-demo.tsx"
     }

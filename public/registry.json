@@ -11,14 +11,20 @@
         "class-variance-authority",
         "lucide-react"
       ],
-      "registryDependencies": ["utils"],
+      "registryDependencies": [
+        "utils"
+      ],
       "files": [],
       "cssVars": {}
     },
     {
       "name": "accordion-components-section",
       "type": "registry:ui",
-      "dependencies": ["openapi-types", "lucide-react", "react"],
+      "dependencies": [
+        "openapi-types",
+        "lucide-react",
+        "react"
+      ],
       "registryDependencies": [
         "https://pivotkit.vercel.app/r/component-detail.json"
       ],
@@ -33,7 +39,10 @@
     {
       "name": "callback-display",
       "type": "registry:ui",
-      "dependencies": ["openapi-types", "react"],
+      "dependencies": [
+        "openapi-types",
+        "react"
+      ],
       "registryDependencies": [
         "https://pivotkit.vercel.app/r/resolve-ref.json",
         "https://pivotkit.vercel.app/r/operation-box.json"
@@ -49,7 +58,11 @@
     {
       "name": "code-markdown",
       "type": "registry:ui",
-      "dependencies": ["next-themes", "react", "react-syntax-highlighter"],
+      "dependencies": [
+        "next-themes",
+        "react",
+        "react-syntax-highlighter"
+      ],
       "registryDependencies": [
         "https://pivotkit.vercel.app/r/copy-button.json"
       ],
@@ -64,7 +77,11 @@
     {
       "name": "codegen",
       "type": "registry:ui",
-      "dependencies": ["openapi-types", "lucide-react", "react"],
+      "dependencies": [
+        "openapi-types",
+        "lucide-react",
+        "react"
+      ],
       "registryDependencies": [
         "https://pivotkit.vercel.app/r/generate-example.json",
         "https://pivotkit.vercel.app/r/resolve-ref.json",
@@ -81,7 +98,10 @@
     {
       "name": "component-detail",
       "type": "registry:ui",
-      "dependencies": ["openapi-types", "react"],
+      "dependencies": [
+        "openapi-types",
+        "react"
+      ],
       "registryDependencies": [
         "https://pivotkit.vercel.app/r/resolve-ref.json",
         "https://pivotkit.vercel.app/r/callback-display.json",
@@ -106,7 +126,9 @@
     {
       "name": "component-items-list",
       "type": "registry:ui",
-      "dependencies": ["react"],
+      "dependencies": [
+        "react"
+      ],
       "files": [
         {
           "path": "registry/default/ui/component-items-list.tsx",
@@ -118,7 +140,9 @@
     {
       "name": "component-tabs",
       "type": "registry:ui",
-      "dependencies": ["react"],
+      "dependencies": [
+        "react"
+      ],
       "files": [
         {
           "path": "registry/default/ui/component-tabs.tsx",
@@ -130,7 +154,10 @@
     {
       "name": "components-section",
       "type": "registry:ui",
-      "dependencies": ["openapi-types", "react"],
+      "dependencies": [
+        "openapi-types",
+        "react"
+      ],
       "registryDependencies": [
         "https://pivotkit.vercel.app/r/component-items-list.json",
         "https://pivotkit.vercel.app/r/component-tabs.json",
@@ -147,7 +174,9 @@
     {
       "name": "const-value",
       "type": "registry:ui",
-      "dependencies": ["react"],
+      "dependencies": [
+        "react"
+      ],
       "registryDependencies": [
         "https://pivotkit.vercel.app/r/copy-button.json"
       ],
@@ -162,7 +191,10 @@
     {
       "name": "constraint-display",
       "type": "registry:ui",
-      "dependencies": ["openapi-types", "react"],
+      "dependencies": [
+        "openapi-types",
+        "react"
+      ],
       "files": [
         {
           "path": "registry/default/ui/constraint-display.tsx",
@@ -174,7 +206,10 @@
     {
       "name": "contact-display",
       "type": "registry:ui",
-      "dependencies": ["openapi-types", "react"],
+      "dependencies": [
+        "openapi-types",
+        "react"
+      ],
       "files": [
         {
           "path": "registry/default/ui/contact-display.tsx",
@@ -186,8 +221,13 @@
     {
       "name": "copy-button",
       "type": "registry:ui",
-      "dependencies": ["lucide-react", "react"],
-      "registryDependencies": ["https://pivotkit.vercel.app/r/i18n.json"],
+      "dependencies": [
+        "lucide-react",
+        "react"
+      ],
+      "registryDependencies": [
+        "https://pivotkit.vercel.app/r/i18n.json"
+      ],
       "files": [
         {
           "path": "registry/default/ui/copy-button.tsx",
@@ -199,7 +239,10 @@
     {
       "name": "curl-generator",
       "type": "registry:ui",
-      "dependencies": ["lucide-react", "react"],
+      "dependencies": [
+        "lucide-react",
+        "react"
+      ],
       "files": [
         {
           "path": "registry/default/ui/curl-generator.tsx",
@@ -211,7 +254,9 @@
     {
       "name": "default-value-display",
       "type": "registry:ui",
-      "dependencies": ["react"],
+      "dependencies": [
+        "react"
+      ],
       "registryDependencies": [
         "https://pivotkit.vercel.app/r/value-display.json"
       ],
@@ -226,7 +271,9 @@
     {
       "name": "deprecated-badge",
       "type": "registry:ui",
-      "dependencies": ["react"],
+      "dependencies": [
+        "react"
+      ],
       "files": [
         {
           "path": "registry/default/ui/deprecated-badge.tsx",
@@ -238,7 +285,10 @@
     {
       "name": "description-display",
       "type": "registry:ui",
-      "dependencies": ["react", "react-markdown"],
+      "dependencies": [
+        "react",
+        "react-markdown"
+      ],
       "files": [
         {
           "path": "registry/default/ui/description-display.tsx",
@@ -250,7 +300,9 @@
     {
       "name": "enum-values-display",
       "type": "registry:ui",
-      "dependencies": ["react"],
+      "dependencies": [
+        "react"
+      ],
       "registryDependencies": [
         "https://pivotkit.vercel.app/r/enum-values.json"
       ],
@@ -265,7 +317,9 @@
     {
       "name": "enum-values",
       "type": "registry:ui",
-      "dependencies": ["react"],
+      "dependencies": [
+        "react"
+      ],
       "registryDependencies": [
         "https://pivotkit.vercel.app/r/value-display.json"
       ],
@@ -280,7 +334,9 @@
     {
       "name": "example-display",
       "type": "registry:ui",
-      "dependencies": ["react"],
+      "dependencies": [
+        "react"
+      ],
       "registryDependencies": [
         "https://pivotkit.vercel.app/r/i18n.json",
         "https://pivotkit.vercel.app/r/code-markdown.json"
@@ -296,7 +352,10 @@
     {
       "name": "examples-display",
       "type": "registry:ui",
-      "dependencies": ["openapi-types", "react"],
+      "dependencies": [
+        "openapi-types",
+        "react"
+      ],
       "registryDependencies": [
         "https://pivotkit.vercel.app/r/i18n.json",
         "https://pivotkit.vercel.app/r/resolve-ref.json",
@@ -313,7 +372,9 @@
     {
       "name": "expand-collapse",
       "type": "registry:ui",
-      "dependencies": ["react"],
+      "dependencies": [
+        "react"
+      ],
       "files": [
         {
           "path": "registry/default/ui/expand-collapse.tsx",
@@ -325,7 +386,10 @@
     {
       "name": "external-docs-display",
       "type": "registry:ui",
-      "dependencies": ["openapi-types", "react"],
+      "dependencies": [
+        "openapi-types",
+        "react"
+      ],
       "files": [
         {
           "path": "registry/default/ui/external-docs-display.tsx",
@@ -337,7 +401,9 @@
     {
       "name": "external-docs",
       "type": "registry:ui",
-      "dependencies": ["react"],
+      "dependencies": [
+        "react"
+      ],
       "files": [
         {
           "path": "registry/default/ui/external-docs.tsx",
@@ -349,7 +415,9 @@
     {
       "name": "format-badge",
       "type": "registry:ui",
-      "dependencies": ["react"],
+      "dependencies": [
+        "react"
+      ],
       "files": [
         {
           "path": "registry/default/ui/format-badge.tsx",
@@ -361,7 +429,10 @@
     {
       "name": "header-item",
       "type": "registry:ui",
-      "dependencies": ["openapi-types", "react"],
+      "dependencies": [
+        "openapi-types",
+        "react"
+      ],
       "registryDependencies": [
         "https://pivotkit.vercel.app/r/deprecated-badge.json",
         "https://pivotkit.vercel.app/r/description-display.json",
@@ -384,7 +455,10 @@
     {
       "name": "headers-section",
       "type": "registry:ui",
-      "dependencies": ["openapi-types", "react"],
+      "dependencies": [
+        "openapi-types",
+        "react"
+      ],
       "registryDependencies": [
         "https://pivotkit.vercel.app/r/i18n.json",
         "https://pivotkit.vercel.app/r/resolve-ref.json",
@@ -402,7 +476,9 @@
     {
       "name": "in-label",
       "type": "registry:ui",
-      "dependencies": ["react"],
+      "dependencies": [
+        "react"
+      ],
       "files": [
         {
           "path": "registry/default/ui/in-label.tsx",
@@ -414,7 +490,11 @@
     {
       "name": "info-section",
       "type": "registry:ui",
-      "dependencies": ["lucide-react", "openapi-types", "react"],
+      "dependencies": [
+        "lucide-react",
+        "openapi-types",
+        "react"
+      ],
       "registryDependencies": [
         "https://pivotkit.vercel.app/r/contact-display.json",
         "https://pivotkit.vercel.app/r/description-display.json",
@@ -431,8 +511,13 @@
     {
       "name": "language-switcher",
       "type": "registry:ui",
-      "dependencies": ["lucide-react", "react"],
-      "registryDependencies": ["https://pivotkit.vercel.app/r/i18n.json"],
+      "dependencies": [
+        "lucide-react",
+        "react"
+      ],
+      "registryDependencies": [
+        "https://pivotkit.vercel.app/r/i18n.json"
+      ],
       "files": [
         {
           "path": "registry/default/ui/language-switcher.tsx",
@@ -444,7 +529,10 @@
     {
       "name": "laravel-generator",
       "type": "registry:ui",
-      "dependencies": ["lucide-react", "react"],
+      "dependencies": [
+        "lucide-react",
+        "react"
+      ],
       "files": [
         {
           "path": "registry/default/ui/laravel-generator.tsx",
@@ -456,7 +544,10 @@
     {
       "name": "license-display",
       "type": "registry:ui",
-      "dependencies": ["openapi-types", "react"],
+      "dependencies": [
+        "openapi-types",
+        "react"
+      ],
       "files": [
         {
           "path": "registry/default/ui/license-display.tsx",
@@ -468,7 +559,10 @@
     {
       "name": "link-item",
       "type": "registry:ui",
-      "dependencies": ["openapi-types", "react"],
+      "dependencies": [
+        "openapi-types",
+        "react"
+      ],
       "registryDependencies": [
         "https://pivotkit.vercel.app/r/i18n.json",
         "https://pivotkit.vercel.app/r/description-display.json",
@@ -486,7 +580,10 @@
     {
       "name": "links-section",
       "type": "registry:ui",
-      "dependencies": ["openapi-types", "react"],
+      "dependencies": [
+        "openapi-types",
+        "react"
+      ],
       "registryDependencies": [
         "https://pivotkit.vercel.app/r/i18n.json",
         "https://pivotkit.vercel.app/r/resolve-ref.json",
@@ -503,7 +600,9 @@
     {
       "name": "media-type-display",
       "type": "registry:ui",
-      "dependencies": ["react"],
+      "dependencies": [
+        "react"
+      ],
       "files": [
         {
           "path": "registry/default/ui/media-type-display.tsx",
@@ -515,8 +614,12 @@
     {
       "name": "media-type-selector",
       "type": "registry:ui",
-      "dependencies": ["react"],
-      "registryDependencies": ["https://pivotkit.vercel.app/r/i18n.json"],
+      "dependencies": [
+        "react"
+      ],
+      "registryDependencies": [
+        "https://pivotkit.vercel.app/r/i18n.json"
+      ],
       "files": [
         {
           "path": "registry/default/ui/media-type-selector.tsx",
@@ -528,7 +631,9 @@
     {
       "name": "method-label",
       "type": "registry:ui",
-      "dependencies": ["react"],
+      "dependencies": [
+        "react"
+      ],
       "files": [
         {
           "path": "registry/default/ui/method-label.tsx",
@@ -540,7 +645,11 @@
     {
       "name": "navigation-sidebar",
       "type": "registry:ui",
-      "dependencies": ["lucide-react", "openapi-types", "react"],
+      "dependencies": [
+        "lucide-react",
+        "openapi-types",
+        "react"
+      ],
       "registryDependencies": [
         "button",
         "collapsible",
@@ -559,7 +668,9 @@
     {
       "name": "oauth-flow-details",
       "type": "registry:ui",
-      "dependencies": ["react"],
+      "dependencies": [
+        "react"
+      ],
       "files": [
         {
           "path": "registry/default/ui/oauth-flow-details.tsx",
@@ -571,7 +682,9 @@
     {
       "name": "oauth-flow",
       "type": "registry:ui",
-      "dependencies": ["react"],
+      "dependencies": [
+        "react"
+      ],
       "files": [
         {
           "path": "registry/default/ui/oauth-flow.tsx",
@@ -583,7 +696,10 @@
     {
       "name": "operation-box",
       "type": "registry:ui",
-      "dependencies": ["openapi-types", "react"],
+      "dependencies": [
+        "openapi-types",
+        "react"
+      ],
       "registryDependencies": [
         "https://pivotkit.vercel.app/r/i18n.json",
         "https://pivotkit.vercel.app/r/deprecated-badge.json",
@@ -608,7 +724,10 @@
     {
       "name": "operation-detail",
       "type": "registry:ui",
-      "dependencies": ["openapi-types", "react"],
+      "dependencies": [
+        "openapi-types",
+        "react"
+      ],
       "registryDependencies": [
         "badge",
         "label",
@@ -634,7 +753,11 @@
     {
       "name": "operation-detailed-layout",
       "type": "registry:ui",
-      "dependencies": ["js-yaml", "openapi-types", "react"],
+      "dependencies": [
+        "js-yaml",
+        "openapi-types",
+        "react"
+      ],
       "registryDependencies": [
         "https://pivotkit.vercel.app/r/i18n.json",
         "https://pivotkit.vercel.app/r/codegen.json",
@@ -652,7 +775,11 @@
     {
       "name": "operation-list-layout",
       "type": "registry:ui",
-      "dependencies": ["js-yaml", "openapi-types", "react"],
+      "dependencies": [
+        "js-yaml",
+        "openapi-types",
+        "react"
+      ],
       "registryDependencies": [
         "https://pivotkit.vercel.app/r/use-openapi.json",
         "https://pivotkit.vercel.app/r/i18n.json",
@@ -670,7 +797,9 @@
     {
       "name": "operation-path",
       "type": "registry:ui",
-      "dependencies": ["react"],
+      "dependencies": [
+        "react"
+      ],
       "registryDependencies": [
         "https://pivotkit.vercel.app/r/path-segment.json"
       ],
@@ -685,7 +814,9 @@
     {
       "name": "parameter-description",
       "type": "registry:ui",
-      "dependencies": ["react"],
+      "dependencies": [
+        "react"
+      ],
       "files": [
         {
           "path": "registry/default/ui/parameter-description.tsx",
@@ -697,7 +828,9 @@
     {
       "name": "parameter-group",
       "type": "registry:ui",
-      "dependencies": ["react"],
+      "dependencies": [
+        "react"
+      ],
       "registryDependencies": [
         "https://pivotkit.vercel.app/r/required-marker.json",
         "https://pivotkit.vercel.app/r/type-indicator.json",
@@ -714,7 +847,10 @@
     {
       "name": "parameter-item",
       "type": "registry:ui",
-      "dependencies": ["openapi-types", "react"],
+      "dependencies": [
+        "openapi-types",
+        "react"
+      ],
       "registryDependencies": [
         "https://pivotkit.vercel.app/r/constraint-display.json",
         "https://pivotkit.vercel.app/r/default-value-display.json",
@@ -740,7 +876,9 @@
     {
       "name": "parameter-name",
       "type": "registry:ui",
-      "dependencies": ["react"],
+      "dependencies": [
+        "react"
+      ],
       "files": [
         {
           "path": "registry/default/ui/parameter-name.tsx",
@@ -752,7 +890,10 @@
     {
       "name": "parameters-section",
       "type": "registry:ui",
-      "dependencies": ["openapi-types", "react"],
+      "dependencies": [
+        "openapi-types",
+        "react"
+      ],
       "registryDependencies": [
         "https://pivotkit.vercel.app/r/i18n.json",
         "https://pivotkit.vercel.app/r/resolve-ref.json",
@@ -771,7 +912,10 @@
     {
       "name": "path-item-display",
       "type": "registry:ui",
-      "dependencies": ["openapi-types", "react"],
+      "dependencies": [
+        "openapi-types",
+        "react"
+      ],
       "registryDependencies": [
         "https://pivotkit.vercel.app/r/description-display.json",
         "https://pivotkit.vercel.app/r/operation-box.json"
@@ -787,7 +931,9 @@
     {
       "name": "path-segment",
       "type": "registry:ui",
-      "dependencies": ["react"],
+      "dependencies": [
+        "react"
+      ],
       "files": [
         {
           "path": "registry/default/ui/path-segment.tsx",
@@ -799,7 +945,10 @@
     {
       "name": "php-generator",
       "type": "registry:ui",
-      "dependencies": ["lucide-react", "react"],
+      "dependencies": [
+        "lucide-react",
+        "react"
+      ],
       "files": [
         {
           "path": "registry/default/ui/php-generator.tsx",
@@ -811,7 +960,10 @@
     {
       "name": "python-generator",
       "type": "registry:ui",
-      "dependencies": ["lucide-react", "react"],
+      "dependencies": [
+        "lucide-react",
+        "react"
+      ],
       "files": [
         {
           "path": "registry/default/ui/python-generator.tsx",
@@ -823,7 +975,10 @@
     {
       "name": "request-body-section",
       "type": "registry:ui",
-      "dependencies": ["openapi-types", "react"],
+      "dependencies": [
+        "openapi-types",
+        "react"
+      ],
       "registryDependencies": [
         "https://pivotkit.vercel.app/r/i18n.json",
         "https://pivotkit.vercel.app/r/schema-with-example-viewer.json",
@@ -840,7 +995,9 @@
     {
       "name": "required-badge",
       "type": "registry:ui",
-      "dependencies": ["react"],
+      "dependencies": [
+        "react"
+      ],
       "files": [
         {
           "path": "registry/default/ui/required-badge.tsx",
@@ -852,7 +1009,9 @@
     {
       "name": "required-marker",
       "type": "registry:ui",
-      "dependencies": ["react"],
+      "dependencies": [
+        "react"
+      ],
       "files": [
         {
           "path": "registry/default/ui/required-marker.tsx",
@@ -864,7 +1023,9 @@
     {
       "name": "resizable-sidebar",
       "type": "registry:ui",
-      "dependencies": ["react"],
+      "dependencies": [
+        "react"
+      ],
       "files": [
         {
           "path": "registry/default/ui/resizable-sidebar.tsx",
@@ -876,7 +1037,10 @@
     {
       "name": "response-content-section",
       "type": "registry:ui",
-      "dependencies": ["openapi-types", "react"],
+      "dependencies": [
+        "openapi-types",
+        "react"
+      ],
       "registryDependencies": [
         "https://pivotkit.vercel.app/r/i18n.json",
         "https://pivotkit.vercel.app/r/schema-with-example-viewer.json"
@@ -892,7 +1056,10 @@
     {
       "name": "response-group",
       "type": "registry:ui",
-      "dependencies": ["openapi-types", "react"],
+      "dependencies": [
+        "openapi-types",
+        "react"
+      ],
       "registryDependencies": [
         "https://pivotkit.vercel.app/r/i18n.json",
         "https://pivotkit.vercel.app/r/response-content-section.json",
@@ -909,7 +1076,10 @@
     {
       "name": "response-headers-table",
       "type": "registry:ui",
-      "dependencies": ["openapi-types", "react"],
+      "dependencies": [
+        "openapi-types",
+        "react"
+      ],
       "registryDependencies": [
         "https://pivotkit.vercel.app/r/i18n.json",
         "https://pivotkit.vercel.app/r/resolve-ref.json",
@@ -927,7 +1097,10 @@
     {
       "name": "response-item",
       "type": "registry:ui",
-      "dependencies": ["openapi-types", "react"],
+      "dependencies": [
+        "openapi-types",
+        "react"
+      ],
       "registryDependencies": [
         "https://pivotkit.vercel.app/r/i18n.json",
         "https://pivotkit.vercel.app/r/resolve-ref.json",
@@ -947,7 +1120,10 @@
     {
       "name": "responses-section",
       "type": "registry:ui",
-      "dependencies": ["openapi-types", "react"],
+      "dependencies": [
+        "openapi-types",
+        "react"
+      ],
       "registryDependencies": [
         "https://pivotkit.vercel.app/r/i18n.json",
         "https://pivotkit.vercel.app/r/response-group.json",
@@ -965,7 +1141,10 @@
     {
       "name": "schema-composition-display",
       "type": "registry:ui",
-      "dependencies": ["openapi-types", "react"],
+      "dependencies": [
+        "openapi-types",
+        "react"
+      ],
       "files": [
         {
           "path": "registry/default/ui/schema-composition-display.tsx",
@@ -977,7 +1156,10 @@
     {
       "name": "schema-display",
       "type": "registry:ui",
-      "dependencies": ["openapi-types", "react"],
+      "dependencies": [
+        "openapi-types",
+        "react"
+      ],
       "registryDependencies": [
         "https://pivotkit.vercel.app/r/resolve-ref.json",
         "https://pivotkit.vercel.app/r/constraint-display.json",
@@ -1001,7 +1183,10 @@
     {
       "name": "schema-with-example-viewer",
       "type": "registry:ui",
-      "dependencies": ["openapi-types", "react"],
+      "dependencies": [
+        "openapi-types",
+        "react"
+      ],
       "registryDependencies": [
         "https://pivotkit.vercel.app/r/i18n.json",
         "https://pivotkit.vercel.app/r/generate-example.json",
@@ -1022,7 +1207,9 @@
     {
       "name": "scheme-type",
       "type": "registry:ui",
-      "dependencies": ["react"],
+      "dependencies": [
+        "react"
+      ],
       "files": [
         {
           "path": "registry/default/ui/scheme-type.tsx",
@@ -1034,7 +1221,9 @@
     {
       "name": "section-title",
       "type": "registry:ui",
-      "dependencies": ["react"],
+      "dependencies": [
+        "react"
+      ],
       "files": [
         {
           "path": "registry/default/ui/section-title.tsx",
@@ -1046,7 +1235,10 @@
     {
       "name": "security-requirement-item",
       "type": "registry:ui",
-      "dependencies": ["openapi-types", "react"],
+      "dependencies": [
+        "openapi-types",
+        "react"
+      ],
       "files": [
         {
           "path": "registry/default/ui/security-requirement-item.tsx",
@@ -1058,7 +1250,9 @@
     {
       "name": "security-requirements-section",
       "type": "registry:ui",
-      "dependencies": ["react"],
+      "dependencies": [
+        "react"
+      ],
       "registryDependencies": [
         "https://pivotkit.vercel.app/r/i18n.json",
         "https://pivotkit.vercel.app/r/section-title.json",
@@ -1075,7 +1269,10 @@
     {
       "name": "security-scheme-display",
       "type": "registry:ui",
-      "dependencies": ["openapi-types", "react"],
+      "dependencies": [
+        "openapi-types",
+        "react"
+      ],
       "registryDependencies": [
         "https://pivotkit.vercel.app/r/description-display.json"
       ],
@@ -1090,7 +1287,10 @@
     {
       "name": "security-scheme",
       "type": "registry:ui",
-      "dependencies": ["openapi-types", "react"],
+      "dependencies": [
+        "openapi-types",
+        "react"
+      ],
       "registryDependencies": [
         "https://pivotkit.vercel.app/r/description-display.json",
         "https://pivotkit.vercel.app/r/scheme-type.json"
@@ -1106,7 +1306,10 @@
     {
       "name": "security-schemes",
       "type": "registry:ui",
-      "dependencies": ["openapi-types", "react"],
+      "dependencies": [
+        "openapi-types",
+        "react"
+      ],
       "registryDependencies": [
         "https://pivotkit.vercel.app/r/section-title.json",
         "https://pivotkit.vercel.app/r/security-scheme.json"
@@ -1122,7 +1325,10 @@
     {
       "name": "security-section",
       "type": "registry:ui",
-      "dependencies": ["openapi-types", "react"],
+      "dependencies": [
+        "openapi-types",
+        "react"
+      ],
       "registryDependencies": [
         "https://pivotkit.vercel.app/r/resolve-ref.json",
         "https://pivotkit.vercel.app/r/section-title.json",
@@ -1139,7 +1345,10 @@
     {
       "name": "server-display",
       "type": "registry:ui",
-      "dependencies": ["openapi-types", "react"],
+      "dependencies": [
+        "openapi-types",
+        "react"
+      ],
       "registryDependencies": [
         "https://pivotkit.vercel.app/r/i18n.json",
         "https://pivotkit.vercel.app/r/description-display.json"
@@ -1155,7 +1364,10 @@
     {
       "name": "server-variable",
       "type": "registry:ui",
-      "dependencies": ["openapi-types", "react"],
+      "dependencies": [
+        "openapi-types",
+        "react"
+      ],
       "registryDependencies": [
         "https://pivotkit.vercel.app/r/description-display.json"
       ],
@@ -1170,7 +1382,10 @@
     {
       "name": "server",
       "type": "registry:ui",
-      "dependencies": ["openapi-types", "react"],
+      "dependencies": [
+        "openapi-types",
+        "react"
+      ],
       "registryDependencies": [
         "https://pivotkit.vercel.app/r/description-display.json",
         "https://pivotkit.vercel.app/r/expand-collapse.json",
@@ -1187,7 +1402,10 @@
     {
       "name": "servers-section",
       "type": "registry:ui",
-      "dependencies": ["openapi-types", "react"],
+      "dependencies": [
+        "openapi-types",
+        "react"
+      ],
       "registryDependencies": [
         "https://pivotkit.vercel.app/r/section-title.json",
         "https://pivotkit.vercel.app/r/server-display.json"
@@ -1203,7 +1421,10 @@
     {
       "name": "servers",
       "type": "registry:ui",
-      "dependencies": ["openapi-types", "react"],
+      "dependencies": [
+        "openapi-types",
+        "react"
+      ],
       "registryDependencies": [
         "https://pivotkit.vercel.app/r/section-title.json",
         "https://pivotkit.vercel.app/r/server.json"
@@ -1219,7 +1440,9 @@
     {
       "name": "status-code",
       "type": "registry:ui",
-      "dependencies": ["react"],
+      "dependencies": [
+        "react"
+      ],
       "files": [
         {
           "path": "registry/default/ui/status-code.tsx",
@@ -1231,7 +1454,9 @@
     {
       "name": "style-badge",
       "type": "registry:ui",
-      "dependencies": ["react"],
+      "dependencies": [
+        "react"
+      ],
       "files": [
         {
           "path": "registry/default/ui/style-badge.tsx",
@@ -1243,7 +1468,9 @@
     {
       "name": "terms-of-service",
       "type": "registry:ui",
-      "dependencies": ["react"],
+      "dependencies": [
+        "react"
+      ],
       "files": [
         {
           "path": "registry/default/ui/terms-of-service.tsx",
@@ -1255,7 +1482,10 @@
     {
       "name": "theme-toggle",
       "type": "registry:ui",
-      "dependencies": ["lucide-react", "react"],
+      "dependencies": [
+        "lucide-react",
+        "react"
+      ],
       "files": [
         {
           "path": "registry/default/ui/theme-toggle.tsx",
@@ -1267,7 +1497,11 @@
     {
       "name": "try-it-out-panel",
       "type": "registry:ui",
-      "dependencies": ["lucide-react", "openapi-types", "react"],
+      "dependencies": [
+        "lucide-react",
+        "openapi-types",
+        "react"
+      ],
       "registryDependencies": [
         "https://pivotkit.vercel.app/r/i18n.json",
         "https://pivotkit.vercel.app/r/resolve-ref.json",
@@ -1284,8 +1518,12 @@
     {
       "name": "type-indicator",
       "type": "registry:ui",
-      "dependencies": ["react"],
-      "registryDependencies": ["https://pivotkit.vercel.app/r/i18n.json"],
+      "dependencies": [
+        "react"
+      ],
+      "registryDependencies": [
+        "https://pivotkit.vercel.app/r/i18n.json"
+      ],
       "files": [
         {
           "path": "registry/default/ui/type-indicator.tsx",
@@ -1297,7 +1535,10 @@
     {
       "name": "typescript-generator",
       "type": "registry:ui",
-      "dependencies": ["lucide-react", "react"],
+      "dependencies": [
+        "lucide-react",
+        "react"
+      ],
       "files": [
         {
           "path": "registry/default/ui/typescript-generator.tsx",
@@ -1309,7 +1550,9 @@
     {
       "name": "value-display",
       "type": "registry:ui",
-      "dependencies": ["react"],
+      "dependencies": [
+        "react"
+      ],
       "files": [
         {
           "path": "registry/default/ui/value-display.tsx",
@@ -1321,7 +1564,9 @@
     {
       "name": "version-badge",
       "type": "registry:ui",
-      "dependencies": ["react"],
+      "dependencies": [
+        "react"
+      ],
       "files": [
         {
           "path": "registry/default/ui/version-badge.tsx",
@@ -1333,7 +1578,10 @@
     {
       "name": "webhook-display",
       "type": "registry:ui",
-      "dependencies": ["openapi-types", "react"],
+      "dependencies": [
+        "openapi-types",
+        "react"
+      ],
       "registryDependencies": [
         "https://pivotkit.vercel.app/r/description-display.json",
         "https://pivotkit.vercel.app/r/webhook-label.json",
@@ -1350,7 +1598,9 @@
     {
       "name": "webhook-label",
       "type": "registry:ui",
-      "dependencies": ["react"],
+      "dependencies": [
+        "react"
+      ],
       "files": [
         {
           "path": "registry/default/ui/webhook-label.tsx",
@@ -1376,7 +1626,9 @@
     {
       "name": "callback-display-demo",
       "type": "registry:example",
-      "dependencies": ["openapi-types"],
+      "dependencies": [
+        "openapi-types"
+      ],
       "registryDependencies": [
         "https://pivotkit.vercel.app/r/callback-display.json"
       ],
@@ -1406,8 +1658,12 @@
     {
       "name": "codegen-demo",
       "type": "registry:example",
-      "dependencies": ["openapi-types"],
-      "registryDependencies": ["https://pivotkit.vercel.app/r/codegen.json"],
+      "dependencies": [
+        "openapi-types"
+      ],
+      "registryDependencies": [
+        "https://pivotkit.vercel.app/r/codegen.json"
+      ],
       "files": [
         {
           "path": "registry/default/example/codegen-demo.tsx",
@@ -1433,7 +1689,9 @@
     {
       "name": "component-items-list-demo",
       "type": "registry:example",
-      "dependencies": ["react"],
+      "dependencies": [
+        "react"
+      ],
       "registryDependencies": [
         "https://pivotkit.vercel.app/r/component-items-list.json"
       ],
@@ -1448,7 +1706,9 @@
     {
       "name": "component-tabs-demo",
       "type": "registry:example",
-      "dependencies": ["react"],
+      "dependencies": [
+        "react"
+      ],
       "registryDependencies": [
         "https://pivotkit.vercel.app/r/component-tabs.json"
       ],
@@ -1648,7 +1908,9 @@
     {
       "name": "expand-collapse-demo",
       "type": "registry:example",
-      "dependencies": ["react"],
+      "dependencies": [
+        "react"
+      ],
       "registryDependencies": [
         "https://pivotkit.vercel.app/r/expand-collapse.json"
       ],
@@ -1691,7 +1953,9 @@
     {
       "name": "faker-example-demo",
       "type": "registry:example",
-      "dependencies": ["openapi-types"],
+      "dependencies": [
+        "openapi-types"
+      ],
       "registryDependencies": [
         "https://pivotkit.vercel.app/r/generate-example.json"
       ],
@@ -1748,7 +2012,9 @@
     {
       "name": "i18n-demo",
       "type": "registry:example",
-      "dependencies": ["react"],
+      "dependencies": [
+        "react"
+      ],
       "registryDependencies": [
         "button",
         "card",
@@ -1767,7 +2033,9 @@
     {
       "name": "in-label-demo",
       "type": "registry:example",
-      "registryDependencies": ["https://pivotkit.vercel.app/r/in-label.json"],
+      "registryDependencies": [
+        "https://pivotkit.vercel.app/r/in-label.json"
+      ],
       "files": [
         {
           "path": "registry/default/example/in-label-demo.tsx",
@@ -1835,7 +2103,9 @@
     {
       "name": "link-item-demo",
       "type": "registry:example",
-      "registryDependencies": ["https://pivotkit.vercel.app/r/link-item.json"],
+      "registryDependencies": [
+        "https://pivotkit.vercel.app/r/link-item.json"
+      ],
       "files": [
         {
           "path": "registry/default/example/link-item-demo.tsx",
@@ -1875,7 +2145,9 @@
     {
       "name": "media-type-selector-demo",
       "type": "registry:example",
-      "dependencies": ["react"],
+      "dependencies": [
+        "react"
+      ],
       "registryDependencies": [
         "https://pivotkit.vercel.app/r/media-type-selector.json"
       ],
@@ -1904,7 +2176,9 @@
     {
       "name": "navigation-sidebar-demo",
       "type": "registry:example",
-      "dependencies": ["openapi-types"],
+      "dependencies": [
+        "openapi-types"
+      ],
       "registryDependencies": [
         "https://pivotkit.vercel.app/r/navigation-sidebar.json"
       ],
@@ -1919,7 +2193,9 @@
     {
       "name": "oauth-flow-demo",
       "type": "registry:example",
-      "registryDependencies": ["https://pivotkit.vercel.app/r/oauth-flow.json"],
+      "registryDependencies": [
+        "https://pivotkit.vercel.app/r/oauth-flow.json"
+      ],
       "files": [
         {
           "path": "registry/default/example/oauth-flow-demo.tsx",
@@ -1945,7 +2221,9 @@
     {
       "name": "operation-box-demo",
       "type": "registry:example",
-      "dependencies": ["openapi-types"],
+      "dependencies": [
+        "openapi-types"
+      ],
       "registryDependencies": [
         "https://pivotkit.vercel.app/r/operation-box.json"
       ],
@@ -1960,7 +2238,10 @@
     {
       "name": "operation-detail-demo",
       "type": "registry:example",
-      "dependencies": ["openapi-types", "react"],
+      "dependencies": [
+        "openapi-types",
+        "react"
+      ],
       "registryDependencies": [
         "https://pivotkit.vercel.app/r/operation-detail.json"
       ],
@@ -1975,7 +2256,10 @@
     {
       "name": "operation-detailed-layout-demo",
       "type": "registry:example",
-      "dependencies": ["openapi-types", "react"],
+      "dependencies": [
+        "openapi-types",
+        "react"
+      ],
       "registryDependencies": [
         "https://pivotkit.vercel.app/r/operation-detailed-layout.json"
       ],
@@ -1990,7 +2274,10 @@
     {
       "name": "operation-list-layout-demo",
       "type": "registry:example",
-      "dependencies": ["openapi-types", "react"],
+      "dependencies": [
+        "openapi-types",
+        "react"
+      ],
       "registryDependencies": [
         "https://pivotkit.vercel.app/r/operation-list-layout.json"
       ],
@@ -2187,7 +2474,9 @@
     {
       "name": "response-content-section-demo",
       "type": "registry:example",
-      "dependencies": ["openapi-types"],
+      "dependencies": [
+        "openapi-types"
+      ],
       "registryDependencies": [
         "https://pivotkit.vercel.app/r/I18nProvider.json",
         "https://pivotkit.vercel.app/r/response-content-section.json"
@@ -2245,7 +2534,9 @@
     {
       "name": "schema-composition-display-demo",
       "type": "registry:example",
-      "dependencies": ["openapi-types"],
+      "dependencies": [
+        "openapi-types"
+      ],
       "registryDependencies": [
         "https://pivotkit.vercel.app/r/schema-composition-display.json"
       ],
@@ -2386,7 +2677,9 @@
     {
       "name": "security-section-demo",
       "type": "registry:example",
-      "dependencies": ["openapi-types"],
+      "dependencies": [
+        "openapi-types"
+      ],
       "registryDependencies": [
         "https://pivotkit.vercel.app/r/security-section.json"
       ],
@@ -2401,7 +2694,9 @@
     {
       "name": "server-demo",
       "type": "registry:example",
-      "registryDependencies": ["https://pivotkit.vercel.app/r/server.json"],
+      "registryDependencies": [
+        "https://pivotkit.vercel.app/r/server.json"
+      ],
       "files": [
         {
           "path": "registry/default/example/server-demo.tsx",
@@ -2527,7 +2822,9 @@
     {
       "name": "try-it-out-panel-demo",
       "type": "registry:example",
-      "dependencies": ["openapi-types"],
+      "dependencies": [
+        "openapi-types"
+      ],
       "registryDependencies": [
         "https://pivotkit.vercel.app/r/try-it-out-panel.json"
       ],
@@ -2613,7 +2910,11 @@
       "name": "lib",
       "type": "registry:lib",
       "description": "Core library components and utilities",
-      "dependencies": ["@faker-js/faker", "openapi-types", "react"],
+      "dependencies": [
+        "@faker-js/faker",
+        "openapi-types",
+        "react"
+      ],
       "files": [
         {
           "path": "registry/default/lib/i18n/I18nProvider.tsx",
@@ -2656,7 +2957,10 @@
       "name": "hooks",
       "type": "registry:hook",
       "description": "React hooks collection",
-      "dependencies": ["openapi-types", "react"],
+      "dependencies": [
+        "openapi-types",
+        "react"
+      ],
       "files": [
         {
           "path": "registry/default/hooks/use-openapi.ts",

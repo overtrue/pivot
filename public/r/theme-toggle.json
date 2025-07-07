@@ -2,7 +2,10 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "theme-toggle",
   "type": "registry:ui",
-  "dependencies": ["lucide-react", "react"],
+  "dependencies": [
+    "lucide-react",
+    "react"
+  ],
   "files": [
     {
       "path": "registry/default/ui/theme-toggle.tsx",

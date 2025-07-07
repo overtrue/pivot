@@ -13,11 +13,11 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { siteConfig } from "@/config/site";
-import { I18nProvider } from "@/registry/lib/i18n/";
-import { LanguageSwitcher } from "@/registry/pivot/language-switcher";
-import { NavigationSidebar } from "@/registry/pivot/navigation-sidebar";
-import { OperationDetailedLayout } from "@/registry/pivot/operation-detailed-layout";
-import { OperationListLayout } from "@/registry/pivot/operation-list-layout";
+import { I18nProvider } from "@/registry/default/lib/i18n";
+import { LanguageSwitcher } from "@/registry/default/ui/language-switcher";
+import { NavigationSidebar } from "@/registry/default/ui/navigation-sidebar";
+import { OperationDetailedLayout } from "@/registry/default/ui/operation-detailed-layout";
+import { OperationListLayout } from "@/registry/default/ui/operation-list-layout";
 import * as yaml from "js-yaml";
 import { Github, Layout, LayoutTemplate, Loader2 } from "lucide-react";
 import Link from "next/link";

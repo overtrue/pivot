@@ -1,5 +1,5 @@
 import type { OpenAPIV3 } from "openapi-types";
-import { OpenApiComponentType } from "@/registry/pivot/component-tabs";
+import { OpenApiComponentType } from "@/registry/default/ui/component-tabs";
 
 /**
  * 获取OpenAPI组件中可用的组件类型及其项目

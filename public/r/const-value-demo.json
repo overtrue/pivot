@@ -2,7 +2,9 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "const-value-demo",
   "type": "registry:example",
-  "registryDependencies": ["https://pivotkit.vercel.app/r/const-value.json"],
+  "registryDependencies": [
+    "https://pivotkit.vercel.app/r/const-value.json"
+  ],
   "files": [
     {
       "path": "registry/default/example/const-value-demo.tsx",

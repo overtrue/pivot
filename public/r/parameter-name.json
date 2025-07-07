@@ -2,7 +2,9 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "parameter-name",
   "type": "registry:ui",
-  "dependencies": ["react"],
+  "dependencies": [
+    "react"
+  ],
   "files": [
     {
       "path": "registry/default/ui/parameter-name.tsx",
