@@ -7,10 +7,10 @@
   ],
   "files": [
     {
-      "path": "registry/pivot/path-segment.tsx",
+      "path": "registry/default/ui/path-segment.tsx",
       "content": "import { cn } from \"@/lib/utils\";\nimport React from \"react\";\n\ninterface PathSegmentProps {\n  path: string;\n  isParameter?: boolean;\n  className?: string;\n}\n\nconst PathSegment = React.forwardRef<HTMLSpanElement, PathSegmentProps>(\n  ({ path, isParameter = false, className }, ref) => {\n    return (\n      <span\n        ref={ref}\n        className={cn(\n          \"text-sm font-mono\",\n          isParameter\n            ? \"text-blue-600 dark:text-blue-400\"\n            : \"text-neutral-800 dark:text-neutral-300\",\n          className,\n        )}\n      >\n        {path}\n      </span>\n    );\n  },\n);\n\nPathSegment.displayName = \"PathSegment\";\n\nexport { PathSegment };\n",
       "type": "registry:ui",
-      "target": "components/pivot/path-segment.tsx"
+      "target": "components/ui/path-segment.tsx"
     }
   ]
 }

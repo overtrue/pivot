@@ -112,19 +112,19 @@ async function analyzeFileDependencies(filePath: string): Promise<DependencyAnal
 
 /**
  * Generate registry configuration for UI components
- * Scans registry/pivot directory for .tsx files
+ * Scans registry/default/ui directory for .tsx files
  */
 async function generateRegistryUI(): Promise<Registry["items"]> {
   console.log('🔍 Analyzing UI components...');
 
-  const pivotDir = path.join(process.cwd(), 'registry/pivot');
-  const files = await fs.readdir(pivotDir);
+  const uiDir = path.join(process.cwd(), 'registry/default/ui');
+  const files = await fs.readdir(uiDir);
   const tsxFiles = files.filter(f => f.endsWith('.tsx'));
   const uiItems: Registry["items"] = [];
 
   for (const file of tsxFiles) {
     const componentName = path.basename(file, '.tsx');
-    const filePath = path.join(pivotDir, file);
+    const filePath = path.join(uiDir, file);
     const { npmDependencies, registryDependencies } = await analyzeFileDependencies(filePath);
 
     const item = {
@@ -132,9 +132,9 @@ async function generateRegistryUI(): Promise<Registry["items"]> {
       type: "registry:ui" as const,
       files: [
         {
-          path: `registry/pivot/${file}`,
+          path: `registry/default/ui/${file}`,
           type: "registry:ui" as const,
-          target: `components/pivot/${file}`
+          target: `components/ui/${file}`
         }
       ],
       ...(npmDependencies.length > 0 && { dependencies: npmDependencies }),
@@ -158,12 +158,12 @@ export default ui;
 
 /**
  * Generate registry configuration for example components
- * Scans registry/example directory for .tsx files
+ * Scans registry/default/example directory for .tsx files
  */
 async function generateRegistryExamples(): Promise<Registry["items"]> {
   console.log('🔍 Analyzing example components...');
 
-  const exampleDir = path.join(process.cwd(), 'registry/example');
+  const exampleDir = path.join(process.cwd(), 'registry/default/example');
   let files: string[] = [];
 
   try {
@@ -186,7 +186,7 @@ async function generateRegistryExamples(): Promise<Registry["items"]> {
       type: "registry:example" as const,
       files: [
         {
-          path: `registry/example/${file}`,
+          path: `registry/default/example/${file}`,
           type: "registry:example" as const,
           target: `components/example/${file}`
         }
@@ -230,12 +230,12 @@ async function getAllFiles(dir: string): Promise<string[]> {
 
 /**
  * Generate registry configuration for lib components
- * Scans registry/lib directory for .ts/.tsx files
+ * Scans registry/default/lib directory for .ts/.tsx files
  */
 async function generateRegistryLib(): Promise<Registry["items"]> {
   console.log('🔍 Analyzing lib components...');
 
-  const libDir = path.join(process.cwd(), 'registry/lib');
+  const libDir = path.join(process.cwd(), 'registry/default/lib');
   const files: {
     path: string;
     type: "registry:lib";
@@ -252,7 +252,7 @@ async function generateRegistryLib(): Promise<Registry["items"]> {
 
     // 计算相对路径
     const relativePath = path.relative(process.cwd(), filePath);
-    const targetPath = relativePath.replace(/^registry\//, '');
+    const targetPath = relativePath.replace(/^registry\/default\//, '');
 
     // 添加文件
     files.push({
@@ -289,12 +289,12 @@ export const lib: Registry["items"] = [${JSON.stringify(libItem, null, 2)}];
 
 /**
  * Generate registry configuration for hooks
- * Scans registry/hooks directory for .ts files
+ * Scans registry/default/hooks directory for .ts files
  */
 async function generateRegistryHooks(): Promise<Registry["items"]> {
   console.log('🔍 Analyzing hooks...');
 
-  const hooksDir = path.join(process.cwd(), 'registry/hooks');
+  const hooksDir = path.join(process.cwd(), 'registry/default/hooks');
   const files: {
     path: string;
     type: "registry:hook";
@@ -311,7 +311,7 @@ async function generateRegistryHooks(): Promise<Registry["items"]> {
 
     // 计算相对路径
     const relativePath = path.relative(process.cwd(), filePath);
-    const targetPath = relativePath.replace(/^registry\//, '');
+    const targetPath = relativePath.replace(/^registry\/default\//, '');
 
     // 添加文件
     files.push({
@@ -479,7 +479,7 @@ async function buildRegistryJsonFile(registry: Registry): Promise<void> {
  */
 async function buildRegistry(): Promise<void> {
   return new Promise((resolve, reject) => {
-    const process = exec(`pnpm shadcn:build`);
+    const process = exec(`npx shadcn build`);
 
     process.on("exit", (code) => {
       if (code === 0) {

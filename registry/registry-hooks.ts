@@ -9,17 +9,17 @@ export const registry_hooks: Registry["items"] = [
     "description": "React hooks collection",
     "files": [
       {
-        "path": "registry/hooks/use-openapi.ts",
+        "path": "registry/default/hooks/use-openapi.ts",
         "type": "registry:hook",
         "target": "hooks/use-openapi.ts"
       },
       {
-        "path": "registry/hooks/use-operation.ts",
+        "path": "registry/default/hooks/use-operation.ts",
         "type": "registry:hook",
         "target": "hooks/use-operation.ts"
       },
       {
-        "path": "registry/hooks/use-schema.ts",
+        "path": "registry/default/hooks/use-schema.ts",
         "type": "registry:hook",
         "target": "hooks/use-schema.ts"
       }

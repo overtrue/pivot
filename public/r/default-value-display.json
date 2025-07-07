@@ -10,10 +10,10 @@
   ],
   "files": [
     {
-      "path": "registry/pivot/default-value-display.tsx",
-      "content": "import { cn } from \"@/lib/utils\";\nimport React from \"react\";\nimport { ValueDisplay } from \"@/registry/pivot/value-display\";\n\ninterface DefaultValueDisplayProps {\n  value: any;\n  className?: string;\n}\n\nconst DefaultValueDisplay = React.forwardRef<HTMLDivElement, DefaultValueDisplayProps>(\n  ({ value, className }, ref) => {\n    if (value === undefined || value === null) {\n      return null;\n    }\n\n    return (\n      <div ref={ref} className={cn(className)}>\n        <h4 className=\"text-xs font-semibold mb-1 text-neutral-500 dark:text-neutral-400\">\n          Default\n        </h4>\n        <ValueDisplay value={value} />\n      </div>\n    );\n  }\n);\n\nDefaultValueDisplay.displayName = \"DefaultValueDisplay\";\n\nexport { DefaultValueDisplay };\n",
+      "path": "registry/default/ui/default-value-display.tsx",
+      "content": "import { cn } from \"@/lib/utils\";\nimport React from \"react\";\nimport { ValueDisplay } from \"@/registry/default/ui/value-display\";\n\ninterface DefaultValueDisplayProps {\n  value: any;\n  className?: string;\n}\n\nconst DefaultValueDisplay = React.forwardRef<HTMLDivElement, DefaultValueDisplayProps>(\n  ({ value, className }, ref) => {\n    if (value === undefined || value === null) {\n      return null;\n    }\n\n    return (\n      <div ref={ref} className={cn(className)}>\n        <h4 className=\"text-xs font-semibold mb-1 text-neutral-500 dark:text-neutral-400\">\n          Default\n        </h4>\n        <ValueDisplay value={value} />\n      </div>\n    );\n  }\n);\n\nDefaultValueDisplay.displayName = \"DefaultValueDisplay\";\n\nexport { DefaultValueDisplay };\n",
       "type": "registry:ui",
-      "target": "components/pivot/default-value-display.tsx"
+      "target": "components/ui/default-value-display.tsx"
     }
   ]
 }

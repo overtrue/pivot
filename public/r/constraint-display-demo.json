@@ -7,8 +7,8 @@
   ],
   "files": [
     {
-      "path": "registry/example/constraint-display-demo.tsx",
-      "content": "import { ConstraintDisplay } from \"@/registry/pivot/constraint-display\";\n\nexport default function ConstraintDisplayDemo() {\n  const schema = {\n    minLength: 1,\n    maxLength: 100,\n    minimum: 0,\n    maximum: 999,\n    pattern: \"^[a-zA-Z0-9]+$\",\n    minItems: 1,\n    maxItems: 10,\n    uniqueItems: true,\n    multipleOf: 5\n  };\n\n  return (\n    <div className=\"space-y-4 min-w-md\">\n      <ConstraintDisplay schema={schema} />\n    </div>\n  );\n}\n",
+      "path": "registry/default/example/constraint-display-demo.tsx",
+      "content": "import { ConstraintDisplay } from \"@/registry/default/ui/constraint-display\";\n\nexport default function ConstraintDisplayDemo() {\n  const schema = {\n    minLength: 1,\n    maxLength: 100,\n    minimum: 0,\n    maximum: 999,\n    pattern: \"^[a-zA-Z0-9]+$\",\n    minItems: 1,\n    maxItems: 10,\n    uniqueItems: true,\n    multipleOf: 5\n  };\n\n  return (\n    <div className=\"space-y-4 min-w-md\">\n      <ConstraintDisplay schema={schema} />\n    </div>\n  );\n}\n",
       "type": "registry:example",
       "target": "components/example/constraint-display-demo.tsx"
     }

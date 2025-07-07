@@ -10,10 +10,10 @@
   ],
   "files": [
     {
-      "path": "registry/pivot/enum-values.tsx",
-      "content": "\"use client\";\n\nimport { cn } from \"@/lib/utils\";\nimport React, { useState } from \"react\";\nimport { ValueDisplay } from \"@/registry/pivot/value-display\";\n\ninterface EnumValuesProps {\n  values: any[];\n  className?: string;\n}\n\nconst EnumValues = React.forwardRef<HTMLDivElement, EnumValuesProps>(\n  ({ values, className }, ref) => {\n    const [isExpanded, setIsExpanded] = useState(false);\n\n    if (values.length === 0) {\n      return null;\n    }\n\n    return (\n      <div ref={ref} className={cn(className)}>\n        {values.map((value, index) => (\n          <ValueDisplay key={index} value={value} />\n        ))}\n      </div>\n    );\n  }\n);\n\nEnumValues.displayName = \"EnumValues\";\n\nexport { EnumValues };\n",
+      "path": "registry/default/ui/enum-values.tsx",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/utils\";\nimport React, { useState } from \"react\";\nimport { ValueDisplay } from \"@/registry/default/ui/value-display\";\n\ninterface EnumValuesProps {\n  values: any[];\n  className?: string;\n}\n\nconst EnumValues = React.forwardRef<HTMLDivElement, EnumValuesProps>(\n  ({ values, className }, ref) => {\n    const [isExpanded, setIsExpanded] = useState(false);\n\n    if (values.length === 0) {\n      return null;\n    }\n\n    return (\n      <div ref={ref} className={cn(className)}>\n        {values.map((value, index) => (\n          <ValueDisplay key={index} value={value} />\n        ))}\n      </div>\n    );\n  }\n);\n\nEnumValues.displayName = \"EnumValues\";\n\nexport { EnumValues };\n",
       "type": "registry:ui",
-      "target": "components/pivot/enum-values.tsx"
+      "target": "components/ui/enum-values.tsx"
     }
   ]
 }

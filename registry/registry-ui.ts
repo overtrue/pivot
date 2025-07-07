@@ -8,9 +8,9 @@ export const registry_ui: Registry["items"] = [
     "type": "registry:ui",
     "files": [
       {
-        "path": "registry/pivot/accordion-components-section.tsx",
+        "path": "registry/default/ui/accordion-components-section.tsx",
         "type": "registry:ui",
-        "target": "components/pivot/accordion-components-section.tsx"
+        "target": "components/ui/accordion-components-section.tsx"
       }
     ],
     "dependencies": [
@@ -27,9 +27,9 @@ export const registry_ui: Registry["items"] = [
     "type": "registry:ui",
     "files": [
       {
-        "path": "registry/pivot/callback-display.tsx",
+        "path": "registry/default/ui/callback-display.tsx",
         "type": "registry:ui",
-        "target": "components/pivot/callback-display.tsx"
+        "target": "components/ui/callback-display.tsx"
       }
     ],
     "dependencies": [
@@ -37,7 +37,7 @@ export const registry_ui: Registry["items"] = [
       "react"
     ],
     "registryDependencies": [
-      "https://pivotkit.vercel.app/r/lib.json",
+      "https://pivotkit.vercel.app/r/resolve-ref.json",
       "https://pivotkit.vercel.app/r/operation-box.json"
     ]
   },
@@ -46,9 +46,9 @@ export const registry_ui: Registry["items"] = [
     "type": "registry:ui",
     "files": [
       {
-        "path": "registry/pivot/code-markdown.tsx",
+        "path": "registry/default/ui/code-markdown.tsx",
         "type": "registry:ui",
-        "target": "components/pivot/code-markdown.tsx"
+        "target": "components/ui/code-markdown.tsx"
       }
     ],
     "dependencies": [
@@ -65,9 +65,9 @@ export const registry_ui: Registry["items"] = [
     "type": "registry:ui",
     "files": [
       {
-        "path": "registry/pivot/codegen.tsx",
+        "path": "registry/default/ui/codegen.tsx",
         "type": "registry:ui",
-        "target": "components/pivot/codegen.tsx"
+        "target": "components/ui/codegen.tsx"
       }
     ],
     "dependencies": [
@@ -76,7 +76,8 @@ export const registry_ui: Registry["items"] = [
       "react"
     ],
     "registryDependencies": [
-      "https://pivotkit.vercel.app/r/lib.json",
+      "https://pivotkit.vercel.app/r/generate-example.json",
+      "https://pivotkit.vercel.app/r/resolve-ref.json",
       "https://pivotkit.vercel.app/r/code-markdown.json"
     ]
   },
@@ -85,9 +86,9 @@ export const registry_ui: Registry["items"] = [
     "type": "registry:ui",
     "files": [
       {
-        "path": "registry/pivot/component-detail.tsx",
+        "path": "registry/default/ui/component-detail.tsx",
         "type": "registry:ui",
-        "target": "components/pivot/component-detail.tsx"
+        "target": "components/ui/component-detail.tsx"
       }
     ],
     "dependencies": [
@@ -95,7 +96,7 @@ export const registry_ui: Registry["items"] = [
       "react"
     ],
     "registryDependencies": [
-      "https://pivotkit.vercel.app/r/lib.json",
+      "https://pivotkit.vercel.app/r/resolve-ref.json",
       "https://pivotkit.vercel.app/r/callback-display.json",
       "https://pivotkit.vercel.app/r/examples-display.json",
       "https://pivotkit.vercel.app/r/header-item.json",
@@ -113,9 +114,9 @@ export const registry_ui: Registry["items"] = [
     "type": "registry:ui",
     "files": [
       {
-        "path": "registry/pivot/component-items-list.tsx",
+        "path": "registry/default/ui/component-items-list.tsx",
         "type": "registry:ui",
-        "target": "components/pivot/component-items-list.tsx"
+        "target": "components/ui/component-items-list.tsx"
       }
     ],
     "dependencies": [
@@ -127,9 +128,9 @@ export const registry_ui: Registry["items"] = [
     "type": "registry:ui",
     "files": [
       {
-        "path": "registry/pivot/component-tabs.tsx",
+        "path": "registry/default/ui/component-tabs.tsx",
         "type": "registry:ui",
-        "target": "components/pivot/component-tabs.tsx"
+        "target": "components/ui/component-tabs.tsx"
       }
     ],
     "dependencies": [
@@ -141,9 +142,9 @@ export const registry_ui: Registry["items"] = [
     "type": "registry:ui",
     "files": [
       {
-        "path": "registry/pivot/components-section.tsx",
+        "path": "registry/default/ui/components-section.tsx",
         "type": "registry:ui",
-        "target": "components/pivot/components-section.tsx"
+        "target": "components/ui/components-section.tsx"
       }
     ],
     "dependencies": [
@@ -161,9 +162,9 @@ export const registry_ui: Registry["items"] = [
     "type": "registry:ui",
     "files": [
       {
-        "path": "registry/pivot/const-value.tsx",
+        "path": "registry/default/ui/const-value.tsx",
         "type": "registry:ui",
-        "target": "components/pivot/const-value.tsx"
+        "target": "components/ui/const-value.tsx"
       }
     ],
     "dependencies": [
@@ -178,9 +179,9 @@ export const registry_ui: Registry["items"] = [
     "type": "registry:ui",
     "files": [
       {
-        "path": "registry/pivot/constraint-display.tsx",
+        "path": "registry/default/ui/constraint-display.tsx",
         "type": "registry:ui",
-        "target": "components/pivot/constraint-display.tsx"
+        "target": "components/ui/constraint-display.tsx"
       }
     ],
     "dependencies": [
@@ -193,9 +194,9 @@ export const registry_ui: Registry["items"] = [
     "type": "registry:ui",
     "files": [
       {
-        "path": "registry/pivot/contact-display.tsx",
+        "path": "registry/default/ui/contact-display.tsx",
         "type": "registry:ui",
-        "target": "components/pivot/contact-display.tsx"
+        "target": "components/ui/contact-display.tsx"
       }
     ],
     "dependencies": [
@@ -208,9 +209,9 @@ export const registry_ui: Registry["items"] = [
     "type": "registry:ui",
     "files": [
       {
-        "path": "registry/pivot/copy-button.tsx",
+        "path": "registry/default/ui/copy-button.tsx",
         "type": "registry:ui",
-        "target": "components/pivot/copy-button.tsx"
+        "target": "components/ui/copy-button.tsx"
       }
     ],
     "dependencies": [
@@ -218,7 +219,7 @@ export const registry_ui: Registry["items"] = [
       "react"
     ],
     "registryDependencies": [
-      "https://pivotkit.vercel.app/r/lib.json"
+      "https://pivotkit.vercel.app/r/i18n.json"
     ]
   },
   {
@@ -226,9 +227,9 @@ export const registry_ui: Registry["items"] = [
     "type": "registry:ui",
     "files": [
       {
-        "path": "registry/pivot/curl-generator.tsx",
+        "path": "registry/default/ui/curl-generator.tsx",
         "type": "registry:ui",
-        "target": "components/pivot/curl-generator.tsx"
+        "target": "components/ui/curl-generator.tsx"
       }
     ],
     "dependencies": [
@@ -241,9 +242,9 @@ export const registry_ui: Registry["items"] = [
     "type": "registry:ui",
     "files": [
       {
-        "path": "registry/pivot/default-value-display.tsx",
+        "path": "registry/default/ui/default-value-display.tsx",
         "type": "registry:ui",
-        "target": "components/pivot/default-value-display.tsx"
+        "target": "components/ui/default-value-display.tsx"
       }
     ],
     "dependencies": [
@@ -258,9 +259,9 @@ export const registry_ui: Registry["items"] = [
     "type": "registry:ui",
     "files": [
       {
-        "path": "registry/pivot/deprecated-badge.tsx",
+        "path": "registry/default/ui/deprecated-badge.tsx",
         "type": "registry:ui",
-        "target": "components/pivot/deprecated-badge.tsx"
+        "target": "components/ui/deprecated-badge.tsx"
       }
     ],
     "dependencies": [
@@ -272,9 +273,9 @@ export const registry_ui: Registry["items"] = [
     "type": "registry:ui",
     "files": [
       {
-        "path": "registry/pivot/description-display.tsx",
+        "path": "registry/default/ui/description-display.tsx",
         "type": "registry:ui",
-        "target": "components/pivot/description-display.tsx"
+        "target": "components/ui/description-display.tsx"
       }
     ],
     "dependencies": [
@@ -287,9 +288,9 @@ export const registry_ui: Registry["items"] = [
     "type": "registry:ui",
     "files": [
       {
-        "path": "registry/pivot/enum-values-display.tsx",
+        "path": "registry/default/ui/enum-values-display.tsx",
         "type": "registry:ui",
-        "target": "components/pivot/enum-values-display.tsx"
+        "target": "components/ui/enum-values-display.tsx"
       }
     ],
     "dependencies": [
@@ -304,9 +305,9 @@ export const registry_ui: Registry["items"] = [
     "type": "registry:ui",
     "files": [
       {
-        "path": "registry/pivot/enum-values.tsx",
+        "path": "registry/default/ui/enum-values.tsx",
         "type": "registry:ui",
-        "target": "components/pivot/enum-values.tsx"
+        "target": "components/ui/enum-values.tsx"
       }
     ],
     "dependencies": [
@@ -321,16 +322,16 @@ export const registry_ui: Registry["items"] = [
     "type": "registry:ui",
     "files": [
       {
-        "path": "registry/pivot/example-display.tsx",
+        "path": "registry/default/ui/example-display.tsx",
         "type": "registry:ui",
-        "target": "components/pivot/example-display.tsx"
+        "target": "components/ui/example-display.tsx"
       }
     ],
     "dependencies": [
       "react"
     ],
     "registryDependencies": [
-      "https://pivotkit.vercel.app/r/lib.json",
+      "https://pivotkit.vercel.app/r/i18n.json",
       "https://pivotkit.vercel.app/r/code-markdown.json"
     ]
   },
@@ -339,9 +340,9 @@ export const registry_ui: Registry["items"] = [
     "type": "registry:ui",
     "files": [
       {
-        "path": "registry/pivot/examples-display.tsx",
+        "path": "registry/default/ui/examples-display.tsx",
         "type": "registry:ui",
-        "target": "components/pivot/examples-display.tsx"
+        "target": "components/ui/examples-display.tsx"
       }
     ],
     "dependencies": [
@@ -349,7 +350,8 @@ export const registry_ui: Registry["items"] = [
       "react"
     ],
     "registryDependencies": [
-      "https://pivotkit.vercel.app/r/lib.json",
+      "https://pivotkit.vercel.app/r/i18n.json",
+      "https://pivotkit.vercel.app/r/resolve-ref.json",
       "https://pivotkit.vercel.app/r/description-display.json"
     ]
   },
@@ -358,9 +360,9 @@ export const registry_ui: Registry["items"] = [
     "type": "registry:ui",
     "files": [
       {
-        "path": "registry/pivot/expand-collapse.tsx",
+        "path": "registry/default/ui/expand-collapse.tsx",
         "type": "registry:ui",
-        "target": "components/pivot/expand-collapse.tsx"
+        "target": "components/ui/expand-collapse.tsx"
       }
     ],
     "dependencies": [
@@ -372,9 +374,9 @@ export const registry_ui: Registry["items"] = [
     "type": "registry:ui",
     "files": [
       {
-        "path": "registry/pivot/external-docs-display.tsx",
+        "path": "registry/default/ui/external-docs-display.tsx",
         "type": "registry:ui",
-        "target": "components/pivot/external-docs-display.tsx"
+        "target": "components/ui/external-docs-display.tsx"
       }
     ],
     "dependencies": [
@@ -387,9 +389,9 @@ export const registry_ui: Registry["items"] = [
     "type": "registry:ui",
     "files": [
       {
-        "path": "registry/pivot/external-docs.tsx",
+        "path": "registry/default/ui/external-docs.tsx",
         "type": "registry:ui",
-        "target": "components/pivot/external-docs.tsx"
+        "target": "components/ui/external-docs.tsx"
       }
     ],
     "dependencies": [
@@ -401,9 +403,9 @@ export const registry_ui: Registry["items"] = [
     "type": "registry:ui",
     "files": [
       {
-        "path": "registry/pivot/format-badge.tsx",
+        "path": "registry/default/ui/format-badge.tsx",
         "type": "registry:ui",
-        "target": "components/pivot/format-badge.tsx"
+        "target": "components/ui/format-badge.tsx"
       }
     ],
     "dependencies": [
@@ -415,9 +417,9 @@ export const registry_ui: Registry["items"] = [
     "type": "registry:ui",
     "files": [
       {
-        "path": "registry/pivot/header-item.tsx",
+        "path": "registry/default/ui/header-item.tsx",
         "type": "registry:ui",
-        "target": "components/pivot/header-item.tsx"
+        "target": "components/ui/header-item.tsx"
       }
     ],
     "dependencies": [
@@ -441,9 +443,9 @@ export const registry_ui: Registry["items"] = [
     "type": "registry:ui",
     "files": [
       {
-        "path": "registry/pivot/headers-section.tsx",
+        "path": "registry/default/ui/headers-section.tsx",
         "type": "registry:ui",
-        "target": "components/pivot/headers-section.tsx"
+        "target": "components/ui/headers-section.tsx"
       }
     ],
     "dependencies": [
@@ -451,7 +453,8 @@ export const registry_ui: Registry["items"] = [
       "react"
     ],
     "registryDependencies": [
-      "https://pivotkit.vercel.app/r/lib.json",
+      "https://pivotkit.vercel.app/r/i18n.json",
+      "https://pivotkit.vercel.app/r/resolve-ref.json",
       "https://pivotkit.vercel.app/r/header-item.json",
       "https://pivotkit.vercel.app/r/style-badge.json"
     ]
@@ -461,9 +464,9 @@ export const registry_ui: Registry["items"] = [
     "type": "registry:ui",
     "files": [
       {
-        "path": "registry/pivot/in-label.tsx",
+        "path": "registry/default/ui/in-label.tsx",
         "type": "registry:ui",
-        "target": "components/pivot/in-label.tsx"
+        "target": "components/ui/in-label.tsx"
       }
     ],
     "dependencies": [
@@ -475,9 +478,9 @@ export const registry_ui: Registry["items"] = [
     "type": "registry:ui",
     "files": [
       {
-        "path": "registry/pivot/info-section.tsx",
+        "path": "registry/default/ui/info-section.tsx",
         "type": "registry:ui",
-        "target": "components/pivot/info-section.tsx"
+        "target": "components/ui/info-section.tsx"
       }
     ],
     "dependencies": [
@@ -496,9 +499,9 @@ export const registry_ui: Registry["items"] = [
     "type": "registry:ui",
     "files": [
       {
-        "path": "registry/pivot/language-switcher.tsx",
+        "path": "registry/default/ui/language-switcher.tsx",
         "type": "registry:ui",
-        "target": "components/pivot/language-switcher.tsx"
+        "target": "components/ui/language-switcher.tsx"
       }
     ],
     "dependencies": [
@@ -506,7 +509,7 @@ export const registry_ui: Registry["items"] = [
       "react"
     ],
     "registryDependencies": [
-      "https://pivotkit.vercel.app/r/lib.json"
+      "https://pivotkit.vercel.app/r/i18n.json"
     ]
   },
   {
@@ -514,9 +517,9 @@ export const registry_ui: Registry["items"] = [
     "type": "registry:ui",
     "files": [
       {
-        "path": "registry/pivot/laravel-generator.tsx",
+        "path": "registry/default/ui/laravel-generator.tsx",
         "type": "registry:ui",
-        "target": "components/pivot/laravel-generator.tsx"
+        "target": "components/ui/laravel-generator.tsx"
       }
     ],
     "dependencies": [
@@ -529,9 +532,9 @@ export const registry_ui: Registry["items"] = [
     "type": "registry:ui",
     "files": [
       {
-        "path": "registry/pivot/license-display.tsx",
+        "path": "registry/default/ui/license-display.tsx",
         "type": "registry:ui",
-        "target": "components/pivot/license-display.tsx"
+        "target": "components/ui/license-display.tsx"
       }
     ],
     "dependencies": [
@@ -544,9 +547,9 @@ export const registry_ui: Registry["items"] = [
     "type": "registry:ui",
     "files": [
       {
-        "path": "registry/pivot/link-item.tsx",
+        "path": "registry/default/ui/link-item.tsx",
         "type": "registry:ui",
-        "target": "components/pivot/link-item.tsx"
+        "target": "components/ui/link-item.tsx"
       }
     ],
     "dependencies": [
@@ -554,7 +557,7 @@ export const registry_ui: Registry["items"] = [
       "react"
     ],
     "registryDependencies": [
-      "https://pivotkit.vercel.app/r/lib.json",
+      "https://pivotkit.vercel.app/r/i18n.json",
       "https://pivotkit.vercel.app/r/description-display.json",
       "https://pivotkit.vercel.app/r/expand-collapse.json",
       "https://pivotkit.vercel.app/r/server-display.json"
@@ -565,9 +568,9 @@ export const registry_ui: Registry["items"] = [
     "type": "registry:ui",
     "files": [
       {
-        "path": "registry/pivot/links-section.tsx",
+        "path": "registry/default/ui/links-section.tsx",
         "type": "registry:ui",
-        "target": "components/pivot/links-section.tsx"
+        "target": "components/ui/links-section.tsx"
       }
     ],
     "dependencies": [
@@ -575,7 +578,8 @@ export const registry_ui: Registry["items"] = [
       "react"
     ],
     "registryDependencies": [
-      "https://pivotkit.vercel.app/r/lib.json",
+      "https://pivotkit.vercel.app/r/i18n.json",
+      "https://pivotkit.vercel.app/r/resolve-ref.json",
       "https://pivotkit.vercel.app/r/link-item.json"
     ]
   },
@@ -584,9 +588,9 @@ export const registry_ui: Registry["items"] = [
     "type": "registry:ui",
     "files": [
       {
-        "path": "registry/pivot/media-type-display.tsx",
+        "path": "registry/default/ui/media-type-display.tsx",
         "type": "registry:ui",
-        "target": "components/pivot/media-type-display.tsx"
+        "target": "components/ui/media-type-display.tsx"
       }
     ],
     "dependencies": [
@@ -598,16 +602,16 @@ export const registry_ui: Registry["items"] = [
     "type": "registry:ui",
     "files": [
       {
-        "path": "registry/pivot/media-type-selector.tsx",
+        "path": "registry/default/ui/media-type-selector.tsx",
         "type": "registry:ui",
-        "target": "components/pivot/media-type-selector.tsx"
+        "target": "components/ui/media-type-selector.tsx"
       }
     ],
     "dependencies": [
       "react"
     ],
     "registryDependencies": [
-      "https://pivotkit.vercel.app/r/lib.json"
+      "https://pivotkit.vercel.app/r/i18n.json"
     ]
   },
   {
@@ -615,9 +619,9 @@ export const registry_ui: Registry["items"] = [
     "type": "registry:ui",
     "files": [
       {
-        "path": "registry/pivot/method-label.tsx",
+        "path": "registry/default/ui/method-label.tsx",
         "type": "registry:ui",
-        "target": "components/pivot/method-label.tsx"
+        "target": "components/ui/method-label.tsx"
       }
     ],
     "dependencies": [
@@ -629,9 +633,9 @@ export const registry_ui: Registry["items"] = [
     "type": "registry:ui",
     "files": [
       {
-        "path": "registry/pivot/navigation-sidebar.tsx",
+        "path": "registry/default/ui/navigation-sidebar.tsx",
         "type": "registry:ui",
-        "target": "components/pivot/navigation-sidebar.tsx"
+        "target": "components/ui/navigation-sidebar.tsx"
       }
     ],
     "dependencies": [
@@ -643,7 +647,7 @@ export const registry_ui: Registry["items"] = [
       "button",
       "collapsible",
       "input",
-      "https://pivotkit.vercel.app/r/lib.json",
+      "https://pivotkit.vercel.app/r/i18n.json",
       "https://pivotkit.vercel.app/r/method-label.json"
     ]
   },
@@ -652,9 +656,9 @@ export const registry_ui: Registry["items"] = [
     "type": "registry:ui",
     "files": [
       {
-        "path": "registry/pivot/oauth-flow-details.tsx",
+        "path": "registry/default/ui/oauth-flow-details.tsx",
         "type": "registry:ui",
-        "target": "components/pivot/oauth-flow-details.tsx"
+        "target": "components/ui/oauth-flow-details.tsx"
       }
     ],
     "dependencies": [
@@ -666,9 +670,9 @@ export const registry_ui: Registry["items"] = [
     "type": "registry:ui",
     "files": [
       {
-        "path": "registry/pivot/oauth-flow.tsx",
+        "path": "registry/default/ui/oauth-flow.tsx",
         "type": "registry:ui",
-        "target": "components/pivot/oauth-flow.tsx"
+        "target": "components/ui/oauth-flow.tsx"
       }
     ],
     "dependencies": [
@@ -680,9 +684,9 @@ export const registry_ui: Registry["items"] = [
     "type": "registry:ui",
     "files": [
       {
-        "path": "registry/pivot/operation-box.tsx",
+        "path": "registry/default/ui/operation-box.tsx",
         "type": "registry:ui",
-        "target": "components/pivot/operation-box.tsx"
+        "target": "components/ui/operation-box.tsx"
       }
     ],
     "dependencies": [
@@ -690,7 +694,7 @@ export const registry_ui: Registry["items"] = [
       "react"
     ],
     "registryDependencies": [
-      "https://pivotkit.vercel.app/r/lib.json",
+      "https://pivotkit.vercel.app/r/i18n.json",
       "https://pivotkit.vercel.app/r/deprecated-badge.json",
       "https://pivotkit.vercel.app/r/description-display.json",
       "https://pivotkit.vercel.app/r/expand-collapse.json",
@@ -708,9 +712,9 @@ export const registry_ui: Registry["items"] = [
     "type": "registry:ui",
     "files": [
       {
-        "path": "registry/pivot/operation-detail.tsx",
+        "path": "registry/default/ui/operation-detail.tsx",
         "type": "registry:ui",
-        "target": "components/pivot/operation-detail.tsx"
+        "target": "components/ui/operation-detail.tsx"
       }
     ],
     "dependencies": [
@@ -720,7 +724,7 @@ export const registry_ui: Registry["items"] = [
     "registryDependencies": [
       "badge",
       "label",
-      "https://pivotkit.vercel.app/r/lib.json",
+      "https://pivotkit.vercel.app/r/i18n.json",
       "https://pivotkit.vercel.app/r/deprecated-badge.json",
       "https://pivotkit.vercel.app/r/description-display.json",
       "https://pivotkit.vercel.app/r/external-docs-display.json",
@@ -737,9 +741,9 @@ export const registry_ui: Registry["items"] = [
     "type": "registry:ui",
     "files": [
       {
-        "path": "registry/pivot/operation-detailed-layout.tsx",
+        "path": "registry/default/ui/operation-detailed-layout.tsx",
         "type": "registry:ui",
-        "target": "components/pivot/operation-detailed-layout.tsx"
+        "target": "components/ui/operation-detailed-layout.tsx"
       }
     ],
     "dependencies": [
@@ -748,7 +752,7 @@ export const registry_ui: Registry["items"] = [
       "react"
     ],
     "registryDependencies": [
-      "https://pivotkit.vercel.app/r/lib.json",
+      "https://pivotkit.vercel.app/r/i18n.json",
       "https://pivotkit.vercel.app/r/codegen.json",
       "https://pivotkit.vercel.app/r/operation-detail.json",
       "https://pivotkit.vercel.app/r/try-it-out-panel.json"
@@ -759,9 +763,9 @@ export const registry_ui: Registry["items"] = [
     "type": "registry:ui",
     "files": [
       {
-        "path": "registry/pivot/operation-list-layout.tsx",
+        "path": "registry/default/ui/operation-list-layout.tsx",
         "type": "registry:ui",
-        "target": "components/pivot/operation-list-layout.tsx"
+        "target": "components/ui/operation-list-layout.tsx"
       }
     ],
     "dependencies": [
@@ -770,8 +774,8 @@ export const registry_ui: Registry["items"] = [
       "react"
     ],
     "registryDependencies": [
-      "https://pivotkit.vercel.app/r/hooks.json",
-      "https://pivotkit.vercel.app/r/lib.json",
+      "https://pivotkit.vercel.app/r/use-openapi.json",
+      "https://pivotkit.vercel.app/r/i18n.json",
       "https://pivotkit.vercel.app/r/operation-box.json",
       "https://pivotkit.vercel.app/r/try-it-out-panel.json"
     ]
@@ -781,9 +785,9 @@ export const registry_ui: Registry["items"] = [
     "type": "registry:ui",
     "files": [
       {
-        "path": "registry/pivot/operation-path.tsx",
+        "path": "registry/default/ui/operation-path.tsx",
         "type": "registry:ui",
-        "target": "components/pivot/operation-path.tsx"
+        "target": "components/ui/operation-path.tsx"
       }
     ],
     "dependencies": [
@@ -798,9 +802,9 @@ export const registry_ui: Registry["items"] = [
     "type": "registry:ui",
     "files": [
       {
-        "path": "registry/pivot/parameter-description.tsx",
+        "path": "registry/default/ui/parameter-description.tsx",
         "type": "registry:ui",
-        "target": "components/pivot/parameter-description.tsx"
+        "target": "components/ui/parameter-description.tsx"
       }
     ],
     "dependencies": [
@@ -812,9 +816,9 @@ export const registry_ui: Registry["items"] = [
     "type": "registry:ui",
     "files": [
       {
-        "path": "registry/pivot/parameter-group.tsx",
+        "path": "registry/default/ui/parameter-group.tsx",
         "type": "registry:ui",
-        "target": "components/pivot/parameter-group.tsx"
+        "target": "components/ui/parameter-group.tsx"
       }
     ],
     "dependencies": [
@@ -831,9 +835,9 @@ export const registry_ui: Registry["items"] = [
     "type": "registry:ui",
     "files": [
       {
-        "path": "registry/pivot/parameter-item.tsx",
+        "path": "registry/default/ui/parameter-item.tsx",
         "type": "registry:ui",
-        "target": "components/pivot/parameter-item.tsx"
+        "target": "components/ui/parameter-item.tsx"
       }
     ],
     "dependencies": [
@@ -860,9 +864,9 @@ export const registry_ui: Registry["items"] = [
     "type": "registry:ui",
     "files": [
       {
-        "path": "registry/pivot/parameter-name.tsx",
+        "path": "registry/default/ui/parameter-name.tsx",
         "type": "registry:ui",
-        "target": "components/pivot/parameter-name.tsx"
+        "target": "components/ui/parameter-name.tsx"
       }
     ],
     "dependencies": [
@@ -874,9 +878,9 @@ export const registry_ui: Registry["items"] = [
     "type": "registry:ui",
     "files": [
       {
-        "path": "registry/pivot/parameters-section.tsx",
+        "path": "registry/default/ui/parameters-section.tsx",
         "type": "registry:ui",
-        "target": "components/pivot/parameters-section.tsx"
+        "target": "components/ui/parameters-section.tsx"
       }
     ],
     "dependencies": [
@@ -884,7 +888,8 @@ export const registry_ui: Registry["items"] = [
       "react"
     ],
     "registryDependencies": [
-      "https://pivotkit.vercel.app/r/lib.json",
+      "https://pivotkit.vercel.app/r/i18n.json",
+      "https://pivotkit.vercel.app/r/resolve-ref.json",
       "https://pivotkit.vercel.app/r/parameter-item.json",
       "https://pivotkit.vercel.app/r/section-title.json",
       "https://pivotkit.vercel.app/r/style-badge.json"
@@ -895,9 +900,9 @@ export const registry_ui: Registry["items"] = [
     "type": "registry:ui",
     "files": [
       {
-        "path": "registry/pivot/path-item-display.tsx",
+        "path": "registry/default/ui/path-item-display.tsx",
         "type": "registry:ui",
-        "target": "components/pivot/path-item-display.tsx"
+        "target": "components/ui/path-item-display.tsx"
       }
     ],
     "dependencies": [
@@ -914,9 +919,9 @@ export const registry_ui: Registry["items"] = [
     "type": "registry:ui",
     "files": [
       {
-        "path": "registry/pivot/path-segment.tsx",
+        "path": "registry/default/ui/path-segment.tsx",
         "type": "registry:ui",
-        "target": "components/pivot/path-segment.tsx"
+        "target": "components/ui/path-segment.tsx"
       }
     ],
     "dependencies": [
@@ -928,9 +933,9 @@ export const registry_ui: Registry["items"] = [
     "type": "registry:ui",
     "files": [
       {
-        "path": "registry/pivot/php-generator.tsx",
+        "path": "registry/default/ui/php-generator.tsx",
         "type": "registry:ui",
-        "target": "components/pivot/php-generator.tsx"
+        "target": "components/ui/php-generator.tsx"
       }
     ],
     "dependencies": [
@@ -943,9 +948,9 @@ export const registry_ui: Registry["items"] = [
     "type": "registry:ui",
     "files": [
       {
-        "path": "registry/pivot/python-generator.tsx",
+        "path": "registry/default/ui/python-generator.tsx",
         "type": "registry:ui",
-        "target": "components/pivot/python-generator.tsx"
+        "target": "components/ui/python-generator.tsx"
       }
     ],
     "dependencies": [
@@ -958,9 +963,9 @@ export const registry_ui: Registry["items"] = [
     "type": "registry:ui",
     "files": [
       {
-        "path": "registry/pivot/request-body-section.tsx",
+        "path": "registry/default/ui/request-body-section.tsx",
         "type": "registry:ui",
-        "target": "components/pivot/request-body-section.tsx"
+        "target": "components/ui/request-body-section.tsx"
       }
     ],
     "dependencies": [
@@ -968,7 +973,7 @@ export const registry_ui: Registry["items"] = [
       "react"
     ],
     "registryDependencies": [
-      "https://pivotkit.vercel.app/r/lib.json",
+      "https://pivotkit.vercel.app/r/i18n.json",
       "https://pivotkit.vercel.app/r/schema-with-example-viewer.json",
       "https://pivotkit.vercel.app/r/section-title.json"
     ]
@@ -978,9 +983,9 @@ export const registry_ui: Registry["items"] = [
     "type": "registry:ui",
     "files": [
       {
-        "path": "registry/pivot/required-badge.tsx",
+        "path": "registry/default/ui/required-badge.tsx",
         "type": "registry:ui",
-        "target": "components/pivot/required-badge.tsx"
+        "target": "components/ui/required-badge.tsx"
       }
     ],
     "dependencies": [
@@ -992,9 +997,9 @@ export const registry_ui: Registry["items"] = [
     "type": "registry:ui",
     "files": [
       {
-        "path": "registry/pivot/required-marker.tsx",
+        "path": "registry/default/ui/required-marker.tsx",
         "type": "registry:ui",
-        "target": "components/pivot/required-marker.tsx"
+        "target": "components/ui/required-marker.tsx"
       }
     ],
     "dependencies": [
@@ -1006,9 +1011,9 @@ export const registry_ui: Registry["items"] = [
     "type": "registry:ui",
     "files": [
       {
-        "path": "registry/pivot/resizable-sidebar.tsx",
+        "path": "registry/default/ui/resizable-sidebar.tsx",
         "type": "registry:ui",
-        "target": "components/pivot/resizable-sidebar.tsx"
+        "target": "components/ui/resizable-sidebar.tsx"
       }
     ],
     "dependencies": [
@@ -1020,9 +1025,9 @@ export const registry_ui: Registry["items"] = [
     "type": "registry:ui",
     "files": [
       {
-        "path": "registry/pivot/response-content-section.tsx",
+        "path": "registry/default/ui/response-content-section.tsx",
         "type": "registry:ui",
-        "target": "components/pivot/response-content-section.tsx"
+        "target": "components/ui/response-content-section.tsx"
       }
     ],
     "dependencies": [
@@ -1030,7 +1035,7 @@ export const registry_ui: Registry["items"] = [
       "react"
     ],
     "registryDependencies": [
-      "https://pivotkit.vercel.app/r/lib.json",
+      "https://pivotkit.vercel.app/r/i18n.json",
       "https://pivotkit.vercel.app/r/schema-with-example-viewer.json"
     ]
   },
@@ -1039,9 +1044,9 @@ export const registry_ui: Registry["items"] = [
     "type": "registry:ui",
     "files": [
       {
-        "path": "registry/pivot/response-group.tsx",
+        "path": "registry/default/ui/response-group.tsx",
         "type": "registry:ui",
-        "target": "components/pivot/response-group.tsx"
+        "target": "components/ui/response-group.tsx"
       }
     ],
     "dependencies": [
@@ -1049,7 +1054,7 @@ export const registry_ui: Registry["items"] = [
       "react"
     ],
     "registryDependencies": [
-      "https://pivotkit.vercel.app/r/lib.json",
+      "https://pivotkit.vercel.app/r/i18n.json",
       "https://pivotkit.vercel.app/r/response-content-section.json",
       "https://pivotkit.vercel.app/r/response-headers-table.json"
     ]
@@ -1059,9 +1064,9 @@ export const registry_ui: Registry["items"] = [
     "type": "registry:ui",
     "files": [
       {
-        "path": "registry/pivot/response-headers-table.tsx",
+        "path": "registry/default/ui/response-headers-table.tsx",
         "type": "registry:ui",
-        "target": "components/pivot/response-headers-table.tsx"
+        "target": "components/ui/response-headers-table.tsx"
       }
     ],
     "dependencies": [
@@ -1069,7 +1074,8 @@ export const registry_ui: Registry["items"] = [
       "react"
     ],
     "registryDependencies": [
-      "https://pivotkit.vercel.app/r/lib.json",
+      "https://pivotkit.vercel.app/r/i18n.json",
+      "https://pivotkit.vercel.app/r/resolve-ref.json",
       "https://pivotkit.vercel.app/r/header-item.json",
       "https://pivotkit.vercel.app/r/style-badge.json"
     ]
@@ -1079,9 +1085,9 @@ export const registry_ui: Registry["items"] = [
     "type": "registry:ui",
     "files": [
       {
-        "path": "registry/pivot/response-item.tsx",
+        "path": "registry/default/ui/response-item.tsx",
         "type": "registry:ui",
-        "target": "components/pivot/response-item.tsx"
+        "target": "components/ui/response-item.tsx"
       }
     ],
     "dependencies": [
@@ -1089,7 +1095,8 @@ export const registry_ui: Registry["items"] = [
       "react"
     ],
     "registryDependencies": [
-      "https://pivotkit.vercel.app/r/lib.json",
+      "https://pivotkit.vercel.app/r/i18n.json",
+      "https://pivotkit.vercel.app/r/resolve-ref.json",
       "https://pivotkit.vercel.app/r/description-display.json",
       "https://pivotkit.vercel.app/r/headers-section.json",
       "https://pivotkit.vercel.app/r/links-section.json",
@@ -1101,9 +1108,9 @@ export const registry_ui: Registry["items"] = [
     "type": "registry:ui",
     "files": [
       {
-        "path": "registry/pivot/responses-section.tsx",
+        "path": "registry/default/ui/responses-section.tsx",
         "type": "registry:ui",
-        "target": "components/pivot/responses-section.tsx"
+        "target": "components/ui/responses-section.tsx"
       }
     ],
     "dependencies": [
@@ -1111,7 +1118,7 @@ export const registry_ui: Registry["items"] = [
       "react"
     ],
     "registryDependencies": [
-      "https://pivotkit.vercel.app/r/lib.json",
+      "https://pivotkit.vercel.app/r/i18n.json",
       "https://pivotkit.vercel.app/r/response-group.json",
       "https://pivotkit.vercel.app/r/section-title.json",
       "https://pivotkit.vercel.app/r/status-code.json"
@@ -1122,9 +1129,9 @@ export const registry_ui: Registry["items"] = [
     "type": "registry:ui",
     "files": [
       {
-        "path": "registry/pivot/schema-composition-display.tsx",
+        "path": "registry/default/ui/schema-composition-display.tsx",
         "type": "registry:ui",
-        "target": "components/pivot/schema-composition-display.tsx"
+        "target": "components/ui/schema-composition-display.tsx"
       }
     ],
     "dependencies": [
@@ -1137,9 +1144,9 @@ export const registry_ui: Registry["items"] = [
     "type": "registry:ui",
     "files": [
       {
-        "path": "registry/pivot/schema-display.tsx",
+        "path": "registry/default/ui/schema-display.tsx",
         "type": "registry:ui",
-        "target": "components/pivot/schema-display.tsx"
+        "target": "components/ui/schema-display.tsx"
       }
     ],
     "dependencies": [
@@ -1147,7 +1154,7 @@ export const registry_ui: Registry["items"] = [
       "react"
     ],
     "registryDependencies": [
-      "https://pivotkit.vercel.app/r/lib.json",
+      "https://pivotkit.vercel.app/r/resolve-ref.json",
       "https://pivotkit.vercel.app/r/constraint-display.json",
       "https://pivotkit.vercel.app/r/default-value-display.json",
       "https://pivotkit.vercel.app/r/deprecated-badge.json",
@@ -1164,9 +1171,9 @@ export const registry_ui: Registry["items"] = [
     "type": "registry:ui",
     "files": [
       {
-        "path": "registry/pivot/schema-with-example-viewer.tsx",
+        "path": "registry/default/ui/schema-with-example-viewer.tsx",
         "type": "registry:ui",
-        "target": "components/pivot/schema-with-example-viewer.tsx"
+        "target": "components/ui/schema-with-example-viewer.tsx"
       }
     ],
     "dependencies": [
@@ -1174,7 +1181,9 @@ export const registry_ui: Registry["items"] = [
       "react"
     ],
     "registryDependencies": [
-      "https://pivotkit.vercel.app/r/lib.json",
+      "https://pivotkit.vercel.app/r/i18n.json",
+      "https://pivotkit.vercel.app/r/generate-example.json",
+      "https://pivotkit.vercel.app/r/resolve-ref.json",
       "https://pivotkit.vercel.app/r/description-display.json",
       "https://pivotkit.vercel.app/r/example-display.json",
       "https://pivotkit.vercel.app/r/media-type-selector.json",
@@ -1186,9 +1195,9 @@ export const registry_ui: Registry["items"] = [
     "type": "registry:ui",
     "files": [
       {
-        "path": "registry/pivot/scheme-type.tsx",
+        "path": "registry/default/ui/scheme-type.tsx",
         "type": "registry:ui",
-        "target": "components/pivot/scheme-type.tsx"
+        "target": "components/ui/scheme-type.tsx"
       }
     ],
     "dependencies": [
@@ -1200,9 +1209,9 @@ export const registry_ui: Registry["items"] = [
     "type": "registry:ui",
     "files": [
       {
-        "path": "registry/pivot/section-title.tsx",
+        "path": "registry/default/ui/section-title.tsx",
         "type": "registry:ui",
-        "target": "components/pivot/section-title.tsx"
+        "target": "components/ui/section-title.tsx"
       }
     ],
     "dependencies": [
@@ -1214,9 +1223,9 @@ export const registry_ui: Registry["items"] = [
     "type": "registry:ui",
     "files": [
       {
-        "path": "registry/pivot/security-requirement-item.tsx",
+        "path": "registry/default/ui/security-requirement-item.tsx",
         "type": "registry:ui",
-        "target": "components/pivot/security-requirement-item.tsx"
+        "target": "components/ui/security-requirement-item.tsx"
       }
     ],
     "dependencies": [
@@ -1229,16 +1238,16 @@ export const registry_ui: Registry["items"] = [
     "type": "registry:ui",
     "files": [
       {
-        "path": "registry/pivot/security-requirements-section.tsx",
+        "path": "registry/default/ui/security-requirements-section.tsx",
         "type": "registry:ui",
-        "target": "components/pivot/security-requirements-section.tsx"
+        "target": "components/ui/security-requirements-section.tsx"
       }
     ],
     "dependencies": [
       "react"
     ],
     "registryDependencies": [
-      "https://pivotkit.vercel.app/r/lib.json",
+      "https://pivotkit.vercel.app/r/i18n.json",
       "https://pivotkit.vercel.app/r/section-title.json",
       "https://pivotkit.vercel.app/r/security-requirement-item.json"
     ]
@@ -1248,9 +1257,9 @@ export const registry_ui: Registry["items"] = [
     "type": "registry:ui",
     "files": [
       {
-        "path": "registry/pivot/security-scheme-display.tsx",
+        "path": "registry/default/ui/security-scheme-display.tsx",
         "type": "registry:ui",
-        "target": "components/pivot/security-scheme-display.tsx"
+        "target": "components/ui/security-scheme-display.tsx"
       }
     ],
     "dependencies": [
@@ -1266,9 +1275,9 @@ export const registry_ui: Registry["items"] = [
     "type": "registry:ui",
     "files": [
       {
-        "path": "registry/pivot/security-scheme.tsx",
+        "path": "registry/default/ui/security-scheme.tsx",
         "type": "registry:ui",
-        "target": "components/pivot/security-scheme.tsx"
+        "target": "components/ui/security-scheme.tsx"
       }
     ],
     "dependencies": [
@@ -1285,9 +1294,9 @@ export const registry_ui: Registry["items"] = [
     "type": "registry:ui",
     "files": [
       {
-        "path": "registry/pivot/security-schemes.tsx",
+        "path": "registry/default/ui/security-schemes.tsx",
         "type": "registry:ui",
-        "target": "components/pivot/security-schemes.tsx"
+        "target": "components/ui/security-schemes.tsx"
       }
     ],
     "dependencies": [
@@ -1304,9 +1313,9 @@ export const registry_ui: Registry["items"] = [
     "type": "registry:ui",
     "files": [
       {
-        "path": "registry/pivot/security-section.tsx",
+        "path": "registry/default/ui/security-section.tsx",
         "type": "registry:ui",
-        "target": "components/pivot/security-section.tsx"
+        "target": "components/ui/security-section.tsx"
       }
     ],
     "dependencies": [
@@ -1314,7 +1323,7 @@ export const registry_ui: Registry["items"] = [
       "react"
     ],
     "registryDependencies": [
-      "https://pivotkit.vercel.app/r/lib.json",
+      "https://pivotkit.vercel.app/r/resolve-ref.json",
       "https://pivotkit.vercel.app/r/section-title.json",
       "https://pivotkit.vercel.app/r/security-scheme-display.json"
     ]
@@ -1324,9 +1333,9 @@ export const registry_ui: Registry["items"] = [
     "type": "registry:ui",
     "files": [
       {
-        "path": "registry/pivot/server-display.tsx",
+        "path": "registry/default/ui/server-display.tsx",
         "type": "registry:ui",
-        "target": "components/pivot/server-display.tsx"
+        "target": "components/ui/server-display.tsx"
       }
     ],
     "dependencies": [
@@ -1334,7 +1343,7 @@ export const registry_ui: Registry["items"] = [
       "react"
     ],
     "registryDependencies": [
-      "https://pivotkit.vercel.app/r/lib.json",
+      "https://pivotkit.vercel.app/r/i18n.json",
       "https://pivotkit.vercel.app/r/description-display.json"
     ]
   },
@@ -1343,9 +1352,9 @@ export const registry_ui: Registry["items"] = [
     "type": "registry:ui",
     "files": [
       {
-        "path": "registry/pivot/server-variable.tsx",
+        "path": "registry/default/ui/server-variable.tsx",
         "type": "registry:ui",
-        "target": "components/pivot/server-variable.tsx"
+        "target": "components/ui/server-variable.tsx"
       }
     ],
     "dependencies": [
@@ -1361,9 +1370,9 @@ export const registry_ui: Registry["items"] = [
     "type": "registry:ui",
     "files": [
       {
-        "path": "registry/pivot/server.tsx",
+        "path": "registry/default/ui/server.tsx",
         "type": "registry:ui",
-        "target": "components/pivot/server.tsx"
+        "target": "components/ui/server.tsx"
       }
     ],
     "dependencies": [
@@ -1381,9 +1390,9 @@ export const registry_ui: Registry["items"] = [
     "type": "registry:ui",
     "files": [
       {
-        "path": "registry/pivot/servers-section.tsx",
+        "path": "registry/default/ui/servers-section.tsx",
         "type": "registry:ui",
-        "target": "components/pivot/servers-section.tsx"
+        "target": "components/ui/servers-section.tsx"
       }
     ],
     "dependencies": [
@@ -1400,9 +1409,9 @@ export const registry_ui: Registry["items"] = [
     "type": "registry:ui",
     "files": [
       {
-        "path": "registry/pivot/servers.tsx",
+        "path": "registry/default/ui/servers.tsx",
         "type": "registry:ui",
-        "target": "components/pivot/servers.tsx"
+        "target": "components/ui/servers.tsx"
       }
     ],
     "dependencies": [
@@ -1419,9 +1428,9 @@ export const registry_ui: Registry["items"] = [
     "type": "registry:ui",
     "files": [
       {
-        "path": "registry/pivot/status-code.tsx",
+        "path": "registry/default/ui/status-code.tsx",
         "type": "registry:ui",
-        "target": "components/pivot/status-code.tsx"
+        "target": "components/ui/status-code.tsx"
       }
     ],
     "dependencies": [
@@ -1433,9 +1442,9 @@ export const registry_ui: Registry["items"] = [
     "type": "registry:ui",
     "files": [
       {
-        "path": "registry/pivot/style-badge.tsx",
+        "path": "registry/default/ui/style-badge.tsx",
         "type": "registry:ui",
-        "target": "components/pivot/style-badge.tsx"
+        "target": "components/ui/style-badge.tsx"
       }
     ],
     "dependencies": [
@@ -1447,9 +1456,9 @@ export const registry_ui: Registry["items"] = [
     "type": "registry:ui",
     "files": [
       {
-        "path": "registry/pivot/terms-of-service.tsx",
+        "path": "registry/default/ui/terms-of-service.tsx",
         "type": "registry:ui",
-        "target": "components/pivot/terms-of-service.tsx"
+        "target": "components/ui/terms-of-service.tsx"
       }
     ],
     "dependencies": [
@@ -1461,9 +1470,9 @@ export const registry_ui: Registry["items"] = [
     "type": "registry:ui",
     "files": [
       {
-        "path": "registry/pivot/theme-toggle.tsx",
+        "path": "registry/default/ui/theme-toggle.tsx",
         "type": "registry:ui",
-        "target": "components/pivot/theme-toggle.tsx"
+        "target": "components/ui/theme-toggle.tsx"
       }
     ],
     "dependencies": [
@@ -1476,9 +1485,9 @@ export const registry_ui: Registry["items"] = [
     "type": "registry:ui",
     "files": [
       {
-        "path": "registry/pivot/try-it-out-panel.tsx",
+        "path": "registry/default/ui/try-it-out-panel.tsx",
         "type": "registry:ui",
-        "target": "components/pivot/try-it-out-panel.tsx"
+        "target": "components/ui/try-it-out-panel.tsx"
       }
     ],
     "dependencies": [
@@ -1487,7 +1496,8 @@ export const registry_ui: Registry["items"] = [
       "react"
     ],
     "registryDependencies": [
-      "https://pivotkit.vercel.app/r/lib.json",
+      "https://pivotkit.vercel.app/r/i18n.json",
+      "https://pivotkit.vercel.app/r/resolve-ref.json",
       "https://pivotkit.vercel.app/r/method-label.json"
     ]
   },
@@ -1496,16 +1506,16 @@ export const registry_ui: Registry["items"] = [
     "type": "registry:ui",
     "files": [
       {
-        "path": "registry/pivot/type-indicator.tsx",
+        "path": "registry/default/ui/type-indicator.tsx",
         "type": "registry:ui",
-        "target": "components/pivot/type-indicator.tsx"
+        "target": "components/ui/type-indicator.tsx"
       }
     ],
     "dependencies": [
       "react"
     ],
     "registryDependencies": [
-      "https://pivotkit.vercel.app/r/lib.json"
+      "https://pivotkit.vercel.app/r/i18n.json"
     ]
   },
   {
@@ -1513,9 +1523,9 @@ export const registry_ui: Registry["items"] = [
     "type": "registry:ui",
     "files": [
       {
-        "path": "registry/pivot/typescript-generator.tsx",
+        "path": "registry/default/ui/typescript-generator.tsx",
         "type": "registry:ui",
-        "target": "components/pivot/typescript-generator.tsx"
+        "target": "components/ui/typescript-generator.tsx"
       }
     ],
     "dependencies": [
@@ -1528,9 +1538,9 @@ export const registry_ui: Registry["items"] = [
     "type": "registry:ui",
     "files": [
       {
-        "path": "registry/pivot/value-display.tsx",
+        "path": "registry/default/ui/value-display.tsx",
         "type": "registry:ui",
-        "target": "components/pivot/value-display.tsx"
+        "target": "components/ui/value-display.tsx"
       }
     ],
     "dependencies": [
@@ -1542,9 +1552,9 @@ export const registry_ui: Registry["items"] = [
     "type": "registry:ui",
     "files": [
       {
-        "path": "registry/pivot/version-badge.tsx",
+        "path": "registry/default/ui/version-badge.tsx",
         "type": "registry:ui",
-        "target": "components/pivot/version-badge.tsx"
+        "target": "components/ui/version-badge.tsx"
       }
     ],
     "dependencies": [
@@ -1556,9 +1566,9 @@ export const registry_ui: Registry["items"] = [
     "type": "registry:ui",
     "files": [
       {
-        "path": "registry/pivot/webhook-display.tsx",
+        "path": "registry/default/ui/webhook-display.tsx",
         "type": "registry:ui",
-        "target": "components/pivot/webhook-display.tsx"
+        "target": "components/ui/webhook-display.tsx"
       }
     ],
     "dependencies": [
@@ -1576,9 +1586,9 @@ export const registry_ui: Registry["items"] = [
     "type": "registry:ui",
     "files": [
       {
-        "path": "registry/pivot/webhook-label.tsx",
+        "path": "registry/default/ui/webhook-label.tsx",
         "type": "registry:ui",
-        "target": "components/pivot/webhook-label.tsx"
+        "target": "components/ui/webhook-label.tsx"
       }
     ],
     "dependencies": [

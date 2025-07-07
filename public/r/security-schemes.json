@@ -12,10 +12,10 @@
   ],
   "files": [
     {
-      "path": "registry/pivot/security-schemes.tsx",
-      "content": "import type { OpenAPIV3 } from 'openapi-types';\nimport { cn } from \"@/lib/utils\";\n\nimport React from \"react\";\nimport { SectionTitle } from \"@/registry/pivot/section-title\";\nimport { SecurityScheme } from \"@/registry/pivot/security-scheme\";\n\ninterface SecuritySchemesProps {\n  schemes: Record<string, OpenAPIV3.SecuritySchemeObject>;\n  className?: string;\n}\n\nconst SecuritySchemes = React.forwardRef<HTMLDivElement, SecuritySchemesProps>(\n  ({ schemes, className }, ref) => {\n    if (!schemes || Object.keys(schemes).length === 0) {\n      return null;\n    }\n\n    return (\n      <div ref={ref} className={cn(\"dark:text-neutral-200\", className)}>\n        <SectionTitle title=\"Security Schemes\" />\n        <div className=\"space-y-6 mt-3\">\n          {Object.entries(schemes).map(([name, scheme]) => (\n            <SecurityScheme key={name} name={name} scheme={scheme} />\n          ))}\n        </div>\n      </div>\n    );\n  },\n);\n\nSecuritySchemes.displayName = \"SecuritySchemes\";\n\nexport { SecuritySchemes };\n",
+      "path": "registry/default/ui/security-schemes.tsx",
+      "content": "import type { OpenAPIV3 } from 'openapi-types';\nimport { cn } from \"@/lib/utils\";\n\nimport React from \"react\";\nimport { SectionTitle } from \"@/registry/default/ui/section-title\";\nimport { SecurityScheme } from \"@/registry/default/ui/security-scheme\";\n\ninterface SecuritySchemesProps {\n  schemes: Record<string, OpenAPIV3.SecuritySchemeObject>;\n  className?: string;\n}\n\nconst SecuritySchemes = React.forwardRef<HTMLDivElement, SecuritySchemesProps>(\n  ({ schemes, className }, ref) => {\n    if (!schemes || Object.keys(schemes).length === 0) {\n      return null;\n    }\n\n    return (\n      <div ref={ref} className={cn(\"dark:text-neutral-200\", className)}>\n        <SectionTitle title=\"Security Schemes\" />\n        <div className=\"space-y-6 mt-3\">\n          {Object.entries(schemes).map(([name, scheme]) => (\n            <SecurityScheme key={name} name={name} scheme={scheme} />\n          ))}\n        </div>\n      </div>\n    );\n  },\n);\n\nSecuritySchemes.displayName = \"SecuritySchemes\";\n\nexport { SecuritySchemes };\n",
       "type": "registry:ui",
-      "target": "components/pivot/security-schemes.tsx"
+      "target": "components/ui/security-schemes.tsx"
     }
   ]
 }

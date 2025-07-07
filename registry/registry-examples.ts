@@ -8,7 +8,7 @@ export const registry_examples: Registry["items"] = [
     "type": "registry:example",
     "files": [
       {
-        "path": "registry/example/accordion-components-section-demo.tsx",
+        "path": "registry/default/example/accordion-components-section-demo.tsx",
         "type": "registry:example",
         "target": "components/example/accordion-components-section-demo.tsx"
       }
@@ -22,7 +22,7 @@ export const registry_examples: Registry["items"] = [
     "type": "registry:example",
     "files": [
       {
-        "path": "registry/example/callback-display-demo.tsx",
+        "path": "registry/default/example/callback-display-demo.tsx",
         "type": "registry:example",
         "target": "components/example/callback-display-demo.tsx"
       }
@@ -39,13 +39,13 @@ export const registry_examples: Registry["items"] = [
     "type": "registry:example",
     "files": [
       {
-        "path": "registry/example/code-markdown-demo.tsx",
+        "path": "registry/default/example/code-markdown-demo.tsx",
         "type": "registry:example",
         "target": "components/example/code-markdown-demo.tsx"
       }
     ],
     "registryDependencies": [
-      "https://pivotkit.vercel.app/r/lib.json",
+      "https://pivotkit.vercel.app/r/I18nProvider.json",
       "https://pivotkit.vercel.app/r/code-markdown.json"
     ]
   },
@@ -54,7 +54,7 @@ export const registry_examples: Registry["items"] = [
     "type": "registry:example",
     "files": [
       {
-        "path": "registry/example/codegen-demo.tsx",
+        "path": "registry/default/example/codegen-demo.tsx",
         "type": "registry:example",
         "target": "components/example/codegen-demo.tsx"
       }
@@ -71,7 +71,7 @@ export const registry_examples: Registry["items"] = [
     "type": "registry:example",
     "files": [
       {
-        "path": "registry/example/component-detail-demo.tsx",
+        "path": "registry/default/example/component-detail-demo.tsx",
         "type": "registry:example",
         "target": "components/example/component-detail-demo.tsx"
       }
@@ -85,7 +85,7 @@ export const registry_examples: Registry["items"] = [
     "type": "registry:example",
     "files": [
       {
-        "path": "registry/example/component-items-list-demo.tsx",
+        "path": "registry/default/example/component-items-list-demo.tsx",
         "type": "registry:example",
         "target": "components/example/component-items-list-demo.tsx"
       }
@@ -102,7 +102,7 @@ export const registry_examples: Registry["items"] = [
     "type": "registry:example",
     "files": [
       {
-        "path": "registry/example/component-tabs-demo.tsx",
+        "path": "registry/default/example/component-tabs-demo.tsx",
         "type": "registry:example",
         "target": "components/example/component-tabs-demo.tsx"
       }
@@ -119,7 +119,7 @@ export const registry_examples: Registry["items"] = [
     "type": "registry:example",
     "files": [
       {
-        "path": "registry/example/components-section-demo.tsx",
+        "path": "registry/default/example/components-section-demo.tsx",
         "type": "registry:example",
         "target": "components/example/components-section-demo.tsx"
       }
@@ -133,7 +133,7 @@ export const registry_examples: Registry["items"] = [
     "type": "registry:example",
     "files": [
       {
-        "path": "registry/example/const-value-demo.tsx",
+        "path": "registry/default/example/const-value-demo.tsx",
         "type": "registry:example",
         "target": "components/example/const-value-demo.tsx"
       }
@@ -147,7 +147,7 @@ export const registry_examples: Registry["items"] = [
     "type": "registry:example",
     "files": [
       {
-        "path": "registry/example/constraint-display-demo.tsx",
+        "path": "registry/default/example/constraint-display-demo.tsx",
         "type": "registry:example",
         "target": "components/example/constraint-display-demo.tsx"
       }
@@ -161,7 +161,7 @@ export const registry_examples: Registry["items"] = [
     "type": "registry:example",
     "files": [
       {
-        "path": "registry/example/contact-display-demo.tsx",
+        "path": "registry/default/example/contact-display-demo.tsx",
         "type": "registry:example",
         "target": "components/example/contact-display-demo.tsx"
       }
@@ -175,13 +175,13 @@ export const registry_examples: Registry["items"] = [
     "type": "registry:example",
     "files": [
       {
-        "path": "registry/example/copy-button-demo.tsx",
+        "path": "registry/default/example/copy-button-demo.tsx",
         "type": "registry:example",
         "target": "components/example/copy-button-demo.tsx"
       }
     ],
     "registryDependencies": [
-      "https://pivotkit.vercel.app/r/lib.json",
+      "https://pivotkit.vercel.app/r/I18nProvider.json",
       "https://pivotkit.vercel.app/r/copy-button.json",
       "https://pivotkit.vercel.app/r/example-display.json"
     ]
@@ -191,7 +191,7 @@ export const registry_examples: Registry["items"] = [
     "type": "registry:example",
     "files": [
       {
-        "path": "registry/example/curl-generator-demo.tsx",
+        "path": "registry/default/example/curl-generator-demo.tsx",
         "type": "registry:example",
         "target": "components/example/curl-generator-demo.tsx"
       }
@@ -205,7 +205,7 @@ export const registry_examples: Registry["items"] = [
     "type": "registry:example",
     "files": [
       {
-        "path": "registry/example/default-value-display-demo.tsx",
+        "path": "registry/default/example/default-value-display-demo.tsx",
         "type": "registry:example",
         "target": "components/example/default-value-display-demo.tsx"
       }
@@ -219,7 +219,7 @@ export const registry_examples: Registry["items"] = [
     "type": "registry:example",
     "files": [
       {
-        "path": "registry/example/deprecated-badge-demo.tsx",
+        "path": "registry/default/example/deprecated-badge-demo.tsx",
         "type": "registry:example",
         "target": "components/example/deprecated-badge-demo.tsx"
       }
@@ -233,7 +233,7 @@ export const registry_examples: Registry["items"] = [
     "type": "registry:example",
     "files": [
       {
-        "path": "registry/example/description-display-demo.tsx",
+        "path": "registry/default/example/description-display-demo.tsx",
         "type": "registry:example",
         "target": "components/example/description-display-demo.tsx"
       }
@@ -247,7 +247,7 @@ export const registry_examples: Registry["items"] = [
     "type": "registry:example",
     "files": [
       {
-        "path": "registry/example/enum-values-demo.tsx",
+        "path": "registry/default/example/enum-values-demo.tsx",
         "type": "registry:example",
         "target": "components/example/enum-values-demo.tsx"
       }
@@ -261,7 +261,7 @@ export const registry_examples: Registry["items"] = [
     "type": "registry:example",
     "files": [
       {
-        "path": "registry/example/enum-values-display-demo.tsx",
+        "path": "registry/default/example/enum-values-display-demo.tsx",
         "type": "registry:example",
         "target": "components/example/enum-values-display-demo.tsx"
       }
@@ -275,13 +275,13 @@ export const registry_examples: Registry["items"] = [
     "type": "registry:example",
     "files": [
       {
-        "path": "registry/example/example-display-demo.tsx",
+        "path": "registry/default/example/example-display-demo.tsx",
         "type": "registry:example",
         "target": "components/example/example-display-demo.tsx"
       }
     ],
     "registryDependencies": [
-      "https://pivotkit.vercel.app/r/lib.json",
+      "https://pivotkit.vercel.app/r/I18nProvider.json",
       "https://pivotkit.vercel.app/r/example-display.json"
     ]
   },
@@ -290,7 +290,7 @@ export const registry_examples: Registry["items"] = [
     "type": "registry:example",
     "files": [
       {
-        "path": "registry/example/examples-display-demo.tsx",
+        "path": "registry/default/example/examples-display-demo.tsx",
         "type": "registry:example",
         "target": "components/example/examples-display-demo.tsx"
       }
@@ -304,7 +304,7 @@ export const registry_examples: Registry["items"] = [
     "type": "registry:example",
     "files": [
       {
-        "path": "registry/example/expand-collapse-demo.tsx",
+        "path": "registry/default/example/expand-collapse-demo.tsx",
         "type": "registry:example",
         "target": "components/example/expand-collapse-demo.tsx"
       }
@@ -321,7 +321,7 @@ export const registry_examples: Registry["items"] = [
     "type": "registry:example",
     "files": [
       {
-        "path": "registry/example/external-docs-demo.tsx",
+        "path": "registry/default/example/external-docs-demo.tsx",
         "type": "registry:example",
         "target": "components/example/external-docs-demo.tsx"
       }
@@ -335,7 +335,7 @@ export const registry_examples: Registry["items"] = [
     "type": "registry:example",
     "files": [
       {
-        "path": "registry/example/external-docs-display-demo.tsx",
+        "path": "registry/default/example/external-docs-display-demo.tsx",
         "type": "registry:example",
         "target": "components/example/external-docs-display-demo.tsx"
       }
@@ -349,7 +349,7 @@ export const registry_examples: Registry["items"] = [
     "type": "registry:example",
     "files": [
       {
-        "path": "registry/example/faker-example-demo.tsx",
+        "path": "registry/default/example/faker-example-demo.tsx",
         "type": "registry:example",
         "target": "components/example/faker-example-demo.tsx"
       }
@@ -358,7 +358,7 @@ export const registry_examples: Registry["items"] = [
       "openapi-types"
     ],
     "registryDependencies": [
-      "https://pivotkit.vercel.app/r/lib.json"
+      "https://pivotkit.vercel.app/r/generate-example.json"
     ]
   },
   {
@@ -366,7 +366,7 @@ export const registry_examples: Registry["items"] = [
     "type": "registry:example",
     "files": [
       {
-        "path": "registry/example/format-badge-demo.tsx",
+        "path": "registry/default/example/format-badge-demo.tsx",
         "type": "registry:example",
         "target": "components/example/format-badge-demo.tsx"
       }
@@ -380,7 +380,7 @@ export const registry_examples: Registry["items"] = [
     "type": "registry:example",
     "files": [
       {
-        "path": "registry/example/header-item-demo.tsx",
+        "path": "registry/default/example/header-item-demo.tsx",
         "type": "registry:example",
         "target": "components/example/header-item-demo.tsx"
       }
@@ -394,7 +394,7 @@ export const registry_examples: Registry["items"] = [
     "type": "registry:example",
     "files": [
       {
-        "path": "registry/example/headers-section-demo.tsx",
+        "path": "registry/default/example/headers-section-demo.tsx",
         "type": "registry:example",
         "target": "components/example/headers-section-demo.tsx"
       }
@@ -408,7 +408,7 @@ export const registry_examples: Registry["items"] = [
     "type": "registry:example",
     "files": [
       {
-        "path": "registry/example/i18n-demo.tsx",
+        "path": "registry/default/example/i18n-demo.tsx",
         "type": "registry:example",
         "target": "components/example/i18n-demo.tsx"
       }
@@ -419,7 +419,7 @@ export const registry_examples: Registry["items"] = [
     "registryDependencies": [
       "button",
       "card",
-      "https://pivotkit.vercel.app/r/lib.json",
+      "https://pivotkit.vercel.app/r/i18n.json",
       "https://pivotkit.vercel.app/r/required-marker.json",
       "https://pivotkit.vercel.app/r/try-it-out-panel.json"
     ]
@@ -429,7 +429,7 @@ export const registry_examples: Registry["items"] = [
     "type": "registry:example",
     "files": [
       {
-        "path": "registry/example/in-label-demo.tsx",
+        "path": "registry/default/example/in-label-demo.tsx",
         "type": "registry:example",
         "target": "components/example/in-label-demo.tsx"
       }
@@ -443,7 +443,7 @@ export const registry_examples: Registry["items"] = [
     "type": "registry:example",
     "files": [
       {
-        "path": "registry/example/info-section-demo.tsx",
+        "path": "registry/default/example/info-section-demo.tsx",
         "type": "registry:example",
         "target": "components/example/info-section-demo.tsx"
       }
@@ -457,7 +457,7 @@ export const registry_examples: Registry["items"] = [
     "type": "registry:example",
     "files": [
       {
-        "path": "registry/example/language-switcher-demo.tsx",
+        "path": "registry/default/example/language-switcher-demo.tsx",
         "type": "registry:example",
         "target": "components/example/language-switcher-demo.tsx"
       }
@@ -471,7 +471,7 @@ export const registry_examples: Registry["items"] = [
     "type": "registry:example",
     "files": [
       {
-        "path": "registry/example/laravel-generator-demo.tsx",
+        "path": "registry/default/example/laravel-generator-demo.tsx",
         "type": "registry:example",
         "target": "components/example/laravel-generator-demo.tsx"
       }
@@ -485,7 +485,7 @@ export const registry_examples: Registry["items"] = [
     "type": "registry:example",
     "files": [
       {
-        "path": "registry/example/license-display-demo.tsx",
+        "path": "registry/default/example/license-display-demo.tsx",
         "type": "registry:example",
         "target": "components/example/license-display-demo.tsx"
       }
@@ -499,7 +499,7 @@ export const registry_examples: Registry["items"] = [
     "type": "registry:example",
     "files": [
       {
-        "path": "registry/example/link-item-demo.tsx",
+        "path": "registry/default/example/link-item-demo.tsx",
         "type": "registry:example",
         "target": "components/example/link-item-demo.tsx"
       }
@@ -513,7 +513,7 @@ export const registry_examples: Registry["items"] = [
     "type": "registry:example",
     "files": [
       {
-        "path": "registry/example/links-section-demo.tsx",
+        "path": "registry/default/example/links-section-demo.tsx",
         "type": "registry:example",
         "target": "components/example/links-section-demo.tsx"
       }
@@ -527,7 +527,7 @@ export const registry_examples: Registry["items"] = [
     "type": "registry:example",
     "files": [
       {
-        "path": "registry/example/media-type-display-demo.tsx",
+        "path": "registry/default/example/media-type-display-demo.tsx",
         "type": "registry:example",
         "target": "components/example/media-type-display-demo.tsx"
       }
@@ -541,7 +541,7 @@ export const registry_examples: Registry["items"] = [
     "type": "registry:example",
     "files": [
       {
-        "path": "registry/example/media-type-selector-demo.tsx",
+        "path": "registry/default/example/media-type-selector-demo.tsx",
         "type": "registry:example",
         "target": "components/example/media-type-selector-demo.tsx"
       }
@@ -558,7 +558,7 @@ export const registry_examples: Registry["items"] = [
     "type": "registry:example",
     "files": [
       {
-        "path": "registry/example/method-label-demo.tsx",
+        "path": "registry/default/example/method-label-demo.tsx",
         "type": "registry:example",
         "target": "components/example/method-label-demo.tsx"
       }
@@ -572,7 +572,7 @@ export const registry_examples: Registry["items"] = [
     "type": "registry:example",
     "files": [
       {
-        "path": "registry/example/navigation-sidebar-demo.tsx",
+        "path": "registry/default/example/navigation-sidebar-demo.tsx",
         "type": "registry:example",
         "target": "components/example/navigation-sidebar-demo.tsx"
       }
@@ -589,7 +589,7 @@ export const registry_examples: Registry["items"] = [
     "type": "registry:example",
     "files": [
       {
-        "path": "registry/example/oauth-flow-demo.tsx",
+        "path": "registry/default/example/oauth-flow-demo.tsx",
         "type": "registry:example",
         "target": "components/example/oauth-flow-demo.tsx"
       }
@@ -603,7 +603,7 @@ export const registry_examples: Registry["items"] = [
     "type": "registry:example",
     "files": [
       {
-        "path": "registry/example/oauth-flow-details-demo.tsx",
+        "path": "registry/default/example/oauth-flow-details-demo.tsx",
         "type": "registry:example",
         "target": "components/example/oauth-flow-details-demo.tsx"
       }
@@ -617,7 +617,7 @@ export const registry_examples: Registry["items"] = [
     "type": "registry:example",
     "files": [
       {
-        "path": "registry/example/operation-box-demo.tsx",
+        "path": "registry/default/example/operation-box-demo.tsx",
         "type": "registry:example",
         "target": "components/example/operation-box-demo.tsx"
       }
@@ -634,7 +634,7 @@ export const registry_examples: Registry["items"] = [
     "type": "registry:example",
     "files": [
       {
-        "path": "registry/example/operation-detail-demo.tsx",
+        "path": "registry/default/example/operation-detail-demo.tsx",
         "type": "registry:example",
         "target": "components/example/operation-detail-demo.tsx"
       }
@@ -652,7 +652,7 @@ export const registry_examples: Registry["items"] = [
     "type": "registry:example",
     "files": [
       {
-        "path": "registry/example/operation-detailed-layout-demo.tsx",
+        "path": "registry/default/example/operation-detailed-layout-demo.tsx",
         "type": "registry:example",
         "target": "components/example/operation-detailed-layout-demo.tsx"
       }
@@ -670,7 +670,7 @@ export const registry_examples: Registry["items"] = [
     "type": "registry:example",
     "files": [
       {
-        "path": "registry/example/operation-list-layout-demo.tsx",
+        "path": "registry/default/example/operation-list-layout-demo.tsx",
         "type": "registry:example",
         "target": "components/example/operation-list-layout-demo.tsx"
       }
@@ -688,7 +688,7 @@ export const registry_examples: Registry["items"] = [
     "type": "registry:example",
     "files": [
       {
-        "path": "registry/example/operation-path-demo.tsx",
+        "path": "registry/default/example/operation-path-demo.tsx",
         "type": "registry:example",
         "target": "components/example/operation-path-demo.tsx"
       }
@@ -702,7 +702,7 @@ export const registry_examples: Registry["items"] = [
     "type": "registry:example",
     "files": [
       {
-        "path": "registry/example/parameter-description-demo.tsx",
+        "path": "registry/default/example/parameter-description-demo.tsx",
         "type": "registry:example",
         "target": "components/example/parameter-description-demo.tsx"
       }
@@ -716,7 +716,7 @@ export const registry_examples: Registry["items"] = [
     "type": "registry:example",
     "files": [
       {
-        "path": "registry/example/parameter-group-demo.tsx",
+        "path": "registry/default/example/parameter-group-demo.tsx",
         "type": "registry:example",
         "target": "components/example/parameter-group-demo.tsx"
       }
@@ -730,7 +730,7 @@ export const registry_examples: Registry["items"] = [
     "type": "registry:example",
     "files": [
       {
-        "path": "registry/example/parameter-item-demo.tsx",
+        "path": "registry/default/example/parameter-item-demo.tsx",
         "type": "registry:example",
         "target": "components/example/parameter-item-demo.tsx"
       }
@@ -744,7 +744,7 @@ export const registry_examples: Registry["items"] = [
     "type": "registry:example",
     "files": [
       {
-        "path": "registry/example/parameter-name-demo.tsx",
+        "path": "registry/default/example/parameter-name-demo.tsx",
         "type": "registry:example",
         "target": "components/example/parameter-name-demo.tsx"
       }
@@ -758,7 +758,7 @@ export const registry_examples: Registry["items"] = [
     "type": "registry:example",
     "files": [
       {
-        "path": "registry/example/parameters-section-demo.tsx",
+        "path": "registry/default/example/parameters-section-demo.tsx",
         "type": "registry:example",
         "target": "components/example/parameters-section-demo.tsx"
       }
@@ -772,7 +772,7 @@ export const registry_examples: Registry["items"] = [
     "type": "registry:example",
     "files": [
       {
-        "path": "registry/example/path-segment-demo.tsx",
+        "path": "registry/default/example/path-segment-demo.tsx",
         "type": "registry:example",
         "target": "components/example/path-segment-demo.tsx"
       }
@@ -786,7 +786,7 @@ export const registry_examples: Registry["items"] = [
     "type": "registry:example",
     "files": [
       {
-        "path": "registry/example/php-generator-demo.tsx",
+        "path": "registry/default/example/php-generator-demo.tsx",
         "type": "registry:example",
         "target": "components/example/php-generator-demo.tsx"
       }
@@ -800,7 +800,7 @@ export const registry_examples: Registry["items"] = [
     "type": "registry:example",
     "files": [
       {
-        "path": "registry/example/python-generator-demo.tsx",
+        "path": "registry/default/example/python-generator-demo.tsx",
         "type": "registry:example",
         "target": "components/example/python-generator-demo.tsx"
       }
@@ -814,7 +814,7 @@ export const registry_examples: Registry["items"] = [
     "type": "registry:example",
     "files": [
       {
-        "path": "registry/example/request-body-section-demo.tsx",
+        "path": "registry/default/example/request-body-section-demo.tsx",
         "type": "registry:example",
         "target": "components/example/request-body-section-demo.tsx"
       }
@@ -828,7 +828,7 @@ export const registry_examples: Registry["items"] = [
     "type": "registry:example",
     "files": [
       {
-        "path": "registry/example/required-badge-demo.tsx",
+        "path": "registry/default/example/required-badge-demo.tsx",
         "type": "registry:example",
         "target": "components/example/required-badge-demo.tsx"
       }
@@ -842,7 +842,7 @@ export const registry_examples: Registry["items"] = [
     "type": "registry:example",
     "files": [
       {
-        "path": "registry/example/required-marker-demo.tsx",
+        "path": "registry/default/example/required-marker-demo.tsx",
         "type": "registry:example",
         "target": "components/example/required-marker-demo.tsx"
       }
@@ -856,7 +856,7 @@ export const registry_examples: Registry["items"] = [
     "type": "registry:example",
     "files": [
       {
-        "path": "registry/example/resizable-sidebar-demo.tsx",
+        "path": "registry/default/example/resizable-sidebar-demo.tsx",
         "type": "registry:example",
         "target": "components/example/resizable-sidebar-demo.tsx"
       }
@@ -870,7 +870,7 @@ export const registry_examples: Registry["items"] = [
     "type": "registry:example",
     "files": [
       {
-        "path": "registry/example/response-content-section-demo.tsx",
+        "path": "registry/default/example/response-content-section-demo.tsx",
         "type": "registry:example",
         "target": "components/example/response-content-section-demo.tsx"
       }
@@ -879,7 +879,7 @@ export const registry_examples: Registry["items"] = [
       "openapi-types"
     ],
     "registryDependencies": [
-      "https://pivotkit.vercel.app/r/lib.json",
+      "https://pivotkit.vercel.app/r/I18nProvider.json",
       "https://pivotkit.vercel.app/r/response-content-section.json"
     ]
   },
@@ -888,7 +888,7 @@ export const registry_examples: Registry["items"] = [
     "type": "registry:example",
     "files": [
       {
-        "path": "registry/example/response-headers-table-demo.tsx",
+        "path": "registry/default/example/response-headers-table-demo.tsx",
         "type": "registry:example",
         "target": "components/example/response-headers-table-demo.tsx"
       }
@@ -902,7 +902,7 @@ export const registry_examples: Registry["items"] = [
     "type": "registry:example",
     "files": [
       {
-        "path": "registry/example/response-item-demo.tsx",
+        "path": "registry/default/example/response-item-demo.tsx",
         "type": "registry:example",
         "target": "components/example/response-item-demo.tsx"
       }
@@ -916,7 +916,7 @@ export const registry_examples: Registry["items"] = [
     "type": "registry:example",
     "files": [
       {
-        "path": "registry/example/responses-section-demo.tsx",
+        "path": "registry/default/example/responses-section-demo.tsx",
         "type": "registry:example",
         "target": "components/example/responses-section-demo.tsx"
       }
@@ -930,7 +930,7 @@ export const registry_examples: Registry["items"] = [
     "type": "registry:example",
     "files": [
       {
-        "path": "registry/example/schema-composition-display-demo.tsx",
+        "path": "registry/default/example/schema-composition-display-demo.tsx",
         "type": "registry:example",
         "target": "components/example/schema-composition-display-demo.tsx"
       }
@@ -947,7 +947,7 @@ export const registry_examples: Registry["items"] = [
     "type": "registry:example",
     "files": [
       {
-        "path": "registry/example/schema-display-demo.tsx",
+        "path": "registry/default/example/schema-display-demo.tsx",
         "type": "registry:example",
         "target": "components/example/schema-display-demo.tsx"
       }
@@ -961,7 +961,7 @@ export const registry_examples: Registry["items"] = [
     "type": "registry:example",
     "files": [
       {
-        "path": "registry/example/schema-with-example-viewer-demo.tsx",
+        "path": "registry/default/example/schema-with-example-viewer-demo.tsx",
         "type": "registry:example",
         "target": "components/example/schema-with-example-viewer-demo.tsx"
       }
@@ -975,7 +975,7 @@ export const registry_examples: Registry["items"] = [
     "type": "registry:example",
     "files": [
       {
-        "path": "registry/example/scheme-type-demo.tsx",
+        "path": "registry/default/example/scheme-type-demo.tsx",
         "type": "registry:example",
         "target": "components/example/scheme-type-demo.tsx"
       }
@@ -989,7 +989,7 @@ export const registry_examples: Registry["items"] = [
     "type": "registry:example",
     "files": [
       {
-        "path": "registry/example/section-title-demo.tsx",
+        "path": "registry/default/example/section-title-demo.tsx",
         "type": "registry:example",
         "target": "components/example/section-title-demo.tsx"
       }
@@ -1003,7 +1003,7 @@ export const registry_examples: Registry["items"] = [
     "type": "registry:example",
     "files": [
       {
-        "path": "registry/example/security-requirement-item-demo.tsx",
+        "path": "registry/default/example/security-requirement-item-demo.tsx",
         "type": "registry:example",
         "target": "components/example/security-requirement-item-demo.tsx"
       }
@@ -1017,7 +1017,7 @@ export const registry_examples: Registry["items"] = [
     "type": "registry:example",
     "files": [
       {
-        "path": "registry/example/security-requirements-section-demo.tsx",
+        "path": "registry/default/example/security-requirements-section-demo.tsx",
         "type": "registry:example",
         "target": "components/example/security-requirements-section-demo.tsx"
       }
@@ -1031,7 +1031,7 @@ export const registry_examples: Registry["items"] = [
     "type": "registry:example",
     "files": [
       {
-        "path": "registry/example/security-scheme-demo.tsx",
+        "path": "registry/default/example/security-scheme-demo.tsx",
         "type": "registry:example",
         "target": "components/example/security-scheme-demo.tsx"
       }
@@ -1045,7 +1045,7 @@ export const registry_examples: Registry["items"] = [
     "type": "registry:example",
     "files": [
       {
-        "path": "registry/example/security-scheme-display-demo.tsx",
+        "path": "registry/default/example/security-scheme-display-demo.tsx",
         "type": "registry:example",
         "target": "components/example/security-scheme-display-demo.tsx"
       }
@@ -1059,7 +1059,7 @@ export const registry_examples: Registry["items"] = [
     "type": "registry:example",
     "files": [
       {
-        "path": "registry/example/security-schemes-demo.tsx",
+        "path": "registry/default/example/security-schemes-demo.tsx",
         "type": "registry:example",
         "target": "components/example/security-schemes-demo.tsx"
       }
@@ -1073,7 +1073,7 @@ export const registry_examples: Registry["items"] = [
     "type": "registry:example",
     "files": [
       {
-        "path": "registry/example/security-section-demo.tsx",
+        "path": "registry/default/example/security-section-demo.tsx",
         "type": "registry:example",
         "target": "components/example/security-section-demo.tsx"
       }
@@ -1090,7 +1090,7 @@ export const registry_examples: Registry["items"] = [
     "type": "registry:example",
     "files": [
       {
-        "path": "registry/example/server-demo.tsx",
+        "path": "registry/default/example/server-demo.tsx",
         "type": "registry:example",
         "target": "components/example/server-demo.tsx"
       }
@@ -1104,7 +1104,7 @@ export const registry_examples: Registry["items"] = [
     "type": "registry:example",
     "files": [
       {
-        "path": "registry/example/server-display-demo.tsx",
+        "path": "registry/default/example/server-display-demo.tsx",
         "type": "registry:example",
         "target": "components/example/server-display-demo.tsx"
       }
@@ -1118,7 +1118,7 @@ export const registry_examples: Registry["items"] = [
     "type": "registry:example",
     "files": [
       {
-        "path": "registry/example/server-variable-demo.tsx",
+        "path": "registry/default/example/server-variable-demo.tsx",
         "type": "registry:example",
         "target": "components/example/server-variable-demo.tsx"
       }
@@ -1132,7 +1132,7 @@ export const registry_examples: Registry["items"] = [
     "type": "registry:example",
     "files": [
       {
-        "path": "registry/example/servers-demo.tsx",
+        "path": "registry/default/example/servers-demo.tsx",
         "type": "registry:example",
         "target": "components/example/servers-demo.tsx"
       }
@@ -1147,7 +1147,7 @@ export const registry_examples: Registry["items"] = [
     "type": "registry:example",
     "files": [
       {
-        "path": "registry/example/servers-section-demo.tsx",
+        "path": "registry/default/example/servers-section-demo.tsx",
         "type": "registry:example",
         "target": "components/example/servers-section-demo.tsx"
       }
@@ -1162,7 +1162,7 @@ export const registry_examples: Registry["items"] = [
     "type": "registry:example",
     "files": [
       {
-        "path": "registry/example/status-code-demo.tsx",
+        "path": "registry/default/example/status-code-demo.tsx",
         "type": "registry:example",
         "target": "components/example/status-code-demo.tsx"
       }
@@ -1176,7 +1176,7 @@ export const registry_examples: Registry["items"] = [
     "type": "registry:example",
     "files": [
       {
-        "path": "registry/example/style-badge-demo.tsx",
+        "path": "registry/default/example/style-badge-demo.tsx",
         "type": "registry:example",
         "target": "components/example/style-badge-demo.tsx"
       }
@@ -1190,7 +1190,7 @@ export const registry_examples: Registry["items"] = [
     "type": "registry:example",
     "files": [
       {
-        "path": "registry/example/terms-of-service-demo.tsx",
+        "path": "registry/default/example/terms-of-service-demo.tsx",
         "type": "registry:example",
         "target": "components/example/terms-of-service-demo.tsx"
       }
@@ -1204,7 +1204,7 @@ export const registry_examples: Registry["items"] = [
     "type": "registry:example",
     "files": [
       {
-        "path": "registry/example/theme-toggle-demo.tsx",
+        "path": "registry/default/example/theme-toggle-demo.tsx",
         "type": "registry:example",
         "target": "components/example/theme-toggle-demo.tsx"
       }
@@ -1218,7 +1218,7 @@ export const registry_examples: Registry["items"] = [
     "type": "registry:example",
     "files": [
       {
-        "path": "registry/example/try-it-out-panel-demo.tsx",
+        "path": "registry/default/example/try-it-out-panel-demo.tsx",
         "type": "registry:example",
         "target": "components/example/try-it-out-panel-demo.tsx"
       }
@@ -1235,7 +1235,7 @@ export const registry_examples: Registry["items"] = [
     "type": "registry:example",
     "files": [
       {
-        "path": "registry/example/type-indicator-demo.tsx",
+        "path": "registry/default/example/type-indicator-demo.tsx",
         "type": "registry:example",
         "target": "components/example/type-indicator-demo.tsx"
       }
@@ -1249,7 +1249,7 @@ export const registry_examples: Registry["items"] = [
     "type": "registry:example",
     "files": [
       {
-        "path": "registry/example/typescript-generator-demo.tsx",
+        "path": "registry/default/example/typescript-generator-demo.tsx",
         "type": "registry:example",
         "target": "components/example/typescript-generator-demo.tsx"
       }
@@ -1263,7 +1263,7 @@ export const registry_examples: Registry["items"] = [
     "type": "registry:example",
     "files": [
       {
-        "path": "registry/example/value-display-demo.tsx",
+        "path": "registry/default/example/value-display-demo.tsx",
         "type": "registry:example",
         "target": "components/example/value-display-demo.tsx"
       }
@@ -1277,7 +1277,7 @@ export const registry_examples: Registry["items"] = [
     "type": "registry:example",
     "files": [
       {
-        "path": "registry/example/version-badge-demo.tsx",
+        "path": "registry/default/example/version-badge-demo.tsx",
         "type": "registry:example",
         "target": "components/example/version-badge-demo.tsx"
       }
@@ -1291,7 +1291,7 @@ export const registry_examples: Registry["items"] = [
     "type": "registry:example",
     "files": [
       {
-        "path": "registry/example/webhook-label-demo.tsx",
+        "path": "registry/default/example/webhook-label-demo.tsx",
         "type": "registry:example",
         "target": "components/example/webhook-label-demo.tsx"
       }

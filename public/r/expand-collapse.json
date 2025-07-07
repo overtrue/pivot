@@ -7,10 +7,10 @@
   ],
   "files": [
     {
-      "path": "registry/pivot/expand-collapse.tsx",
+      "path": "registry/default/ui/expand-collapse.tsx",
       "content": "import { cn } from \"@/lib/utils\";\nimport React from \"react\";\n\ninterface ExpandCollapseProps {\n  isExpanded: boolean;\n  onToggle: () => void;\n  label?: string;\n  expandedLabel?: string;\n  collapsedLabel?: string;\n  className?: string;\n}\n\nconst ExpandCollapse = React.forwardRef<HTMLButtonElement, ExpandCollapseProps>(\n  (\n    { isExpanded, onToggle, label, expandedLabel, collapsedLabel, className },\n    ref,\n  ) => {\n    // 确定要显示的标签\n    const displayLabel = label || (isExpanded ? expandedLabel : collapsedLabel);\n\n    return (\n      <button\n        ref={ref}\n        type=\"button\"\n        onClick={onToggle}\n        className={cn(\n          \"flex items-center text-xs font-medium text-neutral-500 hover:text-neutral-700 dark:text-neutral-400 dark:hover:text-neutral-300\",\n          className,\n        )}\n        aria-expanded={isExpanded}\n      >\n        {displayLabel && <span>{displayLabel}</span>}\n        <svg\n          className={cn(\n            \"ml-1 h-4 w-4 transition-transform duration-200\",\n            isExpanded ? \"rotate-180\" : \"\",\n          )}\n          fill=\"none\"\n          stroke=\"currentColor\"\n          viewBox=\"0 0 24 24\"\n          xmlns=\"http://www.w3.org/2000/svg\"\n        >\n          <path\n            strokeLinecap=\"round\"\n            strokeLinejoin=\"round\"\n            strokeWidth={2}\n            d=\"M19 9l-7 7-7-7\"\n          />\n        </svg>\n      </button>\n    );\n  },\n);\n\nExpandCollapse.displayName = \"ExpandCollapse\";\n\nexport { ExpandCollapse };\n",
       "type": "registry:ui",
-      "target": "components/pivot/expand-collapse.tsx"
+      "target": "components/ui/expand-collapse.tsx"
     }
   ]
 }

@@ -7,8 +7,8 @@
   ],
   "files": [
     {
-      "path": "registry/example/default-value-display-demo.tsx",
-      "content": "import { DefaultValueDisplay } from \"@/registry/pivot/default-value-display\";\n\nexport default function DefaultValueDisplayDemo() {\n  return (\n    <div className=\"space-y-4 min-w-md\">\n      <DefaultValueDisplay value=\"application/json\" />\n      <DefaultValueDisplay value={42} />\n      <DefaultValueDisplay value={true} />\n      <DefaultValueDisplay value={[\"item1\", \"item2\", \"item3\"]} />\n    </div>\n  );\n}\n",
+      "path": "registry/default/example/default-value-display-demo.tsx",
+      "content": "import { DefaultValueDisplay } from \"@/registry/default/ui/default-value-display\";\n\nexport default function DefaultValueDisplayDemo() {\n  return (\n    <div className=\"space-y-4 min-w-md\">\n      <DefaultValueDisplay value=\"application/json\" />\n      <DefaultValueDisplay value={42} />\n      <DefaultValueDisplay value={true} />\n      <DefaultValueDisplay value={[\"item1\", \"item2\", \"item3\"]} />\n    </div>\n  );\n}\n",
       "type": "registry:example",
       "target": "components/example/default-value-display-demo.tsx"
     }
