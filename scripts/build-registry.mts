@@ -212,15 +212,20 @@ export const examples: Registry["items"] = ${JSON.stringify(exampleItems, null, 
 /**
  * 递归获取目录下的所有文件
  */
-async function getAllFiles(dir: string): Promise<string[]> {
+async function getAllFiles(dir: string, rootDir?: string): Promise<string[]> {
   const files: string[] = [];
   const entries = await fs.readdir(dir, { withFileTypes: true });
+  const isRootDir = rootDir ? dir === rootDir : false;
 
   for (const entry of entries) {
     const fullPath = path.join(dir, entry.name);
     if (entry.isDirectory()) {
-      files.push(...(await getAllFiles(fullPath)));
-    } else if ((entry.name.endsWith('.ts') || entry.name.endsWith('.tsx')) && entry.name !== 'index.ts') {
+      files.push(...(await getAllFiles(fullPath, rootDir || dir)));
+    } else if ((entry.name.endsWith('.ts') || entry.name.endsWith('.tsx'))) {
+      // 只过滤掉根目录下的 index.ts 文件，保留子目录中的 index.ts 文件
+      if (entry.name === 'index.ts' && isRootDir) {
+        continue;
+      }
       files.push(fullPath);
     }
   }
@@ -244,7 +249,7 @@ async function generateRegistryLib(): Promise<Registry["items"]> {
   const allDependencies = new Set<string>();
 
   // 递归获取所有文件
-  const allFiles = await getAllFiles(libDir);
+  const allFiles = await getAllFiles(libDir, libDir);
 
   // 收集所有文件
   for (const filePath of allFiles) {
@@ -303,7 +308,7 @@ async function generateRegistryHooks(): Promise<Registry["items"]> {
   const allDependencies = new Set<string>();
 
   // 递归获取所有文件
-  const allFiles = await getAllFiles(hooksDir);
+  const allFiles = await getAllFiles(hooksDir, hooksDir);
 
   // 收集所有文件
   for (const filePath of allFiles) {

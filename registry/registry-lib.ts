@@ -9,9 +9,19 @@ export const registry_lib: Registry["items"] = [
     "description": "Core library components and utilities",
     "files": [
       {
+        "path": "registry/default/lib/generate-example.ts",
+        "type": "registry:lib",
+        "target": "lib/generate-example.ts"
+      },
+      {
         "path": "registry/default/lib/i18n/I18nProvider.tsx",
         "type": "registry:lib",
         "target": "lib/i18n/I18nProvider.tsx"
+      },
+      {
+        "path": "registry/default/lib/i18n/index.ts",
+        "type": "registry:lib",
+        "target": "lib/i18n/index.ts"
       },
       {
         "path": "registry/default/lib/i18n/locales/en.ts",
@@ -24,24 +34,19 @@ export const registry_lib: Registry["items"] = [
         "target": "lib/i18n/locales/zh.ts"
       },
       {
-        "path": "registry/default/lib/utils/generate-example.ts",
+        "path": "registry/default/lib/resolve-ref.ts",
         "type": "registry:lib",
-        "target": "lib/utils/generate-example.ts"
+        "target": "lib/resolve-ref.ts"
       },
       {
-        "path": "registry/default/lib/utils/resolve-ref.ts",
+        "path": "registry/default/lib/schema-utils.ts",
         "type": "registry:lib",
-        "target": "lib/utils/resolve-ref.ts"
+        "target": "lib/schema-utils.ts"
       },
       {
-        "path": "registry/default/lib/utils/schema-utils.ts",
+        "path": "registry/default/lib/type-utils.ts",
         "type": "registry:lib",
-        "target": "lib/utils/schema-utils.ts"
-      },
-      {
-        "path": "registry/default/lib/utils/type-utils.ts",
-        "type": "registry:lib",
-        "target": "lib/utils/type-utils.ts"
+        "target": "lib/type-utils.ts"
       }
     ],
     "dependencies": [
