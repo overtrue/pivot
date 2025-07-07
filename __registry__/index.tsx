@@ -669,7 +669,7 @@ export const Index: Record<string, any> = {
     title: "navigation-sidebar",
     description: "",
     type: "registry:ui",
-    registryDependencies: ["button","collapsible","input","https://pivotkit.vercel.app/r/lib.json","https://pivotkit.vercel.app/r/method-label.json"],
+    registryDependencies: ["button","collapsible","input","sidebar","https://pivotkit.vercel.app/r/lib.json","https://pivotkit.vercel.app/r/method-label.json"],
     files: [{
       path: "registry/default/ui/navigation-sidebar.tsx",
       type: "registry:ui",
@@ -759,7 +759,7 @@ export const Index: Record<string, any> = {
     title: "operation-detailed-layout",
     description: "",
     type: "registry:ui",
-    registryDependencies: ["https://pivotkit.vercel.app/r/lib.json","https://pivotkit.vercel.app/r/codegen.json","https://pivotkit.vercel.app/r/operation-detail.json","https://pivotkit.vercel.app/r/try-it-out-panel.json"],
+    registryDependencies: ["sidebar","https://pivotkit.vercel.app/r/hooks.json","https://pivotkit.vercel.app/r/lib.json","https://pivotkit.vercel.app/r/codegen.json","https://pivotkit.vercel.app/r/navigation-sidebar.json","https://pivotkit.vercel.app/r/operation-detail.json","https://pivotkit.vercel.app/r/try-it-out-panel.json"],
     files: [{
       path: "registry/default/ui/operation-detailed-layout.tsx",
       type: "registry:ui",
@@ -3255,6 +3255,14 @@ export const Index: Record<string, any> = {
     type: "registry:hook",
     registryDependencies: undefined,
     files: [{
+      path: "registry/default/hooks/use-openapi-combined.ts",
+      type: "registry:hook",
+      target: "hooks/use-openapi-combined.ts"
+    },{
+      path: "registry/default/hooks/use-openapi-loader.ts",
+      type: "registry:hook",
+      target: "hooks/use-openapi-loader.ts"
+    },{
       path: "registry/default/hooks/use-openapi.ts",
       type: "registry:hook",
       target: "hooks/use-openapi.ts"
@@ -3268,7 +3276,7 @@ export const Index: Record<string, any> = {
       target: "hooks/use-schema.ts"
     }],
     component: React.lazy(async () => {
-      const mod = await import("@/registry/default/hooks/use-openapi.ts")
+      const mod = await import("@/registry/default/hooks/use-openapi-combined.ts")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),

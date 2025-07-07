@@ -9,6 +9,16 @@ export const registry_hooks: Registry["items"] = [
     "description": "React hooks collection",
     "files": [
       {
+        "path": "registry/default/hooks/use-openapi-combined.ts",
+        "type": "registry:hook",
+        "target": "hooks/use-openapi-combined.ts"
+      },
+      {
+        "path": "registry/default/hooks/use-openapi-loader.ts",
+        "type": "registry:hook",
+        "target": "hooks/use-openapi-loader.ts"
+      },
+      {
         "path": "registry/default/hooks/use-openapi.ts",
         "type": "registry:hook",
         "target": "hooks/use-openapi.ts"
@@ -25,6 +35,7 @@ export const registry_hooks: Registry["items"] = [
       }
     ],
     "dependencies": [
+      "js-yaml",
       "openapi-types",
       "react"
     ]

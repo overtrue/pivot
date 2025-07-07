@@ -650,6 +650,7 @@
         "button",
         "collapsible",
         "input",
+        "sidebar",
         "https://pivotkit.vercel.app/r/lib.json",
         "https://pivotkit.vercel.app/r/method-label.json"
       ],
@@ -750,13 +751,15 @@
       "name": "operation-detailed-layout",
       "type": "registry:ui",
       "dependencies": [
-        "js-yaml",
         "openapi-types",
         "react"
       ],
       "registryDependencies": [
+        "sidebar",
+        "https://pivotkit.vercel.app/r/hooks.json",
         "https://pivotkit.vercel.app/r/lib.json",
         "https://pivotkit.vercel.app/r/codegen.json",
+        "https://pivotkit.vercel.app/r/navigation-sidebar.json",
         "https://pivotkit.vercel.app/r/operation-detail.json",
         "https://pivotkit.vercel.app/r/try-it-out-panel.json"
       ],
@@ -2953,10 +2956,21 @@
       "type": "registry:hook",
       "description": "React hooks collection",
       "dependencies": [
+        "js-yaml",
         "openapi-types",
         "react"
       ],
       "files": [
+        {
+          "path": "registry/default/hooks/use-openapi-combined.ts",
+          "type": "registry:hook",
+          "target": "hooks/use-openapi-combined.ts"
+        },
+        {
+          "path": "registry/default/hooks/use-openapi-loader.ts",
+          "type": "registry:hook",
+          "target": "hooks/use-openapi-loader.ts"
+        },
         {
           "path": "registry/default/hooks/use-openapi.ts",
           "type": "registry:hook",

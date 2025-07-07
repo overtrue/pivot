@@ -7,10 +7,21 @@ import {
   CollapsibleTrigger,
 } from "@/components/ui/collapsible";
 import { Input } from "@/components/ui/input";
+import {
+  Sidebar,
+  SidebarContent,
+  SidebarGroup,
+  SidebarGroupContent,
+  SidebarGroupLabel,
+  SidebarHeader,
+  SidebarMenu,
+  SidebarMenuButton,
+  SidebarMenuItem,
+} from "@/components/ui/sidebar";
 import { cn } from "@/lib/utils";
 import { useI18n } from "@/registry/default/lib/i18n";
 import { MethodLabel } from "@/registry/default/ui/method-label";
-import { ChevronRight, Folder, FolderOpen, Search } from "lucide-react";
+import { ChevronRight, Search } from "lucide-react";
 import type { OpenAPIV3 } from "openapi-types";
 import React, { useState } from "react";
 
@@ -34,7 +45,7 @@ const NavigationSidebar = React.forwardRef<
       openapi,
       activePath = null,
       activeMethod = null,
-      onSelectOperation = () => {},
+      onSelectOperation = () => { },
       onSelectSchema,
       className,
     },
@@ -45,6 +56,7 @@ const NavigationSidebar = React.forwardRef<
       {},
     );
     const [searchQuery, setSearchQuery] = useState("");
+    const [showSearch, setShowSearch] = useState(false);
 
     const toggleTagCollapse = (tagName: string) => {
       setCollapsedTags((prev) => ({
@@ -70,256 +82,179 @@ const NavigationSidebar = React.forwardRef<
     const tags = openapi.tags || [];
     const hasCustomTags = tags.length > 0;
 
-    return (
-      <div
-        ref={ref}
-        className={cn("flex flex-col h-full w-full bg-background", className)}
-      >
-        {/* Header - Fixed */}
-        <div className="flex-shrink-0 p-4 border-b bg-background">
-          <h2 className="font-semibold text-sm">
-            {openapi.info?.title || "API Documentation"}
-          </h2>
-          {openapi.info?.version && (
-            <p className="text-xs text-muted-foreground mt-1">
-              Version {openapi.info.version}
-            </p>
-          )}
-        </div>
+    // Render operation item using SidebarMenuItem
+    const renderOperationItem = (path: string, method: string, operation: any) => {
+      const isActive =
+        activePath === path &&
+        activeMethod !== null &&
+        activeMethod.toUpperCase() === method.toUpperCase();
 
-        {/* Search - Fixed */}
-        <div className="flex-shrink-0 p-4 border-b bg-background">
-          <div className="relative">
-            <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-            <Input
-              placeholder={t("Search...")}
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="pl-9 shadow-none"
+      return (
+        <SidebarMenuItem key={`${method}-${path}`}>
+          <SidebarMenuButton
+            onClick={() => onSelectOperation(path, method, operation)}
+            isActive={isActive}
+            className="justify-between text-xs font-mono"
+          >
+            <span className="truncate">{path}</span>
+            <MethodLabel
+              method={
+                method.toUpperCase() as
+                | "GET"
+                | "POST"
+                | "PUT"
+                | "DELETE"
+                | "PATCH"
+                | "OPTIONS"
+                | "HEAD"
+              }
+              className="ml-2 flex-shrink-0"
+              variant="compact"
             />
-          </div>
-        </div>
+          </SidebarMenuButton>
+        </SidebarMenuItem>
+      );
+    };
 
-        {/* Content with Sticky Tags */}
-        <div className="flex-1 overflow-y-scroll">
+    return (
+      <Sidebar ref={ref} className={className}>
+        {/* Header with search */}
+        <SidebarHeader className="border-b p-4">
+          <div className="flex items-center justify-between">
+            <div className="min-w-0 flex-1">
+              <h2 className="text-sm font-medium truncate">
+                {openapi.info?.title || "API Documentation"}
+              </h2>
+              {openapi.info?.version && (
+                <p className="text-xs text-sidebar-foreground/70 mt-0.5">
+                  v{openapi.info.version}
+                </p>
+              )}
+            </div>
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => setShowSearch(!showSearch)}
+              className="h-7 w-7 p-0 ml-2 flex-shrink-0"
+            >
+              <Search className="h-3.5 w-3.5" />
+            </Button>
+          </div>
+
+          {/* Collapsible Search */}
+          {showSearch && (
+            <div className="mt-3">
+              <Input
+                placeholder={t("Search...")}
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="h-8 text-xs"
+                autoFocus
+              />
+            </div>
+          )}
+        </SidebarHeader>
+
+        {/* Content */}
+        <SidebarContent>
           {hasCustomTags ? (
-            // Render with tags
+            // Render with tags using SidebarGroup
             tags.map((tag) => {
               const isCollapsed = collapsedTags[tag.name];
-              return (
-                <div
-                  key={tag.name}
-                  className="border-b border-border/50 last:border-b-0"
-                >
-                  {/* Sticky Tag Header */}
-                  <div className="sticky top-0 z-10 bg-background/95 backdrop-blur-sm border-b border-border">
-                    <Collapsible
-                      open={!isCollapsed}
-                      onOpenChange={() => toggleTagCollapse(tag.name)}
-                    >
-                      <CollapsibleTrigger asChild>
-                        <Button
-                          variant="ghost"
-                          className="w-full justify-between p-4 h-auto font-normal hover:bg-muted/50"
-                        >
-                          <div className="flex items-center gap-2">
-                            {isCollapsed ? (
-                              <Folder className="h-4 w-4" />
-                            ) : (
-                              <FolderOpen className="h-4 w-4" />
-                            )}
-                            <span className="text-sm font-medium">
-                              {tag.name}
-                            </span>
-                          </div>
-                          <ChevronRight
-                            className={cn(
-                              "h-4 w-4 transition-transform",
-                              !isCollapsed && "rotate-90",
-                            )}
-                          />
-                        </Button>
-                      </CollapsibleTrigger>
-                    </Collapsible>
-                  </div>
+              const tagOperations: React.ReactNode[] = [];
 
-                  {/* Tag Content */}
-                  <Collapsible
-                    open={!isCollapsed}
-                    onOpenChange={() => toggleTagCollapse(tag.name)}
-                  >
-                    <CollapsibleContent>
-                      <div className="p-4 space-y-1">
-                        {openapi.paths &&
-                          Object.entries(openapi.paths).map(
-                            ([path, pathItem]) => {
-                              const operations = Object.entries(
-                                pathItem as OpenAPIV3.PathItemObject,
-                              ).filter(([method]) =>
-                                [
-                                  "get",
-                                  "post",
-                                  "put",
-                                  "delete",
-                                  "patch",
-                                ].includes(method),
-                              );
-
-                              return operations
-                                .map(([method, operation]) => {
-                                  // Type check: ensure operation is an OperationObject
-                                  if (
-                                    typeof operation !== "object" ||
-                                    !operation ||
-                                    Array.isArray(operation) ||
-                                    !("responses" in operation)
-                                  ) {
-                                    return null;
-                                  }
-
-                                  // Filter tags and search query
-                                  if (
-                                    !(operation as any).tags?.includes(
-                                      tag.name,
-                                    ) ||
-                                    !filterPaths(path, method, operation)
-                                  ) {
-                                    return null;
-                                  }
-
-                                  const isActive =
-                                    activePath === path &&
-                                    activeMethod !== null &&
-                                    activeMethod.toUpperCase() ===
-                                      method.toUpperCase();
-
-                                  return (
-                                    <Button
-                                      key={`${method}-${path}`}
-                                      variant={isActive ? "secondary" : "ghost"}
-                                      onClick={() =>
-                                        onSelectOperation(
-                                          path,
-                                          method,
-                                          operation,
-                                        )
-                                      }
-                                      className={cn(
-                                        "w-full justify-between p-2 h-auto font-normal shadow-none",
-                                        isActive && "bg-muted",
-                                      )}
-                                    >
-                                      <div className="flex flex-col items-start gap-1 flex-1 min-w-0">
-                                        <span className="font-mono text-xs truncate w-full text-left">
-                                          {path}
-                                        </span>
-                                        {(operation as any).summary && (
-                                          <span className="text-xs text-muted-foreground truncate w-full text-left">
-                                            {(operation as any).summary}
-                                          </span>
-                                        )}
-                                      </div>
-                                      <MethodLabel
-                                        method={
-                                          method.toUpperCase() as
-                                            | "GET"
-                                            | "POST"
-                                            | "PUT"
-                                            | "DELETE"
-                                            | "PATCH"
-                                            | "OPTIONS"
-                                            | "HEAD"
-                                        }
-                                        className="ml-2 flex-shrink-0"
-                                        variant="compact"
-                                      />
-                                    </Button>
-                                  );
-                                })
-                                .filter(Boolean);
-                            },
-                          )}
-                      </div>
-                    </CollapsibleContent>
-                  </Collapsible>
-                </div>
-              );
-            })
-          ) : (
-            // No tags - directly display all paths
-            <div className="p-4 space-y-1">
-              {openapi.paths &&
-                Object.entries(openapi.paths).map(([path, pathItem]) => {
+              // Collect operations for this tag
+              if (openapi.paths) {
+                Object.entries(openapi.paths).forEach(([path, pathItem]) => {
                   const operations = Object.entries(
                     pathItem as OpenAPIV3.PathItemObject,
                   ).filter(([method]) =>
                     ["get", "post", "put", "delete", "patch"].includes(method),
                   );
 
-                  return operations
-                    .map(([method, operation]) => {
-                      // Type check: ensure operation is an OperationObject
-                      if (
-                        typeof operation !== "object" ||
-                        !operation ||
-                        Array.isArray(operation) ||
-                        !("responses" in operation)
-                      ) {
-                        return null;
-                      }
+                  operations.forEach(([method, operation]) => {
+                    if (
+                      typeof operation === "object" &&
+                      operation &&
+                      !Array.isArray(operation) &&
+                      "responses" in operation &&
+                      (operation as any).tags?.includes(tag.name) &&
+                      filterPaths(path, method, operation)
+                    ) {
+                      tagOperations.push(renderOperationItem(path, method, operation));
+                    }
+                  });
+                });
+              }
 
-                      if (!filterPaths(path, method, operation)) return null;
+              if (tagOperations.length === 0) return null;
 
-                      const isActive =
-                        activePath === path &&
-                        activeMethod !== null &&
-                        activeMethod.toUpperCase() === method.toUpperCase();
-
-                      return (
-                        <Button
-                          key={`${method}-${path}`}
-                          variant={isActive ? "secondary" : "ghost"}
-                          onClick={() =>
-                            onSelectOperation(path, method, operation)
-                          }
-                          className={cn(
-                            "w-full justify-between p-2 h-auto font-normal",
-                            isActive && "bg-muted",
-                          )}
-                        >
-                          <div className="flex flex-col items-start gap-1 flex-1 min-w-0">
-                            <span className="font-mono text-xs truncate w-full text-left">
-                              {path}
-                            </span>
-                            {(operation as any).summary && (
-                              <span className="text-xs text-muted-foreground truncate w-full text-left">
-                                {(operation as any).summary}
-                              </span>
+              return (
+                <SidebarGroup key={tag.name}>
+                  <Collapsible
+                    open={!isCollapsed}
+                    onOpenChange={() => toggleTagCollapse(tag.name)}
+                  >
+                    <CollapsibleTrigger asChild>
+                      <SidebarGroupLabel className="cursor-pointer hover:bg-sidebar-accent rounded-md p-2 transition-colors">
+                        <div className="flex items-center">
+                          <ChevronRight
+                            className={cn(
+                              "h-3 w-3 mr-2 transition-transform",
+                              !isCollapsed && "rotate-90",
                             )}
-                          </div>
-                          <MethodLabel
-                            method={
-                              method.toUpperCase() as
-                                | "GET"
-                                | "POST"
-                                | "PUT"
-                                | "DELETE"
-                                | "PATCH"
-                                | "OPTIONS"
-                                | "HEAD"
-                            }
-                            className="ml-2 flex-shrink-0"
-                            variant="compact"
                           />
-                        </Button>
+                          <span className="text-xs font-medium">{tag.name}</span>
+                        </div>
+                      </SidebarGroupLabel>
+                    </CollapsibleTrigger>
+
+                    <CollapsibleContent>
+                      <SidebarGroupContent>
+                        <SidebarMenu>
+                          {tagOperations}
+                        </SidebarMenu>
+                      </SidebarGroupContent>
+                    </CollapsibleContent>
+                  </Collapsible>
+                </SidebarGroup>
+              );
+            })
+          ) : (
+            // No tags - directly display all paths
+            <SidebarGroup>
+              <SidebarGroupContent>
+                <SidebarMenu>
+                  {openapi.paths &&
+                    Object.entries(openapi.paths).map(([path, pathItem]) => {
+                      const operations = Object.entries(
+                        pathItem as OpenAPIV3.PathItemObject,
+                      ).filter(([method]) =>
+                        ["get", "post", "put", "delete", "patch"].includes(method),
                       );
-                    })
-                    .filter(Boolean);
-                })}
-            </div>
+
+                      return operations
+                        .map(([method, operation]) => {
+                          if (
+                            typeof operation !== "object" ||
+                            !operation ||
+                            Array.isArray(operation) ||
+                            !("responses" in operation) ||
+                            !filterPaths(path, method, operation)
+                          ) {
+                            return null;
+                          }
+
+                          return renderOperationItem(path, method, operation);
+                        })
+                        .filter(Boolean);
+                    })}
+                </SidebarMenu>
+              </SidebarGroupContent>
+            </SidebarGroup>
           )}
-        </div>
-      </div>
+        </SidebarContent>
+      </Sidebar>
     );
   },
 );
