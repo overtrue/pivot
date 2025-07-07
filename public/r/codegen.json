@@ -8,8 +8,7 @@
     "react"
   ],
   "registryDependencies": [
-    "https://pivotkit.vercel.app/r/generate-example.json",
-    "https://pivotkit.vercel.app/r/resolve-ref.json",
+    "https://pivotkit.vercel.app/r/lib.json",
     "https://pivotkit.vercel.app/r/code-markdown.json"
   ],
   "files": [

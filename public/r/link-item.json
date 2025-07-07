@@ -7,7 +7,7 @@
     "react"
   ],
   "registryDependencies": [
-    "https://pivotkit.vercel.app/r/i18n.json",
+    "https://pivotkit.vercel.app/r/lib.json",
     "https://pivotkit.vercel.app/r/description-display.json",
     "https://pivotkit.vercel.app/r/expand-collapse.json",
     "https://pivotkit.vercel.app/r/server-display.json"

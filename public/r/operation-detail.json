@@ -9,7 +9,7 @@
   "registryDependencies": [
     "badge",
     "label",
-    "https://pivotkit.vercel.app/r/i18n.json",
+    "https://pivotkit.vercel.app/r/lib.json",
     "https://pivotkit.vercel.app/r/deprecated-badge.json",
     "https://pivotkit.vercel.app/r/description-display.json",
     "https://pivotkit.vercel.app/r/external-docs-display.json",

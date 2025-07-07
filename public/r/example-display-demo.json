@@ -3,7 +3,7 @@
   "name": "example-display-demo",
   "type": "registry:example",
   "registryDependencies": [
-    "https://pivotkit.vercel.app/r/I18nProvider.json",
+    "https://pivotkit.vercel.app/r/lib.json",
     "https://pivotkit.vercel.app/r/example-display.json"
   ],
   "files": [

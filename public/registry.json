@@ -44,7 +44,7 @@
         "react"
       ],
       "registryDependencies": [
-        "https://pivotkit.vercel.app/r/resolve-ref.json",
+        "https://pivotkit.vercel.app/r/lib.json",
         "https://pivotkit.vercel.app/r/operation-box.json"
       ],
       "files": [
@@ -83,8 +83,7 @@
         "react"
       ],
       "registryDependencies": [
-        "https://pivotkit.vercel.app/r/generate-example.json",
-        "https://pivotkit.vercel.app/r/resolve-ref.json",
+        "https://pivotkit.vercel.app/r/lib.json",
         "https://pivotkit.vercel.app/r/code-markdown.json"
       ],
       "files": [
@@ -103,7 +102,7 @@
         "react"
       ],
       "registryDependencies": [
-        "https://pivotkit.vercel.app/r/resolve-ref.json",
+        "https://pivotkit.vercel.app/r/lib.json",
         "https://pivotkit.vercel.app/r/callback-display.json",
         "https://pivotkit.vercel.app/r/examples-display.json",
         "https://pivotkit.vercel.app/r/header-item.json",
@@ -226,7 +225,7 @@
         "react"
       ],
       "registryDependencies": [
-        "https://pivotkit.vercel.app/r/i18n.json"
+        "https://pivotkit.vercel.app/r/lib.json"
       ],
       "files": [
         {
@@ -338,7 +337,7 @@
         "react"
       ],
       "registryDependencies": [
-        "https://pivotkit.vercel.app/r/i18n.json",
+        "https://pivotkit.vercel.app/r/lib.json",
         "https://pivotkit.vercel.app/r/code-markdown.json"
       ],
       "files": [
@@ -357,8 +356,7 @@
         "react"
       ],
       "registryDependencies": [
-        "https://pivotkit.vercel.app/r/i18n.json",
-        "https://pivotkit.vercel.app/r/resolve-ref.json",
+        "https://pivotkit.vercel.app/r/lib.json",
         "https://pivotkit.vercel.app/r/description-display.json"
       ],
       "files": [
@@ -460,8 +458,7 @@
         "react"
       ],
       "registryDependencies": [
-        "https://pivotkit.vercel.app/r/i18n.json",
-        "https://pivotkit.vercel.app/r/resolve-ref.json",
+        "https://pivotkit.vercel.app/r/lib.json",
         "https://pivotkit.vercel.app/r/header-item.json",
         "https://pivotkit.vercel.app/r/style-badge.json"
       ],
@@ -516,7 +513,7 @@
         "react"
       ],
       "registryDependencies": [
-        "https://pivotkit.vercel.app/r/i18n.json"
+        "https://pivotkit.vercel.app/r/lib.json"
       ],
       "files": [
         {
@@ -564,7 +561,7 @@
         "react"
       ],
       "registryDependencies": [
-        "https://pivotkit.vercel.app/r/i18n.json",
+        "https://pivotkit.vercel.app/r/lib.json",
         "https://pivotkit.vercel.app/r/description-display.json",
         "https://pivotkit.vercel.app/r/expand-collapse.json",
         "https://pivotkit.vercel.app/r/server-display.json"
@@ -585,8 +582,7 @@
         "react"
       ],
       "registryDependencies": [
-        "https://pivotkit.vercel.app/r/i18n.json",
-        "https://pivotkit.vercel.app/r/resolve-ref.json",
+        "https://pivotkit.vercel.app/r/lib.json",
         "https://pivotkit.vercel.app/r/link-item.json"
       ],
       "files": [
@@ -618,7 +614,7 @@
         "react"
       ],
       "registryDependencies": [
-        "https://pivotkit.vercel.app/r/i18n.json"
+        "https://pivotkit.vercel.app/r/lib.json"
       ],
       "files": [
         {
@@ -654,7 +650,7 @@
         "button",
         "collapsible",
         "input",
-        "https://pivotkit.vercel.app/r/i18n.json",
+        "https://pivotkit.vercel.app/r/lib.json",
         "https://pivotkit.vercel.app/r/method-label.json"
       ],
       "files": [
@@ -701,7 +697,7 @@
         "react"
       ],
       "registryDependencies": [
-        "https://pivotkit.vercel.app/r/i18n.json",
+        "https://pivotkit.vercel.app/r/lib.json",
         "https://pivotkit.vercel.app/r/deprecated-badge.json",
         "https://pivotkit.vercel.app/r/description-display.json",
         "https://pivotkit.vercel.app/r/expand-collapse.json",
@@ -731,7 +727,7 @@
       "registryDependencies": [
         "badge",
         "label",
-        "https://pivotkit.vercel.app/r/i18n.json",
+        "https://pivotkit.vercel.app/r/lib.json",
         "https://pivotkit.vercel.app/r/deprecated-badge.json",
         "https://pivotkit.vercel.app/r/description-display.json",
         "https://pivotkit.vercel.app/r/external-docs-display.json",
@@ -759,7 +755,7 @@
         "react"
       ],
       "registryDependencies": [
-        "https://pivotkit.vercel.app/r/i18n.json",
+        "https://pivotkit.vercel.app/r/lib.json",
         "https://pivotkit.vercel.app/r/codegen.json",
         "https://pivotkit.vercel.app/r/operation-detail.json",
         "https://pivotkit.vercel.app/r/try-it-out-panel.json"
@@ -781,8 +777,8 @@
         "react"
       ],
       "registryDependencies": [
-        "https://pivotkit.vercel.app/r/use-openapi.json",
-        "https://pivotkit.vercel.app/r/i18n.json",
+        "https://pivotkit.vercel.app/r/hooks.json",
+        "https://pivotkit.vercel.app/r/lib.json",
         "https://pivotkit.vercel.app/r/operation-box.json",
         "https://pivotkit.vercel.app/r/try-it-out-panel.json"
       ],
@@ -895,8 +891,7 @@
         "react"
       ],
       "registryDependencies": [
-        "https://pivotkit.vercel.app/r/i18n.json",
-        "https://pivotkit.vercel.app/r/resolve-ref.json",
+        "https://pivotkit.vercel.app/r/lib.json",
         "https://pivotkit.vercel.app/r/parameter-item.json",
         "https://pivotkit.vercel.app/r/section-title.json",
         "https://pivotkit.vercel.app/r/style-badge.json"
@@ -980,7 +975,7 @@
         "react"
       ],
       "registryDependencies": [
-        "https://pivotkit.vercel.app/r/i18n.json",
+        "https://pivotkit.vercel.app/r/lib.json",
         "https://pivotkit.vercel.app/r/schema-with-example-viewer.json",
         "https://pivotkit.vercel.app/r/section-title.json"
       ],
@@ -1042,7 +1037,7 @@
         "react"
       ],
       "registryDependencies": [
-        "https://pivotkit.vercel.app/r/i18n.json",
+        "https://pivotkit.vercel.app/r/lib.json",
         "https://pivotkit.vercel.app/r/schema-with-example-viewer.json"
       ],
       "files": [
@@ -1061,7 +1056,7 @@
         "react"
       ],
       "registryDependencies": [
-        "https://pivotkit.vercel.app/r/i18n.json",
+        "https://pivotkit.vercel.app/r/lib.json",
         "https://pivotkit.vercel.app/r/response-content-section.json",
         "https://pivotkit.vercel.app/r/response-headers-table.json"
       ],
@@ -1081,8 +1076,7 @@
         "react"
       ],
       "registryDependencies": [
-        "https://pivotkit.vercel.app/r/i18n.json",
-        "https://pivotkit.vercel.app/r/resolve-ref.json",
+        "https://pivotkit.vercel.app/r/lib.json",
         "https://pivotkit.vercel.app/r/header-item.json",
         "https://pivotkit.vercel.app/r/style-badge.json"
       ],
@@ -1102,8 +1096,7 @@
         "react"
       ],
       "registryDependencies": [
-        "https://pivotkit.vercel.app/r/i18n.json",
-        "https://pivotkit.vercel.app/r/resolve-ref.json",
+        "https://pivotkit.vercel.app/r/lib.json",
         "https://pivotkit.vercel.app/r/description-display.json",
         "https://pivotkit.vercel.app/r/headers-section.json",
         "https://pivotkit.vercel.app/r/links-section.json",
@@ -1125,7 +1118,7 @@
         "react"
       ],
       "registryDependencies": [
-        "https://pivotkit.vercel.app/r/i18n.json",
+        "https://pivotkit.vercel.app/r/lib.json",
         "https://pivotkit.vercel.app/r/response-group.json",
         "https://pivotkit.vercel.app/r/section-title.json",
         "https://pivotkit.vercel.app/r/status-code.json"
@@ -1161,7 +1154,7 @@
         "react"
       ],
       "registryDependencies": [
-        "https://pivotkit.vercel.app/r/resolve-ref.json",
+        "https://pivotkit.vercel.app/r/lib.json",
         "https://pivotkit.vercel.app/r/constraint-display.json",
         "https://pivotkit.vercel.app/r/default-value-display.json",
         "https://pivotkit.vercel.app/r/deprecated-badge.json",
@@ -1188,9 +1181,7 @@
         "react"
       ],
       "registryDependencies": [
-        "https://pivotkit.vercel.app/r/i18n.json",
-        "https://pivotkit.vercel.app/r/generate-example.json",
-        "https://pivotkit.vercel.app/r/resolve-ref.json",
+        "https://pivotkit.vercel.app/r/lib.json",
         "https://pivotkit.vercel.app/r/description-display.json",
         "https://pivotkit.vercel.app/r/example-display.json",
         "https://pivotkit.vercel.app/r/media-type-selector.json",
@@ -1254,7 +1245,7 @@
         "react"
       ],
       "registryDependencies": [
-        "https://pivotkit.vercel.app/r/i18n.json",
+        "https://pivotkit.vercel.app/r/lib.json",
         "https://pivotkit.vercel.app/r/section-title.json",
         "https://pivotkit.vercel.app/r/security-requirement-item.json"
       ],
@@ -1330,7 +1321,7 @@
         "react"
       ],
       "registryDependencies": [
-        "https://pivotkit.vercel.app/r/resolve-ref.json",
+        "https://pivotkit.vercel.app/r/lib.json",
         "https://pivotkit.vercel.app/r/section-title.json",
         "https://pivotkit.vercel.app/r/security-scheme-display.json"
       ],
@@ -1350,7 +1341,7 @@
         "react"
       ],
       "registryDependencies": [
-        "https://pivotkit.vercel.app/r/i18n.json",
+        "https://pivotkit.vercel.app/r/lib.json",
         "https://pivotkit.vercel.app/r/description-display.json"
       ],
       "files": [
@@ -1503,8 +1494,7 @@
         "react"
       ],
       "registryDependencies": [
-        "https://pivotkit.vercel.app/r/i18n.json",
-        "https://pivotkit.vercel.app/r/resolve-ref.json",
+        "https://pivotkit.vercel.app/r/lib.json",
         "https://pivotkit.vercel.app/r/method-label.json"
       ],
       "files": [
@@ -1522,7 +1512,7 @@
         "react"
       ],
       "registryDependencies": [
-        "https://pivotkit.vercel.app/r/i18n.json"
+        "https://pivotkit.vercel.app/r/lib.json"
       ],
       "files": [
         {
@@ -1644,7 +1634,7 @@
       "name": "code-markdown-demo",
       "type": "registry:example",
       "registryDependencies": [
-        "https://pivotkit.vercel.app/r/I18nProvider.json",
+        "https://pivotkit.vercel.app/r/lib.json",
         "https://pivotkit.vercel.app/r/code-markdown.json"
       ],
       "files": [
@@ -1780,7 +1770,7 @@
       "name": "copy-button-demo",
       "type": "registry:example",
       "registryDependencies": [
-        "https://pivotkit.vercel.app/r/I18nProvider.json",
+        "https://pivotkit.vercel.app/r/lib.json",
         "https://pivotkit.vercel.app/r/copy-button.json",
         "https://pivotkit.vercel.app/r/example-display.json"
       ],
@@ -1880,7 +1870,7 @@
       "name": "example-display-demo",
       "type": "registry:example",
       "registryDependencies": [
-        "https://pivotkit.vercel.app/r/I18nProvider.json",
+        "https://pivotkit.vercel.app/r/lib.json",
         "https://pivotkit.vercel.app/r/example-display.json"
       ],
       "files": [
@@ -1957,7 +1947,7 @@
         "openapi-types"
       ],
       "registryDependencies": [
-        "https://pivotkit.vercel.app/r/generate-example.json"
+        "https://pivotkit.vercel.app/r/lib.json"
       ],
       "files": [
         {
@@ -2018,7 +2008,7 @@
       "registryDependencies": [
         "button",
         "card",
-        "https://pivotkit.vercel.app/r/i18n.json",
+        "https://pivotkit.vercel.app/r/lib.json",
         "https://pivotkit.vercel.app/r/required-marker.json",
         "https://pivotkit.vercel.app/r/try-it-out-panel.json"
       ],
@@ -2478,7 +2468,7 @@
         "openapi-types"
       ],
       "registryDependencies": [
-        "https://pivotkit.vercel.app/r/I18nProvider.json",
+        "https://pivotkit.vercel.app/r/lib.json",
         "https://pivotkit.vercel.app/r/response-content-section.json"
       ],
       "files": [

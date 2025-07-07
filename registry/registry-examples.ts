@@ -45,7 +45,7 @@ export const registry_examples: Registry["items"] = [
       }
     ],
     "registryDependencies": [
-      "https://pivotkit.vercel.app/r/I18nProvider.json",
+      "https://pivotkit.vercel.app/r/lib.json",
       "https://pivotkit.vercel.app/r/code-markdown.json"
     ]
   },
@@ -181,7 +181,7 @@ export const registry_examples: Registry["items"] = [
       }
     ],
     "registryDependencies": [
-      "https://pivotkit.vercel.app/r/I18nProvider.json",
+      "https://pivotkit.vercel.app/r/lib.json",
       "https://pivotkit.vercel.app/r/copy-button.json",
       "https://pivotkit.vercel.app/r/example-display.json"
     ]
@@ -281,7 +281,7 @@ export const registry_examples: Registry["items"] = [
       }
     ],
     "registryDependencies": [
-      "https://pivotkit.vercel.app/r/I18nProvider.json",
+      "https://pivotkit.vercel.app/r/lib.json",
       "https://pivotkit.vercel.app/r/example-display.json"
     ]
   },
@@ -358,7 +358,7 @@ export const registry_examples: Registry["items"] = [
       "openapi-types"
     ],
     "registryDependencies": [
-      "https://pivotkit.vercel.app/r/generate-example.json"
+      "https://pivotkit.vercel.app/r/lib.json"
     ]
   },
   {
@@ -419,7 +419,7 @@ export const registry_examples: Registry["items"] = [
     "registryDependencies": [
       "button",
       "card",
-      "https://pivotkit.vercel.app/r/i18n.json",
+      "https://pivotkit.vercel.app/r/lib.json",
       "https://pivotkit.vercel.app/r/required-marker.json",
       "https://pivotkit.vercel.app/r/try-it-out-panel.json"
     ]
@@ -879,7 +879,7 @@ export const registry_examples: Registry["items"] = [
       "openapi-types"
     ],
     "registryDependencies": [
-      "https://pivotkit.vercel.app/r/I18nProvider.json",
+      "https://pivotkit.vercel.app/r/lib.json",
       "https://pivotkit.vercel.app/r/response-content-section.json"
     ]
   },

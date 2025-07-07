@@ -64,11 +64,11 @@ async function analyzeFileDependencies(filePath: string): Promise<DependencyAnal
         else if (importPath.startsWith('@/registry/')) {
           let componentName = path.basename(importPath, path.extname(importPath));
 
-          if (importPath.startsWith('@/registry/lib/')) {
+          if (importPath.startsWith('@/registry/default/lib/')) {
             componentName = 'lib';
           }
 
-          if (importPath.startsWith('@/registry/hooks/')) {
+          if (importPath.startsWith('@/registry/default/hooks/')) {
             componentName = 'hooks';
           }
 
