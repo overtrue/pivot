@@ -3,7 +3,7 @@
   "name": "response-headers-table-demo",
   "type": "registry:example",
   "registryDependencies": [
-    "https://pivotkit.vercel.app/r/response-headers-table"
+    "https://pivotkit.vercel.app/r/response-headers-table.json"
   ],
   "files": [
     {

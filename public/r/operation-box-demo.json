@@ -6,7 +6,7 @@
     "openapi-types"
   ],
   "registryDependencies": [
-    "https://pivotkit.vercel.app/r/operation-box"
+    "https://pivotkit.vercel.app/r/operation-box.json"
   ],
   "files": [
     {

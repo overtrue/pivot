@@ -1,7 +1,7 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { useOpenApi } from "@/registry/lib/hooks/use-openapi";
+import { useOpenApi } from "@/registry/hooks/use-openapi";
 import { useI18n } from "@/registry/lib/i18n";
 import { OperationBox } from "@/registry/pivot/operation-box";
 import { TryItOutPanel } from "@/registry/pivot/try-it-out-panel";

@@ -3,7 +3,7 @@
   "name": "const-value-demo",
   "type": "registry:example",
   "registryDependencies": [
-    "https://pivotkit.vercel.app/r/const-value"
+    "https://pivotkit.vercel.app/r/const-value.json"
   ],
   "files": [
     {

@@ -3,7 +3,7 @@
   "name": "section-title-demo",
   "type": "registry:example",
   "registryDependencies": [
-    "https://pivotkit.vercel.app/r/section-title"
+    "https://pivotkit.vercel.app/r/section-title.json"
   ],
   "files": [
     {

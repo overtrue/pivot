@@ -3,7 +3,7 @@
   "name": "security-requirements-section-demo",
   "type": "registry:example",
   "registryDependencies": [
-    "https://pivotkit.vercel.app/r/security-requirements-section"
+    "https://pivotkit.vercel.app/r/security-requirements-section.json"
   ],
   "files": [
     {

@@ -3,7 +3,7 @@
   "name": "python-generator-demo",
   "type": "registry:example",
   "registryDependencies": [
-    "https://pivotkit.vercel.app/r/python-generator"
+    "https://pivotkit.vercel.app/r/python-generator.json"
   ],
   "files": [
     {

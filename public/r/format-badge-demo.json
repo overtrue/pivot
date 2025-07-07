@@ -3,7 +3,7 @@
   "name": "format-badge-demo",
   "type": "registry:example",
   "registryDependencies": [
-    "https://pivotkit.vercel.app/r/format-badge"
+    "https://pivotkit.vercel.app/r/format-badge.json"
   ],
   "files": [
     {

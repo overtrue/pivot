@@ -3,9 +3,9 @@
   "name": "copy-button-demo",
   "type": "registry:example",
   "registryDependencies": [
-    "https://pivotkit.vercel.app/r/lib",
-    "https://pivotkit.vercel.app/r/copy-button",
-    "https://pivotkit.vercel.app/r/example-display"
+    "https://pivotkit.vercel.app/r/lib.json",
+    "https://pivotkit.vercel.app/r/copy-button.json",
+    "https://pivotkit.vercel.app/r/example-display.json"
   ],
   "files": [
     {

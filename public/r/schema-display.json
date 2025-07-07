@@ -7,16 +7,16 @@
     "react"
   ],
   "registryDependencies": [
-    "https://pivotkit.vercel.app/r/lib",
-    "https://pivotkit.vercel.app/r/constraint-display",
-    "https://pivotkit.vercel.app/r/default-value-display",
-    "https://pivotkit.vercel.app/r/deprecated-badge",
-    "https://pivotkit.vercel.app/r/description-display",
-    "https://pivotkit.vercel.app/r/enum-values-display",
-    "https://pivotkit.vercel.app/r/format-badge",
-    "https://pivotkit.vercel.app/r/required-badge",
-    "https://pivotkit.vercel.app/r/schema-composition-display",
-    "https://pivotkit.vercel.app/r/type-indicator"
+    "https://pivotkit.vercel.app/r/lib.json",
+    "https://pivotkit.vercel.app/r/constraint-display.json",
+    "https://pivotkit.vercel.app/r/default-value-display.json",
+    "https://pivotkit.vercel.app/r/deprecated-badge.json",
+    "https://pivotkit.vercel.app/r/description-display.json",
+    "https://pivotkit.vercel.app/r/enum-values-display.json",
+    "https://pivotkit.vercel.app/r/format-badge.json",
+    "https://pivotkit.vercel.app/r/required-badge.json",
+    "https://pivotkit.vercel.app/r/schema-composition-display.json",
+    "https://pivotkit.vercel.app/r/type-indicator.json"
   ],
   "files": [
     {

@@ -7,18 +7,18 @@
     "react"
   ],
   "registryDependencies": [
-    "https://pivotkit.vercel.app/r/constraint-display",
-    "https://pivotkit.vercel.app/r/default-value-display",
-    "https://pivotkit.vercel.app/r/deprecated-badge",
-    "https://pivotkit.vercel.app/r/enum-values-display",
-    "https://pivotkit.vercel.app/r/format-badge",
-    "https://pivotkit.vercel.app/r/in-label",
-    "https://pivotkit.vercel.app/r/parameter-description",
-    "https://pivotkit.vercel.app/r/parameter-name",
-    "https://pivotkit.vercel.app/r/style-badge",
-    "https://pivotkit.vercel.app/r/type-indicator",
-    "https://pivotkit.vercel.app/r/example-display",
-    "https://pivotkit.vercel.app/r/expand-collapse"
+    "https://pivotkit.vercel.app/r/constraint-display.json",
+    "https://pivotkit.vercel.app/r/default-value-display.json",
+    "https://pivotkit.vercel.app/r/deprecated-badge.json",
+    "https://pivotkit.vercel.app/r/enum-values-display.json",
+    "https://pivotkit.vercel.app/r/format-badge.json",
+    "https://pivotkit.vercel.app/r/in-label.json",
+    "https://pivotkit.vercel.app/r/parameter-description.json",
+    "https://pivotkit.vercel.app/r/parameter-name.json",
+    "https://pivotkit.vercel.app/r/style-badge.json",
+    "https://pivotkit.vercel.app/r/type-indicator.json",
+    "https://pivotkit.vercel.app/r/example-display.json",
+    "https://pivotkit.vercel.app/r/expand-collapse.json"
   ],
   "files": [
     {

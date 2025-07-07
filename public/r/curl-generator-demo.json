@@ -3,7 +3,7 @@
   "name": "curl-generator-demo",
   "type": "registry:example",
   "registryDependencies": [
-    "https://pivotkit.vercel.app/r/curl-generator"
+    "https://pivotkit.vercel.app/r/curl-generator.json"
   ],
   "files": [
     {

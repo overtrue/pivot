@@ -3,7 +3,7 @@
   "name": "php-generator-demo",
   "type": "registry:example",
   "registryDependencies": [
-    "https://pivotkit.vercel.app/r/php-generator"
+    "https://pivotkit.vercel.app/r/php-generator.json"
   ],
   "files": [
     {

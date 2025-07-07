@@ -3,7 +3,7 @@
   "name": "required-marker-demo",
   "type": "registry:example",
   "registryDependencies": [
-    "https://pivotkit.vercel.app/r/required-marker"
+    "https://pivotkit.vercel.app/r/required-marker.json"
   ],
   "files": [
     {

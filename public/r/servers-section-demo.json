@@ -3,8 +3,8 @@
   "name": "servers-section-demo",
   "type": "registry:example",
   "registryDependencies": [
-    "https://pivotkit.vercel.app/r/server",
-    "https://pivotkit.vercel.app/r/servers-section"
+    "https://pivotkit.vercel.app/r/server.json",
+    "https://pivotkit.vercel.app/r/servers-section.json"
   ],
   "files": [
     {

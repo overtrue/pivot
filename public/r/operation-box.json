@@ -7,17 +7,17 @@
     "react"
   ],
   "registryDependencies": [
-    "https://pivotkit.vercel.app/r/lib",
-    "https://pivotkit.vercel.app/r/deprecated-badge",
-    "https://pivotkit.vercel.app/r/description-display",
-    "https://pivotkit.vercel.app/r/expand-collapse",
-    "https://pivotkit.vercel.app/r/external-docs-display",
-    "https://pivotkit.vercel.app/r/method-label",
-    "https://pivotkit.vercel.app/r/operation-path",
-    "https://pivotkit.vercel.app/r/parameters-section",
-    "https://pivotkit.vercel.app/r/request-body-section",
-    "https://pivotkit.vercel.app/r/responses-section",
-    "https://pivotkit.vercel.app/r/security-requirements-section"
+    "https://pivotkit.vercel.app/r/lib.json",
+    "https://pivotkit.vercel.app/r/deprecated-badge.json",
+    "https://pivotkit.vercel.app/r/description-display.json",
+    "https://pivotkit.vercel.app/r/expand-collapse.json",
+    "https://pivotkit.vercel.app/r/external-docs-display.json",
+    "https://pivotkit.vercel.app/r/method-label.json",
+    "https://pivotkit.vercel.app/r/operation-path.json",
+    "https://pivotkit.vercel.app/r/parameters-section.json",
+    "https://pivotkit.vercel.app/r/request-body-section.json",
+    "https://pivotkit.vercel.app/r/responses-section.json",
+    "https://pivotkit.vercel.app/r/security-requirements-section.json"
   ],
   "files": [
     {

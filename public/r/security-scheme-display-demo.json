@@ -3,7 +3,7 @@
   "name": "security-scheme-display-demo",
   "type": "registry:example",
   "registryDependencies": [
-    "https://pivotkit.vercel.app/r/security-scheme-display"
+    "https://pivotkit.vercel.app/r/security-scheme-display.json"
   ],
   "files": [
     {

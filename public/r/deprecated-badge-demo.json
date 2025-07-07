@@ -3,7 +3,7 @@
   "name": "deprecated-badge-demo",
   "type": "registry:example",
   "registryDependencies": [
-    "https://pivotkit.vercel.app/r/deprecated-badge"
+    "https://pivotkit.vercel.app/r/deprecated-badge.json"
   ],
   "files": [
     {

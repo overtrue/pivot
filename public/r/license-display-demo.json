@@ -3,7 +3,7 @@
   "name": "license-display-demo",
   "type": "registry:example",
   "registryDependencies": [
-    "https://pivotkit.vercel.app/r/license-display"
+    "https://pivotkit.vercel.app/r/license-display.json"
   ],
   "files": [
     {

@@ -8,7 +8,7 @@
     "react-syntax-highlighter"
   ],
   "registryDependencies": [
-    "https://pivotkit.vercel.app/r/copy-button"
+    "https://pivotkit.vercel.app/r/copy-button.json"
   ],
   "files": [
     {

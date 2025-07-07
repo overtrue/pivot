@@ -3,7 +3,7 @@
   "name": "parameter-item-demo",
   "type": "registry:example",
   "registryDependencies": [
-    "https://pivotkit.vercel.app/r/parameter-item"
+    "https://pivotkit.vercel.app/r/parameter-item.json"
   ],
   "files": [
     {

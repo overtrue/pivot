@@ -3,7 +3,7 @@
   "name": "terms-of-service-demo",
   "type": "registry:example",
   "registryDependencies": [
-    "https://pivotkit.vercel.app/r/terms-of-service"
+    "https://pivotkit.vercel.app/r/terms-of-service.json"
   ],
   "files": [
     {

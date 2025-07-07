@@ -3,7 +3,7 @@
   "name": "description-display-demo",
   "type": "registry:example",
   "registryDependencies": [
-    "https://pivotkit.vercel.app/r/description-display"
+    "https://pivotkit.vercel.app/r/description-display.json"
   ],
   "files": [
     {

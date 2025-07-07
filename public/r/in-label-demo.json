@@ -3,7 +3,7 @@
   "name": "in-label-demo",
   "type": "registry:example",
   "registryDependencies": [
-    "https://pivotkit.vercel.app/r/in-label"
+    "https://pivotkit.vercel.app/r/in-label.json"
   ],
   "files": [
     {

@@ -8,7 +8,7 @@
     "react"
   ],
   "registryDependencies": [
-    "https://pivotkit.vercel.app/r/component-detail"
+    "https://pivotkit.vercel.app/r/component-detail.json"
   ],
   "files": [
     {

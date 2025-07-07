@@ -3,7 +3,7 @@
   "name": "schema-display-demo",
   "type": "registry:example",
   "registryDependencies": [
-    "https://pivotkit.vercel.app/r/schema-display"
+    "https://pivotkit.vercel.app/r/schema-display.json"
   ],
   "files": [
     {

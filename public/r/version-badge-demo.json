@@ -3,7 +3,7 @@
   "name": "version-badge-demo",
   "type": "registry:example",
   "registryDependencies": [
-    "https://pivotkit.vercel.app/r/version-badge"
+    "https://pivotkit.vercel.app/r/version-badge.json"
   ],
   "files": [
     {

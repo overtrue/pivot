@@ -6,7 +6,7 @@
     "openapi-types"
   ],
   "registryDependencies": [
-    "https://pivotkit.vercel.app/r/schema-composition-display"
+    "https://pivotkit.vercel.app/r/schema-composition-display.json"
   ],
   "files": [
     {

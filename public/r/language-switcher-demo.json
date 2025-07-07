@@ -3,7 +3,7 @@
   "name": "language-switcher-demo",
   "type": "registry:example",
   "registryDependencies": [
-    "https://pivotkit.vercel.app/r/language-switcher"
+    "https://pivotkit.vercel.app/r/language-switcher.json"
   ],
   "files": [
     {

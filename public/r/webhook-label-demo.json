@@ -3,7 +3,7 @@
   "name": "webhook-label-demo",
   "type": "registry:example",
   "registryDependencies": [
-    "https://pivotkit.vercel.app/r/webhook-label"
+    "https://pivotkit.vercel.app/r/webhook-label.json"
   ],
   "files": [
     {

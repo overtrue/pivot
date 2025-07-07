@@ -3,7 +3,7 @@
   "name": "typescript-generator-demo",
   "type": "registry:example",
   "registryDependencies": [
-    "https://pivotkit.vercel.app/r/typescript-generator"
+    "https://pivotkit.vercel.app/r/typescript-generator.json"
   ],
   "files": [
     {

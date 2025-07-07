@@ -3,7 +3,7 @@
   "name": "response-item-demo",
   "type": "registry:example",
   "registryDependencies": [
-    "https://pivotkit.vercel.app/r/response-item"
+    "https://pivotkit.vercel.app/r/response-item.json"
   ],
   "files": [
     {

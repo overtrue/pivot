@@ -8,9 +8,9 @@
     "react"
   ],
   "registryDependencies": [
-    "https://pivotkit.vercel.app/r/contact-display",
-    "https://pivotkit.vercel.app/r/description-display",
-    "https://pivotkit.vercel.app/r/license-display"
+    "https://pivotkit.vercel.app/r/contact-display.json",
+    "https://pivotkit.vercel.app/r/description-display.json",
+    "https://pivotkit.vercel.app/r/license-display.json"
   ],
   "files": [
     {

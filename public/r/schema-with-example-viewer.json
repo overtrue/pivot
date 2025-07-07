@@ -7,11 +7,11 @@
     "react"
   ],
   "registryDependencies": [
-    "https://pivotkit.vercel.app/r/lib",
-    "https://pivotkit.vercel.app/r/description-display",
-    "https://pivotkit.vercel.app/r/example-display",
-    "https://pivotkit.vercel.app/r/media-type-selector",
-    "https://pivotkit.vercel.app/r/schema-display"
+    "https://pivotkit.vercel.app/r/lib.json",
+    "https://pivotkit.vercel.app/r/description-display.json",
+    "https://pivotkit.vercel.app/r/example-display.json",
+    "https://pivotkit.vercel.app/r/media-type-selector.json",
+    "https://pivotkit.vercel.app/r/schema-display.json"
   ],
   "files": [
     {

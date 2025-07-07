@@ -6,7 +6,7 @@
     "openapi-types"
   ],
   "registryDependencies": [
-    "https://pivotkit.vercel.app/r/security-section"
+    "https://pivotkit.vercel.app/r/security-section.json"
   ],
   "files": [
     {

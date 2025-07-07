@@ -3,7 +3,7 @@
   "name": "media-type-display-demo",
   "type": "registry:example",
   "registryDependencies": [
-    "https://pivotkit.vercel.app/r/media-type-display"
+    "https://pivotkit.vercel.app/r/media-type-display.json"
   ],
   "files": [
     {

@@ -3,7 +3,7 @@
   "name": "server-variable-demo",
   "type": "registry:example",
   "registryDependencies": [
-    "https://pivotkit.vercel.app/r/server-variable"
+    "https://pivotkit.vercel.app/r/server-variable.json"
   ],
   "files": [
     {

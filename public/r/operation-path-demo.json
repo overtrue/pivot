@@ -3,7 +3,7 @@
   "name": "operation-path-demo",
   "type": "registry:example",
   "registryDependencies": [
-    "https://pivotkit.vercel.app/r/operation-path"
+    "https://pivotkit.vercel.app/r/operation-path.json"
   ],
   "files": [
     {

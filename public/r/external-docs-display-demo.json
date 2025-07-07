@@ -3,7 +3,7 @@
   "name": "external-docs-display-demo",
   "type": "registry:example",
   "registryDependencies": [
-    "https://pivotkit.vercel.app/r/external-docs-display"
+    "https://pivotkit.vercel.app/r/external-docs-display.json"
   ],
   "files": [
     {

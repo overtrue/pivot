@@ -11,8 +11,8 @@
     "button",
     "collapsible",
     "input",
-    "https://pivotkit.vercel.app/r/lib",
-    "https://pivotkit.vercel.app/r/method-label"
+    "https://pivotkit.vercel.app/r/lib.json",
+    "https://pivotkit.vercel.app/r/method-label.json"
   ],
   "files": [
     {

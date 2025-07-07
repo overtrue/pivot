@@ -8,9 +8,9 @@
   "registryDependencies": [
     "button",
     "card",
-    "https://pivotkit.vercel.app/r/lib",
-    "https://pivotkit.vercel.app/r/required-marker",
-    "https://pivotkit.vercel.app/r/try-it-out-panel"
+    "https://pivotkit.vercel.app/r/lib.json",
+    "https://pivotkit.vercel.app/r/required-marker.json",
+    "https://pivotkit.vercel.app/r/try-it-out-panel.json"
   ],
   "files": [
     {

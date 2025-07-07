@@ -3,7 +3,7 @@
   "name": "oauth-flow-details-demo",
   "type": "registry:example",
   "registryDependencies": [
-    "https://pivotkit.vercel.app/r/oauth-flow-details"
+    "https://pivotkit.vercel.app/r/oauth-flow-details.json"
   ],
   "files": [
     {

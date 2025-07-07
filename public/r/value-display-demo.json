@@ -3,7 +3,7 @@
   "name": "value-display-demo",
   "type": "registry:example",
   "registryDependencies": [
-    "https://pivotkit.vercel.app/r/value-display"
+    "https://pivotkit.vercel.app/r/value-display.json"
   ],
   "files": [
     {

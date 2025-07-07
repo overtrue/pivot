@@ -3,7 +3,7 @@
   "name": "header-item-demo",
   "type": "registry:example",
   "registryDependencies": [
-    "https://pivotkit.vercel.app/r/header-item"
+    "https://pivotkit.vercel.app/r/header-item.json"
   ],
   "files": [
     {

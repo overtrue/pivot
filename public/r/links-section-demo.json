@@ -3,7 +3,7 @@
   "name": "links-section-demo",
   "type": "registry:example",
   "registryDependencies": [
-    "https://pivotkit.vercel.app/r/links-section"
+    "https://pivotkit.vercel.app/r/links-section.json"
   ],
   "files": [
     {

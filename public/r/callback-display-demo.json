@@ -6,7 +6,7 @@
     "openapi-types"
   ],
   "registryDependencies": [
-    "https://pivotkit.vercel.app/r/callback-display"
+    "https://pivotkit.vercel.app/r/callback-display.json"
   ],
   "files": [
     {

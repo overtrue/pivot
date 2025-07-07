@@ -3,7 +3,7 @@
   "name": "enum-values-display-demo",
   "type": "registry:example",
   "registryDependencies": [
-    "https://pivotkit.vercel.app/r/enum-values-display"
+    "https://pivotkit.vercel.app/r/enum-values-display.json"
   ],
   "files": [
     {

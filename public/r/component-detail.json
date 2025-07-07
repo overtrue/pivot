@@ -7,17 +7,17 @@
     "react"
   ],
   "registryDependencies": [
-    "https://pivotkit.vercel.app/r/lib",
-    "https://pivotkit.vercel.app/r/callback-display",
-    "https://pivotkit.vercel.app/r/examples-display",
-    "https://pivotkit.vercel.app/r/header-item",
-    "https://pivotkit.vercel.app/r/link-item",
-    "https://pivotkit.vercel.app/r/parameter-item",
-    "https://pivotkit.vercel.app/r/request-body-section",
-    "https://pivotkit.vercel.app/r/response-item",
-    "https://pivotkit.vercel.app/r/schema-display",
-    "https://pivotkit.vercel.app/r/security-scheme-display",
-    "https://pivotkit.vercel.app/r/webhook-display"
+    "https://pivotkit.vercel.app/r/lib.json",
+    "https://pivotkit.vercel.app/r/callback-display.json",
+    "https://pivotkit.vercel.app/r/examples-display.json",
+    "https://pivotkit.vercel.app/r/header-item.json",
+    "https://pivotkit.vercel.app/r/link-item.json",
+    "https://pivotkit.vercel.app/r/parameter-item.json",
+    "https://pivotkit.vercel.app/r/request-body-section.json",
+    "https://pivotkit.vercel.app/r/response-item.json",
+    "https://pivotkit.vercel.app/r/schema-display.json",
+    "https://pivotkit.vercel.app/r/security-scheme-display.json",
+    "https://pivotkit.vercel.app/r/webhook-display.json"
   ],
   "files": [
     {

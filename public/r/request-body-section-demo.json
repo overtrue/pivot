@@ -3,7 +3,7 @@
   "name": "request-body-section-demo",
   "type": "registry:example",
   "registryDependencies": [
-    "https://pivotkit.vercel.app/r/request-body-section"
+    "https://pivotkit.vercel.app/r/request-body-section.json"
   ],
   "files": [
     {

@@ -7,9 +7,9 @@
     "react"
   ],
   "registryDependencies": [
-    "https://pivotkit.vercel.app/r/description-display",
-    "https://pivotkit.vercel.app/r/webhook-label",
-    "https://pivotkit.vercel.app/r/operation-box"
+    "https://pivotkit.vercel.app/r/description-display.json",
+    "https://pivotkit.vercel.app/r/webhook-label.json",
+    "https://pivotkit.vercel.app/r/operation-box.json"
   ],
   "files": [
     {

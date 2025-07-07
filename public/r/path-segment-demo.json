@@ -3,7 +3,7 @@
   "name": "path-segment-demo",
   "type": "registry:example",
   "registryDependencies": [
-    "https://pivotkit.vercel.app/r/path-segment"
+    "https://pivotkit.vercel.app/r/path-segment.json"
   ],
   "files": [
     {

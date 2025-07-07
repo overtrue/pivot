@@ -3,7 +3,7 @@
   "name": "theme-toggle-demo",
   "type": "registry:example",
   "registryDependencies": [
-    "https://pivotkit.vercel.app/r/theme-toggle"
+    "https://pivotkit.vercel.app/r/theme-toggle.json"
   ],
   "files": [
     {

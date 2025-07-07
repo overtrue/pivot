@@ -7,7 +7,7 @@
     "react"
   ],
   "registryDependencies": [
-    "https://pivotkit.vercel.app/r/operation-list-layout"
+    "https://pivotkit.vercel.app/r/operation-list-layout.json"
   ],
   "files": [
     {

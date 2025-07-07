@@ -3,7 +3,7 @@
   "name": "required-badge-demo",
   "type": "registry:example",
   "registryDependencies": [
-    "https://pivotkit.vercel.app/r/required-badge"
+    "https://pivotkit.vercel.app/r/required-badge.json"
   ],
   "files": [
     {

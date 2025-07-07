@@ -6,7 +6,7 @@
     "react"
   ],
   "registryDependencies": [
-    "https://pivotkit.vercel.app/r/enum-values"
+    "https://pivotkit.vercel.app/r/enum-values.json"
   ],
   "files": [
     {

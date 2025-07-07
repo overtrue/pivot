@@ -3,7 +3,7 @@
   "name": "default-value-display-demo",
   "type": "registry:example",
   "registryDependencies": [
-    "https://pivotkit.vercel.app/r/default-value-display"
+    "https://pivotkit.vercel.app/r/default-value-display.json"
   ],
   "files": [
     {

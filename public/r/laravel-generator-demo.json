@@ -3,7 +3,7 @@
   "name": "laravel-generator-demo",
   "type": "registry:example",
   "registryDependencies": [
-    "https://pivotkit.vercel.app/r/laravel-generator"
+    "https://pivotkit.vercel.app/r/laravel-generator.json"
   ],
   "files": [
     {

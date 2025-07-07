@@ -3,7 +3,7 @@
   "name": "contact-display-demo",
   "type": "registry:example",
   "registryDependencies": [
-    "https://pivotkit.vercel.app/r/contact-display"
+    "https://pivotkit.vercel.app/r/contact-display.json"
   ],
   "files": [
     {

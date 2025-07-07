@@ -3,7 +3,7 @@
   "name": "status-code-demo",
   "type": "registry:example",
   "registryDependencies": [
-    "https://pivotkit.vercel.app/r/status-code"
+    "https://pivotkit.vercel.app/r/status-code.json"
   ],
   "files": [
     {

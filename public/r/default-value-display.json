@@ -6,7 +6,7 @@
     "react"
   ],
   "registryDependencies": [
-    "https://pivotkit.vercel.app/r/value-display"
+    "https://pivotkit.vercel.app/r/value-display.json"
   ],
   "files": [
     {

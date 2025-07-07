@@ -3,7 +3,7 @@
   "name": "server-display-demo",
   "type": "registry:example",
   "registryDependencies": [
-    "https://pivotkit.vercel.app/r/server-display"
+    "https://pivotkit.vercel.app/r/server-display.json"
   ],
   "files": [
     {

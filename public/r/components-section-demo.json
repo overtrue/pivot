@@ -3,7 +3,7 @@
   "name": "components-section-demo",
   "type": "registry:example",
   "registryDependencies": [
-    "https://pivotkit.vercel.app/r/components-section"
+    "https://pivotkit.vercel.app/r/components-section.json"
   ],
   "files": [
     {

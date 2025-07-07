@@ -3,7 +3,7 @@
   "name": "resizable-sidebar-demo",
   "type": "registry:example",
   "registryDependencies": [
-    "https://pivotkit.vercel.app/r/resizable-sidebar"
+    "https://pivotkit.vercel.app/r/resizable-sidebar.json"
   ],
   "files": [
     {

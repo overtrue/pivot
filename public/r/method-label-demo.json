@@ -3,7 +3,7 @@
   "name": "method-label-demo",
   "type": "registry:example",
   "registryDependencies": [
-    "https://pivotkit.vercel.app/r/method-label"
+    "https://pivotkit.vercel.app/r/method-label.json"
   ],
   "files": [
     {

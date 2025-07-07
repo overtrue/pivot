@@ -3,7 +3,7 @@
   "name": "accordion-components-section-demo",
   "type": "registry:example",
   "registryDependencies": [
-    "https://pivotkit.vercel.app/r/accordion-components-section"
+    "https://pivotkit.vercel.app/r/accordion-components-section.json"
   ],
   "files": [
     {

@@ -3,7 +3,7 @@
   "name": "constraint-display-demo",
   "type": "registry:example",
   "registryDependencies": [
-    "https://pivotkit.vercel.app/r/constraint-display"
+    "https://pivotkit.vercel.app/r/constraint-display.json"
   ],
   "files": [
     {
