@@ -1,4 +1,4 @@
-import { resolveRef } from "@/registry/default/lib/utils/resolve-ref";
+import { resolveRef } from "@/registry/default/lib/resolve-ref";
 import { useMemo } from "react";
 
 /**

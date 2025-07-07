@@ -2,7 +2,7 @@
 
 import { cn } from "@/lib/utils";
 import { useI18n } from "@/registry/default/lib/i18n";
-import { resolveRef } from "@/registry/default/lib/utils/resolve-ref";
+import { resolveRef } from "@/registry/default/lib/resolve-ref";
 import { HeaderItem } from "@/registry/default/ui/header-item";
 import { type StyleType } from "@/registry/default/ui/style-badge";
 import type { OpenAPIV3 } from "openapi-types";

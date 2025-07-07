@@ -4,8 +4,8 @@ import { cn } from "@/lib/utils";
 import { useI18n } from "@/registry/default/lib/i18n";
 import type { OpenAPIV3 } from "openapi-types";
 
-import { generateExample } from "@/registry/default/lib/utils/generate-example";
-import { resolveRef } from "@/registry/default/lib/utils/resolve-ref";
+import { generateExample } from "@/registry/default/lib/generate-example";
+import { resolveRef } from "@/registry/default/lib/resolve-ref";
 import { DescriptionDisplay } from "@/registry/default/ui/description-display";
 import { ExampleDisplay } from "@/registry/default/ui/example-display";
 import { MediaTypeSelector } from "@/registry/default/ui/media-type-selector";

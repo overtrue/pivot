@@ -1,4 +1,4 @@
-import { generateExample } from "@/registry/default/lib/utils/generate-example";
+import { generateExample } from "@/registry/default/lib/generate-example";
 import type { OpenAPIV3 } from "openapi-types";
 
 export default function FakerExampleDemo() {

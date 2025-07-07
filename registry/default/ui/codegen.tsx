@@ -8,8 +8,8 @@ import type {
 } from "@/types/project";
 import type { OpenAPIV3 } from "openapi-types";
 
-import { generateExample } from "@/registry/default/lib/utils/generate-example";
-import { resolveRef } from "@/registry/default/lib/utils/resolve-ref";
+import { generateExample } from "@/registry/default/lib/generate-example";
+import { resolveRef } from "@/registry/default/lib/resolve-ref";
 import { CodeMarkdown } from "@/registry/default/ui/code-markdown";
 import { Braces, ChevronDown, Code2, Terminal } from "lucide-react";
 import React, { useState } from "react";

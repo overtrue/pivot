@@ -2,7 +2,7 @@
 
 import { cn } from "@/lib/utils";
 import { useI18n } from "@/registry/default/lib/i18n";
-import { resolveRef } from "@/registry/default/lib/utils/resolve-ref";
+import { resolveRef } from "@/registry/default/lib/resolve-ref";
 import { DescriptionDisplay } from "@/registry/default/ui/description-display";
 import type { OpenAPIV3 } from "openapi-types";
 import React from "react";

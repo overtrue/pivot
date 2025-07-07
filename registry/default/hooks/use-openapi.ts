@@ -1,4 +1,4 @@
-import { resolveRef } from "@/registry/default/lib/utils/resolve-ref";
+import { resolveRef } from "@/registry/default/lib/resolve-ref";
 import type { OpenAPIV3 } from "openapi-types";
 import { useMemo } from "react";
 

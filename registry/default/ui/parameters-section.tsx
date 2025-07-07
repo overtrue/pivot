@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 import { useI18n } from "@/registry/default/lib/i18n";
 import type { OpenAPIV3 } from "openapi-types";
 
-import { resolveRef } from "@/registry/default/lib/utils/resolve-ref";
+import { resolveRef } from "@/registry/default/lib/resolve-ref";
 import { ParameterItem } from "@/registry/default/ui/parameter-item";
 import { SectionTitle } from "@/registry/default/ui/section-title";
 import { type StyleType } from "@/registry/default/ui/style-badge";

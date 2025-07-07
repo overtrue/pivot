@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 import { useI18n } from "@/registry/default/lib/i18n";
 import type { OpenAPIV3 } from "openapi-types";
 
-import { resolveRef } from "@/registry/default/lib/utils/resolve-ref";
+import { resolveRef } from "@/registry/default/lib/resolve-ref";
 import { LinkItem } from "@/registry/default/ui/link-item";
 import React from "react";
 

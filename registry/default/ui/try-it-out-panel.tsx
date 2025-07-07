@@ -2,7 +2,7 @@
 
 import { cn } from "@/lib/utils";
 import { useI18n } from "@/registry/default/lib/i18n";
-import { resolveRef } from "@/registry/default/lib/utils/resolve-ref";
+import { resolveRef } from "@/registry/default/lib/resolve-ref";
 import { MethodLabel } from "@/registry/default/ui/method-label";
 import type { ResponseData } from "@/types/project";
 import { ChevronDown, ChevronUp, Send } from "lucide-react";
@@ -101,14 +101,14 @@ const TryItOutPanel = React.forwardRef<HTMLDivElement, TryItOutPanelProps>(
         operation.security ||
         (components?.securitySchemes
           ? [
-              Object.keys(components.securitySchemes).reduce(
-                (obj: OpenAPIV3.SecurityRequirementObject, key) => {
-                  obj[key] = [];
-                  return obj;
-                },
-                {},
-              ),
-            ]
+            Object.keys(components.securitySchemes).reduce(
+              (obj: OpenAPIV3.SecurityRequirementObject, key) => {
+                obj[key] = [];
+                return obj;
+              },
+              {},
+            ),
+          ]
           : []);
 
       if (!securityRequirements.length || !components?.securitySchemes)
@@ -773,11 +773,10 @@ const TryItOutPanel = React.forwardRef<HTMLDivElement, TryItOutPanelProps>(
               <button
                 onClick={sendRequest}
                 disabled={isLoading}
-                className={`px-3 py-1.5 rounded-md text-white text-sm font-medium inline-flex items-center ${
-                  isLoading
+                className={`px-3 py-1.5 rounded-md text-white text-sm font-medium inline-flex items-center ${isLoading
                     ? "bg-blue-400 dark:bg-blue-500/50 cursor-not-allowed"
                     : "bg-blue-600 hover:bg-blue-700 dark:bg-blue-600 dark:hover:bg-blue-500"
-                } transition-colors`}
+                  } transition-colors`}
               >
                 <Send size={14} className="mr-1.5" />
                 {isLoading ? t("Sending...") : t("Send Request")}

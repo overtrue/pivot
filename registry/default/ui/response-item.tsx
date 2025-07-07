@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 import { useI18n } from "@/registry/default/lib/i18n";
 import type { OpenAPIV3 } from "openapi-types";
 
-import { resolveRef } from "@/registry/default/lib/utils/resolve-ref";
+import { resolveRef } from "@/registry/default/lib/resolve-ref";
 import { DescriptionDisplay } from "@/registry/default/ui/description-display";
 import { HeadersSection } from "@/registry/default/ui/headers-section";
 import { LinksSection } from "@/registry/default/ui/links-section";

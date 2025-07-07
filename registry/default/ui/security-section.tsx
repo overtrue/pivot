@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils";
 import type { OpenAPIV3 } from "openapi-types";
 import React from "react";
-import { resolveRef } from "@/registry/default/lib/utils/resolve-ref";
+import { resolveRef } from "@/registry/default/lib/resolve-ref";
 import { SectionTitle } from "@/registry/default/ui/section-title";
 import { SecuritySchemeDisplay } from "@/registry/default/ui/security-scheme-display";
 

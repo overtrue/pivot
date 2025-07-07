@@ -2,7 +2,7 @@ import { cn } from "@/lib/utils";
 import type { ComponentType } from "@/types/project";
 import type { OpenAPIV3 } from "openapi-types";
 
-import { resolveRef } from "@/registry/default/lib/utils/resolve-ref";
+import { resolveRef } from "@/registry/default/lib/resolve-ref";
 import { CallbackDisplay } from "@/registry/default/ui/callback-display";
 import { ExamplesDisplay } from "@/registry/default/ui/examples-display";
 import { HeaderItem } from "@/registry/default/ui/header-item";

@@ -1,5 +1,5 @@
 import { cn } from "@/lib/utils";
-import { resolveRef } from "@/registry/default/lib/utils/resolve-ref";
+import { resolveRef } from "@/registry/default/lib/resolve-ref";
 import { OperationBox } from "@/registry/default/ui/operation-box";
 import type { OpenAPIV3 } from "openapi-types";
 import React from "react";
