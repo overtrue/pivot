@@ -41,29 +41,26 @@ interface CurlGeneratorProps {
   className?: string;
 }
 
-const CurlGeneratorComponent = React.forwardRef<HTMLDivElement, CurlGeneratorProps>(
-  ({ params, className }, ref) => {
-    const generator = new CurlGeneratorClass();
-    const code = generator.generateCode(params);
+const CurlGeneratorComponent = React.forwardRef<
+  HTMLDivElement,
+  CurlGeneratorProps
+>(({ params, className }, ref) => {
+  const generator = new CurlGeneratorClass();
+  const code = generator.generateCode(params);
 
-    return (
-      <div ref={ref} className={className}>
-        <div className="flex items-center gap-2 mb-2">
-          {generator.getIcon()}
-          <span className="font-medium">{generator.label}</span>
-        </div>
-        <pre className="bg-neutral-100 dark:bg-neutral-800 p-4 rounded-md overflow-x-auto">
-          <code className="text-sm">{code}</code>
-        </pre>
+  return (
+    <div ref={ref} className={className}>
+      <div className="flex items-center gap-2 mb-2">
+        {generator.getIcon()}
+        <span className="font-medium">{generator.label}</span>
       </div>
-    );
-  },
-);
+      <pre className="bg-neutral-100 dark:bg-neutral-800 p-4 rounded-md overflow-x-auto">
+        <code className="text-sm">{code}</code>
+      </pre>
+    </div>
+  );
+});
 
 CurlGeneratorComponent.displayName = "CurlGenerator";
 
-export {
-  CurlGeneratorComponent as CurlGenerator,
-  type CurlGeneratorProps
-};
-
+export { CurlGeneratorComponent as CurlGenerator, type CurlGeneratorProps };

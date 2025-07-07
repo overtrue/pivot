@@ -1,5 +1,5 @@
 import { resolveRef } from "@/registry/default/lib/utils/resolve-ref";
-import { useMemo } from 'react';
+import { useMemo } from "react";
 
 /**
  * Hook for working with OpenAPI schemas
@@ -7,25 +7,25 @@ import { useMemo } from 'react';
  * @param components - The components object containing schemas
  * @returns Resolved schema and utility functions
  */
-export function useSchema(
-  schema: any,
-  components: any
-) {
+export function useSchema(schema: any, components: any) {
   return useMemo(() => {
-    const resolvedSchema = schema.$ref ? resolveRef(schema, components) : schema;
+    const resolvedSchema = schema.$ref
+      ? resolveRef(schema, components)
+      : schema;
 
     const getType = () => {
-      if (!resolvedSchema || typeof resolvedSchema !== 'object') return 'unknown';
-      return resolvedSchema.type || 'object';
+      if (!resolvedSchema || typeof resolvedSchema !== "object")
+        return "unknown";
+      return resolvedSchema.type || "object";
     };
 
     const isRequired = (propertyName: string) => {
-      if (!resolvedSchema || typeof resolvedSchema !== 'object') return false;
+      if (!resolvedSchema || typeof resolvedSchema !== "object") return false;
       return resolvedSchema.required?.includes(propertyName) || false;
     };
 
     const getProperties = () => {
-      if (!resolvedSchema || typeof resolvedSchema !== 'object') return {};
+      if (!resolvedSchema || typeof resolvedSchema !== "object") return {};
       return resolvedSchema.properties || {};
     };
 

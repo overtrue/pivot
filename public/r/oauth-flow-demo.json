@@ -2,9 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "oauth-flow-demo",
   "type": "registry:example",
-  "registryDependencies": [
-    "https://pivotkit.vercel.app/r/oauth-flow.json"
-  ],
+  "registryDependencies": ["https://pivotkit.vercel.app/r/oauth-flow.json"],
   "files": [
     {
       "path": "registry/default/example/oauth-flow-demo.tsx",

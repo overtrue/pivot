@@ -12,7 +12,7 @@ import { ParametersSection } from "@/registry/default/ui/parameters-section";
 import { RequestBodySection } from "@/registry/default/ui/request-body-section";
 import { ResponsesSection } from "@/registry/default/ui/responses-section";
 import { SecurityRequirementsSection } from "@/registry/default/ui/security-requirements-section";
-import type { OpenAPIV3 } from 'openapi-types';
+import type { OpenAPIV3 } from "openapi-types";
 import React, { useState } from "react";
 
 // Import types from the centralized types file
@@ -58,8 +58,7 @@ const OperationBox = React.forwardRef<HTMLDivElement, OperationBoxProps>(
         ref={ref}
         className={cn(
           "rounded-lg overflow-hidden border bg-background",
-          operation.deprecated
-            ? "bg-red-300 dark:bg-red-900/50" : '',
+          operation.deprecated ? "bg-red-300 dark:bg-red-900/50" : "",
           className,
         )}
       >
@@ -156,8 +155,4 @@ const OperationBox = React.forwardRef<HTMLDivElement, OperationBoxProps>(
 
 OperationBox.displayName = "OperationBox";
 
-export {
-  OperationBox,
-  type OperationBoxProps
-};
-
+export { OperationBox, type OperationBoxProps };

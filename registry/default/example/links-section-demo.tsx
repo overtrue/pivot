@@ -3,257 +3,257 @@ import { LinksSection } from "@/registry/default/ui/links-section";
 export default function LinksSectionDemo() {
   // 用户管理 API 链接示例
   const userManagementLinks = {
-    "GetUserProfile": {
+    GetUserProfile: {
       operationId: "getUserProfile",
       description: "获取用户详细资料",
       parameters: {
-        userId: "$response.body#/id"
-      }
+        userId: "$response.body#/id",
+      },
     },
-    "UpdateUser": {
+    UpdateUser: {
       operationId: "updateUser",
       description: "更新用户信息",
       parameters: {
-        userId: "$response.body#/id"
+        userId: "$response.body#/id",
       },
       requestBody: {
         name: "$response.body#/name",
-        email: "$response.body#/email"
-      }
+        email: "$response.body#/email",
+      },
     },
-    "DeleteUser": {
+    DeleteUser: {
       operationId: "deleteUser",
       description: "删除用户账户",
       parameters: {
-        userId: "$response.body#/id"
-      }
+        userId: "$response.body#/id",
+      },
     },
-    "GetUserOrders": {
+    GetUserOrders: {
       operationId: "getUserOrders",
       description: "获取用户的所有订单",
       parameters: {
         userId: "$response.body#/id",
         page: 1,
-        limit: 20
-      }
-    }
+        limit: 20,
+      },
+    },
   };
 
   // 电商订单 API 链接示例
   const orderManagementLinks = {
-    "GetOrderDetails": {
+    GetOrderDetails: {
       operationId: "getOrderById",
       description: "获取订单详细信息",
       parameters: {
-        orderId: "$response.body#/id"
-      }
+        orderId: "$response.body#/id",
+      },
     },
-    "UpdateOrderStatus": {
+    UpdateOrderStatus: {
       operationId: "updateOrderStatus",
       description: "更新订单状态",
       parameters: {
-        orderId: "$response.body#/id"
+        orderId: "$response.body#/id",
       },
       requestBody: {
         status: "processing",
-        notes: "订单正在处理中"
-      }
+        notes: "订单正在处理中",
+      },
     },
-    "CancelOrder": {
+    CancelOrder: {
       operationId: "cancelOrder",
       description: "取消订单",
       parameters: {
-        orderId: "$response.body#/id"
+        orderId: "$response.body#/id",
       },
       requestBody: {
-        reason: "customer_request"
-      }
+        reason: "customer_request",
+      },
     },
-    "GetOrderItems": {
+    GetOrderItems: {
       operationId: "getOrderItems",
       description: "获取订单商品列表",
       parameters: {
-        orderId: "$response.body#/id"
-      }
+        orderId: "$response.body#/id",
+      },
     },
-    "CreateRefund": {
+    CreateRefund: {
       operationId: "createRefund",
       description: "创建退款申请",
       parameters: {
-        orderId: "$response.body#/id"
+        orderId: "$response.body#/id",
       },
       requestBody: {
         amount: "$response.body#/total_amount",
-        reason: "product_defect"
-      }
+        reason: "product_defect",
+      },
     },
-    "GetInvoice": {
+    GetInvoice: {
       operationId: "getOrderInvoice",
       description: "获取订单发票",
       parameters: {
-        orderId: "$response.body#/id"
-      }
-    }
+        orderId: "$response.body#/id",
+      },
+    },
   };
 
   // 产品管理 API 链接示例
   const productManagementLinks = {
-    "GetProductDetails": {
+    GetProductDetails: {
       operationId: "getProductById",
       description: "获取产品详细信息",
       parameters: {
-        productId: "$response.body#/id"
-      }
+        productId: "$response.body#/id",
+      },
     },
-    "UpdateProduct": {
+    UpdateProduct: {
       operationId: "updateProduct",
       description: "更新产品信息",
       parameters: {
-        productId: "$response.body#/id"
+        productId: "$response.body#/id",
       },
       requestBody: {
         name: "$response.body#/name",
         price: "$response.body#/price",
-        description: "$response.body#/description"
-      }
+        description: "$response.body#/description",
+      },
     },
-    "GetProductReviews": {
+    GetProductReviews: {
       operationId: "getProductReviews",
       description: "获取产品评价列表",
       parameters: {
         productId: "$response.body#/id",
         page: 1,
         limit: 10,
-        sort: "newest"
-      }
+        sort: "newest",
+      },
     },
-    "GetRelatedProducts": {
+    GetRelatedProducts: {
       operationId: "getRelatedProducts",
       description: "获取相关产品推荐",
       parameters: {
         productId: "$response.body#/id",
         category: "$response.body#/category",
-        limit: 5
-      }
+        limit: 5,
+      },
     },
-    "UpdateInventory": {
+    UpdateInventory: {
       operationId: "updateProductInventory",
       description: "更新产品库存",
       parameters: {
-        productId: "$response.body#/id"
+        productId: "$response.body#/id",
       },
       requestBody: {
         quantity: 100,
-        operation: "set"
-      }
+        operation: "set",
+      },
     },
-    "AddToWishlist": {
+    AddToWishlist: {
       operationId: "addProductToWishlist",
       description: "添加到心愿单",
       parameters: {
         productId: "$response.body#/id",
-        userId: "$request.header.X-User-ID"
-      }
-    }
+        userId: "$request.header.X-User-ID",
+      },
+    },
   };
 
   // 支付处理 API 链接示例
   const paymentProcessingLinks = {
-    "GetPaymentDetails": {
+    GetPaymentDetails: {
       operationId: "getPaymentById",
       description: "获取支付详情",
       parameters: {
-        paymentId: "$response.body#/payment_id"
-      }
+        paymentId: "$response.body#/payment_id",
+      },
     },
-    "RefundPayment": {
+    RefundPayment: {
       operationId: "createRefund",
       description: "创建退款",
       parameters: {
-        paymentId: "$response.body#/payment_id"
+        paymentId: "$response.body#/payment_id",
       },
       requestBody: {
         amount: "$response.body#/amount",
-        reason: "customer_request"
-      }
+        reason: "customer_request",
+      },
     },
-    "GetPaymentReceipt": {
+    GetPaymentReceipt: {
       operationId: "getPaymentReceipt",
       description: "获取支付凭证",
       parameters: {
         paymentId: "$response.body#/payment_id",
-        format: "pdf"
-      }
+        format: "pdf",
+      },
     },
-    "GetTransactionHistory": {
+    GetTransactionHistory: {
       operationId: "getTransactionHistory",
       description: "获取交易历史",
       parameters: {
         customerId: "$response.body#/customer_id",
         startDate: "$response.body#/created_at",
-        limit: 50
-      }
-    }
+        limit: 50,
+      },
+    },
   };
 
   // 内容管理 API 链接示例
   const contentManagementLinks = {
-    "GetArticleDetails": {
+    GetArticleDetails: {
       operationId: "getArticleById",
       description: "获取文章详细内容",
       parameters: {
-        articleId: "$response.body#/id"
-      }
+        articleId: "$response.body#/id",
+      },
     },
-    "UpdateArticle": {
+    UpdateArticle: {
       operationId: "updateArticle",
       description: "更新文章内容",
       parameters: {
-        articleId: "$response.body#/id"
+        articleId: "$response.body#/id",
       },
       requestBody: {
         title: "$response.body#/title",
         content: "$response.body#/content",
-        status: "published"
-      }
+        status: "published",
+      },
     },
-    "GetArticleComments": {
+    GetArticleComments: {
       operationId: "getArticleComments",
       description: "获取文章评论",
       parameters: {
         articleId: "$response.body#/id",
         page: 1,
         limit: 20,
-        sort: "newest"
-      }
+        sort: "newest",
+      },
     },
-    "GetAuthorProfile": {
+    GetAuthorProfile: {
       operationId: "getAuthorProfile",
       description: "获取作者信息",
       parameters: {
-        authorId: "$response.body#/author_id"
-      }
+        authorId: "$response.body#/author_id",
+      },
     },
-    "GetRelatedArticles": {
+    GetRelatedArticles: {
       operationId: "getRelatedArticles",
       description: "获取相关文章",
       parameters: {
         articleId: "$response.body#/id",
         category: "$response.body#/category",
-        limit: 5
-      }
+        limit: 5,
+      },
     },
-    "PublishArticle": {
+    PublishArticle: {
       operationId: "publishArticle",
       description: "发布文章",
       parameters: {
-        articleId: "$response.body#/id"
+        articleId: "$response.body#/id",
       },
       requestBody: {
         publish_time: "now",
-        notify_subscribers: true
-      }
-    }
+        notify_subscribers: true,
+      },
+    },
   };
 
   return (

@@ -3,77 +3,77 @@ import { SecurityRequirementItem } from "@/registry/default/ui/security-requirem
 export default function SecurityRequirementItemDemo() {
   // API 密钥认证要求
   const apiKeyRequirement = {
-    "ApiKeyAuth": []
+    ApiKeyAuth: [],
   };
 
   // Bearer Token 认证要求
   const bearerTokenRequirement = {
-    "BearerAuth": []
+    BearerAuth: [],
   };
 
   // OAuth 2.0 读权限要求
   const oauthReadRequirement = {
-    "OAuth2": ["read"]
+    OAuth2: ["read"],
   };
 
   // OAuth 2.0 写权限要求
   const oauthWriteRequirement = {
-    "OAuth2": ["write"]
+    OAuth2: ["write"],
   };
 
   // OAuth 2.0 多权限要求
   const oauthMultiScopeRequirement = {
-    "OAuth2": ["read", "write", "admin"]
+    OAuth2: ["read", "write", "admin"],
   };
 
   // 用户管理权限要求
   const userManagementRequirement = {
-    "OAuth2": ["user:read", "user:write", "user:delete"]
+    OAuth2: ["user:read", "user:write", "user:delete"],
   };
 
   // 支付处理权限要求
   const paymentRequirement = {
-    "OAuth2": ["payment:read", "payment:write", "refund:create"]
+    OAuth2: ["payment:read", "payment:write", "refund:create"],
   };
 
   // 管理员权限要求
   const adminRequirement = {
-    "OAuth2": ["admin:read", "admin:write", "system:manage"]
+    OAuth2: ["admin:read", "admin:write", "system:manage"],
   };
 
   // 文件上传权限要求
   const fileUploadRequirement = {
-    "OAuth2": ["file:upload", "file:read"]
+    OAuth2: ["file:upload", "file:read"],
   };
 
   // 数据分析权限要求
   const analyticsRequirement = {
-    "OAuth2": ["analytics:read", "reports:generate"]
+    OAuth2: ["analytics:read", "reports:generate"],
   };
 
   // 第三方集成权限要求
   const integrationRequirement = {
-    "OAuth2": ["integration:read", "integration:write", "webhook:manage"]
+    OAuth2: ["integration:read", "integration:write", "webhook:manage"],
   };
 
   // HTTP 基本认证要求
   const basicAuthRequirement = {
-    "BasicAuth": []
+    BasicAuth: [],
   };
 
   // Cookie 会话认证要求
   const cookieAuthRequirement = {
-    "CookieAuth": []
+    CookieAuth: [],
   };
 
   // 多重认证要求
   const multiAuthRequirement = {
-    "MultiAuth": ["mfa:required"]
+    MultiAuth: ["mfa:required"],
   };
 
   // 企业级认证要求
   const enterpriseAuthRequirement = {
-    "EnterpriseAuth": ["enterprise:access", "sso:enabled"]
+    EnterpriseAuth: ["enterprise:access", "sso:enabled"],
   };
 
   return (

@@ -2,12 +2,8 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "enum-values",
   "type": "registry:ui",
-  "dependencies": [
-    "react"
-  ],
-  "registryDependencies": [
-    "https://pivotkit.vercel.app/r/value-display.json"
-  ],
+  "dependencies": ["react"],
+  "registryDependencies": ["https://pivotkit.vercel.app/r/value-display.json"],
   "files": [
     {
       "path": "registry/default/ui/enum-values.tsx",

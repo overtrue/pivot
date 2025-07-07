@@ -20,7 +20,7 @@ const VersionBadge = React.forwardRef<HTMLSpanElement, VersionBadgeProps>(
         v{version}
       </span>
     );
-  }
+  },
 );
 
 VersionBadge.displayName = "VersionBadge";

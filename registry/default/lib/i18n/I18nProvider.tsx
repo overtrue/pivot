@@ -49,7 +49,9 @@ export const useI18n = (): I18nContextProps => {
     return {
       locale: "en",
       setLocale: () => {
-        console.warn("useI18n: setLocale called outside of I18nProvider. Language switching is not available.");
+        console.warn(
+          "useI18n: setLocale called outside of I18nProvider. Language switching is not available.",
+        );
       },
       t: defaultT,
     };

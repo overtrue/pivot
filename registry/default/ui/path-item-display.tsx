@@ -1,5 +1,5 @@
 import { cn } from "@/lib/utils";
-import type { OpenAPIV3 } from 'openapi-types';
+import type { OpenAPIV3 } from "openapi-types";
 import React from "react";
 import { DescriptionDisplay } from "@/registry/default/ui/description-display";
 import { OperationBox } from "@/registry/default/ui/operation-box";
@@ -72,8 +72,4 @@ const PathItemDisplay = React.forwardRef<HTMLDivElement, PathItemDisplayProps>(
 
 PathItemDisplay.displayName = "PathItemDisplay";
 
-export {
-  PathItemDisplay,
-  type PathItemDisplayProps
-};
-
+export { PathItemDisplay, type PathItemDisplayProps };

@@ -2,9 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "response-item-demo",
   "type": "registry:example",
-  "registryDependencies": [
-    "https://pivotkit.vercel.app/r/response-item.json"
-  ],
+  "registryDependencies": ["https://pivotkit.vercel.app/r/response-item.json"],
   "files": [
     {
       "path": "registry/default/example/response-item-demo.tsx",

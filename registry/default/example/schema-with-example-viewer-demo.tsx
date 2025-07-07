@@ -10,29 +10,29 @@ export default function SchemaWithExampleViewerDemo() {
         id: {
           type: "string" as const,
           description: "用户唯一标识符",
-          format: "uuid" as const
+          format: "uuid" as const,
         },
         email: {
           type: "string" as const,
           description: "用户邮箱地址",
-          format: "email" as const
+          format: "email" as const,
         },
         name: {
           type: "string" as const,
           description: "用户姓名",
           minLength: 1,
-          maxLength: 100
+          maxLength: 100,
         },
         avatar: {
           type: "string" as const,
           description: "用户头像 URL",
-          format: "uri" as const
+          format: "uri" as const,
         },
         role: {
           type: "string" as const,
           description: "用户角色",
           enum: ["admin", "user", "moderator"],
-          default: "user"
+          default: "user",
         },
         profile: {
           type: "object" as const,
@@ -40,28 +40,28 @@ export default function SchemaWithExampleViewerDemo() {
           properties: {
             bio: {
               type: "string" as const,
-              description: "个人简介"
+              description: "个人简介",
             },
             phone: {
               type: "string" as const,
-              description: "电话号码"
+              description: "电话号码",
             },
             address: {
               type: "object" as const,
               properties: {
                 country: { type: "string" as const, description: "国家" },
                 city: { type: "string" as const, description: "城市" },
-                street: { type: "string" as const, description: "街道地址" }
-              }
-            }
-          }
+                street: { type: "string" as const, description: "街道地址" },
+              },
+            },
+          },
         },
         createdAt: {
           type: "string" as const,
           description: "注册时间",
-          format: "date-time" as const
-        }
-      }
+          format: "date-time" as const,
+        },
+      },
     },
     example: {
       id: "user_123e4567-e89b-12d3-a456-426614174000",
@@ -75,11 +75,11 @@ export default function SchemaWithExampleViewerDemo() {
         address: {
           country: "中国",
           city: "北京",
-          street: "中关村大街1号"
-        }
+          street: "中关村大街1号",
+        },
       },
-      createdAt: "2024-01-15T10:30:00Z"
-    }
+      createdAt: "2024-01-15T10:30:00Z",
+    },
   };
 
   // 产品信息 Schema 和示例
@@ -90,90 +90,90 @@ export default function SchemaWithExampleViewerDemo() {
       properties: {
         id: {
           type: "string" as const,
-          description: "产品唯一标识符"
+          description: "产品唯一标识符",
         },
         name: {
           type: "string" as const,
           description: "产品名称",
           minLength: 1,
-          maxLength: 200
+          maxLength: 200,
         },
         description: {
           type: "string" as const,
-          description: "产品描述"
+          description: "产品描述",
         },
         price: {
           type: "number" as const,
           description: "产品价格",
-          minimum: 0
+          minimum: 0,
         },
         currency: {
           type: "string" as const,
           description: "货币代码",
           pattern: "^[A-Z]{3}$",
-          default: "CNY"
+          default: "CNY",
         },
         category: {
           type: "string" as const,
           description: "产品分类",
-          enum: ["electronics", "clothing", "books", "home", "sports"]
+          enum: ["electronics", "clothing", "books", "home", "sports"],
         },
         images: {
           type: "array" as const,
           description: "产品图片列表",
           items: {
             type: "string" as const,
-            format: "uri" as const
+            format: "uri" as const,
           },
-          maxItems: 10
+          maxItems: 10,
         },
         specifications: {
           type: "object" as const,
           description: "产品规格",
           additionalProperties: {
-            type: "string" as const
-          }
+            type: "string" as const,
+          },
         },
         inStock: {
           type: "boolean" as const,
           description: "是否有库存",
-          default: true
+          default: true,
         },
         stockQuantity: {
           type: "integer" as const,
           description: "库存数量",
-          minimum: 0
+          minimum: 0,
         },
         tags: {
           type: "array" as const,
           description: "产品标签",
           items: {
-            type: "string" as const
-          }
-        }
-      }
+            type: "string" as const,
+          },
+        },
+      },
     },
     example: {
       id: "prod_987fcdeb-51a2-4567-8901-234567890abc",
       name: "iPhone 15 Pro",
       description: "Apple 最新旗舰智能手机，配备 A17 Pro 芯片和钛金属机身",
-      price: 7999.00,
+      price: 7999.0,
       currency: "CNY",
       category: "electronics",
       images: [
         "https://cdn.example.com/products/iphone15pro-front.jpg",
-        "https://cdn.example.com/products/iphone15pro-back.jpg"
+        "https://cdn.example.com/products/iphone15pro-back.jpg",
       ],
       specifications: {
         display: "6.1英寸 Super Retina XDR",
         storage: "256GB",
         color: "天然钛金属色",
-        weight: "187g"
+        weight: "187g",
       },
       inStock: true,
       stockQuantity: 150,
-      tags: ["smartphone", "premium", "5g", "titanium"]
-    }
+      tags: ["smartphone", "premium", "5g", "titanium"],
+    },
   };
 
   // API 响应 Schema 和示例
@@ -184,7 +184,7 @@ export default function SchemaWithExampleViewerDemo() {
       properties: {
         success: {
           type: "boolean" as const,
-          description: "请求是否成功"
+          description: "请求是否成功",
         },
         data: {
           type: "object" as const,
@@ -198,9 +198,13 @@ export default function SchemaWithExampleViewerDemo() {
                 properties: {
                   id: { type: "string" as const, description: "用户 ID" },
                   name: { type: "string" as const, description: "用户姓名" },
-                  email: { type: "string" as const, format: "email" as const, description: "邮箱" }
-                }
-              }
+                  email: {
+                    type: "string" as const,
+                    format: "email" as const,
+                    description: "邮箱",
+                  },
+                },
+              },
             },
             pagination: {
               type: "object" as const,
@@ -209,25 +213,25 @@ export default function SchemaWithExampleViewerDemo() {
                 page: { type: "integer" as const, description: "当前页码" },
                 pageSize: { type: "integer" as const, description: "每页数量" },
                 total: { type: "integer" as const, description: "总记录数" },
-                totalPages: { type: "integer" as const, description: "总页数" }
-              }
-            }
-          }
+                totalPages: { type: "integer" as const, description: "总页数" },
+              },
+            },
+          },
         },
         message: {
           type: "string" as const,
-          description: "响应消息"
+          description: "响应消息",
         },
         timestamp: {
           type: "string" as const,
           description: "响应时间戳",
-          format: "date-time" as const
+          format: "date-time" as const,
         },
         requestId: {
           type: "string" as const,
-          description: "请求追踪 ID"
-        }
-      }
+          description: "请求追踪 ID",
+        },
+      },
     },
     example: {
       success: true,
@@ -236,25 +240,25 @@ export default function SchemaWithExampleViewerDemo() {
           {
             id: "user_001",
             name: "Alice Johnson",
-            email: "alice@example.com"
+            email: "alice@example.com",
           },
           {
             id: "user_002",
             name: "Bob Smith",
-            email: "bob@example.com"
-          }
+            email: "bob@example.com",
+          },
         ],
         pagination: {
           page: 1,
           pageSize: 20,
           total: 156,
-          totalPages: 8
-        }
+          totalPages: 8,
+        },
       },
       message: "用户列表获取成功",
       timestamp: "2024-03-15T14:30:00Z",
-      requestId: "req_789abc12-def3-4567-8901-234567890def"
-    }
+      requestId: "req_789abc12-def3-4567-8901-234567890def",
+    },
   };
 
   // 错误响应 Schema 和示例
@@ -266,7 +270,7 @@ export default function SchemaWithExampleViewerDemo() {
         success: {
           type: "boolean" as const,
           description: "请求是否成功",
-          enum: [false]
+          enum: [false],
         },
         error: {
           type: "object" as const,
@@ -276,11 +280,16 @@ export default function SchemaWithExampleViewerDemo() {
             code: {
               type: "string" as const,
               description: "错误代码",
-              enum: ["VALIDATION_ERROR", "NOT_FOUND", "UNAUTHORIZED", "INTERNAL_ERROR"]
+              enum: [
+                "VALIDATION_ERROR",
+                "NOT_FOUND",
+                "UNAUTHORIZED",
+                "INTERNAL_ERROR",
+              ],
             },
             message: {
               type: "string" as const,
-              description: "错误描述"
+              description: "错误描述",
             },
             details: {
               type: "array" as const,
@@ -289,22 +298,25 @@ export default function SchemaWithExampleViewerDemo() {
                 type: "object" as const,
                 properties: {
                   field: { type: "string" as const, description: "错误字段" },
-                  message: { type: "string" as const, description: "字段错误描述" }
-                }
-              }
-            }
-          }
+                  message: {
+                    type: "string" as const,
+                    description: "字段错误描述",
+                  },
+                },
+              },
+            },
+          },
         },
         timestamp: {
           type: "string" as const,
           description: "错误发生时间",
-          format: "date-time" as const
+          format: "date-time" as const,
         },
         requestId: {
           type: "string" as const,
-          description: "请求追踪 ID"
-        }
-      }
+          description: "请求追踪 ID",
+        },
+      },
     },
     example: {
       success: false,
@@ -314,17 +326,17 @@ export default function SchemaWithExampleViewerDemo() {
         details: [
           {
             field: "email",
-            message: "邮箱格式不正确"
+            message: "邮箱格式不正确",
           },
           {
             field: "password",
-            message: "密码长度至少8位"
-          }
-        ]
+            message: "密码长度至少8位",
+          },
+        ],
       },
       timestamp: "2024-03-15T14:35:00Z",
-      requestId: "req_error123-456-789-abc-def012345678"
-    }
+      requestId: "req_error123-456-789-abc-def012345678",
+    },
   };
 
   // 支付信息 Schema 和示例
@@ -335,39 +347,45 @@ export default function SchemaWithExampleViewerDemo() {
       properties: {
         id: {
           type: "string" as const,
-          description: "支付唯一标识符"
+          description: "支付唯一标识符",
         },
         orderId: {
           type: "string" as const,
-          description: "关联订单 ID"
+          description: "关联订单 ID",
         },
         amount: {
           type: "number" as const,
           description: "支付金额",
-          minimum: 0.01
+          minimum: 0.01,
         },
         currency: {
           type: "string" as const,
           description: "货币代码",
-          pattern: "^[A-Z]{3}$"
+          pattern: "^[A-Z]{3}$",
         },
         method: {
           type: "string" as const,
           description: "支付方式",
-          enum: ["credit_card", "paypal", "bank_transfer", "alipay", "wechat_pay"]
+          enum: [
+            "credit_card",
+            "paypal",
+            "bank_transfer",
+            "alipay",
+            "wechat_pay",
+          ],
         },
         status: {
           type: "string" as const,
           description: "支付状态",
-          enum: ["pending", "processing", "completed", "failed", "refunded"]
+          enum: ["pending", "processing", "completed", "failed", "refunded"],
         },
         gateway: {
           type: "string" as const,
-          description: "支付网关"
+          description: "支付网关",
         },
         transactionId: {
           type: "string" as const,
-          description: "第三方交易 ID"
+          description: "第三方交易 ID",
         },
         cardInfo: {
           type: "object" as const,
@@ -376,25 +394,25 @@ export default function SchemaWithExampleViewerDemo() {
             last4: { type: "string" as const, description: "卡号后四位" },
             brand: { type: "string" as const, description: "卡片品牌" },
             expiryMonth: { type: "integer" as const, description: "过期月份" },
-            expiryYear: { type: "integer" as const, description: "过期年份" }
-          }
+            expiryYear: { type: "integer" as const, description: "过期年份" },
+          },
         },
         createdAt: {
           type: "string" as const,
           description: "创建时间",
-          format: "date-time" as const
+          format: "date-time" as const,
         },
         completedAt: {
           type: "string" as const,
           description: "完成时间",
-          format: "date-time" as const
-        }
-      }
+          format: "date-time" as const,
+        },
+      },
     },
     example: {
       id: "pay_abc123def456-789-012-345-678901234567",
       orderId: "order_456e7890-a12b-34c5-6789-012345678901",
-      amount: 10887.80,
+      amount: 10887.8,
       currency: "CNY",
       method: "credit_card",
       status: "completed",
@@ -404,11 +422,11 @@ export default function SchemaWithExampleViewerDemo() {
         last4: "4242",
         brand: "visa",
         expiryMonth: 12,
-        expiryYear: 2027
+        expiryYear: 2027,
       },
       createdAt: "2024-03-15T09:20:15Z",
-      completedAt: "2024-03-15T09:20:18Z"
-    }
+      completedAt: "2024-03-15T09:20:18Z",
+    },
   };
 
   // 数组数据 Schema 和示例
@@ -422,29 +440,29 @@ export default function SchemaWithExampleViewerDemo() {
         properties: {
           id: {
             type: "string" as const,
-            description: "分类 ID"
+            description: "分类 ID",
           },
           name: {
             type: "string" as const,
-            description: "分类名称"
+            description: "分类名称",
           },
           description: {
             type: "string" as const,
-            description: "分类描述"
+            description: "分类描述",
           },
           parentId: {
             type: "string" as const,
             description: "父分类 ID",
-            nullable: true
+            nullable: true,
           },
           level: {
             type: "integer" as const,
             description: "分类层级",
-            minimum: 1
-          }
-        }
+            minimum: 1,
+          },
+        },
       },
-      maxItems: 100
+      maxItems: 100,
     },
     example: [
       {
@@ -452,23 +470,23 @@ export default function SchemaWithExampleViewerDemo() {
         name: "电子产品",
         description: "各类电子设备和数码产品",
         parentId: null,
-        level: 1
+        level: 1,
       },
       {
         id: "cat_smartphones",
         name: "智能手机",
         description: "各品牌智能手机",
         parentId: "cat_electronics",
-        level: 2
+        level: 2,
       },
       {
         id: "cat_laptops",
         name: "笔记本电脑",
         description: "便携式电脑设备",
         parentId: "cat_electronics",
-        level: 2
-      }
-    ]
+        level: 2,
+      },
+    ],
   };
 
   return (
@@ -482,8 +500,8 @@ export default function SchemaWithExampleViewerDemo() {
           content={{
             "application/json": {
               schema: userSchemaWithExample.schema,
-              example: userSchemaWithExample.example
-            }
+              example: userSchemaWithExample.example,
+            },
           }}
           contentType="mediaTypes"
         />
@@ -498,8 +516,8 @@ export default function SchemaWithExampleViewerDemo() {
           content={{
             "application/json": {
               schema: productSchemaWithExample.schema,
-              example: productSchemaWithExample.example
-            }
+              example: productSchemaWithExample.example,
+            },
           }}
           contentType="mediaTypes"
         />
@@ -514,8 +532,8 @@ export default function SchemaWithExampleViewerDemo() {
           content={{
             "application/json": {
               schema: apiResponseSchemaWithExample.schema,
-              example: apiResponseSchemaWithExample.example
-            }
+              example: apiResponseSchemaWithExample.example,
+            },
           }}
           contentType="mediaTypes"
         />
@@ -530,8 +548,8 @@ export default function SchemaWithExampleViewerDemo() {
           content={{
             "application/json": {
               schema: errorResponseSchemaWithExample.schema,
-              example: errorResponseSchemaWithExample.example
-            }
+              example: errorResponseSchemaWithExample.example,
+            },
           }}
           contentType="mediaTypes"
         />
@@ -546,8 +564,8 @@ export default function SchemaWithExampleViewerDemo() {
           content={{
             "application/json": {
               schema: paymentSchemaWithExample.schema,
-              example: paymentSchemaWithExample.example
-            }
+              example: paymentSchemaWithExample.example,
+            },
           }}
           contentType="mediaTypes"
         />
@@ -562,8 +580,8 @@ export default function SchemaWithExampleViewerDemo() {
           content={{
             "application/json": {
               schema: arraySchemaWithExample.schema,
-              example: arraySchemaWithExample.example
-            }
+              example: arraySchemaWithExample.example,
+            },
           }}
           contentType="mediaTypes"
         />

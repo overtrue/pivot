@@ -2,7 +2,7 @@
 
 import { I18nProvider } from "@/registry/default/lib/i18n/I18nProvider";
 import { ResponseContentSection } from "@/registry/default/ui/response-content-section";
-import type { OpenAPIV3 } from 'openapi-types';
+import type { OpenAPIV3 } from "openapi-types";
 
 // 示例 OpenAPI 规范
 const exampleSpec: OpenAPIV3.Document = {
@@ -68,14 +68,14 @@ const exampleSpec: OpenAPIV3.Document = {
                   },
                 },
                 examples: {
-                  "invalid_id": {
+                  invalid_id: {
                     summary: "Invalid ID format",
                     value: {
                       error: "INVALID_ID",
                       message: "User ID must be a valid UUID",
                     },
                   },
-                  "missing_id": {
+                  missing_id: {
                     summary: "Missing ID",
                     value: {
                       error: "MISSING_ID",
@@ -119,7 +119,7 @@ export default function ResponseContentSectionDemo() {
     const response = operation?.responses?.[statusCode];
 
     // 处理引用对象
-    if (response && typeof response === 'object' && '$ref' in response) {
+    if (response && typeof response === "object" && "$ref" in response) {
       // 这里应该解析引用，但为了简化 demo，我们返回空对象
       return {};
     }

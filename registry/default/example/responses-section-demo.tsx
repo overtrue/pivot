@@ -13,48 +13,48 @@ export default function ResponsesSectionDemo() {
               id: {
                 type: "string" as const,
                 format: "uuid" as const,
-                description: "用户唯一标识符"
+                description: "用户唯一标识符",
               },
               email: {
                 type: "string" as const,
                 format: "email" as const,
-                description: "用户邮箱"
+                description: "用户邮箱",
               },
               name: {
                 type: "string" as const,
-                description: "用户姓名"
+                description: "用户姓名",
               },
               status: {
                 type: "string" as const,
                 enum: ["active", "inactive", "pending"],
-                description: "用户状态"
+                description: "用户状态",
               },
               createdAt: {
                 type: "string" as const,
                 format: "date-time" as const,
-                description: "创建时间"
-              }
-            }
+                description: "创建时间",
+              },
+            },
           },
           example: {
             id: "123e4567-e89b-12d3-a456-426614174000",
             email: "john.doe@example.com",
             name: "John Doe",
             status: "active",
-            createdAt: "2024-01-15T10:30:00Z"
-          }
-        }
+            createdAt: "2024-01-15T10:30:00Z",
+          },
+        },
       },
       headers: {
         "X-Rate-Limit-Remaining": {
           description: "剩余请求次数",
-          schema: { type: "integer" as const }
+          schema: { type: "integer" as const },
         },
         "X-Request-ID": {
           description: "请求追踪 ID",
-          schema: { type: "string" as const, format: "uuid" as const }
-        }
-      }
+          schema: { type: "string" as const, format: "uuid" as const },
+        },
+      },
     },
     "400": {
       description: "请求参数错误",
@@ -65,11 +65,11 @@ export default function ResponsesSectionDemo() {
             properties: {
               error: {
                 type: "string" as const,
-                description: "错误类型"
+                description: "错误类型",
               },
               message: {
                 type: "string" as const,
-                description: "错误描述"
+                description: "错误描述",
               },
               details: {
                 type: "array" as const,
@@ -79,11 +79,11 @@ export default function ResponsesSectionDemo() {
                   properties: {
                     field: { type: "string" as const },
                     code: { type: "string" as const },
-                    message: { type: "string" as const }
-                  }
-                }
-              }
-            }
+                    message: { type: "string" as const },
+                  },
+                },
+              },
+            },
           },
           example: {
             error: "VALIDATION_ERROR",
@@ -92,12 +92,12 @@ export default function ResponsesSectionDemo() {
               {
                 field: "email",
                 code: "INVALID_FORMAT",
-                message: "邮箱格式不正确"
-              }
-            ]
-          }
-        }
-      }
+                message: "邮箱格式不正确",
+              },
+            ],
+          },
+        },
+      },
     },
     "401": {
       description: "未授权访问",
@@ -107,15 +107,15 @@ export default function ResponsesSectionDemo() {
             type: "object" as const,
             properties: {
               error: { type: "string" as const },
-              message: { type: "string" as const }
-            }
+              message: { type: "string" as const },
+            },
           },
           example: {
             error: "UNAUTHORIZED",
-            message: "访问令牌无效或已过期"
-          }
-        }
-      }
+            message: "访问令牌无效或已过期",
+          },
+        },
+      },
     },
     "404": {
       description: "用户不存在",
@@ -125,15 +125,15 @@ export default function ResponsesSectionDemo() {
             type: "object" as const,
             properties: {
               error: { type: "string" as const },
-              message: { type: "string" as const }
-            }
+              message: { type: "string" as const },
+            },
           },
           example: {
             error: "USER_NOT_FOUND",
-            message: "指定的用户不存在"
-          }
-        }
-      }
+            message: "指定的用户不存在",
+          },
+        },
+      },
     },
     "500": {
       description: "服务器内部错误",
@@ -144,17 +144,17 @@ export default function ResponsesSectionDemo() {
             properties: {
               error: { type: "string" as const },
               message: { type: "string" as const },
-              requestId: { type: "string" as const }
-            }
+              requestId: { type: "string" as const },
+            },
           },
           example: {
             error: "INTERNAL_SERVER_ERROR",
             message: "服务器遇到了一个意外的情况",
-            requestId: "req_abc123def456"
-          }
-        }
-      }
-    }
+            requestId: "req_abc123def456",
+          },
+        },
+      },
+    },
   };
 
   // 文件上传 API 的响应示例
@@ -168,11 +168,22 @@ export default function ResponsesSectionDemo() {
             properties: {
               id: { type: "string" as const, description: "文件 ID" },
               filename: { type: "string" as const, description: "文件名" },
-              size: { type: "integer" as const, description: "文件大小（字节）" },
+              size: {
+                type: "integer" as const,
+                description: "文件大小（字节）",
+              },
               mimeType: { type: "string" as const, description: "MIME 类型" },
-              url: { type: "string" as const, format: "uri" as const, description: "文件访问 URL" },
-              uploadedAt: { type: "string" as const, format: "date-time" as const, description: "上传时间" }
-            }
+              url: {
+                type: "string" as const,
+                format: "uri" as const,
+                description: "文件访问 URL",
+              },
+              uploadedAt: {
+                type: "string" as const,
+                format: "date-time" as const,
+                description: "上传时间",
+              },
+            },
           },
           example: {
             id: "file_xyz789",
@@ -180,10 +191,10 @@ export default function ResponsesSectionDemo() {
             size: 1048576,
             mimeType: "application/pdf",
             url: "https://cdn.example.com/files/document.pdf",
-            uploadedAt: "2024-01-15T10:30:00Z"
-          }
-        }
-      }
+            uploadedAt: "2024-01-15T10:30:00Z",
+          },
+        },
+      },
     },
     "413": {
       description: "文件过大",
@@ -194,16 +205,19 @@ export default function ResponsesSectionDemo() {
             properties: {
               error: { type: "string" as const },
               message: { type: "string" as const },
-              maxSize: { type: "integer" as const, description: "最大允许大小（字节）" }
-            }
+              maxSize: {
+                type: "integer" as const,
+                description: "最大允许大小（字节）",
+              },
+            },
           },
           example: {
             error: "FILE_TOO_LARGE",
             message: "文件大小超过限制",
-            maxSize: 10485760
-          }
-        }
-      }
+            maxSize: 10485760,
+          },
+        },
+      },
     },
     "415": {
       description: "不支持的文件类型",
@@ -217,18 +231,18 @@ export default function ResponsesSectionDemo() {
               allowedTypes: {
                 type: "array" as const,
                 items: { type: "string" as const },
-                description: "允许的文件类型"
-              }
-            }
+                description: "允许的文件类型",
+              },
+            },
           },
           example: {
             error: "UNSUPPORTED_MEDIA_TYPE",
             message: "不支持的文件类型",
-            allowedTypes: ["image/jpeg", "image/png", "application/pdf"]
-          }
-        }
-      }
-    }
+            allowedTypes: ["image/jpeg", "image/png", "application/pdf"],
+          },
+        },
+      },
+    },
   };
 
   // 分页列表 API 的响应示例
@@ -249,9 +263,12 @@ export default function ResponsesSectionDemo() {
                     id: { type: "string" as const },
                     title: { type: "string" as const },
                     status: { type: "string" as const },
-                    createdAt: { type: "string" as const, format: "date-time" as const }
-                  }
-                }
+                    createdAt: {
+                      type: "string" as const,
+                      format: "date-time" as const,
+                    },
+                  },
+                },
               },
               pagination: {
                 type: "object" as const,
@@ -260,12 +277,21 @@ export default function ResponsesSectionDemo() {
                   page: { type: "integer" as const, description: "当前页码" },
                   limit: { type: "integer" as const, description: "每页数量" },
                   total: { type: "integer" as const, description: "总记录数" },
-                  totalPages: { type: "integer" as const, description: "总页数" },
-                  hasNext: { type: "boolean" as const, description: "是否有下一页" },
-                  hasPrev: { type: "boolean" as const, description: "是否有上一页" }
-                }
-              }
-            }
+                  totalPages: {
+                    type: "integer" as const,
+                    description: "总页数",
+                  },
+                  hasNext: {
+                    type: "boolean" as const,
+                    description: "是否有下一页",
+                  },
+                  hasPrev: {
+                    type: "boolean" as const,
+                    description: "是否有上一页",
+                  },
+                },
+              },
+            },
           },
           example: {
             data: [
@@ -273,14 +299,14 @@ export default function ResponsesSectionDemo() {
                 id: "item_001",
                 title: "示例项目 1",
                 status: "active",
-                createdAt: "2024-01-15T10:30:00Z"
+                createdAt: "2024-01-15T10:30:00Z",
               },
               {
                 id: "item_002",
                 title: "示例项目 2",
                 status: "pending",
-                createdAt: "2024-01-14T15:20:00Z"
-              }
+                createdAt: "2024-01-14T15:20:00Z",
+              },
             ],
             pagination: {
               page: 1,
@@ -288,12 +314,12 @@ export default function ResponsesSectionDemo() {
               total: 150,
               totalPages: 8,
               hasNext: true,
-              hasPrev: false
-            }
-          }
-        }
-      }
-    }
+              hasPrev: false,
+            },
+          },
+        },
+      },
+    },
   };
 
   return (

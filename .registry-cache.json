@@ -7,9 +7,7 @@
       "type": "registry:ui",
       "title": "Status Code",
       "description": "Display HTTP status codes with appropriate styling",
-      "registryDependencies": [
-        "utils"
-      ],
+      "registryDependencies": ["utils"],
       "files": [
         {
           "path": "registry/pivot/status-code.tsx",
@@ -23,9 +21,7 @@
       "type": "registry:ui",
       "title": "Method Label",
       "description": "Display HTTP methods with color coding",
-      "registryDependencies": [
-        "utils"
-      ],
+      "registryDependencies": ["utils"],
       "files": [
         {
           "path": "registry/pivot/method-label.tsx",
@@ -39,9 +35,7 @@
       "type": "registry:ui",
       "title": "Type Indicator",
       "description": "Display data types with appropriate styling",
-      "registryDependencies": [
-        "utils"
-      ],
+      "registryDependencies": ["utils"],
       "files": [
         {
           "path": "registry/pivot/type-indicator.tsx",
@@ -55,9 +49,7 @@
       "type": "registry:ui",
       "title": "Required Badge",
       "description": "Badge to indicate required fields",
-      "registryDependencies": [
-        "utils"
-      ],
+      "registryDependencies": ["utils"],
       "files": [
         {
           "path": "registry/pivot/required-badge.tsx",
@@ -71,9 +63,7 @@
       "type": "registry:ui",
       "title": "Deprecated Badge",
       "description": "Badge to indicate deprecated fields or operations",
-      "registryDependencies": [
-        "utils"
-      ],
+      "registryDependencies": ["utils"],
       "files": [
         {
           "path": "registry/pivot/deprecated-badge.tsx",
@@ -87,9 +77,7 @@
       "type": "registry:ui",
       "title": "Version Badge",
       "description": "Display version information",
-      "registryDependencies": [
-        "utils"
-      ],
+      "registryDependencies": ["utils"],
       "files": [
         {
           "path": "registry/pivot/version-badge.tsx",
@@ -103,9 +91,7 @@
       "type": "registry:ui",
       "title": "Webhook Label",
       "description": "Label for webhook endpoints",
-      "registryDependencies": [
-        "utils"
-      ],
+      "registryDependencies": ["utils"],
       "files": [
         {
           "path": "registry/pivot/webhook-label.tsx",
@@ -119,9 +105,7 @@
       "type": "registry:ui",
       "title": "Format Badge",
       "description": "Display format information for data types",
-      "registryDependencies": [
-        "utils"
-      ],
+      "registryDependencies": ["utils"],
       "files": [
         {
           "path": "registry/pivot/format-badge.tsx",
@@ -135,9 +119,7 @@
       "type": "registry:ui",
       "title": "Style Badge",
       "description": "Display style information for parameters",
-      "registryDependencies": [
-        "utils"
-      ],
+      "registryDependencies": ["utils"],
       "files": [
         {
           "path": "registry/pivot/style-badge.tsx",
@@ -151,9 +133,7 @@
       "type": "registry:ui",
       "title": "Scheme Type",
       "description": "Display security scheme types",
-      "registryDependencies": [
-        "utils"
-      ],
+      "registryDependencies": ["utils"],
       "files": [
         {
           "path": "registry/pivot/scheme-type.tsx",
@@ -167,9 +147,7 @@
       "type": "registry:ui",
       "title": "In Label",
       "description": "Label for parameter location",
-      "registryDependencies": [
-        "utils"
-      ],
+      "registryDependencies": ["utils"],
       "files": [
         {
           "path": "registry/pivot/in-label.tsx",
@@ -183,9 +161,7 @@
       "type": "registry:ui",
       "title": "Parameter Name",
       "description": "Display parameter names with deprecation support",
-      "registryDependencies": [
-        "utils"
-      ],
+      "registryDependencies": ["utils"],
       "files": [
         {
           "path": "registry/pivot/parameter-name.tsx",
@@ -199,9 +175,7 @@
       "type": "registry:ui",
       "title": "Parameter Description",
       "description": "Display parameter descriptions",
-      "registryDependencies": [
-        "utils"
-      ],
+      "registryDependencies": ["utils"],
       "files": [
         {
           "path": "registry/pivot/parameter-description.tsx",
@@ -215,9 +189,7 @@
       "type": "registry:ui",
       "title": "Path Segment",
       "description": "Display API path segments with parameter highlighting",
-      "registryDependencies": [
-        "utils"
-      ],
+      "registryDependencies": ["utils"],
       "files": [
         {
           "path": "registry/pivot/path-segment.tsx",
@@ -231,10 +203,7 @@
       "type": "registry:ui",
       "title": "Operation Path",
       "description": "Display operation paths with highlighting",
-      "registryDependencies": [
-        "utils",
-        "path-segment"
-      ],
+      "registryDependencies": ["utils", "path-segment"],
       "files": [
         {
           "path": "registry/pivot/operation-path.tsx",
@@ -248,9 +217,7 @@
       "type": "registry:ui",
       "title": "Enum Values Display",
       "description": "Display enumeration values",
-      "registryDependencies": [
-        "utils"
-      ],
+      "registryDependencies": ["utils"],
       "files": [
         {
           "path": "registry/pivot/enum-values-display.tsx",
@@ -264,9 +231,7 @@
       "type": "registry:ui",
       "title": "Default Value Display",
       "description": "Display default values for parameters",
-      "registryDependencies": [
-        "utils"
-      ],
+      "registryDependencies": ["utils"],
       "files": [
         {
           "path": "registry/pivot/default-value-display.tsx",
@@ -280,9 +245,7 @@
       "type": "registry:ui",
       "title": "Constraint Display",
       "description": "Display schema constraints",
-      "registryDependencies": [
-        "utils"
-      ],
+      "registryDependencies": ["utils"],
       "files": [
         {
           "path": "registry/pivot/constraint-display.tsx",
@@ -296,12 +259,8 @@
       "type": "registry:ui",
       "title": "Expand Collapse",
       "description": "Expandable/collapsible content component",
-      "dependencies": [
-        "lucide-react"
-      ],
-      "registryDependencies": [
-        "utils"
-      ],
+      "dependencies": ["lucide-react"],
+      "registryDependencies": ["utils"],
       "files": [
         {
           "path": "registry/pivot/expand-collapse.tsx",
@@ -315,12 +274,8 @@
       "type": "registry:ui",
       "title": "Description Display",
       "description": "Display markdown descriptions",
-      "dependencies": [
-        "react-markdown"
-      ],
-      "registryDependencies": [
-        "utils"
-      ],
+      "dependencies": ["react-markdown"],
+      "registryDependencies": ["utils"],
       "files": [
         {
           "path": "registry/pivot/description-display.tsx",
@@ -334,9 +289,7 @@
       "type": "registry:ui",
       "title": "Contact Display",
       "description": "Display contact information",
-      "registryDependencies": [
-        "utils"
-      ],
+      "registryDependencies": ["utils"],
       "files": [
         {
           "path": "registry/pivot/contact-display.tsx",
@@ -350,9 +303,7 @@
       "type": "registry:ui",
       "title": "License Display",
       "description": "Display license information",
-      "registryDependencies": [
-        "utils"
-      ],
+      "registryDependencies": ["utils"],
       "files": [
         {
           "path": "registry/pivot/license-display.tsx",
@@ -366,9 +317,7 @@
       "type": "registry:ui",
       "title": "Terms of Service",
       "description": "Display terms of service",
-      "registryDependencies": [
-        "utils"
-      ],
+      "registryDependencies": ["utils"],
       "files": [
         {
           "path": "registry/pivot/terms-of-service.tsx",
@@ -382,9 +331,7 @@
       "type": "registry:ui",
       "title": "Section Title",
       "description": "Section title component",
-      "registryDependencies": [
-        "utils"
-      ],
+      "registryDependencies": ["utils"],
       "files": [
         {
           "path": "registry/pivot/section-title.tsx",
@@ -398,9 +345,7 @@
       "type": "registry:ui",
       "title": "Server Display",
       "description": "Display server information",
-      "registryDependencies": [
-        "utils"
-      ],
+      "registryDependencies": ["utils"],
       "files": [
         {
           "path": "registry/pivot/server-display.tsx",
@@ -414,9 +359,7 @@
       "type": "registry:ui",
       "title": "External Docs Display",
       "description": "Display external documentation links",
-      "registryDependencies": [
-        "utils"
-      ],
+      "registryDependencies": ["utils"],
       "files": [
         {
           "path": "registry/pivot/external-docs-display.tsx",
@@ -430,9 +373,7 @@
       "type": "registry:component",
       "title": "Info Section",
       "description": "Display API information section",
-      "dependencies": [
-        "lucide-react"
-      ],
+      "dependencies": ["lucide-react"],
       "registryDependencies": [
         "utils",
         "contact-display",
@@ -452,11 +393,7 @@
       "type": "registry:component",
       "title": "Servers Section",
       "description": "Display servers section",
-      "registryDependencies": [
-        "utils",
-        "section-title",
-        "server-display"
-      ],
+      "registryDependencies": ["utils", "section-title", "server-display"],
       "files": [
         {
           "path": "registry/pivot/servers-section.tsx",
@@ -508,11 +445,7 @@
       "type": "registry:component",
       "title": "Security Scheme Display",
       "description": "Display security scheme details",
-      "registryDependencies": [
-        "utils",
-        "description-display",
-        "scheme-type"
-      ],
+      "registryDependencies": ["utils", "description-display", "scheme-type"],
       "files": [
         {
           "path": "registry/pivot/security-scheme-display.tsx",
@@ -526,10 +459,7 @@
       "type": "registry:component",
       "title": "Security Scheme",
       "description": "Display security scheme",
-      "registryDependencies": [
-        "utils",
-        "description-display"
-      ],
+      "registryDependencies": ["utils", "description-display"],
       "files": [
         {
           "path": "registry/pivot/security-scheme.tsx",
@@ -543,9 +473,7 @@
       "type": "registry:ui",
       "title": "Required Marker",
       "description": "Marker for required fields",
-      "registryDependencies": [
-        "utils"
-      ],
+      "registryDependencies": ["utils"],
       "files": [
         {
           "path": "registry/pivot/required-marker.tsx",
@@ -559,9 +487,7 @@
       "type": "registry:ui",
       "title": "Value Display",
       "description": "Display values with syntax highlighting",
-      "registryDependencies": [
-        "utils"
-      ],
+      "registryDependencies": ["utils"],
       "files": [
         {
           "path": "registry/pivot/value-display.tsx",
@@ -575,10 +501,7 @@
       "type": "registry:component",
       "title": "Example Display",
       "description": "Display examples",
-      "registryDependencies": [
-        "utils",
-        "value-display"
-      ],
+      "registryDependencies": ["utils", "value-display"],
       "files": [
         {
           "path": "registry/pivot/example-display.tsx",
@@ -592,10 +515,7 @@
       "type": "registry:component",
       "title": "Examples Display",
       "description": "Display multiple examples",
-      "registryDependencies": [
-        "utils",
-        "resolve-ref"
-      ],
+      "registryDependencies": ["utils", "resolve-ref"],
       "files": [
         {
           "path": "registry/pivot/examples-display.tsx",
@@ -609,10 +529,7 @@
       "type": "registry:component",
       "title": "Links Section",
       "description": "Display links section",
-      "registryDependencies": [
-        "utils",
-        "link-item"
-      ],
+      "registryDependencies": ["utils", "link-item"],
       "files": [
         {
           "path": "registry/pivot/links-section.tsx",
@@ -626,9 +543,7 @@
       "type": "registry:ui",
       "title": "Link Item",
       "description": "Display link item",
-      "registryDependencies": [
-        "utils"
-      ],
+      "registryDependencies": ["utils"],
       "files": [
         {
           "path": "registry/pivot/link-item.tsx",
@@ -642,11 +557,7 @@
       "type": "registry:component",
       "title": "Security Schemes",
       "description": "Display security schemes section",
-      "registryDependencies": [
-        "utils",
-        "section-title",
-        "security-scheme"
-      ],
+      "registryDependencies": ["utils", "section-title", "security-scheme"],
       "files": [
         {
           "path": "registry/pivot/security-schemes.tsx",
@@ -660,9 +571,7 @@
       "type": "registry:ui",
       "title": "OAuth Flow",
       "description": "Display OAuth flow information",
-      "registryDependencies": [
-        "utils"
-      ],
+      "registryDependencies": ["utils"],
       "files": [
         {
           "path": "registry/pivot/oauth-flow.tsx",
@@ -676,10 +585,7 @@
       "type": "registry:component",
       "title": "OAuth Flow Details",
       "description": "Display detailed OAuth flow information",
-      "registryDependencies": [
-        "utils",
-        "oauth-flow"
-      ],
+      "registryDependencies": ["utils", "oauth-flow"],
       "files": [
         {
           "path": "registry/pivot/oauth-flow-details.tsx",
@@ -693,9 +599,7 @@
       "type": "registry:ui",
       "title": "Security Requirement Item",
       "description": "Display security requirement item",
-      "registryDependencies": [
-        "utils"
-      ],
+      "registryDependencies": ["utils"],
       "files": [
         {
           "path": "registry/pivot/security-requirement-item.tsx",
@@ -734,10 +638,7 @@
       "type": "registry:component",
       "title": "Media Type Selector",
       "description": "Selector for media types",
-      "registryDependencies": [
-        "utils",
-        "description-display"
-      ],
+      "registryDependencies": ["utils", "description-display"],
       "files": [
         {
           "path": "registry/pivot/media-type-selector.tsx",
@@ -751,10 +652,7 @@
       "type": "registry:component",
       "title": "Response Group",
       "description": "Group responses by status code",
-      "registryDependencies": [
-        "utils",
-        "response-item"
-      ],
+      "registryDependencies": ["utils", "response-item"],
       "files": [
         {
           "path": "registry/pivot/response-group.tsx",
@@ -768,10 +666,7 @@
       "type": "registry:component",
       "title": "Parameters Section",
       "description": "Display parameters section",
-      "registryDependencies": [
-        "utils",
-        "parameter-item"
-      ],
+      "registryDependencies": ["utils", "parameter-item"],
       "files": [
         {
           "path": "registry/pivot/parameters-section.tsx",
@@ -785,11 +680,7 @@
       "type": "registry:component",
       "title": "Schema Composition Display",
       "description": "Display schema composition (allOf, oneOf, anyOf)",
-      "registryDependencies": [
-        "utils",
-        "type-indicator",
-        "constraint-display"
-      ],
+      "registryDependencies": ["utils", "type-indicator", "constraint-display"],
       "files": [
         {
           "path": "registry/pivot/schema-composition-display.tsx",
@@ -803,9 +694,7 @@
       "type": "registry:component",
       "title": "Component Tabs",
       "description": "Tabs for different component types",
-      "registryDependencies": [
-        "utils"
-      ],
+      "registryDependencies": ["utils"],
       "files": [
         {
           "path": "registry/pivot/component-tabs.tsx",
@@ -839,10 +728,7 @@
       "type": "registry:component",
       "title": "Schema Display",
       "description": "Display OpenAPI schema",
-      "registryDependencies": [
-        "utils",
-        "schema-display"
-      ],
+      "registryDependencies": ["utils", "schema-display"],
       "files": [
         {
           "path": "registry/pivot/schema-display.tsx",
@@ -856,10 +742,7 @@
       "type": "registry:component",
       "title": "Parameter Item",
       "description": "Display parameter item",
-      "registryDependencies": [
-        "utils",
-        "example-display"
-      ],
+      "registryDependencies": ["utils", "example-display"],
       "files": [
         {
           "path": "registry/pivot/parameter-item.tsx",
@@ -899,10 +782,7 @@
       "type": "registry:component",
       "title": "Webhook Display",
       "description": "Display webhook information",
-      "registryDependencies": [
-        "utils",
-        "operation-box"
-      ],
+      "registryDependencies": ["utils", "operation-box"],
       "files": [
         {
           "path": "registry/pivot/webhook-display.tsx",
@@ -916,10 +796,7 @@
       "type": "registry:component",
       "title": "Security Requirements Section",
       "description": "Display security requirements section",
-      "registryDependencies": [
-        "utils",
-        "security-requirement-item"
-      ],
+      "registryDependencies": ["utils", "security-requirement-item"],
       "files": [
         {
           "path": "registry/pivot/security-requirements-section.tsx",
@@ -991,10 +868,7 @@
       "type": "registry:component",
       "title": "Headers Section",
       "description": "Display headers section",
-      "registryDependencies": [
-        "utils",
-        "header-item"
-      ],
+      "registryDependencies": ["utils", "header-item"],
       "files": [
         {
           "path": "registry/pivot/headers-section.tsx",
@@ -1034,9 +908,7 @@
       "type": "registry:component",
       "title": "Callback Display",
       "description": "Display callback information",
-      "registryDependencies": [
-        "utils"
-      ],
+      "registryDependencies": ["utils"],
       "files": [
         {
           "path": "registry/pivot/callback-display.tsx",
@@ -1050,12 +922,8 @@
       "type": "registry:ui",
       "title": "Copy Button",
       "description": "Button for copying content to clipboard",
-      "dependencies": [
-        "lucide-react"
-      ],
-      "registryDependencies": [
-        "utils"
-      ],
+      "dependencies": ["lucide-react"],
+      "registryDependencies": ["utils"],
       "files": [
         {
           "path": "registry/pivot/copy-button.tsx",
@@ -1069,14 +937,8 @@
       "type": "registry:ui",
       "title": "Code Markdown",
       "description": "Display code with syntax highlighting",
-      "dependencies": [
-        "next-themes",
-        "react-syntax-highlighter"
-      ],
-      "registryDependencies": [
-        "utils",
-        "copy-button"
-      ],
+      "dependencies": ["next-themes", "react-syntax-highlighter"],
+      "registryDependencies": ["utils", "copy-button"],
       "files": [
         {
           "path": "registry/pivot/code-markdown.tsx",
@@ -1090,12 +952,8 @@
       "type": "registry:ui",
       "title": "cURL Generator",
       "description": "Generate cURL commands",
-      "dependencies": [
-        "lucide-react"
-      ],
-      "registryDependencies": [
-        "utils"
-      ],
+      "dependencies": ["lucide-react"],
+      "registryDependencies": ["utils"],
       "files": [
         {
           "path": "registry/pivot/curl-generator.tsx",
@@ -1109,12 +967,8 @@
       "type": "registry:ui",
       "title": "Python Generator",
       "description": "Generate Python code",
-      "dependencies": [
-        "lucide-react"
-      ],
-      "registryDependencies": [
-        "utils"
-      ],
+      "dependencies": ["lucide-react"],
+      "registryDependencies": ["utils"],
       "files": [
         {
           "path": "registry/pivot/python-generator.tsx",
@@ -1128,12 +982,8 @@
       "type": "registry:ui",
       "title": "TypeScript Generator",
       "description": "Generate TypeScript code",
-      "dependencies": [
-        "lucide-react"
-      ],
-      "registryDependencies": [
-        "utils"
-      ],
+      "dependencies": ["lucide-react"],
+      "registryDependencies": ["utils"],
       "files": [
         {
           "path": "registry/pivot/typescript-generator.tsx",
@@ -1147,12 +997,8 @@
       "type": "registry:ui",
       "title": "PHP Generator",
       "description": "Generate PHP code",
-      "dependencies": [
-        "lucide-react"
-      ],
-      "registryDependencies": [
-        "utils"
-      ],
+      "dependencies": ["lucide-react"],
+      "registryDependencies": ["utils"],
       "files": [
         {
           "path": "registry/pivot/php-generator.tsx",
@@ -1166,12 +1012,8 @@
       "type": "registry:ui",
       "title": "Laravel Generator",
       "description": "Generate Laravel code",
-      "dependencies": [
-        "lucide-react"
-      ],
-      "registryDependencies": [
-        "utils"
-      ],
+      "dependencies": ["lucide-react"],
+      "registryDependencies": ["utils"],
       "files": [
         {
           "path": "registry/pivot/laravel-generator.tsx",
@@ -1185,9 +1027,7 @@
       "type": "registry:component",
       "title": "Code Generator",
       "description": "Multi-language code generator",
-      "dependencies": [
-        "lucide-react"
-      ],
+      "dependencies": ["lucide-react"],
       "registryDependencies": [
         "utils",
         "curl-generator",
@@ -1212,9 +1052,7 @@
       "type": "registry:component",
       "title": "Try It Out Panel",
       "description": "Interactive API testing panel",
-      "dependencies": [
-        "lucide-react"
-      ],
+      "dependencies": ["lucide-react"],
       "registryDependencies": [
         "utils",
         "parameter-item",
@@ -1236,9 +1074,7 @@
       "type": "registry:block",
       "title": "Operation List Layout",
       "description": "Layout for displaying list of operations",
-      "dependencies": [
-        "js-yaml"
-      ],
+      "dependencies": ["js-yaml"],
       "registryDependencies": [
         "utils",
         "use-openapi",
@@ -1258,9 +1094,7 @@
       "type": "registry:block",
       "title": "Operation Detailed Layout",
       "description": "Detailed layout for displaying operations",
-      "dependencies": [
-        "js-yaml"
-      ],
+      "dependencies": ["js-yaml"],
       "registryDependencies": [
         "utils",
         "codegen",
@@ -1305,13 +1139,8 @@
       "type": "registry:component",
       "title": "Navigation Sidebar",
       "description": "Sidebar navigation for API documentation",
-      "dependencies": [
-        "lucide-react"
-      ],
-      "registryDependencies": [
-        "utils",
-        "method-label"
-      ],
+      "dependencies": ["lucide-react"],
+      "registryDependencies": ["utils", "method-label"],
       "files": [
         {
           "path": "registry/pivot/navigation-sidebar.tsx",
@@ -1325,12 +1154,8 @@
       "type": "registry:component",
       "title": "Accordion Components Section",
       "description": "Accordion section for components",
-      "dependencies": [
-        "lucide-react"
-      ],
-      "registryDependencies": [
-        "utils"
-      ],
+      "dependencies": ["lucide-react"],
+      "registryDependencies": ["utils"],
       "files": [
         {
           "path": "registry/pivot/accordion-components-section.tsx",
@@ -1344,12 +1169,8 @@
       "type": "registry:ui",
       "title": "Theme Toggle",
       "description": "Toggle between light and dark themes",
-      "dependencies": [
-        "lucide-react"
-      ],
-      "registryDependencies": [
-        "utils"
-      ],
+      "dependencies": ["lucide-react"],
+      "registryDependencies": ["utils"],
       "files": [
         {
           "path": "registry/pivot/theme-toggle.tsx",
@@ -1363,12 +1184,8 @@
       "type": "registry:ui",
       "title": "Language Switcher",
       "description": "Switch between different languages",
-      "dependencies": [
-        "lucide-react"
-      ],
-      "registryDependencies": [
-        "utils"
-      ],
+      "dependencies": ["lucide-react"],
+      "registryDependencies": ["utils"],
       "files": [
         {
           "path": "registry/pivot/language-switcher.tsx",
@@ -1382,10 +1199,7 @@
       "type": "registry:lib",
       "title": "Utils",
       "description": "Utility functions for class name merging.",
-      "dependencies": [
-        "clsx",
-        "tailwind-merge"
-      ],
+      "dependencies": ["clsx", "tailwind-merge"],
       "files": [
         {
           "path": "lib/utils.ts",
@@ -1399,12 +1213,8 @@
       "type": "registry:hook",
       "title": "useOpenApi Hook",
       "description": "React hook for processing OpenAPI specifications with utility functions.",
-      "dependencies": [
-        "react"
-      ],
-      "registryDependencies": [
-        "resolve-ref"
-      ],
+      "dependencies": ["react"],
+      "registryDependencies": ["resolve-ref"],
       "files": [
         {
           "path": "registry/lib/use-openapi.ts",
@@ -1418,9 +1228,7 @@
       "type": "registry:hook",
       "title": "useMounted Hook",
       "description": "React hook for checking if component is mounted.",
-      "dependencies": [
-        "react"
-      ],
+      "dependencies": ["react"],
       "files": [
         {
           "path": "hooks/use-mounted.ts",
@@ -1434,9 +1242,7 @@
       "type": "registry:hook",
       "title": "useIsMobile Hook",
       "description": "React hook for detecting mobile breakpoint.",
-      "dependencies": [
-        "react"
-      ],
+      "dependencies": ["react"],
       "files": [
         {
           "path": "hooks/use-mobile.ts",
@@ -1463,9 +1269,7 @@
       "type": "registry:lib",
       "title": "generateExample",
       "description": "Utility function for generating examples from OpenAPI schemas.",
-      "registryDependencies": [
-        "resolve-ref"
-      ],
+      "registryDependencies": ["resolve-ref"],
       "files": [
         {
           "path": "registry/lib/generate-example.ts",

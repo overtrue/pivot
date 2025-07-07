@@ -2,10 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "security-requirement-item",
   "type": "registry:ui",
-  "dependencies": [
-    "openapi-types",
-    "react"
-  ],
+  "dependencies": ["openapi-types", "react"],
   "files": [
     {
       "path": "registry/default/ui/security-requirement-item.tsx",

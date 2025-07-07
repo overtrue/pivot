@@ -2,10 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "schema-with-example-viewer",
   "type": "registry:ui",
-  "dependencies": [
-    "openapi-types",
-    "react"
-  ],
+  "dependencies": ["openapi-types", "react"],
   "registryDependencies": [
     "https://pivotkit.vercel.app/r/i18n.json",
     "https://pivotkit.vercel.app/r/generate-example.json",

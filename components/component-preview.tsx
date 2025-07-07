@@ -5,8 +5,6 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { cn } from "@/lib/utils";
 import * as React from "react";
 
-
-
 interface ComponentPreviewProps extends React.HTMLAttributes<HTMLDivElement> {
   name: string;
   align?: "center" | "start" | "end";

@@ -1,7 +1,7 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import type { OpenAPIV3 } from 'openapi-types';
+import type { OpenAPIV3 } from "openapi-types";
 import React, { useState } from "react";
 import { DeprecatedBadge } from "@/registry/default/ui/deprecated-badge";
 import { DescriptionDisplay } from "@/registry/default/ui/description-display";
@@ -65,7 +65,11 @@ const HeaderItem = React.forwardRef<HTMLDivElement, HeaderItemProps>(
       (examples && Object.keys(examples).length > 0);
 
     // Simple schema constraints display
-    const SchemaConstraints = ({ schema }: { schema: OpenAPIV3.SchemaObject }) => {
+    const SchemaConstraints = ({
+      schema,
+    }: {
+      schema: OpenAPIV3.SchemaObject;
+    }) => {
       const constraints = [];
 
       if (schema.minimum !== undefined)
@@ -176,8 +180,4 @@ const HeaderItem = React.forwardRef<HTMLDivElement, HeaderItemProps>(
 
 HeaderItem.displayName = "HeaderItem";
 
-export {
-  HeaderItem,
-  type HeaderItemProps
-};
-
+export { HeaderItem, type HeaderItemProps };

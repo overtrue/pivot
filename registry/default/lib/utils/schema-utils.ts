@@ -2,14 +2,14 @@
  * Check if a schema is a reference object
  */
 export function isReferenceObject(obj: any): obj is { $ref: string } {
-  return obj && typeof obj === 'object' && '$ref' in obj;
+  return obj && typeof obj === "object" && "$ref" in obj;
 }
 
 /**
  * Check if a schema is a schema object
  */
 export function isSchemaObjectNotRef(obj: any): boolean {
-  return obj && typeof obj === 'object' && !('$ref' in obj);
+  return obj && typeof obj === "object" && !("$ref" in obj);
 }
 
 /**
@@ -20,15 +20,15 @@ export function getSchemaType(schema: any): string {
     return schema.type;
   }
   if (schema.allOf) {
-    return 'allOf';
+    return "allOf";
   }
   if (schema.oneOf) {
-    return 'oneOf';
+    return "oneOf";
   }
   if (schema.anyOf) {
-    return 'anyOf';
+    return "anyOf";
   }
-  return 'object';
+  return "object";
 }
 
 /**

@@ -1,4 +1,7 @@
-import { ParameterGroup, type Parameter } from "@/registry/default/ui/parameter-group";
+import {
+  ParameterGroup,
+  type Parameter,
+} from "@/registry/default/ui/parameter-group";
 
 export default function ParameterGroupDemo() {
   // 查询参数示例
@@ -6,23 +9,23 @@ export default function ParameterGroupDemo() {
     {
       name: "limit",
       required: false,
-      type: "number" as const
+      type: "number" as const,
     },
     {
       name: "offset",
       required: false,
-      type: "number" as const
+      type: "number" as const,
     },
     {
       name: "search",
       required: false,
-      type: "string" as const
+      type: "string" as const,
     },
     {
       name: "status",
       required: false,
-      type: "string" as const
-    }
+      type: "string" as const,
+    },
   ];
 
   // 路径参数示例
@@ -30,13 +33,13 @@ export default function ParameterGroupDemo() {
     {
       name: "userId",
       required: true,
-      type: "string" as const
+      type: "string" as const,
     },
     {
       name: "organizationId",
       required: true,
-      type: "string" as const
-    }
+      type: "string" as const,
+    },
   ];
 
   // 请求头参数示例
@@ -44,18 +47,18 @@ export default function ParameterGroupDemo() {
     {
       name: "Authorization",
       required: true,
-      type: "string" as const
+      type: "string" as const,
     },
     {
       name: "X-API-Version",
       required: false,
-      type: "string" as const
+      type: "string" as const,
     },
     {
       name: "X-Request-ID",
       required: false,
-      type: "string" as const
-    }
+      type: "string" as const,
+    },
   ];
 
   // Cookie 参数示例
@@ -63,13 +66,13 @@ export default function ParameterGroupDemo() {
     {
       name: "session_id",
       required: true,
-      type: "string" as const
+      type: "string" as const,
     },
     {
       name: "csrf_token",
       required: false,
-      type: "string" as const
-    }
+      type: "string" as const,
+    },
   ];
 
   return (
@@ -79,10 +82,7 @@ export default function ParameterGroupDemo() {
         <p className="text-xs text-neutral-600 dark:text-neutral-400 mb-3">
           用于筛选和分页的查询参数
         </p>
-        <ParameterGroup
-          inType="query"
-          parameters={queryParameters}
-        />
+        <ParameterGroup inType="query" parameters={queryParameters} />
       </div>
 
       <div>
@@ -90,10 +90,7 @@ export default function ParameterGroupDemo() {
         <p className="text-xs text-neutral-600 dark:text-neutral-400 mb-3">
           URL 路径中的必需参数
         </p>
-        <ParameterGroup
-          inType="path"
-          parameters={pathParameters}
-        />
+        <ParameterGroup inType="path" parameters={pathParameters} />
       </div>
 
       <div>
@@ -101,10 +98,7 @@ export default function ParameterGroupDemo() {
         <p className="text-xs text-neutral-600 dark:text-neutral-400 mb-3">
           HTTP 请求头中的参数
         </p>
-        <ParameterGroup
-          inType="header"
-          parameters={headerParameters}
-        />
+        <ParameterGroup inType="header" parameters={headerParameters} />
       </div>
 
       <div>
@@ -112,10 +106,7 @@ export default function ParameterGroupDemo() {
         <p className="text-xs text-neutral-600 dark:text-neutral-400 mb-3">
           Cookie 中传递的参数
         </p>
-        <ParameterGroup
-          inType="cookie"
-          parameters={cookieParameters}
-        />
+        <ParameterGroup inType="cookie" parameters={cookieParameters} />
       </div>
     </div>
   );

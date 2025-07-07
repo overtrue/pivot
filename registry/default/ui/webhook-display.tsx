@@ -1,4 +1,4 @@
-import type { OpenAPIV3 } from 'openapi-types';
+import type { OpenAPIV3 } from "openapi-types";
 import { cn } from "@/lib/utils";
 import React from "react";
 import { DescriptionDisplay } from "@/registry/default/ui/description-display";
@@ -91,8 +91,4 @@ const WebhookDisplay = React.forwardRef<HTMLDivElement, WebhookDisplayProps>(
 
 WebhookDisplay.displayName = "WebhookDisplay";
 
-export {
-  WebhookDisplay,
-  type WebhookDisplayProps
-};
-
+export { WebhookDisplay, type WebhookDisplayProps };

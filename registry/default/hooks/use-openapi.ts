@@ -1,6 +1,5 @@
-
 import { resolveRef } from "@/registry/default/lib/utils/resolve-ref";
-import type { OpenAPIV3 } from 'openapi-types';
+import type { OpenAPIV3 } from "openapi-types";
 import { useMemo } from "react";
 
 /**
@@ -39,7 +38,7 @@ export function useOpenApi(spec: OpenAPIV3.Document | null) {
     let type = resolvedSchema.type || "";
 
     // 处理数组类型
-    if (type === "array" && 'items' in resolvedSchema && resolvedSchema.items) {
+    if (type === "array" && "items" in resolvedSchema && resolvedSchema.items) {
       const itemType = getSchemaType(resolvedSchema.items);
       return `${type}<${itemType}>`;
     }
@@ -74,7 +73,10 @@ export function useOpenApi(spec: OpenAPIV3.Document | null) {
    * @returns 解析后的模式对象
    */
   const getRequestBodySchema = (
-    requestBody: OpenAPIV3.RequestBodyObject | OpenAPIV3.ReferenceObject | undefined,
+    requestBody:
+      | OpenAPIV3.RequestBodyObject
+      | OpenAPIV3.ReferenceObject
+      | undefined,
   ): OpenAPIV3.SchemaObject | null => {
     if (!requestBody) return null;
 
@@ -130,7 +132,11 @@ export function useOpenApi(spec: OpenAPIV3.Document | null) {
     }
 
     // 处理数组
-    if (resolvedSchema.type === "array" && 'items' in resolvedSchema && resolvedSchema.items) {
+    if (
+      resolvedSchema.type === "array" &&
+      "items" in resolvedSchema &&
+      resolvedSchema.items
+    ) {
       const itemsSchema = resolve<OpenAPIV3.SchemaObject>(
         resolvedSchema.items,
         "schemas",
@@ -160,13 +166,17 @@ export function useOpenApi(spec: OpenAPIV3.Document | null) {
    * @returns 按位置分组的参数
    */
   const processParameters = (
-    parameters: (OpenAPIV3.ParameterObject | OpenAPIV3.ReferenceObject)[] | undefined,
+    parameters:
+      | (OpenAPIV3.ParameterObject | OpenAPIV3.ReferenceObject)[]
+      | undefined,
   ) => {
     if (!parameters || parameters.length === 0) {
       return {};
     }
 
-    const result: { [key: string]: (OpenAPIV3.ParameterObject | OpenAPIV3.ReferenceObject)[] } = {
+    const result: {
+      [key: string]: (OpenAPIV3.ParameterObject | OpenAPIV3.ReferenceObject)[];
+    } = {
       path: [],
       query: [],
       header: [],
@@ -174,7 +184,10 @@ export function useOpenApi(spec: OpenAPIV3.Document | null) {
     };
 
     for (const param of parameters) {
-      const resolvedParam = resolve<OpenAPIV3.ParameterObject>(param, "parameters");
+      const resolvedParam = resolve<OpenAPIV3.ParameterObject>(
+        param,
+        "parameters",
+      );
       if (resolvedParam && resolvedParam.in) {
         const paramIn = resolvedParam.in as keyof typeof result;
         if (paramIn in result && result[paramIn]) {
@@ -196,7 +209,10 @@ export function useOpenApi(spec: OpenAPIV3.Document | null) {
   ) => {
     if (!response) return null;
 
-    const resolvedResponse = resolve<OpenAPIV3.ResponseObject>(response, "responses");
+    const resolvedResponse = resolve<OpenAPIV3.ResponseObject>(
+      response,
+      "responses",
+    );
     if (!resolvedResponse) return null;
 
     const result = {
@@ -288,9 +304,14 @@ export function useOpenApi(spec: OpenAPIV3.Document | null) {
     }
 
     const pathItem = spec.paths[path] as OpenAPIV3.PathItemObject;
-    const operation = pathItem[method.toLowerCase() as keyof OpenAPIV3.PathItemObject];
+    const operation =
+      pathItem[method.toLowerCase() as keyof OpenAPIV3.PathItemObject];
 
-    if (operation && typeof operation === "object" && "responses" in operation) {
+    if (
+      operation &&
+      typeof operation === "object" &&
+      "responses" in operation
+    ) {
       return operation as OpenAPIV3.OperationObject;
     }
 
@@ -314,16 +335,35 @@ export function useOpenApi(spec: OpenAPIV3.Document | null) {
       return {};
     }
 
-    const operations: { [tag: string]: Array<{ path: string; method: string; operation: OpenAPIV3.OperationObject }> } = {};
+    const operations: {
+      [tag: string]: Array<{
+        path: string;
+        method: string;
+        operation: OpenAPIV3.OperationObject;
+      }>;
+    } = {};
 
     Object.entries(spec.paths).forEach(([path, pathItem]) => {
       if (!pathItem || typeof pathItem !== "object") return;
 
-      const methods = ["get", "post", "put", "delete", "patch", "head", "options", "trace"];
+      const methods = [
+        "get",
+        "post",
+        "put",
+        "delete",
+        "patch",
+        "head",
+        "options",
+        "trace",
+      ];
 
       methods.forEach((method) => {
         const operation = pathItem[method as keyof OpenAPIV3.PathItemObject];
-        if (operation && typeof operation === "object" && "responses" in operation) {
+        if (
+          operation &&
+          typeof operation === "object" &&
+          "responses" in operation
+        ) {
           const op = operation as OpenAPIV3.OperationObject;
           const tags = op.tags || ["default"];
 

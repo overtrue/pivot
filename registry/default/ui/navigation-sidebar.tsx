@@ -1,18 +1,17 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "@/components/ui/collapsible";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 import { useI18n } from "@/registry/default/lib/i18n";
 import { MethodLabel } from "@/registry/default/ui/method-label";
-import {
-  ChevronRight,
-  Folder,
-  FolderOpen,
-  Search,
-} from "lucide-react";
-import type { OpenAPIV3 } from 'openapi-types';
+import { ChevronRight, Folder, FolderOpen, Search } from "lucide-react";
+import type { OpenAPIV3 } from "openapi-types";
 import React, { useState } from "react";
 
 // Import types from the centralized types file
@@ -26,17 +25,25 @@ interface NavigationSidebarProps {
   className?: string;
 }
 
-const NavigationSidebar = React.forwardRef<HTMLDivElement, NavigationSidebarProps>(
-  ({
-    openapi,
-    activePath = null,
-    activeMethod = null,
-    onSelectOperation = () => { },
-    onSelectSchema,
-    className,
-  }, ref) => {
+const NavigationSidebar = React.forwardRef<
+  HTMLDivElement,
+  NavigationSidebarProps
+>(
+  (
+    {
+      openapi,
+      activePath = null,
+      activeMethod = null,
+      onSelectOperation = () => {},
+      onSelectSchema,
+      className,
+    },
+    ref,
+  ) => {
     const { t } = useI18n();
-    const [collapsedTags, setCollapsedTags] = useState<Record<string, boolean>>({});
+    const [collapsedTags, setCollapsedTags] = useState<Record<string, boolean>>(
+      {},
+    );
     const [searchQuery, setSearchQuery] = useState("");
 
     const toggleTagCollapse = (tagName: string) => {
@@ -64,7 +71,10 @@ const NavigationSidebar = React.forwardRef<HTMLDivElement, NavigationSidebarProp
     const hasCustomTags = tags.length > 0;
 
     return (
-      <div ref={ref} className={cn("flex flex-col h-full w-full bg-background", className)}>
+      <div
+        ref={ref}
+        className={cn("flex flex-col h-full w-full bg-background", className)}
+      >
         {/* Header - Fixed */}
         <div className="flex-shrink-0 p-4 border-b bg-background">
           <h2 className="font-semibold text-sm">
@@ -97,7 +107,10 @@ const NavigationSidebar = React.forwardRef<HTMLDivElement, NavigationSidebarProp
             tags.map((tag) => {
               const isCollapsed = collapsedTags[tag.name];
               return (
-                <div key={tag.name} className="border-b border-border/50 last:border-b-0">
+                <div
+                  key={tag.name}
+                  className="border-b border-border/50 last:border-b-0"
+                >
                   {/* Sticky Tag Header */}
                   <div className="sticky top-0 z-10 bg-background/95 backdrop-blur-sm border-b border-border">
                     <Collapsible
@@ -115,12 +128,16 @@ const NavigationSidebar = React.forwardRef<HTMLDivElement, NavigationSidebarProp
                             ) : (
                               <FolderOpen className="h-4 w-4" />
                             )}
-                            <span className="text-sm font-medium">{tag.name}</span>
+                            <span className="text-sm font-medium">
+                              {tag.name}
+                            </span>
                           </div>
-                          <ChevronRight className={cn(
-                            "h-4 w-4 transition-transform",
-                            !isCollapsed && "rotate-90"
-                          )} />
+                          <ChevronRight
+                            className={cn(
+                              "h-4 w-4 transition-transform",
+                              !isCollapsed && "rotate-90",
+                            )}
+                          />
                         </Button>
                       </CollapsibleTrigger>
                     </Collapsible>
@@ -151,13 +168,20 @@ const NavigationSidebar = React.forwardRef<HTMLDivElement, NavigationSidebarProp
                               return operations
                                 .map(([method, operation]) => {
                                   // Type check: ensure operation is an OperationObject
-                                  if (typeof operation !== 'object' || !operation || Array.isArray(operation) || !('responses' in operation)) {
+                                  if (
+                                    typeof operation !== "object" ||
+                                    !operation ||
+                                    Array.isArray(operation) ||
+                                    !("responses" in operation)
+                                  ) {
                                     return null;
                                   }
 
                                   // Filter tags and search query
                                   if (
-                                    !(operation as any).tags?.includes(tag.name) ||
+                                    !(operation as any).tags?.includes(
+                                      tag.name,
+                                    ) ||
                                     !filterPaths(path, method, operation)
                                   ) {
                                     return null;
@@ -167,7 +191,7 @@ const NavigationSidebar = React.forwardRef<HTMLDivElement, NavigationSidebarProp
                                     activePath === path &&
                                     activeMethod !== null &&
                                     activeMethod.toUpperCase() ===
-                                    method.toUpperCase();
+                                      method.toUpperCase();
 
                                   return (
                                     <Button
@@ -182,7 +206,7 @@ const NavigationSidebar = React.forwardRef<HTMLDivElement, NavigationSidebarProp
                                       }
                                       className={cn(
                                         "w-full justify-between p-2 h-auto font-normal shadow-none",
-                                        isActive && "bg-muted"
+                                        isActive && "bg-muted",
                                       )}
                                     >
                                       <div className="flex flex-col items-start gap-1 flex-1 min-w-0">
@@ -196,7 +220,16 @@ const NavigationSidebar = React.forwardRef<HTMLDivElement, NavigationSidebarProp
                                         )}
                                       </div>
                                       <MethodLabel
-                                        method={method.toUpperCase() as "GET" | "POST" | "PUT" | "DELETE" | "PATCH" | "OPTIONS" | "HEAD"}
+                                        method={
+                                          method.toUpperCase() as
+                                            | "GET"
+                                            | "POST"
+                                            | "PUT"
+                                            | "DELETE"
+                                            | "PATCH"
+                                            | "OPTIONS"
+                                            | "HEAD"
+                                        }
                                         className="ml-2 flex-shrink-0"
                                         variant="compact"
                                       />
@@ -226,7 +259,12 @@ const NavigationSidebar = React.forwardRef<HTMLDivElement, NavigationSidebarProp
                   return operations
                     .map(([method, operation]) => {
                       // Type check: ensure operation is an OperationObject
-                      if (typeof operation !== 'object' || !operation || Array.isArray(operation) || !('responses' in operation)) {
+                      if (
+                        typeof operation !== "object" ||
+                        !operation ||
+                        Array.isArray(operation) ||
+                        !("responses" in operation)
+                      ) {
                         return null;
                       }
 
@@ -246,7 +284,7 @@ const NavigationSidebar = React.forwardRef<HTMLDivElement, NavigationSidebarProp
                           }
                           className={cn(
                             "w-full justify-between p-2 h-auto font-normal",
-                            isActive && "bg-muted"
+                            isActive && "bg-muted",
                           )}
                         >
                           <div className="flex flex-col items-start gap-1 flex-1 min-w-0">
@@ -260,7 +298,16 @@ const NavigationSidebar = React.forwardRef<HTMLDivElement, NavigationSidebarProp
                             )}
                           </div>
                           <MethodLabel
-                            method={method.toUpperCase() as "GET" | "POST" | "PUT" | "DELETE" | "PATCH" | "OPTIONS" | "HEAD"}
+                            method={
+                              method.toUpperCase() as
+                                | "GET"
+                                | "POST"
+                                | "PUT"
+                                | "DELETE"
+                                | "PATCH"
+                                | "OPTIONS"
+                                | "HEAD"
+                            }
                             className="ml-2 flex-shrink-0"
                             variant="compact"
                           />
@@ -279,8 +326,4 @@ const NavigationSidebar = React.forwardRef<HTMLDivElement, NavigationSidebarProp
 
 NavigationSidebar.displayName = "NavigationSidebar";
 
-export {
-  NavigationSidebar,
-  type NavigationSidebarProps
-};
-
+export { NavigationSidebar, type NavigationSidebarProps };

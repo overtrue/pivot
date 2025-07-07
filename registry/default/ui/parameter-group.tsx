@@ -3,7 +3,10 @@
 import { cn } from "@/lib/utils";
 import React from "react";
 import { RequiredMarker } from "@/registry/default/ui/required-marker";
-import { TypeIndicator, type DataType } from "@/registry/default/ui/type-indicator";
+import {
+  TypeIndicator,
+  type DataType,
+} from "@/registry/default/ui/type-indicator";
 import { ExpandCollapse } from "@/registry/default/ui/expand-collapse";
 
 interface Parameter {

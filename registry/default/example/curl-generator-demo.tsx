@@ -9,14 +9,14 @@ export default function CurlGeneratorDemo() {
         name: "page",
         in: "query" as const,
         required: false,
-        schema: { type: "integer" as const }
+        schema: { type: "integer" as const },
       },
       {
         name: "Authorization",
         in: "header" as const,
         required: true,
-        schema: { type: "string" as const }
-      }
+        schema: { type: "string" as const },
+      },
     ],
     requestBody: {
       content: {
@@ -25,17 +25,17 @@ export default function CurlGeneratorDemo() {
             type: "object" as const,
             properties: {
               name: { type: "string" as const },
-              email: { type: "string" as const }
-            }
-          }
-        }
+              email: { type: "string" as const },
+            },
+          },
+        },
       },
-      required: true
+      required: true,
     },
     requestBodyExample: {
       name: "张三",
-      email: "zhangsan@example.com"
-    }
+      email: "zhangsan@example.com",
+    },
   };
 
   return (

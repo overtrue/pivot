@@ -2,9 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "theme-toggle-demo",
   "type": "registry:example",
-  "registryDependencies": [
-    "https://pivotkit.vercel.app/r/theme-toggle.json"
-  ],
+  "registryDependencies": ["https://pivotkit.vercel.app/r/theme-toggle.json"],
   "files": [
     {
       "path": "registry/default/example/theme-toggle-demo.tsx",

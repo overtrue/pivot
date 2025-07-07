@@ -2,9 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "php-generator-demo",
   "type": "registry:example",
-  "registryDependencies": [
-    "https://pivotkit.vercel.app/r/php-generator.json"
-  ],
+  "registryDependencies": ["https://pivotkit.vercel.app/r/php-generator.json"],
   "files": [
     {
       "path": "registry/default/example/php-generator-demo.tsx",

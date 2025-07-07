@@ -7,7 +7,8 @@ export default function CallbackDisplayDemo() {
     "{$request.body#/notifyUrl}": {
       post: {
         summary: "支付完成通知",
-        description: "当支付完成时，第三方支付服务会向指定的 URL 发送支付完成通知",
+        description:
+          "当支付完成时，第三方支付服务会向指定的 URL 发送支付完成通知",
         requestBody: {
           description: "支付通知数据",
           content: {
@@ -19,52 +20,52 @@ export default function CallbackDisplayDemo() {
                   paymentId: {
                     type: "string",
                     description: "支付订单号",
-                    example: "pay_1234567890"
+                    example: "pay_1234567890",
                   },
                   orderId: {
                     type: "string",
                     description: "商户订单号",
-                    example: "order_abc123"
+                    example: "order_abc123",
                   },
                   status: {
                     type: "string",
                     enum: ["success", "failed", "pending"],
                     description: "支付状态",
-                    example: "success"
+                    example: "success",
                   },
                   amount: {
                     type: "number",
                     description: "支付金额（分）",
-                    example: 9999
+                    example: 9999,
                   },
                   currency: {
                     type: "string",
                     description: "货币代码",
-                    example: "CNY"
+                    example: "CNY",
                   },
                   timestamp: {
                     type: "string",
                     format: "date-time",
                     description: "支付完成时间",
-                    example: "2024-03-15T14:30:00Z"
+                    example: "2024-03-15T14:30:00Z",
                   },
                   signature: {
                     type: "string",
                     description: "数字签名，用于验证请求的真实性",
-                    example: "a1b2c3d4e5f6..."
-                  }
-                } as Record<string, OpenAPIV3.SchemaObject>
-              }
-            }
-          }
+                    example: "a1b2c3d4e5f6...",
+                  },
+                } as Record<string, OpenAPIV3.SchemaObject>,
+              },
+            },
+          },
         },
         responses: {
           "200": {
-            description: "支付通知处理成功"
-          }
-        }
-      }
-    }
+            description: "支付通知处理成功",
+          },
+        },
+      },
+    },
   };
 
   // 订单状态变更回调
@@ -84,54 +85,66 @@ export default function CallbackDisplayDemo() {
                   orderId: {
                     type: "string",
                     description: "订单 ID",
-                    example: "order_abc123"
+                    example: "order_abc123",
                   },
                   previousStatus: {
                     type: "string",
-                    enum: ["pending", "processing", "shipped", "delivered", "cancelled"],
+                    enum: [
+                      "pending",
+                      "processing",
+                      "shipped",
+                      "delivered",
+                      "cancelled",
+                    ],
                     description: "变更前状态",
-                    example: "processing"
+                    example: "processing",
                   },
                   status: {
                     type: "string",
-                    enum: ["pending", "processing", "shipped", "delivered", "cancelled"],
+                    enum: [
+                      "pending",
+                      "processing",
+                      "shipped",
+                      "delivered",
+                      "cancelled",
+                    ],
                     description: "当前状态",
-                    example: "shipped"
+                    example: "shipped",
                   },
                   trackingNumber: {
                     type: "string",
                     description: "物流追踪号（如果适用）",
-                    example: "SF1234567890"
+                    example: "SF1234567890",
                   },
                   carrier: {
                     type: "string",
                     description: "承运商",
-                    example: "顺丰速运"
+                    example: "顺丰速运",
                   },
                   updatedAt: {
                     type: "string",
                     format: "date-time",
                     description: "状态更新时间",
-                    example: "2024-03-16T10:15:00Z"
+                    example: "2024-03-16T10:15:00Z",
                   },
                   estimatedDelivery: {
                     type: "string",
                     format: "date-time",
                     description: "预计送达时间",
-                    example: "2024-03-17T18:00:00Z"
-                  }
-                } as Record<string, OpenAPIV3.SchemaObject>
-              }
-            }
-          }
+                    example: "2024-03-17T18:00:00Z",
+                  },
+                } as Record<string, OpenAPIV3.SchemaObject>,
+              },
+            },
+          },
         },
         responses: {
           "200": {
-            description: "状态更新处理成功"
-          }
-        }
-      }
-    }
+            description: "状态更新处理成功",
+          },
+        },
+      },
+    },
   };
 
   // 用户注册回调
@@ -151,48 +164,48 @@ export default function CallbackDisplayDemo() {
                   userId: {
                     type: "string",
                     description: "新注册用户的 ID",
-                    example: "user_new123456"
+                    example: "user_new123456",
                   },
                   email: {
                     type: "string",
                     format: "email",
                     description: "用户邮箱地址",
-                    example: "newuser@example.com"
+                    example: "newuser@example.com",
                   },
                   name: {
                     type: "string",
                     description: "用户姓名",
-                    example: "张三"
+                    example: "张三",
                   },
                   registrationTime: {
                     type: "string",
                     format: "date-time",
                     description: "注册完成时间",
-                    example: "2024-03-15T10:30:00Z"
+                    example: "2024-03-15T10:30:00Z",
                   },
                   source: {
                     type: "string",
                     enum: ["web", "mobile", "api"],
                     description: "注册来源",
-                    example: "web"
+                    example: "web",
                   },
                   emailVerified: {
                     type: "boolean",
                     description: "邮箱是否已验证",
-                    example: true
-                  }
-                } as Record<string, OpenAPIV3.SchemaObject>
-              }
-            }
-          }
+                    example: true,
+                  },
+                } as Record<string, OpenAPIV3.SchemaObject>,
+              },
+            },
+          },
         },
         responses: {
           "200": {
-            description: "注册通知处理成功"
-          }
-        }
-      }
-    }
+            description: "注册通知处理成功",
+          },
+        },
+      },
+    },
   };
 
   // 数据同步回调
@@ -212,46 +225,46 @@ export default function CallbackDisplayDemo() {
                   syncId: {
                     type: "string",
                     description: "同步任务 ID",
-                    example: "sync_task_789"
+                    example: "sync_task_789",
                   },
                   dataType: {
                     type: "string",
                     enum: ["users", "products", "orders", "inventory"],
                     description: "同步的数据类型",
-                    example: "products"
+                    example: "products",
                   },
                   status: {
                     type: "string",
                     enum: ["success", "failed", "partial"],
                     description: "同步状态",
-                    example: "success"
+                    example: "success",
                   },
                   recordsProcessed: {
                     type: "integer",
                     description: "处理的记录数",
-                    example: 1250
+                    example: 1250,
                   },
                   recordsSucceeded: {
                     type: "integer",
                     description: "成功处理的记录数",
-                    example: 1248
+                    example: 1248,
                   },
                   recordsFailed: {
                     type: "integer",
                     description: "处理失败的记录数",
-                    example: 2
+                    example: 2,
                   },
                   startedAt: {
                     type: "string",
                     format: "date-time",
                     description: "同步开始时间",
-                    example: "2024-03-15T02:00:00Z"
+                    example: "2024-03-15T02:00:00Z",
                   },
                   completedAt: {
                     type: "string",
                     format: "date-time",
                     description: "同步完成时间",
-                    example: "2024-03-15T02:15:30Z"
+                    example: "2024-03-15T02:15:30Z",
                   },
                   errors: {
                     type: "array",
@@ -260,22 +273,22 @@ export default function CallbackDisplayDemo() {
                       type: "object",
                       properties: {
                         recordId: { type: "string" },
-                        error: { type: "string" }
-                      } as Record<string, OpenAPIV3.SchemaObject>
-                    }
-                  }
-                } as Record<string, OpenAPIV3.SchemaObject>
-              }
-            }
-          }
+                        error: { type: "string" },
+                      } as Record<string, OpenAPIV3.SchemaObject>,
+                    },
+                  },
+                } as Record<string, OpenAPIV3.SchemaObject>,
+              },
+            },
+          },
         },
         responses: {
           "200": {
-            description: "同步通知处理成功"
-          }
-        }
-      }
-    }
+            description: "同步通知处理成功",
+          },
+        },
+      },
+    },
   };
 
   return (
@@ -303,10 +316,7 @@ export default function CallbackDisplayDemo() {
           callback={userRegistrationCallback}
         />
 
-        <CallbackDisplay
-          name="DataSync"
-          callback={dataSyncCallback}
-        />
+        <CallbackDisplay name="DataSync" callback={dataSyncCallback} />
       </div>
     </div>
   );

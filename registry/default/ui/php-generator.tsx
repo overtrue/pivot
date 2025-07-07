@@ -35,16 +35,17 @@ function call_${method.toLowerCase()}() {
         CURLOPT_URL => $url,
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_HTTPHEADER => $headers,
-        CURLOPT_CUSTOMREQUEST => "${method}",${["POST", "PUT", "PATCH"].includes(method) && requestBody
-        ? `
+        CURLOPT_CUSTOMREQUEST => "${method}",${
+          ["POST", "PUT", "PATCH"].includes(method) && requestBody
+            ? `
         CURLOPT_POSTFIELDS => json_encode(
 ${JSON.stringify(requestBodyExample, null, 4)
-          .split("\n")
-          .map((line) => "            " + replaceDoubleQuotes(line))
-          .join(",\n")}
+  .split("\n")
+  .map((line) => "            " + replaceDoubleQuotes(line))
+  .join(",\n")}
         ),`
-        : ""
-      }
+            : ""
+        }
     ]);
 
     $response = curl_exec($curl);
@@ -67,43 +68,40 @@ interface PhpGeneratorProps {
   className?: string;
 }
 
-const PhpGeneratorComponent = React.forwardRef<HTMLDivElement, PhpGeneratorProps>(
-  ({ params, className }, ref) => {
-    if (!params) {
-      return (
-        <div ref={ref} className={className}>
-          <div className="flex items-center gap-2 mb-2">
-            <Code2 size={16} />
-            <span className="font-medium">PHP</span>
-          </div>
-          <div className="bg-neutral-100 dark:bg-neutral-800 p-4 rounded-md text-neutral-500 dark:text-neutral-400">
-            No parameters provided for code generation
-          </div>
-        </div>
-      );
-    }
-
-    const generator = new PhpGeneratorClass();
-    const code = generator.generateCode(params);
-
+const PhpGeneratorComponent = React.forwardRef<
+  HTMLDivElement,
+  PhpGeneratorProps
+>(({ params, className }, ref) => {
+  if (!params) {
     return (
       <div ref={ref} className={className}>
         <div className="flex items-center gap-2 mb-2">
-          {generator.getIcon()}
-          <span className="font-medium">{generator.label}</span>
+          <Code2 size={16} />
+          <span className="font-medium">PHP</span>
         </div>
-        <pre className="bg-neutral-100 dark:bg-neutral-800 p-4 rounded-md overflow-x-auto">
-          <code className="text-sm language-php">{code}</code>
-        </pre>
+        <div className="bg-neutral-100 dark:bg-neutral-800 p-4 rounded-md text-neutral-500 dark:text-neutral-400">
+          No parameters provided for code generation
+        </div>
       </div>
     );
-  },
-);
+  }
+
+  const generator = new PhpGeneratorClass();
+  const code = generator.generateCode(params);
+
+  return (
+    <div ref={ref} className={className}>
+      <div className="flex items-center gap-2 mb-2">
+        {generator.getIcon()}
+        <span className="font-medium">{generator.label}</span>
+      </div>
+      <pre className="bg-neutral-100 dark:bg-neutral-800 p-4 rounded-md overflow-x-auto">
+        <code className="text-sm language-php">{code}</code>
+      </pre>
+    </div>
+  );
+});
 
 PhpGeneratorComponent.displayName = "PhpGenerator";
 
-export {
-  PhpGeneratorComponent as PhpGenerator,
-  type PhpGeneratorProps
-};
-
+export { PhpGeneratorComponent as PhpGenerator, type PhpGeneratorProps };

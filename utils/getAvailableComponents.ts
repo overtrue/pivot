@@ -1,4 +1,4 @@
-import type { OpenAPIV3 } from 'openapi-types';
+import type { OpenAPIV3 } from "openapi-types";
 import { OpenApiComponentType } from "@/registry/pivot/component-tabs";
 
 /**
@@ -6,7 +6,9 @@ import { OpenApiComponentType } from "@/registry/pivot/component-tabs";
  * @param components OpenAPI组件对象
  * @returns 组件类型到其项目名称数组的映射
  */
-export const getAvailableComponents = (components: OpenAPIV3.ComponentsObject) => {
+export const getAvailableComponents = (
+  components: OpenAPIV3.ComponentsObject,
+) => {
   const available: Partial<Record<OpenApiComponentType, string[]>> = {};
 
   for (const key in components) {

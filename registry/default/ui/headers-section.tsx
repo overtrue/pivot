@@ -2,7 +2,7 @@
 
 import { cn } from "@/lib/utils";
 import { useI18n } from "@/registry/default/lib/i18n";
-import type { OpenAPIV3 } from 'openapi-types';
+import type { OpenAPIV3 } from "openapi-types";
 
 import { resolveRef } from "@/registry/default/lib/utils/resolve-ref";
 import { HeaderItem } from "@/registry/default/ui/header-item";
@@ -48,8 +48,8 @@ const HeadersSection = React.forwardRef<HTMLDivElement, HeadersSectionProps>(
             if (!header) {
               const refString =
                 headerOrRef &&
-                  typeof headerOrRef === "object" &&
-                  "$ref" in headerOrRef
+                typeof headerOrRef === "object" &&
+                "$ref" in headerOrRef
                   ? (headerOrRef as OpenAPIV3.ReferenceObject).$ref
                   : t("[unknown reference]");
               console.warn(
@@ -90,4 +90,3 @@ const HeadersSection = React.forwardRef<HTMLDivElement, HeadersSectionProps>(
 HeadersSection.displayName = "HeadersSection";
 
 export { HeadersSection, type HeadersSectionProps };
-

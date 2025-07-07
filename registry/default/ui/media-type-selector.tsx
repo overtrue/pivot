@@ -24,7 +24,7 @@ const MediaTypeSelector = React.forwardRef<
   const handleClick = (e: React.MouseEvent, mediaType: string) => {
     e.preventDefault();
     e.stopPropagation();
-    console.log(t('Switching media type to: %s').replace('%s', mediaType));
+    console.log(t("Switching media type to: %s").replace("%s", mediaType));
     onSelectMediaType(mediaType);
   };
 

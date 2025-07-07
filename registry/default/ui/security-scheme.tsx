@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils";
 import { DescriptionDisplay } from "@/registry/default/ui/description-display";
 import { SchemeType } from "@/registry/default/ui/scheme-type";
-import type { OpenAPIV3 } from 'openapi-types';
+import type { OpenAPIV3 } from "openapi-types";
 import React from "react";
 
 // Import types from the centralized types file
@@ -14,18 +14,17 @@ interface SecuritySchemeProps {
 
 const SecurityScheme = React.forwardRef<HTMLDivElement, SecuritySchemeProps>(
   ({ name, scheme, className }, ref) => {
-    const {
-      type,
-      description,
-    } = scheme;
+    const { type, description } = scheme;
 
     // Access type-specific properties safely
-    const paramIn = 'in' in scheme ? scheme.in : undefined;
-    const apiKeyName = 'name' in scheme ? scheme.name : undefined;
-    const httpScheme = 'scheme' in scheme ? scheme.scheme : undefined;
-    const bearerFormat = 'bearerFormat' in scheme ? scheme.bearerFormat : undefined;
-    const flows = 'flows' in scheme ? scheme.flows : undefined;
-    const openIdConnectUrl = 'openIdConnectUrl' in scheme ? scheme.openIdConnectUrl : undefined;
+    const paramIn = "in" in scheme ? scheme.in : undefined;
+    const apiKeyName = "name" in scheme ? scheme.name : undefined;
+    const httpScheme = "scheme" in scheme ? scheme.scheme : undefined;
+    const bearerFormat =
+      "bearerFormat" in scheme ? scheme.bearerFormat : undefined;
+    const flows = "flows" in scheme ? scheme.flows : undefined;
+    const openIdConnectUrl =
+      "openIdConnectUrl" in scheme ? scheme.openIdConnectUrl : undefined;
 
     // OAuth2流类型的渲染
     const renderOAuth2Flows = (flows?: any) => {
@@ -82,14 +81,17 @@ const SecurityScheme = React.forwardRef<HTMLDivElement, SecuritySchemeProps>(
                   <div>
                     <span className="font-semibold">Scopes:</span>
                     <ul className="list-disc list-inside ml-4 mt-1">
-                      {(Object.entries((flow as any).scopes) as [string, string][]).map(
-                        ([scope, description]) => (
-                          <li key={scope} className="text-sm">
-                            <code className="font-mono">{scope}</code>
-                            {description && `: ${description}`}
-                          </li>
-                        ),
-                      )}
+                      {(
+                        Object.entries((flow as any).scopes) as [
+                          string,
+                          string,
+                        ][]
+                      ).map(([scope, description]) => (
+                        <li key={scope} className="text-sm">
+                          <code className="font-mono">{scope}</code>
+                          {description && `: ${description}`}
+                        </li>
+                      ))}
                     </ul>
                   </div>
                 )}
@@ -184,4 +186,3 @@ const SecurityScheme = React.forwardRef<HTMLDivElement, SecuritySchemeProps>(
 SecurityScheme.displayName = "SecurityScheme";
 
 export { SecurityScheme };
-

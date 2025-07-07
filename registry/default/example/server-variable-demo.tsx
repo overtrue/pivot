@@ -7,8 +7,8 @@ export default function ServerVariableDemo() {
     variable: {
       default: "v1",
       description: "API 版本号，支持多个版本并行",
-      enum: ["v1", "v2", "v3", "beta"]
-    }
+      enum: ["v1", "v2", "v3", "beta"],
+    },
   };
 
   // 环境变量
@@ -17,8 +17,8 @@ export default function ServerVariableDemo() {
     variable: {
       default: "prod",
       description: "部署环境标识符，用于区分不同的运行环境",
-      enum: ["prod", "staging", "dev", "test"]
-    }
+      enum: ["prod", "staging", "dev", "test"],
+    },
   };
 
   // 区域变量
@@ -27,8 +27,15 @@ export default function ServerVariableDemo() {
     variable: {
       default: "us-east",
       description: "服务器区域，自动选择最近的数据中心以获得最佳性能",
-      enum: ["us-east", "us-west", "eu-west", "eu-central", "ap-southeast", "ap-northeast"]
-    }
+      enum: [
+        "us-east",
+        "us-west",
+        "eu-west",
+        "eu-central",
+        "ap-southeast",
+        "ap-northeast",
+      ],
+    },
   };
 
   // 服务名称变量
@@ -37,8 +44,15 @@ export default function ServerVariableDemo() {
     variable: {
       default: "user",
       description: "微服务名称，用于微服务架构中的服务路由",
-      enum: ["user", "product", "order", "payment", "notification", "analytics"]
-    }
+      enum: [
+        "user",
+        "product",
+        "order",
+        "payment",
+        "notification",
+        "analytics",
+      ],
+    },
   };
 
   // 端口变量
@@ -46,8 +60,8 @@ export default function ServerVariableDemo() {
     name: "port",
     variable: {
       default: "3000",
-      description: "服务器端口号，可根据部署环境进行配置"
-    }
+      description: "服务器端口号，可根据部署环境进行配置",
+    },
   };
 
   // 租户变量
@@ -55,8 +69,8 @@ export default function ServerVariableDemo() {
     name: "tenant",
     variable: {
       default: "demo",
-      description: "企业租户标识符，用于多租户 SaaS 平台的租户隔离"
-    }
+      description: "企业租户标识符，用于多租户 SaaS 平台的租户隔离",
+    },
   };
 
   // 协议变量
@@ -65,8 +79,8 @@ export default function ServerVariableDemo() {
     variable: {
       default: "https",
       description: "通信协议，生产环境建议使用 HTTPS",
-      enum: ["http", "https", "ws", "wss"]
-    }
+      enum: ["http", "https", "ws", "wss"],
+    },
   };
 
   // 集群变量
@@ -75,8 +89,8 @@ export default function ServerVariableDemo() {
     variable: {
       default: "primary",
       description: "集群标识符，用于负载均衡和高可用部署",
-      enum: ["primary", "secondary", "backup"]
-    }
+      enum: ["primary", "secondary", "backup"],
+    },
   };
 
   // 数据中心变量
@@ -85,8 +99,8 @@ export default function ServerVariableDemo() {
     variable: {
       default: "dc1",
       description: "数据中心标识符，用于多数据中心部署和灾备",
-      enum: ["dc1", "dc2", "dc3"]
-    }
+      enum: ["dc1", "dc2", "dc3"],
+    },
   };
 
   // 子域名变量
@@ -95,8 +109,8 @@ export default function ServerVariableDemo() {
     variable: {
       default: "api",
       description: "子域名前缀，用于不同服务的域名区分",
-      enum: ["api", "admin", "cdn", "ws", "static"]
-    }
+      enum: ["api", "admin", "cdn", "ws", "static"],
+    },
   };
 
   // 语言变量
@@ -105,8 +119,8 @@ export default function ServerVariableDemo() {
     variable: {
       default: "en",
       description: "API 响应语言，支持国际化多语言响应",
-      enum: ["en", "zh", "ja", "ko", "es", "fr", "de"]
-    }
+      enum: ["en", "zh", "ja", "ko", "es", "fr", "de"],
+    },
   };
 
   // 格式变量
@@ -115,8 +129,8 @@ export default function ServerVariableDemo() {
     variable: {
       default: "json",
       description: "响应数据格式，支持多种数据交换格式",
-      enum: ["json", "xml", "yaml", "csv"]
-    }
+      enum: ["json", "xml", "yaml", "csv"],
+    },
   };
 
   return (

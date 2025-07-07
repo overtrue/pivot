@@ -4,7 +4,7 @@ export default function ContactDisplayDemo() {
   const contact = {
     name: "API Support Team",
     email: "support@example.com",
-    url: "https://example.com/support"
+    url: "https://example.com/support",
   };
 
   return (

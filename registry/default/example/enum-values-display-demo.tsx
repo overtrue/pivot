@@ -9,16 +9,11 @@ export default function EnumValuesDisplayDemo() {
     "shipped",
     "delivered",
     "cancelled",
-    "refunded"
+    "refunded",
   ];
 
   // 用户角色枚举
-  const userRoleEnum = [
-    "admin",
-    "moderator",
-    "user",
-    "guest"
-  ];
+  const userRoleEnum = ["admin", "moderator", "user", "guest"];
 
   // 支付方式枚举
   const paymentMethodEnum = [
@@ -28,7 +23,7 @@ export default function EnumValuesDisplayDemo() {
     "apple_pay",
     "google_pay",
     "bank_transfer",
-    "cash_on_delivery"
+    "cash_on_delivery",
   ];
 
   // 产品分类枚举
@@ -39,7 +34,7 @@ export default function EnumValuesDisplayDemo() {
     "home_garden",
     "sports_outdoors",
     "health_beauty",
-    "toys_games"
+    "toys_games",
   ];
 
   // 文件类型枚举
@@ -51,17 +46,11 @@ export default function EnumValuesDisplayDemo() {
     "application/pdf",
     "text/plain",
     "application/json",
-    "application/xml"
+    "application/xml",
   ];
 
   // 优先级枚举
-  const priorityEnum = [
-    "low",
-    "medium",
-    "high",
-    "urgent",
-    "critical"
-  ];
+  const priorityEnum = ["low", "medium", "high", "urgent", "critical"];
 
   // 语言代码枚举
   const languageEnum = [
@@ -72,20 +61,11 @@ export default function EnumValuesDisplayDemo() {
     "fr-FR",
     "de-DE",
     "es-ES",
-    "pt-BR"
+    "pt-BR",
   ];
 
   // 货币代码枚举
-  const currencyEnum = [
-    "USD",
-    "EUR",
-    "GBP",
-    "JPY",
-    "CNY",
-    "KRW",
-    "CAD",
-    "AUD"
-  ];
+  const currencyEnum = ["USD", "EUR", "GBP", "JPY", "CNY", "KRW", "CAD", "AUD"];
 
   // 时区枚举
   const timezoneEnum = [
@@ -96,7 +76,7 @@ export default function EnumValuesDisplayDemo() {
     "Europe/Paris",
     "Asia/Tokyo",
     "Asia/Shanghai",
-    "Asia/Seoul"
+    "Asia/Seoul",
   ];
 
   // HTTP 方法枚举
@@ -107,19 +87,11 @@ export default function EnumValuesDisplayDemo() {
     "PATCH",
     "DELETE",
     "HEAD",
-    "OPTIONS"
+    "OPTIONS",
   ];
 
   // 数据格式枚举
-  const dataFormatEnum = [
-    "json",
-    "xml",
-    "csv",
-    "xlsx",
-    "pdf",
-    "html",
-    "yaml"
-  ];
+  const dataFormatEnum = ["json", "xml", "csv", "xlsx", "pdf", "html", "yaml"];
 
   // 通知类型枚举
   const notificationTypeEnum = [
@@ -127,7 +99,7 @@ export default function EnumValuesDisplayDemo() {
     "sms",
     "push_notification",
     "in_app",
-    "webhook"
+    "webhook",
   ];
 
   return (

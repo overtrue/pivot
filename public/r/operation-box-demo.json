@@ -2,12 +2,8 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "operation-box-demo",
   "type": "registry:example",
-  "dependencies": [
-    "openapi-types"
-  ],
-  "registryDependencies": [
-    "https://pivotkit.vercel.app/r/operation-box.json"
-  ],
+  "dependencies": ["openapi-types"],
+  "registryDependencies": ["https://pivotkit.vercel.app/r/operation-box.json"],
   "files": [
     {
       "path": "registry/default/example/operation-box-demo.tsx",

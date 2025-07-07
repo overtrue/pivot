@@ -1,5 +1,5 @@
 import { cn } from "@/lib/utils";
-import type { OpenAPIV3 } from 'openapi-types';
+import type { OpenAPIV3 } from "openapi-types";
 import React from "react";
 import { SectionTitle } from "@/registry/default/ui/section-title";
 import { Server } from "@/registry/default/ui/server";

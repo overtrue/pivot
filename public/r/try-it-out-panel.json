@@ -2,11 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "try-it-out-panel",
   "type": "registry:ui",
-  "dependencies": [
-    "lucide-react",
-    "openapi-types",
-    "react"
-  ],
+  "dependencies": ["lucide-react", "openapi-types", "react"],
   "registryDependencies": [
     "https://pivotkit.vercel.app/r/i18n.json",
     "https://pivotkit.vercel.app/r/resolve-ref.json",

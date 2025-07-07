@@ -2,9 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "in-label-demo",
   "type": "registry:example",
-  "registryDependencies": [
-    "https://pivotkit.vercel.app/r/in-label.json"
-  ],
+  "registryDependencies": ["https://pivotkit.vercel.app/r/in-label.json"],
   "files": [
     {
       "path": "registry/default/example/in-label-demo.tsx",

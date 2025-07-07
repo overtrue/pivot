@@ -2,9 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "webhook-label-demo",
   "type": "registry:example",
-  "registryDependencies": [
-    "https://pivotkit.vercel.app/r/webhook-label.json"
-  ],
+  "registryDependencies": ["https://pivotkit.vercel.app/r/webhook-label.json"],
   "files": [
     {
       "path": "registry/default/example/webhook-label-demo.tsx",

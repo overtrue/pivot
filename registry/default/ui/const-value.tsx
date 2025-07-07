@@ -19,7 +19,7 @@ const ConstValue = React.forwardRef<HTMLDivElement, ConstValueProps>(
         {/* <CopyButton text={stringValue} /> */}
       </div>
     );
-  }
+  },
 );
 
 ConstValue.displayName = "ConstValue";

@@ -12,7 +12,7 @@ export default async function Hero() {
   const post = allDocs
     .filter(
       (post) =>
-        post.date && post.date <= new Date().toISOString() && post.published
+        post.date && post.date <= new Date().toISOString() && post.published,
     )
     .sort((a, b) => {
       if (!a.date && !b.date) return 0;
@@ -35,7 +35,7 @@ export default async function Hero() {
                       variant: "outline",
                       size: "sm",
                     }),
-                    "rounded-full"
+                    "rounded-full",
                   )}
                 >
                   🎉 <Separator className="mx-2 h-4" orientation="vertical" />
@@ -49,7 +49,7 @@ export default async function Hero() {
                     "text-black dark:text-white",
                     "relative mx-0 max-w-[43.5rem] pt-5 md:mx-auto md:px-4 md:py-2",
                     "text-balance text-left font-semibold tracking-tighter md:text-center",
-                    "text-5xl sm:text-7xl md:text-7xl lg:text-7xl"
+                    "text-5xl sm:text-7xl md:text-7xl lg:text-7xl",
                   )}
                 >
                   专为 OpenAPI 设计的 UI 组件库
@@ -57,8 +57,9 @@ export default async function Hero() {
               </div>
 
               <p className="max-w-xl text-balance text-left text-base tracking-tight text-black dark:font-medium dark:text-white md:text-center md:text-lg">
-                现代化的 React UI 组件库，专门为 <b>OpenAPI</b> 规范设计。
-                使用 <b>React</b>、<b>TypeScript</b>、<b>Tailwind CSS</b> 和 <b>Motion</b> 构建。
+                现代化的 React UI 组件库，专门为 <b>OpenAPI</b> 规范设计。 使用{" "}
+                <b>React</b>、<b>TypeScript</b>、<b>Tailwind CSS</b> 和{" "}
+                <b>Motion</b> 构建。
                 <br />
                 完美兼容 <b>shadcn/ui</b> 生态系统。
               </p>
@@ -72,7 +73,7 @@ export default async function Hero() {
                         variant: "default",
                         size: "lg",
                       }),
-                      "w-full gap-2"
+                      "w-full gap-2",
                     )}
                   >
                     查看文档
@@ -85,7 +86,7 @@ export default async function Hero() {
                         size: "lg",
                         variant: "outline",
                       }),
-                      "w-full gap-2"
+                      "w-full gap-2",
                     )}
                   >
                     浏览组件

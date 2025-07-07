@@ -229,7 +229,7 @@ const statusCodeVariants = cva(
       variant: "default",
       size: "md",
     },
-  }
+  },
 );
 ```
 
@@ -248,7 +248,7 @@ export function useOpenApi(spec: OpenAPIV3.Document | null) {
   const resolve = useMemo(() => {
     return function resolve<T>(
       obj: T | OpenAPIV3.ReferenceObject,
-      category?: string
+      category?: string,
     ): T | null {
       return resolveRef<T>(obj, components, category);
     };
@@ -279,13 +279,13 @@ function ApiEndpoint({ spec, path, method }) {
   const operation = useOperation(
     openApi.getOperation(path, method),
     path,
-    method
+    method,
   );
 
   // 模式 Hook
   const requestSchema = useSchema(
     operation.getRequestBody()?.content?.["application/json"]?.schema,
-    openApi.getComponents()
+    openApi.getComponents(),
   );
 
   return <div>{/* 使用组合的数据 */}</div>;
@@ -375,7 +375,7 @@ export const useI18n = (): I18nContextProps => {
 // 懒加载重型组件
 const TryItOutPanel = dynamic(
   () => import("@/components/pivot/try-it-out-panel"),
-  { loading: () => <div>Loading...</div> }
+  { loading: () => <div>Loading...</div> },
 );
 ```
 

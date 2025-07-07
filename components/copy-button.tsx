@@ -16,7 +16,9 @@ import {
 import { Event, trackEvent } from "@/lib/events";
 import { cn } from "@/lib/utils";
 
-interface CopyButtonProps extends React.ComponentProps<"button">, VariantProps<typeof buttonVariants> {
+interface CopyButtonProps
+  extends React.ComponentProps<"button">,
+    VariantProps<typeof buttonVariants> {
   value: string;
   src: string;
   event?: Event["name"];
@@ -58,12 +60,12 @@ export function CopyButton({
           value,
           event
             ? {
-              name: event,
-              properties: {
-                name: src,
-                code: value,
-              },
-            }
+                name: event,
+                properties: {
+                  name: src,
+                  code: value,
+                },
+              }
             : undefined,
         );
         setHasCopied(true);

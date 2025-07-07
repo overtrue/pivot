@@ -10,8 +10,8 @@ export default function TypescriptGeneratorDemo() {
         name: "X-API-Key",
         in: "header" as const,
         required: true,
-        schema: { type: "string" as const }
-      }
+        schema: { type: "string" as const },
+      },
     ],
     requestBodyExample: {
       email: "john.doe@example.com",
@@ -19,8 +19,8 @@ export default function TypescriptGeneratorDemo() {
       age: 28,
       preferences: {
         theme: "dark",
-        notifications: true
-      }
+        notifications: true,
+      },
     },
     requestBody: {
       content: {
@@ -36,15 +36,15 @@ export default function TypescriptGeneratorDemo() {
                 type: "object" as const,
                 properties: {
                   theme: { type: "string" as const, enum: ["light", "dark"] },
-                  notifications: { type: "boolean" as const }
-                }
-              }
-            }
-          }
-        }
+                  notifications: { type: "boolean" as const },
+                },
+              },
+            },
+          },
+        },
       },
-      required: true
-    }
+      required: true,
+    },
   };
 
   // 用户列表查询 API 示例
@@ -56,19 +56,24 @@ export default function TypescriptGeneratorDemo() {
         name: "page",
         in: "query" as const,
         required: false,
-        schema: { type: "integer" as const, minimum: 1, default: 1 }
+        schema: { type: "integer" as const, minimum: 1, default: 1 },
       },
       {
         name: "limit",
         in: "query" as const,
         required: false,
-        schema: { type: "integer" as const, minimum: 1, maximum: 100, default: 20 }
+        schema: {
+          type: "integer" as const,
+          minimum: 1,
+          maximum: 100,
+          default: 20,
+        },
       },
       {
         name: "search",
         in: "query" as const,
         required: false,
-        schema: { type: "string" as const }
+        schema: { type: "string" as const },
       },
       {
         name: "status",
@@ -76,18 +81,21 @@ export default function TypescriptGeneratorDemo() {
         required: false,
         schema: {
           type: "array" as const,
-          items: { type: "string" as const, enum: ["active", "inactive", "pending"] }
-        }
+          items: {
+            type: "string" as const,
+            enum: ["active", "inactive", "pending"],
+          },
+        },
       },
       {
         name: "Authorization",
         in: "header" as const,
         required: true,
-        schema: { type: "string" as const }
-      }
+        schema: { type: "string" as const },
+      },
     ],
     requestBodyExample: null,
-    requestBody: undefined
+    requestBody: undefined,
   };
 
   // 文件上传 API 示例
@@ -99,21 +107,21 @@ export default function TypescriptGeneratorDemo() {
         name: "folderId",
         in: "query" as const,
         required: false,
-        schema: { type: "string" as const }
+        schema: { type: "string" as const },
       },
       {
         name: "X-Upload-Token",
         in: "header" as const,
         required: true,
-        schema: { type: "string" as const }
-      }
+        schema: { type: "string" as const },
+      },
     ],
     requestBodyExample: {
       file: "binary_data_here",
       title: "Important Document",
       description: "This is an important business document",
       tags: ["business", "important"],
-      isPublic: false
+      isPublic: false,
     },
     requestBody: {
       content: {
@@ -125,14 +133,17 @@ export default function TypescriptGeneratorDemo() {
               file: { type: "string" as const, format: "binary" },
               title: { type: "string" as const },
               description: { type: "string" as const },
-              tags: { type: "array" as const, items: { type: "string" as const } },
-              isPublic: { type: "boolean" as const, default: false }
-            }
-          }
-        }
+              tags: {
+                type: "array" as const,
+                items: { type: "string" as const },
+              },
+              isPublic: { type: "boolean" as const, default: false },
+            },
+          },
+        },
       },
-      required: true
-    }
+      required: true,
+    },
   };
 
   // 用户更新 API 示例
@@ -144,19 +155,19 @@ export default function TypescriptGeneratorDemo() {
         name: "userId",
         in: "path" as const,
         required: true,
-        schema: { type: "string" as const, format: "uuid" as const }
+        schema: { type: "string" as const, format: "uuid" as const },
       },
       {
         name: "Authorization",
         in: "header" as const,
         required: true,
-        schema: { type: "string" as const }
-      }
+        schema: { type: "string" as const },
+      },
     ],
     requestBodyExample: {
       name: "John Smith",
       age: 29,
-      status: "active"
+      status: "active",
     },
     requestBody: {
       content: {
@@ -166,13 +177,16 @@ export default function TypescriptGeneratorDemo() {
             properties: {
               name: { type: "string" as const },
               age: { type: "integer" as const, minimum: 0 },
-              status: { type: "string" as const, enum: ["active", "inactive", "pending"] }
-            }
-          }
-        }
+              status: {
+                type: "string" as const,
+                enum: ["active", "inactive", "pending"],
+              },
+            },
+          },
+        },
       },
-      required: true
-    }
+      required: true,
+    },
   };
 
   // 批量删除 API 示例
@@ -184,15 +198,15 @@ export default function TypescriptGeneratorDemo() {
         name: "Authorization",
         in: "header" as const,
         required: true,
-        schema: { type: "string" as const }
-      }
+        schema: { type: "string" as const },
+      },
     ],
     requestBodyExample: {
       userIds: [
         "123e4567-e89b-12d3-a456-426614174000",
-        "987fcdeb-51d2-43a8-b456-426614174001"
+        "987fcdeb-51d2-43a8-b456-426614174001",
       ],
-      reason: "Account cleanup"
+      reason: "Account cleanup",
     },
     requestBody: {
       content: {
@@ -205,15 +219,15 @@ export default function TypescriptGeneratorDemo() {
                 type: "array" as const,
                 items: { type: "string" as const, format: "uuid" as const },
                 minItems: 1,
-                maxItems: 100
+                maxItems: 100,
               },
-              reason: { type: "string" as const }
-            }
-          }
-        }
+              reason: { type: "string" as const },
+            },
+          },
+        },
       },
-      required: true
-    }
+      required: true,
+    },
   };
 
   return (

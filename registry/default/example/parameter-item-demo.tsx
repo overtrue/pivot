@@ -1,4 +1,7 @@
-import { ParameterItem, type ParameterItemProps } from "@/registry/default/ui/parameter-item";
+import {
+  ParameterItem,
+  type ParameterItemProps,
+} from "@/registry/default/ui/parameter-item";
 
 export default function ParameterItemDemo() {
   // 真实的 API 参数示例
@@ -10,8 +13,8 @@ export default function ParameterItemDemo() {
     schema: {
       type: "string" as const,
       format: "uuid" as const,
-      example: "123e4567-e89b-12d3-a456-426614174000"
-    }
+      example: "123e4567-e89b-12d3-a456-426614174000",
+    },
   };
 
   const limitParam: ParameterItemProps = {
@@ -23,8 +26,8 @@ export default function ParameterItemDemo() {
       type: "number" as const,
       minimum: 1,
       maximum: 100,
-      default: 20
-    }
+      default: 20,
+    },
   };
 
   const apiKeyParam: ParameterItemProps = {
@@ -34,8 +37,8 @@ export default function ParameterItemDemo() {
     description: "API 访问密钥",
     schema: {
       type: "string" as const,
-      pattern: "^[a-zA-Z0-9]{32}$"
-    }
+      pattern: "^[a-zA-Z0-9]{32}$",
+    },
   };
 
   const statusParam: ParameterItemProps = {
@@ -46,8 +49,8 @@ export default function ParameterItemDemo() {
     schema: {
       type: "string" as const,
       enum: ["active", "inactive", "pending"],
-      default: "active"
-    }
+      default: "active",
+    },
   };
 
   const deprecatedParam: ParameterItemProps = {
@@ -58,8 +61,8 @@ export default function ParameterItemDemo() {
     description: "旧版本的格式参数，请使用 format 参数代替",
     schema: {
       type: "boolean" as const,
-      default: false
-    }
+      default: false,
+    },
   };
 
   return (

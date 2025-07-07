@@ -1,5 +1,5 @@
 import { Codegen } from "@/registry/default/ui/codegen";
-import type { OpenAPIV3 } from 'openapi-types';
+import type { OpenAPIV3 } from "openapi-types";
 
 export default function CodegenDemo() {
   // 真实的 API 示例数据
@@ -11,7 +11,7 @@ export default function CodegenDemo() {
         name: "userId",
         in: "path" as const,
         required: true,
-        schema: { type: "string", format: "uuid" } as OpenAPIV3.SchemaObject
+        schema: { type: "string", format: "uuid" } as OpenAPIV3.SchemaObject,
       },
       {
         name: "include",
@@ -21,17 +21,17 @@ export default function CodegenDemo() {
           type: "array",
           items: {
             type: "string",
-            enum: ["profile", "permissions", "preferences"]
-          }
-        } as OpenAPIV3.SchemaObject
+            enum: ["profile", "permissions", "preferences"],
+          },
+        } as OpenAPIV3.SchemaObject,
       },
       {
         name: "X-API-Key",
         in: "header" as const,
         required: true,
-        schema: { type: "string" } as OpenAPIV3.SchemaObject
-      }
-    ]
+        schema: { type: "string" } as OpenAPIV3.SchemaObject,
+      },
+    ],
   };
 
   const createUserEndpoint = {
@@ -42,8 +42,8 @@ export default function CodegenDemo() {
         name: "X-API-Key",
         in: "header" as const,
         required: true,
-        schema: { type: "string" } as OpenAPIV3.SchemaObject
-      }
+        schema: { type: "string" } as OpenAPIV3.SchemaObject,
+      },
     ],
     requestBody: {
       required: true,
@@ -55,17 +55,17 @@ export default function CodegenDemo() {
             properties: {
               email: {
                 type: "string",
-                format: "email"
+                format: "email",
               },
               name: {
                 type: "string",
                 minLength: 1,
-                maxLength: 100
+                maxLength: 100,
               },
               age: {
                 type: "integer",
                 minimum: 0,
-                maximum: 150
+                maximum: 150,
               },
               preferences: {
                 type: "object",
@@ -73,19 +73,19 @@ export default function CodegenDemo() {
                   theme: {
                     type: "string",
                     enum: ["light", "dark"],
-                    default: "light"
+                    default: "light",
                   },
                   notifications: {
                     type: "boolean",
-                    default: true
-                  }
-                }
-              }
-            }
-          } as OpenAPIV3.SchemaObject
-        }
-      }
-    }
+                    default: true,
+                  },
+                },
+              },
+            },
+          } as OpenAPIV3.SchemaObject,
+        },
+      },
+    },
   };
 
   const updateUserEndpoint = {
@@ -96,14 +96,14 @@ export default function CodegenDemo() {
         name: "userId",
         in: "path" as const,
         required: true,
-        schema: { type: "string", format: "uuid" } as OpenAPIV3.SchemaObject
+        schema: { type: "string", format: "uuid" } as OpenAPIV3.SchemaObject,
       },
       {
         name: "X-API-Key",
         in: "header" as const,
         required: true,
-        schema: { type: "string" } as OpenAPIV3.SchemaObject
-      }
+        schema: { type: "string" } as OpenAPIV3.SchemaObject,
+      },
     ],
     requestBody: {
       required: true,
@@ -116,13 +116,13 @@ export default function CodegenDemo() {
               age: { type: "integer", minimum: 0 },
               status: {
                 type: "string",
-                enum: ["active", "inactive", "pending"]
-              }
-            }
-          } as OpenAPIV3.SchemaObject
-        }
-      }
-    }
+                enum: ["active", "inactive", "pending"],
+              },
+            },
+          } as OpenAPIV3.SchemaObject,
+        },
+      },
+    },
   };
 
   return (

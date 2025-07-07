@@ -2,9 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "response-content-section-demo",
   "type": "registry:example",
-  "dependencies": [
-    "openapi-types"
-  ],
+  "dependencies": ["openapi-types"],
   "registryDependencies": [
     "https://pivotkit.vercel.app/r/I18nProvider.json",
     "https://pivotkit.vercel.app/r/response-content-section.json"

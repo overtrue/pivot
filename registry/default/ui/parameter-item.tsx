@@ -1,7 +1,7 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import type { OpenAPIV3 } from 'openapi-types';
+import type { OpenAPIV3 } from "openapi-types";
 import React, { useState } from "react";
 import { ConstraintDisplay } from "@/registry/default/ui/constraint-display";
 import { DefaultValueDisplay } from "@/registry/default/ui/default-value-display";
@@ -27,7 +27,10 @@ interface ParameterItemProps {
   deprecated?: boolean;
   style?: StyleType;
   explode?: boolean;
-  examples?: Record<string, OpenAPIV3.ExampleObject | OpenAPIV3.ReferenceObject>;
+  examples?: Record<
+    string,
+    OpenAPIV3.ExampleObject | OpenAPIV3.ReferenceObject
+  >;
   components?: OpenAPIV3.ComponentsObject;
   className?: string;
   expanded?: boolean;
@@ -150,4 +153,3 @@ const ParameterItem = React.forwardRef<HTMLDivElement, ParameterItemProps>(
 ParameterItem.displayName = "ParameterItem";
 
 export { ParameterItem, type ParameterItemProps };
-

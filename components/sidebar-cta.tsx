@@ -20,9 +20,7 @@ export default function SidebarCTA() {
           <ArrowRightIcon className="ml-1 size-3 transition-transform duration-300 ease-in-out group-hover:translate-x-0.5" />
         </AnimatedShinyText>
       </div>
-      <TextAnimate
-        className="text-sm text-muted-foreground"
-      >
+      <TextAnimate className="text-sm text-muted-foreground">
         获取更多高级组件和模板
       </TextAnimate>
       <Link

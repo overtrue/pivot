@@ -12,7 +12,8 @@ export default function ShowcasePage() {
       <div className="text-center space-y-4">
         <h1 className="text-4xl font-bold tracking-tight">Pivot UI Showcase</h1>
         <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-          探索我们完整的 OpenAPI 组件库，包含 85+ 个高质量组件，专为现代 API 文档而设计。
+          探索我们完整的 OpenAPI 组件库，包含 85+ 个高质量组件，专为现代 API
+          文档而设计。
         </p>
       </div>
 
@@ -92,9 +93,7 @@ export default function ShowcasePage() {
         <section className="space-y-6">
           <div className="space-y-2">
             <h2 className="text-2xl font-semibold">安全组件</h2>
-            <p className="text-muted-foreground">
-              用于显示 API 安全配置的组件
-            </p>
+            <p className="text-muted-foreground">用于显示 API 安全配置的组件</p>
           </div>
 
           <div className="grid md:grid-cols-2 gap-6">
@@ -124,9 +123,7 @@ export default function ShowcasePage() {
         <section className="space-y-6">
           <div className="space-y-2">
             <h2 className="text-2xl font-semibold">交互组件</h2>
-            <p className="text-muted-foreground">
-              提供交互功能的高级组件
-            </p>
+            <p className="text-muted-foreground">提供交互功能的高级组件</p>
           </div>
 
           <div className="space-y-6">

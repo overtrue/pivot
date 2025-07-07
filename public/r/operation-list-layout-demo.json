@@ -2,10 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "operation-list-layout-demo",
   "type": "registry:example",
-  "dependencies": [
-    "openapi-types",
-    "react"
-  ],
+  "dependencies": ["openapi-types", "react"],
   "registryDependencies": [
     "https://pivotkit.vercel.app/r/operation-list-layout.json"
   ],

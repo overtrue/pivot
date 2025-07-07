@@ -10,8 +10,8 @@ export default function PhpGeneratorDemo() {
         name: "X-Shop-Token",
         in: "header" as const,
         required: true,
-        schema: { type: "string" as const }
-      }
+        schema: { type: "string" as const },
+      },
     ],
     requestBodyExample: {
       name: "Premium Wireless Headphones",
@@ -22,15 +22,15 @@ export default function PhpGeneratorDemo() {
       sku: "WH-1000XM4",
       inventory: {
         quantity: 50,
-        trackInventory: true
+        trackInventory: true,
       },
       specifications: {
         brand: "Sony",
         color: "Black",
         weight: "254g",
-        batteryLife: "30 hours"
+        batteryLife: "30 hours",
       },
-      tags: ["wireless", "noise-cancelling", "premium"]
+      tags: ["wireless", "noise-cancelling", "premium"],
     },
     requestBody: {
       content: {
@@ -42,30 +42,33 @@ export default function PhpGeneratorDemo() {
               name: { type: "string" as const, maxLength: 200 },
               description: { type: "string" as const, maxLength: 2000 },
               price: { type: "number" as const, minimum: 0 },
-              currency: { type: "string" as const, enum: ["USD", "EUR", "CNY"] },
+              currency: {
+                type: "string" as const,
+                enum: ["USD", "EUR", "CNY"],
+              },
               category: { type: "string" as const },
               sku: { type: "string" as const },
               inventory: {
                 type: "object" as const,
                 properties: {
                   quantity: { type: "integer" as const, minimum: 0 },
-                  trackInventory: { type: "boolean" as const }
-                }
+                  trackInventory: { type: "boolean" as const },
+                },
               },
               specifications: {
                 type: "object" as const,
-                additionalProperties: { type: "string" as const }
+                additionalProperties: { type: "string" as const },
               },
               tags: {
                 type: "array" as const,
-                items: { type: "string" as const }
-              }
-            }
-          }
-        }
+                items: { type: "string" as const },
+              },
+            },
+          },
+        },
       },
-      required: true
-    }
+      required: true,
+    },
   };
 
   // 订单查询 API 示例
@@ -79,48 +82,62 @@ export default function PhpGeneratorDemo() {
         required: false,
         schema: {
           type: "array" as const,
-          items: { type: "string" as const, enum: ["pending", "processing", "shipped", "delivered", "cancelled"] }
-        }
+          items: {
+            type: "string" as const,
+            enum: [
+              "pending",
+              "processing",
+              "shipped",
+              "delivered",
+              "cancelled",
+            ],
+          },
+        },
       },
       {
         name: "customerId",
         in: "query" as const,
         required: false,
-        schema: { type: "string" as const }
+        schema: { type: "string" as const },
       },
       {
         name: "dateFrom",
         in: "query" as const,
         required: false,
-        schema: { type: "string" as const, format: "date" as const }
+        schema: { type: "string" as const, format: "date" as const },
       },
       {
         name: "dateTo",
         in: "query" as const,
         required: false,
-        schema: { type: "string" as const, format: "date" as const }
+        schema: { type: "string" as const, format: "date" as const },
       },
       {
         name: "page",
         in: "query" as const,
         required: false,
-        schema: { type: "integer" as const, minimum: 1, default: 1 }
+        schema: { type: "integer" as const, minimum: 1, default: 1 },
       },
       {
         name: "limit",
         in: "query" as const,
         required: false,
-        schema: { type: "integer" as const, minimum: 1, maximum: 100, default: 20 }
+        schema: {
+          type: "integer" as const,
+          minimum: 1,
+          maximum: 100,
+          default: 20,
+        },
       },
       {
         name: "Authorization",
         in: "header" as const,
         required: true,
-        schema: { type: "string" as const }
-      }
+        schema: { type: "string" as const },
+      },
     ],
     requestBodyExample: null,
-    requestBody: undefined
+    requestBody: undefined,
   };
 
   // 支付处理 API 示例
@@ -132,14 +149,14 @@ export default function PhpGeneratorDemo() {
         name: "Idempotency-Key",
         in: "header" as const,
         required: true,
-        schema: { type: "string" as const, format: "uuid" as const }
+        schema: { type: "string" as const, format: "uuid" as const },
       },
       {
         name: "X-Payment-Key",
         in: "header" as const,
         required: true,
-        schema: { type: "string" as const }
-      }
+        schema: { type: "string" as const },
+      },
     ],
     requestBodyExample: {
       amount: 2999,
@@ -150,18 +167,18 @@ export default function PhpGeneratorDemo() {
           number: "4242424242424242",
           expMonth: 12,
           expYear: 2025,
-          cvc: "123"
-        }
+          cvc: "123",
+        },
       },
       customer: {
         email: "customer@example.com",
-        name: "John Doe"
+        name: "John Doe",
       },
       description: "Payment for order #12345",
       metadata: {
         orderId: "order_12345",
-        customerId: "cust_abc123"
-      }
+        customerId: "cust_abc123",
+      },
     },
     requestBody: {
       content: {
@@ -171,40 +188,50 @@ export default function PhpGeneratorDemo() {
             required: ["amount", "currency", "paymentMethod"],
             properties: {
               amount: { type: "integer" as const, minimum: 1 },
-              currency: { type: "string" as const, enum: ["usd", "eur", "cny"] },
+              currency: {
+                type: "string" as const,
+                enum: ["usd", "eur", "cny"],
+              },
               paymentMethod: {
                 type: "object" as const,
                 properties: {
-                  type: { type: "string" as const, enum: ["card", "bank_transfer", "wallet"] },
+                  type: {
+                    type: "string" as const,
+                    enum: ["card", "bank_transfer", "wallet"],
+                  },
                   card: {
                     type: "object" as const,
                     properties: {
                       number: { type: "string" as const },
-                      expMonth: { type: "integer" as const, minimum: 1, maximum: 12 },
+                      expMonth: {
+                        type: "integer" as const,
+                        minimum: 1,
+                        maximum: 12,
+                      },
                       expYear: { type: "integer" as const },
-                      cvc: { type: "string" as const }
-                    }
-                  }
-                }
+                      cvc: { type: "string" as const },
+                    },
+                  },
+                },
               },
               customer: {
                 type: "object" as const,
                 properties: {
                   email: { type: "string" as const, format: "email" as const },
-                  name: { type: "string" as const }
-                }
+                  name: { type: "string" as const },
+                },
               },
               description: { type: "string" as const },
               metadata: {
                 type: "object" as const,
-                additionalProperties: { type: "string" as const }
-              }
-            }
-          }
-        }
+                additionalProperties: { type: "string" as const },
+              },
+            },
+          },
+        },
       },
-      required: true
-    }
+      required: true,
+    },
   };
 
   // 内容管理 API 示例
@@ -216,20 +243,20 @@ export default function PhpGeneratorDemo() {
         name: "articleId",
         in: "path" as const,
         required: true,
-        schema: { type: "string" as const }
+        schema: { type: "string" as const },
       },
       {
         name: "publish",
         in: "query" as const,
         required: false,
-        schema: { type: "boolean" as const, default: false }
+        schema: { type: "boolean" as const, default: false },
       },
       {
         name: "X-CMS-Token",
         in: "header" as const,
         required: true,
-        schema: { type: "string" as const }
-      }
+        schema: { type: "string" as const },
+      },
     ],
     requestBodyExample: {
       title: "如何构建现代化的 Web 应用",
@@ -238,16 +265,16 @@ export default function PhpGeneratorDemo() {
       author: {
         id: "author_123",
         name: "张三",
-        email: "zhangsan@example.com"
+        email: "zhangsan@example.com",
       },
       categories: ["技术", "Web开发", "前端"],
       tags: ["React", "Next.js", "TypeScript"],
       seo: {
         metaTitle: "现代化 Web 应用开发指南",
         metaDescription: "学习如何使用最新技术构建高性能的 Web 应用",
-        keywords: ["Web开发", "React", "性能优化"]
+        keywords: ["Web开发", "React", "性能优化"],
       },
-      publishedAt: "2024-01-15T10:00:00Z"
+      publishedAt: "2024-01-15T10:00:00Z",
     },
     requestBody: {
       content: {
@@ -264,16 +291,16 @@ export default function PhpGeneratorDemo() {
                 properties: {
                   id: { type: "string" as const },
                   name: { type: "string" as const },
-                  email: { type: "string" as const, format: "email" as const }
-                }
+                  email: { type: "string" as const, format: "email" as const },
+                },
               },
               categories: {
                 type: "array" as const,
-                items: { type: "string" as const }
+                items: { type: "string" as const },
               },
               tags: {
                 type: "array" as const,
-                items: { type: "string" as const }
+                items: { type: "string" as const },
               },
               seo: {
                 type: "object" as const,
@@ -282,17 +309,20 @@ export default function PhpGeneratorDemo() {
                   metaDescription: { type: "string" as const },
                   keywords: {
                     type: "array" as const,
-                    items: { type: "string" as const }
-                  }
-                }
+                    items: { type: "string" as const },
+                  },
+                },
               },
-              publishedAt: { type: "string" as const, format: "date-time" as const }
-            }
-          }
-        }
+              publishedAt: {
+                type: "string" as const,
+                format: "date-time" as const,
+              },
+            },
+          },
+        },
       },
-      required: true
-    }
+      required: true,
+    },
   };
 
   // 邮件发送 API 示例
@@ -304,39 +334,39 @@ export default function PhpGeneratorDemo() {
         name: "X-Mail-Key",
         in: "header" as const,
         required: true,
-        schema: { type: "string" as const }
-      }
+        schema: { type: "string" as const },
+      },
     ],
     requestBodyExample: {
       from: {
         email: "noreply@example.com",
-        name: "Example Corp"
+        name: "Example Corp",
       },
       to: [
         {
           email: "user@example.com",
-          name: "John Doe"
-        }
+          name: "John Doe",
+        },
       ],
       cc: [],
       bcc: [],
       subject: "欢迎加入我们的服务",
       content: {
         text: "感谢您注册我们的服务！",
-        html: "<h1>欢迎！</h1><p>感谢您注册我们的服务！</p>"
+        html: "<h1>欢迎！</h1><p>感谢您注册我们的服务！</p>",
       },
       attachments: [
         {
           filename: "welcome.pdf",
           content: "base64_encoded_content",
-          type: "application/pdf"
-        }
+          type: "application/pdf",
+        },
       ],
       options: {
         trackOpens: true,
         trackClicks: true,
-        priority: "normal"
-      }
+        priority: "normal",
+      },
     },
     requestBody: {
       content: {
@@ -349,28 +379,37 @@ export default function PhpGeneratorDemo() {
                 type: "object" as const,
                 properties: {
                   email: { type: "string" as const, format: "email" as const },
-                  name: { type: "string" as const }
-                }
+                  name: { type: "string" as const },
+                },
               },
               to: {
                 type: "array" as const,
                 items: {
                   type: "object" as const,
                   properties: {
-                    email: { type: "string" as const, format: "email" as const },
-                    name: { type: "string" as const }
-                  }
-                }
+                    email: {
+                      type: "string" as const,
+                      format: "email" as const,
+                    },
+                    name: { type: "string" as const },
+                  },
+                },
               },
-              cc: { type: "array" as const, items: { type: "object" as const } },
-              bcc: { type: "array" as const, items: { type: "object" as const } },
+              cc: {
+                type: "array" as const,
+                items: { type: "object" as const },
+              },
+              bcc: {
+                type: "array" as const,
+                items: { type: "object" as const },
+              },
               subject: { type: "string" as const },
               content: {
                 type: "object" as const,
                 properties: {
                   text: { type: "string" as const },
-                  html: { type: "string" as const }
-                }
+                  html: { type: "string" as const },
+                },
               },
               attachments: {
                 type: "array" as const,
@@ -379,24 +418,27 @@ export default function PhpGeneratorDemo() {
                   properties: {
                     filename: { type: "string" as const },
                     content: { type: "string" as const },
-                    type: { type: "string" as const }
-                  }
-                }
+                    type: { type: "string" as const },
+                  },
+                },
               },
               options: {
                 type: "object" as const,
                 properties: {
                   trackOpens: { type: "boolean" as const },
                   trackClicks: { type: "boolean" as const },
-                  priority: { type: "string" as const, enum: ["low", "normal", "high"] }
-                }
-              }
-            }
-          }
-        }
+                  priority: {
+                    type: "string" as const,
+                    enum: ["low", "normal", "high"],
+                  },
+                },
+              },
+            },
+          },
+        },
       },
-      required: true
-    }
+      required: true,
+    },
   };
 
   return (

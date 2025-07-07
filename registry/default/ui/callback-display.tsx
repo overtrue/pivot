@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils";
 import { resolveRef } from "@/registry/default/lib/utils/resolve-ref";
 import { OperationBox } from "@/registry/default/ui/operation-box";
-import type { OpenAPIV3 } from 'openapi-types';
+import type { OpenAPIV3 } from "openapi-types";
 import React from "react";
 
 // Import types from the centralized types file
@@ -25,8 +25,8 @@ const CallbackDisplay = React.forwardRef<HTMLDivElement, CallbackDisplayProps>(
     if (!callback) {
       const refString =
         callbackOrRef &&
-          typeof callbackOrRef === "object" &&
-          "$ref" in callbackOrRef
+        typeof callbackOrRef === "object" &&
+        "$ref" in callbackOrRef
           ? (callbackOrRef as OpenAPIV3.ReferenceObject).$ref
           : "[invalid callback object]";
       return (
@@ -69,8 +69,8 @@ const CallbackDisplay = React.forwardRef<HTMLDivElement, CallbackDisplayProps>(
               if (!pathItem) {
                 const refString =
                   pathItemOrRef &&
-                    typeof pathItemOrRef === "object" &&
-                    "$ref" in pathItemOrRef
+                  typeof pathItemOrRef === "object" &&
+                  "$ref" in pathItemOrRef
                     ? (pathItemOrRef as OpenAPIV3.ReferenceObject).$ref
                     : "[invalid pathItem object]";
                 return (
@@ -100,7 +100,9 @@ const CallbackDisplay = React.forwardRef<HTMLDivElement, CallbackDisplayProps>(
                     ) {
                       // Resolve operation reference if necessary
                       const operation = resolveRef<OpenAPIV3.OperationObject>(
-                        operationOrRef as OpenAPIV3.OperationObject | OpenAPIV3.ReferenceObject,
+                        operationOrRef as
+                          | OpenAPIV3.OperationObject
+                          | OpenAPIV3.ReferenceObject,
                         components,
                         "operations",
                       );
@@ -134,8 +136,4 @@ const CallbackDisplay = React.forwardRef<HTMLDivElement, CallbackDisplayProps>(
 
 CallbackDisplay.displayName = "CallbackDisplay";
 
-export {
-  CallbackDisplay,
-  type CallbackDisplayProps
-};
-
+export { CallbackDisplay, type CallbackDisplayProps };

@@ -1,15 +1,15 @@
 "use client";
 
-import { cn } from '@/lib/utils';
+import { cn } from "@/lib/utils";
 import { useI18n } from "@/registry/default/lib/i18n";
-import type { OpenAPIV3 } from 'openapi-types';
+import type { OpenAPIV3 } from "openapi-types";
 
 import { resolveRef } from "@/registry/default/lib/utils/resolve-ref";
 import { DescriptionDisplay } from "@/registry/default/ui/description-display";
 import { HeadersSection } from "@/registry/default/ui/headers-section";
 import { LinksSection } from "@/registry/default/ui/links-section";
 import { StatusCode } from "@/registry/default/ui/status-code";
-import React from 'react';
+import React from "react";
 
 // 修改接口，接受原始响应对象或引用
 interface ResponseItemProps {
@@ -24,13 +24,14 @@ const ResponseItem = React.forwardRef<HTMLDivElement, ResponseItemProps>(
     const { t } = useI18n();
 
     // 解析响应对象（如果是引用）
-    const resolvedResponse = resolveRef(response, components, 'responses');
+    const resolvedResponse = resolveRef(response, components, "responses");
 
     // 如果无法解析引用，显示错误信息
     if (!resolvedResponse) {
-      const refString = (response && typeof response === 'object' && '$ref' in response)
-        ? response.$ref
-        : t('[unknown reference]');
+      const refString =
+        response && typeof response === "object" && "$ref" in response
+          ? response.$ref
+          : t("[unknown reference]");
       return (
         <div
           ref={ref}
@@ -39,7 +40,9 @@ const ResponseItem = React.forwardRef<HTMLDivElement, ResponseItemProps>(
             className,
           )}
         >
-          {t('Cannot display response %s: Reference %s failed to resolve.').replace('%s', code).replace('%s', refString)}
+          {t("Cannot display response %s: Reference %s failed to resolve.")
+            .replace("%s", code)
+            .replace("%s", refString)}
         </div>
       );
     }
@@ -77,15 +80,12 @@ const ResponseItem = React.forwardRef<HTMLDivElement, ResponseItemProps>(
         {hasDetails && (
           <div className="p-4 border-t dark:border-neutral-700">
             {hasHeaders && (
-              <HeadersSection
-                headers={headers}
-                components={components}
-              />
+              <HeadersSection headers={headers} components={components} />
             )}
             {hasContent && (
               <div className="mb-4">
                 <h4 className="text-sm font-semibold mb-2 text-neutral-800 dark:text-neutral-200">
-                  {t('Content')}
+                  {t("Content")}
                 </h4>
                 <div className="space-y-3">
                   {Object.entries(content).map(([mediaType, mediaTypeObj]) => (
@@ -101,7 +101,9 @@ const ResponseItem = React.forwardRef<HTMLDivElement, ResponseItemProps>(
 
                       {mediaTypeObj.schema && (
                         <div className="mb-3">
-                          <h5 className="text-xs font-medium text-muted-foreground mb-2">Schema</h5>
+                          <h5 className="text-xs font-medium text-muted-foreground mb-2">
+                            Schema
+                          </h5>
                           <div className="text-xs text-muted-foreground italic">
                             Schema available (requires schema display component)
                           </div>
@@ -110,50 +112,54 @@ const ResponseItem = React.forwardRef<HTMLDivElement, ResponseItemProps>(
 
                       {mediaTypeObj.example && (
                         <div className="mb-2">
-                          <h5 className="text-xs font-medium text-muted-foreground mb-2">Example</h5>
+                          <h5 className="text-xs font-medium text-muted-foreground mb-2">
+                            Example
+                          </h5>
                           <pre className="text-xs bg-background p-2 rounded border overflow-x-auto">
-                            <code>{JSON.stringify(mediaTypeObj.example, null, 2)}</code>
+                            <code>
+                              {JSON.stringify(mediaTypeObj.example, null, 2)}
+                            </code>
                           </pre>
                         </div>
                       )}
 
-                      {mediaTypeObj.examples && Object.keys(mediaTypeObj.examples).length > 0 && (
-                        <div>
-                          <h5 className="text-xs font-medium text-muted-foreground mb-2">Examples</h5>
-                          <div className="space-y-2">
-                            {Object.entries(mediaTypeObj.examples).map(([exampleName, exampleObj]) => (
-                              <div key={exampleName}>
-                                <h6 className="text-xs font-medium mb-1">{exampleName}</h6>
-                                <pre className="text-xs bg-background p-2 rounded border overflow-x-auto">
-                                  <code>{JSON.stringify(exampleObj, null, 2)}</code>
-                                </pre>
-                              </div>
-                            ))}
+                      {mediaTypeObj.examples &&
+                        Object.keys(mediaTypeObj.examples).length > 0 && (
+                          <div>
+                            <h5 className="text-xs font-medium text-muted-foreground mb-2">
+                              Examples
+                            </h5>
+                            <div className="space-y-2">
+                              {Object.entries(mediaTypeObj.examples).map(
+                                ([exampleName, exampleObj]) => (
+                                  <div key={exampleName}>
+                                    <h6 className="text-xs font-medium mb-1">
+                                      {exampleName}
+                                    </h6>
+                                    <pre className="text-xs bg-background p-2 rounded border overflow-x-auto">
+                                      <code>
+                                        {JSON.stringify(exampleObj, null, 2)}
+                                      </code>
+                                    </pre>
+                                  </div>
+                                ),
+                              )}
+                            </div>
                           </div>
-                        </div>
-                      )}
+                        )}
                     </div>
                   ))}
                 </div>
               </div>
             )}
-            {hasLinks && (
-              <LinksSection
-                links={links}
-                components={components}
-              />
-            )}
+            {hasLinks && <LinksSection links={links} components={components} />}
           </div>
         )}
       </div>
     );
-  }
+  },
 );
 
 ResponseItem.displayName = "ResponseItem";
 
-export {
-  ResponseItem,
-  type ResponseItemProps
-};
-
+export { ResponseItem, type ResponseItemProps };

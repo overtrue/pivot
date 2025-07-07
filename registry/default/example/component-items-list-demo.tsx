@@ -4,7 +4,9 @@ import { ComponentItemsList } from "@/registry/default/ui/component-items-list";
 import { useState } from "react";
 
 export default function ComponentItemsListDemo() {
-  const [selectedItems, setSelectedItems] = useState<Record<string, string | null>>({
+  const [selectedItems, setSelectedItems] = useState<
+    Record<string, string | null>
+  >({
     userManagement: null,
     ecommerce: null,
     payment: null,
@@ -14,23 +16,35 @@ export default function ComponentItemsListDemo() {
   // 用户管理 API 组件列表
   const userManagementComponents = {
     schemas: {
-      "User": {
+      User: {
         type: "object" as const,
         required: ["id", "email", "name"],
         properties: {
           id: { type: "string" as const, description: "用户唯一标识符" },
-          email: { type: "string" as const, format: "email" as const, description: "用户邮箱地址" },
+          email: {
+            type: "string" as const,
+            format: "email" as const,
+            description: "用户邮箱地址",
+          },
           name: { type: "string" as const, description: "用户姓名" },
-          avatar: { type: "string" as const, format: "uri" as const, description: "用户头像 URL" },
+          avatar: {
+            type: "string" as const,
+            format: "uri" as const,
+            description: "用户头像 URL",
+          },
           role: {
             type: "string" as const,
             enum: ["admin", "user", "moderator"],
-            description: "用户角色"
+            description: "用户角色",
           },
-          createdAt: { type: "string" as const, format: "date-time" as const, description: "注册时间" }
-        }
+          createdAt: {
+            type: "string" as const,
+            format: "date-time" as const,
+            description: "注册时间",
+          },
+        },
       },
-      "UserProfile": {
+      UserProfile: {
         type: "object" as const,
         properties: {
           bio: { type: "string" as const, description: "个人简介" },
@@ -40,31 +54,31 @@ export default function ComponentItemsListDemo() {
             type: "object" as const,
             properties: {
               language: { type: "string" as const, description: "首选语言" },
-              timezone: { type: "string" as const, description: "时区设置" }
-            }
-          }
-        }
+              timezone: { type: "string" as const, description: "时区设置" },
+            },
+          },
+        },
       },
-      "Address": {
+      Address: {
         type: "object" as const,
         properties: {
           country: { type: "string" as const, description: "国家" },
           city: { type: "string" as const, description: "城市" },
           street: { type: "string" as const, description: "街道地址" },
-          zipCode: { type: "string" as const, description: "邮政编码" }
-        }
-      }
+          zipCode: { type: "string" as const, description: "邮政编码" },
+        },
+      },
     },
     responses: {
-      "UserResponse": {
+      UserResponse: {
         description: "用户信息响应",
         content: {
           "application/json": {
-            schema: { $ref: "#/components/schemas/User" }
-          }
-        }
+            schema: { $ref: "#/components/schemas/User" },
+          },
+        },
       },
-      "UserListResponse": {
+      UserListResponse: {
         description: "用户列表响应",
         content: {
           "application/json": {
@@ -73,21 +87,21 @@ export default function ComponentItemsListDemo() {
               properties: {
                 data: {
                   type: "array" as const,
-                  items: { $ref: "#/components/schemas/User" }
+                  items: { $ref: "#/components/schemas/User" },
                 },
-                pagination: { $ref: "#/components/schemas/Pagination" }
-              }
-            }
-          }
-        }
-      }
-    }
+                pagination: { $ref: "#/components/schemas/Pagination" },
+              },
+            },
+          },
+        },
+      },
+    },
   };
 
   // 电商产品 API 组件列表
   const ecommerceComponents = {
     schemas: {
-      "Product": {
+      Product: {
         type: "object" as const,
         required: ["id", "name", "price"],
         properties: {
@@ -101,44 +115,53 @@ export default function ComponentItemsListDemo() {
           images: {
             type: "array" as const,
             items: { type: "string" as const, format: "uri" as const },
-            description: "产品图片列表"
+            description: "产品图片列表",
           },
           inStock: { type: "boolean" as const, description: "是否有库存" },
-          stockQuantity: { type: "integer" as const, description: "库存数量" }
-        }
+          stockQuantity: { type: "integer" as const, description: "库存数量" },
+        },
       },
-      "Category": {
+      Category: {
         type: "object" as const,
         properties: {
           id: { type: "string" as const, description: "分类 ID" },
           name: { type: "string" as const, description: "分类名称" },
           description: { type: "string" as const, description: "分类描述" },
           parentId: { type: "string" as const, description: "父分类 ID" },
-          level: { type: "integer" as const, description: "分类层级" }
-        }
+          level: { type: "integer" as const, description: "分类层级" },
+        },
       },
-      "Review": {
+      Review: {
         type: "object" as const,
         properties: {
           id: { type: "string" as const, description: "评价 ID" },
           productId: { type: "string" as const, description: "产品 ID" },
           userId: { type: "string" as const, description: "用户 ID" },
-          rating: { type: "integer" as const, minimum: 1, maximum: 5, description: "评分" },
+          rating: {
+            type: "integer" as const,
+            minimum: 1,
+            maximum: 5,
+            description: "评分",
+          },
           comment: { type: "string" as const, description: "评价内容" },
-          createdAt: { type: "string" as const, format: "date-time" as const, description: "评价时间" }
-        }
-      }
+          createdAt: {
+            type: "string" as const,
+            format: "date-time" as const,
+            description: "评价时间",
+          },
+        },
+      },
     },
     responses: {
-      "ProductResponse": {
+      ProductResponse: {
         description: "产品详情响应",
         content: {
           "application/json": {
-            schema: { $ref: "#/components/schemas/Product" }
-          }
-        }
+            schema: { $ref: "#/components/schemas/Product" },
+          },
+        },
       },
-      "ProductListResponse": {
+      ProductListResponse: {
         description: "产品列表响应",
         content: {
           "application/json": {
@@ -147,43 +170,43 @@ export default function ComponentItemsListDemo() {
               properties: {
                 data: {
                   type: "array" as const,
-                  items: { $ref: "#/components/schemas/Product" }
+                  items: { $ref: "#/components/schemas/Product" },
                 },
                 filters: {
                   type: "object" as const,
                   properties: {
                     category: { type: "string" as const },
                     priceRange: { type: "object" as const },
-                    brand: { type: "string" as const }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
+                    brand: { type: "string" as const },
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
     },
     parameters: {
-      "ProductId": {
+      ProductId: {
         name: "productId",
         in: "path",
         required: true,
         schema: { type: "string" as const },
-        description: "产品唯一标识符"
+        description: "产品唯一标识符",
       },
-      "CategoryFilter": {
+      CategoryFilter: {
         name: "category",
         in: "query",
         schema: { type: "string" as const },
-        description: "按分类筛选产品"
-      }
-    }
+        description: "按分类筛选产品",
+      },
+    },
   };
 
   // 支付系统组件列表
   const paymentComponents = {
     schemas: {
-      "Payment": {
+      Payment: {
         type: "object" as const,
         required: ["id", "amount", "currency", "status"],
         properties: {
@@ -193,20 +216,30 @@ export default function ComponentItemsListDemo() {
           currency: { type: "string" as const, description: "货币代码" },
           method: {
             type: "string" as const,
-            enum: ["credit_card", "paypal", "bank_transfer", "alipay", "wechat_pay"],
-            description: "支付方式"
+            enum: [
+              "credit_card",
+              "paypal",
+              "bank_transfer",
+              "alipay",
+              "wechat_pay",
+            ],
+            description: "支付方式",
           },
           status: {
             type: "string" as const,
             enum: ["pending", "processing", "completed", "failed", "refunded"],
-            description: "支付状态"
+            description: "支付状态",
           },
           gateway: { type: "string" as const, description: "支付网关" },
           transactionId: { type: "string" as const, description: "交易 ID" },
-          createdAt: { type: "string" as const, format: "date-time" as const, description: "创建时间" }
-        }
+          createdAt: {
+            type: "string" as const,
+            format: "date-time" as const,
+            description: "创建时间",
+          },
+        },
       },
-      "PaymentMethod": {
+      PaymentMethod: {
         type: "object" as const,
         properties: {
           id: { type: "string" as const, description: "支付方式 ID" },
@@ -214,10 +247,13 @@ export default function ComponentItemsListDemo() {
           cardLast4: { type: "string" as const, description: "卡号后四位" },
           expiryMonth: { type: "integer" as const, description: "过期月份" },
           expiryYear: { type: "integer" as const, description: "过期年份" },
-          isDefault: { type: "boolean" as const, description: "是否为默认支付方式" }
-        }
+          isDefault: {
+            type: "boolean" as const,
+            description: "是否为默认支付方式",
+          },
+        },
       },
-      "Refund": {
+      Refund: {
         type: "object" as const,
         properties: {
           id: { type: "string" as const, description: "退款 ID" },
@@ -227,13 +263,13 @@ export default function ComponentItemsListDemo() {
           status: {
             type: "string" as const,
             enum: ["pending", "processing", "completed", "failed"],
-            description: "退款状态"
-          }
-        }
-      }
+            description: "退款状态",
+          },
+        },
+      },
     },
     securitySchemes: {
-      "PaymentAuth": {
+      PaymentAuth: {
         type: "oauth2",
         flows: {
           authorizationCode: {
@@ -242,18 +278,18 @@ export default function ComponentItemsListDemo() {
             scopes: {
               "payment:read": "读取支付信息",
               "payment:write": "创建和修改支付",
-              "refund:create": "创建退款"
-            }
-          }
-        }
-      }
-    }
+              "refund:create": "创建退款",
+            },
+          },
+        },
+      },
+    },
   };
 
   // 通知系统组件列表
   const notificationComponents = {
     schemas: {
-      "Notification": {
+      Notification: {
         type: "object" as const,
         properties: {
           id: { type: "string" as const, description: "通知 ID" },
@@ -263,18 +299,22 @@ export default function ComponentItemsListDemo() {
           type: {
             type: "string" as const,
             enum: ["info", "warning", "error", "success"],
-            description: "通知类型"
+            description: "通知类型",
           },
           channel: {
             type: "string" as const,
             enum: ["email", "sms", "push", "in_app"],
-            description: "发送渠道"
+            description: "发送渠道",
           },
           isRead: { type: "boolean" as const, description: "是否已读" },
-          createdAt: { type: "string" as const, format: "date-time" as const, description: "创建时间" }
-        }
+          createdAt: {
+            type: "string" as const,
+            format: "date-time" as const,
+            description: "创建时间",
+          },
+        },
       },
-      "NotificationTemplate": {
+      NotificationTemplate: {
         type: "object" as const,
         properties: {
           id: { type: "string" as const, description: "模板 ID" },
@@ -284,27 +324,27 @@ export default function ComponentItemsListDemo() {
           variables: {
             type: "array" as const,
             items: { type: "string" as const },
-            description: "模板变量"
-          }
-        }
-      }
+            description: "模板变量",
+          },
+        },
+      },
     },
     responses: {
-      "NotificationResponse": {
+      NotificationResponse: {
         description: "通知详情响应",
         content: {
           "application/json": {
-            schema: { $ref: "#/components/schemas/Notification" }
-          }
-        }
-      }
-    }
+            schema: { $ref: "#/components/schemas/Notification" },
+          },
+        },
+      },
+    },
   };
 
   // 文件管理组件列表
   const fileManagementComponents = {
     schemas: {
-      "File": {
+      File: {
         type: "object" as const,
         properties: {
           id: { type: "string" as const, description: "文件 ID" },
@@ -312,31 +352,46 @@ export default function ComponentItemsListDemo() {
           fileName: { type: "string" as const, description: "存储文件名" },
           mimeType: { type: "string" as const, description: "文件 MIME 类型" },
           size: { type: "integer" as const, description: "文件大小（字节）" },
-          url: { type: "string" as const, format: "uri" as const, description: "文件访问 URL" },
-          thumbnailUrl: { type: "string" as const, format: "uri" as const, description: "缩略图 URL" },
+          url: {
+            type: "string" as const,
+            format: "uri" as const,
+            description: "文件访问 URL",
+          },
+          thumbnailUrl: {
+            type: "string" as const,
+            format: "uri" as const,
+            description: "缩略图 URL",
+          },
           uploadedBy: { type: "string" as const, description: "上传用户 ID" },
-          uploadedAt: { type: "string" as const, format: "date-time" as const, description: "上传时间" },
+          uploadedAt: {
+            type: "string" as const,
+            format: "date-time" as const,
+            description: "上传时间",
+          },
           metadata: {
             type: "object" as const,
-            description: "文件元数据"
-          }
-        }
+            description: "文件元数据",
+          },
+        },
       },
-      "UploadSession": {
+      UploadSession: {
         type: "object" as const,
         properties: {
           id: { type: "string" as const, description: "上传会话 ID" },
           status: {
             type: "string" as const,
             enum: ["pending", "uploading", "completed", "failed"],
-            description: "上传状态"
+            description: "上传状态",
           },
-          progress: { type: "number" as const, description: "上传进度（0-100）" },
+          progress: {
+            type: "number" as const,
+            description: "上传进度（0-100）",
+          },
           totalSize: { type: "integer" as const, description: "总文件大小" },
-          uploadedSize: { type: "integer" as const, description: "已上传大小" }
-        }
-      }
-    }
+          uploadedSize: { type: "integer" as const, description: "已上传大小" },
+        },
+      },
+    },
   };
 
   return (
@@ -349,7 +404,9 @@ export default function ComponentItemsListDemo() {
         <ComponentItemsList
           items={Object.keys(userManagementComponents.schemas || {})}
           selectedItem={selectedItems.userManagement || null}
-          onSelectItem={(item) => setSelectedItems(prev => ({ ...prev, userManagement: item }))}
+          onSelectItem={(item) =>
+            setSelectedItems((prev) => ({ ...prev, userManagement: item }))
+          }
         />
       </div>
 
@@ -361,7 +418,9 @@ export default function ComponentItemsListDemo() {
         <ComponentItemsList
           items={Object.keys(ecommerceComponents.schemas || {})}
           selectedItem={selectedItems.ecommerce || null}
-          onSelectItem={(item) => setSelectedItems(prev => ({ ...prev, ecommerce: item }))}
+          onSelectItem={(item) =>
+            setSelectedItems((prev) => ({ ...prev, ecommerce: item }))
+          }
         />
       </div>
 
@@ -373,7 +432,9 @@ export default function ComponentItemsListDemo() {
         <ComponentItemsList
           items={Object.keys(paymentComponents.schemas || {})}
           selectedItem={selectedItems.payment || null}
-          onSelectItem={(item) => setSelectedItems(prev => ({ ...prev, payment: item }))}
+          onSelectItem={(item) =>
+            setSelectedItems((prev) => ({ ...prev, payment: item }))
+          }
         />
       </div>
 
@@ -385,7 +446,9 @@ export default function ComponentItemsListDemo() {
         <ComponentItemsList
           items={Object.keys(notificationComponents.schemas || {})}
           selectedItem={selectedItems.notification || null}
-          onSelectItem={(item) => setSelectedItems(prev => ({ ...prev, notification: item }))}
+          onSelectItem={(item) =>
+            setSelectedItems((prev) => ({ ...prev, notification: item }))
+          }
         />
       </div>
 
@@ -397,7 +460,9 @@ export default function ComponentItemsListDemo() {
         <ComponentItemsList
           items={Object.keys(fileManagementComponents.schemas || {})}
           selectedItem={selectedItems.fileManagement || null}
-          onSelectItem={(item) => setSelectedItems(prev => ({ ...prev, fileManagement: item }))}
+          onSelectItem={(item) =>
+            setSelectedItems((prev) => ({ ...prev, fileManagement: item }))
+          }
         />
       </div>
     </div>

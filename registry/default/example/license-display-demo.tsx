@@ -4,22 +4,22 @@ export default function LicenseDisplayDemo() {
   const mitLicense = {
     name: "MIT License",
     identifier: "MIT",
-    url: "https://opensource.org/licenses/MIT"
+    url: "https://opensource.org/licenses/MIT",
   };
 
   const apacheLicense = {
     name: "Apache License 2.0",
     identifier: "Apache-2.0",
-    url: "https://www.apache.org/licenses/LICENSE-2.0"
+    url: "https://www.apache.org/licenses/LICENSE-2.0",
   };
 
   const customLicense = {
     name: "Custom License",
-    url: "https://example.com/license"
+    url: "https://example.com/license",
   };
 
   const simpleLicense = {
-    name: "Proprietary License"
+    name: "Proprietary License",
   };
 
   return (

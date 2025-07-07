@@ -16,7 +16,7 @@ const RequiredMarker = React.forwardRef<HTMLSpanElement, RequiredMarkerProps>(
         *
       </span>
     );
-  }
+  },
 );
 
 RequiredMarker.displayName = "RequiredMarker";

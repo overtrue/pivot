@@ -1,14 +1,18 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import type { CodeGenerator, CodeGeneratorParams, HttpMethod } from "@/types/project";
-import type { OpenAPIV3 } from 'openapi-types';
+import type {
+  CodeGenerator,
+  CodeGeneratorParams,
+  HttpMethod,
+} from "@/types/project";
+import type { OpenAPIV3 } from "openapi-types";
 
 import { generateExample } from "@/registry/default/lib/utils/generate-example";
 import { resolveRef } from "@/registry/default/lib/utils/resolve-ref";
 import { CodeMarkdown } from "@/registry/default/ui/code-markdown";
-import { Braces, ChevronDown, Code2, Terminal } from 'lucide-react';
-import React, { useState } from 'react';
+import { Braces, ChevronDown, Code2, Terminal } from "lucide-react";
+import React, { useState } from "react";
 
 // Code Generators
 class CurlGenerator implements CodeGenerator {
@@ -20,16 +24,15 @@ class CurlGenerator implements CodeGenerator {
   }
 
   generateCode(params: CodeGeneratorParams): string {
-    const { endpoint, method, parameters, requestBodyExample, requestBody } = params;
+    const { endpoint, method, parameters, requestBodyExample, requestBody } =
+      params;
     let code = `curl -X ${method} "${endpoint}"`;
 
     code += '\n  -H "Content-Type: application/json"';
 
     const queryParams = parameters.filter((p) => p.in === "query");
     if (queryParams.length > 0) {
-      const queryString = queryParams
-        .map((p) => `${p.name}=value`)
-        .join("&");
+      const queryString = queryParams.map((p) => `${p.name}=value`).join("&");
       code = code.replace(endpoint, `${endpoint}?${queryString}`);
     }
 
@@ -55,7 +58,8 @@ class PythonGenerator implements CodeGenerator {
   }
 
   generateCode(params: CodeGeneratorParams): string {
-    const { endpoint, method, parameters, requestBodyExample, requestBody } = params;
+    const { endpoint, method, parameters, requestBodyExample, requestBody } =
+      params;
 
     let code = "import requests\nimport json\n\n";
     code += `url = "${endpoint}"\n`;
@@ -83,9 +87,9 @@ class PythonGenerator implements CodeGenerator {
 
     if (["POST", "PUT", "PATCH"].includes(method) && requestBody) {
       code += `data = ${JSON.stringify(requestBodyExample, null, 4)}\n\n`;
-      code += `response = requests.${method.toLowerCase()}(url, headers=headers${queryParams.length > 0 ? ', params=params' : ''}, json=data)\n`;
+      code += `response = requests.${method.toLowerCase()}(url, headers=headers${queryParams.length > 0 ? ", params=params" : ""}, json=data)\n`;
     } else {
-      code += `response = requests.${method.toLowerCase()}(url, headers=headers${queryParams.length > 0 ? ', params=params' : ''})\n`;
+      code += `response = requests.${method.toLowerCase()}(url, headers=headers${queryParams.length > 0 ? ", params=params" : ""})\n`;
     }
 
     code += "print(response.json())";
@@ -103,7 +107,8 @@ class TypeScriptGenerator implements CodeGenerator {
   }
 
   generateCode(params: CodeGeneratorParams): string {
-    const { endpoint, method, parameters, requestBodyExample, requestBody } = params;
+    const { endpoint, method, parameters, requestBodyExample, requestBody } =
+      params;
 
     let code = "";
 
@@ -118,7 +123,7 @@ class TypeScriptGenerator implements CodeGenerator {
       code += "});\n\n";
     }
 
-    code += `const response = await fetch('${endpoint}${queryParams.length > 0 ? '?${params}' : ''}', {\n`;
+    code += `const response = await fetch('${endpoint}${queryParams.length > 0 ? "?${params}" : ""}', {\n`;
     code += `  method: '${method}',\n`;
     code += "  headers: {\n";
     code += "    'Content-Type': 'application/json',\n";
@@ -149,7 +154,8 @@ class PhpGenerator implements CodeGenerator {
   }
 
   generateCode(params: CodeGeneratorParams): string {
-    const { endpoint, method, parameters, requestBodyExample, requestBody } = params;
+    const { endpoint, method, parameters, requestBodyExample, requestBody } =
+      params;
 
     let code = "<?php\n\n";
     code += `$url = '${endpoint}';\n`;
@@ -201,7 +207,15 @@ const codeGenerators: CodeGenerator[] = [
 
 interface CodegenProps {
   endpoint: string;
-  method: "get" | "post" | "put" | "delete" | "patch" | "head" | "options" | "trace";
+  method:
+    | "get"
+    | "post"
+    | "put"
+    | "delete"
+    | "patch"
+    | "head"
+    | "options"
+    | "trace";
   parameters?: (OpenAPIV3.ParameterObject | OpenAPIV3.ReferenceObject)[];
   requestBody?: OpenAPIV3.RequestBodyObject | OpenAPIV3.ReferenceObject;
   components?: OpenAPIV3.ComponentsObject;
@@ -216,9 +230,9 @@ const Codegen: React.FC<CodegenProps> = ({
   requestBody,
   components,
   collapsible = false,
-  defaultCollapsed = false
+  defaultCollapsed = false,
 }) => {
-  const [languageId, setLanguageId] = useState(codeGenerators[0]?.id || 'curl');
+  const [languageId, setLanguageId] = useState(codeGenerators[0]?.id || "curl");
   const [collapsed, setCollapsed] = useState(defaultCollapsed);
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
@@ -231,11 +245,11 @@ const Codegen: React.FC<CodegenProps> = ({
     };
 
     if (dropdownOpen) {
-      document.addEventListener('click', handleClickOutside);
+      document.addEventListener("click", handleClickOutside);
     }
 
     return () => {
-      document.removeEventListener('click', handleClickOutside);
+      document.removeEventListener("click", handleClickOutside);
     };
   }, [dropdownOpen]);
 
@@ -247,73 +261,78 @@ const Codegen: React.FC<CodegenProps> = ({
 
   // 解析请求体
   const resolvedRequestBody = requestBody
-    ? resolveRef(requestBody, components, 'requestBodies')
+    ? resolveRef(requestBody, components, "requestBodies")
     : undefined;
 
   // 解析参数
-  const resolvedParameters = parameters.map(param =>
-    resolveRef(param, components, 'parameters')
-  ).filter(Boolean) as OpenAPIV3.ParameterObject[];
+  const resolvedParameters = parameters
+    .map((param) => resolveRef(param, components, "parameters"))
+    .filter(Boolean) as OpenAPIV3.ParameterObject[];
 
   // 生成请求体示例数据
   const getRequestBodyExample = () => {
-    if (!resolvedRequestBody || !resolvedRequestBody.content) return { example: "data" };
+    if (!resolvedRequestBody || !resolvedRequestBody.content)
+      return { example: "data" };
 
     // 获取内容类型，优先使用application/json
-    const contentType = resolvedRequestBody.content['application/json']
-      ? 'application/json'
+    const contentType = resolvedRequestBody.content["application/json"]
+      ? "application/json"
       : Object.keys(resolvedRequestBody.content)[0];
 
-    if (!contentType || !resolvedRequestBody.content[contentType]?.schema) return { example: "data" };
+    if (!contentType || !resolvedRequestBody.content[contentType]?.schema)
+      return { example: "data" };
 
     const schema = resolvedRequestBody.content[contentType].schema;
     if (!schema) return { example: "data" };
 
     // 使用通用的示例生成工具
-    return resolvedRequestBody.content[contentType].example || generateExample(schema, components, {
-      maxDepth: 2,
-      includeReadOnly: true,
-      includeWriteOnly: true
-    });
+    return (
+      resolvedRequestBody.content[contentType].example ||
+      generateExample(schema, components, {
+        maxDepth: 2,
+        includeReadOnly: true,
+        includeWriteOnly: true,
+      })
+    );
   };
 
   const requestBodyExample = getRequestBodyExample();
 
   const getCode = () => {
     // 使用模块化的代码生成器
-    const generator = codeGenerators.find(gen => gen.id === languageId);
-    if (!generator) return '';
+    const generator = codeGenerators.find((gen) => gen.id === languageId);
+    if (!generator) return "";
 
     return generator.generateCode({
       endpoint,
       method: method.toUpperCase() as HttpMethod,
       parameters: resolvedParameters,
       requestBody: resolvedRequestBody || undefined,
-      requestBodyExample
+      requestBodyExample,
     });
   };
 
   // 获取代码语言
   const getCodeLanguage = () => {
-    const generator = codeGenerators.find(gen => gen.id === languageId);
-    if (!generator) return 'bash';
+    const generator = codeGenerators.find((gen) => gen.id === languageId);
+    if (!generator) return "bash";
 
     switch (languageId) {
-      case 'curl':
-        return 'bash';
-      case 'python':
-        return 'python';
-      case 'typescript':
-      case 'javascript':
-        return 'javascript';
-      case 'php':
-        return 'php';
+      case "curl":
+        return "bash";
+      case "python":
+        return "python";
+      case "typescript":
+      case "javascript":
+        return "javascript";
+      case "php":
+        return "php";
       default:
         return languageId;
     }
   };
 
-  const currentGenerator = codeGenerators.find(gen => gen.id === languageId);
+  const currentGenerator = codeGenerators.find((gen) => gen.id === languageId);
 
   return (
     <div className="border rounded-lg overflow-hidden bg-card">
@@ -321,13 +340,11 @@ const Codegen: React.FC<CodegenProps> = ({
       <div
         className={cn(
           "flex items-center justify-between px-4 py-3 bg-muted/50",
-          collapsible && "cursor-pointer hover:bg-muted"
+          collapsible && "cursor-pointer hover:bg-muted",
         )}
         onClick={collapsible ? toggleCollapse : undefined}
       >
-        <h3 className="text-sm font-medium text-foreground">
-          代码示例
-        </h3>
+        <h3 className="text-sm font-medium text-foreground">代码示例</h3>
 
         <div className="flex items-center gap-2">
           {/* Language Selector Dropdown */}
@@ -362,7 +379,7 @@ const Codegen: React.FC<CodegenProps> = ({
                       }}
                       className={cn(
                         "w-full flex items-center gap-2 px-3 py-2 text-sm text-left hover:bg-muted transition-colors first:rounded-t-md last:rounded-b-md",
-                        languageId === generator.id && "bg-muted text-primary"
+                        languageId === generator.id && "bg-muted text-primary",
                       )}
                     >
                       {generator.label}
@@ -375,7 +392,7 @@ const Codegen: React.FC<CodegenProps> = ({
 
           {collapsible && (
             <span className="text-muted-foreground">
-              {collapsed ? '展开' : '收起'}
+              {collapsed ? "展开" : "收起"}
             </span>
           )}
         </div>
@@ -396,4 +413,3 @@ const Codegen: React.FC<CodegenProps> = ({
 
 export { Codegen, type CodegenProps };
 export default Codegen;
-

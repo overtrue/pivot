@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 import type { ComponentType } from "@/types/project";
-import type { OpenAPIV3 } from 'openapi-types';
+import type { OpenAPIV3 } from "openapi-types";
 
 import { resolveRef } from "@/registry/default/lib/utils/resolve-ref";
 import { CallbackDisplay } from "@/registry/default/ui/callback-display";
@@ -31,10 +31,7 @@ const ComponentDetail = React.forwardRef<HTMLDivElement, ComponentDetailProps>(
       !(components as any)[activeType]?.[selectedItemName]
     ) {
       return (
-        <div
-          ref={ref}
-          className={cn("text-neutral-500 italic p-4", className)}
-        >
+        <div ref={ref} className={cn("text-neutral-500 italic p-4", className)}>
           Please select an item from the list.
         </div>
       );
@@ -51,9 +48,7 @@ const ComponentDetail = React.forwardRef<HTMLDivElement, ComponentDetailProps>(
     const content = (() => {
       switch (activeType) {
         case "schemas":
-          return (
-            <SchemaDisplay schema={item} components={components} />
-          );
+          return <SchemaDisplay schema={item} components={components} />;
 
         case "responses":
           return (
@@ -162,8 +157,4 @@ const ComponentDetail = React.forwardRef<HTMLDivElement, ComponentDetailProps>(
 
 ComponentDetail.displayName = "ComponentDetail";
 
-export {
-  ComponentDetail,
-  type ComponentDetailProps
-};
-
+export { ComponentDetail, type ComponentDetailProps };

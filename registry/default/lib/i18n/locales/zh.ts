@@ -262,10 +262,10 @@ const zh = {
   "Sending...": "发送中...",
   "Send Request": "发送请求",
   "Add Header": "添加请求头",
-  "Remove": "删除",
+  Remove: "删除",
   "Enter %s value": "输入 %s 值",
   "Header name": "请求头名称",
-  "Value": "值",
+  Value: "值",
 };
 
 export default zh;

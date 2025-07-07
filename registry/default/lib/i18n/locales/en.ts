@@ -266,10 +266,10 @@ const en = {
   "Sending...": "Sending...",
   "Send Request": "Send Request",
   "Add Header": "Add Header",
-  "Remove": "Remove",
+  Remove: "Remove",
   "Enter %s value": "Enter %s value",
   "Header name": "Header name",
-  "Value": "Value",
+  Value: "Value",
 };
 
 export default en;

@@ -2,11 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "navigation-sidebar",
   "type": "registry:ui",
-  "dependencies": [
-    "lucide-react",
-    "openapi-types",
-    "react"
-  ],
+  "dependencies": ["lucide-react", "openapi-types", "react"],
   "registryDependencies": [
     "button",
     "collapsible",

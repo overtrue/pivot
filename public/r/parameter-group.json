@@ -2,9 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "parameter-group",
   "type": "registry:ui",
-  "dependencies": [
-    "react"
-  ],
+  "dependencies": ["react"],
   "registryDependencies": [
     "https://pivotkit.vercel.app/r/required-marker.json",
     "https://pivotkit.vercel.app/r/type-indicator.json",

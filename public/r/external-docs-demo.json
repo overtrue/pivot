@@ -2,9 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "external-docs-demo",
   "type": "registry:example",
-  "registryDependencies": [
-    "https://pivotkit.vercel.app/r/external-docs.json"
-  ],
+  "registryDependencies": ["https://pivotkit.vercel.app/r/external-docs.json"],
   "files": [
     {
       "path": "registry/default/example/external-docs-demo.tsx",

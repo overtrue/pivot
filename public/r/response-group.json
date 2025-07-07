@@ -2,10 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "response-group",
   "type": "registry:ui",
-  "dependencies": [
-    "openapi-types",
-    "react"
-  ],
+  "dependencies": ["openapi-types", "react"],
   "registryDependencies": [
     "https://pivotkit.vercel.app/r/i18n.json",
     "https://pivotkit.vercel.app/r/response-content-section.json",

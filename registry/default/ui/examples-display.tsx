@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 import { useI18n } from "@/registry/default/lib/i18n";
 import { resolveRef } from "@/registry/default/lib/utils/resolve-ref";
 import { DescriptionDisplay } from "@/registry/default/ui/description-display";
-import type { OpenAPIV3 } from 'openapi-types';
+import type { OpenAPIV3 } from "openapi-types";
 import React from "react";
 
 // Import types from the centralized types file
@@ -31,12 +31,14 @@ const ExamplesDisplay = React.forwardRef<HTMLDivElement, ExamplesDisplayProps>(
         if (!resolved) {
           const refString =
             exampleOrRef &&
-              typeof exampleOrRef === "object" &&
-              "$ref" in exampleOrRef
+            typeof exampleOrRef === "object" &&
+            "$ref" in exampleOrRef
               ? (exampleOrRef as OpenAPIV3.ReferenceObject).$ref
               : t("[unknown reference]");
           console.warn(
-            t("[ExamplesDisplay] Failed to resolve example ref: %s for key %s").replace("%s", refString).replace("%s", key),
+            t("[ExamplesDisplay] Failed to resolve example ref: %s for key %s")
+              .replace("%s", refString)
+              .replace("%s", key),
           );
           return null;
         }
@@ -104,4 +106,3 @@ const ExamplesDisplay = React.forwardRef<HTMLDivElement, ExamplesDisplayProps>(
 ExamplesDisplay.displayName = "ExamplesDisplay";
 
 export { ExamplesDisplay, type ExamplesDisplayProps };
-

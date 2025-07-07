@@ -4,7 +4,7 @@ export default function AccordionComponentsSectionDemo() {
   // 电商 API 组件定义
   const ecommerceComponents = {
     schemas: {
-      "Product": {
+      Product: {
         type: "object" as const,
         required: ["id", "name", "price"],
         properties: {
@@ -16,17 +16,17 @@ export default function AccordionComponentsSectionDemo() {
           images: {
             type: "array" as const,
             items: { type: "string" as const, format: "uri" as const },
-            description: "产品图片列表"
+            description: "产品图片列表",
           },
           inStock: { type: "boolean" as const, description: "是否有库存" },
           tags: {
             type: "array" as const,
             items: { type: "string" as const },
-            description: "产品标签"
-          }
-        }
+            description: "产品标签",
+          },
+        },
       },
-      "Order": {
+      Order: {
         type: "object" as const,
         required: ["id", "customerId", "items", "totalAmount"],
         properties: {
@@ -35,31 +35,39 @@ export default function AccordionComponentsSectionDemo() {
           items: {
             type: "array" as const,
             items: { $ref: "#/components/schemas/OrderItem" },
-            description: "订单商品列表"
+            description: "订单商品列表",
           },
           totalAmount: { type: "number" as const, description: "订单总金额" },
           status: {
             type: "string" as const,
             enum: ["pending", "confirmed", "shipped", "delivered", "cancelled"],
-            description: "订单状态"
+            description: "订单状态",
           },
-          createdAt: { type: "string" as const, format: "date-time" as const, description: "创建时间" },
-          shippingAddress: { $ref: "#/components/schemas/Address" }
-        }
+          createdAt: {
+            type: "string" as const,
+            format: "date-time" as const,
+            description: "创建时间",
+          },
+          shippingAddress: { $ref: "#/components/schemas/Address" },
+        },
       },
-      "OrderItem": {
+      OrderItem: {
         type: "object" as const,
         required: ["productId", "quantity", "price"],
         properties: {
           productId: { type: "string" as const, description: "产品 ID" },
-          quantity: { type: "integer" as const, minimum: 1, description: "购买数量" },
+          quantity: {
+            type: "integer" as const,
+            minimum: 1,
+            description: "购买数量",
+          },
           price: { type: "number" as const, description: "单价" },
-          discount: { type: "number" as const, description: "折扣金额" }
-        }
-      }
+          discount: { type: "number" as const, description: "折扣金额" },
+        },
+      },
     },
     responses: {
-      "ProductListResponse": {
+      ProductListResponse: {
         description: "产品列表响应",
         content: {
           "application/json": {
@@ -68,60 +76,76 @@ export default function AccordionComponentsSectionDemo() {
               properties: {
                 data: {
                   type: "array" as const,
-                  items: { $ref: "#/components/schemas/Product" }
+                  items: { $ref: "#/components/schemas/Product" },
                 },
-                pagination: { $ref: "#/components/schemas/Pagination" }
-              }
-            }
-          }
-        }
+                pagination: { $ref: "#/components/schemas/Pagination" },
+              },
+            },
+          },
+        },
       },
-      "OrderResponse": {
+      OrderResponse: {
         description: "订单详情响应",
         content: {
           "application/json": {
-            schema: { $ref: "#/components/schemas/Order" }
-          }
-        }
-      }
+            schema: { $ref: "#/components/schemas/Order" },
+          },
+        },
+      },
     },
     securitySchemes: {
-      "BearerAuth": {
+      BearerAuth: {
         type: "http" as const,
         scheme: "bearer",
         bearerFormat: "JWT",
-        description: "JWT Bearer Token 认证"
+        description: "JWT Bearer Token 认证",
       },
-      "ApiKeyAuth": {
+      ApiKeyAuth: {
         type: "apiKey" as const,
         in: "header" as const,
         name: "X-API-Key",
-        description: "API 密钥认证"
-      }
-    }
+        description: "API 密钥认证",
+      },
+    },
   };
 
   // 用户管理 API 组件定义
   const userManagementComponents = {
     schemas: {
-      "User": {
+      User: {
         type: "object" as const,
         required: ["id", "email", "name"],
         properties: {
           id: { type: "string" as const, description: "用户 ID" },
-          email: { type: "string" as const, format: "email" as const, description: "邮箱地址" },
+          email: {
+            type: "string" as const,
+            format: "email" as const,
+            description: "邮箱地址",
+          },
           name: { type: "string" as const, description: "用户姓名" },
-          avatar: { type: "string" as const, format: "uri" as const, description: "头像 URL" },
+          avatar: {
+            type: "string" as const,
+            format: "uri" as const,
+            description: "头像 URL",
+          },
           role: {
             type: "string" as const,
             enum: ["admin", "user", "moderator"],
-            description: "用户角色"
+            description: "用户角色",
           },
-          createdAt: { type: "string" as const, format: "date-time" as const, description: "注册时间" },
-          lastLoginAt: { type: "string" as const, format: "date-time" as const, description: "最后登录时间" }
-        }
+          createdAt: {
+            type: "string" as const,
+            format: "date-time" as const,
+            description: "注册时间",
+          },
+          lastLoginAt: {
+            type: "string" as const,
+            format: "date-time" as const,
+            description: "最后登录时间",
+          },
+        },
       },
-      "UserProfile": {
+      UserProfile: {
         type: "object" as const,
         properties: {
           bio: { type: "string" as const, description: "个人简介" },
@@ -132,22 +156,25 @@ export default function AccordionComponentsSectionDemo() {
             properties: {
               language: { type: "string" as const, description: "首选语言" },
               timezone: { type: "string" as const, description: "时区" },
-              notifications: { type: "boolean" as const, description: "是否接收通知" }
-            }
-          }
-        }
-      }
+              notifications: {
+                type: "boolean" as const,
+                description: "是否接收通知",
+              },
+            },
+          },
+        },
+      },
     },
     responses: {
-      "UserResponse": {
+      UserResponse: {
         description: "用户信息响应",
         content: {
           "application/json": {
-            schema: { $ref: "#/components/schemas/User" }
-          }
-        }
+            schema: { $ref: "#/components/schemas/User" },
+          },
+        },
       },
-      "ValidationError": {
+      ValidationError: {
         description: "验证错误响应",
         content: {
           "application/json": {
@@ -160,23 +187,29 @@ export default function AccordionComponentsSectionDemo() {
                   items: {
                     type: "object" as const,
                     properties: {
-                      field: { type: "string" as const, description: "错误字段" },
-                      message: { type: "string" as const, description: "错误描述" }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }
+                      field: {
+                        type: "string" as const,
+                        description: "错误字段",
+                      },
+                      message: {
+                        type: "string" as const,
+                        description: "错误描述",
+                      },
+                    },
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
+    },
   };
 
   // 支付系统组件定义
   const paymentComponents = {
     schemas: {
-      "Payment": {
+      Payment: {
         type: "object" as const,
         required: ["id", "amount", "currency", "status"],
         properties: {
@@ -186,28 +219,32 @@ export default function AccordionComponentsSectionDemo() {
           status: {
             type: "string" as const,
             enum: ["pending", "completed", "failed", "refunded"],
-            description: "支付状态"
+            description: "支付状态",
           },
           method: {
             type: "string" as const,
             enum: ["credit_card", "paypal", "bank_transfer"],
-            description: "支付方式"
+            description: "支付方式",
           },
-          createdAt: { type: "string" as const, format: "date-time" as const, description: "创建时间" }
-        }
+          createdAt: {
+            type: "string" as const,
+            format: "date-time" as const,
+            description: "创建时间",
+          },
+        },
       },
-      "PaymentMethod": {
+      PaymentMethod: {
         type: "object" as const,
         properties: {
           type: { type: "string" as const, description: "支付方式类型" },
           cardLast4: { type: "string" as const, description: "卡号后四位" },
           expiryMonth: { type: "integer" as const, description: "过期月份" },
-          expiryYear: { type: "integer" as const, description: "过期年份" }
-        }
-      }
+          expiryYear: { type: "integer" as const, description: "过期年份" },
+        },
+      },
     },
     securitySchemes: {
-      "PaymentAuth": {
+      PaymentAuth: {
         type: "oauth2" as const,
         flows: {
           authorizationCode: {
@@ -216,12 +253,12 @@ export default function AccordionComponentsSectionDemo() {
             scopes: {
               "payment:read": "读取支付信息",
               "payment:write": "创建和修改支付",
-              "refund:create": "创建退款"
-            }
-          }
-        }
-      }
-    }
+              "refund:create": "创建退款",
+            },
+          },
+        },
+      },
+    },
   };
 
   return (
@@ -231,9 +268,7 @@ export default function AccordionComponentsSectionDemo() {
         <p className="text-xs text-neutral-600 dark:text-neutral-400 mb-3">
           电商平台 API 的完整组件定义，包含产品、订单和认证相关的数据模型
         </p>
-        <AccordionComponentsSection
-          components={ecommerceComponents}
-        />
+        <AccordionComponentsSection components={ecommerceComponents} />
       </div>
 
       <div>
@@ -241,9 +276,7 @@ export default function AccordionComponentsSectionDemo() {
         <p className="text-xs text-neutral-600 dark:text-neutral-400 mb-3">
           用户管理系统的组件定义，包含用户信息、资料和响应模型
         </p>
-        <AccordionComponentsSection
-          components={userManagementComponents}
-        />
+        <AccordionComponentsSection components={userManagementComponents} />
       </div>
 
       <div>
@@ -251,9 +284,7 @@ export default function AccordionComponentsSectionDemo() {
         <p className="text-xs text-neutral-600 dark:text-neutral-400 mb-3">
           支付处理系统的组件定义，包含支付信息、方式和安全认证
         </p>
-        <AccordionComponentsSection
-          components={paymentComponents}
-        />
+        <AccordionComponentsSection components={paymentComponents} />
       </div>
     </div>
   );

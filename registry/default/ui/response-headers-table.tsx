@@ -5,7 +5,7 @@ import { useI18n } from "@/registry/default/lib/i18n";
 import { resolveRef } from "@/registry/default/lib/utils/resolve-ref";
 import { HeaderItem } from "@/registry/default/ui/header-item";
 import { type StyleType } from "@/registry/default/ui/style-badge";
-import type { OpenAPIV3 } from 'openapi-types';
+import type { OpenAPIV3 } from "openapi-types";
 import React from "react";
 
 // Import types from the centralized types file
@@ -19,64 +19,65 @@ interface ResponseHeadersTableProps {
 /**
  * 响应头部表格组件，负责展示API响应的头部信息
  */
-const ResponseHeadersTable = React.forwardRef<HTMLDivElement, ResponseHeadersTableProps>(
-  ({ headers, components, className }, ref) => {
-    const { t } = useI18n();
+const ResponseHeadersTable = React.forwardRef<
+  HTMLDivElement,
+  ResponseHeadersTableProps
+>(({ headers, components, className }, ref) => {
+  const { t } = useI18n();
 
-    if (!headers || Object.keys(headers).length === 0) {
-      return null;
-    }
+  if (!headers || Object.keys(headers).length === 0) {
+    return null;
+  }
 
-    return (
-      <div ref={ref} className={cn("space-y-3", className)}>
-        {Object.entries(headers).map(([name, headerOrRef]) => {
-          // Resolve header ref
-          const header = resolveRef<OpenAPIV3.HeaderObject>(
-            headerOrRef,
-            components,
-            "headers",
+  return (
+    <div ref={ref} className={cn("space-y-3", className)}>
+      {Object.entries(headers).map(([name, headerOrRef]) => {
+        // Resolve header ref
+        const header = resolveRef<OpenAPIV3.HeaderObject>(
+          headerOrRef,
+          components,
+          "headers",
+        );
+
+        if (!header) {
+          const refString =
+            headerOrRef &&
+            typeof headerOrRef === "object" &&
+            "$ref" in headerOrRef
+              ? (headerOrRef as OpenAPIV3.ReferenceObject).$ref
+              : t("[unknown reference]");
+          console.warn(
+            `[ResponseHeadersTable] Failed to resolve header ref: ${refString} for key ${name}`,
           );
-
-          if (!header) {
-            const refString =
-              headerOrRef &&
-                typeof headerOrRef === "object" &&
-                "$ref" in headerOrRef
-                ? (headerOrRef as OpenAPIV3.ReferenceObject).$ref
-                : t("[unknown reference]");
-            console.warn(
-              `[ResponseHeadersTable] Failed to resolve header ref: ${refString} for key ${name}`,
-            );
-            // Optionally render an error state for this header
-            return (
-              <div
-                key={name}
-                className="text-xs text-red-500 dark:text-red-400 p-1 border border-dashed dark:border-red-700 rounded"
-              >
-                {t("Failed to resolve reference")}: {name} ({refString})
-              </div>
-            );
-          }
-
+          // Optionally render an error state for this header
           return (
-            <HeaderItem
+            <div
               key={name}
-              name={name}
-              description={header.description}
-              required={header.required}
-              deprecated={header.deprecated}
-              schema={header.schema}
-              style={header.style as StyleType}
-              explode={header.explode}
-              examples={header.examples}
-              components={components}
-            />
+              className="text-xs text-red-500 dark:text-red-400 p-1 border border-dashed dark:border-red-700 rounded"
+            >
+              {t("Failed to resolve reference")}: {name} ({refString})
+            </div>
           );
-        })}
-      </div>
-    );
-  },
-);
+        }
+
+        return (
+          <HeaderItem
+            key={name}
+            name={name}
+            description={header.description}
+            required={header.required}
+            deprecated={header.deprecated}
+            schema={header.schema}
+            style={header.style as StyleType}
+            explode={header.explode}
+            examples={header.examples}
+            components={components}
+          />
+        );
+      })}
+    </div>
+  );
+});
 
 ResponseHeadersTable.displayName = "ResponseHeadersTable";
 

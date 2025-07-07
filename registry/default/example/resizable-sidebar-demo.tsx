@@ -12,9 +12,7 @@ export default function ResizableSidebarDemo() {
       >
         <div className="p-4 space-y-2">
           <h3 className="font-semibold">侧边栏</h3>
-          <p className="text-sm text-muted-foreground">
-            拖拽右边缘调整宽度
-          </p>
+          <p className="text-sm text-muted-foreground">拖拽右边缘调整宽度</p>
           <div className="space-y-1">
             <div className="p-2 bg-white dark:bg-neutral-800 rounded text-sm">
               菜单项 1

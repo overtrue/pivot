@@ -3,8 +3,9 @@ import { ParameterDescription } from "@/registry/default/ui/parameter-descriptio
 export default function ParameterDescriptionDemo() {
   // 用户 ID 参数描述
   const userIdDescription = {
-    description: "用户的唯一标识符，用于识别特定用户账户。必须是有效的 UUID 格式。",
-    example: "123e4567-e89b-12d3-a456-426614174000"
+    description:
+      "用户的唯一标识符，用于识别特定用户账户。必须是有效的 UUID 格式。",
+    example: "123e4567-e89b-12d3-a456-426614174000",
   };
 
   // 分页参数描述
@@ -12,65 +13,78 @@ export default function ParameterDescriptionDemo() {
     description: "分页页码，从 1 开始计数。用于控制返回结果的分页显示。",
     example: 1,
     minimum: 1,
-    maximum: 1000
+    maximum: 1000,
   };
 
   // 搜索关键词参数描述
   const searchDescription = {
-    description: "搜索关键词，支持模糊匹配。可以搜索产品名称、描述或标签。最少 2 个字符，最多 100 个字符。",
+    description:
+      "搜索关键词，支持模糊匹配。可以搜索产品名称、描述或标签。最少 2 个字符，最多 100 个字符。",
     example: "iPhone 手机",
     minLength: 2,
-    maxLength: 100
+    maxLength: 100,
   };
 
   // 日期范围参数描述
   const dateRangeDescription = {
-    description: "查询的开始日期，格式为 ISO 8601 标准（YYYY-MM-DD）。用于筛选指定日期范围内的数据。",
+    description:
+      "查询的开始日期，格式为 ISO 8601 标准（YYYY-MM-DD）。用于筛选指定日期范围内的数据。",
     example: "2024-01-01",
-    format: "date" as const
+    format: "date" as const,
   };
 
   // 排序参数描述
   const sortDescription = {
-    description: "排序字段，指定结果集的排序方式。支持多个字段组合排序，用逗号分隔。",
+    description:
+      "排序字段，指定结果集的排序方式。支持多个字段组合排序，用逗号分隔。",
     example: "created_at,name",
-    enum: ["created_at", "updated_at", "name", "price", "popularity"]
+    enum: ["created_at", "updated_at", "name", "price", "popularity"],
   };
 
   // 文件类型参数描述
   const fileTypeDescription = {
-    description: "上传文件的 MIME 类型限制。只允许上传指定类型的文件，确保系统安全性。",
+    description:
+      "上传文件的 MIME 类型限制。只允许上传指定类型的文件，确保系统安全性。",
     example: "image/jpeg",
-    enum: ["image/jpeg", "image/png", "image/gif", "application/pdf", "text/plain"]
+    enum: [
+      "image/jpeg",
+      "image/png",
+      "image/gif",
+      "application/pdf",
+      "text/plain",
+    ],
   };
 
   // API 版本参数描述
   const versionDescription = {
-    description: "API 版本号，用于向后兼容。建议使用最新版本以获得最佳功能和性能。",
+    description:
+      "API 版本号，用于向后兼容。建议使用最新版本以获得最佳功能和性能。",
     example: "v2",
     enum: ["v1", "v2", "beta"],
-    deprecated: false
+    deprecated: false,
   };
 
   // 地理位置参数描述
   const locationDescription = {
-    description: "地理位置坐标，格式为 '纬度,经度'。用于基于位置的服务和搜索功能。",
+    description:
+      "地理位置坐标，格式为 '纬度,经度'。用于基于位置的服务和搜索功能。",
     example: "39.9042,116.4074",
-    pattern: "^-?\\d+\\.\\d+,-?\\d+\\.\\d+$"
+    pattern: "^-?\\d+\\.\\d+,-?\\d+\\.\\d+$",
   };
 
   // 权限范围参数描述
   const scopeDescription = {
-    description: "权限范围列表，用空格分隔。定义客户端应用可以访问的资源和操作权限。",
+    description:
+      "权限范围列表，用空格分隔。定义客户端应用可以访问的资源和操作权限。",
     example: "read write profile",
-    pattern: "^[a-z_]+(\\s+[a-z_]+)*$"
+    pattern: "^[a-z_]+(\\s+[a-z_]+)*$",
   };
 
   // 语言代码参数描述
   const languageDescription = {
     description: "语言代码，遵循 ISO 639-1 标准。用于国际化和本地化功能。",
     example: "zh-CN",
-    enum: ["zh-CN", "en-US", "ja-JP", "ko-KR", "fr-FR", "de-DE", "es-ES"]
+    enum: ["zh-CN", "en-US", "ja-JP", "ko-KR", "fr-FR", "de-DE", "es-ES"],
   };
 
   // 货币代码参数描述
@@ -78,14 +92,15 @@ export default function ParameterDescriptionDemo() {
     description: "货币代码，遵循 ISO 4217 标准。用于价格显示和支付处理。",
     example: "USD",
     enum: ["USD", "EUR", "GBP", "JPY", "CNY", "KRW"],
-    pattern: "^[A-Z]{3}$"
+    pattern: "^[A-Z]{3}$",
   };
 
   // 批量操作参数描述
   const batchDescription = {
-    description: "批量操作的项目 ID 列表，用逗号分隔。单次操作最多支持 100 个项目。",
+    description:
+      "批量操作的项目 ID 列表，用逗号分隔。单次操作最多支持 100 个项目。",
     example: "id1,id2,id3",
-    maxItems: 100
+    maxItems: 100,
   };
 
   return (

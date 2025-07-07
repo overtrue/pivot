@@ -264,12 +264,12 @@ export const TweetCard = async ({
 }) => {
   const tweet = id
     ? await getTweet(id).catch((err) => {
-      if (onError) {
-        onError(err);
-      } else {
-        console.error(err);
-      }
-    })
+        if (onError) {
+          onError(err);
+        } else {
+          console.error(err);
+        }
+      })
     : undefined;
 
   if (!tweet) {

@@ -24,7 +24,7 @@ const EnumValues = React.forwardRef<HTMLDivElement, EnumValuesProps>(
         ))}
       </div>
     );
-  }
+  },
 );
 
 EnumValues.displayName = "EnumValues";

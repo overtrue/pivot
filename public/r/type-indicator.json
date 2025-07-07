@@ -2,12 +2,8 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "type-indicator",
   "type": "registry:ui",
-  "dependencies": [
-    "react"
-  ],
-  "registryDependencies": [
-    "https://pivotkit.vercel.app/r/i18n.json"
-  ],
+  "dependencies": ["react"],
+  "registryDependencies": ["https://pivotkit.vercel.app/r/i18n.json"],
   "files": [
     {
       "path": "registry/default/ui/type-indicator.tsx",

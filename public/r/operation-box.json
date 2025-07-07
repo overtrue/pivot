@@ -2,10 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "operation-box",
   "type": "registry:ui",
-  "dependencies": [
-    "openapi-types",
-    "react"
-  ],
+  "dependencies": ["openapi-types", "react"],
   "registryDependencies": [
     "https://pivotkit.vercel.app/r/i18n.json",
     "https://pivotkit.vercel.app/r/deprecated-badge.json",

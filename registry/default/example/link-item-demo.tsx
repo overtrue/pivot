@@ -7,8 +7,8 @@ export default function LinkItemDemo() {
     description: "获取用户详细资料信息",
     operationId: "getUserProfile",
     parameters: {
-      userId: "$response.body#/id"
-    }
+      userId: "$response.body#/id",
+    },
   };
 
   const userOrdersLink = {
@@ -17,8 +17,8 @@ export default function LinkItemDemo() {
     operationId: "getUserOrders",
     parameters: {
       userId: "$response.body#/id",
-      status: "all"
-    }
+      status: "all",
+    },
   };
 
   // 产品相关链接
@@ -27,8 +27,8 @@ export default function LinkItemDemo() {
     description: "获取产品的详细信息和规格",
     operationId: "getProductDetails",
     parameters: {
-      productId: "$response.body#/id"
-    }
+      productId: "$response.body#/id",
+    },
   };
 
   const productReviewsLink = {
@@ -38,8 +38,8 @@ export default function LinkItemDemo() {
     parameters: {
       productId: "$response.body#/id",
       page: 1,
-      limit: 20
-    }
+      limit: 20,
+    },
   };
 
   // 订单相关链接
@@ -48,8 +48,8 @@ export default function LinkItemDemo() {
     description: "获取订单的详细信息和状态",
     operationId: "getOrderDetails",
     parameters: {
-      orderId: "$response.body#/id"
-    }
+      orderId: "$response.body#/id",
+    },
   };
 
   const orderTrackingLink = {
@@ -57,8 +57,8 @@ export default function LinkItemDemo() {
     description: "跟踪订单的物流配送状态",
     operationId: "trackOrder",
     parameters: {
-      orderId: "$response.body#/id"
-    }
+      orderId: "$response.body#/id",
+    },
   };
 
   const orderCancelLink = {
@@ -66,8 +66,8 @@ export default function LinkItemDemo() {
     description: "取消订单（仅限未发货状态）",
     operationId: "cancelOrder",
     parameters: {
-      orderId: "$response.body#/id"
-    }
+      orderId: "$response.body#/id",
+    },
   };
 
   // 支付相关链接
@@ -76,8 +76,8 @@ export default function LinkItemDemo() {
     description: "获取支付交易的详细信息",
     operationId: "getPaymentDetails",
     parameters: {
-      paymentId: "$response.body#/id"
-    }
+      paymentId: "$response.body#/id",
+    },
   };
 
   const refundPaymentLink = {
@@ -85,8 +85,8 @@ export default function LinkItemDemo() {
     description: "申请支付退款",
     operationId: "refundPayment",
     parameters: {
-      paymentId: "$response.body#/id"
-    }
+      paymentId: "$response.body#/id",
+    },
   };
 
   // 文件相关链接
@@ -95,8 +95,8 @@ export default function LinkItemDemo() {
     description: "下载文件内容",
     operationId: "downloadFile",
     parameters: {
-      fileId: "$response.body#/id"
-    }
+      fileId: "$response.body#/id",
+    },
   };
 
   const fileMetadataLink = {
@@ -104,8 +104,8 @@ export default function LinkItemDemo() {
     description: "获取文件的元数据信息",
     operationId: "getFileMetadata",
     parameters: {
-      fileId: "$response.body#/id"
-    }
+      fileId: "$response.body#/id",
+    },
   };
 
   // 内容相关链接
@@ -115,8 +115,8 @@ export default function LinkItemDemo() {
     operationId: "getArticleComments",
     parameters: {
       articleId: "$response.body#/id",
-      sort: "newest"
-    }
+      sort: "newest",
+    },
   };
 
   const relatedArticlesLink = {
@@ -125,8 +125,8 @@ export default function LinkItemDemo() {
     operationId: "getRelatedArticles",
     parameters: {
       articleId: "$response.body#/id",
-      limit: 5
-    }
+      limit: 5,
+    },
   };
 
   // 通知相关链接
@@ -135,8 +135,8 @@ export default function LinkItemDemo() {
     description: "标记通知为已读状态",
     operationId: "markNotificationRead",
     parameters: {
-      notificationId: "$response.body#/id"
-    }
+      notificationId: "$response.body#/id",
+    },
   };
 
   // 分析相关链接
@@ -145,8 +145,8 @@ export default function LinkItemDemo() {
     description: "获取分析报表的详细数据",
     operationId: "getReportDetails",
     parameters: {
-      reportId: "$response.body#/id"
-    }
+      reportId: "$response.body#/id",
+    },
   };
 
   const exportReportLink = {
@@ -155,8 +155,8 @@ export default function LinkItemDemo() {
     operationId: "exportReport",
     parameters: {
       reportId: "$response.body#/id",
-      format: "xlsx"
-    }
+      format: "xlsx",
+    },
   };
 
   return (

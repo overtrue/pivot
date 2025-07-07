@@ -5,14 +5,14 @@ export default function SecuritySchemeDemo() {
     type: "apiKey" as const,
     description: "API key authentication",
     name: "X-API-Key",
-    in: "header" as const
+    in: "header" as const,
   };
 
   const httpScheme = {
     type: "http" as const,
     description: "Bearer token authentication",
     scheme: "bearer",
-    bearerFormat: "JWT"
+    bearerFormat: "JWT",
   };
 
   const oauth2Scheme = {
@@ -23,12 +23,12 @@ export default function SecuritySchemeDemo() {
         authorizationUrl: "https://example.com/oauth/authorize",
         tokenUrl: "https://example.com/oauth/token",
         scopes: {
-          "read": "Read access to resources",
-          "write": "Write access to resources",
-          "admin": "Administrative access"
-        }
-      }
-    }
+          read: "Read access to resources",
+          write: "Write access to resources",
+          admin: "Administrative access",
+        },
+      },
+    },
   };
 
   return (

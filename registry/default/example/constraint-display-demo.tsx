@@ -10,7 +10,7 @@ export default function ConstraintDisplayDemo() {
     minItems: 1,
     maxItems: 10,
     uniqueItems: true,
-    multipleOf: 5
+    multipleOf: 5,
   };
 
   return (

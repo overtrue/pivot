@@ -1,5 +1,5 @@
 import { cn } from "@/lib/utils";
-import type { OpenAPIV3 } from 'openapi-types';
+import type { OpenAPIV3 } from "openapi-types";
 import React from "react";
 import { resolveRef } from "@/registry/default/lib/utils/resolve-ref";
 import { SectionTitle } from "@/registry/default/ui/section-title";
@@ -9,7 +9,10 @@ import { SecuritySchemeDisplay } from "@/registry/default/ui/security-scheme-dis
 
 interface SecuritySectionProps {
   security?: OpenAPIV3.SecurityRequirementObject[];
-  securitySchemes?: Record<string, OpenAPIV3.SecuritySchemeObject | OpenAPIV3.ReferenceObject>;
+  securitySchemes?: Record<
+    string,
+    OpenAPIV3.SecuritySchemeObject | OpenAPIV3.ReferenceObject
+  >;
   components?: OpenAPIV3.ComponentsObject;
   className?: string;
 }
@@ -75,9 +78,7 @@ const SecuritySection = React.forwardRef<HTMLDivElement, SecuritySectionProps>(
               API calls must satisfy ONE of the following security requirement
               sets:
             </p>
-            <div className="space-y-2">
-              {security.map(renderRequirement)}
-            </div>
+            <div className="space-y-2">{security.map(renderRequirement)}</div>
           </div>
         )}
 
@@ -86,39 +87,37 @@ const SecuritySection = React.forwardRef<HTMLDivElement, SecuritySectionProps>(
           <div className={hasGlobalRequirements ? "mt-8" : ""}>
             <SectionTitle title="Security Schemes" className="text-lg mb-4" />
             <div className="space-y-4">
-              {Object.entries(securitySchemes).map(
-                ([name, schemeOrRef]) => {
-                  // Resolve refs if security schemes can be defined with $ref
-                  const scheme = resolveRef<OpenAPIV3.SecuritySchemeObject>(
-                    schemeOrRef,
-                    components,
-                    "securitySchemes",
-                  );
-                  if (!scheme) {
-                    const refString =
-                      schemeOrRef &&
-                        typeof schemeOrRef === "object" &&
-                        "$ref" in schemeOrRef
-                        ? (schemeOrRef as OpenAPIV3.ReferenceObject).$ref
-                        : "[unknown reference]";
-                    return (
-                      <div
-                        key={name}
-                        className="text-xs text-red-500 dark:text-red-400"
-                      >
-                        Failed to resolve scheme: {refString}
-                      </div>
-                    );
-                  }
+              {Object.entries(securitySchemes).map(([name, schemeOrRef]) => {
+                // Resolve refs if security schemes can be defined with $ref
+                const scheme = resolveRef<OpenAPIV3.SecuritySchemeObject>(
+                  schemeOrRef,
+                  components,
+                  "securitySchemes",
+                );
+                if (!scheme) {
+                  const refString =
+                    schemeOrRef &&
+                    typeof schemeOrRef === "object" &&
+                    "$ref" in schemeOrRef
+                      ? (schemeOrRef as OpenAPIV3.ReferenceObject).$ref
+                      : "[unknown reference]";
                   return (
-                    <SecuritySchemeDisplay
+                    <div
                       key={name}
-                      name={name}
-                      scheme={scheme}
-                    />
+                      className="text-xs text-red-500 dark:text-red-400"
+                    >
+                      Failed to resolve scheme: {refString}
+                    </div>
                   );
-                },
-              )}
+                }
+                return (
+                  <SecuritySchemeDisplay
+                    key={name}
+                    name={name}
+                    scheme={scheme}
+                  />
+                );
+              })}
             </div>
           </div>
         )}
@@ -130,4 +129,3 @@ const SecuritySection = React.forwardRef<HTMLDivElement, SecuritySectionProps>(
 SecuritySection.displayName = "SecuritySection";
 
 export { SecuritySection, type SecuritySectionProps };
-

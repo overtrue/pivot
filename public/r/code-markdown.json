@@ -2,14 +2,8 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "code-markdown",
   "type": "registry:ui",
-  "dependencies": [
-    "next-themes",
-    "react",
-    "react-syntax-highlighter"
-  ],
-  "registryDependencies": [
-    "https://pivotkit.vercel.app/r/copy-button.json"
-  ],
+  "dependencies": ["next-themes", "react", "react-syntax-highlighter"],
+  "registryDependencies": ["https://pivotkit.vercel.app/r/copy-button.json"],
   "files": [
     {
       "path": "registry/default/ui/code-markdown.tsx",

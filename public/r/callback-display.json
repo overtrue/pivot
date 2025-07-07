@@ -2,10 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "callback-display",
   "type": "registry:ui",
-  "dependencies": [
-    "openapi-types",
-    "react"
-  ],
+  "dependencies": ["openapi-types", "react"],
   "registryDependencies": [
     "https://pivotkit.vercel.app/r/resolve-ref.json",
     "https://pivotkit.vercel.app/r/operation-box.json"

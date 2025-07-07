@@ -27,7 +27,9 @@ export default function LanguageSwitcherDemo() {
             <LanguageSwitcher />
           </div>
           <p className="text-xs text-neutral-600 dark:text-neutral-400">
-            选择您熟悉的语言来阅读 API 文档。我们提供中文、英文、日文等多种语言版本，确保您能够准确理解 API 的使用方法。
+            选择您熟悉的语言来阅读 API
+            文档。我们提供中文、英文、日文等多种语言版本，确保您能够准确理解 API
+            的使用方法。
           </p>
         </div>
       </div>
@@ -83,7 +85,9 @@ export default function LanguageSwitcherDemo() {
             </span>
           </div>
           <div className="flex items-center gap-2">
-            <span className="text-xs text-neutral-600 dark:text-neutral-400">语言:</span>
+            <span className="text-xs text-neutral-600 dark:text-neutral-400">
+              语言:
+            </span>
             <LanguageSwitcher />
           </div>
         </div>
@@ -123,16 +127,28 @@ export default function LanguageSwitcherDemo() {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs">
               <div className="p-2 bg-blue-50 dark:bg-blue-900/20 rounded">
-                <div className="font-medium text-blue-800 dark:text-blue-400">本地化</div>
-                <div className="text-blue-600 dark:text-blue-300">日期、时间、货币格式</div>
+                <div className="font-medium text-blue-800 dark:text-blue-400">
+                  本地化
+                </div>
+                <div className="text-blue-600 dark:text-blue-300">
+                  日期、时间、货币格式
+                </div>
               </div>
               <div className="p-2 bg-green-50 dark:bg-green-900/20 rounded">
-                <div className="font-medium text-green-800 dark:text-green-400">团队协作</div>
-                <div className="text-green-600 dark:text-green-300">多语言团队支持</div>
+                <div className="font-medium text-green-800 dark:text-green-400">
+                  团队协作
+                </div>
+                <div className="text-green-600 dark:text-green-300">
+                  多语言团队支持
+                </div>
               </div>
               <div className="p-2 bg-purple-50 dark:bg-purple-900/20 rounded">
-                <div className="font-medium text-purple-800 dark:text-purple-400">合规性</div>
-                <div className="text-purple-600 dark:text-purple-300">符合当地法规要求</div>
+                <div className="font-medium text-purple-800 dark:text-purple-400">
+                  合规性
+                </div>
+                <div className="text-purple-600 dark:text-purple-300">
+                  符合当地法规要求
+                </div>
               </div>
             </div>
           </div>

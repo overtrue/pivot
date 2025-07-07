@@ -2,9 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "required-badge-demo",
   "type": "registry:example",
-  "registryDependencies": [
-    "https://pivotkit.vercel.app/r/required-badge.json"
-  ],
+  "registryDependencies": ["https://pivotkit.vercel.app/r/required-badge.json"],
   "files": [
     {
       "path": "registry/default/example/required-badge-demo.tsx",

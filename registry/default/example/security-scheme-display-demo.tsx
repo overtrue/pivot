@@ -6,7 +6,8 @@ export default function SecuritySchemeDisplayDemo() {
     type: "apiKey" as const,
     name: "X-API-Key",
     in: "header" as const,
-    description: "API 密钥认证，将密钥放在请求头中。请在开发者控制台获取您的 API 密钥。"
+    description:
+      "API 密钥认证，将密钥放在请求头中。请在开发者控制台获取您的 API 密钥。",
   };
 
   // API 密钥认证（Query）
@@ -14,7 +15,8 @@ export default function SecuritySchemeDisplayDemo() {
     type: "apiKey" as const,
     name: "api_key",
     in: "query" as const,
-    description: "API 密钥认证，将密钥作为查询参数传递。适用于无法设置请求头的场景。"
+    description:
+      "API 密钥认证，将密钥作为查询参数传递。适用于无法设置请求头的场景。",
   };
 
   // Bearer Token 认证
@@ -22,14 +24,16 @@ export default function SecuritySchemeDisplayDemo() {
     type: "http" as const,
     scheme: "bearer",
     bearerFormat: "JWT",
-    description: "JWT Bearer Token 认证。在 Authorization 头中使用 'Bearer <token>' 格式。"
+    description:
+      "JWT Bearer Token 认证。在 Authorization 头中使用 'Bearer <token>' 格式。",
   };
 
   // HTTP 基本认证
   const basicAuthScheme = {
     type: "http" as const,
     scheme: "basic",
-    description: "HTTP 基本认证，使用用户名和密码进行身份验证。凭据会被 Base64 编码。"
+    description:
+      "HTTP 基本认证，使用用户名和密码进行身份验证。凭据会被 Base64 编码。",
   };
 
   // OAuth 2.0 认证
@@ -42,26 +46,28 @@ export default function SecuritySchemeDisplayDemo() {
         tokenUrl: "https://auth.example.com/oauth/token",
         refreshUrl: "https://auth.example.com/oauth/refresh",
         scopes: {
-          "read": "读取用户数据",
-          "write": "修改用户数据",
-          "admin": "管理员权限"
-        }
+          read: "读取用户数据",
+          write: "修改用户数据",
+          admin: "管理员权限",
+        },
       },
       clientCredentials: {
         tokenUrl: "https://auth.example.com/oauth/token",
         scopes: {
           "api:read": "读取 API 数据",
-          "api:write": "写入 API 数据"
-        }
-      }
-    }
+          "api:write": "写入 API 数据",
+        },
+      },
+    },
   };
 
   // OpenID Connect 认证
   const openIdConnectScheme = {
     type: "openIdConnect" as const,
-    openIdConnectUrl: "https://auth.example.com/.well-known/openid_configuration",
-    description: "OpenID Connect 身份认证，基于 OAuth 2.0 构建的身份层。支持单点登录（SSO）。"
+    openIdConnectUrl:
+      "https://auth.example.com/.well-known/openid_configuration",
+    description:
+      "OpenID Connect 身份认证，基于 OAuth 2.0 构建的身份层。支持单点登录（SSO）。",
   };
 
   // Cookie 会话认证
@@ -69,7 +75,7 @@ export default function SecuritySchemeDisplayDemo() {
     type: "apiKey" as const,
     name: "sessionId",
     in: "cookie" as const,
-    description: "基于 Cookie 的会话认证。适用于 Web 应用程序的用户会话管理。"
+    description: "基于 Cookie 的会话认证。适用于 Web 应用程序的用户会话管理。",
   };
 
   // 自定义认证头
@@ -77,7 +83,8 @@ export default function SecuritySchemeDisplayDemo() {
     type: "apiKey" as const,
     name: "X-Custom-Auth",
     in: "header" as const,
-    description: "自定义认证头，用于特殊的认证需求。请联系技术支持获取认证令牌。"
+    description:
+      "自定义认证头，用于特殊的认证需求。请联系技术支持获取认证令牌。",
   };
 
   // 多重认证方案
@@ -85,7 +92,8 @@ export default function SecuritySchemeDisplayDemo() {
     type: "http" as const,
     scheme: "bearer",
     bearerFormat: "JWT",
-    description: "多重认证方案，需要同时提供 JWT Token 和 API 密钥。用于高安全级别的操作。"
+    description:
+      "多重认证方案，需要同时提供 JWT Token 和 API 密钥。用于高安全级别的操作。",
   };
 
   // 企业级认证
@@ -100,10 +108,10 @@ export default function SecuritySchemeDisplayDemo() {
           "enterprise:read": "读取企业数据",
           "enterprise:write": "修改企业数据",
           "audit:access": "访问审计日志",
-          "admin:full": "完整管理员权限"
-        }
-      }
-    }
+          "admin:full": "完整管理员权限",
+        },
+      },
+    },
   };
 
   // 移动应用认证
@@ -117,10 +125,10 @@ export default function SecuritySchemeDisplayDemo() {
         scopes: {
           "mobile:sync": "数据同步",
           "push:send": "发送推送通知",
-          "location:access": "访问位置信息"
-        }
-      }
-    }
+          "location:access": "访问位置信息",
+        },
+      },
+    },
   };
 
   // 第三方集成认证
@@ -128,7 +136,7 @@ export default function SecuritySchemeDisplayDemo() {
     type: "apiKey" as const,
     name: "X-Webhook-Signature",
     in: "header" as const,
-    description: "Webhook 签名验证，用于验证第三方系统发送的回调请求的真实性。"
+    description: "Webhook 签名验证，用于验证第三方系统发送的回调请求的真实性。",
   };
 
   return (
@@ -138,7 +146,10 @@ export default function SecuritySchemeDisplayDemo() {
         <p className="text-xs text-neutral-600 dark:text-neutral-400 mb-3">
           最常用的 API 认证方式，将密钥放在请求头中传递
         </p>
-        <SecuritySchemeDisplay name="ApiKeyHeader" scheme={apiKeyHeaderScheme} />
+        <SecuritySchemeDisplay
+          name="ApiKeyHeader"
+          scheme={apiKeyHeaderScheme}
+        />
       </div>
 
       <div>
@@ -178,7 +189,10 @@ export default function SecuritySchemeDisplayDemo() {
         <p className="text-xs text-neutral-600 dark:text-neutral-400 mb-3">
           基于 OAuth 2.0 的身份认证层，支持单点登录功能
         </p>
-        <SecuritySchemeDisplay name="OpenIdConnect" scheme={openIdConnectScheme} />
+        <SecuritySchemeDisplay
+          name="OpenIdConnect"
+          scheme={openIdConnectScheme}
+        />
       </div>
 
       <div>
@@ -194,7 +208,10 @@ export default function SecuritySchemeDisplayDemo() {
         <p className="text-xs text-neutral-600 dark:text-neutral-400 mb-3">
           自定义的认证头方案，用于特殊的认证需求
         </p>
-        <SecuritySchemeDisplay name="CustomHeader" scheme={customHeaderScheme} />
+        <SecuritySchemeDisplay
+          name="CustomHeader"
+          scheme={customHeaderScheme}
+        />
       </div>
 
       <div>

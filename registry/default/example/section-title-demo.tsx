@@ -8,9 +8,7 @@ export default function SectionTitleDemo() {
         <p className="text-xs text-neutral-600 dark:text-neutral-400 mb-3">
           API 文档的概览部分，介绍 API 的基本信息和使用说明
         </p>
-        <SectionTitle
-          title="API 概览"
-        />
+        <SectionTitle title="API 概览" />
       </div>
 
       <div>
@@ -18,9 +16,7 @@ export default function SectionTitleDemo() {
         <p className="text-xs text-neutral-600 dark:text-neutral-400 mb-3">
           详细说明 API 的认证和授权机制
         </p>
-        <SectionTitle
-          title="认证与授权"
-        />
+        <SectionTitle title="认证与授权" />
       </div>
 
       <div>
@@ -28,9 +24,7 @@ export default function SectionTitleDemo() {
         <p className="text-xs text-neutral-600 dark:text-neutral-400 mb-3">
           用户相关的 API 端点和操作说明
         </p>
-        <SectionTitle
-          title="用户管理"
-        />
+        <SectionTitle title="用户管理" />
       </div>
 
       <div>
@@ -38,9 +32,7 @@ export default function SectionTitleDemo() {
         <p className="text-xs text-neutral-600 dark:text-neutral-400 mb-3">
           电商平台的产品管理相关接口
         </p>
-        <SectionTitle
-          title="产品管理"
-        />
+        <SectionTitle title="产品管理" />
       </div>
 
       <div>
@@ -48,9 +40,7 @@ export default function SectionTitleDemo() {
         <p className="text-xs text-neutral-600 dark:text-neutral-400 mb-3">
           订单创建、查询和状态管理相关接口
         </p>
-        <SectionTitle
-          title="订单处理"
-        />
+        <SectionTitle title="订单处理" />
       </div>
 
       <div>
@@ -58,9 +48,7 @@ export default function SectionTitleDemo() {
         <p className="text-xs text-neutral-600 dark:text-neutral-400 mb-3">
           支付处理和交易管理相关接口
         </p>
-        <SectionTitle
-          title="支付系统"
-        />
+        <SectionTitle title="支付系统" />
       </div>
 
       <div>
@@ -68,9 +56,7 @@ export default function SectionTitleDemo() {
         <p className="text-xs text-neutral-600 dark:text-neutral-400 mb-3">
           文件和媒体资源管理相关接口
         </p>
-        <SectionTitle
-          title="文件管理"
-        />
+        <SectionTitle title="文件管理" />
       </div>
 
       <div>
@@ -78,9 +64,7 @@ export default function SectionTitleDemo() {
         <p className="text-xs text-neutral-600 dark:text-neutral-400 mb-3">
           数据统计和分析报表相关接口
         </p>
-        <SectionTitle
-          title="数据分析"
-        />
+        <SectionTitle title="数据分析" />
       </div>
 
       <div>
@@ -88,9 +72,7 @@ export default function SectionTitleDemo() {
         <p className="text-xs text-neutral-600 dark:text-neutral-400 mb-3">
           消息推送和通知管理相关接口
         </p>
-        <SectionTitle
-          title="通知系统"
-        />
+        <SectionTitle title="通知系统" />
       </div>
 
       <div>
@@ -98,9 +80,7 @@ export default function SectionTitleDemo() {
         <p className="text-xs text-neutral-600 dark:text-neutral-400 mb-3">
           系统设置和配置管理相关接口
         </p>
-        <SectionTitle
-          title="系统配置"
-        />
+        <SectionTitle title="系统配置" />
       </div>
 
       <div>
@@ -108,9 +88,7 @@ export default function SectionTitleDemo() {
         <p className="text-xs text-neutral-600 dark:text-neutral-400 mb-3">
           API 错误代码和处理说明
         </p>
-        <SectionTitle
-          title="错误处理"
-        />
+        <SectionTitle title="错误处理" />
       </div>
 
       <div>
@@ -118,9 +96,7 @@ export default function SectionTitleDemo() {
         <p className="text-xs text-neutral-600 dark:text-neutral-400 mb-3">
           开发工具和 SDK 使用说明
         </p>
-        <SectionTitle
-          title="SDK 和工具"
-        />
+        <SectionTitle title="SDK 和工具" />
       </div>
     </div>
   );

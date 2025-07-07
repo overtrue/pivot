@@ -1,20 +1,57 @@
 // 项目特定类型定义
 // 这些类型不在 openapi-types 包中，或者是项目特有的扩展
 
-export type DataType = 'string' | 'number' | 'integer' | 'boolean' | 'array' | 'object' | 'null';
-export type ParameterLocation = 'query' | 'header' | 'path' | 'cookie';
-export type HttpMethod = 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH' | 'OPTIONS' | 'HEAD';
-export type SecuritySchemeType = 'http' | 'apiKey' | 'oauth2' | 'openIdConnect' | 'mutualTLS';
+export type DataType =
+  | "string"
+  | "number"
+  | "integer"
+  | "boolean"
+  | "array"
+  | "object"
+  | "null";
+export type ParameterLocation = "query" | "header" | "path" | "cookie";
+export type HttpMethod =
+  | "GET"
+  | "POST"
+  | "PUT"
+  | "DELETE"
+  | "PATCH"
+  | "OPTIONS"
+  | "HEAD";
+export type SecuritySchemeType =
+  | "http"
+  | "apiKey"
+  | "oauth2"
+  | "openIdConnect"
+  | "mutualTLS";
 
 export type FormatType =
-  | "int32" | "int64" | "float" | "double" | "byte" | "binary"
-  | "date" | "date-time" | "password" | "email" | "uuid";
+  | "int32"
+  | "int64"
+  | "float"
+  | "double"
+  | "byte"
+  | "binary"
+  | "date"
+  | "date-time"
+  | "password"
+  | "email"
+  | "uuid";
 
 export type StyleType =
-  | "matrix" | "label" | "form" | "simple" | "spaceDelimited" | "pipeDelimited" | "deepObject";
+  | "matrix"
+  | "label"
+  | "form"
+  | "simple"
+  | "spaceDelimited"
+  | "pipeDelimited"
+  | "deepObject";
 
 export type OAuthFlowType =
-  | "implicit" | "password" | "clientCredentials" | "authorizationCode";
+  | "implicit"
+  | "password"
+  | "clientCredentials"
+  | "authorizationCode";
 
 export type SchemaCompositionKeyword = "allOf" | "anyOf" | "oneOf" | "not";
 

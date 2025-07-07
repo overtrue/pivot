@@ -18,7 +18,7 @@ export default function CopyButtonDemo() {
     name: "John Doe",
     email: "john@example.com",
     age: 30,
-    active: true
+    active: true,
   };
 
   return (
@@ -36,7 +36,9 @@ export default function CopyButtonDemo() {
         </div>
 
         <div className="space-y-4">
-          <h3 className="text-lg font-semibold">Example Display with Copy Button</h3>
+          <h3 className="text-lg font-semibold">
+            Example Display with Copy Button
+          </h3>
           <ExampleDisplay
             example={sampleObject}
             language="json"
@@ -46,7 +48,9 @@ export default function CopyButtonDemo() {
         </div>
 
         <div className="space-y-4">
-          <h3 className="text-lg font-semibold">Example Display without Copy Button</h3>
+          <h3 className="text-lg font-semibold">
+            Example Display without Copy Button
+          </h3>
           <ExampleDisplay
             example={sampleObject}
             language="json"

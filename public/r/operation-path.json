@@ -2,12 +2,8 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "operation-path",
   "type": "registry:ui",
-  "dependencies": [
-    "react"
-  ],
-  "registryDependencies": [
-    "https://pivotkit.vercel.app/r/path-segment.json"
-  ],
+  "dependencies": ["react"],
+  "registryDependencies": ["https://pivotkit.vercel.app/r/path-segment.json"],
   "files": [
     {
       "path": "registry/default/ui/operation-path.tsx",

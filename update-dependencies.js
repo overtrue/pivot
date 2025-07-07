@@ -1,8 +1,8 @@
-const fs = require('fs')
-const path = require('path')
+const fs = require("fs");
+const path = require("path");
 
-const registryUiPath = path.join(__dirname, 'registry/registry-ui.ts')
-const pivotPath = path.join(__dirname, 'registry/pivot')
+const registryUiPath = path.join(__dirname, "registry/registry-ui.ts");
+const pivotPath = path.join(__dirname, "registry/pivot");
 
 // 1. Read registry/registry-ui.ts
 // I will replace this with the actual file content later. For now, use a placeholder.
@@ -992,86 +992,92 @@ export const ui: Registry["items"] = [
   }
 ];
 export default ui;
-`
+`;
 
 // Evil eval to parse the object
-let registryObject
+let registryObject;
 try {
-  const jsonString = registryUiContent.substring(registryUiContent.indexOf('[')).replace(/;/g, '')
-  registryObject = JSON.parse(jsonString)
+  const jsonString = registryUiContent
+    .substring(registryUiContent.indexOf("["))
+    .replace(/;/g, "");
+  registryObject = JSON.parse(jsonString);
 } catch (e) {
   // A more robust way would be to transpile TS to JS and then require it.
   // For this script, a regex based replacement is probably safer.
   // Let's stick to text manipulation instead of parsing.
-  console.error("Could not parse registry-ui.ts. Trying another method.")
+  console.error("Could not parse registry-ui.ts. Trying another method.");
 }
 
-
 async function main() {
-  const registryFileContent = fs.readFileSync(registryUiPath, 'utf8')
+  const registryFileContent = fs.readFileSync(registryUiPath, "utf8");
 
   // This is a simple regex, might not cover all cases but should work for this structure.
-  const componentRegex = /\{\s*"name":\s*"([^"]+)",\s*"type":\s*"registry:ui",\s*"files":\s*\[\s*\{\s*"path":\s*"([^"]+)"/g
-  let match
-  const components = []
+  const componentRegex =
+    /\{\s*"name":\s*"([^"]+)",\s*"type":\s*"registry:ui",\s*"files":\s*\[\s*\{\s*"path":\s*"([^"]+)"/g;
+  let match;
+  const components = [];
   while ((match = componentRegex.exec(registryFileContent)) !== null) {
     components.push({
       name: match[1],
       path: match[2],
-      fullMatch: match[0]
-    })
+      fullMatch: match[0],
+    });
   }
 
-  let updatedRegistryFileContent = registryFileContent
+  let updatedRegistryFileContent = registryFileContent;
 
   for (const component of components) {
-    const filePath = path.join(__dirname, component.path)
+    const filePath = path.join(__dirname, component.path);
     if (!fs.existsSync(filePath)) {
-      console.warn(`File not found, skipping: ${filePath}`)
-      continue
+      console.warn(`File not found, skipping: ${filePath}`);
+      continue;
     }
 
-    const content = fs.readFileSync(filePath, 'utf8')
-    const lines = content.split('\\n')
+    const content = fs.readFileSync(filePath, "utf8");
+    const lines = content.split("\\n");
 
-    const dependencies = new Set()
-    const registryDependencies = new Set()
+    const dependencies = new Set();
+    const registryDependencies = new Set();
 
-    const importRegex = /import(?:["'\s]*(?:[\w*{}\n\r\t, ]+)from\s*)?["'\s]+([^"']+)["'\s]*/g
-    let importMatch
+    const importRegex =
+      /import(?:["'\s]*(?:[\w*{}\n\r\t, ]+)from\s*)?["'\s]+([^"']+)["'\s]*/g;
+    let importMatch;
     while ((importMatch = importRegex.exec(content)) !== null) {
-      const importPath = importMatch[1]
-      if (importPath.startsWith('./') || importPath.startsWith('../')) {
+      const importPath = importMatch[1];
+      if (importPath.startsWith("./") || importPath.startsWith("../")) {
         // local import
-        if (importPath.includes('lib/')) continue
+        if (importPath.includes("lib/")) continue;
 
-        const depName = path.basename(importPath, '.tsx')
-        registryDependencies.add(depName)
-      } else if (!importPath.startsWith('@/')) {
+        const depName = path.basename(importPath, ".tsx");
+        registryDependencies.add(depName);
+      } else if (!importPath.startsWith("@/")) {
         // npm import
-        if (importPath === 'react') continue // skip react
-        dependencies.add(importPath)
+        if (importPath === "react") continue; // skip react
+        dependencies.add(importPath);
       }
     }
 
-    let newComponentDefinition = component.fullMatch
+    let newComponentDefinition = component.fullMatch;
     if (dependencies.size > 0) {
-      const depsString = JSON.stringify([...dependencies])
-      newComponentDefinition += `,\n    "dependencies": ${depsString}`
+      const depsString = JSON.stringify([...dependencies]);
+      newComponentDefinition += `,\n    "dependencies": ${depsString}`;
     }
     if (registryDependencies.size > 0) {
-      const registryDepsNames = [...registryDependencies]
+      const registryDepsNames = [...registryDependencies];
       // As per user request, format as URL.
       // const registryDepsUrls = registryDepsNames.map(name => `https://pivotkit.vercel.app/r/${name}`);
-      const registryDepsString = JSON.stringify(registryDepsNames)
-      newComponentDefinition += `,\n    "registryDependencies": ${registryDepsString}`
+      const registryDepsString = JSON.stringify(registryDepsNames);
+      newComponentDefinition += `,\n    "registryDependencies": ${registryDepsString}`;
     }
 
-    updatedRegistryFileContent = updatedRegistryFileContent.replace(component.fullMatch, newComponentDefinition)
+    updatedRegistryFileContent = updatedRegistryFileContent.replace(
+      component.fullMatch,
+      newComponentDefinition,
+    );
   }
 
-  fs.writeFileSync(registryUiPath, updatedRegistryFileContent)
-  console.log('registry/registry-ui.ts has been updated with dependencies.')
+  fs.writeFileSync(registryUiPath, updatedRegistryFileContent);
+  console.log("registry/registry-ui.ts has been updated with dependencies.");
 }
 
-main().catch(console.error)
+main().catch(console.error);

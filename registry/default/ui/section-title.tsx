@@ -16,7 +16,7 @@ const SectionTitle = React.forwardRef<HTMLHeadingElement, SectionTitleProps>(
         {title}
       </h4>
     );
-  }
+  },
 );
 
 SectionTitle.displayName = "SectionTitle";

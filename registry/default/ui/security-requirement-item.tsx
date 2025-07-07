@@ -1,5 +1,5 @@
 import { cn } from "@/lib/utils";
-import type { OpenAPIV3 } from 'openapi-types';
+import type { OpenAPIV3 } from "openapi-types";
 import React from "react";
 
 // 类型别名，供其他组件使用

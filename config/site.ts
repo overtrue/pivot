@@ -8,6 +8,6 @@ export const siteConfig = {
     twitter: "http://twitter.com/overtrue666",
     github: "https://github.com/overtrue/pivot",
   },
-}
+};
 
-export type SiteConfig = typeof siteConfig
+export type SiteConfig = typeof siteConfig;

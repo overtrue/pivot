@@ -9,7 +9,10 @@ export default function ValueDisplayDemo() {
     { label: "对象", value: { name: "张三", age: 25, active: true } },
     { label: "空值", value: null },
     { label: "未定义", value: undefined },
-    { label: "长字符串", value: "这是一个很长的字符串，用来测试组件如何处理长文本内容的显示效果" }
+    {
+      label: "长字符串",
+      value: "这是一个很长的字符串，用来测试组件如何处理长文本内容的显示效果",
+    },
   ];
 
   return (

@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useMemo } from "react";
 
 /**
  * Hook for working with OpenAPI operations
@@ -7,11 +7,7 @@ import { useMemo } from 'react';
  * @param method - The HTTP method
  * @returns Operation utilities
  */
-export function useOperation(
-  operation: any,
-  path: string,
-  method: string
-) {
+export function useOperation(operation: any, path: string, method: string) {
   return useMemo(() => {
     const getOperationId = () => {
       return operation.operationId || `${method.toLowerCase()}-${path}`;

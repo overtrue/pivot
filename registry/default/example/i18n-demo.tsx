@@ -1,7 +1,13 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { I18nProvider, useI18n } from "@/registry/default/lib/i18n";
 import { RequiredMarker } from "@/registry/default/ui/required-marker";
 import { TryItOutPanel } from "@/registry/default/ui/try-it-out-panel";
@@ -34,7 +40,9 @@ const ComponentWithoutProvider = () => {
         <div className="space-y-2">
           <p>翻译示例:</p>
           <ul className="list-disc list-inside space-y-1 text-sm">
-            <li>{t("Required")}: <RequiredMarker /></li>
+            <li>
+              {t("Required")}: <RequiredMarker />
+            </li>
             <li>{t("Parameters")}</li>
             <li>{t("Request Body")}</li>
             <li>{t("Send Request")}</li>
@@ -73,7 +81,9 @@ const ComponentWithProvider = () => {
         <div className="space-y-2">
           <p>翻译示例:</p>
           <ul className="list-disc list-inside space-y-1 text-sm">
-            <li>{t("Required")}: <RequiredMarker /></li>
+            <li>
+              {t("Required")}: <RequiredMarker />
+            </li>
             <li>{t("Parameters")}</li>
             <li>{t("Request Body")}</li>
             <li>{t("Send Request")}</li>
@@ -94,8 +104,8 @@ const ComponentWithProvider = () => {
                   in: "path",
                   required: true,
                   schema: { type: "string" as const },
-                  description: "User ID"
-                }
+                  description: "User ID",
+                },
               ],
               requestBody: {
                 required: true,
@@ -106,11 +116,11 @@ const ComponentWithProvider = () => {
                       type: "object" as const,
                       properties: {
                         name: { type: "string" as const },
-                        email: { type: "string" as const }
-                      }
-                    }
-                  }
-                }
+                        email: { type: "string" as const },
+                      },
+                    },
+                  },
+                },
               },
               responses: {
                 "201": {
@@ -122,13 +132,13 @@ const ComponentWithProvider = () => {
                         properties: {
                           id: { type: "string" as const },
                           name: { type: "string" as const },
-                          email: { type: "string" as const }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
+                          email: { type: "string" as const },
+                        },
+                      },
+                    },
+                  },
+                },
+              },
             }}
             collapsible={true}
             defaultCollapsed={false}
@@ -182,11 +192,25 @@ export default function I18nDemo() {
           <div className="space-y-2">
             <h3 className="font-semibold">主要改进:</h3>
             <ul className="list-disc list-inside space-y-1 text-sm">
-              <li><strong>向后兼容</strong>: 现有的 I18nProvider 和 useI18n 继续正常工作</li>
-              <li><strong>默认语言支持</strong>: 组件在没有 Provider 时自动使用英文作为默认语言</li>
-              <li><strong>优雅降级</strong>: setLocale 在没有 Provider 时会显示警告而不是抛出错误</li>
-              <li><strong>独立翻译函数</strong>: 提供 t() 函数可在组件外部使用</li>
-              <li><strong>工厂函数</strong>: createTranslator() 可创建指定语言的翻译函数</li>
+              <li>
+                <strong>向后兼容</strong>: 现有的 I18nProvider 和 useI18n
+                继续正常工作
+              </li>
+              <li>
+                <strong>默认语言支持</strong>: 组件在没有 Provider
+                时自动使用英文作为默认语言
+              </li>
+              <li>
+                <strong>优雅降级</strong>: setLocale 在没有 Provider
+                时会显示警告而不是抛出错误
+              </li>
+              <li>
+                <strong>独立翻译函数</strong>: 提供 t() 函数可在组件外部使用
+              </li>
+              <li>
+                <strong>工厂函数</strong>: createTranslator()
+                可创建指定语言的翻译函数
+              </li>
             </ul>
           </div>
 

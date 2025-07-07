@@ -1,4 +1,4 @@
-import type { OpenAPIV3 } from 'openapi-types';
+import type { OpenAPIV3 } from "openapi-types";
 import { cn } from "@/lib/utils";
 
 import React from "react";
@@ -98,6 +98,5 @@ SchemaCompositionDisplay.displayName = "SchemaCompositionDisplay";
 export {
   SchemaCompositionDisplay,
   type SchemaCompositionDisplayProps,
-  type SchemaCompositionKeyword
+  type SchemaCompositionKeyword,
 };
-

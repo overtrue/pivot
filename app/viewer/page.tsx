@@ -5,7 +5,13 @@ import { ModeToggle } from "@/components/mode-toggle";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { siteConfig } from "@/config/site";
 import { I18nProvider } from "@/registry/lib/i18n/";
 import { LanguageSwitcher } from "@/registry/pivot/language-switcher";
@@ -15,61 +21,65 @@ import { OperationListLayout } from "@/registry/pivot/operation-list-layout";
 import * as yaml from "js-yaml";
 import { Github, Layout, LayoutTemplate, Loader2 } from "lucide-react";
 import Link from "next/link";
-import type { OpenAPIV3 } from 'openapi-types';
+import type { OpenAPIV3 } from "openapi-types";
 import React, { useEffect, useRef, useState } from "react";
 
 // 预定义的API示例列表
 interface ApiExample {
   name: string;
   url: string;
-  format: 'json' | 'yaml';
+  format: "json" | "yaml";
   description: string;
 }
 
 const API_EXAMPLES: ApiExample[] = [
   {
-    name: 'Swagger Petstore',
-    url: 'https://petstore3.swagger.io/api/v3/openapi.json',
-    format: 'json',
-    description: '经典的宠物商店API示例'
+    name: "Swagger Petstore",
+    url: "https://petstore3.swagger.io/api/v3/openapi.json",
+    format: "json",
+    description: "经典的宠物商店API示例",
   },
   {
-    name: 'Box',
-    url: 'https://raw.githubusercontent.com/box/box-openapi/main/openapi.json',
-    format: 'json',
-    description: 'Box云存储API'
+    name: "Box",
+    url: "https://raw.githubusercontent.com/box/box-openapi/main/openapi.json",
+    format: "json",
+    description: "Box云存储API",
   },
   {
-    name: 'GitHub',
-    url: 'https://raw.githubusercontent.com/github/rest-api-description/main/descriptions/ghes-3.0/ghes-3.0.json',
-    format: 'json',
-    description: 'GitHub REST API'
+    name: "GitHub",
+    url: "https://raw.githubusercontent.com/github/rest-api-description/main/descriptions/ghes-3.0/ghes-3.0.json",
+    format: "json",
+    description: "GitHub REST API",
   },
   {
-    name: 'Netlify',
-    url: 'https://raw.githubusercontent.com/stoplightio/Public-APIs/master/reference/netlify/openapi.yaml',
-    format: 'yaml',
-    description: 'Netlify部署平台API'
+    name: "Netlify",
+    url: "https://raw.githubusercontent.com/stoplightio/Public-APIs/master/reference/netlify/openapi.yaml",
+    format: "yaml",
+    description: "Netlify部署平台API",
   },
 ];
 
 export default function ViewerPage() {
   // 使用常规 useState 初始化，然后在 useEffect 中从 localStorage 加载
-  const [specUrl, setSpecUrl] = useState('https://petstore3.swagger.io/api/v3/openapi.json');
+  const [specUrl, setSpecUrl] = useState(
+    "https://petstore3.swagger.io/api/v3/openapi.json",
+  );
   const [spec, setSpec] = useState<OpenAPIV3.Document | null>(null);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState('');
-  const [layoutType, setLayoutType] = useState<'operationList' | 'operationDetail'>('operationDetail');
+  const [error, setError] = useState("");
+  const [layoutType, setLayoutType] = useState<
+    "operationList" | "operationDetail"
+  >("operationDetail");
   const [selectedPath, setSelectedPath] = useState<string | null>(null);
   const [selectedMethod, setSelectedMethod] = useState<string | null>(null);
   const [isClient, setIsClient] = useState(false);
-  const prevUrlRef = useRef<string>('');
+  const prevUrlRef = useRef<string>("");
   const debounceTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   // 客户端初始化：从 localStorage 加载保存的 URL
   useEffect(() => {
     setIsClient(true);
-    const savedUrl = localStorage.getItem('pivot-openapi-spec-url');
+    const savedUrl = localStorage.getItem("pivot-openapi-spec-url");
     if (savedUrl) {
       setSpecUrl(savedUrl);
     }
@@ -78,7 +88,7 @@ export default function ViewerPage() {
   // 保存 URL 到 localStorage
   useEffect(() => {
     if (isClient && specUrl) {
-      localStorage.setItem('pivot-openapi-spec-url', specUrl);
+      localStorage.setItem("pivot-openapi-spec-url", specUrl);
     }
   }, [specUrl, isClient]);
 
@@ -87,7 +97,7 @@ export default function ViewerPage() {
 
     try {
       setLoading(true);
-      setError('');
+      setError("");
       const response = await fetch(specUrl);
 
       if (!response.ok) {
@@ -117,8 +127,16 @@ export default function ViewerPage() {
           if (firstPath && parsedSpec.paths[firstPath]) {
             const pathItem = parsedSpec.paths[firstPath];
             if (pathItem) {
-              const methods = ['get', 'post', 'put', 'delete', 'patch', 'options', 'head'];
-              const firstMethod = methods.find(method => pathItem[method]);
+              const methods = [
+                "get",
+                "post",
+                "put",
+                "delete",
+                "patch",
+                "options",
+                "head",
+              ];
+              const firstMethod = methods.find((method) => pathItem[method]);
 
               if (firstMethod) {
                 setSelectedPath(firstPath);
@@ -129,8 +147,10 @@ export default function ViewerPage() {
         }
       }
     } catch (err) {
-      setError(`加载 OpenAPI 规范失败: ${err instanceof Error ? err.message : '未知错误'}`);
-      console.error('加载错误:', err);
+      setError(
+        `加载 OpenAPI 规范失败: ${err instanceof Error ? err.message : "未知错误"}`,
+      );
+      console.error("加载错误:", err);
     } finally {
       setLoading(false);
     }
@@ -186,7 +206,10 @@ export default function ViewerPage() {
           <div className="container mx-auto px-4 py-3">
             <div className="flex items-center justify-between gap-4">
               {/* Logo */}
-              <Link href="/" className="relative mr-6 flex items-center space-x-2">
+              <Link
+                href="/"
+                className="relative mr-6 flex items-center space-x-2"
+              >
                 <Icons.logo className="size-6" />
                 <span className="hidden font-bold md:inline-block">
                   {siteConfig.name}
@@ -233,18 +256,22 @@ export default function ViewerPage() {
                 {/* 布局切换按钮 */}
                 <div className="flex items-center bg-muted rounded-lg p-1">
                   <Button
-                    variant={layoutType === 'operationDetail' ? 'default' : 'ghost'}
+                    variant={
+                      layoutType === "operationDetail" ? "default" : "ghost"
+                    }
                     size="sm"
-                    onClick={() => setLayoutType('operationDetail')}
+                    onClick={() => setLayoutType("operationDetail")}
                     className="h-8"
                   >
                     <Layout className="w-4 h-4 mr-1" />
                     操作详情
                   </Button>
                   <Button
-                    variant={layoutType === 'operationList' ? 'default' : 'ghost'}
+                    variant={
+                      layoutType === "operationList" ? "default" : "ghost"
+                    }
                     size="sm"
-                    onClick={() => setLayoutType('operationList')}
+                    onClick={() => setLayoutType("operationList")}
                     className="h-8"
                   >
                     <LayoutTemplate className="w-4 h-4 mr-1" />
@@ -258,7 +285,10 @@ export default function ViewerPage() {
                 <LanguageSwitcher />
                 <ModeToggle />
                 <Button variant="ghost" size="sm" asChild>
-                  <Link href="https://github.com/overtrue/pivot" target="_blank">
+                  <Link
+                    href="https://github.com/overtrue/pivot"
+                    target="_blank"
+                  >
                     <Github className="w-4 h-4" />
                   </Link>
                 </Button>
@@ -287,7 +317,8 @@ export default function ViewerPage() {
                   输入 OpenAPI 规范 URL
                 </h2>
                 <p className="text-muted-foreground">
-                  您可以使用上方的输入框输入任何有效的 OpenAPI 规范 URL，系统将自动加载。
+                  您可以使用上方的输入框输入任何有效的 OpenAPI 规范
+                  URL，系统将自动加载。
                 </p>
               </div>
             </div>
@@ -316,7 +347,7 @@ export default function ViewerPage() {
 
               {/* 主内容区域 - 添加左边距为侧边栏留出空间 */}
               <div className="ml-80 h-[calc(100vh-73px)] overflow-auto">
-                {layoutType === 'operationList' ? (
+                {layoutType === "operationList" ? (
                   <OperationListLayout
                     spec={spec}
                     selectedPath={selectedPath}

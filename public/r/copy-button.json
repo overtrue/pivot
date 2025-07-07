@@ -2,13 +2,8 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "copy-button",
   "type": "registry:ui",
-  "dependencies": [
-    "lucide-react",
-    "react"
-  ],
-  "registryDependencies": [
-    "https://pivotkit.vercel.app/r/i18n.json"
-  ],
+  "dependencies": ["lucide-react", "react"],
+  "registryDependencies": ["https://pivotkit.vercel.app/r/i18n.json"],
   "files": [
     {
       "path": "registry/default/ui/copy-button.tsx",

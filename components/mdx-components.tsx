@@ -55,7 +55,9 @@ const components = {
   Image,
   Tweet: ({ id }: { id: string }) => <TweetCard id={id} className="mx-auto" />,
   ComponentPreview,
-  ComponentSource: (props: React.ComponentProps<typeof ComponentSource>) => <ComponentSource {...props} />,
+  ComponentSource: (props: React.ComponentProps<typeof ComponentSource>) => (
+    <ComponentSource {...props} />
+  ),
   h1: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
     <h1
       className={cn(

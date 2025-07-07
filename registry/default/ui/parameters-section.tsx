@@ -2,7 +2,7 @@
 
 import { cn } from "@/lib/utils";
 import { useI18n } from "@/registry/default/lib/i18n";
-import type { OpenAPIV3 } from 'openapi-types';
+import type { OpenAPIV3 } from "openapi-types";
 
 import { resolveRef } from "@/registry/default/lib/utils/resolve-ref";
 import { ParameterItem } from "@/registry/default/ui/parameter-item";
@@ -31,19 +31,32 @@ const ParametersSection = React.forwardRef<
 
   return (
     <div ref={ref} className={cn(className, "dark:text-neutral-200")}>
-      <SectionTitle title={t('Parameters')} className="text-lg font-medium mb-3" />
+      <SectionTitle
+        title={t("Parameters")}
+        className="text-lg font-medium mb-3"
+      />
       <div className="space-y-3">
         {parameters.map((paramOrRef, index) => {
           // Resolve parameter ref
-          const parameter = resolveRef<OpenAPIV3.ParameterObject>(paramOrRef, components, 'parameters');
+          const parameter = resolveRef<OpenAPIV3.ParameterObject>(
+            paramOrRef,
+            components,
+            "parameters",
+          );
 
           if (!parameter) {
-            const refString = (paramOrRef && typeof paramOrRef === 'object' && '$ref' in paramOrRef)
-              ? (paramOrRef as OpenAPIV3.ReferenceObject).$ref
-              : `[invalid parameter at index ${index}]`;
+            const refString =
+              paramOrRef &&
+              typeof paramOrRef === "object" &&
+              "$ref" in paramOrRef
+                ? (paramOrRef as OpenAPIV3.ReferenceObject).$ref
+                : `[invalid parameter at index ${index}]`;
             return (
-              <div key={index} className="text-xs text-red-500 dark:text-red-400 p-1 border border-dashed dark:border-red-700 rounded">
-                {t('Failed to resolve parameter:')} {refString}
+              <div
+                key={index}
+                className="text-xs text-red-500 dark:text-red-400 p-1 border border-dashed dark:border-red-700 rounded"
+              >
+                {t("Failed to resolve parameter:")} {refString}
               </div>
             );
           }
@@ -56,7 +69,11 @@ const ParametersSection = React.forwardRef<
               required={parameter.required ?? false}
               description={parameter.description}
               deprecated={parameter.deprecated}
-              schema={parameter.schema && 'type' in parameter.schema ? parameter.schema : {}}
+              schema={
+                parameter.schema && "type" in parameter.schema
+                  ? parameter.schema
+                  : {}
+              }
               style={parameter.style as StyleType}
               explode={parameter.explode}
               examples={parameter.examples}
@@ -73,4 +90,3 @@ const ParametersSection = React.forwardRef<
 ParametersSection.displayName = "ParametersSection";
 
 export { ParametersSection, type ParametersSectionProps };
-

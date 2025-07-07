@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 import { DescriptionDisplay } from "@/registry/default/ui/description-display";
-import type { OpenAPIV3 } from 'openapi-types';
+import type { OpenAPIV3 } from "openapi-types";
 import React from "react";
 
 // Import types from the centralized types file
@@ -82,7 +82,7 @@ const SecuritySchemeDisplay = React.forwardRef<
                       {flowType}
                     </h6>
                     <div className="grid grid-cols-[max-content_1fr] gap-x-2 gap-y-1 text-xs dark:text-neutral-300">
-                      {'authorizationUrl' in flow && flow.authorizationUrl && (
+                      {"authorizationUrl" in flow && flow.authorizationUrl && (
                         <>
                           <span className="text-neutral-600 dark:text-neutral-400">
                             Authorization URL:
@@ -92,7 +92,7 @@ const SecuritySchemeDisplay = React.forwardRef<
                           </code>
                         </>
                       )}
-                      {'tokenUrl' in flow && flow.tokenUrl && (
+                      {"tokenUrl" in flow && flow.tokenUrl && (
                         <>
                           <span className="text-neutral-600 dark:text-neutral-400">
                             Token URL:
@@ -100,7 +100,7 @@ const SecuritySchemeDisplay = React.forwardRef<
                           <code className="break-all">{flow.tokenUrl}</code>
                         </>
                       )}
-                      {'refreshUrl' in flow && flow.refreshUrl && (
+                      {"refreshUrl" in flow && flow.refreshUrl && (
                         <>
                           <span className="text-neutral-600 dark:text-neutral-400">
                             Refresh URL:

@@ -235,11 +235,7 @@ curl -X DELETE "https://api.example.com/users/123" \\
 
         <div className="space-y-4">
           <h3 className="text-lg font-semibold">禁用复制功能</h3>
-          <CodeMarkdown
-            code={jsonCode}
-            language="json"
-            disableCopy={true}
-          />
+          <CodeMarkdown code={jsonCode} language="json" disableCopy={true} />
         </div>
       </div>
     </I18nProvider>

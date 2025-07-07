@@ -3,11 +3,11 @@ import { ExternalDocsDisplay } from "@/registry/default/ui/external-docs-display
 export default function ExternalDocsDisplayDemo() {
   const externalDocs = {
     description: "API 完整文档",
-    url: "https://docs.example.com/api"
+    url: "https://docs.example.com/api",
   };
 
   const externalDocsWithoutDescription = {
-    url: "https://github.com/example/api"
+    url: "https://github.com/example/api",
   };
 
   return (

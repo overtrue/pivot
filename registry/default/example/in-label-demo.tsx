@@ -5,7 +5,7 @@ export default function InLabelDemo() {
     { type: "query", description: "查询参数" },
     { type: "path", description: "路径参数" },
     { type: "header", description: "请求头参数" },
-    { type: "cookie", description: "Cookie 参数" }
+    { type: "cookie", description: "Cookie 参数" },
   ] as const;
 
   return (
@@ -53,18 +53,9 @@ export default function InLabelDemo() {
       <div>
         <h4 className="text-sm font-medium mb-3">自定义样式</h4>
         <div className="flex flex-wrap gap-2">
-          <InLabel
-            type="query"
-            className="border border-blue-300"
-          />
-          <InLabel
-            type="path"
-            className="rounded-full"
-          />
-          <InLabel
-            type="header"
-            className="font-bold"
-          />
+          <InLabel type="query" className="border border-blue-300" />
+          <InLabel type="path" className="rounded-full" />
+          <InLabel type="header" className="font-bold" />
         </div>
       </div>
     </div>

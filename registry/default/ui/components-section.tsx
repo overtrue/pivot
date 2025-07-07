@@ -2,10 +2,13 @@
 
 import { cn } from "@/lib/utils";
 import { ComponentItemsList } from "@/registry/default/ui/component-items-list";
-import { ComponentTabs, type OpenApiComponentType } from "@/registry/default/ui/component-tabs";
+import {
+  ComponentTabs,
+  type OpenApiComponentType,
+} from "@/registry/default/ui/component-tabs";
 import { SectionTitle } from "@/registry/default/ui/section-title";
 import type { ComponentType } from "@/types/project";
-import type { OpenAPIV3 } from 'openapi-types';
+import type { OpenAPIV3 } from "openapi-types";
 import React, { useMemo, useState } from "react";
 
 interface ComponentsSectionProps {
@@ -57,7 +60,7 @@ const ComponentsSection = React.forwardRef<
       Object.keys(availableComponents).filter(
         (type) =>
           availableComponents[type as ComponentType].length > 0 &&
-          type !== "webhooks" // Filter out webhooks as it's not part of standard OpenAPI 3.0 components
+          type !== "webhooks", // Filter out webhooks as it's not part of standard OpenAPI 3.0 components
       ) as OpenApiComponentType[],
     [availableComponents],
   );
@@ -134,7 +137,11 @@ const ComponentsSection = React.forwardRef<
 
           {/* List of items for the active type */}
           <ComponentItemsList
-            items={activeType ? availableComponents[activeType as ComponentType] : undefined}
+            items={
+              activeType
+                ? availableComponents[activeType as ComponentType]
+                : undefined
+            }
             selectedItem={selectedItemName}
             onSelectItem={setSelectedItemName}
           />
@@ -155,8 +162,4 @@ const ComponentsSection = React.forwardRef<
 
 ComponentsSection.displayName = "ComponentsSection";
 
-export {
-  ComponentsSection,
-  type ComponentsSectionProps
-};
-
+export { ComponentsSection, type ComponentsSectionProps };

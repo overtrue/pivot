@@ -17,16 +17,20 @@ export default function ComponentTabsDemo() {
     | "callbacks";
 
   // 电商 API 组件标签页状态
-  const [ecommerceActiveType, setEcommerceActiveType] = useState<ComponentType>("schemas");
+  const [ecommerceActiveType, setEcommerceActiveType] =
+    useState<ComponentType>("schemas");
 
   // 用户管理 API 组件标签页状态
-  const [userActiveType, setUserActiveType] = useState<ComponentType>("responses");
+  const [userActiveType, setUserActiveType] =
+    useState<ComponentType>("responses");
 
   // 支付 API 组件标签页状态
-  const [paymentActiveType, setPaymentActiveType] = useState<ComponentType>("requestBodies");
+  const [paymentActiveType, setPaymentActiveType] =
+    useState<ComponentType>("requestBodies");
 
   // 内容管理 API 组件标签页状态
-  const [contentActiveType, setContentActiveType] = useState<ComponentType>("parameters");
+  const [contentActiveType, setContentActiveType] =
+    useState<ComponentType>("parameters");
 
   // 电商 API 可用组件类型
   const ecommerceTypes: ComponentType[] = [
@@ -36,7 +40,7 @@ export default function ComponentTabsDemo() {
     "examples",
     "requestBodies",
     "headers",
-    "securitySchemes"
+    "securitySchemes",
   ];
 
   // 用户管理 API 可用组件类型
@@ -45,7 +49,7 @@ export default function ComponentTabsDemo() {
     "responses",
     "parameters",
     "examples",
-    "securitySchemes"
+    "securitySchemes",
   ];
 
   // 支付 API 可用组件类型
@@ -55,7 +59,7 @@ export default function ComponentTabsDemo() {
     "requestBodies",
     "examples",
     "securitySchemes",
-    "headers"
+    "headers",
   ];
 
   // 内容管理 API 可用组件类型
@@ -64,7 +68,7 @@ export default function ComponentTabsDemo() {
     "responses",
     "parameters",
     "examples",
-    "requestBodies"
+    "requestBodies",
   ];
 
   // 完整的 API 文档组件类型
@@ -77,15 +81,11 @@ export default function ComponentTabsDemo() {
     "headers",
     "securitySchemes",
     "links",
-    "callbacks"
+    "callbacks",
   ];
 
   // 简化的 API 文档组件类型
-  const simpleApiTypes: ComponentType[] = [
-    "schemas",
-    "responses",
-    "examples"
-  ];
+  const simpleApiTypes: ComponentType[] = ["schemas", "responses", "examples"];
 
   return (
     <div className="space-y-8 min-w-md">

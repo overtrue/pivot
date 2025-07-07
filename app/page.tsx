@@ -1,4 +1,13 @@
-import { ArrowRight, Code, FileText, Github, Globe, Palette, Sparkles, Zap } from "lucide-react";
+import {
+  ArrowRight,
+  Code,
+  FileText,
+  Github,
+  Globe,
+  Palette,
+  Sparkles,
+  Zap,
+} from "lucide-react";
 import Link from "next/link";
 
 import { SiteFooter } from "@/components/site-footer";
@@ -53,7 +62,7 @@ export default function IndexPage() {
                     href="/docs"
                     className={cn(
                       buttonVariants({ size: "lg" }),
-                      "h-12 px-8 bg-blue-600 hover:bg-blue-700 text-white font-semibold shadow-lg shadow-blue-500/25 transition-all hover:shadow-xl hover:shadow-blue-500/30"
+                      "h-12 px-8 bg-blue-600 hover:bg-blue-700 text-white font-semibold shadow-lg shadow-blue-500/25 transition-all hover:shadow-xl hover:shadow-blue-500/30",
                     )}
                   >
                     开始使用
@@ -63,7 +72,7 @@ export default function IndexPage() {
                     href="/viewer"
                     className={cn(
                       buttonVariants({ variant: "outline", size: "lg" }),
-                      "h-12 px-8 border-gray-300 bg-white hover:bg-gray-50 font-semibold dark:border-gray-600 dark:bg-gray-900 dark:hover:bg-gray-800"
+                      "h-12 px-8 border-gray-300 bg-white hover:bg-gray-50 font-semibold dark:border-gray-600 dark:bg-gray-900 dark:hover:bg-gray-800",
                     )}
                   >
                     在线体验
@@ -74,7 +83,7 @@ export default function IndexPage() {
                     rel="noreferrer"
                     className={cn(
                       buttonVariants({ variant: "ghost", size: "lg" }),
-                      "h-12 px-8 text-gray-700 hover:text-gray-900 font-semibold dark:text-gray-300 dark:hover:text-white"
+                      "h-12 px-8 text-gray-700 hover:text-gray-900 font-semibold dark:text-gray-300 dark:hover:text-white",
                     )}
                   >
                     <Github className="mr-2 h-4 w-4" />
@@ -113,7 +122,8 @@ export default function IndexPage() {
                   </dt>
                   <dd className="mt-4 flex flex-auto flex-col text-base leading-7 text-gray-600 dark:text-gray-300">
                     <p className="flex-auto">
-                      只需提供 OpenAPI 规范，即可轻松创建美观的文档站点，无需复杂配置
+                      只需提供 OpenAPI
+                      规范，即可轻松创建美观的文档站点，无需复杂配置
                     </p>
                   </dd>
                 </div>
@@ -190,7 +200,9 @@ export default function IndexPage() {
                   <div className="p-6 space-y-3">
                     <div className="flex items-center gap-2">
                       <Badge className="bg-green-100 text-green-700">GET</Badge>
-                      <span className="font-mono text-sm text-white/80">/api/users</span>
+                      <span className="font-mono text-sm text-white/80">
+                        /api/users
+                      </span>
                     </div>
                     <div className="space-y-2">
                       <div className="h-2 w-3/4 rounded bg-white/30"></div>
@@ -214,7 +226,9 @@ export default function IndexPage() {
                   <div className="p-6 space-y-3">
                     <div className="flex items-center gap-2">
                       <Badge className="bg-blue-100 text-blue-700">POST</Badge>
-                      <span className="font-mono text-sm text-white/80">/api/orders</span>
+                      <span className="font-mono text-sm text-white/80">
+                        /api/orders
+                      </span>
                     </div>
                     <div className="space-y-2">
                       <div className="h-2 w-2/3 rounded bg-white/30"></div>
@@ -237,8 +251,12 @@ export default function IndexPage() {
                 <div className="absolute inset-0 -z-10">
                   <div className="p-6 space-y-3">
                     <div className="flex items-center gap-2">
-                      <Badge className="bg-purple-100 text-purple-700">Schema</Badge>
-                      <span className="font-mono text-sm text-white/80">Models</span>
+                      <Badge className="bg-purple-100 text-purple-700">
+                        Schema
+                      </Badge>
+                      <span className="font-mono text-sm text-white/80">
+                        Models
+                      </span>
                     </div>
                     <div className="space-y-2">
                       <div className="h-2 w-1/2 rounded bg-white/30"></div>
@@ -261,7 +279,7 @@ export default function IndexPage() {
                 href="/docs/components"
                 className={cn(
                   buttonVariants({ variant: "outline", size: "lg" }),
-                  "h-12 px-8 border-gray-300 bg-white hover:bg-gray-50 font-semibold dark:border-gray-600 dark:bg-gray-900 dark:hover:bg-gray-800"
+                  "h-12 px-8 border-gray-300 bg-white hover:bg-gray-50 font-semibold dark:border-gray-600 dark:bg-gray-900 dark:hover:bg-gray-800",
                 )}
               >
                 查看所有组件
@@ -286,7 +304,7 @@ export default function IndexPage() {
                   href="/docs"
                   className={cn(
                     buttonVariants({ size: "lg" }),
-                    "h-12 px-8 bg-blue-600 hover:bg-blue-700 text-white font-semibold shadow-lg shadow-blue-500/25 transition-all hover:shadow-xl hover:shadow-blue-500/30"
+                    "h-12 px-8 bg-blue-600 hover:bg-blue-700 text-white font-semibold shadow-lg shadow-blue-500/25 transition-all hover:shadow-xl hover:shadow-blue-500/30",
                   )}
                 >
                   <Code className="mr-2 h-4 w-4" />
@@ -296,7 +314,7 @@ export default function IndexPage() {
                   href="/viewer"
                   className={cn(
                     buttonVariants({ variant: "outline", size: "lg" }),
-                    "h-12 px-8 border-gray-300 bg-white hover:bg-gray-50 font-semibold dark:border-gray-600 dark:bg-gray-900 dark:hover:bg-gray-800"
+                    "h-12 px-8 border-gray-300 bg-white hover:bg-gray-50 font-semibold dark:border-gray-600 dark:bg-gray-900 dark:hover:bg-gray-800",
                   )}
                 >
                   在线演示

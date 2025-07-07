@@ -39,7 +39,7 @@ const InLabel = React.forwardRef<HTMLSpanElement, InLabelProps>(
         in: {type}
       </span>
     );
-  }
+  },
 );
 
 InLabel.displayName = "InLabel";

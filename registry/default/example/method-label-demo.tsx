@@ -1,7 +1,15 @@
 import { MethodLabel } from "@/registry/default/ui/method-label";
 
 export default function MethodLabelDemo() {
-  const methods = ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS", "HEAD"] as const;
+  const methods = [
+    "GET",
+    "POST",
+    "PUT",
+    "DELETE",
+    "PATCH",
+    "OPTIONS",
+    "HEAD",
+  ] as const;
 
   return (
     <div className="space-y-6 min-w-md">
@@ -57,18 +65,9 @@ export default function MethodLabelDemo() {
       <div>
         <h4 className="text-sm font-medium mb-3">自定义样式</h4>
         <div className="flex flex-wrap gap-2">
-          <MethodLabel
-            method="GET"
-            className="border border-green-300"
-          />
-          <MethodLabel
-            method="POST"
-            className="rounded-full"
-          />
-          <MethodLabel
-            method="DELETE"
-            className="font-bold"
-          />
+          <MethodLabel method="GET" className="border border-green-300" />
+          <MethodLabel method="POST" className="rounded-full" />
+          <MethodLabel method="DELETE" className="font-bold" />
         </div>
       </div>
     </div>

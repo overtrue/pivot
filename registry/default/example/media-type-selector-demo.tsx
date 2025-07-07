@@ -4,7 +4,9 @@ import { MediaTypeSelector } from "@/registry/default/ui/media-type-selector";
 import { useState } from "react";
 
 export default function MediaTypeSelectorDemo() {
-  const [selectedMediaTypes, setSelectedMediaTypes] = useState<Record<string, string | null>>({
+  const [selectedMediaTypes, setSelectedMediaTypes] = useState<
+    Record<string, string | null>
+  >({
     apiResponse: null,
     fileUpload: null,
     imageProcessing: null,
@@ -20,14 +22,14 @@ export default function MediaTypeSelectorDemo() {
   const apiResponseMediaTypes = [
     "application/json",
     "application/xml",
-    "text/plain"
+    "text/plain",
   ];
 
   // 文件上传媒体类型
   const fileUploadMediaTypes = [
     "multipart/form-data",
     "application/json",
-    "application/octet-stream"
+    "application/octet-stream",
   ];
 
   // 图像处理媒体类型
@@ -36,7 +38,7 @@ export default function MediaTypeSelectorDemo() {
     "image/png",
     "image/webp",
     "image/gif",
-    "image/svg+xml"
+    "image/svg+xml",
   ];
 
   // 文档导出媒体类型
@@ -45,7 +47,7 @@ export default function MediaTypeSelectorDemo() {
     "text/csv",
     "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
     "application/pdf",
-    "text/plain"
+    "text/plain",
   ];
 
   // 数据交换媒体类型
@@ -54,7 +56,7 @@ export default function MediaTypeSelectorDemo() {
     "application/xml",
     "application/yaml",
     "text/csv",
-    "application/x-protobuf"
+    "application/x-protobuf",
   ];
 
   // 内容管理媒体类型
@@ -63,21 +65,21 @@ export default function MediaTypeSelectorDemo() {
     "text/html",
     "text/markdown",
     "text/plain",
-    "application/xml"
+    "application/xml",
   ];
 
   // 支付处理媒体类型
   const paymentProcessingMediaTypes = [
     "application/json",
     "application/x-www-form-urlencoded",
-    "text/plain"
+    "text/plain",
   ];
 
   // 实时通信媒体类型
   const realtimeMediaTypes = [
     "application/json",
     "text/plain",
-    "application/octet-stream"
+    "application/octet-stream",
   ];
 
   // 多媒体内容媒体类型
@@ -88,7 +90,7 @@ export default function MediaTypeSelectorDemo() {
     "audio/wav",
     "audio/ogg",
     "image/jpeg",
-    "image/png"
+    "image/png",
   ];
 
   // 压缩文件媒体类型
@@ -97,7 +99,7 @@ export default function MediaTypeSelectorDemo() {
     "application/x-tar",
     "application/gzip",
     "application/x-7z-compressed",
-    "application/x-rar-compressed"
+    "application/x-rar-compressed",
   ];
 
   return (
@@ -110,7 +112,9 @@ export default function MediaTypeSelectorDemo() {
         <MediaTypeSelector
           mediaTypes={apiResponseMediaTypes}
           activeMediaType={selectedMediaTypes.apiResponse || null}
-          onSelectMediaType={(type) => setSelectedMediaTypes(prev => ({ ...prev, apiResponse: type }))}
+          onSelectMediaType={(type) =>
+            setSelectedMediaTypes((prev) => ({ ...prev, apiResponse: type }))
+          }
         />
       </div>
 
@@ -122,7 +126,9 @@ export default function MediaTypeSelectorDemo() {
         <MediaTypeSelector
           mediaTypes={fileUploadMediaTypes}
           activeMediaType={selectedMediaTypes.fileUpload || null}
-          onSelectMediaType={(type) => setSelectedMediaTypes(prev => ({ ...prev, fileUpload: type }))}
+          onSelectMediaType={(type) =>
+            setSelectedMediaTypes((prev) => ({ ...prev, fileUpload: type }))
+          }
         />
       </div>
 
@@ -134,7 +140,12 @@ export default function MediaTypeSelectorDemo() {
         <MediaTypeSelector
           mediaTypes={imageProcessingMediaTypes}
           activeMediaType={selectedMediaTypes.imageProcessing || null}
-          onSelectMediaType={(type) => setSelectedMediaTypes(prev => ({ ...prev, imageProcessing: type }))}
+          onSelectMediaType={(type) =>
+            setSelectedMediaTypes((prev) => ({
+              ...prev,
+              imageProcessing: type,
+            }))
+          }
         />
       </div>
 
@@ -146,7 +157,9 @@ export default function MediaTypeSelectorDemo() {
         <MediaTypeSelector
           mediaTypes={documentExportMediaTypes}
           activeMediaType={selectedMediaTypes.documentExport || null}
-          onSelectMediaType={(type) => setSelectedMediaTypes(prev => ({ ...prev, documentExport: type }))}
+          onSelectMediaType={(type) =>
+            setSelectedMediaTypes((prev) => ({ ...prev, documentExport: type }))
+          }
         />
       </div>
 
@@ -158,7 +171,9 @@ export default function MediaTypeSelectorDemo() {
         <MediaTypeSelector
           mediaTypes={dataExchangeMediaTypes}
           activeMediaType={selectedMediaTypes.dataExchange || null}
-          onSelectMediaType={(type) => setSelectedMediaTypes(prev => ({ ...prev, dataExchange: type }))}
+          onSelectMediaType={(type) =>
+            setSelectedMediaTypes((prev) => ({ ...prev, dataExchange: type }))
+          }
         />
       </div>
 
@@ -170,7 +185,12 @@ export default function MediaTypeSelectorDemo() {
         <MediaTypeSelector
           mediaTypes={contentManagementMediaTypes}
           activeMediaType={selectedMediaTypes.contentManagement || null}
-          onSelectMediaType={(type) => setSelectedMediaTypes(prev => ({ ...prev, contentManagement: type }))}
+          onSelectMediaType={(type) =>
+            setSelectedMediaTypes((prev) => ({
+              ...prev,
+              contentManagement: type,
+            }))
+          }
         />
       </div>
 
@@ -182,7 +202,12 @@ export default function MediaTypeSelectorDemo() {
         <MediaTypeSelector
           mediaTypes={paymentProcessingMediaTypes}
           activeMediaType={selectedMediaTypes.paymentProcessing || null}
-          onSelectMediaType={(type) => setSelectedMediaTypes(prev => ({ ...prev, paymentProcessing: type }))}
+          onSelectMediaType={(type) =>
+            setSelectedMediaTypes((prev) => ({
+              ...prev,
+              paymentProcessing: type,
+            }))
+          }
         />
       </div>
 
@@ -194,7 +219,9 @@ export default function MediaTypeSelectorDemo() {
         <MediaTypeSelector
           mediaTypes={realtimeMediaTypes}
           activeMediaType={selectedMediaTypes.realtime || null}
-          onSelectMediaType={(type) => setSelectedMediaTypes(prev => ({ ...prev, realtime: type }))}
+          onSelectMediaType={(type) =>
+            setSelectedMediaTypes((prev) => ({ ...prev, realtime: type }))
+          }
         />
       </div>
 
@@ -206,7 +233,9 @@ export default function MediaTypeSelectorDemo() {
         <MediaTypeSelector
           mediaTypes={multimediaMediaTypes}
           activeMediaType={selectedMediaTypes.multimedia || null}
-          onSelectMediaType={(type) => setSelectedMediaTypes(prev => ({ ...prev, multimedia: type }))}
+          onSelectMediaType={(type) =>
+            setSelectedMediaTypes((prev) => ({ ...prev, multimedia: type }))
+          }
         />
       </div>
 
@@ -218,7 +247,9 @@ export default function MediaTypeSelectorDemo() {
         <MediaTypeSelector
           mediaTypes={archiveMediaTypes}
           activeMediaType={selectedMediaTypes.archive || null}
-          onSelectMediaType={(type) => setSelectedMediaTypes(prev => ({ ...prev, archive: type }))}
+          onSelectMediaType={(type) =>
+            setSelectedMediaTypes((prev) => ({ ...prev, archive: type }))
+          }
         />
       </div>
     </div>

@@ -1,10 +1,13 @@
-import { ServerDisplay, type ServerObject } from "@/registry/default/ui/server-display";
+import {
+  ServerDisplay,
+  type ServerObject,
+} from "@/registry/default/ui/server-display";
 
 export default function ServerDisplayDemo() {
   // 生产环境服务器
   const productionServer: ServerObject = {
     url: "https://api.example.com/v1",
-    description: "生产环境 API 服务器 - 99.9% SLA 保证，全球 CDN 加速"
+    description: "生产环境 API 服务器 - 99.9% SLA 保证，全球 CDN 加速",
   };
 
   // 带版本变量的服务器
@@ -15,9 +18,9 @@ export default function ServerDisplayDemo() {
       version: {
         default: "v1",
         description: "API 版本号",
-        enum: ["v1", "v2", "v3", "beta"]
-      }
-    }
+        enum: ["v1", "v2", "v3", "beta"],
+      },
+    },
   };
 
   // 多环境服务器
@@ -28,14 +31,14 @@ export default function ServerDisplayDemo() {
       environment: {
         default: "prod",
         description: "部署环境",
-        enum: ["prod", "staging", "dev", "test"]
+        enum: ["prod", "staging", "dev", "test"],
       },
       version: {
         default: "v1",
         description: "API 版本",
-        enum: ["v1", "v2", "beta"]
-      }
-    }
+        enum: ["v1", "v2", "beta"],
+      },
+    },
   };
 
   // 区域化服务器
@@ -46,9 +49,16 @@ export default function ServerDisplayDemo() {
       region: {
         default: "us-east",
         description: "服务器区域",
-        enum: ["us-east", "us-west", "eu-west", "eu-central", "ap-southeast", "ap-northeast"]
-      }
-    }
+        enum: [
+          "us-east",
+          "us-west",
+          "eu-west",
+          "eu-central",
+          "ap-southeast",
+          "ap-northeast",
+        ],
+      },
+    },
   };
 
   // 微服务网关
@@ -59,14 +69,21 @@ export default function ServerDisplayDemo() {
       service: {
         default: "user",
         description: "微服务名称",
-        enum: ["user", "product", "order", "payment", "notification", "analytics"]
+        enum: [
+          "user",
+          "product",
+          "order",
+          "payment",
+          "notification",
+          "analytics",
+        ],
       },
       version: {
         default: "v1",
         description: "服务版本",
-        enum: ["v1", "v2"]
-      }
-    }
+        enum: ["v1", "v2"],
+      },
+    },
   };
 
   // 企业私有云服务器
@@ -76,9 +93,9 @@ export default function ServerDisplayDemo() {
     variables: {
       tenant: {
         default: "demo",
-        description: "企业租户标识符，由企业管理员提供"
-      }
-    }
+        description: "企业租户标识符，由企业管理员提供",
+      },
+    },
   };
 
   // 开发环境服务器
@@ -88,9 +105,9 @@ export default function ServerDisplayDemo() {
     variables: {
       port: {
         default: "3000",
-        description: "服务器端口号"
-      }
-    }
+        description: "服务器端口号",
+      },
+    },
   };
 
   // WebSocket 服务器
@@ -101,15 +118,15 @@ export default function ServerDisplayDemo() {
       version: {
         default: "v1",
         description: "WebSocket 协议版本",
-        enum: ["v1", "v2"]
-      }
-    }
+        enum: ["v1", "v2"],
+      },
+    },
   };
 
   // 沙盒测试服务器
   const sandboxServer: ServerObject = {
     url: "https://sandbox.example.com/api/v1",
-    description: "沙盒测试环境，提供安全的测试数据和功能，不会影响生产数据"
+    description: "沙盒测试环境，提供安全的测试数据和功能，不会影响生产数据",
   };
 
   // 负载均衡服务器
@@ -120,9 +137,9 @@ export default function ServerDisplayDemo() {
       cluster: {
         default: "primary",
         description: "集群标识",
-        enum: ["primary", "secondary", "backup"]
-      }
-    }
+        enum: ["primary", "secondary", "backup"],
+      },
+    },
   };
 
   return (

@@ -1,6 +1,6 @@
 "use client";
 
-import type { OpenAPIV3 } from 'openapi-types';
+import type { OpenAPIV3 } from "openapi-types";
 import { OperationDetailedLayout } from "@/registry/default/ui/operation-detailed-layout";
 
 import { useState } from "react";
@@ -10,13 +10,13 @@ const sampleSpec: OpenAPIV3.Document = {
   info: {
     title: "Sample API",
     version: "1.0.0",
-    description: "A sample API for demonstration"
+    description: "A sample API for demonstration",
   },
   servers: [
     {
       url: "https://api.example.com/v1",
-      description: "Production server"
-    }
+      description: "Production server",
+    },
   ],
   paths: {
     "/users": {
@@ -30,14 +30,19 @@ const sampleSpec: OpenAPIV3.Document = {
             name: "limit",
             in: "query" as const,
             description: "Maximum number of users to return",
-            schema: { type: "integer" as const, minimum: 1, maximum: 100, default: 10 }
+            schema: {
+              type: "integer" as const,
+              minimum: 1,
+              maximum: 100,
+              default: 10,
+            },
           },
           {
             name: "offset",
             in: "query" as const,
             description: "Number of users to skip",
-            schema: { type: "integer" as const, minimum: 0, default: 0 }
-          }
+            schema: { type: "integer" as const, minimum: 0, default: 0 },
+          },
         ],
         responses: {
           "200": {
@@ -51,14 +56,14 @@ const sampleSpec: OpenAPIV3.Document = {
                     properties: {
                       id: { type: "integer" as const },
                       name: { type: "string" as const },
-                      email: { type: "string" as const }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
+                      email: { type: "string" as const },
+                    },
+                  },
+                },
+              },
+            },
+          },
+        },
       },
       post: {
         operationId: "createUser",
@@ -73,12 +78,12 @@ const sampleSpec: OpenAPIV3.Document = {
                 type: "object" as const,
                 properties: {
                   name: { type: "string" as const },
-                  email: { type: "string" as const }
+                  email: { type: "string" as const },
                 },
-                required: ["name", "email"]
-              }
-            }
-          }
+                required: ["name", "email"],
+              },
+            },
+          },
         },
         responses: {
           "201": {
@@ -90,17 +95,17 @@ const sampleSpec: OpenAPIV3.Document = {
                   properties: {
                     id: { type: "integer" as const },
                     name: { type: "string" as const },
-                    email: { type: "string" as const }
-                  }
-                }
-              }
-            }
+                    email: { type: "string" as const },
+                  },
+                },
+              },
+            },
           },
           "400": {
-            description: "Bad request"
-          }
-        }
-      }
+            description: "Bad request",
+          },
+        },
+      },
     },
     "/users/{id}": {
       get: {
@@ -114,8 +119,8 @@ const sampleSpec: OpenAPIV3.Document = {
             in: "path" as const,
             required: true,
             schema: { type: "integer" as const },
-            description: "User ID"
-          }
+            description: "User ID",
+          },
         ],
         responses: {
           "200": {
@@ -127,26 +132,30 @@ const sampleSpec: OpenAPIV3.Document = {
                   properties: {
                     id: { type: "integer" as const },
                     name: { type: "string" as const },
-                    email: { type: "string" as const }
-                  }
-                }
-              }
-            }
+                    email: { type: "string" as const },
+                  },
+                },
+              },
+            },
           },
           "404": {
-            description: "User not found"
-          }
-        }
-      }
-    }
-  }
+            description: "User not found",
+          },
+        },
+      },
+    },
+  },
 };
 
 export default function OperationDetailedLayoutDemo() {
   const [selectedPath, setSelectedPath] = useState<string | null>("/users");
   const [selectedMethod, setSelectedMethod] = useState<string | null>("GET");
 
-  const handleSelectOperation = (path: string, method: string, operation: any) => {
+  const handleSelectOperation = (
+    path: string,
+    method: string,
+    operation: any,
+  ) => {
     setSelectedPath(path);
     setSelectedMethod(method.toUpperCase());
     console.log("Selected operation:", { path, method, operation });
@@ -157,10 +166,16 @@ export default function OperationDetailedLayoutDemo() {
       <div className="mb-4 p-4 bg-muted rounded-lg">
         <h3 className="text-lg font-semibold mb-2">当前选择的操作</h3>
         <p className="text-sm text-muted-foreground">
-          路径: <code className="bg-background px-1 rounded">{selectedPath || "无"}</code>
+          路径:{" "}
+          <code className="bg-background px-1 rounded">
+            {selectedPath || "无"}
+          </code>
         </p>
         <p className="text-sm text-muted-foreground">
-          方法: <code className="bg-background px-1 rounded">{selectedMethod || "无"}</code>
+          方法:{" "}
+          <code className="bg-background px-1 rounded">
+            {selectedMethod || "无"}
+          </code>
         </p>
         <div className="mt-2 flex gap-2">
           <button

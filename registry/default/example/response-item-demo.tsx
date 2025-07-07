@@ -6,12 +6,12 @@ export default function ResponseItemDemo() {
     headers: {
       "X-Rate-Limit": {
         description: "Number of requests allowed per hour",
-        schema: { type: "integer" as const }
+        schema: { type: "integer" as const },
       },
       "X-Request-ID": {
         description: "Unique identifier for the request",
-        schema: { type: "string" as const, format: "uuid" as const }
-      }
+        schema: { type: "string" as const, format: "uuid" as const },
+      },
     },
     content: {
       "application/json": {
@@ -20,20 +20,20 @@ export default function ResponseItemDemo() {
           properties: {
             id: { type: "integer" as const },
             name: { type: "string" as const },
-            email: { type: "string" as const, format: "email" as const }
-          }
-        }
-      }
+            email: { type: "string" as const, format: "email" as const },
+          },
+        },
+      },
     },
     links: {
-      "GetUserByUserId": {
+      GetUserByUserId: {
         operationId: "getUser",
         parameters: {
-          userId: "$response.body#/id"
+          userId: "$response.body#/id",
         },
-        description: "Get user details using the returned user ID"
-      }
-    }
+        description: "Get user details using the returned user ID",
+      },
+    },
   };
 
   const errorResponse = {
@@ -44,15 +44,15 @@ export default function ResponseItemDemo() {
           type: "object" as const,
           properties: {
             error: { type: "string" as const },
-            message: { type: "string" as const }
-          }
-        }
-      }
-    }
+            message: { type: "string" as const },
+          },
+        },
+      },
+    },
   };
 
   const simpleResponse = {
-    description: "Simple response without additional details"
+    description: "Simple response without additional details",
   };
 
   return (

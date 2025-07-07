@@ -127,21 +127,21 @@ import type { OpenAPIV3 } from "openapi-types";
 const resolvedSchema = resolveRef<OpenAPIV3.SchemaObject>(
   { $ref: "#/components/schemas/User" },
   components,
-  "schemas"
+  "schemas",
 );
 
 // 解析参数引用
 const resolvedParam = resolveRef<OpenAPIV3.ParameterObject>(
   { $ref: "#/components/parameters/PageSize" },
   components,
-  "parameters"
+  "parameters",
 );
 
 // 解析响应引用
 const resolvedResponse = resolveRef<OpenAPIV3.ResponseObject>(
   { $ref: "#/components/responses/NotFound" },
   components,
-  "responses"
+  "responses",
 );
 ```
 
@@ -388,7 +388,7 @@ if (!resolved) {
 const schema = resolveRef<OpenAPIV3.SchemaObject>(
   schemaRef,
   components,
-  "schemas"
+  "schemas",
 );
 ```
 

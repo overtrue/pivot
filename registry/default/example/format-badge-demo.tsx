@@ -3,7 +3,14 @@ import { FormatBadge } from "@/registry/default/ui/format-badge";
 export default function FormatBadgeDemo() {
   const numberFormats = ["int32", "int64", "float", "double"];
   const dateFormats = ["date", "date-time"];
-  const identifierFormats = ["email", "uuid", "uri", "hostname", "ipv4", "ipv6"];
+  const identifierFormats = [
+    "email",
+    "uuid",
+    "uri",
+    "hostname",
+    "ipv4",
+    "ipv6",
+  ];
   const binaryFormats = ["byte", "binary"];
   const sensitiveFormats = ["password"];
 
@@ -13,7 +20,7 @@ export default function FormatBadgeDemo() {
     "success",
     "warning",
     "danger",
-    "neutral"
+    "neutral",
   ] as const;
 
   return (
@@ -67,7 +74,10 @@ export default function FormatBadgeDemo() {
         <h4 className="text-sm font-medium mb-3">自定义主题</h4>
         <div className="grid grid-cols-2 gap-4">
           {themes.map((theme) => (
-            <div key={theme} className="flex items-center gap-2 p-2 border rounded">
+            <div
+              key={theme}
+              className="flex items-center gap-2 p-2 border rounded"
+            >
               <FormatBadge format="string" theme={theme} />
               <span className="text-xs text-muted-foreground">({theme})</span>
             </div>

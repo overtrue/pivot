@@ -8,9 +8,10 @@ export default function HeaderItemDemo() {
     required: true,
     schema: {
       type: "string" as const,
-      pattern: "^Bearer [A-Za-z0-9-_=]+\\.[A-Za-z0-9-_=]+\\.[A-Za-z0-9-_.+/=]*$"
+      pattern:
+        "^Bearer [A-Za-z0-9-_=]+\\.[A-Za-z0-9-_=]+\\.[A-Za-z0-9-_.+/=]*$",
     },
-    example: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+    example: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
   };
 
   // API 密钥头部
@@ -21,9 +22,9 @@ export default function HeaderItemDemo() {
     schema: {
       type: "string" as const,
       minLength: 32,
-      maxLength: 64
+      maxLength: 64,
     },
-    example: "ak_live_1234567890abcdef1234567890abcdef"
+    example: "ak_live_1234567890abcdef1234567890abcdef",
   };
 
   // 内容类型头部
@@ -33,9 +34,14 @@ export default function HeaderItemDemo() {
     required: true,
     schema: {
       type: "string" as const,
-      enum: ["application/json", "application/xml", "multipart/form-data", "text/plain"]
+      enum: [
+        "application/json",
+        "application/xml",
+        "multipart/form-data",
+        "text/plain",
+      ],
     },
-    example: "application/json"
+    example: "application/json",
   };
 
   // 接受头部
@@ -44,9 +50,9 @@ export default function HeaderItemDemo() {
     description: "客户端可接受的响应媒体类型",
     required: false,
     schema: {
-      type: "string" as const
+      type: "string" as const,
     },
-    example: "application/json, application/xml;q=0.9, */*;q=0.8"
+    example: "application/json, application/xml;q=0.9, */*;q=0.8",
   };
 
   // 用户代理头部
@@ -55,9 +61,9 @@ export default function HeaderItemDemo() {
     description: "客户端应用信息，用于统计和兼容性处理",
     required: false,
     schema: {
-      type: "string" as const
+      type: "string" as const,
     },
-    example: "MyApp/1.0.0 (iOS 15.0; iPhone13,2)"
+    example: "MyApp/1.0.0 (iOS 15.0; iPhone13,2)",
   };
 
   // 请求 ID 头部
@@ -67,9 +73,9 @@ export default function HeaderItemDemo() {
     required: false,
     schema: {
       type: "string" as const,
-      format: "uuid" as const
+      format: "uuid" as const,
     },
-    example: "123e4567-e89b-12d3-a456-426614174000"
+    example: "123e4567-e89b-12d3-a456-426614174000",
   };
 
   // 客户端版本头部
@@ -79,9 +85,9 @@ export default function HeaderItemDemo() {
     required: false,
     schema: {
       type: "string" as const,
-      pattern: "^\\d+\\.\\d+\\.\\d+$"
+      pattern: "^\\d+\\.\\d+\\.\\d+$",
     },
-    example: "2.1.0"
+    example: "2.1.0",
   };
 
   // 语言偏好头部
@@ -90,9 +96,9 @@ export default function HeaderItemDemo() {
     description: "客户端首选语言，用于国际化响应",
     required: false,
     schema: {
-      type: "string" as const
+      type: "string" as const,
     },
-    example: "zh-CN,zh;q=0.9,en;q=0.8"
+    example: "zh-CN,zh;q=0.9,en;q=0.8",
   };
 
   // 时区头部
@@ -101,9 +107,9 @@ export default function HeaderItemDemo() {
     description: "客户端时区，用于时间相关数据的本地化",
     required: false,
     schema: {
-      type: "string" as const
+      type: "string" as const,
     },
-    example: "Asia/Shanghai"
+    example: "Asia/Shanghai",
   };
 
   // 设备 ID 头部
@@ -113,9 +119,9 @@ export default function HeaderItemDemo() {
     required: false,
     schema: {
       type: "string" as const,
-      format: "uuid" as const
+      format: "uuid" as const,
     },
-    example: "device_987fcdeb-51a2-4567-8901-234567890abc"
+    example: "device_987fcdeb-51a2-4567-8901-234567890abc",
   };
 
   // 幂等性头部
@@ -125,9 +131,9 @@ export default function HeaderItemDemo() {
     required: false,
     schema: {
       type: "string" as const,
-      format: "uuid" as const
+      format: "uuid" as const,
     },
-    example: "idem_456e7890-a12b-34c5-6789-012345678901"
+    example: "idem_456e7890-a12b-34c5-6789-012345678901",
   };
 
   // 已弃用的头部
@@ -137,9 +143,9 @@ export default function HeaderItemDemo() {
     required: false,
     deprecated: true,
     schema: {
-      type: "string" as const
+      type: "string" as const,
     },
-    example: "legacy_token_abc123def456"
+    example: "legacy_token_abc123def456",
   };
 
   return (

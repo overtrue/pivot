@@ -2,9 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "parameter-item-demo",
   "type": "registry:example",
-  "registryDependencies": [
-    "https://pivotkit.vercel.app/r/parameter-item.json"
-  ],
+  "registryDependencies": ["https://pivotkit.vercel.app/r/parameter-item.json"],
   "files": [
     {
       "path": "registry/default/example/parameter-item-demo.tsx",

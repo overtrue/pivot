@@ -11,8 +11,8 @@ export default function ParametersSectionDemo() {
       schema: {
         type: "integer" as const,
         minimum: 1,
-        default: 1
-      }
+        default: 1,
+      },
     },
     {
       name: "limit",
@@ -23,8 +23,8 @@ export default function ParametersSectionDemo() {
         type: "integer" as const,
         minimum: 1,
         maximum: 100,
-        default: 20
-      }
+        default: 20,
+      },
     },
     {
       name: "search",
@@ -33,8 +33,8 @@ export default function ParametersSectionDemo() {
       description: "搜索关键词，支持姓名和邮箱搜索",
       schema: {
         type: "string" as const,
-        maxLength: 100
-      }
+        maxLength: 100,
+      },
     },
     {
       name: "status",
@@ -45,9 +45,9 @@ export default function ParametersSectionDemo() {
         type: "array" as const,
         items: {
           type: "string" as const,
-          enum: ["active", "inactive", "pending", "suspended"]
-        }
-      }
+          enum: ["active", "inactive", "pending", "suspended"],
+        },
+      },
     },
     {
       name: "role",
@@ -56,8 +56,8 @@ export default function ParametersSectionDemo() {
       description: "用户角色筛选",
       schema: {
         type: "string" as const,
-        enum: ["admin", "user", "moderator", "guest"]
-      }
+        enum: ["admin", "user", "moderator", "guest"],
+      },
     },
     {
       name: "createdAfter",
@@ -66,8 +66,8 @@ export default function ParametersSectionDemo() {
       description: "创建时间筛选（起始时间）",
       schema: {
         type: "string" as const,
-        format: "date-time" as const
-      }
+        format: "date-time" as const,
+      },
     },
     {
       name: "createdBefore",
@@ -76,8 +76,8 @@ export default function ParametersSectionDemo() {
       description: "创建时间筛选（结束时间）",
       schema: {
         type: "string" as const,
-        format: "date-time" as const
-      }
+        format: "date-time" as const,
+      },
     },
     {
       name: "sortBy",
@@ -87,8 +87,8 @@ export default function ParametersSectionDemo() {
       schema: {
         type: "string" as const,
         enum: ["name", "email", "createdAt", "lastLoginAt"],
-        default: "createdAt"
-      }
+        default: "createdAt",
+      },
     },
     {
       name: "sortOrder",
@@ -98,8 +98,8 @@ export default function ParametersSectionDemo() {
       schema: {
         type: "string" as const,
         enum: ["asc", "desc"],
-        default: "desc"
-      }
+        default: "desc",
+      },
     },
     {
       name: "include",
@@ -110,9 +110,9 @@ export default function ParametersSectionDemo() {
         type: "array" as const,
         items: {
           type: "string" as const,
-          enum: ["profile", "permissions", "preferences", "statistics"]
-        }
-      }
+          enum: ["profile", "permissions", "preferences", "statistics"],
+        },
+      },
     },
     {
       name: "X-API-Key",
@@ -121,8 +121,8 @@ export default function ParametersSectionDemo() {
       description: "API 访问密钥",
       schema: {
         type: "string" as const,
-        pattern: "^[a-zA-Z0-9]{32}$"
-      }
+        pattern: "^[a-zA-Z0-9]{32}$",
+      },
     },
     {
       name: "Authorization",
@@ -131,8 +131,8 @@ export default function ParametersSectionDemo() {
       description: "Bearer 令牌认证",
       schema: {
         type: "string" as const,
-        pattern: "^Bearer [a-zA-Z0-9\\-\\._~\\+\\/]+=*$"
-      }
+        pattern: "^Bearer [a-zA-Z0-9\\-\\._~\\+\\/]+=*$",
+      },
     },
     {
       name: "X-Request-ID",
@@ -141,9 +141,9 @@ export default function ParametersSectionDemo() {
       description: "请求追踪 ID",
       schema: {
         type: "string" as const,
-        format: "uuid" as const
-      }
-    }
+        format: "uuid" as const,
+      },
+    },
   ];
 
   // 用户详情 API 的参数示例
@@ -155,8 +155,8 @@ export default function ParametersSectionDemo() {
       description: "用户的唯一标识符",
       schema: {
         type: "string" as const,
-        format: "uuid" as const
-      }
+        format: "uuid" as const,
+      },
     },
     {
       name: "include",
@@ -167,9 +167,15 @@ export default function ParametersSectionDemo() {
         type: "array" as const,
         items: {
           type: "string" as const,
-          enum: ["profile", "permissions", "preferences", "activity", "statistics"]
-        }
-      }
+          enum: [
+            "profile",
+            "permissions",
+            "preferences",
+            "activity",
+            "statistics",
+          ],
+        },
+      },
     },
     {
       name: "fields",
@@ -178,8 +184,8 @@ export default function ParametersSectionDemo() {
       description: "指定返回的字段，用逗号分隔",
       schema: {
         type: "string" as const,
-        pattern: "^[a-zA-Z0-9,_]+$"
-      }
+        pattern: "^[a-zA-Z0-9,_]+$",
+      },
     },
     {
       name: "X-API-Key",
@@ -188,8 +194,8 @@ export default function ParametersSectionDemo() {
       description: "API 访问密钥",
       schema: {
         type: "string" as const,
-        pattern: "^[a-zA-Z0-9]{32}$"
-      }
+        pattern: "^[a-zA-Z0-9]{32}$",
+      },
     },
     {
       name: "If-None-Match",
@@ -197,9 +203,9 @@ export default function ParametersSectionDemo() {
       required: false,
       description: "条件请求头，用于缓存控制",
       schema: {
-        type: "string" as const
-      }
-    }
+        type: "string" as const,
+      },
+    },
   ];
 
   // 文件上传 API 的参数示例
@@ -211,8 +217,8 @@ export default function ParametersSectionDemo() {
       description: "目标文件夹 ID",
       schema: {
         type: "string" as const,
-        pattern: "^folder_[a-zA-Z0-9]+$"
-      }
+        pattern: "^folder_[a-zA-Z0-9]+$",
+      },
     },
     {
       name: "overwrite",
@@ -221,8 +227,8 @@ export default function ParametersSectionDemo() {
       description: "是否覆盖同名文件",
       schema: {
         type: "boolean" as const,
-        default: false
-      }
+        default: false,
+      },
     },
     {
       name: "generateThumbnail",
@@ -231,8 +237,8 @@ export default function ParametersSectionDemo() {
       description: "是否生成缩略图（仅适用于图片）",
       schema: {
         type: "boolean" as const,
-        default: true
-      }
+        default: true,
+      },
     },
     {
       name: "maxSize",
@@ -243,8 +249,8 @@ export default function ParametersSectionDemo() {
         type: "integer" as const,
         minimum: 1,
         maximum: 104857600,
-        default: 10485760
-      }
+        default: 10485760,
+      },
     },
     {
       name: "allowedTypes",
@@ -255,9 +261,15 @@ export default function ParametersSectionDemo() {
         type: "array" as const,
         items: {
           type: "string" as const,
-          enum: ["image/jpeg", "image/png", "image/gif", "application/pdf", "text/plain"]
-        }
-      }
+          enum: [
+            "image/jpeg",
+            "image/png",
+            "image/gif",
+            "application/pdf",
+            "text/plain",
+          ],
+        },
+      },
     },
     {
       name: "X-Upload-Token",
@@ -266,8 +278,8 @@ export default function ParametersSectionDemo() {
       description: "上传令牌",
       schema: {
         type: "string" as const,
-        pattern: "^upload_[a-zA-Z0-9]{40}$"
-      }
+        pattern: "^upload_[a-zA-Z0-9]{40}$",
+      },
     },
     {
       name: "Content-Type",
@@ -276,8 +288,8 @@ export default function ParametersSectionDemo() {
       description: "内容类型",
       schema: {
         type: "string" as const,
-        enum: ["multipart/form-data"]
-      }
+        enum: ["multipart/form-data"],
+      },
     },
     {
       name: "X-Client-Version",
@@ -286,9 +298,9 @@ export default function ParametersSectionDemo() {
       description: "客户端版本号",
       schema: {
         type: "string" as const,
-        pattern: "^\\d+\\.\\d+\\.\\d+$"
-      }
-    }
+        pattern: "^\\d+\\.\\d+\\.\\d+$",
+      },
+    },
   ];
 
   return (

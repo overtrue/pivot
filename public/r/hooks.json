@@ -3,10 +3,7 @@
   "name": "hooks",
   "type": "registry:hook",
   "description": "React hooks collection",
-  "dependencies": [
-    "openapi-types",
-    "react"
-  ],
+  "dependencies": ["openapi-types", "react"],
   "files": [
     {
       "path": "registry/default/hooks/use-openapi.ts",

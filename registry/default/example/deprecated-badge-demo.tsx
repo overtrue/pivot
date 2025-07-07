@@ -12,17 +12,25 @@ export default function DeprecatedBadgeDemo() {
           <div className="flex items-center gap-3">
             <span className="text-sm font-mono">GET /api/v1/users</span>
             <DeprecatedBadge />
-            <span className="text-xs text-neutral-500">请使用 /api/v2/users</span>
+            <span className="text-xs text-neutral-500">
+              请使用 /api/v2/users
+            </span>
           </div>
           <div className="flex items-center gap-3">
             <span className="text-sm font-mono">POST /api/v1/auth/login</span>
             <DeprecatedBadge />
-            <span className="text-xs text-neutral-500">请使用 OAuth 2.0 认证</span>
+            <span className="text-xs text-neutral-500">
+              请使用 OAuth 2.0 认证
+            </span>
           </div>
           <div className="flex items-center gap-3">
-            <span className="text-sm font-mono">GET /api/v1/products/search</span>
+            <span className="text-sm font-mono">
+              GET /api/v1/products/search
+            </span>
             <DeprecatedBadge />
-            <span className="text-xs text-neutral-500">请使用 /api/v2/search/products</span>
+            <span className="text-xs text-neutral-500">
+              请使用 /api/v2/search/products
+            </span>
           </div>
         </div>
       </div>
@@ -36,12 +44,16 @@ export default function DeprecatedBadgeDemo() {
           <div className="flex items-center gap-3">
             <span className="text-sm font-mono">user_id</span>
             <DeprecatedBadge />
-            <span className="text-xs text-neutral-500">请使用 userId（驼峰命名）</span>
+            <span className="text-xs text-neutral-500">
+              请使用 userId（驼峰命名）
+            </span>
           </div>
           <div className="flex items-center gap-3">
             <span className="text-sm font-mono">api_key</span>
             <DeprecatedBadge />
-            <span className="text-xs text-neutral-500">请使用 Authorization 头部</span>
+            <span className="text-xs text-neutral-500">
+              请使用 Authorization 头部
+            </span>
           </div>
           <div className="flex items-center gap-3">
             <span className="text-sm font-mono">format=xml</span>
@@ -70,7 +82,9 @@ export default function DeprecatedBadgeDemo() {
           <div className="flex items-center gap-3">
             <span className="text-sm font-mono">created_time</span>
             <DeprecatedBadge />
-            <span className="text-xs text-neutral-500">请使用 createdAt（ISO 8601 格式）</span>
+            <span className="text-xs text-neutral-500">
+              请使用 createdAt（ISO 8601 格式）
+            </span>
           </div>
         </div>
       </div>
@@ -84,7 +98,9 @@ export default function DeprecatedBadgeDemo() {
           <div className="flex items-center gap-3">
             <span className="text-sm">HTTP Basic Auth</span>
             <DeprecatedBadge />
-            <span className="text-xs text-neutral-500">请使用 Bearer Token</span>
+            <span className="text-xs text-neutral-500">
+              请使用 Bearer Token
+            </span>
           </div>
           <div className="flex items-center gap-3">
             <span className="text-sm">Session Cookie</span>
@@ -106,7 +122,9 @@ export default function DeprecatedBadgeDemo() {
         </p>
         <div className="space-y-3">
           <div className="flex items-center gap-3">
-            <span className="text-sm font-mono">PATCH /api/v1/users/delete</span>
+            <span className="text-sm font-mono">
+              PATCH /api/v1/users/delete
+            </span>
             <DeprecatedBadge />
             <span className="text-xs text-neutral-500">请使用 DELETE 方法</span>
           </div>
@@ -127,12 +145,16 @@ export default function DeprecatedBadgeDemo() {
           <div className="flex items-center gap-3">
             <span className="text-sm">application/x-www-form-urlencoded</span>
             <DeprecatedBadge />
-            <span className="text-xs text-neutral-500">请使用 application/json</span>
+            <span className="text-xs text-neutral-500">
+              请使用 application/json
+            </span>
           </div>
           <div className="flex items-center gap-3">
             <span className="text-sm">text/xml</span>
             <DeprecatedBadge />
-            <span className="text-xs text-neutral-500">XML 支持将在 2024 年底结束</span>
+            <span className="text-xs text-neutral-500">
+              XML 支持将在 2024 年底结束
+            </span>
           </div>
         </div>
       </div>
@@ -146,7 +168,9 @@ export default function DeprecatedBadgeDemo() {
           <div className="flex items-center gap-3">
             <span className="text-sm">批量删除用户</span>
             <DeprecatedBadge />
-            <span className="text-xs text-neutral-500">出于安全考虑，请逐个删除</span>
+            <span className="text-xs text-neutral-500">
+              出于安全考虑，请逐个删除
+            </span>
           </div>
           <div className="flex items-center gap-3">
             <span className="text-sm">明文密码传输</span>
@@ -156,7 +180,9 @@ export default function DeprecatedBadgeDemo() {
           <div className="flex items-center gap-3">
             <span className="text-sm">无限制文件上传</span>
             <DeprecatedBadge />
-            <span className="text-xs text-neutral-500">现已限制文件大小和类型</span>
+            <span className="text-xs text-neutral-500">
+              现已限制文件大小和类型
+            </span>
           </div>
         </div>
       </div>
@@ -170,7 +196,9 @@ export default function DeprecatedBadgeDemo() {
           <div className="flex items-center gap-3">
             <span className="text-sm font-mono">debug=true</span>
             <DeprecatedBadge />
-            <span className="text-xs text-neutral-500">请使用 log_level=debug</span>
+            <span className="text-xs text-neutral-500">
+              请使用 log_level=debug
+            </span>
           </div>
           <div className="flex items-center gap-3">
             <span className="text-sm font-mono">cache_enabled=false</span>
@@ -180,7 +208,9 @@ export default function DeprecatedBadgeDemo() {
           <div className="flex items-center gap-3">
             <span className="text-sm font-mono">ssl_verify=false</span>
             <DeprecatedBadge />
-            <span className="text-xs text-neutral-500">出于安全考虑，SSL 验证强制启用</span>
+            <span className="text-xs text-neutral-500">
+              出于安全考虑，SSL 验证强制启用
+            </span>
           </div>
         </div>
       </div>

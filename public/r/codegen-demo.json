@@ -2,12 +2,8 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "codegen-demo",
   "type": "registry:example",
-  "dependencies": [
-    "openapi-types"
-  ],
-  "registryDependencies": [
-    "https://pivotkit.vercel.app/r/codegen.json"
-  ],
+  "dependencies": ["openapi-types"],
+  "registryDependencies": ["https://pivotkit.vercel.app/r/codegen.json"],
   "files": [
     {
       "path": "registry/default/example/codegen-demo.tsx",

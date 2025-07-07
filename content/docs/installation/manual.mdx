@@ -224,7 +224,7 @@ const statusCodeVariants = cva(
       variant: "default",
       size: "md",
     },
-  }
+  },
 );
 
 function getStatusCodeColor(code: number) {
@@ -251,7 +251,7 @@ const StatusCode = React.forwardRef<HTMLDivElement, StatusCodeProps>(
         className={cn(
           statusCodeVariants({ variant, size }),
           colorClass,
-          className
+          className,
         )}
         ref={ref}
         {...props}
@@ -259,7 +259,7 @@ const StatusCode = React.forwardRef<HTMLDivElement, StatusCodeProps>(
         {code}
       </div>
     );
-  }
+  },
 );
 StatusCode.displayName = "StatusCode";
 

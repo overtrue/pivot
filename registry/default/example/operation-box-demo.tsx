@@ -1,6 +1,6 @@
 import { OperationBox } from "@/registry/default/ui/operation-box";
 import type { ParameterLocation } from "@/types/project";
-import type { OpenAPIV3 } from 'openapi-types';
+import type { OpenAPIV3 } from "openapi-types";
 
 export default function OperationBoxDemo() {
   // 示例 OpenAPI 操作数据
@@ -16,8 +16,8 @@ export default function OperationBoxDemo() {
         schema: {
           type: "string",
           format: "uuid" as const,
-          example: "123e4567-e89b-12d3-a456-426614174000"
-        }
+          example: "123e4567-e89b-12d3-a456-426614174000",
+        },
       },
       {
         name: "include",
@@ -28,11 +28,11 @@ export default function OperationBoxDemo() {
           type: "array",
           items: {
             type: "string",
-            enum: ["profile", "permissions", "preferences"]
+            enum: ["profile", "permissions", "preferences"],
           },
-          example: ["profile", "permissions"]
-        }
-      }
+          example: ["profile", "permissions"],
+        },
+      },
     ],
     responses: {
       "200": {
@@ -50,10 +50,10 @@ export default function OperationBoxDemo() {
                   properties: {
                     firstName: { type: "string" },
                     lastName: { type: "string" },
-                    avatar: { type: "string", format: "uri" as const }
-                  }
-                }
-              }
+                    avatar: { type: "string", format: "uri" as const },
+                  },
+                },
+              },
             },
             example: {
               id: "123e4567-e89b-12d3-a456-426614174000",
@@ -62,11 +62,11 @@ export default function OperationBoxDemo() {
               profile: {
                 firstName: "John",
                 lastName: "Doe",
-                avatar: "https://example.com/avatar.jpg"
-              }
-            }
-          }
-        }
+                avatar: "https://example.com/avatar.jpg",
+              },
+            },
+          },
+        },
       },
       "404": {
         description: "用户不存在",
@@ -76,26 +76,26 @@ export default function OperationBoxDemo() {
               type: "object",
               properties: {
                 error: { type: "string" },
-                message: { type: "string" }
-              }
+                message: { type: "string" },
+              },
             },
             example: {
               error: "USER_NOT_FOUND",
-              message: "指定的用户不存在"
-            }
-          }
-        }
-      }
+              message: "指定的用户不存在",
+            },
+          },
+        },
+      },
     },
     security: [
       {
-        bearerAuth: []
-      }
+        bearerAuth: [],
+      },
     ],
     externalDocs: {
       description: "用户管理 API 文档",
-      url: "https://docs.example.com/users"
-    }
+      url: "https://docs.example.com/users",
+    },
   };
 
   const createUserOperation: OpenAPIV3.OperationObject = {
@@ -114,25 +114,25 @@ export default function OperationBoxDemo() {
                 type: "string",
                 minLength: 3,
                 maxLength: 50,
-                pattern: "^[a-zA-Z0-9_]+$"
+                pattern: "^[a-zA-Z0-9_]+$",
               },
               email: {
                 type: "string",
-                format: "email" as const
+                format: "email" as const,
               },
               password: {
                 type: "string",
                 minLength: 8,
-                description: "密码必须至少包含 8 个字符"
+                description: "密码必须至少包含 8 个字符",
               },
               profile: {
                 type: "object",
                 properties: {
                   firstName: { type: "string" },
-                  lastName: { type: "string" }
-                }
-              }
-            }
+                  lastName: { type: "string" },
+                },
+              },
+            },
           },
           example: {
             username: "new_user",
@@ -140,11 +140,11 @@ export default function OperationBoxDemo() {
             password: "securePassword123",
             profile: {
               firstName: "New",
-              lastName: "User"
-            }
-          }
-        }
-      }
+              lastName: "User",
+            },
+          },
+        },
+      },
     },
     responses: {
       "201": {
@@ -157,11 +157,11 @@ export default function OperationBoxDemo() {
                 id: { type: "string", format: "uuid" as const },
                 username: { type: "string" },
                 email: { type: "string" },
-                createdAt: { type: "string", format: "date-time" as const }
-              }
-            }
-          }
-        }
+                createdAt: { type: "string", format: "date-time" as const },
+              },
+            },
+          },
+        },
       },
       "400": {
         description: "请求参数错误",
@@ -173,22 +173,22 @@ export default function OperationBoxDemo() {
                 error: { type: "string" },
                 details: {
                   type: "array",
-                  items: { type: "string" }
-                }
-              }
-            }
-          }
-        }
+                  items: { type: "string" },
+                },
+              },
+            },
+          },
+        },
       },
       "409": {
-        description: "用户名或邮箱已存在"
-      }
+        description: "用户名或邮箱已存在",
+      },
     },
     security: [
       {
-        bearerAuth: ["admin"]
-      }
-    ]
+        bearerAuth: ["admin"],
+      },
+    ],
   };
 
   const deprecatedOperation: OpenAPIV3.OperationObject = {
@@ -199,8 +199,8 @@ export default function OperationBoxDemo() {
       {
         name: "limit",
         in: "query" as ParameterLocation,
-        schema: { type: "integer", maximum: 100 }
-      }
+        schema: { type: "integer", maximum: 100 },
+      },
     ],
     responses: {
       "200": {
@@ -213,14 +213,14 @@ export default function OperationBoxDemo() {
                 type: "object",
                 properties: {
                   id: { type: "string" },
-                  username: { type: "string" }
-                }
-              }
-            }
-          }
-        }
-      }
-    }
+                  username: { type: "string" },
+                },
+              },
+            },
+          },
+        },
+      },
+    },
   };
 
   return (

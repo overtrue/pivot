@@ -33,7 +33,7 @@ const ExternalDocs = React.forwardRef<HTMLDivElement, ExternalDocsProps>(
         </a>
       </div>
     );
-  }
+  },
 );
 
 ExternalDocs.displayName = "ExternalDocs";

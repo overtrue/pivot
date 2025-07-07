@@ -32,12 +32,13 @@ function call_${method.toLowerCase()}()
     $response = Http::withHeaders([
         'Content-Type' => 'application/json',
         'Accept' => 'application/json',
-    ])${["POST", "PUT", "PATCH"].includes(method) && requestBody
+    ])${
+      ["POST", "PUT", "PATCH"].includes(method) && requestBody
         ? `->${method.toLowerCase()}("${endpoint}",
         ${formattedRequestBody}
     );`
         : `.${method.toLowerCase()}("${endpoint}");`
-      }
+    }
 
     return $response->json();
 }
@@ -51,11 +52,12 @@ public function call_${method.toLowerCase()}_guzzle()
         'headers' => [
             'Content-Type' => 'application/json',
             'Accept' => 'application/json',
-        ],${["POST", "PUT", "PATCH"].includes(method) && requestBody
-        ? `
+        ],${
+          ["POST", "PUT", "PATCH"].includes(method) && requestBody
+            ? `
         'json' => ${guzzleRequestBody}`
-        : ""
-      }
+            : ""
+        }
     ]);
 
     return json_decode($response->getBody(), true);
@@ -69,43 +71,43 @@ interface LaravelGeneratorProps {
   className?: string;
 }
 
-const LaravelGeneratorComponent = React.forwardRef<HTMLDivElement, LaravelGeneratorProps>(
-  ({ params, className }, ref) => {
-    if (!params) {
-      return (
-        <div ref={ref} className={className}>
-          <div className="flex items-center gap-2 mb-2">
-            <Code2 size={16} />
-            <span className="font-medium">Laravel</span>
-          </div>
-          <div className="bg-neutral-100 dark:bg-neutral-800 p-4 rounded-md text-neutral-500 dark:text-neutral-400">
-            No parameters provided for code generation
-          </div>
-        </div>
-      );
-    }
-
-    const generator = new LaravelGeneratorClass();
-    const code = generator.generateCode(params);
-
+const LaravelGeneratorComponent = React.forwardRef<
+  HTMLDivElement,
+  LaravelGeneratorProps
+>(({ params, className }, ref) => {
+  if (!params) {
     return (
       <div ref={ref} className={className}>
         <div className="flex items-center gap-2 mb-2">
-          {generator.getIcon()}
-          <span className="font-medium">{generator.label}</span>
+          <Code2 size={16} />
+          <span className="font-medium">Laravel</span>
         </div>
-        <pre className="bg-neutral-100 dark:bg-neutral-800 p-4 rounded-md overflow-x-auto">
-          <code className="text-sm language-php">{code}</code>
-        </pre>
+        <div className="bg-neutral-100 dark:bg-neutral-800 p-4 rounded-md text-neutral-500 dark:text-neutral-400">
+          No parameters provided for code generation
+        </div>
       </div>
     );
-  },
-);
+  }
+
+  const generator = new LaravelGeneratorClass();
+  const code = generator.generateCode(params);
+
+  return (
+    <div ref={ref} className={className}>
+      <div className="flex items-center gap-2 mb-2">
+        {generator.getIcon()}
+        <span className="font-medium">{generator.label}</span>
+      </div>
+      <pre className="bg-neutral-100 dark:bg-neutral-800 p-4 rounded-md overflow-x-auto">
+        <code className="text-sm language-php">{code}</code>
+      </pre>
+    </div>
+  );
+});
 
 LaravelGeneratorComponent.displayName = "LaravelGenerator";
 
 export {
   LaravelGeneratorComponent as LaravelGenerator,
-  type LaravelGeneratorProps
+  type LaravelGeneratorProps,
 };
-

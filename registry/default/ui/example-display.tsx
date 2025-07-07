@@ -18,7 +18,10 @@ interface ExampleDisplayProps {
  * 支持多种格式（json, xml, yaml等）
  */
 const ExampleDisplay = React.forwardRef<HTMLDivElement, ExampleDisplayProps>(
-  ({ example, className = "", language = "json", title, disableCopy = false }, ref) => {
+  (
+    { example, className = "", language = "json", title, disableCopy = false },
+    ref,
+  ) => {
     const { t } = useI18n();
 
     if (!example) {
@@ -27,7 +30,7 @@ const ExampleDisplay = React.forwardRef<HTMLDivElement, ExampleDisplayProps>(
           ref={ref}
           className="bg-yellow-50 dark:bg-yellow-900/30 text-yellow-800 dark:text-yellow-300 p-3 rounded text-sm"
         >
-          {t('No example data provided')}
+          {t("No example data provided")}
         </div>
       );
     }
@@ -76,7 +79,7 @@ const ExampleDisplay = React.forwardRef<HTMLDivElement, ExampleDisplayProps>(
 
             return objectToXml(example, "data");
           } catch (error) {
-            console.error(t('XML formatting failed:'), error);
+            console.error(t("XML formatting failed:"), error);
             return JSON.stringify(example, null, 2); // 失败时回退到JSON
           }
         default:

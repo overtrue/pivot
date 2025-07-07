@@ -4,25 +4,25 @@ export default function ServerDemo() {
   // 生产环境服务器
   const productionServer = {
     url: "https://api.example.com/v1",
-    description: "生产环境 API 服务器，提供稳定可靠的服务"
+    description: "生产环境 API 服务器，提供稳定可靠的服务",
   };
 
   // 预发布环境服务器
   const stagingServer = {
     url: "https://staging-api.example.com/v1",
-    description: "预发布环境，用于最终测试和验证"
+    description: "预发布环境，用于最终测试和验证",
   };
 
   // 开发环境服务器
   const developmentServer = {
     url: "https://dev-api.example.com/v1",
-    description: "开发环境，用于功能开发和调试"
+    description: "开发环境，用于功能开发和调试",
   };
 
   // 本地开发服务器
   const localServer = {
     url: "http://localhost:3000/api/v1",
-    description: "本地开发服务器，用于本地开发和测试"
+    description: "本地开发服务器，用于本地开发和测试",
   };
 
   // 带变量的服务器配置
@@ -33,14 +33,14 @@ export default function ServerDemo() {
       environment: {
         default: "prod",
         enum: ["prod", "staging", "dev"],
-        description: "部署环境"
+        description: "部署环境",
       },
       version: {
         default: "v1",
         enum: ["v1", "v2", "beta"],
-        description: "API 版本"
-      }
-    }
+        description: "API 版本",
+      },
+    },
   };
 
   // 区域化服务器
@@ -51,9 +51,9 @@ export default function ServerDemo() {
       region: {
         default: "us-east",
         enum: ["us-east", "us-west", "eu-west", "ap-southeast"],
-        description: "服务器区域"
-      }
-    }
+        description: "服务器区域",
+      },
+    },
   };
 
   // 微服务架构服务器
@@ -64,33 +64,33 @@ export default function ServerDemo() {
       service: {
         default: "user",
         enum: ["user", "product", "order", "payment", "notification"],
-        description: "微服务名称"
-      }
-    }
+        description: "微服务名称",
+      },
+    },
   };
 
   // CDN 加速服务器
   const cdnServer = {
     url: "https://cdn.example.com/api/v1",
-    description: "CDN 加速的 API 服务器，提供全球加速访问"
+    description: "CDN 加速的 API 服务器，提供全球加速访问",
   };
 
   // WebSocket 服务器
   const websocketServer = {
     url: "wss://ws.example.com/v1",
-    description: "WebSocket 实时通信服务器，支持实时数据推送"
+    description: "WebSocket 实时通信服务器，支持实时数据推送",
   };
 
   // 负载均衡服务器
   const loadBalancedServer = {
     url: "https://lb.api.example.com/v1",
-    description: "负载均衡服务器，自动分发请求到多个后端实例"
+    description: "负载均衡服务器，自动分发请求到多个后端实例",
   };
 
   // 测试沙盒服务器
   const sandboxServer = {
     url: "https://sandbox.api.example.com/v1",
-    description: "测试沙盒环境，提供安全的测试数据和功能"
+    description: "测试沙盒环境，提供安全的测试数据和功能",
   };
 
   // 企业私有云服务器
@@ -100,9 +100,9 @@ export default function ServerDemo() {
     variables: {
       tenant: {
         default: "demo",
-        description: "租户标识符"
-      }
-    }
+        description: "租户标识符",
+      },
+    },
   };
 
   return (

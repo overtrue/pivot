@@ -13,7 +13,11 @@ export function humanize(name: string): string {
     .replace(/([A-Z])/g, " $1")
     .trim()
     .split(/\s+/)
-    .map((word) => word.length > 0 ? word[0]!.toUpperCase() + word.substring(1).toLowerCase() : word)
+    .map((word) =>
+      word.length > 0
+        ? word[0]!.toUpperCase() + word.substring(1).toLowerCase()
+        : word,
+    )
     .join(" ");
 }
 

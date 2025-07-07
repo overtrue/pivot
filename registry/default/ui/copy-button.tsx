@@ -32,7 +32,7 @@ const CopyButton = React.forwardRef<HTMLButtonElement, CopyButtonProps>(
         await navigator.clipboard.writeText(text);
         setCopied(true);
       } catch (err) {
-        console.error(t('Copy failed:'), err);
+        console.error(t("Copy failed:"), err);
       }
     };
 
@@ -59,7 +59,7 @@ const CopyButton = React.forwardRef<HTMLButtonElement, CopyButtonProps>(
           className,
           copied ? "text-green-600 dark:text-green-400" : "",
         )}
-        title={t('Copy to clipboard')}
+        title={t("Copy to clipboard")}
       >
         {copied ? (
           <ClipboardCheck size={iconSizes[size]} className={iconClassName} />

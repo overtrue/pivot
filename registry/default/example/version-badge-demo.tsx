@@ -6,7 +6,7 @@ export default function VersionBadgeDemo() {
     "2.1.3",
     "3.0.0-beta.1",
     "1.2.3-alpha",
-    "4.5.6-rc.2"
+    "4.5.6-rc.2",
   ];
 
   return (
@@ -46,7 +46,9 @@ export default function VersionBadgeDemo() {
           </p>
           <p className="text-sm">
             最新稳定版: <VersionBadge version="2.0.0" />
-            <span className="ml-2">测试版: <VersionBadge version="2.1.0-beta.1" /></span>
+            <span className="ml-2">
+              测试版: <VersionBadge version="2.1.0-beta.1" />
+            </span>
           </p>
         </div>
       </div>

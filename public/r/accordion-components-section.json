@@ -2,11 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "accordion-components-section",
   "type": "registry:ui",
-  "dependencies": [
-    "openapi-types",
-    "lucide-react",
-    "react"
-  ],
+  "dependencies": ["openapi-types", "lucide-react", "react"],
   "registryDependencies": [
     "https://pivotkit.vercel.app/r/component-detail.json"
   ],

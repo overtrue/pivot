@@ -2,9 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "component-items-list-demo",
   "type": "registry:example",
-  "dependencies": [
-    "react"
-  ],
+  "dependencies": ["react"],
   "registryDependencies": [
     "https://pivotkit.vercel.app/r/component-items-list.json"
   ],

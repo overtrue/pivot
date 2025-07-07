@@ -2,9 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "method-label-demo",
   "type": "registry:example",
-  "registryDependencies": [
-    "https://pivotkit.vercel.app/r/method-label.json"
-  ],
+  "registryDependencies": ["https://pivotkit.vercel.app/r/method-label.json"],
   "files": [
     {
       "path": "registry/default/example/method-label-demo.tsx",

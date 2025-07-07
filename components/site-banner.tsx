@@ -15,8 +15,7 @@ export function ProBanner() {
           target="_blank"
           className="inline-flex text-xs leading-normal md:text-sm"
         >
-          🎉{" "}
-          <Separator className="mx-2 h-4" orientation="vertical" />{" "}
+          🎉 <Separator className="mx-2 h-4" orientation="vertical" />{" "}
           <span className="font-medium">
             专业版组件现已发布！查看更多高级组件和模板。
           </span>{" "}
@@ -41,8 +40,8 @@ export function ProductHuntBanner() {
           ✨{" "}
           <span className="ml-1 font-[580] dark:font-[550]">
             {" "}
-            Pivot is live on Product Hunt Today! Show your support and vote
-            for us.
+            Pivot is live on Product Hunt Today! Show your support and vote for
+            us.
           </span>{" "}
           <ChevronRight className="ml-1 mt-[3px] hidden size-4 transition-all duration-300 ease-out group-hover:translate-x-1 lg:inline-block" />
         </Link>

@@ -7,21 +7,22 @@ interface DescriptionDisplayProps {
   className?: string;
 }
 
-const DescriptionDisplay = React.forwardRef<HTMLDivElement, DescriptionDisplayProps>(
-  ({ description, className }, ref) => {
-    return (
-      <div
-        ref={ref}
-        className={cn(
-          `text-sm text-neutral-500 dark:text-neutral-300 prose dark:prose-invert max-w-none`,
-          className,
-        )}
-      >
-        <ReactMarkdown>{description}</ReactMarkdown>
-      </div>
-    );
-  }
-);
+const DescriptionDisplay = React.forwardRef<
+  HTMLDivElement,
+  DescriptionDisplayProps
+>(({ description, className }, ref) => {
+  return (
+    <div
+      ref={ref}
+      className={cn(
+        `text-sm text-neutral-500 dark:text-neutral-300 prose dark:prose-invert max-w-none`,
+        className,
+      )}
+    >
+      <ReactMarkdown>{description}</ReactMarkdown>
+    </div>
+  );
+});
 
 DescriptionDisplay.displayName = "DescriptionDisplay";
 

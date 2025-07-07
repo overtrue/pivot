@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 import { Book, FileText, Info, Users } from "lucide-react";
-import type { OpenAPIV3 } from 'openapi-types';
+import type { OpenAPIV3 } from "openapi-types";
 import React from "react";
 import { ContactDisplay } from "@/registry/default/ui/contact-display";
 import { DescriptionDisplay } from "@/registry/default/ui/description-display";

@@ -1,61 +1,62 @@
-import type { OpenAPIV3 } from 'openapi-types';
+import type { OpenAPIV3 } from "openapi-types";
 import { SecuritySection } from "@/registry/default/ui/security-section";
 
 export default function SecuritySectionDemo() {
   // API 密钥认证示例
   const apiKeyOnlySecurity = [
     {
-      "ApiKeyAuth": []
-    }
+      ApiKeyAuth: [],
+    },
   ];
 
   // Bearer Token 认证示例
   const bearerTokenSecurity = [
     {
-      "BearerAuth": []
-    }
+      BearerAuth: [],
+    },
   ];
 
   // OAuth2 认证示例
   const oauth2Security = [
     {
-      "OAuth2": ["read", "write"]
-    }
+      OAuth2: ["read", "write"],
+    },
   ];
 
   // 多重认证示例（API Key + Bearer Token）
   const multiAuthSecurity = [
     {
-      "ApiKeyAuth": [],
-      "BearerAuth": []
-    }
+      ApiKeyAuth: [],
+      BearerAuth: [],
+    },
   ];
 
   // 可选认证示例（API Key 或 OAuth2）
   const optionalAuthSecurity: OpenAPIV3.SecurityRequirementObject[] = [
     {
-      "ApiKeyAuth": []
+      ApiKeyAuth: [],
     },
     {
-      "OAuth2": ["read", "write", "admin"]
-    }
+      OAuth2: ["read", "write", "admin"],
+    },
   ];
 
   // 完整的安全方案定义
   const securitySchemes = {
-    "ApiKeyAuth": {
+    ApiKeyAuth: {
       type: "apiKey" as const,
-      description: "API 密钥认证，通过 X-API-Key 请求头传递。适用于服务器到服务器的通信。",
+      description:
+        "API 密钥认证，通过 X-API-Key 请求头传递。适用于服务器到服务器的通信。",
       name: "X-API-Key",
-      in: "header" as const
+      in: "header" as const,
     },
-    "BearerAuth": {
+    BearerAuth: {
       type: "http" as const,
       description: "Bearer Token 认证，使用 JWT 令牌。适用于用户会话认证。",
       scheme: "bearer",
-      bearerFormat: "JWT"
+      bearerFormat: "JWT",
     },
-    "OAuth2": {
+    OAuth2: {
       type: "oauth2" as const,
       description: "OAuth 2.0 认证，支持授权码流程。适用于第三方应用集成。",
       flows: {
@@ -64,59 +65,60 @@ export default function SecuritySectionDemo() {
           tokenUrl: "https://api.example.com/oauth/token",
           refreshUrl: "https://api.example.com/oauth/refresh",
           scopes: {
-            "read": "读取用户数据和资源",
-            "write": "创建和修改资源",
-            "admin": "管理员权限，包含所有操作",
-            "profile": "访问用户基本信息",
-            "email": "访问用户邮箱地址"
-          }
+            read: "读取用户数据和资源",
+            write: "创建和修改资源",
+            admin: "管理员权限，包含所有操作",
+            profile: "访问用户基本信息",
+            email: "访问用户邮箱地址",
+          },
         },
         clientCredentials: {
           tokenUrl: "https://api.example.com/oauth/token",
           scopes: {
             "api:read": "API 读取权限",
-            "api:write": "API 写入权限"
-          }
-        }
-      }
+            "api:write": "API 写入权限",
+          },
+        },
+      },
     },
-    "BasicAuth": {
+    BasicAuth: {
       type: "http" as const,
       description: "HTTP 基本认证，使用用户名和密码。仅用于开发和测试环境。",
-      scheme: "basic"
+      scheme: "basic",
     },
-    "CookieAuth": {
+    CookieAuth: {
       type: "apiKey" as const,
       description: "基于 Cookie 的会话认证，适用于 Web 应用。",
       name: "sessionId",
-      in: "cookie" as const
+      in: "cookie" as const,
     },
-    "OpenIdConnect": {
+    OpenIdConnect: {
       type: "openIdConnect" as const,
       description: "OpenID Connect 认证，基于 OAuth 2.0 的身份认证层。",
-      openIdConnectUrl: "https://api.example.com/.well-known/openid-configuration"
-    }
+      openIdConnectUrl:
+        "https://api.example.com/.well-known/openid-configuration",
+    },
   };
 
   // 基本认证示例
   const basicAuthSecurity = [
     {
-      "BasicAuth": []
-    }
+      BasicAuth: [],
+    },
   ];
 
   // Cookie 认证示例
   const cookieAuthSecurity = [
     {
-      "CookieAuth": []
-    }
+      CookieAuth: [],
+    },
   ];
 
   // OpenID Connect 认证示例
   const openIdConnectSecurity = [
     {
-      "OpenIdConnect": []
-    }
+      OpenIdConnect: [],
+    },
   ];
 
   return (

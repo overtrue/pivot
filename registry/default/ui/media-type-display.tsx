@@ -12,7 +12,8 @@ const MediaTypeDisplay = React.forwardRef<
 >(({ mediaType, className }, ref) => {
   // 根据媒体类型返回不同的样式
   const getMediaTypeStyle = (type?: string) => {
-    if (!type) return "bg-neutral-100 dark:bg-neutral-900/30 text-neutral-800 dark:text-neutral-300";
+    if (!type)
+      return "bg-neutral-100 dark:bg-neutral-900/30 text-neutral-800 dark:text-neutral-300";
 
     const lowerType = type.toLowerCase();
     if (lowerType.includes("json")) {

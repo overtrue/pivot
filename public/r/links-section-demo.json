@@ -2,9 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "links-section-demo",
   "type": "registry:example",
-  "registryDependencies": [
-    "https://pivotkit.vercel.app/r/links-section.json"
-  ],
+  "registryDependencies": ["https://pivotkit.vercel.app/r/links-section.json"],
   "files": [
     {
       "path": "registry/default/example/links-section-demo.tsx",

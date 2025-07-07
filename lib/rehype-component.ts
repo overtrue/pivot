@@ -45,11 +45,13 @@ export function rehypeComponent() {
 
             src = fileName
               ? component.files.find((file) => {
-                return (
-                  file.path.endsWith(`${fileName}.tsx`) ||
-                  file.path.endsWith(`${fileName}.ts`)
-                );
-              })?.path || component.files[0]?.path || ""
+                  return (
+                    file.path.endsWith(`${fileName}.tsx`) ||
+                    file.path.endsWith(`${fileName}.ts`)
+                  );
+                })?.path ||
+                component.files[0]?.path ||
+                ""
               : component.files[0]?.path || "";
           }
 

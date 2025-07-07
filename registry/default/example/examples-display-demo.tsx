@@ -10,8 +10,8 @@ export default function ExamplesDisplayDemo() {
         name: "张三",
         email: "zhangsan@example.com",
         age: 30,
-        active: true
-      }
+        active: true,
+      },
     },
     "product-example": {
       summary: "产品对象示例",
@@ -22,8 +22,8 @@ export default function ExamplesDisplayDemo() {
         price: 2999.99,
         category: "electronics",
         inStock: true,
-        tags: ["smartphone", "android", "5G"]
-      }
+        tags: ["smartphone", "android", "5G"],
+      },
     },
     "error-example": {
       summary: "错误响应示例",
@@ -35,12 +35,12 @@ export default function ExamplesDisplayDemo() {
           details: [
             {
               field: "email",
-              message: "邮箱格式不正确"
-            }
-          ]
-        }
-      }
-    }
+              message: "邮箱格式不正确",
+            },
+          ],
+        },
+      },
+    },
   };
 
   return (

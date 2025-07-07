@@ -51,7 +51,9 @@ function getItems(node: UnistNode, current: Partial<Item>): Items {
   }
 
   if (node.type === "list") {
-    current.items = node.children?.map((i: UnistNode) => getItems(i, {})) as Item[];
+    current.items = node.children?.map((i: UnistNode) =>
+      getItems(i, {}),
+    ) as Item[];
 
     return current;
   } else if (node.type === "listItem") {

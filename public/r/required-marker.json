@@ -2,9 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "required-marker",
   "type": "registry:ui",
-  "dependencies": [
-    "react"
-  ],
+  "dependencies": ["react"],
   "files": [
     {
       "path": "registry/default/ui/required-marker.tsx",

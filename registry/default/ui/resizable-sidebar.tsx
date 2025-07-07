@@ -15,7 +15,10 @@ interface ResizableSidebarProps {
   topOffset?: string; // 粘性定位的顶部偏移量，例如 "0px"
 }
 
-const ResizableSidebar = React.forwardRef<HTMLDivElement, ResizableSidebarProps>(
+const ResizableSidebar = React.forwardRef<
+  HTMLDivElement,
+  ResizableSidebarProps
+>(
   (
     {
       children,
@@ -134,8 +137,4 @@ const ResizableSidebar = React.forwardRef<HTMLDivElement, ResizableSidebarProps>
 
 ResizableSidebar.displayName = "ResizableSidebar";
 
-export {
-  ResizableSidebar,
-  type ResizableSidebarProps
-};
-
+export { ResizableSidebar, type ResizableSidebarProps };

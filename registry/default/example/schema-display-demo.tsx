@@ -12,48 +12,48 @@ export default function SchemaDisplayDemo() {
         type: "string" as const,
         format: "uuid" as const,
         description: "用户唯一标识符",
-        example: "123e4567-e89b-12d3-a456-426614174000"
+        example: "123e4567-e89b-12d3-a456-426614174000",
       },
       email: {
         type: "string" as const,
         format: "email" as const,
         description: "用户邮箱地址",
-        example: "john.doe@example.com"
+        example: "john.doe@example.com",
       },
       name: {
         type: "string" as const,
         description: "用户姓名",
         minLength: 1,
         maxLength: 100,
-        example: "John Doe"
+        example: "John Doe",
       },
       avatar: {
         type: "string" as const,
         format: "uri" as const,
         description: "用户头像 URL",
-        example: "https://example.com/avatars/john.jpg"
+        example: "https://example.com/avatars/john.jpg",
       },
       age: {
         type: "integer" as const,
         description: "用户年龄",
         minimum: 0,
         maximum: 150,
-        example: 28
+        example: 28,
       },
       status: {
         type: "string" as const,
         enum: ["active", "inactive", "pending", "suspended"],
         description: "用户账户状态",
-        default: "pending"
+        default: "pending",
       },
       roles: {
         type: "array" as const,
         description: "用户角色列表",
         items: {
           type: "string" as const,
-          enum: ["admin", "user", "moderator", "guest"]
+          enum: ["admin", "user", "moderator", "guest"],
         },
-        example: ["user"]
+        example: ["user"],
       },
       profile: {
         type: "object" as const,
@@ -62,18 +62,18 @@ export default function SchemaDisplayDemo() {
           firstName: {
             type: "string" as const,
             description: "名",
-            example: "John"
+            example: "John",
           },
           lastName: {
             type: "string" as const,
             description: "姓",
-            example: "Doe"
+            example: "Doe",
           },
           phone: {
             type: "string" as const,
             pattern: "^\\+?[1-9]\\d{1,14}$",
             description: "手机号码",
-            example: "+1-555-123-4567"
+            example: "+1-555-123-4567",
           },
           address: {
             type: "object" as const,
@@ -83,10 +83,10 @@ export default function SchemaDisplayDemo() {
               city: { type: "string" as const, example: "Anytown" },
               state: { type: "string" as const, example: "CA" },
               zipCode: { type: "string" as const, example: "12345" },
-              country: { type: "string" as const, example: "US" }
-            }
-          }
-        }
+              country: { type: "string" as const, example: "US" },
+            },
+          },
+        },
       },
       preferences: {
         type: "object" as const,
@@ -96,13 +96,13 @@ export default function SchemaDisplayDemo() {
             type: "string" as const,
             enum: ["light", "dark", "auto"],
             default: "auto",
-            description: "界面主题"
+            description: "界面主题",
           },
           language: {
             type: "string" as const,
             enum: ["zh-CN", "en-US", "ja-JP", "fr-FR"],
             default: "en-US",
-            description: "界面语言"
+            description: "界面语言",
           },
           notifications: {
             type: "object" as const,
@@ -110,35 +110,35 @@ export default function SchemaDisplayDemo() {
             properties: {
               email: { type: "boolean" as const, default: true },
               push: { type: "boolean" as const, default: false },
-              sms: { type: "boolean" as const, default: false }
-            }
+              sms: { type: "boolean" as const, default: false },
+            },
           },
           timezone: {
             type: "string" as const,
             description: "用户时区",
-            example: "America/New_York"
-          }
-        }
+            example: "America/New_York",
+          },
+        },
       },
       createdAt: {
         type: "string" as const,
         format: "date-time" as const,
         description: "账户创建时间",
-        example: "2024-01-15T10:30:00Z"
+        example: "2024-01-15T10:30:00Z",
       },
       updatedAt: {
         type: "string" as const,
         format: "date-time" as const,
         description: "最后更新时间",
-        example: "2024-01-20T14:45:00Z"
+        example: "2024-01-20T14:45:00Z",
       },
       lastLoginAt: {
         type: "string" as const,
         format: "date-time" as const,
         description: "最后登录时间",
-        example: "2024-01-22T09:15:00Z"
-      }
-    }
+        example: "2024-01-22T09:15:00Z",
+      },
+    },
   };
 
   // API 响应模型
@@ -151,17 +151,17 @@ export default function SchemaDisplayDemo() {
       success: {
         type: "boolean" as const,
         description: "请求是否成功",
-        example: true
+        example: true,
       },
       data: {
         type: "object" as const,
         description: "响应数据",
-        additionalProperties: true
+        additionalProperties: true,
       },
       message: {
         type: "string" as const,
         description: "响应消息",
-        example: "操作成功"
+        example: "操作成功",
       },
       errors: {
         type: "array" as const,
@@ -171,21 +171,26 @@ export default function SchemaDisplayDemo() {
           properties: {
             field: { type: "string" as const, description: "错误字段" },
             code: { type: "string" as const, description: "错误代码" },
-            message: { type: "string" as const, description: "错误描述" }
-          }
-        }
+            message: { type: "string" as const, description: "错误描述" },
+          },
+        },
       },
       pagination: {
         type: "object" as const,
         description: "分页信息",
         properties: {
           page: { type: "integer" as const, minimum: 1, example: 1 },
-          limit: { type: "integer" as const, minimum: 1, maximum: 100, example: 20 },
+          limit: {
+            type: "integer" as const,
+            minimum: 1,
+            maximum: 100,
+            example: 20,
+          },
           total: { type: "integer" as const, minimum: 0, example: 150 },
-          totalPages: { type: "integer" as const, minimum: 0, example: 8 }
-        }
-      }
-    }
+          totalPages: { type: "integer" as const, minimum: 0, example: 8 },
+        },
+      },
+    },
   };
 
   // 产品模型
@@ -198,75 +203,75 @@ export default function SchemaDisplayDemo() {
       id: {
         type: "string" as const,
         description: "产品 ID",
-        example: "prod_abc123"
+        example: "prod_abc123",
       },
       name: {
         type: "string" as const,
         description: "产品名称",
         minLength: 1,
         maxLength: 200,
-        example: "iPhone 15 Pro"
+        example: "iPhone 15 Pro",
       },
       description: {
         type: "string" as const,
         description: "产品描述",
-        example: "最新款 iPhone，配备 A17 Pro 芯片"
+        example: "最新款 iPhone，配备 A17 Pro 芯片",
       },
       price: {
         type: "number" as const,
         multipleOf: 0.01,
         minimum: 0,
         description: "产品价格（美元）",
-        example: 999.99
+        example: 999.99,
       },
       currency: {
         type: "string" as const,
         enum: ["USD", "EUR", "CNY", "JPY"],
         default: "USD",
-        description: "价格货币"
+        description: "价格货币",
       },
       category: {
         type: "string" as const,
         description: "产品分类",
-        example: "Electronics"
+        example: "Electronics",
       },
       tags: {
         type: "array" as const,
         description: "产品标签",
         items: { type: "string" as const },
-        example: ["smartphone", "apple", "5g"]
+        example: ["smartphone", "apple", "5g"],
       },
       inStock: {
         type: "boolean" as const,
         description: "是否有库存",
-        example: true
+        example: true,
       },
       stockQuantity: {
         type: "integer" as const,
         minimum: 0,
         description: "库存数量",
-        example: 50
+        example: 50,
       },
       images: {
         type: "array" as const,
         description: "产品图片 URL 列表",
         items: {
           type: "string" as const,
-          format: "uri" as const
+          format: "uri" as const,
         },
-        example: ["https://example.com/images/iphone1.jpg"]
+        example: ["https://example.com/images/iphone1.jpg"],
       },
       specifications: {
         type: "object" as const,
         description: "产品规格",
         additionalProperties: { type: "string" as const },
         example: {
-          "screen_size": "6.1 inches",
-          "storage": "128GB",
-          "color": "Natural Titanium"
-        }
-      }
-    }
+          screen_size: "6.1 inches",
+          storage: "128GB",
+          color: "Natural Titanium",
+        },
+      },
+    },
   };
 
   return (

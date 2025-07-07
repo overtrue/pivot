@@ -2,11 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "operation-detailed-layout",
   "type": "registry:ui",
-  "dependencies": [
-    "js-yaml",
-    "openapi-types",
-    "react"
-  ],
+  "dependencies": ["js-yaml", "openapi-types", "react"],
   "registryDependencies": [
     "https://pivotkit.vercel.app/r/i18n.json",
     "https://pivotkit.vercel.app/r/codegen.json",

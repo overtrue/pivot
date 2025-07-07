@@ -2,9 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "enum-values-demo",
   "type": "registry:example",
-  "registryDependencies": [
-    "https://pivotkit.vercel.app/r/enum-values.json"
-  ],
+  "registryDependencies": ["https://pivotkit.vercel.app/r/enum-values.json"],
   "files": [
     {
       "path": "registry/default/example/enum-values-demo.tsx",

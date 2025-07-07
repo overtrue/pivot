@@ -15,8 +15,8 @@ export default function TryItOutPanelDemo() {
         description: "API 访问密钥",
         schema: {
           type: "string",
-          pattern: "^[a-zA-Z0-9]{32}$"
-        }
+          pattern: "^[a-zA-Z0-9]{32}$",
+        },
       },
       {
         name: "X-Request-ID",
@@ -25,9 +25,9 @@ export default function TryItOutPanelDemo() {
         description: "请求追踪 ID",
         schema: {
           type: "string",
-          format: "uuid"
-        }
-      }
+          format: "uuid",
+        },
+      },
     ],
     requestBody: {
       required: true,
@@ -41,24 +41,24 @@ export default function TryItOutPanelDemo() {
               email: {
                 type: "string",
                 format: "email",
-                description: "用户邮箱地址"
+                description: "用户邮箱地址",
               },
               name: {
                 type: "string",
                 minLength: 1,
                 maxLength: 100,
-                description: "用户姓名"
+                description: "用户姓名",
               },
               age: {
                 type: "integer",
                 minimum: 0,
                 maximum: 150,
-                description: "用户年龄"
+                description: "用户年龄",
               },
               phone: {
                 type: "string",
                 pattern: "^\\+?[1-9]\\d{1,14}$",
-                description: "手机号码"
+                description: "手机号码",
               },
               preferences: {
                 type: "object",
@@ -68,22 +68,22 @@ export default function TryItOutPanelDemo() {
                     type: "string",
                     enum: ["light", "dark", "auto"],
                     default: "auto",
-                    description: "界面主题"
+                    description: "界面主题",
                   },
                   language: {
                     type: "string",
                     enum: ["zh-CN", "en-US", "ja-JP"],
                     default: "zh-CN",
-                    description: "界面语言"
+                    description: "界面语言",
                   },
                   notifications: {
                     type: "boolean",
                     default: true,
-                    description: "是否接收通知"
-                  }
-                }
-              }
-            }
+                    description: "是否接收通知",
+                  },
+                },
+              },
+            },
           },
           example: {
             email: "john.doe@example.com",
@@ -93,11 +93,11 @@ export default function TryItOutPanelDemo() {
             preferences: {
               theme: "dark",
               language: "en-US",
-              notifications: true
-            }
-          }
-        }
-      }
+              notifications: true,
+            },
+          },
+        },
+      },
     },
     responses: {
       "201": {
@@ -109,40 +109,40 @@ export default function TryItOutPanelDemo() {
               properties: {
                 id: {
                   type: "string",
-                  format: "uuid"
+                  format: "uuid",
                 },
                 email: {
                   type: "string",
-                  format: "email"
+                  format: "email",
                 },
                 name: {
-                  type: "string"
+                  type: "string",
                 },
                 createdAt: {
                   type: "string",
-                  format: "date-time"
+                  format: "date-time",
                 },
                 status: {
                   type: "string",
-                  enum: ["active", "pending"]
-                }
-              }
-            }
-          }
-        }
+                  enum: ["active", "pending"],
+                },
+              },
+            },
+          },
+        },
       },
       "400": {
-        description: "请求参数错误"
+        description: "请求参数错误",
       },
       "409": {
-        description: "邮箱已存在"
-      }
+        description: "邮箱已存在",
+      },
     },
     security: [
       {
-        apiKey: []
-      }
-    ]
+        apiKey: [],
+      },
+    ],
   };
 
   const getUserOperation: OpenAPIV3.OperationObject = {
@@ -157,8 +157,8 @@ export default function TryItOutPanelDemo() {
         description: "用户 ID",
         schema: {
           type: "string",
-          format: "uuid"
-        }
+          format: "uuid",
+        },
       },
       {
         name: "include",
@@ -169,9 +169,9 @@ export default function TryItOutPanelDemo() {
           type: "array",
           items: {
             type: "string",
-            enum: ["profile", "preferences", "permissions"]
-          }
-        }
+            enum: ["profile", "preferences", "permissions"],
+          },
+        },
       },
       {
         name: "X-API-Key",
@@ -179,18 +179,18 @@ export default function TryItOutPanelDemo() {
         required: true,
         description: "API 访问密钥",
         schema: {
-          type: "string"
-        }
-      }
+          type: "string",
+        },
+      },
     ],
     responses: {
       "200": {
-        description: "成功获取用户信息"
+        description: "成功获取用户信息",
       },
       "404": {
-        description: "用户不存在"
-      }
-    }
+        description: "用户不存在",
+      },
+    },
   };
 
   return (

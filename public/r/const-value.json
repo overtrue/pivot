@@ -2,12 +2,8 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "const-value",
   "type": "registry:ui",
-  "dependencies": [
-    "react"
-  ],
-  "registryDependencies": [
-    "https://pivotkit.vercel.app/r/copy-button.json"
-  ],
+  "dependencies": ["react"],
+  "registryDependencies": ["https://pivotkit.vercel.app/r/copy-button.json"],
   "files": [
     {
       "path": "registry/default/ui/const-value.tsx",

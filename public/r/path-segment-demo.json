@@ -2,9 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "path-segment-demo",
   "type": "registry:example",
-  "registryDependencies": [
-    "https://pivotkit.vercel.app/r/path-segment.json"
-  ],
+  "registryDependencies": ["https://pivotkit.vercel.app/r/path-segment.json"],
   "files": [
     {
       "path": "registry/default/example/path-segment-demo.tsx",

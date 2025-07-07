@@ -4,7 +4,10 @@ import { cn } from "@/lib/utils";
 import { useTheme } from "next-themes";
 import React from "react";
 import SyntaxHighlighter from "react-syntax-highlighter";
-import { atomOneDark, atomOneLight } from "react-syntax-highlighter/dist/esm/styles/hljs";
+import {
+  atomOneDark,
+  atomOneLight,
+} from "react-syntax-highlighter/dist/esm/styles/hljs";
 import { CopyButton } from "@/registry/default/ui/copy-button";
 
 interface CodeMarkdownProps {
@@ -54,7 +57,7 @@ const CodeMarkdown = React.forwardRef<HTMLDivElement, CodeMarkdownProps>(
         </div>
       </div>
     );
-  }
+  },
 );
 
 CodeMarkdown.displayName = "CodeMarkdown";

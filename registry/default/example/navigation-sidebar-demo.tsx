@@ -2,7 +2,7 @@
 
 import { NavigationSidebar } from "@/registry/default/ui/navigation-sidebar";
 import type { ParameterLocation } from "@/types/project";
-import type { OpenAPIV3 } from 'openapi-types';
+import type { OpenAPIV3 } from "openapi-types";
 
 export default function NavigationSidebarDemo() {
   const mockOpenApi: OpenAPIV3.Document = {
@@ -10,7 +10,7 @@ export default function NavigationSidebarDemo() {
     info: {
       title: "示例 API",
       version: "1.0.0",
-      description: "这是一个示例 API 文档"
+      description: "这是一个示例 API 文档",
     },
     paths: {
       "/users": {
@@ -21,9 +21,9 @@ export default function NavigationSidebarDemo() {
           tags: ["用户管理"],
           responses: {
             "200": {
-              description: "成功返回用户列表"
-            }
-          }
+              description: "成功返回用户列表",
+            },
+          },
         },
         post: {
           operationId: "createUser",
@@ -32,10 +32,10 @@ export default function NavigationSidebarDemo() {
           tags: ["用户管理"],
           responses: {
             "201": {
-              description: "用户创建成功"
-            }
-          }
-        }
+              description: "用户创建成功",
+            },
+          },
+        },
       },
       "/users/{id}": {
         get: {
@@ -48,14 +48,14 @@ export default function NavigationSidebarDemo() {
               name: "id",
               in: "path" as ParameterLocation,
               required: true,
-              schema: { type: "string" }
-            }
+              schema: { type: "string" },
+            },
           ],
           responses: {
             "200": {
-              description: "成功返回用户详情"
-            }
-          }
+              description: "成功返回用户详情",
+            },
+          },
         },
         put: {
           operationId: "updateUser",
@@ -64,9 +64,9 @@ export default function NavigationSidebarDemo() {
           tags: ["用户管理"],
           responses: {
             "200": {
-              description: "用户更新成功"
-            }
-          }
+              description: "用户更新成功",
+            },
+          },
         },
         delete: {
           operationId: "deleteUser",
@@ -75,10 +75,10 @@ export default function NavigationSidebarDemo() {
           tags: ["用户管理"],
           responses: {
             "204": {
-              description: "用户删除成功"
-            }
-          }
-        }
+              description: "用户删除成功",
+            },
+          },
+        },
       },
       "/orders": {
         get: {
@@ -88,9 +88,9 @@ export default function NavigationSidebarDemo() {
           tags: ["订单管理"],
           responses: {
             "200": {
-              description: "成功返回订单列表"
-            }
-          }
+              description: "成功返回订单列表",
+            },
+          },
         },
         post: {
           operationId: "createOrder",
@@ -99,21 +99,21 @@ export default function NavigationSidebarDemo() {
           tags: ["订单管理"],
           responses: {
             "201": {
-              description: "订单创建成功"
-            }
-          }
-        }
-      }
+              description: "订单创建成功",
+            },
+          },
+        },
+      },
     },
     tags: [
       {
         name: "用户管理",
-        description: "用户相关的 API 操作"
+        description: "用户相关的 API 操作",
       },
       {
         name: "订单管理",
-        description: "订单相关的 API 操作"
-      }
+        description: "订单相关的 API 操作",
+      },
     ],
     components: {
       schemas: {
@@ -122,19 +122,19 @@ export default function NavigationSidebarDemo() {
           properties: {
             id: { type: "string" },
             name: { type: "string" },
-            email: { type: "string" }
-          }
+            email: { type: "string" },
+          },
         },
         Order: {
           type: "object",
           properties: {
             id: { type: "string" },
             userId: { type: "string" },
-            amount: { type: "number" }
-          }
-        }
-      }
-    }
+            amount: { type: "number" },
+          },
+        },
+      },
+    },
   };
 
   return (

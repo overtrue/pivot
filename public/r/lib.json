@@ -3,11 +3,7 @@
   "name": "lib",
   "type": "registry:lib",
   "description": "Core library components and utilities",
-  "dependencies": [
-    "@faker-js/faker",
-    "openapi-types",
-    "react"
-  ],
+  "dependencies": ["@faker-js/faker", "openapi-types", "react"],
   "files": [
     {
       "path": "registry/default/lib/i18n/I18nProvider.tsx",

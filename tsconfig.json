@@ -2,11 +2,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "target": "esnext",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -25,12 +21,8 @@
       }
     ],
     "paths": {
-      "@/*": [
-        "./*"
-      ],
-      "content-collections": [
-        "./.content-collections/generated"
-      ]
+      "@/*": ["./*"],
+      "content-collections": ["./.content-collections/generated"]
     }
   },
   "include": [
@@ -40,10 +32,5 @@
     ".next/types/**/*.ts",
     ".content-colletions/generated"
   ],
-  "exclude": [
-    "node_modules",
-    "packages/**/*",
-    "scripts/**/*",
-    "example-app"
-  ]
+  "exclude": ["node_modules", "packages/**/*", "scripts/**/*", "example-app"]
 }

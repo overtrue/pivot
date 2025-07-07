@@ -2,9 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "operation-path-demo",
   "type": "registry:example",
-  "registryDependencies": [
-    "https://pivotkit.vercel.app/r/operation-path.json"
-  ],
+  "registryDependencies": ["https://pivotkit.vercel.app/r/operation-path.json"],
   "files": [
     {
       "path": "registry/default/example/operation-path-demo.tsx",

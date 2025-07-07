@@ -5,7 +5,7 @@ import { useI18n } from "@/registry/default/lib/i18n";
 import { DescriptionDisplay } from "@/registry/default/ui/description-display";
 import { ExpandCollapse } from "@/registry/default/ui/expand-collapse";
 import { ServerDisplay } from "@/registry/default/ui/server-display";
-import type { OpenAPIV3 } from 'openapi-types';
+import type { OpenAPIV3 } from "openapi-types";
 import React, { useState } from "react";
 
 interface LinkItemProps {
@@ -83,7 +83,7 @@ const LinkItem = React.forwardRef<HTMLDivElement, LinkItemProps>(
             {description && (
               <div>
                 <h4 className="text-xs font-semibold mb-1 text-neutral-700 dark:text-neutral-300">
-                  {t('Description')}
+                  {t("Description")}
                 </h4>
                 <DescriptionDisplay
                   description={description}
@@ -95,7 +95,7 @@ const LinkItem = React.forwardRef<HTMLDivElement, LinkItemProps>(
             {parameters && Object.keys(parameters).length > 0 && (
               <div>
                 <h4 className="text-xs font-semibold mb-1 text-neutral-700 dark:text-neutral-300">
-                  {t('Parameters')}
+                  {t("Parameters")}
                 </h4>
                 <div className="bg-neutral-50 dark:bg-neutral-800 p-2 rounded text-xs space-y-1">
                   {Object.entries(parameters).map(([paramName, paramValue]) => (
@@ -122,7 +122,7 @@ const LinkItem = React.forwardRef<HTMLDivElement, LinkItemProps>(
             {requestBody && (
               <div>
                 <h4 className="text-xs font-semibold mb-1 text-neutral-700 dark:text-neutral-300">
-                  {t('Request Body')}
+                  {t("Request Body")}
                 </h4>
                 <div className="bg-neutral-50 dark:bg-neutral-800 p-2 rounded text-xs">
                   <pre className="font-mono bg-neutral-100 dark:bg-neutral-700 px-1.5 py-0.5 rounded overflow-x-auto break-all">
@@ -139,7 +139,7 @@ const LinkItem = React.forwardRef<HTMLDivElement, LinkItemProps>(
             {server && (
               <div>
                 <h4 className="text-xs font-semibold mb-1 text-neutral-700 dark:text-neutral-300">
-                  {t('Server')}
+                  {t("Server")}
                 </h4>
                 <ServerDisplay server={server} />
               </div>

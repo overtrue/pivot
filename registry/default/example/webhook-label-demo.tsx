@@ -8,7 +8,7 @@ export default function WebhookLabelDemo() {
     "order.placed",
     "order.completed",
     "payment.success",
-    "payment.failed"
+    "payment.failed",
   ];
 
   return (
@@ -27,15 +27,21 @@ export default function WebhookLabelDemo() {
         <div className="space-y-2 p-3 border rounded-lg bg-neutral-50 dark:bg-neutral-900/50">
           <div className="flex items-center gap-3">
             <WebhookLabel children="user.created" />
-            <span className="text-sm text-muted-foreground">用户创建时触发</span>
+            <span className="text-sm text-muted-foreground">
+              用户创建时触发
+            </span>
           </div>
           <div className="flex items-center gap-3">
             <WebhookLabel children="order.placed" />
-            <span className="text-sm text-muted-foreground">订单下单时触发</span>
+            <span className="text-sm text-muted-foreground">
+              订单下单时触发
+            </span>
           </div>
           <div className="flex items-center gap-3">
             <WebhookLabel children="payment.success" />
-            <span className="text-sm text-muted-foreground">支付成功时触发</span>
+            <span className="text-sm text-muted-foreground">
+              支付成功时触发
+            </span>
           </div>
         </div>
       </div>

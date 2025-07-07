@@ -2,9 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "type-indicator-demo",
   "type": "registry:example",
-  "registryDependencies": [
-    "https://pivotkit.vercel.app/r/type-indicator.json"
-  ],
+  "registryDependencies": ["https://pivotkit.vercel.app/r/type-indicator.json"],
   "files": [
     {
       "path": "registry/default/example/type-indicator-demo.tsx",

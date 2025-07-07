@@ -10,7 +10,7 @@ export default function MediaTypeDisplayDemo() {
     "application/octet-stream",
     "image/png",
     "video/mp4",
-    "application/pdf"
+    "application/pdf",
   ];
 
   return (

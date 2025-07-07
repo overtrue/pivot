@@ -45,7 +45,9 @@ export default function ThemeToggleDemo() {
             </span>
           </div>
           <div className="flex items-center gap-2">
-            <span className="text-xs text-neutral-600 dark:text-neutral-400">主题:</span>
+            <span className="text-xs text-neutral-600 dark:text-neutral-400">
+              主题:
+            </span>
             <ThemeToggle />
           </div>
         </div>

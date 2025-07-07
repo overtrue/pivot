@@ -44,7 +44,9 @@ export default function RequiredMarkerDemo() {
           <div className="flex items-center gap-2">
             <span className="text-sm font-mono">Authorization</span>
             <RequiredMarker />
-            <span className="text-xs text-neutral-500">- Bearer Token 认证头</span>
+            <span className="text-xs text-neutral-500">
+              - Bearer Token 认证头
+            </span>
           </div>
           <div className="flex items-center gap-2">
             <span className="text-sm font-mono">Content-Type</span>

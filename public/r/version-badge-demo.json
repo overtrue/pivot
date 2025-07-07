@@ -2,9 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "version-badge-demo",
   "type": "registry:example",
-  "registryDependencies": [
-    "https://pivotkit.vercel.app/r/version-badge.json"
-  ],
+  "registryDependencies": ["https://pivotkit.vercel.app/r/version-badge.json"],
   "files": [
     {
       "path": "registry/default/example/version-badge-demo.tsx",

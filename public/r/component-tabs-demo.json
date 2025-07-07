@@ -2,12 +2,8 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "component-tabs-demo",
   "type": "registry:example",
-  "dependencies": [
-    "react"
-  ],
-  "registryDependencies": [
-    "https://pivotkit.vercel.app/r/component-tabs.json"
-  ],
+  "dependencies": ["react"],
+  "registryDependencies": ["https://pivotkit.vercel.app/r/component-tabs.json"],
   "files": [
     {
       "path": "registry/default/example/component-tabs-demo.tsx",

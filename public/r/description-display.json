@@ -2,10 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "description-display",
   "type": "registry:ui",
-  "dependencies": [
-    "react",
-    "react-markdown"
-  ],
+  "dependencies": ["react", "react-markdown"],
   "files": [
     {
       "path": "registry/default/ui/description-display.tsx",

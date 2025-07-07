@@ -19,7 +19,7 @@ export const trackEvent = (
   action: string,
   category: string,
   label?: string,
-  value?: number
+  value?: number,
 ) => {
   gtag("event", action, {
     event_category: category,
