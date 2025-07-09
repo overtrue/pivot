@@ -92,7 +92,7 @@ const OperationDetailedLayout = React.forwardRef<
 
     // 自动选择第一个操作
     useEffect(() => {
-      if (spec && !localSelectedPath && !localSelectedMethod) {
+      if (spec && !localSelectedPath && !localSelectedMethod && !selectedPath && !selectedMethod) {
         // 找到第一个可用的操作
         for (const [path, pathItem] of Object.entries(spec.paths || {})) {
           const methods = ["get", "post", "put", "delete", "patch", "options", "head"];
@@ -107,7 +107,7 @@ const OperationDetailedLayout = React.forwardRef<
           }
         }
       }
-    }, [spec, onSelectOperation]); // 移除 localSelectedPath 和 localSelectedMethod 依赖
+    }, [spec, selectedPath, selectedMethod, onSelectOperation]); // 添加 selectedPath 和 selectedMethod 依赖
 
     // 操作选择处理
     const handleSelectOperation = (
