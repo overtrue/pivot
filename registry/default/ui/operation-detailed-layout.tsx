@@ -90,6 +90,25 @@ const OperationDetailedLayout = React.forwardRef<
       setLocalSelectedMethod(selectedMethod);
     }, [selectedMethod]);
 
+    // 自动选择第一个操作
+    useEffect(() => {
+      if (spec && !localSelectedPath && !localSelectedMethod) {
+        // 找到第一个可用的操作
+        for (const [path, pathItem] of Object.entries(spec.paths || {})) {
+          const methods = ["get", "post", "put", "delete", "patch", "options", "head"];
+          for (const method of methods) {
+            const operation = (pathItem as any)?.[method];
+            if (operation && typeof operation === "object" && "responses" in operation) {
+              setLocalSelectedPath(path);
+              setLocalSelectedMethod(method);
+              onSelectOperation(path, method, operation);
+              return;
+            }
+          }
+        }
+      }
+    }, [spec, onSelectOperation]); // 移除 localSelectedPath 和 localSelectedMethod 依赖
+
     // 操作选择处理
     const handleSelectOperation = (
       path: string,
