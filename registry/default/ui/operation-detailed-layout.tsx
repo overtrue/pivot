@@ -13,9 +13,8 @@ import React, { useEffect, useMemo, useState } from "react";
 
 // 统一的接口定义
 interface OperationDetailedLayoutProps {
-  // 支持多种输入方式 - 向后兼容
+  // 支持多种输入方式 - 自动检测 URL、JSON 字符串或对象
   spec?: OpenAPIV3.Document | string | null;
-  url?: string;
   selectedPath?: string | null;
   selectedMethod?: string | null;
   onSelectOperation?: (
@@ -37,7 +36,6 @@ const OperationDetailedLayout = React.forwardRef<
   (
     {
       spec: inputSpec,
-      url,
       selectedPath = null,
       selectedMethod = null,
       onSelectOperation = () => { },
@@ -56,19 +54,24 @@ const OperationDetailedLayout = React.forwardRef<
       string | null
     >(selectedMethod);
 
-    // 智能数据源选择：URL > 字符串 > 对象
+    // 检测字符串是否为 URL
+    const isUrl = (str: string): boolean => {
+      return str.startsWith("http://") || str.startsWith("https://");
+    };
+
+    // 智能数据源选择：自动检测 URL > JSON 字符串 > 对象
     const dataSource: OpenAPISource | undefined = useMemo(() => {
-      if (url) {
-        return { type: "url", data: url };
-      }
       if (typeof inputSpec === "string") {
+        if (isUrl(inputSpec)) {
+          return { type: "url", data: inputSpec };
+        }
         return { type: "string", data: inputSpec };
       }
       if (inputSpec && typeof inputSpec === "object") {
         return { type: "object", data: inputSpec };
       }
       return undefined;
-    }, [url, inputSpec]);
+    }, [inputSpec]);
 
     // 使用统一的数据加载器
     const { spec, loading, error, loadFromUrl, loadFromString, loadFromObject } =

@@ -277,7 +277,7 @@ export default function ViewerPage() {
             />
           ) : (
             <OperationDetailedLayout
-              url={specUrl}
+              spec={specUrl}
               selectedPath={selectedPath}
               selectedMethod={selectedMethod}
               onSelectOperation={handleSelectOperation}
