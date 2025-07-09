@@ -48,7 +48,7 @@ const NavigationSidebar = React.forwardRef<
       onSelectOperation = () => { },
       onSelectSchema,
       className,
-      collapsible = "none",
+      collapsible = "offcanvas",
     },
     ref,
   ) => {

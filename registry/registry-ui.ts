@@ -751,8 +751,12 @@ export const registry_ui: Registry["items"] = [
       "https://pivotkit.vercel.app/r/hooks.json",
       "https://pivotkit.vercel.app/r/lib.json",
       "https://pivotkit.vercel.app/r/codegen.json",
+      "https://pivotkit.vercel.app/r/language-switcher.json",
+      "https://pivotkit.vercel.app/r/method-label.json",
       "https://pivotkit.vercel.app/r/navigation-sidebar.json",
       "https://pivotkit.vercel.app/r/operation-detail.json",
+      "https://pivotkit.vercel.app/r/operation-path.json",
+      "https://pivotkit.vercel.app/r/theme-toggle.json",
       "https://pivotkit.vercel.app/r/try-it-out-panel.json"
     ]
   },

@@ -5,8 +5,12 @@ import { cn } from "@/lib/utils";
 import { useOpenAPILoader, type OpenAPISource } from "@/registry/default/hooks/use-openapi-loader";
 import { useI18n } from "@/registry/default/lib/i18n";
 import { Codegen } from "@/registry/default/ui/codegen";
+import { LanguageSwitcher } from "@/registry/default/ui/language-switcher";
+import { MethodLabel } from "@/registry/default/ui/method-label";
 import { NavigationSidebar } from "@/registry/default/ui/navigation-sidebar";
 import { OperationDetail } from "@/registry/default/ui/operation-detail";
+import { OperationPath } from "@/registry/default/ui/operation-path";
+import { ThemeToggle } from "@/registry/default/ui/theme-toggle";
 import { TryItOutPanel } from "@/registry/default/ui/try-it-out-panel";
 import type { OpenAPIV3 } from "openapi-types";
 import React, { useEffect, useMemo, useState } from "react";
@@ -180,9 +184,28 @@ const OperationDetailedLayout = React.forwardRef<
           ref={ref}
           className={cn(`flex-1 flex flex-col h-full`, className)}
         >
-          {/* Sidebar 控制按钮 - 始终显示 */}
-          <div className="p-2 border-b">
-            <SidebarTrigger />
+          {/* 顶部工具栏 */}
+          <div className="p-2 border-b flex items-center justify-between">
+            <div className="flex items-center gap-4">
+              <SidebarTrigger />
+              {/* 当前选中的操作信息 */}
+              {localSelectedPath && localSelectedMethod && (
+                <div className="flex items-center gap-2">
+                  <MethodLabel variant="compact" method={localSelectedMethod.toUpperCase() as "GET" | "POST" | "PUT" | "DELETE" | "PATCH" | "OPTIONS" | "HEAD"} />
+                  <OperationPath path={localSelectedPath} />
+                  {currentOperation && (currentOperation.summary || currentOperation.description) && (
+                    <span className="text-sm text-muted-foreground truncate max-w-md">
+                      - {currentOperation.summary || currentOperation.description}
+                    </span>
+                  )}
+                </div>
+              )}
+            </div>
+
+            <div className="flex items-center gap-2">
+              <LanguageSwitcher />
+              <ThemeToggle />
+            </div>
           </div>
 
           {/* 内容布局 */}
