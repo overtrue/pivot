@@ -17,7 +17,7 @@ export async function GET() {
       components: demoComponents,
       count: demoComponents.length
     });
-  } catch (error) {
+  } catch {
     return NextResponse.json(
       { error: "Failed to read demo components" },
       { status: 500 }

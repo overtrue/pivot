@@ -21,7 +21,7 @@ const ErrorComponent = ({ componentName }: { componentName: string }) => (
         Component Not Found
       </h3>
       <p className="text-sm text-muted-foreground">
-        Demo component "{componentName}" does not exist.
+        Demo component &quot;{componentName}&quot; does not exist.
       </p>
     </div>
   </div>
