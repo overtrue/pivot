@@ -120,7 +120,7 @@ export default function ViewerPage() {
             <Button
               variant="outline"
               size="icon"
-              className="fixed top-4 right-4 z-50 shadow-lg bg-background/95 backdrop-blur-sm border-border hover:bg-accent"
+              className="fixed bottom-12 right-12 z-50 shadow-lg bg-background/95 backdrop-blur-sm border-border hover:bg-accent"
             >
               <Settings className="h-4 w-4" />
             </Button>
