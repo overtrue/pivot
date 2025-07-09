@@ -1,3 +1,5 @@
+"use client";
+
 import * as yaml from "js-yaml";
 import type { OpenAPIV3 } from "openapi-types";
 import { useCallback, useEffect, useState } from "react";

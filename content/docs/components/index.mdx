@@ -5,7 +5,18 @@ description: 可复制粘贴的组件集合，使用 Radix UI 和 Tailwind CSS �
 
 这里是所有可用组件的列表。Pivot 提供了 **89+** 个专为 OpenAPI 设计的组件，每个组件都经过精心设计，可以直接复制到您的项目中使用。
 
-## 🎯 状态与标识组件
+## 📊 组件统计
+
+- **UI 组件**：89+ 个专业组件
+- **React Hooks**：5+ 个强大 hooks
+- **工具函数**：8+ 个工具库
+- **演示组件**：89+ 个使用示例
+- **支持语言**：中文、英文国际化
+- **代码生成器**：6+ 种编程语言
+- **布局模板**：2+ 种预制布局
+- **Registry 模式**：按需安装，源码透明
+
+## 🎯 状态与标识组件 (8个)
 
 用于显示 API 状态、方法和重要标识的组件：
 
@@ -15,10 +26,17 @@ description: 可复制粘贴的组件集合，使用 Radix UI 和 Tailwind CSS �
 - [**Deprecated Badge**](/docs/components/deprecated-badge) - 废弃 API 标识
 - [**Format Badge**](/docs/components/format-badge) - 数据格式标识
 - [**Style Badge**](/docs/components/style-badge) - 样式类型标识
-- [**Version Badge**](/docs/components/version-badge) - 版本标识
 - [**Required Marker**](/docs/components/required-marker) - 简单的必填标记
+- [**In Label**](/docs/components/in-label) - 参数位置标签（query、path、header 等）
 
-## 📊 数据展示组件
+```bash
+# 批量安装状态组件
+npx shadcn@latest add https://pivotkit.vercel.app/r/status-code.json
+npx shadcn@latest add https://pivotkit.vercel.app/r/method-label.json
+npx shadcn@latest add https://pivotkit.vercel.app/r/required-badge.json
+```
+
+## 📋 数据展示组件 (15个)
 
 用于展示和处理 OpenAPI 数据结构的核心组件：
 
@@ -32,187 +50,382 @@ description: 可复制粘贴的组件集合，使用 Radix UI 和 Tailwind CSS �
 - [**Response Item**](/docs/components/response-item) - 响应条目
 - [**Response Group**](/docs/components/response-group) - 响应分组
 - [**Type Indicator**](/docs/components/type-indicator) - 数据类型指示器
+- [**Constraint Display**](/docs/components/constraint-display) - 约束条件显示
+- [**Default Value Display**](/docs/components/default-value-display) - 默认值显示
+- [**Const Value**](/docs/components/const-value) - 常量值显示
+- [**Enum Values Display**](/docs/components/enum-values-display) - 枚举值详细显示
+- [**Media Type Display**](/docs/components/media-type-display) - 媒体类型显示
 
-## 📝 内容展示组件
+```bash
+# 批量安装数据展示组件
+npx shadcn@latest add https://pivotkit.vercel.app/r/schema-display.json
+npx shadcn@latest add https://pivotkit.vercel.app/r/parameter-item.json
+npx shadcn@latest add https://pivotkit.vercel.app/r/response-item.json
+```
+
+## 📝 内容展示组件 (10个)
 
 用于展示文档内容、示例和描述的组件：
 
 - [**Example Display**](/docs/components/example-display) - 示例数据显示
 - [**Examples Display**](/docs/components/examples-display) - 多个示例展示
 - [**Description Display**](/docs/components/description-display) - 描述信息展示
-- [**Default Value Display**](/docs/components/default-value-display) - 默认值显示
-- [**Const Value**](/docs/components/const-value) - 常量值显示
-- [**Value Display**](/docs/components/value-display) - 通用值显示
-- [**Constraint Display**](/docs/components/constraint-display) - 约束条件显示
 - [**Enum Values**](/docs/components/enum-values) - 枚举值显示
-- [**Enum Values Display**](/docs/components/enum-values-display) - 枚举值详细显示
+- [**Code Markdown**](/docs/components/code-markdown) - Markdown 代码块
+- [**External Docs Display**](/docs/components/external-docs-display) - 外部文档展示
+- [**External Docs**](/docs/components/external-docs) - 外部文档链接
+- [**License Display**](/docs/components/license-display) - 许可证显示
+- [**Contact Display**](/docs/components/contact-display) - 联系信息显示
+- [**Value Display**](/docs/components/value-display) - 通用值显示
 
-## 🔧 交互功能组件
+```bash
+# 批量安装内容展示组件
+npx shadcn@latest add https://pivotkit.vercel.app/r/example-display.json
+npx shadcn@latest add https://pivotkit.vercel.app/r/description-display.json
+npx shadcn@latest add https://pivotkit.vercel.app/r/code-markdown.json
+```
+
+## 🔧 交互功能组件 (11个)
 
 提供用户交互功能的组件：
 
 - [**Copy Button**](/docs/components/copy-button) - 一键复制按钮
 - [**Expand Collapse**](/docs/components/expand-collapse) - 展开/折叠切换
-- [**Theme Toggle**](/docs/components/theme-toggle) - 主题切换按钮
 - [**Language Switcher**](/docs/components/language-switcher) - 语言切换器
 - [**Media Type Selector**](/docs/components/media-type-selector) - 媒体类型选择器
 - [**Try It Out Panel**](/docs/components/try-it-out-panel) - API 在线测试面板
+- [**Resizable Sidebar**](/docs/components/resizable-sidebar) - 可调整大小的侧边栏
+- [**Component Tabs**](/docs/components/component-tabs) - 组件标签页
+- [**Component Items List**](/docs/components/component-items-list) - 组件列表
+- [**Component Detail**](/docs/components/component-detail) - 组件详情
+- [**Theme Toggle**](/docs/components/theme-toggle) - 主题切换器
+- [**Webhook Display**](/docs/components/webhook-display) - Webhook 显示
 
-## 🏗️ 布局容器组件
+```bash
+# 批量安装交互组件
+npx shadcn@latest add https://pivotkit.vercel.app/r/copy-button.json
+npx shadcn@latest add https://pivotkit.vercel.app/r/try-it-out-panel.json
+npx shadcn@latest add https://pivotkit.vercel.app/r/language-switcher.json
+```
+
+## 🏗️ 布局容器组件 (15个)
 
 用于组织和布局其他组件的容器：
 
+- [**Operation List Layout**](/docs/components/operation-list-layout) - 操作列表布局
+- [**Operation Detailed Layout**](/docs/components/operation-detailed-layout) - 操作详情布局
+- [**Navigation Sidebar**](/docs/components/navigation-sidebar) - 导航侧边栏
 - [**Operation Box**](/docs/components/operation-box) - API 操作容器
 - [**Operation Detail**](/docs/components/operation-detail) - 操作详情容器
+- [**Operation Path**](/docs/components/operation-path) - 操作路径
+- [**Path Segment**](/docs/components/path-segment) - 路径片段
 - [**Section Title**](/docs/components/section-title) - 章节标题
-- [**Navigation Sidebar**](/docs/components/navigation-sidebar) - 导航侧边栏
-- [**Resizable Sidebar**](/docs/components/resizable-sidebar) - 可调整大小的侧边栏
-- [**Component Tabs**](/docs/components/component-tabs) - 组件标签页
+- [**Accordion Components Section**](/docs/components/accordion-components-section) - 手风琴组件章节
+- [**Info Section**](/docs/components/info-section) - API 基本信息
+- [**Components Section**](/docs/components/components-section) - 组件章节
+- [**Servers Section**](/docs/components/servers-section) - 服务器章节
+- [**Server Display**](/docs/components/server-display) - 服务器信息显示
+- [**Server Variable**](/docs/components/server-variable) - 服务器变量
+- [**Server**](/docs/components/server) - 服务器定义
 
-## 🌍 API 结构组件
+```bash
+# 批量安装布局组件
+npx shadcn@latest add https://pivotkit.vercel.app/r/operation-detailed-layout.json
+npx shadcn@latest add https://pivotkit.vercel.app/r/operation-list-layout.json
+npx shadcn@latest add https://pivotkit.vercel.app/r/navigation-sidebar.json
+```
+
+## 🌍 API 结构组件 (20个)
 
 用于展示 OpenAPI 规范各部分结构的组件：
 
-### 📋 章节组件
+### 📋 请求响应章节 (11个)
 
-- [**Info Section**](/docs/components/info-section) - API 基本信息
 - [**Parameters Section**](/docs/components/parameters-section) - 参数章节
 - [**Request Body Section**](/docs/components/request-body-section) - 请求体章节
 - [**Responses Section**](/docs/components/responses-section) - 响应章节
 - [**Response Content Section**](/docs/components/response-content-section) - 响应内容章节
+- [**Response Headers Table**](/docs/components/response-headers-table) - 响应头表格
 - [**Headers Section**](/docs/components/headers-section) - 请求头章节
+- [**Header Item**](/docs/components/header-item) - 头部条目
+- [**Links Section**](/docs/components/links-section) - 链接章节
+- [**Link Item**](/docs/components/link-item) - 链接条目
+- [**Callback Display**](/docs/components/callback-display) - 回调函数显示
+- [**Path Item Display**](/docs/components/path-item-display) - 路径项显示
+
+### 🔐 安全相关组件 (9个)
+
 - [**Security Section**](/docs/components/security-section) - 安全章节
 - [**Security Requirements Section**](/docs/components/security-requirements-section) - 安全要求章节
-- [**Servers Section**](/docs/components/servers-section) - 服务器章节
-- [**Components Section**](/docs/components/components-section) - 组件章节
-- [**Links Section**](/docs/components/links-section) - 链接章节
-
-### 🏗️ 结构组件
-
-- [**Server**](/docs/components/server) - 服务器定义
-- [**Server Display**](/docs/components/server-display) - 服务器信息显示
-- [**Server Variable**](/docs/components/server-variable) - 服务器变量
 - [**Security Scheme**](/docs/components/security-scheme) - 安全模式
 - [**Security Scheme Display**](/docs/components/security-scheme-display) - 安全模式显示
 - [**Security Requirement Item**](/docs/components/security-requirement-item) - 安全要求条目
 - [**OAuth Flow**](/docs/components/oauth-flow) - OAuth 流程
 - [**OAuth Flow Details**](/docs/components/oauth-flow-details) - OAuth 流程详情
+- [**Scheme Type**](/docs/components/scheme-type) - 模式类型
+- [**Security Schemes**](/docs/components/security-schemes) - 安全模式列表
 
-## 🛠️ 实用工具组件
+```bash
+# 批量安装 API 结构组件
+npx shadcn@latest add https://pivotkit.vercel.app/r/parameters-section.json
+npx shadcn@latest add https://pivotkit.vercel.app/r/responses-section.json
+npx shadcn@latest add https://pivotkit.vercel.app/r/security-section.json
+```
 
-辅助功能和工具类组件：
-
-### 📄 文档相关
-
-- [**License Display**](/docs/components/license-display) - 许可证显示
-- [**Terms of Service**](/docs/components/terms-of-service) - 服务条款
-- [**Contact Display**](/docs/components/contact-display) - 联系信息显示
-- [**External Docs**](/docs/components/external-docs) - 外部文档链接
-- [**External Docs Display**](/docs/components/external-docs-display) - 外部文档展示
-
-### 🔗 链接与路径
-
-- [**Link Item**](/docs/components/link-item) - 链接条目
-- [**Operation Path**](/docs/components/operation-path) - 操作路径
-- [**Path Segment**](/docs/components/path-segment) - 路径片段
-- [**In Label**](/docs/components/in-label) - 参数位置标签
-
-### 📊 表格与列表
-
-- [**Response Headers Table**](/docs/components/response-headers-table) - 响应头表格
-- [**Header Item**](/docs/components/header-item) - 头部条目
-- [**Component Items List**](/docs/components/component-items-list) - 组件列表
-- [**Component Detail**](/docs/components/component-detail) - 组件详情
-
-## 🎨 布局模板组件
-
-完整的页面布局和复杂组合：
-
-- [**Operation List Layout**](/docs/components/operation-list-layout) - 操作列表布局
-- [**Operation Detailed Layout**](/docs/components/operation-detailed-layout) - 操作详情布局
-- [**Accordion Components Section**](/docs/components/accordion-components-section) - 手风琴组件章节
-
-## 💻 代码生成组件
+## 💻 代码生成组件 (6个)
 
 支持多种编程语言的代码生成：
 
+- [**Codegen**](/docs/components/codegen) - 通用代码生成器
 - [**cURL Generator**](/docs/components/curl-generator) - cURL 命令生成
 - [**Python Generator**](/docs/components/python-generator) - Python 代码生成
 - [**PHP Generator**](/docs/components/php-generator) - PHP 代码生成
 - [**Laravel Generator**](/docs/components/laravel-generator) - Laravel 代码生成
 - [**TypeScript Generator**](/docs/components/typescript-generator) - TypeScript 代码生成
-- [**Codegen**](/docs/components/codegen) - 通用代码生成器
 
-## 🔄 高级功能组件
+```bash
+# 批量安装代码生成组件
+npx shadcn@latest add https://pivotkit.vercel.app/r/codegen.json
+npx shadcn@latest add https://pivotkit.vercel.app/r/curl-generator.json
+npx shadcn@latest add https://pivotkit.vercel.app/r/python-generator.json
+```
+
+## 🔄 高级功能组件 (5个)
 
 专业的高级功能组件：
 
-- [**Callback Display**](/docs/components/callback-display) - 回调函数显示
 - [**Webhook Display**](/docs/components/webhook-display) - Webhook 显示
 - [**Webhook Label**](/docs/components/webhook-label) - Webhook 标签
-- [**Media Type Display**](/docs/components/media-type-display) - 媒体类型显示
-- [**Code Markdown**](/docs/components/code-markdown) - Markdown 代码块
-- [**Scheme Type**](/docs/components/scheme-type) - 模式类型
+- [**Version Badge**](/docs/components/version-badge) - API 版本标识
+- [**Terms of Service**](/docs/components/terms-of-service) - 服务条款显示
+- [**Servers**](/docs/components/servers) - 服务器列表
 
-## 📚 Hooks 和工具
+```bash
+# 批量安装高级功能组件
+npx shadcn@latest add https://pivotkit.vercel.app/r/webhook-display.json
+npx shadcn@latest add https://pivotkit.vercel.app/r/webhook-label.json
+npx shadcn@latest add https://pivotkit.vercel.app/r/version-badge.json
+```
+
+## 📚 Hooks 和工具 (13个)
 
 除了组件，Pivot 还提供了强大的 hooks 和工具函数：
 
-### 🎣 React Hooks
+### 🎣 React Hooks (5个)
 
 ```tsx
-import { useOpenApi } from "@/lib/hooks/use-openapi";
-import { useOperation } from "@/lib/hooks/use-operation";
-import { useSchema } from "@/lib/hooks/use-schema";
+import { useOpenApi } from "@/hooks/use-openapi";
+import { useOpenApiLoader } from "@/hooks/use-openapi-loader";
+import { useOpenApiCombined } from "@/hooks/use-openapi-combined";
+import { useOperation } from "@/hooks/use-operation";
+import { useSchema } from "@/hooks/use-schema";
 ```
 
-### 🛠️ 工具函数
+### 🛠️ 工具函数 (8个)
 
 ```tsx
-import { resolveRef } from "@/lib/utils/resolve-ref";
-import { generateExample } from "@/lib/utils/generate-example";
-import { isReferenceObject } from "@/lib/utils/schema-utils";
+import { resolveRef } from "@/lib/resolve-ref";
+import { generateExample } from "@/lib/generate-example";
+import { isReferenceObject, getSchemaType } from "@/lib/schema-utils";
+import { getSchemaType, isPrimitiveType } from "@/lib/type-utils";
 ```
 
-### 🌍 国际化
+### 🌍 国际化系统
 
 ```tsx
-import { useI18n, t } from "@/registry/lib/i18n/";
+import { useI18n, I18nProvider } from "@/lib/i18n";
+```
+
+```bash
+# 安装 Hooks 和工具
+npx shadcn@latest add https://pivotkit.vercel.app/r/hooks.json
+npx shadcn@latest add https://pivotkit.vercel.app/r/lib.json
 ```
 
 ## 🚀 快速安装
 
+### 批量安装
+
+```bash
+# 安装所有 UI 组件
+npx shadcn@latest add https://pivotkit.vercel.app/r/index.json
+
+# 安装所有 Hooks
+npx shadcn@latest add https://pivotkit.vercel.app/r/hooks.json
+
+# 安装工具库
+npx shadcn@latest add https://pivotkit.vercel.app/r/lib.json
+```
+
+### 按类别安装
+
+```bash
+# 状态组件
+npx shadcn@latest add https://pivotkit.vercel.app/r/status-code.json
+npx shadcn@latest add https://pivotkit.vercel.app/r/method-label.json
+
+# 数据展示组件
+npx shadcn@latest add https://pivotkit.vercel.app/r/schema-display.json
+npx shadcn@latest add https://pivotkit.vercel.app/r/parameter-item.json
+
+# 布局组件
+npx shadcn@latest add https://pivotkit.vercel.app/r/operation-detailed-layout.json
+npx shadcn@latest add https://pivotkit.vercel.app/r/navigation-sidebar.json
+
+# 代码生成
+npx shadcn@latest add https://pivotkit.vercel.app/r/codegen.json
+npx shadcn@latest add https://pivotkit.vercel.app/r/curl-generator.json
+```
+
 ### 单个组件
 
 ```bash
-npx shadcn@latest add https://pivotkit.vercel.app/registry.json status-code
+npx shadcn@latest add https://pivotkit.vercel.app/r/status-code.json
+npx shadcn@latest add https://pivotkit.vercel.app/r/operation-detail.json
+npx shadcn@latest add https://pivotkit.vercel.app/r/codegen.json
 ```
 
-### 工具函数
+## 💡 设计原则
 
-```bash
-npx shadcn@latest add https://pivotkit.vercel.app/registry.json hooks
-npx shadcn@latest add https://pivotkit.vercel.app/registry.json resolve-ref
+### 🎯 原子化设计
+
+每个组件都遵循原子化设计原则，可以独立使用，也可以组合构建复杂界面：
+
+```tsx
+// 原子组件组合
+<div className="flex items-center gap-2">
+  <MethodLabel method="GET" />
+  <StatusCode code={200} />
+  <RequiredBadge />
+</div>
+
+// 分子组件
+<ParameterItem
+  parameter={param}
+  components={components}
+/>
+
+// 有机组件
+<OperationDetail
+  operation={operation}
+  path="/users/{id}"
+  method="GET"
+  components={components}
+/>
 ```
 
-## 📖 使用指南
+### 🔧 可组合性
 
-每个组件页面都包含：
+组件设计注重可组合性，支持灵活的组合使用：
 
-1. **安装说明** - 如何安装和配置组件
-2. **API 文档** - 完整的属性和方法说明
-3. **使用示例** - 多种使用场景的代码示例
-4. **最佳实践** - 使用建议和注意事项
-5. **组合示例** - 与其他组件的组合使用
+```tsx
+// 布局组合
+<OperationDetailedLayout
+  spec={spec}
+  selectedPath="/users"
+  selectedMethod="GET"
+  showCodegen={true}
+  showTryPanel={true}
+/>
+```
+
+### 🎨 一致的视觉语言
+
+所有组件遵循统一的设计系统：
+
+- **颜色系统**：基于语义化的颜色定义
+- **间距系统**：8px 基础网格系统
+- **字体系统**：层次化的字体大小和权重
+- **圆角系统**：统一的圆角规范
+
+### ♿ 无障碍设计
+
+所有组件都遵循 WAI-ARIA 标准：
+
+- **键盘导航**：完整的键盘操作支持
+- **屏幕阅读器**：合适的 ARIA 标签和语义
+- **对比度**：符合 WCAG 2.1 AA 标准
+- **焦点管理**：清晰的焦点指示
+
+## 🔄 开发指南
+
+### 📦 依赖管理
+
+Pivot 组件基于以下核心依赖：
+
+```json
+{
+  "dependencies": {
+    "@radix-ui/react-*": "^1.0.0",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.0.0",
+    "lucide-react": "^0.400.0",
+    "openapi-types": "^12.0.0",
+    "tailwind-merge": "^2.0.0"
+  }
+}
+```
+
+### 🎯 自定义主题
+
+通过 CSS 变量自定义主题：
+
+```css
+:root {
+  --background: 0 0% 100%;
+  --foreground: 222.2 84% 4.9%;
+  --primary: 222.2 47.4% 11.2%;
+  --primary-foreground: 210 40% 98%;
+  /* ... 更多变量 */
+}
+```
+
+### 📝 TypeScript 支持
+
+所有组件提供完整的 TypeScript 类型定义：
+
+```tsx
+import type { OpenAPIV3 } from "openapi-types";
+
+interface OperationDetailProps {
+  operation: OpenAPIV3.OperationObject;
+  path: string;
+  method: string;
+  components?: OpenAPIV3.ComponentsObject;
+  className?: string;
+}
+```
 
 ## 🤝 贡献指南
 
-如果您想为 Pivot 贡献新组件或改进现有组件，请参考我们的 [贡献指南](/docs/contributing)。
+### 📋 开发标准
 
-我们欢迎所有形式的贡献，包括：
+1. **组件命名**：使用 PascalCase
+2. **文件命名**：使用 kebab-case
+3. **Props 接口**：提供完整的 TypeScript 类型
+4. **样式处理**：使用 Tailwind CSS + CVA
+5. **文档要求**：每个组件都要有使用示例
 
-- 新组件开发
-- Bug 修复
-- 文档改进
-- 性能优化
-- 国际化翻译
+### 🔧 开发流程
+
+```bash
+# 1. 创建新组件
+touch registry/default/ui/my-component.tsx
+
+# 2. 实现组件
+# 3. 添加到 registry
+# 4. 创建示例
+# 5. 编写文档
+# 6. 测试组件
+```
+
+### 📖 文档贡献
+
+每个组件都需要：
+
+- **基本用法**：简单的使用示例
+- **API 文档**：Props 接口说明
+- **高级用法**：复杂场景的使用方法
+- **无障碍指南**：键盘操作和屏幕阅读器支持
+
+通过这套完整的组件系统，您可以快速构建专业级的 OpenAPI 文档界面，同时保持高度的可定制性和扩展性。

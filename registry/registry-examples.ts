@@ -581,6 +581,7 @@ export const registry_examples: Registry["items"] = [
       "openapi-types"
     ],
     "registryDependencies": [
+      "sidebar",
       "https://pivotkit.vercel.app/r/navigation-sidebar.json"
     ]
   },

@@ -1,6 +1,5 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
 import {
   Collapsible,
   CollapsibleContent,
@@ -21,7 +20,7 @@ import {
 import { cn } from "@/lib/utils";
 import { useI18n } from "@/registry/default/lib/i18n";
 import { MethodLabel } from "@/registry/default/ui/method-label";
-import { ChevronRight, Search } from "lucide-react";
+import { ChevronRight } from "lucide-react";
 import type { OpenAPIV3 } from "openapi-types";
 import React, { useState } from "react";
 
@@ -34,6 +33,7 @@ interface NavigationSidebarProps {
   onSelectOperation?: (path: string, method: string, operation: any) => void;
   onSelectSchema?: (schemaName: string) => void;
   className?: string;
+  collapsible?: "offcanvas" | "icon" | "none";
 }
 
 const NavigationSidebar = React.forwardRef<
@@ -48,6 +48,7 @@ const NavigationSidebar = React.forwardRef<
       onSelectOperation = () => { },
       onSelectSchema,
       className,
+      collapsible = "none",
     },
     ref,
   ) => {
@@ -56,7 +57,6 @@ const NavigationSidebar = React.forwardRef<
       {},
     );
     const [searchQuery, setSearchQuery] = useState("");
-    const [showSearch, setShowSearch] = useState(false);
 
     const toggleTagCollapse = (tagName: string) => {
       setCollapsedTags((prev) => ({
@@ -117,46 +117,33 @@ const NavigationSidebar = React.forwardRef<
     };
 
     return (
-      <Sidebar ref={ref} className={className}>
+      <Sidebar ref={ref} className={className} collapsible={collapsible}>
         {/* Header with search */}
         <SidebarHeader className="border-b p-4">
-          <div className="flex items-center justify-between">
-            <div className="min-w-0 flex-1">
-              <h2 className="text-sm font-medium truncate">
-                {openapi.info?.title || "API Documentation"}
-              </h2>
-              {openapi.info?.version && (
-                <p className="text-xs text-sidebar-foreground/70 mt-0.5">
-                  v{openapi.info.version}
-                </p>
-              )}
-            </div>
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => setShowSearch(!showSearch)}
-              className="h-7 w-7 p-0 ml-2 flex-shrink-0"
-            >
-              <Search className="h-3.5 w-3.5" />
-            </Button>
+          <div className="min-w-0 flex-1">
+            <h2 className="text-sm font-medium truncate">
+              {openapi.info?.title || "API Documentation"}
+            </h2>
+            {openapi.info?.version && (
+              <p className="text-xs text-sidebar-foreground/70 mt-0.5">
+                v{openapi.info.version}
+              </p>
+            )}
           </div>
 
-          {/* Collapsible Search */}
-          {showSearch && (
-            <div className="mt-3">
-              <Input
-                placeholder={t("Search...")}
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="h-8 text-xs"
-                autoFocus
-              />
-            </div>
-          )}
+          {/* Search */}
+          <div className="mt-3">
+            <Input
+              placeholder={t("Search...")}
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="h-8 text-xs"
+            />
+          </div>
         </SidebarHeader>
 
         {/* Content */}
-        <SidebarContent>
+        <SidebarContent className="py-2">
           {hasCustomTags ? (
             // Render with tags using SidebarGroup
             tags.map((tag) => {
@@ -190,13 +177,13 @@ const NavigationSidebar = React.forwardRef<
               if (tagOperations.length === 0) return null;
 
               return (
-                <SidebarGroup key={tag.name}>
+                <SidebarGroup key={tag.name} className="py-0">
                   <Collapsible
                     open={!isCollapsed}
                     onOpenChange={() => toggleTagCollapse(tag.name)}
                   >
                     <CollapsibleTrigger asChild>
-                      <SidebarGroupLabel className="cursor-pointer hover:bg-sidebar-accent rounded-md p-2 transition-colors">
+                      <SidebarGroupLabel className="cursor-pointer hover:bg-sidebar-accent rounded-md transition-colors">
                         <div className="flex items-center">
                           <ChevronRight
                             className={cn(

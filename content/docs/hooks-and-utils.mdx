@@ -12,7 +12,7 @@ Pivot 不仅提供了丰富的组件，还内置了一套强大的 **React Hooks
 最核心的 Hook，提供了处理 OpenAPI 规范的完整功能。
 
 ```tsx
-import { useOpenApi } from "@/lib/hooks/use-openapi";
+import { useOpenApi } from "@/hooks/use-openapi";
 import type { OpenAPIV3 } from "openapi-types";
 
 function ApiComponent({ spec }: { spec: OpenAPIV3.Document }) {
@@ -22,7 +22,7 @@ function ApiComponent({ spec }: { spec: OpenAPIV3.Document }) {
   const operationsByTag = openApi.getOperationsByTag();
 
   // 解析引用
-  const resolved = openApi.resolve(someReference, "schemas");
+  const resolved = openApi.resolve(someReference);
 
   // 获取模式类型
   const type = openApi.getSchemaType(schema);
@@ -56,12 +56,97 @@ function ApiComponent({ spec }: { spec: OpenAPIV3.Document }) {
 - **响应处理**：`processResponse()`
 - **基本信息**：`getInfo()`、`getServers()`、`getTags()`、`getComponents()`
 
+### useOpenApiLoader
+
+智能的 OpenAPI 数据加载器，支持多种数据源。
+
+```tsx
+import { useOpenApiLoader } from "@/hooks/use-openapi-loader";
+
+function ApiComponent() {
+  // 从 URL 加载
+  const { spec, loading, error } = useOpenApiLoader({
+    type: "url",
+    data: "https://api.example.com/openapi.json",
+  });
+
+  // 从字符串加载
+  const { spec: specFromString } = useOpenApiLoader({
+    type: "string",
+    data: yamlString,
+  });
+
+  // 从对象加载
+  const { spec: specFromObject } = useOpenApiLoader({
+    type: "object",
+    data: openapiObject,
+  });
+
+  if (loading) return <div>加载中...</div>;
+  if (error) return <div>加载失败: {error}</div>;
+  if (!spec) return <div>无数据</div>;
+
+  return <ApiExplorer spec={spec} />;
+}
+```
+
+#### 功能特性
+
+- **多数据源支持**：URL、字符串、对象
+- **自动格式检测**：JSON 和 YAML
+- **错误处理**：网络错误、解析错误
+- **加载状态**：loading、error 状态管理
+- **缓存机制**：避免重复加载
+
+### useOpenApiCombined
+
+结合了加载和解析功能的综合 Hook。
+
+```tsx
+import { useOpenApiCombined } from "@/hooks/use-openapi-combined";
+
+function ApiDocumentation({ url }) {
+  const {
+    spec,
+    loading,
+    error,
+    openApi, // 已初始化的 useOpenApi 实例
+    operations,
+    tags,
+  } = useOpenApiCombined({ type: "url", data: url });
+
+  if (loading) return <div>加载 API 规范中...</div>;
+  if (error) return <div>错误: {error}</div>;
+
+  return (
+    <div>
+      <h1>{spec.info.title}</h1>
+      {Object.entries(operations).map(([tag, ops]) => (
+        <div key={tag}>
+          <h2>{tag}</h2>
+          {ops.map((op) => (
+            <OperationCard key={`${op.path}-${op.method}`} {...op} />
+          ))}
+        </div>
+      ))}
+    </div>
+  );
+}
+```
+
+#### 特性优势
+
+- **一体化解决方案**：加载 + 解析合二为一
+- **预处理数据**：operations、tags 数据已预处理
+- **性能优化**：内置缓存和防抖处理
+- **类型安全**：完整的 TypeScript 支持
+
 ### useOperation
 
 专门处理单个 API 操作的 Hook。
 
 ```tsx
-import { useOperation } from "@/lib/hooks/use-operation";
+import { useOperation } from "@/hooks/use-operation";
 
 function OperationComponent({ operation, path, method }) {
   const op = useOperation(operation, path, method);
@@ -78,23 +163,36 @@ function OperationComponent({ operation, path, method }) {
       <h3>{operationId}</h3>
       <div>Tags: {tags.join(", ")}</div>
       <div>Parameters: {parameters.length}</div>
+      <div>Has Request Body: {!!requestBody}</div>
+      <div>Response Count: {Object.keys(responses).length}</div>
     </div>
   );
 }
 ```
+
+#### 主要方法
+
+- **基本信息**：`getOperationId()`、`getSummary()`、`getDescription()`
+- **分类标签**：`getTags()`
+- **参数处理**：`getParameters()`、`getParametersByIn()`
+- **请求体**：`getRequestBody()`、`getRequestBodySchema()`
+- **响应处理**：`getResponses()`、`getSuccessResponses()`
+- **安全设置**：`getSecurity()`、`isSecured()`
+- **外部文档**：`getExternalDocs()`
 
 ### useSchema
 
 处理 OpenAPI Schema 对象的专用 Hook。
 
 ```tsx
-import { useSchema } from "@/lib/hooks/use-schema";
+import { useSchema } from "@/hooks/use-schema";
 
 function SchemaComponent({ schema, components }) {
   const schemaData = useSchema(schema, components);
 
   const type = schemaData.getType();
   const properties = schemaData.getProperties();
+  const required = schemaData.getRequired();
 
   const isNameRequired = schemaData.isRequired("name");
   const isEmailRequired = schemaData.isRequired("email");
@@ -102,9 +200,10 @@ function SchemaComponent({ schema, components }) {
   return (
     <div>
       <div>Type: {type}</div>
+      <div>Required Fields: {required.join(", ")}</div>
       <div>Properties:</div>
       {Object.entries(properties).map(([key, prop]) => (
-        <div key={key}>
+        <div key={key} className="ml-4">
           {key}: {schemaData.isRequired(key) ? "Required" : "Optional"}
         </div>
       ))}
@@ -113,6 +212,15 @@ function SchemaComponent({ schema, components }) {
 }
 ```
 
+#### 主要功能
+
+- **类型处理**：`getType()`、`isObject()`、`isArray()`
+- **属性处理**：`getProperties()`、`getProperty(name)`
+- **必填检查**：`getRequired()`、`isRequired(name)`
+- **约束处理**：`getConstraints()`、`getEnum()`
+- **示例数据**：`getExample()`、`getExamples()`
+- **描述信息**：`getDescription()`、`getTitle()`
+
 ## 🛠️ 工具函数
 
 ### resolveRef
@@ -120,29 +228,30 @@ function SchemaComponent({ schema, components }) {
 解析 OpenAPI 中的 `$ref` 引用。
 
 ```tsx
-import { resolveRef } from "@/lib/utils/resolve-ref";
+import { resolveRef } from "@/lib/resolve-ref";
 import type { OpenAPIV3 } from "openapi-types";
 
 // 解析 Schema 引用
 const resolvedSchema = resolveRef<OpenAPIV3.SchemaObject>(
   { $ref: "#/components/schemas/User" },
-  components,
-  "schemas",
+  components
 );
 
 // 解析参数引用
 const resolvedParam = resolveRef<OpenAPIV3.ParameterObject>(
   { $ref: "#/components/parameters/PageSize" },
-  components,
-  "parameters",
+  components
 );
 
 // 解析响应引用
 const resolvedResponse = resolveRef<OpenAPIV3.ResponseObject>(
   { $ref: "#/components/responses/NotFound" },
-  components,
-  "responses",
+  components
 );
+
+// 处理深层嵌套引用
+const nestedRef = { $ref: "#/components/schemas/NestedUser" };
+const resolved = resolveRef(nestedRef, components);
 ```
 
 #### 特性
@@ -150,14 +259,14 @@ const resolvedResponse = resolveRef<OpenAPIV3.ResponseObject>(
 - **自动解析嵌套引用**：支持引用的引用
 - **类型安全**：完整的 TypeScript 类型支持
 - **错误处理**：优雅处理无效引用
-- **分类解析**：支持不同类型的组件引用
+- **智能缓存**：避免重复解析相同引用
 
 ### generateExample
 
 根据 OpenAPI Schema 自动生成示例数据。
 
 ```tsx
-import { generateExample } from "@/lib/utils/generate-example";
+import { generateExample } from "@/lib/generate-example";
 
 // 基本用法
 const example = generateExample(schema, components);
@@ -167,6 +276,8 @@ const example = generateExample(schema, components, {
   maxDepth: 3, // 最大递归深度
   includeReadOnly: false, // 是否包含只读属性
   includeWriteOnly: true, // 是否包含只写属性
+  useExamples: true, // 优先使用 schema 中的示例
+  locale: "zh", // 生成本地化示例
 });
 ```
 
@@ -187,10 +298,12 @@ const example = generateExample(schema, components, {
 {
   "name": "张三",           // 识别姓名字段
   "email": "user@example.com", // 识别邮箱字段
-  "phone": "+1-555-0123",   // 识别电话字段
-  "address": "123 Main St", // 识别地址字段
-  "company": "Acme Corp",   // 识别公司字段
-  "website": "https://example.com" // 识别网站字段
+  "phone": "+86-138-0013-8000",   // 识别电话字段
+  "address": "北京市朝阳区", // 识别地址字段
+  "company": "某某科技有限公司",   // 识别公司字段
+  "website": "https://example.com", // 识别网站字段
+  "birthday": "1990-01-01", // 识别生日字段
+  "avatar": "https://avatar.example.com/user.jpg" // 识别头像字段
 }
 ```
 
@@ -201,26 +314,80 @@ Schema 处理的辅助工具函数。
 ```tsx
 import {
   isReferenceObject,
-  isSchemaObjectNotRef,
+  isSchemaObject,
   getSchemaType,
-  isPropertyRequired,
-} from "@/lib/utils/schema-utils";
+  mergeSchemas,
+  flattenAllOf,
+  extractEnumValues,
+  getSchemaConstraints,
+} from "@/lib/schema-utils";
 
 // 类型检查
 if (isReferenceObject(obj)) {
   console.log("这是一个引用对象");
 }
 
-if (isSchemaObjectNotRef(obj)) {
+if (isSchemaObject(obj)) {
   console.log("这是一个 Schema 对象");
 }
 
 // 获取类型
 const type = getSchemaType(schema); // "object", "array", "allOf" 等
 
-// 检查必填属性
-const required = isPropertyRequired(schema, "email");
+// 处理复合 Schema
+const merged = mergeSchemas([schema1, schema2]);
+const flattened = flattenAllOf(allOfSchema);
+
+// 提取枚举值
+const enumValues = extractEnumValues(enumSchema);
+
+// 获取约束条件
+const constraints = getSchemaConstraints(schema);
 ```
+
+#### 主要功能
+
+- **类型检查**：`isReferenceObject`、`isSchemaObject`
+- **类型提取**：`getSchemaType`、`getSchemaFormat`
+- **Schema 合并**：`mergeSchemas`、`flattenAllOf`
+- **约束处理**：`getSchemaConstraints`、`extractEnumValues`
+- **递归处理**：`walkSchema`、`transformSchema`
+
+### type-utils
+
+类型处理的工具函数。
+
+```tsx
+import {
+  getSchemaType,
+  isPrimitiveType,
+  isComplexType,
+  normalizeType,
+  getTypeHierarchy,
+  formatTypeDisplay,
+} from "@/lib/type-utils";
+
+// 类型判断
+const type = getSchemaType(schema);
+const isPrimitive = isPrimitiveType(type);
+const isComplex = isComplexType(type);
+
+// 类型规范化
+const normalized = normalizeType(rawType);
+
+// 获取类型层次
+const hierarchy = getTypeHierarchy(schema);
+
+// 格式化类型显示
+const displayType = formatTypeDisplay(type, format);
+```
+
+#### 核心功能
+
+- **类型判断**：`isPrimitiveType`、`isComplexType`、`isNumericType`
+- **类型转换**：`normalizeType`、`formatTypeDisplay`
+- **类型分析**：`getTypeHierarchy`、`getCompatibleTypes`
+- **验证工具**：`validateType`、`isValidFormat`
 
 ## 🌍 国际化系统
 
@@ -229,18 +396,28 @@ const required = isPropertyRequired(schema, "email");
 完整的国际化支持，内置中英文翻译。
 
 ```tsx
-import { useI18n } from "@/registry/lib/i18n/";
+import { useI18n } from "@/lib/i18n";
 
 function MyComponent() {
-  const { t, locale, setLocale } = useI18n();
+  const { t, locale, setLocale, availableLocales } = useI18n();
 
   return (
     <div>
       <h1>{t("api.title")}</h1>
       <p>{t("operation.parameters")}</p>
+      <p>{t("schema.required")}</p>
 
-      <button onClick={() => setLocale("zh")}>中文</button>
-      <button onClick={() => setLocale("en")}>English</button>
+      <div className="space-x-2">
+        {availableLocales.map((loc) => (
+          <button
+            key={loc}
+            onClick={() => setLocale(loc)}
+            className={locale === loc ? "font-bold" : ""}
+          >
+            {loc === "zh" ? "中文" : "English"}
+          </button>
+        ))}
+      </div>
 
       <div>Current locale: {locale}</div>
     </div>
@@ -248,148 +425,219 @@ function MyComponent() {
 }
 ```
 
-### 独立翻译函数
+#### API 说明
 
-```tsx
-import { t, createTranslator } from "@/registry/lib/i18n/";
-
-// 使用默认翻译函数（英文）
-const title = t("api.title");
-
-// 创建特定语言的翻译函数
-const zhTranslator = createTranslator("zh");
-const chineseTitle = zhTranslator("api.title");
-```
+- **t(key, params?)**：翻译函数，支持参数插值
+- **locale**：当前语言设置
+- **setLocale(locale)**：切换语言
+- **availableLocales**：可用语言列表
 
 ### I18nProvider
 
-在应用根部包装以启用语言切换功能。
+国际化上下文提供者，在应用根部使用。
 
 ```tsx
-import { I18nProvider } from "@/registry/lib/i18n/";
+import { I18nProvider } from "@/lib/i18n";
 
 function App() {
   return (
-    <I18nProvider>
-      <YourApp />
+    <I18nProvider defaultLocale="zh">
+      <YourAppComponents />
     </I18nProvider>
   );
 }
 ```
 
-## 📦 安装和使用
+### 翻译键值对
 
-### 安装 Hooks
+#### 常用操作术语
 
-```bash
-npx shadcn@latest add https://pivotkit.vercel.app/registry.json hooks
-```
-
-### 安装工具函数
-
-```bash
-# 引用解析工具
-npx shadcn@latest add https://pivotkit.vercel.app/registry.json resolve-ref
-
-# 示例生成工具
-npx shadcn@latest add https://pivotkit.vercel.app/registry.json generate-example
-
-# 国际化系统
-npx shadcn@latest add https://pivotkit.vercel.app/registry.json i18n
-```
-
-### 导入和使用
-
-```tsx
-// Hooks
-import { useOpenApi } from "@/lib/hooks/use-openapi";
-import { useOperation } from "@/lib/hooks/use-operation";
-import { useSchema } from "@/lib/hooks/use-schema";
-
-// 工具函数
-import { resolveRef } from "@/lib/utils/resolve-ref";
-import { generateExample } from "@/lib/utils/generate-example";
-
-// 国际化
-import { useI18n, t } from "@/registry/lib/i18n/";
-```
-
-## 🔄 与组件的集成
-
-这些工具与 Pivot 组件无缝集成：
-
-```tsx
-import { useOpenApi } from "@/lib/hooks/use-openapi";
-import { StatusCode } from "@/components/pivot/status-code";
-import { MethodLabel } from "@/components/pivot/method-label";
-import { ParameterItem } from "@/components/pivot/parameter-item";
-
-function ApiEndpoint({ spec, path, method }) {
-  const openApi = useOpenApi(spec);
-  const operation = openApi.getOperation(path, method);
-  const parameters = openApi.processParameters(operation?.parameters);
-
-  return (
-    <div>
-      {/* 使用组件显示基本信息 */}
-      <div className="flex items-center gap-2">
-        <MethodLabel method={method} />
-        <code>{path}</code>
-      </div>
-
-      {/* 显示参数 */}
-      <div className="space-y-2">
-        {parameters.query?.map((param, index) => (
-          <ParameterItem
-            key={index}
-            parameter={param}
-            components={openApi.getComponents()}
-          />
-        ))}
-      </div>
-
-      {/* 显示响应状态码 */}
-      <div className="flex gap-1">
-        {Object.keys(operation?.responses || {}).map((status) => (
-          <StatusCode key={status} code={parseInt(status)} />
-        ))}
-      </div>
-    </div>
-  );
+```typescript
+{
+  "operation": {
+    "parameters": "参数",
+    "requestBody": "请求体",
+    "responses": "响应",
+    "security": "安全",
+    "deprecated": "已废弃",
+    "callbacks": "回调",
+    "summary": "摘要",
+    "description": "描述",
+    "operationId": "操作ID",
+    "tags": "标签"
+  }
 }
 ```
 
-## 🎯 最佳实践
+#### Schema 相关
 
-### 1. 性能优化
+```typescript
+{
+  "schema": {
+    "type": "类型",
+    "format": "格式",
+    "required": "必填",
+    "optional": "可选",
+    "properties": "属性",
+    "items": "数组项",
+    "additionalProperties": "额外属性",
+    "example": "示例",
+    "examples": "示例",
+    "enum": "枚举值",
+    "default": "默认值",
+    "pattern": "正则模式",
+    "constraints": "约束条件"
+  }
+}
+```
+
+#### HTTP 相关
+
+```typescript
+{
+  "http": {
+    "method": "方法",
+    "path": "路径",
+    "status": "状态码",
+    "headers": "请求头",
+    "query": "查询参数",
+    "body": "请求体",
+    "form": "表单数据",
+    "file": "文件"
+  }
+}
+```
+
+#### 操作按钮
+
+```typescript
+{
+  "action": {
+    "copy": "复制",
+    "expand": "展开",
+    "collapse": "收起",
+    "tryItOut": "在线测试",
+    "generate": "生成",
+    "download": "下载",
+    "share": "分享",
+    "edit": "编辑"
+  }
+}
+```
+
+### 扩展翻译
+
+您可以通过修改 `registry/default/lib/i18n/locales/` 目录下的文件来扩展翻译：
+
+```typescript
+// 添加新语言支持
+// registry/default/lib/i18n/locales/es.ts
+export const es = {
+  operation: {
+    parameters: "Parámetros",
+    requestBody: "Cuerpo de Solicitud",
+    // ... 更多翻译
+  },
+};
+```
+
+## 📦 批量安装
+
+### 安装所有 Hooks
+
+```bash
+npx shadcn@latest add https://pivotkit.vercel.app/r/hooks.json
+```
+
+### 安装工具库
+
+```bash
+npx shadcn@latest add https://pivotkit.vercel.app/r/lib.json
+```
+
+### 单独安装
+
+```bash
+# 安装单个 Hook
+npx shadcn@latest add https://pivotkit.vercel.app/r/use-openapi.json
+npx shadcn@latest add https://pivotkit.vercel.app/r/use-openapi-loader.json
+
+# 安装单个工具函数
+npx shadcn@latest add https://pivotkit.vercel.app/r/resolve-ref.json
+npx shadcn@latest add https://pivotkit.vercel.app/r/generate-example.json
+```
+
+## 💡 使用建议
+
+### 1. 组合使用 Hooks
 
 ```tsx
-// 使用 useMemo 缓存复杂计算
-const operations = useMemo(() => {
-  return openApi.getOperationsByTag();
-}, [openApi]);
+// 推荐的组合使用模式
+function ApiExplorer({ url }) {
+  // 使用组合 Hook 一次性获取所有数据
+  const { spec, openApi, operations, loading, error } = useOpenApiCombined({
+    type: "url",
+    data: url,
+  });
+
+  // 对特定操作使用专用 Hook
+  const currentOp = useOperation(selectedOperation, path, method);
+
+  if (loading) return <LoadingSpinner />;
+  if (error) return <ErrorMessage error={error} />;
+
+  return <ApiInterface spec={spec} operations={operations} />;
+}
 ```
 
 ### 2. 错误处理
 
 ```tsx
-// 始终检查解析结果
-const resolved = openApi.resolve(reference);
-if (!resolved) {
-  console.warn("无法解析引用:", reference);
-  return <div>引用解析失败</div>;
+// 完善的错误处理
+function ApiComponent() {
+  const { spec, loading, error } = useOpenApiLoader({
+    type: "url",
+    data: apiUrl,
+  });
+
+  if (loading) return <div>正在加载 API 规范...</div>;
+
+  if (error) {
+    return (
+      <div className="error">
+        <h3>加载失败</h3>
+        <p>{error}</p>
+        <button onClick={() => window.location.reload()}>重试</button>
+      </div>
+    );
+  }
+
+  return <ApiDocumentation spec={spec} />;
 }
 ```
 
-### 3. 类型安全
+### 3. 性能优化
 
 ```tsx
-// 使用正确的 TypeScript 类型
-const schema = resolveRef<OpenAPIV3.SchemaObject>(
-  schemaRef,
-  components,
-  "schemas",
-);
+// 使用 React.memo 优化渲染
+const OperationCard = React.memo(({ operation, path, method }) => {
+  const op = useOperation(operation, path, method);
+  // ... 渲染逻辑
+});
+
+// 使用 useMemo 缓存计算结果
+function ParametersList({ parameters, components }) {
+  const processedParams = useMemo(
+    () =>
+      parameters.map((param) => ({
+        ...param,
+        resolved: resolveRef(param, components),
+      })),
+    [parameters, components]
+  );
+
+  return <ParameterList items={processedParams} />;
+}
 ```
 
-这套工具系统让您能够轻松处理复杂的 OpenAPI 数据结构，而无需从零开始编写解析逻辑。结合 Pivot 的组件库，您可以快速构建功能完整的 API 文档界面。
+通过这些强大的 Hooks 和工具函数，您可以轻松构建复杂的 OpenAPI 文档界面，同时保持代码的简洁和可维护性。

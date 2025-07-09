@@ -669,7 +669,7 @@ export const Index: Record<string, any> = {
     title: "navigation-sidebar",
     description: "",
     type: "registry:ui",
-    registryDependencies: ["button","collapsible","input","sidebar","https://pivotkit.vercel.app/r/lib.json","https://pivotkit.vercel.app/r/method-label.json"],
+    registryDependencies: ["collapsible","input","sidebar","https://pivotkit.vercel.app/r/lib.json","https://pivotkit.vercel.app/r/method-label.json"],
     files: [{
       path: "registry/default/ui/navigation-sidebar.tsx",
       type: "registry:ui",
@@ -777,7 +777,7 @@ export const Index: Record<string, any> = {
     title: "operation-list-layout",
     description: "",
     type: "registry:ui",
-    registryDependencies: ["https://pivotkit.vercel.app/r/hooks.json","https://pivotkit.vercel.app/r/lib.json","https://pivotkit.vercel.app/r/operation-box.json","https://pivotkit.vercel.app/r/try-it-out-panel.json"],
+    registryDependencies: ["sidebar","https://pivotkit.vercel.app/r/hooks.json","https://pivotkit.vercel.app/r/lib.json","https://pivotkit.vercel.app/r/navigation-sidebar.json","https://pivotkit.vercel.app/r/operation-box.json","https://pivotkit.vercel.app/r/try-it-out-panel.json"],
     files: [{
       path: "registry/default/ui/operation-list-layout.tsx",
       type: "registry:ui",
@@ -2307,7 +2307,7 @@ export const Index: Record<string, any> = {
     title: "navigation-sidebar-demo",
     description: "",
     type: "registry:example",
-    registryDependencies: ["https://pivotkit.vercel.app/r/navigation-sidebar.json"],
+    registryDependencies: ["sidebar","https://pivotkit.vercel.app/r/navigation-sidebar.json"],
     files: [{
       path: "registry/default/example/navigation-sidebar-demo.tsx",
       type: "registry:example",

@@ -240,8 +240,13 @@ export const docsConfig: DocsConfig = {
           items: [],
         },
         {
-          title: "All In One Layout",
-          href: `/docs/components/all-in-one-layout`,
+          title: "Operation Detailed Layout",
+          href: `/docs/components/operation-detailed-layout`,
+          items: [],
+        },
+        {
+          title: "Operation List Layout",
+          href: `/docs/components/operation-list-layout`,
           items: [],
         },
         {

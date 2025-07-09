@@ -1,165 +1,333 @@
 "use client";
 
-import type { OpenAPIV3 } from "openapi-types";
 import { OperationListLayout } from "@/registry/default/ui/operation-list-layout";
-
+import type { OpenAPIV3 } from "openapi-types";
 import { useState } from "react";
 
-const sampleSpec: OpenAPIV3.Document = {
+// Mock OpenAPI specification for demo
+const mockSpec: OpenAPIV3.Document = {
   openapi: "3.0.0",
   info: {
-    title: "Sample API",
+    title: "E-commerce API",
     version: "1.0.0",
-    description: "A sample API for demonstration",
+    description: "Comprehensive e-commerce platform API with user management, product catalog, and order processing"
   },
   servers: [
     {
       url: "https://api.example.com/v1",
-      description: "Production server",
-    },
+      description: "Production server"
+    }
   ],
   paths: {
     "/users": {
       get: {
+        tags: ["User Management"],
         operationId: "getUsers",
         summary: "Get all users",
-        description: "Retrieve a list of all users",
-        tags: ["Users"],
+        description: "Retrieve a list of all users in the system with pagination support",
+        parameters: [
+          {
+            name: "page",
+            in: "query",
+            schema: { type: "integer", default: 1 },
+            description: "Page number (default: 1)"
+          },
+          {
+            name: "limit",
+            in: "query",
+            schema: { type: "integer", default: 10 },
+            description: "Items per page (default: 10)"
+          }
+        ],
         responses: {
           "200": {
-            description: "Successful response",
-            content: {
-              "application/json": {
-                schema: {
-                  type: "array" as const,
-                  items: {
-                    type: "object" as const,
-                    properties: {
-                      id: { type: "integer" as const },
-                      name: { type: "string" as const },
-                      email: { type: "string" as const },
-                    },
-                  },
-                },
-              },
-            },
-          },
-        },
+            description: "Successfully retrieved users list"
+          }
+        }
       },
       post: {
+        tags: ["User Management"],
         operationId: "createUser",
-        summary: "Create a new user",
-        description: "Create a new user account",
-        tags: ["Users"],
+        summary: "Create new user",
+        description: "Create a new user account in the system",
         requestBody: {
           required: true,
           content: {
             "application/json": {
               schema: {
-                type: "object" as const,
-                properties: {
-                  name: { type: "string" as const },
-                  email: { type: "string" as const },
-                },
+                type: "object",
                 required: ["name", "email"],
-              },
-            },
-          },
+                properties: {
+                  name: { type: "string" },
+                  email: { type: "string", format: "email" }
+                }
+              }
+            }
+          }
         },
         responses: {
           "201": {
-            description: "User created successfully",
-          },
-        },
-      },
+            description: "User created successfully"
+          }
+        }
+      }
     },
     "/users/{id}": {
       get: {
+        tags: ["User Management"],
         operationId: "getUserById",
         summary: "Get user by ID",
-        description: "Retrieve a specific user by their ID",
-        tags: ["Users"],
+        description: "Retrieve detailed information about a specific user",
         parameters: [
           {
             name: "id",
-            in: "path" as const,
+            in: "path",
             required: true,
-            schema: { type: "integer" as const },
-            description: "User ID",
-          },
+            schema: { type: "string" }
+          }
         ],
         responses: {
           "200": {
-            description: "Successful response",
+            description: "Successfully retrieved user details"
           },
           "404": {
-            description: "User not found",
-          },
-        },
+            description: "User not found"
+          }
+        }
       },
+      put: {
+        tags: ["User Management"],
+        operationId: "updateUser",
+        summary: "Update user",
+        description: "Update an existing user's information",
+        parameters: [
+          {
+            name: "id",
+            in: "path",
+            required: true,
+            schema: { type: "string" }
+          }
+        ],
+        requestBody: {
+          required: true,
+          content: {
+            "application/json": {
+              schema: {
+                type: "object",
+                properties: {
+                  name: { type: "string" },
+                  email: { type: "string", format: "email" }
+                }
+              }
+            }
+          }
+        },
+        responses: {
+          "200": {
+            description: "User updated successfully"
+          }
+        }
+      },
+      delete: {
+        tags: ["User Management"],
+        operationId: "deleteUser",
+        summary: "Delete user",
+        description: "Delete a user account from the system",
+        parameters: [
+          {
+            name: "id",
+            in: "path",
+            required: true,
+            schema: { type: "string" }
+          }
+        ],
+        responses: {
+          "204": {
+            description: "User deleted successfully"
+          }
+        }
+      }
     },
+    "/products": {
+      get: {
+        tags: ["Product Management"],
+        operationId: "getProducts",
+        summary: "Get all products",
+        description: "Retrieve product catalog with filtering options",
+        parameters: [
+          {
+            name: "category",
+            in: "query",
+            schema: { type: "string" },
+            description: "Filter by product category"
+          },
+          {
+            name: "search",
+            in: "query",
+            schema: { type: "string" },
+            description: "Search products by name or description"
+          }
+        ],
+        responses: {
+          "200": {
+            description: "Successfully retrieved products list"
+          }
+        }
+      },
+      post: {
+        tags: ["Product Management"],
+        operationId: "createProduct",
+        summary: "Create product",
+        description: "Add a new product to the catalog",
+        requestBody: {
+          required: true,
+          content: {
+            "application/json": {
+              schema: {
+                type: "object",
+                required: ["name", "price"],
+                properties: {
+                  name: { type: "string" },
+                  description: { type: "string" },
+                  price: { type: "number", minimum: 0 },
+                  category: { type: "string" }
+                }
+              }
+            }
+          }
+        },
+        responses: {
+          "201": {
+            description: "Product created successfully"
+          }
+        }
+      }
+    },
+    "/orders": {
+      get: {
+        tags: ["Order Management"],
+        operationId: "getOrders",
+        summary: "Get all orders",
+        description: "Retrieve order history with status filtering",
+        parameters: [
+          {
+            name: "status",
+            in: "query",
+            schema: {
+              type: "string",
+              enum: ["pending", "processing", "shipped", "delivered", "cancelled"]
+            },
+            description: "Filter by order status"
+          }
+        ],
+        responses: {
+          "200": {
+            description: "Successfully retrieved orders list"
+          }
+        }
+      },
+      post: {
+        tags: ["Order Management"],
+        operationId: "createOrder",
+        summary: "Create order",
+        description: "Place a new order for products",
+        requestBody: {
+          required: true,
+          content: {
+            "application/json": {
+              schema: {
+                type: "object",
+                required: ["items"],
+                properties: {
+                  items: {
+                    type: "array",
+                    items: {
+                      type: "object",
+                      required: ["productId", "quantity"],
+                      properties: {
+                        productId: { type: "string" },
+                        quantity: { type: "integer", minimum: 1 }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        responses: {
+          "201": {
+            description: "Order created successfully"
+          }
+        }
+      }
+    }
   },
+  tags: [
+    {
+      name: "User Management",
+      description: "User-related operations including registration, authentication, and profile management"
+    },
+    {
+      name: "Product Management",
+      description: "Product catalog operations including listing, searching, and inventory management"
+    },
+    {
+      name: "Order Management",
+      description: "Order processing operations including creation, tracking, and status updates"
+    }
+  ],
+  components: {
+    schemas: {
+      User: {
+        type: "object",
+        properties: {
+          id: { type: "string" },
+          name: { type: "string" },
+          email: { type: "string", format: "email" }
+        }
+      },
+      Product: {
+        type: "object",
+        properties: {
+          id: { type: "string" },
+          name: { type: "string" },
+          description: { type: "string" },
+          price: { type: "number" },
+          category: { type: "string" }
+        }
+      },
+      Order: {
+        type: "object",
+        properties: {
+          id: { type: "string" },
+          userId: { type: "string" },
+          status: {
+            type: "string",
+            enum: ["pending", "processing", "shipped", "delivered", "cancelled"]
+          },
+          total: { type: "number" }
+        }
+      }
+    }
+  }
 };
 
 export default function OperationListLayoutDemo() {
-  const [selectedPath, setSelectedPath] = useState<string | null>("/users");
-  const [selectedMethod, setSelectedMethod] = useState<string | null>("GET");
-
-  const handleSelectOperation = (
-    path: string,
-    method: string,
-    operation: any,
-  ) => {
-    setSelectedPath(path);
-    setSelectedMethod(method.toUpperCase());
-    console.log("Selected operation:", { path, method, operation });
-  };
+  const [showNavigation, setShowNavigation] = useState(true);
+  const [showTryPanel, setShowTryPanel] = useState(true);
 
   return (
     <div className="w-full h-screen">
-      <div className="mb-4 p-4 bg-muted rounded-lg">
-        <h3 className="text-lg font-semibold mb-2">当前选择的操作</h3>
-        <p className="text-sm text-muted-foreground">
-          路径:{" "}
-          <code className="bg-background px-1 rounded">
-            {selectedPath || "无"}
-          </code>
-        </p>
-        <p className="text-sm text-muted-foreground">
-          方法:{" "}
-          <code className="bg-background px-1 rounded">
-            {selectedMethod || "无"}
-          </code>
-        </p>
-        <div className="mt-2 flex gap-2">
-          <button
-            onClick={() => handleSelectOperation("/users", "GET", {})}
-            className="px-3 py-1 text-xs bg-primary text-primary-foreground rounded"
-          >
-            选择 GET /users
-          </button>
-          <button
-            onClick={() => handleSelectOperation("/users", "POST", {})}
-            className="px-3 py-1 text-xs bg-primary text-primary-foreground rounded"
-          >
-            选择 POST /users
-          </button>
-          <button
-            onClick={() => handleSelectOperation("/users/{id}", "GET", {})}
-            className="px-3 py-1 text-xs bg-primary text-primary-foreground rounded"
-          >
-            选择 GET /users/&#123;id&#125;
-          </button>
-        </div>
-      </div>
-
       <OperationListLayout
-        spec={sampleSpec}
-        selectedPath={selectedPath}
-        selectedMethod={selectedMethod}
-        onSelectOperation={handleSelectOperation}
-        className="border rounded-lg"
+        spec={mockSpec}
+        showNavigation={showNavigation}
+        onSelectOperation={(path, method, operation) => {
+          console.log("Selected operation:", path, method, operation);
+        }}
+        showTryPanel={false}
       />
     </div>
   );
 }
+

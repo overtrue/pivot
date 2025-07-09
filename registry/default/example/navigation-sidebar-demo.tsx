@@ -1,164 +1,203 @@
 "use client";
 
+import { SidebarProvider } from "@/components/ui/sidebar";
 import { NavigationSidebar } from "@/registry/default/ui/navigation-sidebar";
-import type { ParameterLocation } from "@/types/project";
 import type { OpenAPIV3 } from "openapi-types";
 
-export default function NavigationSidebarDemo() {
-  const mockOpenApi: OpenAPIV3.Document = {
-    openapi: "3.0.0",
-    info: {
-      title: "示例 API",
-      version: "1.0.0",
-      description: "这是一个示例 API 文档",
-    },
-    paths: {
-      "/users": {
-        get: {
-          operationId: "getUsers",
-          summary: "获取用户列表",
-          description: "获取所有用户的列表",
-          tags: ["用户管理"],
-          responses: {
-            "200": {
-              description: "成功返回用户列表",
-            },
-          },
-        },
-        post: {
-          operationId: "createUser",
-          summary: "创建用户",
-          description: "创建一个新用户",
-          tags: ["用户管理"],
-          responses: {
-            "201": {
-              description: "用户创建成功",
-            },
+// Mock OpenAPI specification for demo
+const mockSpec: OpenAPIV3.Document = {
+  openapi: "3.0.0",
+  info: {
+    title: "E-commerce API",
+    version: "1.0.0",
+    description: "Comprehensive e-commerce platform API"
+  },
+  servers: [
+    {
+      url: "https://api.example.com/v1",
+      description: "Production server"
+    }
+  ],
+  paths: {
+    "/users": {
+      get: {
+        tags: ["User Management"],
+        operationId: "getUsers",
+        summary: "Get all users",
+        description: "Retrieve a list of all users in the system",
+        responses: {
+          "200": {
+            description: "Successfully retrieved users list",
           },
         },
       },
-      "/users/{id}": {
-        get: {
-          operationId: "getUserById",
-          summary: "获取用户详情",
-          description: "根据 ID 获取用户详细信息",
-          tags: ["用户管理"],
-          parameters: [
-            {
-              name: "id",
-              in: "path" as ParameterLocation,
-              required: true,
-              schema: { type: "string" },
-            },
-          ],
-          responses: {
-            "200": {
-              description: "成功返回用户详情",
-            },
-          },
-        },
-        put: {
-          operationId: "updateUser",
-          summary: "更新用户",
-          description: "更新用户信息",
-          tags: ["用户管理"],
-          responses: {
-            "200": {
-              description: "用户更新成功",
-            },
-          },
-        },
-        delete: {
-          operationId: "deleteUser",
-          summary: "删除用户",
-          description: "删除指定用户",
-          tags: ["用户管理"],
-          responses: {
-            "204": {
-              description: "用户删除成功",
-            },
-          },
-        },
-      },
-      "/orders": {
-        get: {
-          operationId: "getOrders",
-          summary: "获取订单列表",
-          description: "获取所有订单",
-          tags: ["订单管理"],
-          responses: {
-            "200": {
-              description: "成功返回订单列表",
-            },
-          },
-        },
-        post: {
-          operationId: "createOrder",
-          summary: "创建订单",
-          description: "创建新订单",
-          tags: ["订单管理"],
-          responses: {
-            "201": {
-              description: "订单创建成功",
-            },
+      post: {
+        tags: ["User Management"],
+        operationId: "createUser",
+        summary: "Create user",
+        description: "Create a new user account",
+        responses: {
+          "201": {
+            description: "User created successfully",
           },
         },
       },
     },
-    tags: [
-      {
-        name: "用户管理",
-        description: "用户相关的 API 操作",
-      },
-      {
-        name: "订单管理",
-        description: "订单相关的 API 操作",
-      },
-    ],
-    components: {
-      schemas: {
-        User: {
-          type: "object",
-          properties: {
-            id: { type: "string" },
-            name: { type: "string" },
-            email: { type: "string" },
+    "/users/{id}": {
+      get: {
+        tags: ["User Management"],
+        operationId: "getUserById",
+        summary: "Get user details",
+        description: "Get detailed information about a specific user",
+        parameters: [
+          {
+            name: "id",
+            in: "path",
+            required: true,
+            schema: { type: "string" },
+          },
+        ],
+        responses: {
+          "200": {
+            description: "Successfully retrieved user details",
           },
         },
-        Order: {
-          type: "object",
-          properties: {
-            id: { type: "string" },
-            userId: { type: "string" },
-            amount: { type: "number" },
+      },
+      put: {
+        tags: ["User Management"],
+        operationId: "updateUser",
+        summary: "Update user",
+        description: "Update user information",
+        responses: {
+          "200": {
+            description: "User updated successfully",
+          },
+        },
+      },
+      delete: {
+        tags: ["User Management"],
+        operationId: "deleteUser",
+        summary: "Delete user",
+        description: "Delete a user account",
+        responses: {
+          "204": {
+            description: "User deleted successfully",
           },
         },
       },
     },
-  };
+    "/orders": {
+      get: {
+        tags: ["Order Management"],
+        operationId: "getOrders",
+        summary: "Get all orders",
+        description: "Retrieve all orders information",
+        responses: {
+          "200": {
+            description: "Successfully retrieved orders list",
+          },
+        },
+      },
+      post: {
+        tags: ["Order Management"],
+        operationId: "createOrder",
+        summary: "Create order",
+        description: "Create a new order",
+        responses: {
+          "201": {
+            description: "Order created successfully",
+          },
+        },
+      },
+    },
+    "/orders/{id}": {
+      get: {
+        tags: ["Order Management"],
+        operationId: "getOrderById",
+        summary: "Get order details",
+        description: "Get detailed information about a specific order",
+        responses: {
+          "200": {
+            description: "Successfully retrieved order details",
+          },
+        },
+      },
+    },
+    "/products": {
+      get: {
+        tags: ["Product Management"],
+        operationId: "getProducts",
+        summary: "Get all products",
+        description: "Retrieve product catalog",
+        responses: {
+          "200": {
+            description: "Successfully retrieved products list",
+          },
+        },
+      },
+      post: {
+        tags: ["Product Management"],
+        operationId: "createProduct",
+        summary: "Create product",
+        description: "Add a new product to catalog",
+        responses: {
+          "201": {
+            description: "Product created successfully",
+          },
+        },
+      },
+    },
+  },
+  tags: [
+    {
+      name: "User Management",
+      description: "User-related API operations including registration, login, and profile management",
+    },
+    {
+      name: "Order Management",
+      description: "Order-related API operations including creation, querying, and updating orders",
+    },
+    {
+      name: "Product Management",
+      description: "Product-related API operations including adding, querying, and inventory management",
+    },
+  ],
+  components: {
+    schemas: {
+      User: {
+        type: "object",
+        properties: {
+          id: { type: "string" },
+          name: { type: "string" },
+          email: { type: "string" },
+        },
+      },
+      Order: {
+        type: "object",
+        properties: {
+          id: { type: "string" },
+          userId: { type: "string" },
+          amount: { type: "number" },
+        },
+      },
+    },
+  },
+};
 
+export default function NavigationSidebarDemo() {
   return (
-    <div className="space-y-4">
-      <div>
-        <h4 className="text-sm font-medium mb-3">API 导航侧边栏</h4>
-        <p className="text-sm text-muted-foreground mb-4">
-          用于导航的侧边栏组件。
-        </p>
-        <div className="border rounded-lg h-[500px] overflow-hidden bg-background">
-          <NavigationSidebar
-            openapi={mockOpenApi}
-            activePath="/users"
-            activeMethod="get"
-            onSelectOperation={(path, method, operation) => {
-              console.log("选择操作:", { path, method, operation });
-            }}
-            onSelectSchema={(schemaName) => {
-              console.log("选择 Schema:", schemaName);
-            }}
-            className="w-full h-full border-0"
-          />
-        </div>
+    <SidebarProvider defaultOpen={true}>
+      <div className="w-full h-full flex">
+        <NavigationSidebar
+          openapi={mockSpec}
+          activePath="/users"
+          activeMethod="get"
+          collapsible="none"
+          onSelectOperation={(path, method, operation) => {
+            console.log("Selected operation:", path, method, operation);
+          }}
+        />
       </div>
-    </div>
+    </SidebarProvider>
   );
 }

@@ -11,6 +11,19 @@ interface ComponentPreviewProps extends React.HTMLAttributes<HTMLDivElement> {
   preview?: boolean;
 }
 
+// 需要使用 iframe 的组件列表（主要是布局组件和有特殊定位需求的组件）
+const IFRAME_COMPONENTS = [
+  'navigation-sidebar',
+  'navigation-sidebar-demo',
+  'operation-detailed-layout',
+  'operation-detailed-layout-demo',
+  'operation-list-layout',
+  'operation-list-layout-demo',
+  'resizable-sidebar',
+  'resizable-sidebar-demo',
+  // 可以根据需要添加更多
+];
+
 export function ComponentPreview({
   name,
   children,
@@ -21,7 +34,24 @@ export function ComponentPreview({
   const Codes = React.Children.toArray(children) as React.ReactElement[];
   const Code = Codes[0];
 
+  const shouldUseIframe = IFRAME_COMPONENTS.includes(name);
+
   const Preview = React.useMemo(() => {
+    // 如果需要使用 iframe，则渲染 iframe
+    if (shouldUseIframe) {
+      return (
+        <div className="w-full h-128 rounded-lg border overflow-hidden bg-background">
+          <iframe
+            src={`/demo/${name}`}
+            className="w-full h-full border-0"
+            title={`${name} Demo`}
+            loading="lazy"
+          />
+        </div>
+      );
+    }
+
+    // 否则使用原来的直接渲染方式
     const Component = Index[name]?.component;
 
     if (!Component) {
@@ -38,7 +68,7 @@ export function ComponentPreview({
     }
 
     return <Component />;
-  }, [name]);
+  }, [name, shouldUseIframe]);
 
   return (
     <div
@@ -68,18 +98,37 @@ export function ComponentPreview({
           </div>
         )}
         <TabsContent value="preview" className="relative rounded-md">
-          <ComponentWrapper name={name}>
-            <React.Suspense
-              fallback={
-                <div className="flex items-center text-sm text-muted-foreground">
-                  <Icons.spinner className="mr-2 size-4 animate-spin" />
-                  Loading...
-                </div>
-              }
-            >
-              {Preview}
-            </React.Suspense>
-          </ComponentWrapper>
+          {shouldUseIframe ? (
+            // 对于 iframe 组件，不使用 ComponentWrapper，因为它们已经有自己的容器
+            <div className="relative rounded-xl border bg-background">
+              <React.Suspense
+                fallback={
+                  <div className="flex items-center justify-center h-96">
+                    <div className="flex items-center text-sm text-muted-foreground">
+                      <Icons.spinner className="mr-2 size-4 animate-spin" />
+                      Loading...
+                    </div>
+                  </div>
+                }
+              >
+                {Preview}
+              </React.Suspense>
+            </div>
+          ) : (
+            // 对于普通组件，继续使用 ComponentWrapper
+            <ComponentWrapper name={name}>
+              <React.Suspense
+                fallback={
+                  <div className="flex items-center text-sm text-muted-foreground">
+                    <Icons.spinner className="mr-2 size-4 animate-spin" />
+                    Loading...
+                  </div>
+                }
+              >
+                {Preview}
+              </React.Suspense>
+            </ComponentWrapper>
+          )}
         </TabsContent>
         <TabsContent value="code">
           <div className="flex flex-col space-y-4">

@@ -1,210 +1,183 @@
 "use client";
 
-import type { OpenAPIV3 } from "openapi-types";
 import { OperationDetailedLayout } from "@/registry/default/ui/operation-detailed-layout";
-
+import type { OpenAPIV3 } from "openapi-types";
 import { useState } from "react";
 
-const sampleSpec: OpenAPIV3.Document = {
+// Mock OpenAPI specification for demo
+const mockSpec: OpenAPIV3.Document = {
   openapi: "3.0.0",
   info: {
-    title: "Sample API",
-    version: "1.0.0",
-    description: "A sample API for demonstration",
+    title: "E-commerce API",
+    version: "2.0.0",
+    description: "Advanced e-commerce platform API with comprehensive features"
   },
   servers: [
     {
-      url: "https://api.example.com/v1",
-      description: "Production server",
+      url: "https://api.ecommerce.example.com/v2",
+      description: "Production server"
     },
+    {
+      url: "https://staging-api.ecommerce.example.com/v2",
+      description: "Staging server"
+    }
   ],
   paths: {
-    "/users": {
+    "/users/{id}": {
       get: {
-        operationId: "getUsers",
-        summary: "Get all users",
-        description: "Retrieve a list of all users",
-        tags: ["Users"],
+        tags: ["User Management"],
+        operationId: "getUserById",
+        summary: "Get user details",
+        description: "Retrieve detailed information about a specific user by ID, including profile data, preferences, and activity records.",
         parameters: [
           {
-            name: "limit",
-            in: "query" as const,
-            description: "Maximum number of users to return",
+            name: "id",
+            in: "path",
+            required: true,
             schema: {
-              type: "integer" as const,
-              minimum: 1,
-              maximum: 100,
-              default: 10,
+              type: "string",
+              pattern: "^[0-9]+$"
             },
+            description: "The unique identifier of the user",
+            example: "12345"
           },
           {
-            name: "offset",
-            in: "query" as const,
-            description: "Number of users to skip",
-            schema: { type: "integer" as const, minimum: 0, default: 0 },
-          },
+            name: "include",
+            in: "query",
+            required: false,
+            schema: {
+              type: "array",
+              items: {
+                type: "string",
+                enum: ["profile", "preferences", "activity", "statistics"]
+              }
+            },
+            description: "Additional data fields to include in the response",
+            example: ["profile", "preferences"]
+          }
         ],
         responses: {
           "200": {
-            description: "Successful response",
+            description: "Successfully retrieved user information",
             content: {
               "application/json": {
                 schema: {
-                  type: "array" as const,
-                  items: {
-                    type: "object" as const,
-                    properties: {
-                      id: { type: "integer" as const },
-                      name: { type: "string" as const },
-                      email: { type: "string" as const },
-                    },
-                  },
-                },
-              },
-            },
+                  type: "object",
+                  properties: {
+                    id: { type: "string" },
+                    name: { type: "string" },
+                    email: { type: "string", format: "email" },
+                    avatar: { type: "string", format: "uri" },
+                    profile: {
+                      type: "object",
+                      properties: {
+                        bio: { type: "string" },
+                        location: { type: "string" },
+                        website: { type: "string", format: "uri" }
+                      }
+                    }
+                  }
+                }
+              }
+            }
           },
-        },
+          "404": {
+            description: "User not found"
+          }
+        }
       },
-      post: {
-        operationId: "createUser",
-        summary: "Create a new user",
-        description: "Create a new user account",
-        tags: ["Users"],
+      put: {
+        tags: ["User Management"],
+        operationId: "updateUser",
+        summary: "Update user information",
+        description: "Update user profile information and preferences",
+        parameters: [
+          {
+            name: "id",
+            in: "path",
+            required: true,
+            schema: { type: "string" }
+          }
+        ],
         requestBody: {
           required: true,
           content: {
             "application/json": {
               schema: {
-                type: "object" as const,
+                type: "object",
                 properties: {
-                  name: { type: "string" as const },
-                  email: { type: "string" as const },
-                },
-                required: ["name", "email"],
-              },
-            },
-          },
+                  name: { type: "string" },
+                  email: { type: "string", format: "email" },
+                  avatar: { type: "string", format: "uri" }
+                }
+              }
+            }
+          }
         },
         responses: {
-          "201": {
-            description: "User created successfully",
-            content: {
-              "application/json": {
-                schema: {
-                  type: "object" as const,
-                  properties: {
-                    id: { type: "integer" as const },
-                    name: { type: "string" as const },
-                    email: { type: "string" as const },
-                  },
-                },
-              },
-            },
+          "200": {
+            description: "User updated successfully"
           },
-          "400": {
-            description: "Bad request",
-          },
-        },
+          "404": {
+            description: "User not found"
+          }
+        }
       },
-    },
-    "/users/{id}": {
-      get: {
-        operationId: "getUserById",
-        summary: "Get user by ID",
-        description: "Retrieve a specific user by their ID",
-        tags: ["Users"],
+      delete: {
+        tags: ["User Management"],
+        operationId: "deleteUser",
+        summary: "Delete user account",
+        description: "Permanently delete a user account and all associated data",
         parameters: [
           {
             name: "id",
-            in: "path" as const,
+            in: "path",
             required: true,
-            schema: { type: "integer" as const },
-            description: "User ID",
-          },
+            schema: { type: "string" }
+          }
         ],
         responses: {
-          "200": {
-            description: "Successful response",
-            content: {
-              "application/json": {
-                schema: {
-                  type: "object" as const,
-                  properties: {
-                    id: { type: "integer" as const },
-                    name: { type: "string" as const },
-                    email: { type: "string" as const },
-                  },
-                },
-              },
-            },
+          "204": {
+            description: "User deleted successfully"
           },
           "404": {
-            description: "User not found",
-          },
-        },
-      },
-    },
+            description: "User not found"
+          }
+        }
+      }
+    }
   },
+  components: {
+    schemas: {
+      User: {
+        type: "object",
+        properties: {
+          id: { type: "string" },
+          name: { type: "string" },
+          email: { type: "string", format: "email" }
+        }
+      }
+    }
+  }
 };
 
 export default function OperationDetailedLayoutDemo() {
-  const [selectedPath, setSelectedPath] = useState<string | null>("/users");
-  const [selectedMethod, setSelectedMethod] = useState<string | null>("GET");
-
-  const handleSelectOperation = (
-    path: string,
-    method: string,
-    operation: any,
-  ) => {
-    setSelectedPath(path);
-    setSelectedMethod(method.toUpperCase());
-    console.log("Selected operation:", { path, method, operation });
-  };
+  const [selectedPath, setSelectedPath] = useState<string>("/users/{id}");
+  const [selectedMethod, setSelectedMethod] = useState<string>("get");
 
   return (
     <div className="w-full h-screen">
-      <div className="mb-4 p-4 bg-muted rounded-lg">
-        <h3 className="text-lg font-semibold mb-2">当前选择的操作</h3>
-        <p className="text-sm text-muted-foreground">
-          路径:{" "}
-          <code className="bg-background px-1 rounded">
-            {selectedPath || "无"}
-          </code>
-        </p>
-        <p className="text-sm text-muted-foreground">
-          方法:{" "}
-          <code className="bg-background px-1 rounded">
-            {selectedMethod || "无"}
-          </code>
-        </p>
-        <div className="mt-2 flex gap-2">
-          <button
-            onClick={() => handleSelectOperation("/users", "GET", {})}
-            className="px-3 py-1 text-xs bg-primary text-primary-foreground rounded"
-          >
-            选择 GET /users
-          </button>
-          <button
-            onClick={() => handleSelectOperation("/users", "POST", {})}
-            className="px-3 py-1 text-xs bg-primary text-primary-foreground rounded"
-          >
-            选择 POST /users
-          </button>
-          <button
-            onClick={() => handleSelectOperation("/users/{id}", "GET", {})}
-            className="px-3 py-1 text-xs bg-primary text-primary-foreground rounded"
-          >
-            选择 GET /users/&#123;id&#125;
-          </button>
-        </div>
-      </div>
-
       <OperationDetailedLayout
-        spec={sampleSpec}
+        spec={mockSpec}
         selectedPath={selectedPath}
         selectedMethod={selectedMethod}
-        onSelectOperation={handleSelectOperation}
-        className="border rounded-lg"
+        onSelectOperation={(path, method, operation) => {
+          setSelectedPath(path);
+          setSelectedMethod(method);
+          console.log("Selected operation:", path, method, operation);
+        }}
+        showCodegen={false}
+        showTryPanel={false}
       />
     </div>
   );

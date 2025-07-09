@@ -640,7 +640,6 @@ export const registry_ui: Registry["items"] = [
       "react"
     ],
     "registryDependencies": [
-      "button",
       "collapsible",
       "input",
       "sidebar",
@@ -768,13 +767,14 @@ export const registry_ui: Registry["items"] = [
       }
     ],
     "dependencies": [
-      "js-yaml",
       "openapi-types",
       "react"
     ],
     "registryDependencies": [
+      "sidebar",
       "https://pivotkit.vercel.app/r/hooks.json",
       "https://pivotkit.vercel.app/r/lib.json",
+      "https://pivotkit.vercel.app/r/navigation-sidebar.json",
       "https://pivotkit.vercel.app/r/operation-box.json",
       "https://pivotkit.vercel.app/r/try-it-out-panel.json"
     ]

@@ -25,7 +25,6 @@ interface OperationDetailedLayoutProps {
   ) => void;
   className?: string;
   // 新增开关控制
-  showNavigation?: boolean;
   showCodegen?: boolean;
   showTryPanel?: boolean;
   navigationWidth?: string;
@@ -43,7 +42,6 @@ const OperationDetailedLayout = React.forwardRef<
       selectedMethod = null,
       onSelectOperation = () => { },
       className,
-      showNavigation = true,
       showCodegen = true,
       showTryPanel = true,
       navigationWidth = "320px",
@@ -164,108 +162,6 @@ const OperationDetailedLayout = React.forwardRef<
     // 计算布局类名
     const showRightPanel = showCodegen || showTryPanel;
 
-    // 如果不显示导航，则不使用 SidebarProvider
-    if (!showNavigation) {
-      return (
-        <div
-          ref={ref}
-          className={`flex h-full ${className || ""}`}
-        >
-          {/* 内容布局 */}
-          <div className="flex-1 flex">
-            {/* 操作详情区域 */}
-            <div
-              className={cn('p-4', `flex-1 ${showRightPanel ? "border-r" : "max-w-4xl mx-auto"
-                }`)}
-            >
-              {currentOperation && localSelectedPath && localSelectedMethod ? (
-                <OperationDetail
-                  operation={currentOperation}
-                  path={localSelectedPath}
-                  method={localSelectedMethod}
-                  components={spec.components}
-                  className="h-full"
-                />
-              ) : (
-                <div className="flex items-center justify-center h-full">
-                  <div className="text-center">
-                    <h3 className="text-lg font-medium mb-2">
-                      {t("Select an operation")}
-                    </h3>
-                    <p className="text-sm text-muted-foreground">
-                      {t(
-                        "Choose an operation from the sidebar to view its details",
-                      )}
-                    </p>
-                  </div>
-                </div>
-              )}
-            </div>
-
-            {/* 右侧面板 */}
-            {showRightPanel && (
-              <div className="w-96 flex flex-col border-l">
-                {/* 代码生成面板 */}
-                {showCodegen && (
-                  <div className="flex-1 border-b">
-                    {currentOperation && localSelectedPath && localSelectedMethod ? (
-                      <Codegen
-                        endpoint={`${baseUrl}${localSelectedPath}`}
-                        method={localSelectedMethod.toLowerCase() as
-                          | "get"
-                          | "post"
-                          | "put"
-                          | "delete"
-                          | "patch"
-                          | "head"
-                          | "options"
-                          | "trace"
-                        }
-                        parameters={currentOperation.parameters}
-                        requestBody={currentOperation.requestBody}
-                        components={spec.components}
-                        collapsible={false}
-                      />
-                    ) : (
-                      <div className="flex items-center justify-center h-32">
-                        <p className="text-sm text-muted-foreground">
-                          {t("Select an operation to generate code")}
-                        </p>
-                      </div>
-                    )}
-                  </div>
-                )}
-
-                {/* 试用面板 */}
-                {showTryPanel && (
-                  <div className="flex-1">
-                    {currentOperation && localSelectedPath && localSelectedMethod ? (
-                      <TryItOutPanel
-                        operation={currentOperation}
-                        path={localSelectedPath}
-                        method={localSelectedMethod}
-                        baseUrl={baseUrl}
-                        components={spec.components}
-                        collapsible={false}
-                        className="h-full"
-                      />
-                    ) : (
-                      <div className="flex items-center justify-center h-32">
-                        <p className="text-sm text-muted-foreground">
-                          {t("Select an operation to try it out")}
-                        </p>
-                      </div>
-                    )}
-                  </div>
-                )}
-              </div>
-            )}
-          </div>
-        </div>
-      );
-    }
-
-    // 显示导航时使用 SidebarProvider
     return (
       <SidebarProvider defaultOpen={true}>
         {/* 导航侧边栏 - 始终渲染 */}
@@ -279,7 +175,7 @@ const OperationDetailedLayout = React.forwardRef<
         {/* 主内容区域 */}
         <main
           ref={ref}
-          className={`flex-1 flex flex-col h-full ${className || ""}`}
+          className={cn(`flex-1 flex flex-col h-full`, className)}
         >
           {/* Sidebar 控制按钮 - 始终显示 */}
           <div className="p-2 border-b">
@@ -290,8 +186,7 @@ const OperationDetailedLayout = React.forwardRef<
           <div className="flex-1 flex">
             {/* 操作详情区域 */}
             <div
-              className={`flex-1 ${showRightPanel ? "border-r" : "max-w-4xl mx-auto"
-                }`}
+              className={cn('p-4', `flex-1 ${showRightPanel ? "border-r" : "max-w-4xl mx-auto"}`)}
             >
               {currentOperation && localSelectedPath && localSelectedMethod ? (
                 <OperationDetail
@@ -319,10 +214,10 @@ const OperationDetailedLayout = React.forwardRef<
 
             {/* 右侧面板 */}
             {showRightPanel && (
-              <div className="w-96 flex flex-col border-l">
+              <div className="w-1/3 max-w-128 flex flex-col items-start p-4 gap-6">
                 {/* 代码生成面板 */}
                 {showCodegen && (
-                  <div className="flex-1 border-b">
+                  <div className="w-full">
                     {currentOperation && localSelectedPath && localSelectedMethod ? (
                       <Codegen
                         endpoint={`${baseUrl}${localSelectedPath}`}
@@ -353,7 +248,7 @@ const OperationDetailedLayout = React.forwardRef<
 
                 {/* 试用面板 */}
                 {showTryPanel && (
-                  <div className="flex-1">
+                  <div className="">
                     {currentOperation && localSelectedPath && localSelectedMethod ? (
                       <TryItOutPanel
                         operation={currentOperation}

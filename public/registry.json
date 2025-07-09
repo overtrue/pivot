@@ -647,7 +647,6 @@
         "react"
       ],
       "registryDependencies": [
-        "button",
         "collapsible",
         "input",
         "sidebar",
@@ -775,13 +774,14 @@
       "name": "operation-list-layout",
       "type": "registry:ui",
       "dependencies": [
-        "js-yaml",
         "openapi-types",
         "react"
       ],
       "registryDependencies": [
+        "sidebar",
         "https://pivotkit.vercel.app/r/hooks.json",
         "https://pivotkit.vercel.app/r/lib.json",
+        "https://pivotkit.vercel.app/r/navigation-sidebar.json",
         "https://pivotkit.vercel.app/r/operation-box.json",
         "https://pivotkit.vercel.app/r/try-it-out-panel.json"
       ],
@@ -2173,6 +2173,7 @@
         "openapi-types"
       ],
       "registryDependencies": [
+        "sidebar",
         "https://pivotkit.vercel.app/r/navigation-sidebar.json"
       ],
       "files": [

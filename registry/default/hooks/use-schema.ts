@@ -1,3 +1,5 @@
+"use client";
+
 import { resolveRef } from "@/registry/default/lib/resolve-ref";
 import { useMemo } from "react";
 

@@ -36,10 +36,10 @@ Pivot 是一个现代化的 React UI 组件库，专门为 OpenAPI 规范设计�
 
 ### 🛠️ 完善的工具链
 
-- **智能工具函数** - resolveRef、generateExample 等专业工具
-- **强大的 Hooks** - useOpenApi、useOperation、useSchema 等
+- **5+ 专业 Hooks** - useOpenApi、useOpenApiLoader、useOpenApiCombined、useOperation、useSchema 等
+- **智能工具函数** - resolveRef、generateExample、schema-utils、type-utils 等专业工具
 - **国际化支持** - 内置中英文翻译，可扩展多语言
-- **代码生成** - 支持 cURL、Python、PHP、Laravel 等多种语言
+- **多语言代码生成** - 支持 cURL、Python、PHP、Laravel、TypeScript 等
 
 ### 📦 Registry 系统
 
@@ -56,12 +56,13 @@ Pivot 采用了与 shadcn/ui 类似的 registry 系统，但专为 OpenAPI 场�
 ```
 pivot/
 ├── registry/              # 可分发组件库
-│   ├── pivot/            # 89+ 原子组件（OpenAPI 专用）
-│   ├── lib/              # 工具函数和 hooks（可分发）
-│   │   ├── hooks/        # useOpenApi、useOperation 等
-│   │   ├── utils/        # resolveRef、generateExample 等
-│   │   └── i18n/         # 国际化系统
-│   └── example/          # 复杂示例组件
+│   └── default/
+│       ├── ui/           # 89+ UI 组件（OpenAPI 专用）
+│       ├── hooks/        # 5+ React Hooks
+│       ├── lib/          # 工具函数和库
+│       │   ├── i18n/     # 国际化系统
+│       │   └── *.ts      # 工具函数
+│       └── example/      # 演示组件
 ├── components/           # 文档站点组件（不分发）
 ├── content/docs/         # MDX 文档内容
 └── app/                 # Next.js App Router 页面
@@ -69,36 +70,184 @@ pivot/
 
 ### 组件分类
 
-#### 可分发组件（registry/pivot/）
+#### 📊 状态与标识组件 (8个)
 
-专为 OpenAPI 设计的原子组件，包括：
+显示 API 状态、方法和重要标识：
 
-- **状态与标识**：`status-code`、`method-label`、`required-badge`、`deprecated-badge`
-- **数据展示**：`schema-display`、`parameter-item`、`response-item`、`example-display`
-- **交互组件**：`copy-button`、`expand-collapse`、`try-it-out-panel`
-- **布局容器**：`operation-box`、`section-title`、`navigation-sidebar`
-- **代码生成**：`curl-generator`、`python-generator`、`php-generator`
+- `status-code` - HTTP 状态码显示
+- `method-label` - HTTP 方法标签
+- `required-badge` - 必填参数标识
+- `deprecated-badge` - 废弃 API 标识
+- `format-badge` - 数据格式标识
+- `style-badge` - 样式类型标识
+- `required-marker` - 简单的必填标记
+- `in-label` - 参数位置标签
 
-#### 工具库（registry/lib/）
+#### 📋 数据展示组件 (15个)
 
-可复用的工具函数和 hooks：
+展示和处理 OpenAPI 数据结构：
 
-- **Hooks**：`useOpenApi`、`useOperation`、`useSchema`
-- **工具函数**：`resolveRef`、`generateExample`、`schema-utils`
-- **国际化**：完整的 i18n 系统，支持中英文
+- `schema-display` - OpenAPI Schema 数据展示
+- `schema-composition-display` - 复合模式显示
+- `schema-with-example-viewer` - 带示例的模式查看器
+- `parameter-item` - API 参数条目
+- `parameter-group` - 参数分组显示
+- `parameter-name` - 参数名称显示
+- `parameter-description` - 参数描述
+- `response-item` - 响应条目
+- `response-group` - 响应分组
+- `type-indicator` - 数据类型指示器
+- `constraint-display` - 约束条件显示
+- `default-value-display` - 默认值显示
+- `const-value` - 常量值显示
+- `enum-values-display` - 枚举值显示
+- `media-type-display` - 媒体类型显示
 
-#### 文档站点组件（components/）
+#### 📄 内容展示组件 (9个)
 
-专用于文档站点的组件，不对外分发。
+用于展示文档内容、示例和描述：
 
-本项目深受 [shadcn/ui](https://ui.shadcn.com) 的启发。
+- `example-display` - 示例数据显示
+- `examples-display` - 多个示例展示
+- `description-display` - 描述信息展示
+- `enum-values` - 枚举值显示
+- `code-markdown` - Markdown 代码块
+- `external-docs-display` - 外部文档展示
+- `license-display` - 许可证显示
+- `contact-display` - 联系信息显示
+- `value-display` - 通用值显示
+
+#### 🔧 交互功能组件 (10个)
+
+提供用户交互功能：
+
+- `copy-button` - 一键复制按钮
+- `expand-collapse` - 展开/折叠切换
+- `language-switcher` - 语言切换器
+- `media-type-selector` - 媒体类型选择器
+- `try-it-out-panel` - API 在线测试面板
+- `resizable-sidebar` - 可调整大小的侧边栏
+- `component-tabs` - 组件标签页
+- `component-items-list` - 组件列表
+- `component-detail` - 组件详情
+- `webhook-display` - Webhook 显示
+
+#### 🏗️ 布局组件 (15个)
+
+用于组织和布局的容器组件：
+
+- `operation-detailed-layout` - 操作详情布局
+- `operation-list-layout` - 操作列表布局
+- `navigation-sidebar` - 导航侧边栏
+- `operation-box` - API 操作容器
+- `operation-detail` - 操作详情容器
+- `operation-path` - 操作路径
+- `path-segment` - 路径片段
+- `section-title` - 章节标题
+- `accordion-components-section` - 手风琴组件章节
+- `info-section` - API 基本信息
+- `components-section` - 组件章节
+- `servers-section` - 服务器章节
+- `server` - 服务器定义
+- `server-display` - 服务器信息显示
+- `server-variable` - 服务器变量
+
+#### 🌍 API 结构组件 (20个)
+
+处理各种文档结构和章节：
+
+- `parameters-section` - 参数章节
+- `request-body-section` - 请求体章节
+- `responses-section` - 响应章节
+- `response-content-section` - 响应内容章节
+- `response-headers-table` - 响应头表格
+- `headers-section` - 请求头章节
+- `header-item` - 头部条目
+- `links-section` - 链接章节
+- `link-item` - 链接条目
+- `callback-display` - 回调函数显示
+- `security-section` - 安全章节
+- `security-requirements-section` - 安全要求章节
+- `security-scheme` - 安全模式
+- `security-scheme-display` - 安全模式显示
+- `security-requirement-item` - 安全要求条目
+- `oauth-flow` - OAuth 流程
+- `oauth-flow-details` - OAuth 流程详情
+- `scheme-type` - 模式类型
+- `webhook-label` - Webhook 标签
+- `path-item-display` - 路径项显示
+
+#### 💻 代码生成组件 (6个)
+
+支持多种编程语言的代码生成：
+
+- `codegen` - 通用代码生成器
+- `curl-generator` - cURL 命令生成
+- `python-generator` - Python 代码生成
+- `php-generator` - PHP 代码生成
+- `laravel-generator` - Laravel 代码生成
+- `typescript-generator` - TypeScript 代码生成
+
+#### 🔄 高级功能组件 (6个)
+
+专业的高级功能组件：
+
+- `terms-of-service` - 服务条款
+- `faker-example` - 虚拟数据示例生成
+- `pattern-display` - 正则模式显示
+- `servers` - 服务器列表
+- `security-schemes` - 安全模式列表
+- `external-docs` - 外部文档链接
+
+### 工具库（registry/default/lib/）
+
+#### 🎣 React Hooks (5个)
+
+```tsx
+import { useOpenApi } from "@/hooks/use-openapi";
+import { useOpenApiLoader } from "@/hooks/use-openapi-loader";
+import { useOpenApiCombined } from "@/hooks/use-openapi-combined";
+import { useOperation } from "@/hooks/use-operation";
+import { useSchema } from "@/hooks/use-schema";
+```
+
+#### 🛠️ 工具函数 (8个)
+
+```tsx
+import { resolveRef } from "@/lib/resolve-ref";
+import { generateExample } from "@/lib/generate-example";
+import { isReferenceObject } from "@/lib/schema-utils";
+import { getSchemaType } from "@/lib/type-utils";
+```
+
+#### 🌍 国际化系统
+
+```tsx
+import { useI18n, I18nProvider } from "@/lib/i18n";
+
+// 支持的语言
+-中文(zh) - 英文(en);
+```
 
 ## 安装
 
 ### 快速开始
 
 ```bash
-npx shadcn@latest add https://pivotkit.vercel.app/registry.json status-code
+npx shadcn@latest add https://pivotkit.vercel.app/r/status-code.json
+```
+
+### 批量安装
+
+```bash
+# 安装所有 UI 组件
+npx shadcn@latest add https://pivotkit.vercel.app/r/index.json
+
+# 安装 Hooks
+npx shadcn@latest add https://pivotkit.vercel.app/r/hooks.json
+
+# 安装工具库
+npx shadcn@latest add https://pivotkit.vercel.app/r/lib.json
 ```
 
 ### 手动安装
@@ -106,27 +255,93 @@ npx shadcn@latest add https://pivotkit.vercel.app/registry.json status-code
 ```bash
 npm install clsx tailwind-merge class-variance-authority
 npm install @radix-ui/react-slot lucide-react
+npm install openapi-types js-yaml @faker-js/faker
 ```
 
 ## 使用示例
 
+### 基础组件使用
+
 ```tsx
-import { StatusCode } from "@/components/pivot/status-code";
-import { MethodLabel } from "@/components/pivot/method-label";
-import { useOpenApi } from "@/lib/hooks/use-openapi";
+import { StatusCode } from "@/components/ui/status-code";
+import { MethodLabel } from "@/components/ui/method-label";
+import { OperationDetail } from "@/components/ui/operation-detail";
 
-export default function ApiEndpoint({ spec }) {
-  const openApi = useOpenApi(spec);
-  const operations = openApi.getOperationsByTag();
-
+export default function ApiEndpoint({ operation, path, method }) {
   return (
     <div className="space-y-4">
       <div className="flex items-center gap-3">
-        <MethodLabel method="GET" />
+        <MethodLabel method={method} />
+        <code className="text-sm">{path}</code>
         <StatusCode code={200} />
       </div>
-      {/* 更多组件... */}
+
+      <OperationDetail
+        operation={operation}
+        path={path}
+        method={method}
+        components={spec.components}
+      />
     </div>
+  );
+}
+```
+
+### 使用 Hooks 处理 OpenAPI
+
+```tsx
+import { useOpenApi } from "@/hooks/use-openapi";
+import { useOpenApiLoader } from "@/hooks/use-openapi-loader";
+
+export default function ApiExplorer({ url }) {
+  const { spec, loading, error } = useOpenApiLoader({
+    type: "url",
+    data: url,
+  });
+
+  const openApi = useOpenApi(spec);
+  const operations = openApi?.getOperationsByTag() || {};
+
+  if (loading) return <div>加载中...</div>;
+  if (error) return <div>加载失败: {error}</div>;
+
+  return (
+    <div>
+      {Object.entries(operations).map(([tag, ops]) => (
+        <div key={tag} className="mb-8">
+          <h2 className="text-2xl font-bold mb-4">{tag}</h2>
+          {ops.map((op) => (
+            <OperationBox
+              key={`${op.path}-${op.method}`}
+              operation={op.operation}
+              path={op.path}
+              method={op.method}
+            />
+          ))}
+        </div>
+      ))}
+    </div>
+  );
+}
+```
+
+### 完整的布局组件
+
+```tsx
+import { OperationDetailedLayout } from "@/components/ui/operation-detailed-layout";
+
+export default function ApiDocsPage() {
+  return (
+    <OperationDetailedLayout
+      url="https://api.example.com/openapi.json"
+      selectedPath="/users/{id}"
+      selectedMethod="GET"
+      showCodegen={true}
+      showTryPanel={true}
+      onSelectOperation={(path, method, operation) => {
+        console.log("选中操作:", path, method);
+      }}
+    />
   );
 }
 ```
@@ -141,6 +356,18 @@ const openApi = useOpenApi(spec);
 const operations = openApi.getOperationsByTag();
 const resolved = openApi.resolve(reference);
 
+// 数据加载 hook
+const { spec, loading, error } = useOpenApiLoader({
+  type: "url",
+  data: "https://api.example.com/openapi.json",
+});
+
+// 结合加载和解析的 hook
+const { spec, openApi, operations } = useOpenApiCombined({
+  type: "url",
+  data: "https://api.example.com/openapi.json",
+});
+
 // 操作专用 hook
 const operation = useOperation(operationData, path, method);
 const parameters = operation.getParameters();
@@ -153,7 +380,7 @@ const properties = schema.getProperties();
 ### 🌍 国际化支持
 
 ```tsx
-import { useI18n } from "@/registry/lib/i18n/";
+import { useI18n } from "@/lib/i18n";
 
 function MyComponent() {
   const { t, locale, setLocale } = useI18n();
@@ -162,6 +389,7 @@ function MyComponent() {
     <div>
       <p>{t("operation.parameters")}</p>
       <button onClick={() => setLocale("zh")}>中文</button>
+      <button onClick={() => setLocale("en")}>English</button>
     </div>
   );
 }
@@ -170,7 +398,7 @@ function MyComponent() {
 ### 🎯 代码生成
 
 ```tsx
-import { generateExample } from "@/lib/utils/generate-example";
+import { generateExample } from "@/lib/generate-example";
 
 // 根据 OpenAPI Schema 生成示例数据
 const example = generateExample(schema, components, {
@@ -183,7 +411,7 @@ const example = generateExample(schema, components, {
 
 ### 1. 遵循组件层次
 
-- **registry/pivot** 组件：使用 `../lib/` 下的工具
+- **registry/default/ui** 组件：使用 `../lib/` 下的工具
 - **components** 组件：使用 `@/hooks/` 和 `@/lib/` 下的工具
 
 ### 2. 样式处理
@@ -198,16 +426,33 @@ import { cn } from "@/lib/utils";
 ### 3. 引用解析
 
 ```tsx
-import { resolveRef } from "@/lib/utils/resolve-ref";
+import { resolveRef } from "@/lib/resolve-ref";
 
-// 始终使用 resolveRef 处理 OpenAPI 引用
-const resolved = resolveRef(reference, components, "schemas");
+// 解析 OpenAPI 引用
+const resolved = resolveRef(reference, components);
 ```
 
-## 贡献
+### 4. 类型安全
 
-欢迎贡献代码！请查看我们的 [贡献指南](https://github.com/your-repo/pivot) 了解更多信息。
+```tsx
+import type { OpenAPIV3 } from "openapi-types";
 
-## 许可证
+interface MyComponentProps {
+  operation: OpenAPIV3.OperationObject;
+  components?: OpenAPIV3.ComponentsObject;
+}
+```
 
-MIT License
+## 开始使用
+
+准备好开始了吗？查看我们的[快速开始指南](/docs/quick-start)，或者直接在[在线演示](/viewer)中体验 Pivot 的强大功能。
+
+### 推荐阅读
+
+- [📖 快速开始](/docs/quick-start) - 5 分钟上手指南
+- [🏗️ 架构设计](/docs/architecture) - 了解设计原理
+- [🎯 组件总览](/docs/components) - 浏览所有可用组件
+- [🔧 Hooks 和工具](/docs/hooks-and-utils) - 深入了解工具链
+- [🎨 模板示例](/docs/templates) - 预制模板和布局
+
+本项目深受 [shadcn/ui](https://ui.shadcn.com) 的启发。

@@ -1,0 +1,118 @@
+---
+title: Operation Detailed Layout
+description: 操作详情布局组件，专注于单个 API 端点的详细信息。
+component: true
+---
+
+操作详情布局组件，专注于单个 API 端点的详细信息，包含代码生成和测试面板。
+
+<ComponentPreview name="operation-detailed-layout-demo" />
+
+## 安装
+
+```bash
+npx shadcn@latest add https://pivotkit.vercel.app/r/operation-detailed-layout.json
+```
+
+## 使用方法
+
+```tsx
+import { OperationDetailedLayout } from "@/components/pivot/operation-detailed-layout";
+```
+
+```tsx
+<OperationDetailedLayout />
+```
+
+## 示例
+
+### 基本用法
+
+```tsx
+<OperationDetailedLayout />
+```
+
+## 在文档中使用 iframe
+
+如果您需要在文档页面中嵌入组件演示，可以使用 iframe 指向专门的演示路由：
+
+### 方法 1：直接使用 iframe
+
+```tsx
+export default function MyDocumentationPage() {
+  return (
+    <div>
+      <h1>API 文档</h1>
+      <p>这是一个操作详情布局的演示：</p>
+
+      {/* 使用 iframe 嵌入组件演示 */}
+      <div className="w-full h-96 rounded-lg border overflow-hidden">
+        <iframe
+          src="/demo/operation-detailed-layout"
+          className="w-full h-full border-0"
+          title="Operation Detailed Layout Demo"
+        />
+      </div>
+    </div>
+  );
+}
+```
+
+### 方法 2：创建可复用的 Demo 容器组件
+
+```tsx
+// components/demo-container.tsx
+interface DemoContainerProps {
+  component: string;
+  height?: string;
+  title?: string;
+}
+
+export function DemoContainer({
+  component,
+  height = "h-96",
+  title = `${component} Demo`,
+}: DemoContainerProps) {
+  return (
+    <div className={`w-full ${height} rounded-lg border overflow-hidden`}>
+      <iframe
+        src={`/demo/${component}`}
+        className="w-full h-full border-0"
+        title={title}
+      />
+    </div>
+  );
+}
+
+// 使用方式
+<DemoContainer component="operation-detailed-layout" height="h-screen" />;
+```
+
+### 支持的组件
+
+动态路由 `/demo/[component]` 支持以下组件：
+
+- `navigation-sidebar` - 导航侧边栏
+- `operation-detailed-layout` - 操作详情布局
+- `operation-list-layout` - 操作列表布局
+- `codegen` - 代码生成器
+- `operation-box` - 操作框
+- `operation-detail` - 操作详情
+- `try-it-out-panel` - 试用面板
+- `schema-display` - 模式显示
+- `parameter-item` - 参数项
+- `response-item` - 响应项
+
+### 注意事项
+
+1. **路由结构**：使用 `/demo/[component]` 动态路由，其中 `[component]` 是组件名称
+2. **404 处理**：不存在的组件会自动返回 404 页面
+3. **加载状态**：组件支持优雅的加载状态显示
+4. **独立环境**：每个 demo 在独立的 iframe 环境中运行，避免样式冲突
+
+这种方式的优势：
+
+- **隔离性**：每个 demo 在独立环境中运行
+- **可维护性**：统一的路由管理
+- **扩展性**：容易添加新的 demo 组件
+- **性能**：动态加载和按需渲染

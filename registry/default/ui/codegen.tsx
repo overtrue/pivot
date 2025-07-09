@@ -208,19 +208,20 @@ const codeGenerators: CodeGenerator[] = [
 interface CodegenProps {
   endpoint: string;
   method:
-    | "get"
-    | "post"
-    | "put"
-    | "delete"
-    | "patch"
-    | "head"
-    | "options"
-    | "trace";
+  | "get"
+  | "post"
+  | "put"
+  | "delete"
+  | "patch"
+  | "head"
+  | "options"
+  | "trace";
   parameters?: (OpenAPIV3.ParameterObject | OpenAPIV3.ReferenceObject)[];
   requestBody?: OpenAPIV3.RequestBodyObject | OpenAPIV3.ReferenceObject;
   components?: OpenAPIV3.ComponentsObject;
   collapsible?: boolean;
   defaultCollapsed?: boolean;
+  className?: string;
 }
 
 const Codegen: React.FC<CodegenProps> = ({
@@ -229,6 +230,7 @@ const Codegen: React.FC<CodegenProps> = ({
   parameters = [],
   requestBody,
   components,
+  className,
   collapsible = false,
   defaultCollapsed = false,
 }) => {
@@ -335,7 +337,7 @@ const Codegen: React.FC<CodegenProps> = ({
   const currentGenerator = codeGenerators.find((gen) => gen.id === languageId);
 
   return (
-    <div className="border rounded-lg overflow-hidden bg-card">
+    <div className={cn("border rounded-lg overflow-hidden bg-card", className)}>
       {/* Header */}
       <div
         className={cn(

@@ -1,3 +1,5 @@
+"use client";
+
 import type { OpenAPIV3 } from "openapi-types";
 import { useMemo } from "react";
 import { useOpenApi } from "./use-openapi";

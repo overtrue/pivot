@@ -4,6 +4,7 @@ import { Icons } from "@/components/icons";
 import { ModeToggle } from "@/components/mode-toggle";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { Drawer, DrawerClose, DrawerContent, DrawerHeader, DrawerTitle, DrawerTrigger } from "@/components/ui/drawer";
 import { Input } from "@/components/ui/input";
 import {
   Select,
@@ -18,7 +19,7 @@ import { I18nProvider } from "@/registry/default/lib/i18n";
 import { LanguageSwitcher } from "@/registry/default/ui/language-switcher";
 import { OperationDetailedLayout } from "@/registry/default/ui/operation-detailed-layout";
 import { OperationListLayout } from "@/registry/default/ui/operation-list-layout";
-import { Github, Layout, LayoutTemplate } from "lucide-react";
+import { Github, Layout, LayoutTemplate, Settings, X } from "lucide-react";
 import Link from "next/link";
 import type { OpenAPIV3 } from "openapi-types";
 import { useEffect, useMemo, useState } from "react";
@@ -68,6 +69,7 @@ export default function ViewerPage() {
   const [selectedPath, setSelectedPath] = useState<string | null>(null);
   const [selectedMethod, setSelectedMethod] = useState<string | null>(null);
   const [isClient, setIsClient] = useState(false);
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
   // 客户端初始化：从 localStorage 加载保存的 URL
   useEffect(() => {
@@ -111,99 +113,161 @@ export default function ViewerPage() {
 
   return (
     <I18nProvider>
-      <div className="min-h-screen flex flex-col">
-        {/* 顶部导航栏 */}
-        <header className="bg-background border-b border-border sticky top-0 z-50">
-          <div className="container mx-auto px-4 py-3">
-            <div className="flex items-center justify-between gap-4">
-              {/* Logo */}
-              <Link
-                href="/"
-                className="relative mr-6 flex items-center space-x-2"
-              >
-                <Icons.logo className="size-6" />
-                <span className="hidden font-bold md:inline-block">
-                  {siteConfig.name}
-                </span>
-              </Link>
+      <div className="min-h-screen flex flex-col relative">
+        {/* 浮动设置按钮 */}
+        <Drawer open={isDrawerOpen} onOpenChange={setIsDrawerOpen}>
+          <DrawerTrigger asChild>
+            <Button
+              variant="outline"
+              size="icon"
+              className="fixed top-4 right-4 z-50 shadow-lg bg-background/95 backdrop-blur-sm border-border hover:bg-accent"
+            >
+              <Settings className="h-4 w-4" />
+            </Button>
+          </DrawerTrigger>
 
-              {/* 中间控制区域 */}
-              <div className="flex-1 max-w-4xl flex items-center gap-3">
-                {/* 示例选择器 */}
+          <DrawerContent className="h-[85vh] max-w-md ml-auto mr-0 mt-0 rounded-l-lg rounded-r-none">
+            <DrawerHeader className="border-b">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center space-x-2">
+                  <Icons.logo className="size-5" />
+                  <DrawerTitle className="text-lg font-semibold">
+                    {siteConfig.name}
+                  </DrawerTitle>
+                </div>
+                <DrawerClose asChild>
+                  <Button variant="ghost" size="icon" className="h-8 w-8">
+                    <X className="h-4 w-4" />
+                  </Button>
+                </DrawerClose>
+              </div>
+            </DrawerHeader>
+
+            <div className="flex-1 overflow-y-auto p-6 space-y-6">
+              {/* API 示例选择 */}
+              <div className="space-y-3">
+                <h3 className="text-sm font-medium text-foreground">API 示例</h3>
                 <Select value={specUrl} onValueChange={handleExampleSelect}>
-                  <SelectTrigger className="w-48">
+                  <SelectTrigger className="w-full">
                     <SelectValue placeholder="选择示例 API" />
                   </SelectTrigger>
-                  <SelectContent>
+                  <SelectContent
+                    position="popper"
+                    side="bottom"
+                    align="start"
+                    sideOffset={4}
+                  >
                     {API_EXAMPLES.map((example) => (
                       <SelectItem key={example.url} value={example.url}>
-                        <div className="flex items-center gap-2">
-                          <Badge variant="outline" className="text-xs">
-                            {example.format.toUpperCase()}
-                          </Badge>
-                          <span>{example.name}</span>
+                        <div className="flex flex-col gap-1">
+                          <div className="flex items-center gap-2">
+                            <Badge variant="outline" className="text-xs">
+                              {example.format.toUpperCase()}
+                            </Badge>
+                            <span className="font-medium">{example.name}</span>
+                          </div>
                         </div>
                       </SelectItem>
                     ))}
                   </SelectContent>
                 </Select>
+              </div>
 
-                {/* URL输入框 */}
-                <div className="flex-1 relative">
-                  <Input
-                    type="text"
-                    value={specUrl}
-                    onChange={(e) => setSpecUrl(e.target.value)}
-                    placeholder="输入 OpenAPI 规范 URL"
-                  />
-                </div>
+              {/* 自定义 URL */}
+              <div className="space-y-3">
+                <h3 className="text-sm font-medium text-foreground">自定义 URL</h3>
+                <Input
+                  type="text"
+                  value={specUrl}
+                  onChange={(e) => setSpecUrl(e.target.value)}
+                  placeholder="输入 OpenAPI 规范 URL"
+                  className="w-full"
+                />
+              </div>
 
-                {/* 布局切换按钮 */}
-                <div className="flex items-center bg-muted rounded-lg p-1">
+              {/* 布局选择 */}
+              <div className="space-y-3">
+                <h3 className="text-sm font-medium text-foreground">布局模式</h3>
+                <div className="grid grid-cols-2 gap-2">
                   <Button
-                    variant={
-                      layoutType === "operationDetail" ? "default" : "ghost"
-                    }
-                    size="sm"
+                    variant={layoutType === "operationDetail" ? "default" : "outline"}
+                    className="w-full justify-start"
                     onClick={() => setLayoutType("operationDetail")}
-                    className="h-8"
                   >
-                    <Layout className="w-4 h-4 mr-1" />
-                    操作详情
+                    <Layout className="w-4 h-4 mr-2" />
+                    操作详情模式
                   </Button>
                   <Button
-                    variant={
-                      layoutType === "operationList" ? "default" : "ghost"
-                    }
-                    size="sm"
+                    variant={layoutType === "operationList" ? "default" : "outline"}
+                    className="w-full justify-start"
                     onClick={() => setLayoutType("operationList")}
-                    className="h-8"
                   >
-                    <LayoutTemplate className="w-4 h-4 mr-1" />
-                    操作列表
+                    <LayoutTemplate className="w-4 h-4 mr-2" />
+                    操作列表模式
                   </Button>
                 </div>
               </div>
 
-              {/* 右侧操作区域 */}
-              <div className="flex items-center gap-2">
-                <LanguageSwitcher />
-                <ModeToggle />
-                <Button variant="ghost" size="sm" asChild>
-                  <Link
-                    href="https://github.com/overtrue/pivot"
-                    target="_blank"
-                  >
-                    <Github className="w-4 h-4" />
-                  </Link>
-                </Button>
+              {/* 设置选项 */}
+              <div className="space-y-3">
+                <h3 className="text-sm font-medium text-foreground">设置</h3>
+                <div className="space-y-2">
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm">语言</span>
+                    <LanguageSwitcher />
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm">主题</span>
+                    <ModeToggle />
+                  </div>
+                </div>
               </div>
+
+              {/* 链接 */}
+              <div className="space-y-3">
+                <h3 className="text-sm font-medium text-foreground">链接</h3>
+                <div className="space-y-2">
+                  <Button variant="outline" className="w-full justify-start" asChild>
+                    <Link href="/">
+                      <Icons.logo className="w-4 h-4 mr-2" />
+                      返回主页
+                    </Link>
+                  </Button>
+                  <Button variant="outline" className="w-full justify-start" asChild>
+                    <Link href="https://github.com/overtrue/pivot" target="_blank">
+                      <Github className="w-4 h-4 mr-2" />
+                      GitHub 仓库
+                    </Link>
+                  </Button>
+                </div>
+              </div>
+
+              {/* 当前状态 */}
+              {(selectedPath && selectedMethod) && (
+                <div className="space-y-3">
+                  <h3 className="text-sm font-medium text-foreground">当前选择</h3>
+                  <div className="space-y-2">
+                    <div className="text-xs">
+                      <span className="text-muted-foreground">路径: </span>
+                      <code className="bg-muted px-1 rounded text-foreground">
+                        {selectedPath}
+                      </code>
+                    </div>
+                    <div className="text-xs">
+                      <span className="text-muted-foreground">方法: </span>
+                      <code className="bg-muted px-1 rounded text-foreground">
+                        {selectedMethod}
+                      </code>
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
-          </div>
-        </header>
+          </DrawerContent>
+        </Drawer>
 
         {/* 主要内容区域 */}
-        <main className="flex-1">
+        <main className="h-screen">
           {layoutType === "operationList" ? (
             <OperationListLayout
               spec={spec}
