@@ -15,7 +15,7 @@
       "path": "registry/default/ui/servers-section.tsx",
       "content": "import { cn } from \"@/lib/utils\";\nimport type { OpenAPIV3 } from \"openapi-types\";\nimport React from \"react\";\nimport { SectionTitle } from \"@/registry/default/ui/section-title\";\nimport { ServerDisplay } from \"@/registry/default/ui/server-display\";\n\ninterface ServersSectionProps {\n  servers: OpenAPIV3.ServerObject[];\n  className?: string;\n}\n\nconst ServersSection = React.forwardRef<HTMLDivElement, ServersSectionProps>(\n  ({ servers, className }, ref) => {\n    if (!servers || servers.length === 0) {\n      return null;\n    }\n\n    return (\n      <div ref={ref} className={cn(\"py-4 dark:text-neutral-200\", className)}>\n        <SectionTitle title=\"Servers\" className=\"text-xl mb-3\" />\n        <div className=\"space-y-4\">\n          {servers.map((server, index) => (\n            <ServerDisplay key={index} server={server} className=\"rounded\" />\n          ))}\n        </div>\n      </div>\n    );\n  },\n);\n\nServersSection.displayName = \"ServersSection\";\n\nexport { ServersSection };\n",
       "type": "registry:ui",
-      "target": "components/ui/servers-section.tsx"
+      "target": "components/pivot/servers-section.tsx"
     }
   ]
 }

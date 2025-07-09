@@ -10,7 +10,7 @@ export const registry_ui: Registry["items"] = [
       {
         "path": "registry/default/ui/accordion-components-section.tsx",
         "type": "registry:ui",
-        "target": "components/ui/accordion-components-section.tsx"
+        "target": "components/pivot/accordion-components-section.tsx"
       }
     ],
     "dependencies": [
@@ -29,7 +29,7 @@ export const registry_ui: Registry["items"] = [
       {
         "path": "registry/default/ui/callback-display.tsx",
         "type": "registry:ui",
-        "target": "components/ui/callback-display.tsx"
+        "target": "components/pivot/callback-display.tsx"
       }
     ],
     "dependencies": [
@@ -48,7 +48,7 @@ export const registry_ui: Registry["items"] = [
       {
         "path": "registry/default/ui/code-markdown.tsx",
         "type": "registry:ui",
-        "target": "components/ui/code-markdown.tsx"
+        "target": "components/pivot/code-markdown.tsx"
       }
     ],
     "dependencies": [
@@ -67,7 +67,7 @@ export const registry_ui: Registry["items"] = [
       {
         "path": "registry/default/ui/codegen.tsx",
         "type": "registry:ui",
-        "target": "components/ui/codegen.tsx"
+        "target": "components/pivot/codegen.tsx"
       }
     ],
     "dependencies": [
@@ -87,7 +87,7 @@ export const registry_ui: Registry["items"] = [
       {
         "path": "registry/default/ui/component-detail.tsx",
         "type": "registry:ui",
-        "target": "components/ui/component-detail.tsx"
+        "target": "components/pivot/component-detail.tsx"
       }
     ],
     "dependencies": [
@@ -115,7 +115,7 @@ export const registry_ui: Registry["items"] = [
       {
         "path": "registry/default/ui/component-items-list.tsx",
         "type": "registry:ui",
-        "target": "components/ui/component-items-list.tsx"
+        "target": "components/pivot/component-items-list.tsx"
       }
     ],
     "dependencies": [
@@ -129,7 +129,7 @@ export const registry_ui: Registry["items"] = [
       {
         "path": "registry/default/ui/component-tabs.tsx",
         "type": "registry:ui",
-        "target": "components/ui/component-tabs.tsx"
+        "target": "components/pivot/component-tabs.tsx"
       }
     ],
     "dependencies": [
@@ -143,7 +143,7 @@ export const registry_ui: Registry["items"] = [
       {
         "path": "registry/default/ui/components-section.tsx",
         "type": "registry:ui",
-        "target": "components/ui/components-section.tsx"
+        "target": "components/pivot/components-section.tsx"
       }
     ],
     "dependencies": [
@@ -163,7 +163,7 @@ export const registry_ui: Registry["items"] = [
       {
         "path": "registry/default/ui/const-value.tsx",
         "type": "registry:ui",
-        "target": "components/ui/const-value.tsx"
+        "target": "components/pivot/const-value.tsx"
       }
     ],
     "dependencies": [
@@ -180,7 +180,7 @@ export const registry_ui: Registry["items"] = [
       {
         "path": "registry/default/ui/constraint-display.tsx",
         "type": "registry:ui",
-        "target": "components/ui/constraint-display.tsx"
+        "target": "components/pivot/constraint-display.tsx"
       }
     ],
     "dependencies": [
@@ -195,7 +195,7 @@ export const registry_ui: Registry["items"] = [
       {
         "path": "registry/default/ui/contact-display.tsx",
         "type": "registry:ui",
-        "target": "components/ui/contact-display.tsx"
+        "target": "components/pivot/contact-display.tsx"
       }
     ],
     "dependencies": [
@@ -210,7 +210,7 @@ export const registry_ui: Registry["items"] = [
       {
         "path": "registry/default/ui/copy-button.tsx",
         "type": "registry:ui",
-        "target": "components/ui/copy-button.tsx"
+        "target": "components/pivot/copy-button.tsx"
       }
     ],
     "dependencies": [
@@ -228,7 +228,7 @@ export const registry_ui: Registry["items"] = [
       {
         "path": "registry/default/ui/curl-generator.tsx",
         "type": "registry:ui",
-        "target": "components/ui/curl-generator.tsx"
+        "target": "components/pivot/curl-generator.tsx"
       }
     ],
     "dependencies": [
@@ -243,7 +243,7 @@ export const registry_ui: Registry["items"] = [
       {
         "path": "registry/default/ui/default-value-display.tsx",
         "type": "registry:ui",
-        "target": "components/ui/default-value-display.tsx"
+        "target": "components/pivot/default-value-display.tsx"
       }
     ],
     "dependencies": [
@@ -260,7 +260,7 @@ export const registry_ui: Registry["items"] = [
       {
         "path": "registry/default/ui/deprecated-badge.tsx",
         "type": "registry:ui",
-        "target": "components/ui/deprecated-badge.tsx"
+        "target": "components/pivot/deprecated-badge.tsx"
       }
     ],
     "dependencies": [
@@ -274,7 +274,7 @@ export const registry_ui: Registry["items"] = [
       {
         "path": "registry/default/ui/description-display.tsx",
         "type": "registry:ui",
-        "target": "components/ui/description-display.tsx"
+        "target": "components/pivot/description-display.tsx"
       }
     ],
     "dependencies": [
@@ -289,7 +289,7 @@ export const registry_ui: Registry["items"] = [
       {
         "path": "registry/default/ui/enum-values-display.tsx",
         "type": "registry:ui",
-        "target": "components/ui/enum-values-display.tsx"
+        "target": "components/pivot/enum-values-display.tsx"
       }
     ],
     "dependencies": [
@@ -306,7 +306,7 @@ export const registry_ui: Registry["items"] = [
       {
         "path": "registry/default/ui/enum-values.tsx",
         "type": "registry:ui",
-        "target": "components/ui/enum-values.tsx"
+        "target": "components/pivot/enum-values.tsx"
       }
     ],
     "dependencies": [
@@ -323,7 +323,7 @@ export const registry_ui: Registry["items"] = [
       {
         "path": "registry/default/ui/example-display.tsx",
         "type": "registry:ui",
-        "target": "components/ui/example-display.tsx"
+        "target": "components/pivot/example-display.tsx"
       }
     ],
     "dependencies": [
@@ -341,7 +341,7 @@ export const registry_ui: Registry["items"] = [
       {
         "path": "registry/default/ui/examples-display.tsx",
         "type": "registry:ui",
-        "target": "components/ui/examples-display.tsx"
+        "target": "components/pivot/examples-display.tsx"
       }
     ],
     "dependencies": [
@@ -360,7 +360,7 @@ export const registry_ui: Registry["items"] = [
       {
         "path": "registry/default/ui/expand-collapse.tsx",
         "type": "registry:ui",
-        "target": "components/ui/expand-collapse.tsx"
+        "target": "components/pivot/expand-collapse.tsx"
       }
     ],
     "dependencies": [
@@ -374,7 +374,7 @@ export const registry_ui: Registry["items"] = [
       {
         "path": "registry/default/ui/external-docs-display.tsx",
         "type": "registry:ui",
-        "target": "components/ui/external-docs-display.tsx"
+        "target": "components/pivot/external-docs-display.tsx"
       }
     ],
     "dependencies": [
@@ -389,7 +389,7 @@ export const registry_ui: Registry["items"] = [
       {
         "path": "registry/default/ui/external-docs.tsx",
         "type": "registry:ui",
-        "target": "components/ui/external-docs.tsx"
+        "target": "components/pivot/external-docs.tsx"
       }
     ],
     "dependencies": [
@@ -403,7 +403,7 @@ export const registry_ui: Registry["items"] = [
       {
         "path": "registry/default/ui/format-badge.tsx",
         "type": "registry:ui",
-        "target": "components/ui/format-badge.tsx"
+        "target": "components/pivot/format-badge.tsx"
       }
     ],
     "dependencies": [
@@ -417,7 +417,7 @@ export const registry_ui: Registry["items"] = [
       {
         "path": "registry/default/ui/header-item.tsx",
         "type": "registry:ui",
-        "target": "components/ui/header-item.tsx"
+        "target": "components/pivot/header-item.tsx"
       }
     ],
     "dependencies": [
@@ -443,7 +443,7 @@ export const registry_ui: Registry["items"] = [
       {
         "path": "registry/default/ui/headers-section.tsx",
         "type": "registry:ui",
-        "target": "components/ui/headers-section.tsx"
+        "target": "components/pivot/headers-section.tsx"
       }
     ],
     "dependencies": [
@@ -463,7 +463,7 @@ export const registry_ui: Registry["items"] = [
       {
         "path": "registry/default/ui/in-label.tsx",
         "type": "registry:ui",
-        "target": "components/ui/in-label.tsx"
+        "target": "components/pivot/in-label.tsx"
       }
     ],
     "dependencies": [
@@ -477,7 +477,7 @@ export const registry_ui: Registry["items"] = [
       {
         "path": "registry/default/ui/info-section.tsx",
         "type": "registry:ui",
-        "target": "components/ui/info-section.tsx"
+        "target": "components/pivot/info-section.tsx"
       }
     ],
     "dependencies": [
@@ -498,7 +498,7 @@ export const registry_ui: Registry["items"] = [
       {
         "path": "registry/default/ui/language-switcher.tsx",
         "type": "registry:ui",
-        "target": "components/ui/language-switcher.tsx"
+        "target": "components/pivot/language-switcher.tsx"
       }
     ],
     "dependencies": [
@@ -516,7 +516,7 @@ export const registry_ui: Registry["items"] = [
       {
         "path": "registry/default/ui/laravel-generator.tsx",
         "type": "registry:ui",
-        "target": "components/ui/laravel-generator.tsx"
+        "target": "components/pivot/laravel-generator.tsx"
       }
     ],
     "dependencies": [
@@ -531,7 +531,7 @@ export const registry_ui: Registry["items"] = [
       {
         "path": "registry/default/ui/license-display.tsx",
         "type": "registry:ui",
-        "target": "components/ui/license-display.tsx"
+        "target": "components/pivot/license-display.tsx"
       }
     ],
     "dependencies": [
@@ -546,7 +546,7 @@ export const registry_ui: Registry["items"] = [
       {
         "path": "registry/default/ui/link-item.tsx",
         "type": "registry:ui",
-        "target": "components/ui/link-item.tsx"
+        "target": "components/pivot/link-item.tsx"
       }
     ],
     "dependencies": [
@@ -567,7 +567,7 @@ export const registry_ui: Registry["items"] = [
       {
         "path": "registry/default/ui/links-section.tsx",
         "type": "registry:ui",
-        "target": "components/ui/links-section.tsx"
+        "target": "components/pivot/links-section.tsx"
       }
     ],
     "dependencies": [
@@ -586,7 +586,7 @@ export const registry_ui: Registry["items"] = [
       {
         "path": "registry/default/ui/media-type-display.tsx",
         "type": "registry:ui",
-        "target": "components/ui/media-type-display.tsx"
+        "target": "components/pivot/media-type-display.tsx"
       }
     ],
     "dependencies": [
@@ -600,7 +600,7 @@ export const registry_ui: Registry["items"] = [
       {
         "path": "registry/default/ui/media-type-selector.tsx",
         "type": "registry:ui",
-        "target": "components/ui/media-type-selector.tsx"
+        "target": "components/pivot/media-type-selector.tsx"
       }
     ],
     "dependencies": [
@@ -617,7 +617,7 @@ export const registry_ui: Registry["items"] = [
       {
         "path": "registry/default/ui/method-label.tsx",
         "type": "registry:ui",
-        "target": "components/ui/method-label.tsx"
+        "target": "components/pivot/method-label.tsx"
       }
     ],
     "dependencies": [
@@ -631,7 +631,7 @@ export const registry_ui: Registry["items"] = [
       {
         "path": "registry/default/ui/navigation-sidebar.tsx",
         "type": "registry:ui",
-        "target": "components/ui/navigation-sidebar.tsx"
+        "target": "components/pivot/navigation-sidebar.tsx"
       }
     ],
     "dependencies": [
@@ -654,7 +654,7 @@ export const registry_ui: Registry["items"] = [
       {
         "path": "registry/default/ui/oauth-flow-details.tsx",
         "type": "registry:ui",
-        "target": "components/ui/oauth-flow-details.tsx"
+        "target": "components/pivot/oauth-flow-details.tsx"
       }
     ],
     "dependencies": [
@@ -668,7 +668,7 @@ export const registry_ui: Registry["items"] = [
       {
         "path": "registry/default/ui/oauth-flow.tsx",
         "type": "registry:ui",
-        "target": "components/ui/oauth-flow.tsx"
+        "target": "components/pivot/oauth-flow.tsx"
       }
     ],
     "dependencies": [
@@ -682,7 +682,7 @@ export const registry_ui: Registry["items"] = [
       {
         "path": "registry/default/ui/operation-box.tsx",
         "type": "registry:ui",
-        "target": "components/ui/operation-box.tsx"
+        "target": "components/pivot/operation-box.tsx"
       }
     ],
     "dependencies": [
@@ -710,7 +710,7 @@ export const registry_ui: Registry["items"] = [
       {
         "path": "registry/default/ui/operation-detail.tsx",
         "type": "registry:ui",
-        "target": "components/ui/operation-detail.tsx"
+        "target": "components/pivot/operation-detail.tsx"
       }
     ],
     "dependencies": [
@@ -739,7 +739,7 @@ export const registry_ui: Registry["items"] = [
       {
         "path": "registry/default/ui/operation-detailed-layout.tsx",
         "type": "registry:ui",
-        "target": "components/ui/operation-detailed-layout.tsx"
+        "target": "components/pivot/operation-detailed-layout.tsx"
       }
     ],
     "dependencies": [
@@ -763,7 +763,7 @@ export const registry_ui: Registry["items"] = [
       {
         "path": "registry/default/ui/operation-list-layout.tsx",
         "type": "registry:ui",
-        "target": "components/ui/operation-list-layout.tsx"
+        "target": "components/pivot/operation-list-layout.tsx"
       }
     ],
     "dependencies": [
@@ -786,7 +786,7 @@ export const registry_ui: Registry["items"] = [
       {
         "path": "registry/default/ui/operation-path.tsx",
         "type": "registry:ui",
-        "target": "components/ui/operation-path.tsx"
+        "target": "components/pivot/operation-path.tsx"
       }
     ],
     "dependencies": [
@@ -803,7 +803,7 @@ export const registry_ui: Registry["items"] = [
       {
         "path": "registry/default/ui/parameter-description.tsx",
         "type": "registry:ui",
-        "target": "components/ui/parameter-description.tsx"
+        "target": "components/pivot/parameter-description.tsx"
       }
     ],
     "dependencies": [
@@ -817,7 +817,7 @@ export const registry_ui: Registry["items"] = [
       {
         "path": "registry/default/ui/parameter-group.tsx",
         "type": "registry:ui",
-        "target": "components/ui/parameter-group.tsx"
+        "target": "components/pivot/parameter-group.tsx"
       }
     ],
     "dependencies": [
@@ -836,7 +836,7 @@ export const registry_ui: Registry["items"] = [
       {
         "path": "registry/default/ui/parameter-item.tsx",
         "type": "registry:ui",
-        "target": "components/ui/parameter-item.tsx"
+        "target": "components/pivot/parameter-item.tsx"
       }
     ],
     "dependencies": [
@@ -865,7 +865,7 @@ export const registry_ui: Registry["items"] = [
       {
         "path": "registry/default/ui/parameter-name.tsx",
         "type": "registry:ui",
-        "target": "components/ui/parameter-name.tsx"
+        "target": "components/pivot/parameter-name.tsx"
       }
     ],
     "dependencies": [
@@ -879,7 +879,7 @@ export const registry_ui: Registry["items"] = [
       {
         "path": "registry/default/ui/parameters-section.tsx",
         "type": "registry:ui",
-        "target": "components/ui/parameters-section.tsx"
+        "target": "components/pivot/parameters-section.tsx"
       }
     ],
     "dependencies": [
@@ -900,7 +900,7 @@ export const registry_ui: Registry["items"] = [
       {
         "path": "registry/default/ui/path-item-display.tsx",
         "type": "registry:ui",
-        "target": "components/ui/path-item-display.tsx"
+        "target": "components/pivot/path-item-display.tsx"
       }
     ],
     "dependencies": [
@@ -919,7 +919,7 @@ export const registry_ui: Registry["items"] = [
       {
         "path": "registry/default/ui/path-segment.tsx",
         "type": "registry:ui",
-        "target": "components/ui/path-segment.tsx"
+        "target": "components/pivot/path-segment.tsx"
       }
     ],
     "dependencies": [
@@ -933,7 +933,7 @@ export const registry_ui: Registry["items"] = [
       {
         "path": "registry/default/ui/php-generator.tsx",
         "type": "registry:ui",
-        "target": "components/ui/php-generator.tsx"
+        "target": "components/pivot/php-generator.tsx"
       }
     ],
     "dependencies": [
@@ -948,7 +948,7 @@ export const registry_ui: Registry["items"] = [
       {
         "path": "registry/default/ui/python-generator.tsx",
         "type": "registry:ui",
-        "target": "components/ui/python-generator.tsx"
+        "target": "components/pivot/python-generator.tsx"
       }
     ],
     "dependencies": [
@@ -963,7 +963,7 @@ export const registry_ui: Registry["items"] = [
       {
         "path": "registry/default/ui/request-body-section.tsx",
         "type": "registry:ui",
-        "target": "components/ui/request-body-section.tsx"
+        "target": "components/pivot/request-body-section.tsx"
       }
     ],
     "dependencies": [
@@ -983,7 +983,7 @@ export const registry_ui: Registry["items"] = [
       {
         "path": "registry/default/ui/required-badge.tsx",
         "type": "registry:ui",
-        "target": "components/ui/required-badge.tsx"
+        "target": "components/pivot/required-badge.tsx"
       }
     ],
     "dependencies": [
@@ -997,7 +997,7 @@ export const registry_ui: Registry["items"] = [
       {
         "path": "registry/default/ui/required-marker.tsx",
         "type": "registry:ui",
-        "target": "components/ui/required-marker.tsx"
+        "target": "components/pivot/required-marker.tsx"
       }
     ],
     "dependencies": [
@@ -1011,7 +1011,7 @@ export const registry_ui: Registry["items"] = [
       {
         "path": "registry/default/ui/resizable-sidebar.tsx",
         "type": "registry:ui",
-        "target": "components/ui/resizable-sidebar.tsx"
+        "target": "components/pivot/resizable-sidebar.tsx"
       }
     ],
     "dependencies": [
@@ -1025,7 +1025,7 @@ export const registry_ui: Registry["items"] = [
       {
         "path": "registry/default/ui/response-content-section.tsx",
         "type": "registry:ui",
-        "target": "components/ui/response-content-section.tsx"
+        "target": "components/pivot/response-content-section.tsx"
       }
     ],
     "dependencies": [
@@ -1044,7 +1044,7 @@ export const registry_ui: Registry["items"] = [
       {
         "path": "registry/default/ui/response-group.tsx",
         "type": "registry:ui",
-        "target": "components/ui/response-group.tsx"
+        "target": "components/pivot/response-group.tsx"
       }
     ],
     "dependencies": [
@@ -1064,7 +1064,7 @@ export const registry_ui: Registry["items"] = [
       {
         "path": "registry/default/ui/response-headers-table.tsx",
         "type": "registry:ui",
-        "target": "components/ui/response-headers-table.tsx"
+        "target": "components/pivot/response-headers-table.tsx"
       }
     ],
     "dependencies": [
@@ -1084,7 +1084,7 @@ export const registry_ui: Registry["items"] = [
       {
         "path": "registry/default/ui/response-item.tsx",
         "type": "registry:ui",
-        "target": "components/ui/response-item.tsx"
+        "target": "components/pivot/response-item.tsx"
       }
     ],
     "dependencies": [
@@ -1106,7 +1106,7 @@ export const registry_ui: Registry["items"] = [
       {
         "path": "registry/default/ui/responses-section.tsx",
         "type": "registry:ui",
-        "target": "components/ui/responses-section.tsx"
+        "target": "components/pivot/responses-section.tsx"
       }
     ],
     "dependencies": [
@@ -1127,7 +1127,7 @@ export const registry_ui: Registry["items"] = [
       {
         "path": "registry/default/ui/schema-composition-display.tsx",
         "type": "registry:ui",
-        "target": "components/ui/schema-composition-display.tsx"
+        "target": "components/pivot/schema-composition-display.tsx"
       }
     ],
     "dependencies": [
@@ -1142,7 +1142,7 @@ export const registry_ui: Registry["items"] = [
       {
         "path": "registry/default/ui/schema-display.tsx",
         "type": "registry:ui",
-        "target": "components/ui/schema-display.tsx"
+        "target": "components/pivot/schema-display.tsx"
       }
     ],
     "dependencies": [
@@ -1169,7 +1169,7 @@ export const registry_ui: Registry["items"] = [
       {
         "path": "registry/default/ui/schema-with-example-viewer.tsx",
         "type": "registry:ui",
-        "target": "components/ui/schema-with-example-viewer.tsx"
+        "target": "components/pivot/schema-with-example-viewer.tsx"
       }
     ],
     "dependencies": [
@@ -1191,7 +1191,7 @@ export const registry_ui: Registry["items"] = [
       {
         "path": "registry/default/ui/scheme-type.tsx",
         "type": "registry:ui",
-        "target": "components/ui/scheme-type.tsx"
+        "target": "components/pivot/scheme-type.tsx"
       }
     ],
     "dependencies": [
@@ -1205,7 +1205,7 @@ export const registry_ui: Registry["items"] = [
       {
         "path": "registry/default/ui/section-title.tsx",
         "type": "registry:ui",
-        "target": "components/ui/section-title.tsx"
+        "target": "components/pivot/section-title.tsx"
       }
     ],
     "dependencies": [
@@ -1219,7 +1219,7 @@ export const registry_ui: Registry["items"] = [
       {
         "path": "registry/default/ui/security-requirement-item.tsx",
         "type": "registry:ui",
-        "target": "components/ui/security-requirement-item.tsx"
+        "target": "components/pivot/security-requirement-item.tsx"
       }
     ],
     "dependencies": [
@@ -1234,7 +1234,7 @@ export const registry_ui: Registry["items"] = [
       {
         "path": "registry/default/ui/security-requirements-section.tsx",
         "type": "registry:ui",
-        "target": "components/ui/security-requirements-section.tsx"
+        "target": "components/pivot/security-requirements-section.tsx"
       }
     ],
     "dependencies": [
@@ -1253,7 +1253,7 @@ export const registry_ui: Registry["items"] = [
       {
         "path": "registry/default/ui/security-scheme-display.tsx",
         "type": "registry:ui",
-        "target": "components/ui/security-scheme-display.tsx"
+        "target": "components/pivot/security-scheme-display.tsx"
       }
     ],
     "dependencies": [
@@ -1271,7 +1271,7 @@ export const registry_ui: Registry["items"] = [
       {
         "path": "registry/default/ui/security-scheme.tsx",
         "type": "registry:ui",
-        "target": "components/ui/security-scheme.tsx"
+        "target": "components/pivot/security-scheme.tsx"
       }
     ],
     "dependencies": [
@@ -1290,7 +1290,7 @@ export const registry_ui: Registry["items"] = [
       {
         "path": "registry/default/ui/security-schemes.tsx",
         "type": "registry:ui",
-        "target": "components/ui/security-schemes.tsx"
+        "target": "components/pivot/security-schemes.tsx"
       }
     ],
     "dependencies": [
@@ -1309,7 +1309,7 @@ export const registry_ui: Registry["items"] = [
       {
         "path": "registry/default/ui/security-section.tsx",
         "type": "registry:ui",
-        "target": "components/ui/security-section.tsx"
+        "target": "components/pivot/security-section.tsx"
       }
     ],
     "dependencies": [
@@ -1329,7 +1329,7 @@ export const registry_ui: Registry["items"] = [
       {
         "path": "registry/default/ui/server-display.tsx",
         "type": "registry:ui",
-        "target": "components/ui/server-display.tsx"
+        "target": "components/pivot/server-display.tsx"
       }
     ],
     "dependencies": [
@@ -1348,7 +1348,7 @@ export const registry_ui: Registry["items"] = [
       {
         "path": "registry/default/ui/server-variable.tsx",
         "type": "registry:ui",
-        "target": "components/ui/server-variable.tsx"
+        "target": "components/pivot/server-variable.tsx"
       }
     ],
     "dependencies": [
@@ -1366,7 +1366,7 @@ export const registry_ui: Registry["items"] = [
       {
         "path": "registry/default/ui/server.tsx",
         "type": "registry:ui",
-        "target": "components/ui/server.tsx"
+        "target": "components/pivot/server.tsx"
       }
     ],
     "dependencies": [
@@ -1386,7 +1386,7 @@ export const registry_ui: Registry["items"] = [
       {
         "path": "registry/default/ui/servers-section.tsx",
         "type": "registry:ui",
-        "target": "components/ui/servers-section.tsx"
+        "target": "components/pivot/servers-section.tsx"
       }
     ],
     "dependencies": [
@@ -1405,7 +1405,7 @@ export const registry_ui: Registry["items"] = [
       {
         "path": "registry/default/ui/servers.tsx",
         "type": "registry:ui",
-        "target": "components/ui/servers.tsx"
+        "target": "components/pivot/servers.tsx"
       }
     ],
     "dependencies": [
@@ -1424,7 +1424,7 @@ export const registry_ui: Registry["items"] = [
       {
         "path": "registry/default/ui/status-code.tsx",
         "type": "registry:ui",
-        "target": "components/ui/status-code.tsx"
+        "target": "components/pivot/status-code.tsx"
       }
     ],
     "dependencies": [
@@ -1438,7 +1438,7 @@ export const registry_ui: Registry["items"] = [
       {
         "path": "registry/default/ui/style-badge.tsx",
         "type": "registry:ui",
-        "target": "components/ui/style-badge.tsx"
+        "target": "components/pivot/style-badge.tsx"
       }
     ],
     "dependencies": [
@@ -1452,7 +1452,7 @@ export const registry_ui: Registry["items"] = [
       {
         "path": "registry/default/ui/terms-of-service.tsx",
         "type": "registry:ui",
-        "target": "components/ui/terms-of-service.tsx"
+        "target": "components/pivot/terms-of-service.tsx"
       }
     ],
     "dependencies": [
@@ -1466,7 +1466,7 @@ export const registry_ui: Registry["items"] = [
       {
         "path": "registry/default/ui/theme-toggle.tsx",
         "type": "registry:ui",
-        "target": "components/ui/theme-toggle.tsx"
+        "target": "components/pivot/theme-toggle.tsx"
       }
     ],
     "dependencies": [
@@ -1481,7 +1481,7 @@ export const registry_ui: Registry["items"] = [
       {
         "path": "registry/default/ui/try-it-out-panel.tsx",
         "type": "registry:ui",
-        "target": "components/ui/try-it-out-panel.tsx"
+        "target": "components/pivot/try-it-out-panel.tsx"
       }
     ],
     "dependencies": [
@@ -1501,7 +1501,7 @@ export const registry_ui: Registry["items"] = [
       {
         "path": "registry/default/ui/type-indicator.tsx",
         "type": "registry:ui",
-        "target": "components/ui/type-indicator.tsx"
+        "target": "components/pivot/type-indicator.tsx"
       }
     ],
     "dependencies": [
@@ -1518,7 +1518,7 @@ export const registry_ui: Registry["items"] = [
       {
         "path": "registry/default/ui/typescript-generator.tsx",
         "type": "registry:ui",
-        "target": "components/ui/typescript-generator.tsx"
+        "target": "components/pivot/typescript-generator.tsx"
       }
     ],
     "dependencies": [
@@ -1533,7 +1533,7 @@ export const registry_ui: Registry["items"] = [
       {
         "path": "registry/default/ui/value-display.tsx",
         "type": "registry:ui",
-        "target": "components/ui/value-display.tsx"
+        "target": "components/pivot/value-display.tsx"
       }
     ],
     "dependencies": [
@@ -1547,7 +1547,7 @@ export const registry_ui: Registry["items"] = [
       {
         "path": "registry/default/ui/version-badge.tsx",
         "type": "registry:ui",
-        "target": "components/ui/version-badge.tsx"
+        "target": "components/pivot/version-badge.tsx"
       }
     ],
     "dependencies": [
@@ -1561,7 +1561,7 @@ export const registry_ui: Registry["items"] = [
       {
         "path": "registry/default/ui/webhook-display.tsx",
         "type": "registry:ui",
-        "target": "components/ui/webhook-display.tsx"
+        "target": "components/pivot/webhook-display.tsx"
       }
     ],
     "dependencies": [
@@ -1581,7 +1581,7 @@ export const registry_ui: Registry["items"] = [
       {
         "path": "registry/default/ui/webhook-label.tsx",
         "type": "registry:ui",
-        "target": "components/ui/webhook-label.tsx"
+        "target": "components/pivot/webhook-label.tsx"
       }
     ],
     "dependencies": [
