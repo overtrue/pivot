@@ -233,6 +233,7 @@ export const registry_ui: Registry["items"] = [
     ],
     "dependencies": [
       "lucide-react",
+      "openapi-types",
       "react"
     ]
   },
@@ -467,6 +468,7 @@ export const registry_ui: Registry["items"] = [
       }
     ],
     "dependencies": [
+      "openapi-types",
       "react"
     ]
   },
@@ -521,6 +523,7 @@ export const registry_ui: Registry["items"] = [
     ],
     "dependencies": [
       "lucide-react",
+      "openapi-types",
       "react"
     ]
   },
@@ -941,6 +944,7 @@ export const registry_ui: Registry["items"] = [
       }
     ],
     "dependencies": [
+      "openapi-types",
       "lucide-react",
       "react"
     ]
@@ -956,6 +960,7 @@ export const registry_ui: Registry["items"] = [
       }
     ],
     "dependencies": [
+      "openapi-types",
       "lucide-react",
       "react"
     ]
@@ -1199,6 +1204,7 @@ export const registry_ui: Registry["items"] = [
       }
     ],
     "dependencies": [
+      "openapi-types",
       "react"
     ]
   },
@@ -1523,6 +1529,7 @@ export const registry_ui: Registry["items"] = [
       }
     ],
     "dependencies": [
+      "openapi-types",
       "lucide-react",
       "react"
     ]

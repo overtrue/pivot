@@ -1,5 +1,4 @@
 import { TryItOutPanel } from "@/registry/default/ui/try-it-out-panel";
-import type { ParameterLocation } from "@/types/project";
 import type { OpenAPIV3 } from "openapi-types";
 
 export default function TryItOutPanelDemo() {
@@ -10,7 +9,7 @@ export default function TryItOutPanelDemo() {
     parameters: [
       {
         name: "X-API-Key",
-        in: "header" as ParameterLocation,
+        in: "header",
         required: true,
         description: "API 访问密钥",
         schema: {
@@ -20,7 +19,7 @@ export default function TryItOutPanelDemo() {
       },
       {
         name: "X-Request-ID",
-        in: "header" as ParameterLocation,
+        in: "header",
         required: false,
         description: "请求追踪 ID",
         schema: {
@@ -152,7 +151,7 @@ export default function TryItOutPanelDemo() {
     parameters: [
       {
         name: "userId",
-        in: "path" as ParameterLocation,
+        in: "path",
         required: true,
         description: "用户 ID",
         schema: {
@@ -162,7 +161,7 @@ export default function TryItOutPanelDemo() {
       },
       {
         name: "include",
-        in: "query" as ParameterLocation,
+        in: "query",
         required: false,
         description: "包含的额外信息",
         schema: {
@@ -175,7 +174,7 @@ export default function TryItOutPanelDemo() {
       },
       {
         name: "X-API-Key",
-        in: "header" as ParameterLocation,
+        in: "header",
         required: true,
         description: "API 访问密钥",
         schema: {

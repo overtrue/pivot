@@ -1,9 +1,10 @@
 import { CurlGenerator } from "@/registry/default/ui/curl-generator";
+import type { OpenAPIV3 } from "openapi-types";
 
 export default function CurlGeneratorDemo() {
   const params = {
     endpoint: "https://api.example.com/users",
-    method: "POST" as const,
+    method: "POST" as OpenAPIV3.HttpMethods,
     parameters: [
       {
         name: "page",

@@ -7,7 +7,6 @@ import {
   type OpenApiComponentType,
 } from "@/registry/default/ui/component-tabs";
 import { SectionTitle } from "@/registry/default/ui/section-title";
-import type { ComponentType } from "@/types/project";
 import type { OpenAPIV3 } from "openapi-types";
 import React, { useMemo, useState } from "react";
 
@@ -19,8 +18,8 @@ interface ComponentsSectionProps {
 // Helper function to get available components
 const getAvailableComponents = (
   components: OpenAPIV3.ComponentsObject,
-): Record<ComponentType, string[]> => {
-  const availableComponents: Record<ComponentType, string[]> = {
+): Record<keyof OpenAPIV3.ComponentsObject | "webhooks", string[]> => {
+  const availableComponents: Record<keyof OpenAPIV3.ComponentsObject | "webhooks", string[]> = {
     schemas: [],
     responses: [],
     parameters: [],
@@ -36,7 +35,7 @@ const getAvailableComponents = (
   if (components) {
     Object.keys(components).forEach((componentType) => {
       if (componentType in availableComponents) {
-        const typedKey = componentType as ComponentType;
+        const typedKey = componentType as keyof OpenAPIV3.ComponentsObject | "webhooks";
         availableComponents[typedKey] = Object.keys(
           (components as any)[componentType] || {},
         );
@@ -59,7 +58,7 @@ const ComponentsSection = React.forwardRef<
     () =>
       Object.keys(availableComponents).filter(
         (type) =>
-          availableComponents[type as ComponentType].length > 0 &&
+          availableComponents[type as keyof OpenAPIV3.ComponentsObject | "webhooks"].length > 0 &&
           type !== "webhooks", // Filter out webhooks as it's not part of standard OpenAPI 3.0 components
       ) as OpenApiComponentType[],
     [availableComponents],
@@ -139,7 +138,7 @@ const ComponentsSection = React.forwardRef<
           <ComponentItemsList
             items={
               activeType
-                ? availableComponents[activeType as ComponentType]
+                ? availableComponents[activeType as keyof OpenAPIV3.ComponentsObject | "webhooks"]
                 : undefined
             }
             selectedItem={selectedItemName}

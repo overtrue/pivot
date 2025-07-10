@@ -1,5 +1,4 @@
 import { cn } from "@/lib/utils";
-import type { ComponentType } from "@/types/project";
 import type { OpenAPIV3 } from "openapi-types";
 
 import { resolveRef } from "@/registry/default/lib/resolve-ref";
@@ -16,7 +15,7 @@ import { WebhookDisplay } from "@/registry/default/ui/webhook-display";
 import React from "react";
 
 interface ComponentDetailProps {
-  activeType: ComponentType | null;
+  activeType: keyof OpenAPIV3.ComponentsObject | "webhooks" | null;
   selectedItemName: string | null;
   components: OpenAPIV3.ComponentsObject;
   className?: string;

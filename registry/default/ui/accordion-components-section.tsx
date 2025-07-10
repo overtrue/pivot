@@ -1,12 +1,11 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import type { ComponentType } from "@/types/project";
 import type { OpenAPIV3 } from "openapi-types";
 
+import { ComponentDetail } from "@/registry/default/ui/component-detail";
 import { ChevronDown, ChevronRight } from "lucide-react";
 import React, { useEffect, useMemo, useState } from "react";
-import { ComponentDetail } from "@/registry/default/ui/component-detail";
 
 interface AccordionComponentsSectionProps {
   components: OpenAPIV3.ComponentsObject;
@@ -17,8 +16,8 @@ interface AccordionComponentsSectionProps {
 // Helper function to get available components
 function getAvailableComponents(
   components: OpenAPIV3.ComponentsObject,
-): Record<ComponentType, string[]> {
-  const result: Record<ComponentType, string[]> = {
+): Record<keyof OpenAPIV3.ComponentsObject | "webhooks", string[]> {
+  const result: Record<keyof OpenAPIV3.ComponentsObject | "webhooks", string[]> = {
     schemas: [],
     responses: [],
     parameters: [],
@@ -37,7 +36,7 @@ function getAvailableComponents(
 
   Object.entries(components).forEach(([type, items]) => {
     if (items && typeof items === "object" && type in result) {
-      result[type as ComponentType] = Object.keys(items);
+      result[type as keyof OpenAPIV3.ComponentsObject | "webhooks"] = Object.keys(items);
     }
   });
 
@@ -55,26 +54,26 @@ const AccordionComponentsSection = React.forwardRef<
   const availableTypes = useMemo(
     () =>
       Object.keys(availableComponents).filter(
-        (type) => availableComponents[type as ComponentType].length > 0,
-      ) as ComponentType[],
+        (type) => availableComponents[type as keyof OpenAPIV3.ComponentsObject | "webhooks"].length > 0,
+      ) as (keyof OpenAPIV3.ComponentsObject | "webhooks")[],
     [availableComponents],
   );
 
   // Currently expanded component
   const [expandedComponent, setExpandedComponent] = useState<{
-    type: ComponentType;
+    type: keyof OpenAPIV3.ComponentsObject | "webhooks";
     name: string;
   } | null>(null);
 
   // Currently active type tab
-  const [activeType, setActiveType] = useState<ComponentType | null>(
-    availableTypes.includes("schemas" as ComponentType)
-      ? ("schemas" as ComponentType)
+  const [activeType, setActiveType] = useState<(keyof OpenAPIV3.ComponentsObject | "webhooks") | null>(
+    availableTypes.includes("schemas")
+      ? "schemas"
       : availableTypes[0] || null,
   );
 
   // Toggle expanded component
-  const toggleExpandComponent = (type: ComponentType, name: string) => {
+  const toggleExpandComponent = (type: keyof OpenAPIV3.ComponentsObject | "webhooks", name: string) => {
     if (expandedComponent?.type === type && expandedComponent?.name === name) {
       // If clicking on an already expanded component, collapse it
       setExpandedComponent(null);
@@ -90,10 +89,10 @@ const AccordionComponentsSection = React.forwardRef<
       const { name, type } = event.detail;
       if (type === "schemas") {
         // Activate schemas tab
-        setActiveType("schemas" as ComponentType);
+        setActiveType("schemas");
 
         // Expand the corresponding schema
-        toggleExpandComponent("schemas" as ComponentType, name);
+        toggleExpandComponent("schemas", name);
 
         // Scroll to the schema
         setTimeout(() => {
@@ -122,10 +121,10 @@ const AccordionComponentsSection = React.forwardRef<
   useEffect(() => {
     if (selectedSchema) {
       // Activate schemas tab
-      setActiveType("schemas" as ComponentType);
+      setActiveType("schemas");
 
       // Expand the corresponding schema
-      toggleExpandComponent("schemas" as ComponentType, selectedSchema);
+      toggleExpandComponent("schemas", selectedSchema);
     }
   }, [selectedSchema]);
 
@@ -173,7 +172,7 @@ const AccordionComponentsSection = React.forwardRef<
                 <div className="flex items-center gap-2">
                   <span className="text-neutral-500 dark:text-neutral-400">
                     {expandedComponent?.type === activeType &&
-                    expandedComponent?.name === name ? (
+                      expandedComponent?.name === name ? (
                       <ChevronDown className="h-5 w-5" />
                     ) : (
                       <ChevronRight className="h-5 w-5" />

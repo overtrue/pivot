@@ -240,6 +240,7 @@
       "type": "registry:ui",
       "dependencies": [
         "lucide-react",
+        "openapi-types",
         "react"
       ],
       "files": [
@@ -474,6 +475,7 @@
       "name": "in-label",
       "type": "registry:ui",
       "dependencies": [
+        "openapi-types",
         "react"
       ],
       "files": [
@@ -528,6 +530,7 @@
       "type": "registry:ui",
       "dependencies": [
         "lucide-react",
+        "openapi-types",
         "react"
       ],
       "files": [
@@ -948,6 +951,7 @@
       "name": "php-generator",
       "type": "registry:ui",
       "dependencies": [
+        "openapi-types",
         "lucide-react",
         "react"
       ],
@@ -963,6 +967,7 @@
       "name": "python-generator",
       "type": "registry:ui",
       "dependencies": [
+        "openapi-types",
         "lucide-react",
         "react"
       ],
@@ -1206,6 +1211,7 @@
       "name": "scheme-type",
       "type": "registry:ui",
       "dependencies": [
+        "openapi-types",
         "react"
       ],
       "files": [
@@ -1530,6 +1536,7 @@
       "name": "typescript-generator",
       "type": "registry:ui",
       "dependencies": [
+        "openapi-types",
         "lucide-react",
         "react"
       ],
@@ -1789,6 +1796,9 @@
     {
       "name": "curl-generator-demo",
       "type": "registry:example",
+      "dependencies": [
+        "openapi-types"
+      ],
       "registryDependencies": [
         "https://pivotkit.vercel.app/r/curl-generator.json"
       ],
@@ -2069,6 +2079,9 @@
     {
       "name": "laravel-generator-demo",
       "type": "registry:example",
+      "dependencies": [
+        "openapi-types"
+      ],
       "registryDependencies": [
         "https://pivotkit.vercel.app/r/laravel-generator.json"
       ],

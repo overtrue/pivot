@@ -1,20 +1,21 @@
 import { LaravelGenerator } from "@/registry/default/ui/laravel-generator";
+import type { OpenAPIV3 } from "openapi-types";
 
 export default function LaravelGeneratorDemo() {
   // 用户资源 API 示例
   const userResourceParams = {
     endpoint: "https://api.laravel-app.com/api/v1/users",
-    method: "POST" as const,
+    method: "POST" as OpenAPIV3.HttpMethods,
     parameters: [
       {
         name: "Accept",
-        in: "header" as const,
+        in: "header",
         required: true,
         schema: { type: "string" as const, enum: ["application/json"] },
       },
       {
         name: "Authorization",
-        in: "header" as const,
+        in: "header",
         required: true,
         schema: { type: "string" as const },
       },
@@ -35,23 +36,23 @@ export default function LaravelGeneratorDemo() {
       content: {
         "application/json": {
           schema: {
-            type: "object" as const,
+            type: "object",
             required: ["name", "email", "password", "password_confirmation"],
             properties: {
-              name: { type: "string" as const, maxLength: 255 },
-              email: { type: "string" as const, format: "email" as const },
-              password: { type: "string" as const, minLength: 8 },
-              password_confirmation: { type: "string" as const, minLength: 8 },
+              name: { type: "string", maxLength: 255 },
+              email: { type: "string", format: "email" },
+              password: { type: "string", minLength: 8 },
+              password_confirmation: { type: "string", minLength: 8 },
               role: {
-                type: "string" as const,
+                type: "string",
                 enum: ["admin", "user", "moderator"],
               },
               profile: {
-                type: "object" as const,
+                type: "object",
                 properties: {
-                  phone: { type: "string" as const },
-                  address: { type: "string" as const },
-                  avatar: { type: "string" as const, format: "uri" as const },
+                  phone: { type: "string" },
+                  address: { type: "string" },
+                  avatar: { type: "string", format: "uri" },
                 },
               },
             },
@@ -65,17 +66,17 @@ export default function LaravelGeneratorDemo() {
   // 文章管理 API 示例
   const articleParams = {
     endpoint: "https://api.laravel-app.com/api/v1/articles",
-    method: "GET" as const,
+    method: "GET" as OpenAPIV3.HttpMethods,
     parameters: [
       {
         name: "page",
-        in: "query" as const,
+        in: "query",
         required: false,
         schema: { type: "integer" as const, minimum: 1, default: 1 },
       },
       {
         name: "per_page",
-        in: "query" as const,
+        in: "query",
         required: false,
         schema: {
           type: "integer" as const,
@@ -86,7 +87,7 @@ export default function LaravelGeneratorDemo() {
       },
       {
         name: "status",
-        in: "query" as const,
+        in: "query",
         required: false,
         schema: {
           type: "string" as const,
@@ -95,19 +96,19 @@ export default function LaravelGeneratorDemo() {
       },
       {
         name: "category_id",
-        in: "query" as const,
+        in: "query",
         required: false,
         schema: { type: "integer" as const },
       },
       {
         name: "search",
-        in: "query" as const,
+        in: "query",
         required: false,
         schema: { type: "string" as const },
       },
       {
         name: "sort",
-        in: "query" as const,
+        in: "query",
         required: false,
         schema: {
           type: "string" as const,
@@ -116,7 +117,7 @@ export default function LaravelGeneratorDemo() {
       },
       {
         name: "order",
-        in: "query" as const,
+        in: "query",
         required: false,
         schema: {
           type: "string" as const,
@@ -126,7 +127,7 @@ export default function LaravelGeneratorDemo() {
       },
       {
         name: "with",
-        in: "query" as const,
+        in: "query",
         required: false,
         schema: {
           type: "array" as const,
@@ -138,7 +139,7 @@ export default function LaravelGeneratorDemo() {
       },
       {
         name: "Authorization",
-        in: "header" as const,
+        in: "header",
         required: true,
         schema: { type: "string" as const },
       },
@@ -150,23 +151,23 @@ export default function LaravelGeneratorDemo() {
   // 订单处理 API 示例
   const orderParams = {
     endpoint: "https://api.laravel-app.com/api/v1/orders/{orderId}/status",
-    method: "PATCH" as const,
+    method: "PATCH" as OpenAPIV3.HttpMethods,
     parameters: [
       {
         name: "orderId",
-        in: "path" as const,
+        in: "path",
         required: true,
         schema: { type: "string" as const },
       },
       {
         name: "X-CSRF-TOKEN",
-        in: "header" as const,
+        in: "header",
         required: true,
         schema: { type: "string" as const },
       },
       {
         name: "Authorization",
-        in: "header" as const,
+        in: "header",
         required: true,
         schema: { type: "string" as const },
       },
@@ -185,11 +186,11 @@ export default function LaravelGeneratorDemo() {
       content: {
         "application/json": {
           schema: {
-            type: "object" as const,
+            type: "object",
             required: ["status"],
             properties: {
               status: {
-                type: "string" as const,
+                type: "string",
                 enum: [
                   "pending",
                   "confirmed",
@@ -199,16 +200,16 @@ export default function LaravelGeneratorDemo() {
                   "cancelled",
                 ],
               },
-              notes: { type: "string" as const, maxLength: 1000 },
-              notify_customer: { type: "boolean" as const, default: true },
+              notes: { type: "string", maxLength: 1000 },
+              notify_customer: { type: "boolean", default: true },
               tracking_info: {
-                type: "object" as const,
+                type: "object",
                 properties: {
-                  carrier: { type: "string" as const },
-                  tracking_number: { type: "string" as const },
+                  carrier: { type: "string" },
+                  tracking_number: { type: "string" },
                   estimated_delivery: {
-                    type: "string" as const,
-                    format: "date" as const,
+                    type: "string",
+                    format: "date",
                   },
                 },
               },
@@ -223,11 +224,11 @@ export default function LaravelGeneratorDemo() {
   // 文件上传 API 示例
   const uploadParams = {
     endpoint: "https://api.laravel-app.com/api/v1/media/upload",
-    method: "POST" as const,
+    method: "POST" as OpenAPIV3.HttpMethods,
     parameters: [
       {
         name: "disk",
-        in: "query" as const,
+        in: "query",
         required: false,
         schema: {
           type: "string" as const,
@@ -237,19 +238,19 @@ export default function LaravelGeneratorDemo() {
       },
       {
         name: "folder",
-        in: "query" as const,
+        in: "query",
         required: false,
         schema: { type: "string" as const },
       },
       {
         name: "X-CSRF-TOKEN",
-        in: "header" as const,
+        in: "header",
         required: true,
         schema: { type: "string" as const },
       },
       {
         name: "Authorization",
-        in: "header" as const,
+        in: "header",
         required: true,
         schema: { type: "string" as const },
       },
@@ -268,18 +269,18 @@ export default function LaravelGeneratorDemo() {
       content: {
         "multipart/form-data": {
           schema: {
-            type: "object" as const,
+            type: "object",
             required: ["file"],
             properties: {
-              file: { type: "string" as const, format: "binary" },
-              alt_text: { type: "string" as const, maxLength: 255 },
-              caption: { type: "string" as const, maxLength: 500 },
+              file: { type: "string", format: "binary" },
+              alt_text: { type: "string", maxLength: 255 },
+              caption: { type: "string", maxLength: 500 },
               metadata: {
-                type: "object" as const,
+                type: "object",
                 properties: {
-                  category: { type: "string" as const },
-                  product_id: { type: "string" as const },
-                  is_featured: { type: "boolean" as const },
+                  category: { type: "string" },
+                  product_id: { type: "string" },
+                  is_featured: { type: "boolean" },
                 },
               },
             },
@@ -293,11 +294,11 @@ export default function LaravelGeneratorDemo() {
   // 数据导出 API 示例
   const exportParams = {
     endpoint: "https://api.laravel-app.com/api/v1/reports/export",
-    method: "POST" as const,
+    method: "POST" as OpenAPIV3.HttpMethods,
     parameters: [
       {
         name: "format",
-        in: "query" as const,
+        in: "query",
         required: false,
         schema: {
           type: "string" as const,
@@ -307,13 +308,13 @@ export default function LaravelGeneratorDemo() {
       },
       {
         name: "async",
-        in: "query" as const,
+        in: "query",
         required: false,
         schema: { type: "boolean" as const, default: true },
       },
       {
         name: "Authorization",
-        in: "header" as const,
+        in: "header",
         required: true,
         schema: { type: "string" as const },
       },
@@ -347,11 +348,11 @@ export default function LaravelGeneratorDemo() {
       content: {
         "application/json": {
           schema: {
-            type: "object" as const,
+            type: "object",
             required: ["report_type", "date_range"],
             properties: {
               report_type: {
-                type: "string" as const,
+                type: "string",
                 enum: [
                   "sales_summary",
                   "user_activity",
@@ -360,45 +361,45 @@ export default function LaravelGeneratorDemo() {
                 ],
               },
               date_range: {
-                type: "object" as const,
+                type: "object",
                 required: ["start_date", "end_date"],
                 properties: {
                   start_date: {
-                    type: "string" as const,
-                    format: "date" as const,
+                    type: "string",
+                    format: "date",
                   },
                   end_date: {
-                    type: "string" as const,
-                    format: "date" as const,
+                    type: "string",
+                    format: "date",
                   },
                 },
               },
               filters: {
-                type: "object" as const,
+                type: "object",
                 properties: {
                   status: {
-                    type: "array" as const,
-                    items: { type: "string" as const },
+                    type: "array",
+                    items: { type: "string" },
                   },
                   category_ids: {
-                    type: "array" as const,
-                    items: { type: "integer" as const },
+                    type: "array",
+                    items: { type: "integer" },
                   },
-                  min_amount: { type: "number" as const },
+                  min_amount: { type: "number" },
                 },
               },
               columns: {
-                type: "array" as const,
-                items: { type: "string" as const },
+                type: "array",
+                items: { type: "string" },
               },
               options: {
-                type: "object" as const,
+                type: "object",
                 properties: {
-                  include_headers: { type: "boolean" as const, default: true },
-                  group_by: { type: "string" as const },
-                  sort_by: { type: "string" as const },
+                  include_headers: { type: "boolean", default: true },
+                  group_by: { type: "string" },
+                  sort_by: { type: "string" },
                   sort_order: {
-                    type: "string" as const,
+                    type: "string",
                     enum: ["asc", "desc"],
                   },
                 },
@@ -455,3 +456,4 @@ export default function LaravelGeneratorDemo() {
     </div>
   );
 }
+

@@ -1,5 +1,4 @@
 import { OperationBox } from "@/registry/default/ui/operation-box";
-import type { ParameterLocation } from "@/types/project";
 import type { OpenAPIV3 } from "openapi-types";
 
 export default function OperationBoxDemo() {
@@ -10,7 +9,7 @@ export default function OperationBoxDemo() {
     parameters: [
       {
         name: "userId",
-        in: "path" as ParameterLocation,
+        in: "path",
         required: true,
         description: "用户的唯一标识符",
         schema: {
@@ -21,7 +20,7 @@ export default function OperationBoxDemo() {
       },
       {
         name: "include",
-        in: "query" as ParameterLocation,
+        in: "query",
         required: false,
         description: "指定要包含的额外信息",
         schema: {
@@ -198,7 +197,7 @@ export default function OperationBoxDemo() {
     parameters: [
       {
         name: "limit",
-        in: "query" as ParameterLocation,
+        in: "query",
         schema: { type: "integer", maximum: 100 },
       },
     ],

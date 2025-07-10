@@ -1,6 +1,23 @@
-import type { CodeGenerator, CodeGeneratorParams } from "@/types/project";
 import { Code2 } from "lucide-react";
+import type { OpenAPIV3 } from "openapi-types";
 import React from "react";
+
+// 代码生成器参数接口
+interface CodeGeneratorParams {
+  endpoint: string;
+  method: OpenAPIV3.HttpMethods;
+  parameters: OpenAPIV3.ParameterObject[];
+  requestBody?: OpenAPIV3.RequestBodyObject;
+  requestBodyExample: unknown;
+}
+
+// 代码生成器接口
+interface CodeGenerator {
+  id: string;
+  label: string;
+  getIcon(): React.ReactNode;
+  generateCode(params: CodeGeneratorParams): string;
+}
 
 // LaravelGenerator implementation
 export class LaravelGeneratorClass implements CodeGenerator {
@@ -32,13 +49,12 @@ function call_${method.toLowerCase()}()
     $response = Http::withHeaders([
         'Content-Type' => 'application/json',
         'Accept' => 'application/json',
-    ])${
-      ["POST", "PUT", "PATCH"].includes(method) && requestBody
+    ])${["POST", "PUT", "PATCH"].includes(method) && requestBody
         ? `->${method.toLowerCase()}("${endpoint}",
         ${formattedRequestBody}
     );`
         : `.${method.toLowerCase()}("${endpoint}");`
-    }
+      }
 
     return $response->json();
 }
@@ -52,12 +68,11 @@ public function call_${method.toLowerCase()}_guzzle()
         'headers' => [
             'Content-Type' => 'application/json',
             'Accept' => 'application/json',
-        ],${
-          ["POST", "PUT", "PATCH"].includes(method) && requestBody
-            ? `
+        ],${["POST", "PUT", "PATCH"].includes(method) && requestBody
+        ? `
         'json' => ${guzzleRequestBody}`
-            : ""
-        }
+        : ""
+      }
     ]);
 
     return json_decode($response->getBody(), true);
@@ -109,5 +124,6 @@ LaravelGeneratorComponent.displayName = "LaravelGenerator";
 
 export {
   LaravelGeneratorComponent as LaravelGenerator,
-  type LaravelGeneratorProps,
+  type LaravelGeneratorProps
 };
+

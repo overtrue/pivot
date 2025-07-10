@@ -1,6 +1,23 @@
-import type { CodeGenerator, CodeGeneratorParams } from "@/types/project";
 import { Terminal } from "lucide-react";
+import type { OpenAPIV3 } from "openapi-types";
 import React from "react";
+
+// 代码生成器参数接口
+interface CodeGeneratorParams {
+  endpoint: string;
+  method: OpenAPIV3.HttpMethods;
+  parameters: OpenAPIV3.ParameterObject[];
+  requestBody?: OpenAPIV3.RequestBodyObject;
+  requestBodyExample: unknown;
+}
+
+// 代码生成器接口
+interface CodeGenerator {
+  id: string;
+  label: string;
+  getIcon(): React.ReactNode;
+  generateCode(params: CodeGeneratorParams): string;
+}
 
 // CurlGenerator implementation
 export class CurlGeneratorClass implements CodeGenerator {

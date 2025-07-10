@@ -4,7 +4,6 @@ import { cn } from "@/lib/utils";
 import { useI18n } from "@/registry/default/lib/i18n";
 import { resolveRef } from "@/registry/default/lib/resolve-ref";
 import { MethodLabel } from "@/registry/default/ui/method-label";
-import type { ResponseData } from "@/types/project";
 import { ChevronDown, ChevronUp, Send } from "lucide-react";
 import type { OpenAPIV3 } from "openapi-types";
 import React, { useState } from "react";
@@ -50,7 +49,13 @@ const TryItOutPanel = React.forwardRef<HTMLDivElement, TryItOutPanelProps>(
     const [paramValues, setParamValues] = useState<Record<string, string>>({});
     const [requestBodyValue, setRequestBodyValue] = useState<string>("");
     const [isLoading, setIsLoading] = useState<boolean>(false);
-    const [response, setResponse] = useState<ResponseData | null>(null);
+    const [response, setResponse] = useState<{
+      status: number;
+      statusText: string;
+      headers: Record<string, string>;
+      data: unknown;
+      time: number;
+    } | null>(null);
     const [headers, setHeaders] = useState<Record<string, string>>({
       "Content-Type": "application/json",
     });

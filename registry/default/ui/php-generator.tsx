@@ -1,6 +1,23 @@
-import type { CodeGenerator, CodeGeneratorParams } from "@/types/project";
+import type { OpenAPIV3 } from "openapi-types";
 import { Code2 } from "lucide-react";
 import React from "react";
+
+// 代码生成器参数接口
+interface CodeGeneratorParams {
+  endpoint: string;
+  method: OpenAPIV3.HttpMethods;
+  parameters: OpenAPIV3.ParameterObject[];
+  requestBody?: OpenAPIV3.RequestBodyObject;
+  requestBodyExample: unknown;
+}
+
+// 代码生成器接口
+interface CodeGenerator {
+  id: string;
+  label: string;
+  getIcon(): React.ReactNode;
+  generateCode(params: CodeGeneratorParams): string;
+}
 
 // Utility function
 function replaceDoubleQuotes(str: string): string {
@@ -35,17 +52,16 @@ function call_${method.toLowerCase()}() {
         CURLOPT_URL => $url,
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_HTTPHEADER => $headers,
-        CURLOPT_CUSTOMREQUEST => "${method}",${
-          ["POST", "PUT", "PATCH"].includes(method) && requestBody
-            ? `
+        CURLOPT_CUSTOMREQUEST => "${method}",${["POST", "PUT", "PATCH"].includes(method) && requestBody
+        ? `
         CURLOPT_POSTFIELDS => json_encode(
 ${JSON.stringify(requestBodyExample, null, 4)
-  .split("\n")
-  .map((line) => "            " + replaceDoubleQuotes(line))
-  .join(",\n")}
+          .split("\n")
+          .map((line) => "            " + replaceDoubleQuotes(line))
+          .join(",\n")}
         ),`
-            : ""
-        }
+        : ""
+      }
     ]);
 
     $response = curl_exec($curl);

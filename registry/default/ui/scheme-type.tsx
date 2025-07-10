@@ -1,13 +1,13 @@
 import { cn } from "@/lib/utils";
-import type { SecuritySchemeType } from "@/types/project";
+import type { OpenAPIV3 } from "openapi-types";
 import React from "react";
 
 interface SchemeTypeProps {
-  type: SecuritySchemeType;
+  type: OpenAPIV3.SecuritySchemeObject["type"];
   className?: string;
 }
 
-const schemeColors: Record<SecuritySchemeType, string> = {
+const schemeColors: Record<OpenAPIV3.SecuritySchemeObject["type"], string> = {
   apiKey:
     "bg-yellow-100 dark:bg-yellow-900/50 text-yellow-800 dark:text-yellow-300",
   http: "bg-blue-100 dark:bg-blue-900/50 text-blue-800 dark:text-blue-300",

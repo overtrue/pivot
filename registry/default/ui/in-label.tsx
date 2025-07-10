@@ -1,14 +1,14 @@
 import { cn } from "@/lib/utils";
-import type { ParameterLocation } from "@/types/project";
+import type { OpenAPIV3 } from "openapi-types";
 
 import React from "react";
 
 interface InLabelProps {
-  type: ParameterLocation;
+  type: OpenAPIV3.ParameterLocation;
   className?: string;
 }
 
-const getColorForType = (type: ParameterLocation): string => {
+const getColorForType = (type: OpenAPIV3.ParameterLocation): string => {
   switch (type) {
     case "query":
       return "bg-blue-100 dark:bg-blue-900/50 text-blue-800 dark:text-blue-300";

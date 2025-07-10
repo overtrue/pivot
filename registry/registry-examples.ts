@@ -196,6 +196,9 @@ export const registry_examples: Registry["items"] = [
         "target": "components/example/curl-generator-demo.tsx"
       }
     ],
+    "dependencies": [
+      "openapi-types"
+    ],
     "registryDependencies": [
       "https://pivotkit.vercel.app/r/curl-generator.json"
     ]
@@ -475,6 +478,9 @@ export const registry_examples: Registry["items"] = [
         "type": "registry:example",
         "target": "components/example/laravel-generator-demo.tsx"
       }
+    ],
+    "dependencies": [
+      "openapi-types"
     ],
     "registryDependencies": [
       "https://pivotkit.vercel.app/r/laravel-generator.json"
