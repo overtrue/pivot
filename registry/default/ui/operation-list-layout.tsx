@@ -3,7 +3,7 @@
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { cn } from "@/lib/utils";
 import { useOpenApi } from "@/registry/default/hooks/use-openapi";
-import { useOpenAPILoader, type OpenAPISource } from "@/registry/default/hooks/use-openapi-loader";
+import { useOpenAPILoader } from "@/registry/default/hooks/use-openapi-loader";
 import { useI18n } from "@/registry/default/lib/i18n";
 import { NavigationSidebar } from "@/registry/default/ui/navigation-sidebar";
 import { OperationBox } from "@/registry/default/ui/operation-box";
@@ -128,23 +128,10 @@ const OperationListLayout = React.forwardRef<
 
     const componentsRef = useRef<HTMLDivElement>(null);
 
-    // 智能数据源选择：URL > 字符串 > 对象
-    const dataSource: OpenAPISource | undefined = useMemo(() => {
-      if (url) {
-        return { type: "url", data: url };
-      }
-      if (typeof inputSpec === "string") {
-        return { type: "string", data: inputSpec };
-      }
-      if (inputSpec && typeof inputSpec === "object") {
-        return { type: "object", data: inputSpec };
-      }
-      return undefined;
-    }, [url, inputSpec]);
-
-    // 使用统一的数据加载器
+    // 使用统一的数据加载器（支持智能判断输入类型）
+    // 优先使用 url，然后使用 inputSpec
     const { spec, loading, error, loadFromUrl, loadFromString, loadFromObject } =
-      useOpenAPILoader(dataSource);
+      useOpenAPILoader(url || inputSpec);
 
     // 同步外部状态变化
     useEffect(() => {
@@ -441,7 +428,7 @@ const OperationListLayout = React.forwardRef<
       <SidebarProvider defaultOpen={true}>
         {/* 导航侧边栏 */}
         <NavigationSidebar
-          openapi={spec}
+          spec={spec}
           activePath={localSelectedPath}
           activeMethod={localSelectedMethod}
           onSelectOperation={handleSelectOperation}

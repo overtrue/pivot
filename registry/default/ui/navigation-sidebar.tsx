@@ -22,18 +22,16 @@ import { useI18n } from "@/registry/default/lib/i18n";
 import { MethodLabel } from "@/registry/default/ui/method-label";
 import { ChevronRight } from "lucide-react";
 import type { OpenAPIV3 } from "openapi-types";
-import React, { useState } from "react";
-
-// Import types from the centralized types file
+import React, { useMemo, useState } from "react";
 
 interface NavigationSidebarProps {
-  openapi: OpenAPIV3.Document;
+  spec: OpenAPIV3.Document;
   activePath?: string | null;
   activeMethod?: string | null;
   onSelectOperation?: (path: string, method: string, operation: any) => void;
-  onSelectSchema?: (schemaName: string) => void;
   className?: string;
   collapsible?: "offcanvas" | "icon" | "none";
+  groupByTags?: boolean; // 新增：控制是否按标签分组
 }
 
 const NavigationSidebar = React.forwardRef<
@@ -42,21 +40,115 @@ const NavigationSidebar = React.forwardRef<
 >(
   (
     {
-      openapi,
+      spec,
       activePath = null,
       activeMethod = null,
       onSelectOperation = () => { },
-      onSelectSchema,
       className,
       collapsible = "offcanvas",
+      groupByTags = true, // 默认按标签分组
     },
     ref,
   ) => {
     const { t } = useI18n();
-    const [collapsedTags, setCollapsedTags] = useState<Record<string, boolean>>(
-      {},
-    );
+    const [collapsedTags, setCollapsedTags] = useState<Record<string, boolean>>({});
     const [searchQuery, setSearchQuery] = useState("");
+
+    // 获取所有可用的操作
+    const allOperations = useMemo(() => {
+      const operations: Array<{
+        path: string;
+        method: string;
+        operation: OpenAPIV3.OperationObject;
+        tags: string[];
+      }> = [];
+
+      if (spec.paths) {
+        Object.entries(spec.paths).forEach(([path, pathItem]) => {
+          const methods = ["get", "post", "put", "delete", "patch", "options", "head"];
+
+          methods.forEach((method) => {
+            const operation = (pathItem as any)?.[method];
+            if (
+              operation &&
+              typeof operation === "object" &&
+              "responses" in operation
+            ) {
+              operations.push({
+                path,
+                method,
+                operation,
+                tags: operation.tags || [],
+              });
+            }
+          });
+        });
+      }
+
+      return operations;
+    }, [spec.paths]);
+
+    // 获取所有唯一的标签
+    const allTags = useMemo(() => {
+      const tagSet = new Set<string>();
+
+      // 从根级别的 tags 获取
+      if (spec.tags) {
+        spec.tags.forEach(tag => tagSet.add(tag.name));
+      }
+
+      // 从操作中获取 tags
+      allOperations.forEach(({ tags }) => {
+        tags.forEach(tag => tagSet.add(tag));
+      });
+
+      return Array.from(tagSet).sort();
+    }, [spec.tags, allOperations]);
+
+    // 过滤操作
+    const filteredOperations = useMemo(() => {
+      if (!searchQuery) return allOperations;
+
+      const query = searchQuery.toLowerCase();
+      return allOperations.filter(({ path, method, operation }) => {
+        return (
+          path.toLowerCase().includes(query) ||
+          method.toLowerCase().includes(query) ||
+          operation.summary?.toLowerCase().includes(query) ||
+          operation.description?.toLowerCase().includes(query) ||
+          operation.operationId?.toLowerCase().includes(query)
+        );
+      });
+    }, [allOperations, searchQuery]);
+
+    // 按标签分组的操作
+    const operationsByTag = useMemo(() => {
+      const grouped: Record<string, typeof filteredOperations> = {};
+
+      // 初始化所有标签
+      allTags.forEach(tag => {
+        grouped[tag] = [];
+      });
+
+      // 分组操作
+      filteredOperations.forEach(operation => {
+        if (operation.tags.length > 0) {
+          operation.tags.forEach(tag => {
+            if (grouped[tag]) {
+              grouped[tag].push(operation);
+            }
+          });
+        } else {
+          // 没有标签的操作放入 "Other" 组
+          if (!grouped["Other"]) {
+            grouped["Other"] = [];
+          }
+          grouped["Other"].push(operation);
+        }
+      });
+
+      return grouped;
+    }, [filteredOperations, allTags]);
 
     const toggleTagCollapse = (tagName: string) => {
       setCollapsedTags((prev) => ({
@@ -65,24 +157,7 @@ const NavigationSidebar = React.forwardRef<
       }));
     };
 
-    // Filter paths based on search query
-    const filterPaths = (path: string, method: string, operation: any) => {
-      if (!searchQuery) return true;
-
-      const query = searchQuery.toLowerCase();
-      return (
-        path.toLowerCase().includes(query) ||
-        method.toLowerCase().includes(query) ||
-        operation.summary?.toLowerCase().includes(query) ||
-        operation.description?.toLowerCase().includes(query) ||
-        operation.operationId?.toLowerCase().includes(query)
-      );
-    };
-
-    const tags = openapi.tags || [];
-    const hasCustomTags = tags.length > 0;
-
-    // Render operation item using SidebarMenuItem
+    // 渲染操作项
     const renderOperationItem = (path: string, method: string, operation: any) => {
       const isActive =
         activePath === path &&
@@ -116,17 +191,82 @@ const NavigationSidebar = React.forwardRef<
       );
     };
 
+    // 渲染按标签分组的内容
+    const renderGroupedContent = () => {
+      const validTags = Object.entries(operationsByTag)
+        .filter(([_, operations]) => operations.length > 0)
+        .sort(([a], [b]) => {
+          // "Other" 组放在最后
+          if (a === "Other") return 1;
+          if (b === "Other") return -1;
+          return a.localeCompare(b);
+        });
+
+      return validTags.map(([tagName, operations]) => {
+        const isCollapsed = collapsedTags[tagName];
+
+        return (
+          <SidebarGroup key={tagName} className="py-0">
+            <Collapsible
+              open={!isCollapsed}
+              onOpenChange={() => toggleTagCollapse(tagName)}
+            >
+              <CollapsibleTrigger asChild>
+                <SidebarGroupLabel className="cursor-pointer hover:bg-sidebar-accent rounded-md transition-colors">
+                  <div className="flex items-center">
+                    <ChevronRight
+                      className={cn(
+                        "h-3 w-3 mr-2 transition-transform",
+                        !isCollapsed && "rotate-90",
+                      )}
+                    />
+                    <span className="text-xs font-medium">{tagName}</span>
+                    <span className="text-xs text-muted-foreground ml-2">
+                      ({operations.length})
+                    </span>
+                  </div>
+                </SidebarGroupLabel>
+              </CollapsibleTrigger>
+
+              <CollapsibleContent>
+                <SidebarGroupContent>
+                  <SidebarMenu>
+                    {operations.map(({ path, method, operation }) =>
+                      renderOperationItem(path, method, operation)
+                    )}
+                  </SidebarMenu>
+                </SidebarGroupContent>
+              </CollapsibleContent>
+            </Collapsible>
+          </SidebarGroup>
+        );
+      });
+    };
+
+    // 渲染平铺的内容
+    const renderFlatContent = () => (
+      <SidebarGroup>
+        <SidebarGroupContent>
+          <SidebarMenu>
+            {filteredOperations.map(({ path, method, operation }) =>
+              renderOperationItem(path, method, operation)
+            )}
+          </SidebarMenu>
+        </SidebarGroupContent>
+      </SidebarGroup>
+    );
+
     return (
       <Sidebar ref={ref} className={className} collapsible={collapsible}>
         {/* Header with search */}
         <SidebarHeader className="border-b p-4">
           <div className="min-w-0 flex-1">
             <h2 className="text-sm font-medium truncate">
-              {openapi.info?.title || "API Documentation"}
+              {spec.info?.title || "API Documentation"}
             </h2>
-            {openapi.info?.version && (
+            {spec.info?.version && (
               <p className="text-xs text-sidebar-foreground/70 mt-0.5">
-                v{openapi.info.version}
+                v{spec.info.version}
               </p>
             )}
           </div>
@@ -144,102 +284,7 @@ const NavigationSidebar = React.forwardRef<
 
         {/* Content */}
         <SidebarContent className="py-2">
-          {hasCustomTags ? (
-            // Render with tags using SidebarGroup
-            tags.map((tag) => {
-              const isCollapsed = collapsedTags[tag.name];
-              const tagOperations: React.ReactNode[] = [];
-
-              // Collect operations for this tag
-              if (openapi.paths) {
-                Object.entries(openapi.paths).forEach(([path, pathItem]) => {
-                  const operations = Object.entries(
-                    pathItem as OpenAPIV3.PathItemObject,
-                  ).filter(([method]) =>
-                    ["get", "post", "put", "delete", "patch"].includes(method),
-                  );
-
-                  operations.forEach(([method, operation]) => {
-                    if (
-                      typeof operation === "object" &&
-                      operation &&
-                      !Array.isArray(operation) &&
-                      "responses" in operation &&
-                      (operation as any).tags?.includes(tag.name) &&
-                      filterPaths(path, method, operation)
-                    ) {
-                      tagOperations.push(renderOperationItem(path, method, operation));
-                    }
-                  });
-                });
-              }
-
-              if (tagOperations.length === 0) return null;
-
-              return (
-                <SidebarGroup key={tag.name} className="py-0">
-                  <Collapsible
-                    open={!isCollapsed}
-                    onOpenChange={() => toggleTagCollapse(tag.name)}
-                  >
-                    <CollapsibleTrigger asChild>
-                      <SidebarGroupLabel className="cursor-pointer hover:bg-sidebar-accent rounded-md transition-colors">
-                        <div className="flex items-center">
-                          <ChevronRight
-                            className={cn(
-                              "h-3 w-3 mr-2 transition-transform",
-                              !isCollapsed && "rotate-90",
-                            )}
-                          />
-                          <span className="text-xs font-medium">{tag.name}</span>
-                        </div>
-                      </SidebarGroupLabel>
-                    </CollapsibleTrigger>
-
-                    <CollapsibleContent>
-                      <SidebarGroupContent>
-                        <SidebarMenu>
-                          {tagOperations}
-                        </SidebarMenu>
-                      </SidebarGroupContent>
-                    </CollapsibleContent>
-                  </Collapsible>
-                </SidebarGroup>
-              );
-            })
-          ) : (
-            // No tags - directly display all paths
-            <SidebarGroup>
-              <SidebarGroupContent>
-                <SidebarMenu>
-                  {openapi.paths &&
-                    Object.entries(openapi.paths).map(([path, pathItem]) => {
-                      const operations = Object.entries(
-                        pathItem as OpenAPIV3.PathItemObject,
-                      ).filter(([method]) =>
-                        ["get", "post", "put", "delete", "patch"].includes(method),
-                      );
-
-                      return operations
-                        .map(([method, operation]) => {
-                          if (
-                            typeof operation !== "object" ||
-                            !operation ||
-                            Array.isArray(operation) ||
-                            !("responses" in operation) ||
-                            !filterPaths(path, method, operation)
-                          ) {
-                            return null;
-                          }
-
-                          return renderOperationItem(path, method, operation);
-                        })
-                        .filter(Boolean);
-                    })}
-                </SidebarMenu>
-              </SidebarGroupContent>
-            </SidebarGroup>
-          )}
+          {groupByTags && allTags.length > 0 ? renderGroupedContent() : renderFlatContent()}
         </SidebarContent>
       </Sidebar>
     );

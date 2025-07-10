@@ -2,7 +2,7 @@
 
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { cn } from "@/lib/utils";
-import { useOpenAPILoader, type OpenAPISource } from "@/registry/default/hooks/use-openapi-loader";
+import { useOpenAPILoader } from "@/registry/default/hooks/use-openapi-loader";
 import { useI18n } from "@/registry/default/lib/i18n";
 import { Codegen } from "@/registry/default/ui/codegen";
 import { LanguageSwitcher } from "@/registry/default/ui/language-switcher";
@@ -58,28 +58,9 @@ const OperationDetailedLayout = React.forwardRef<
       string | null
     >(selectedMethod);
 
-    // 检测字符串是否为 URL
-    const isUrl = (str: string): boolean => {
-      return str.startsWith("http://") || str.startsWith("https://");
-    };
-
-    // 智能数据源选择：自动检测 URL > JSON 字符串 > 对象
-    const dataSource: OpenAPISource | undefined = useMemo(() => {
-      if (typeof inputSpec === "string") {
-        if (isUrl(inputSpec)) {
-          return { type: "url", data: inputSpec };
-        }
-        return { type: "string", data: inputSpec };
-      }
-      if (inputSpec && typeof inputSpec === "object") {
-        return { type: "object", data: inputSpec };
-      }
-      return undefined;
-    }, [inputSpec]);
-
-    // 使用统一的数据加载器
-    const { spec, loading, error, loadFromUrl, loadFromString, loadFromObject } =
-      useOpenAPILoader(dataSource);
+    // 使用统一的数据加载器（支持智能判断输入类型）
+    const { spec, loading, error } =
+      useOpenAPILoader(inputSpec);
 
     // 同步外部状态变化
     useEffect(() => {
@@ -192,7 +173,7 @@ const OperationDetailedLayout = React.forwardRef<
       <SidebarProvider defaultOpen={true}>
         {/* 导航侧边栏 - 始终渲染 */}
         <NavigationSidebar
-          openapi={spec}
+          spec={spec}
           activePath={localSelectedPath}
           activeMethod={localSelectedMethod}
           onSelectOperation={handleSelectOperation}

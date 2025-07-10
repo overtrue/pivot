@@ -189,7 +189,7 @@ export default function NavigationSidebarDemo() {
     <SidebarProvider defaultOpen={true}>
       <div className="w-full h-full flex">
         <NavigationSidebar
-          openapi={mockSpec}
+          spec={mockSpec}
           activePath="/users"
           activeMethod="get"
           collapsible="none"

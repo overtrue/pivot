@@ -22,7 +22,7 @@ import { OperationListLayout } from "@/registry/default/ui/operation-list-layout
 import { Github, Layout, LayoutTemplate, Settings, X } from "lucide-react";
 import Link from "next/link";
 import type { OpenAPIV3 } from "openapi-types";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 
 // 预定义的API示例列表
 interface ApiExample {
@@ -87,15 +87,8 @@ export default function ViewerPage() {
     }
   }, [specUrl, isClient]);
 
-  // 使用 OpenAPI Loader hook 来加载数据
-  const dataSource = useMemo(() => {
-    if (specUrl) {
-      return { type: "url" as const, data: specUrl };
-    }
-    return undefined;
-  }, [specUrl]);
-
-  const { spec } = useOpenAPILoader(dataSource);
+  // 使用 OpenAPI Loader hook 来加载数据（支持智能判断输入类型）
+  const { spec } = useOpenAPILoader(specUrl);
 
   const handleSelectOperation = (
     path: string,

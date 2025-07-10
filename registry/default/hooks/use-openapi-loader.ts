@@ -2,7 +2,7 @@
 
 import * as yaml from "js-yaml";
 import type { OpenAPIV3 } from "openapi-types";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 
 // 数据源类型
 export type OpenAPISource =
@@ -27,11 +27,33 @@ export interface UseOpenAPILoaderResult extends UseOpenAPILoaderState {
 }
 
 /**
+ * 智能判断输入类型并转换为 OpenAPISource
+ */
+function createOpenAPISource(input: OpenAPIV3.Document | string | null | undefined): OpenAPISource | undefined {
+  if (!input) return undefined;
+
+  if (typeof input === "string") {
+    // 检测字符串是否为 URL
+    const isUrl = input.startsWith("http://") || input.startsWith("https://") || input.startsWith("/");
+    return isUrl
+      ? { type: "url", data: input }
+      : { type: "string", data: input };
+  }
+
+  if (typeof input === "object" && input !== null) {
+    return { type: "object", data: input };
+  }
+
+  return undefined;
+}
+
+/**
  * OpenAPI 数据加载器 Hook
  * 专门处理数据获取、格式转换和缓存
+ * 支持智能判断输入类型
  */
 export function useOpenAPILoader(
-  initialSource?: OpenAPISource
+  input?: OpenAPIV3.Document | string | null | undefined
 ): UseOpenAPILoaderResult {
   const [state, setState] = useState<UseOpenAPILoaderState>({
     spec: null,
@@ -39,9 +61,10 @@ export function useOpenAPILoader(
     error: null,
   });
 
-  const [currentSource, setCurrentSource] = useState<OpenAPISource | null>(
-    initialSource || null
-  );
+  const [currentSource, setCurrentSource] = useState<OpenAPISource | null>(null);
+
+  // 智能判断输入并创建数据源
+  const dataSource = useMemo(() => createOpenAPISource(input), [input]);
 
   // 解析字符串内容（JSON 或 YAML）
   const parseContent = useCallback((content: string): OpenAPIV3.Document => {
@@ -150,22 +173,25 @@ export function useOpenAPILoader(
     setCurrentSource(null);
   }, []);
 
-  // 初始化加载
+  // 处理数据源变化
   useEffect(() => {
-    if (initialSource) {
-      switch (initialSource.type) {
+    if (dataSource) {
+      switch (dataSource.type) {
         case "url":
-          loadFromUrl(initialSource.data);
+          loadFromUrl(dataSource.data);
           break;
         case "string":
-          loadFromString(initialSource.data);
+          loadFromString(dataSource.data);
           break;
         case "object":
-          loadFromObject(initialSource.data);
+          loadFromObject(dataSource.data);
           break;
       }
+    } else {
+      // 如果没有数据源，重置状态
+      reset();
     }
-  }, []); // 只在挂载时执行
+  }, [dataSource, loadFromUrl, loadFromString, loadFromObject, reset]);
 
   return {
     ...state,
