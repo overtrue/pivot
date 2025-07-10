@@ -3,7 +3,7 @@
 import type { OpenAPIV3 } from "openapi-types";
 import { useMemo } from "react";
 import { useOpenApi } from "./use-openapi";
-import { useOpenAPILoader, type OpenAPISource } from "./use-openapi-loader";
+import { useOpenAPILoader } from "./use-openapi-loader";
 
 // 组合 Hook 的返回类型
 export interface UseOpenAPICombinedResult {
@@ -42,10 +42,10 @@ export interface UseOpenAPICombinedResult {
  * ```
  */
 export function useOpenAPICombined(
-  initialSource?: OpenAPISource
+  input?: OpenAPIV3.Document | string | null | undefined
 ): UseOpenAPICombinedResult {
   // 数据加载层
-  const loader = useOpenAPILoader(initialSource);
+  const loader = useOpenAPILoader(input);
 
   // 数据处理层 - 只有当 spec 存在时才进行处理
   const openapi = useOpenApi(loader.spec);
@@ -76,7 +76,7 @@ export function useOpenAPICombined(
  * ```
  */
 export function useOpenAPIFromUrl(url: string) {
-  return useOpenAPICombined({ type: "url", data: url });
+  return useOpenAPICombined(url);
 }
 
 /**
@@ -96,7 +96,7 @@ export function useOpenAPIFromUrl(url: string) {
  * ```
  */
 export function useOpenAPIFromString(content: string) {
-  return useOpenAPICombined({ type: "string", data: content });
+  return useOpenAPICombined(content);
 }
 
 /**
@@ -109,5 +109,5 @@ export function useOpenAPIFromString(content: string) {
  * ```
  */
 export function useOpenAPIFromObject(spec: OpenAPIV3.Document) {
-  return useOpenAPICombined({ type: "object", data: spec });
+  return useOpenAPICombined(spec);
 }
