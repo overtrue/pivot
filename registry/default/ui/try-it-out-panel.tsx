@@ -833,7 +833,7 @@ const TryItOutPanel = React.forwardRef<HTMLDivElement, TryItOutPanelProps>(
                     </h4>
                     <div className="bg-neutral-900 text-neutral-100 p-3 rounded-md overflow-x-auto">
                       <pre className="text-xs font-mono whitespace-pre-wrap">
-                        {response.data}
+                        {typeof response.data === 'string' ? response.data : JSON.stringify(response.data, null, 2)}
                       </pre>
                     </div>
                   </div>

@@ -4,11 +4,11 @@ import type { OpenAPIV3 } from "openapi-types";
 import React from "react";
 
 interface InLabelProps {
-  type: OpenAPIV3.ParameterLocation;
+  type: OpenAPIV3.ParameterObject["in"];
   className?: string;
 }
 
-const getColorForType = (type: OpenAPIV3.ParameterLocation): string => {
+const getColorForType = (type: OpenAPIV3.ParameterObject["in"]): string => {
   switch (type) {
     case "query":
       return "bg-blue-100 dark:bg-blue-900/50 text-blue-800 dark:text-blue-300";

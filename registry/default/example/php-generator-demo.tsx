@@ -1,10 +1,11 @@
 import { PhpGenerator } from "@/registry/default/ui/php-generator";
+import { OpenAPIV3 } from "openapi-types";
 
 export default function PhpGeneratorDemo() {
   // 电商产品 API 示例
   const productParams = {
     endpoint: "https://api.shop.example.com/v1/products",
-    method: "POST" as const,
+    method: OpenAPIV3.HttpMethods.POST,
     parameters: [
       {
         name: "X-Shop-Token",
@@ -74,7 +75,7 @@ export default function PhpGeneratorDemo() {
   // 订单查询 API 示例
   const orderParams = {
     endpoint: "https://api.shop.example.com/v1/orders",
-    method: "GET" as const,
+    method: OpenAPIV3.HttpMethods.GET,
     parameters: [
       {
         name: "status",
@@ -143,7 +144,7 @@ export default function PhpGeneratorDemo() {
   // 支付处理 API 示例
   const paymentParams = {
     endpoint: "https://api.payment.example.com/v1/charges",
-    method: "POST" as const,
+    method: OpenAPIV3.HttpMethods.POST,
     parameters: [
       {
         name: "Idempotency-Key",
@@ -237,7 +238,7 @@ export default function PhpGeneratorDemo() {
   // 内容管理 API 示例
   const cmsParams = {
     endpoint: "https://api.cms.example.com/v1/articles",
-    method: "PUT" as const,
+    method: OpenAPIV3.HttpMethods.PUT,
     parameters: [
       {
         name: "articleId",
@@ -328,7 +329,7 @@ export default function PhpGeneratorDemo() {
   // 邮件发送 API 示例
   const emailParams = {
     endpoint: "https://api.mail.example.com/v1/send",
-    method: "POST" as const,
+    method: OpenAPIV3.HttpMethods.POST,
     parameters: [
       {
         name: "X-Mail-Key",

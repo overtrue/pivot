@@ -1,10 +1,11 @@
 import { PythonGenerator } from "@/registry/default/ui/python-generator";
+import { OpenAPIV3 } from "openapi-types";
 
 export default function PythonGeneratorDemo() {
   // 用户认证 API 示例
   const authParams = {
     endpoint: "https://api.example.com/v1/auth/login",
-    method: "POST" as const,
+    method: OpenAPIV3.HttpMethods.POST,
     parameters: [],
     requestBodyExample: {
       email: "user@example.com",
@@ -32,7 +33,7 @@ export default function PythonGeneratorDemo() {
   // 数据分析 API 示例
   const analyticsParams = {
     endpoint: "https://api.example.com/v1/analytics/reports",
-    method: "GET" as const,
+    method: OpenAPIV3.HttpMethods.GET,
     parameters: [
       {
         name: "startDate",
@@ -78,7 +79,7 @@ export default function PythonGeneratorDemo() {
   // 机器学习模型预测 API 示例
   const mlPredictionParams = {
     endpoint: "https://api.example.com/v1/ml/predict",
-    method: "POST" as const,
+    method: OpenAPIV3.HttpMethods.POST,
     parameters: [
       {
         name: "model-version",
@@ -153,7 +154,7 @@ export default function PythonGeneratorDemo() {
   // 批量数据处理 API 示例
   const batchProcessParams = {
     endpoint: "https://api.example.com/v1/data/batch-process",
-    method: "POST" as const,
+    method: OpenAPIV3.HttpMethods.POST,
     parameters: [
       {
         name: "async",
@@ -239,7 +240,7 @@ export default function PythonGeneratorDemo() {
   // 图像处理 API 示例
   const imageProcessParams = {
     endpoint: "https://api.example.com/v1/images/process",
-    method: "POST" as const,
+    method: OpenAPIV3.HttpMethods.POST,
     parameters: [
       {
         name: "format",

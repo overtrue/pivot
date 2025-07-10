@@ -36,23 +36,23 @@ export default function LaravelGeneratorDemo() {
       content: {
         "application/json": {
           schema: {
-            type: "object",
+            type: "object" as const,
             required: ["name", "email", "password", "password_confirmation"],
             properties: {
-              name: { type: "string", maxLength: 255 },
-              email: { type: "string", format: "email" },
-              password: { type: "string", minLength: 8 },
-              password_confirmation: { type: "string", minLength: 8 },
+              name: { type: "string" as const, maxLength: 255 },
+              email: { type: "string" as const, format: "email" },
+              password: { type: "string" as const, minLength: 8 },
+              password_confirmation: { type: "string" as const, minLength: 8 },
               role: {
-                type: "string",
+                type: "string" as const,
                 enum: ["admin", "user", "moderator"],
               },
               profile: {
-                type: "object",
+                type: "object" as const,
                 properties: {
-                  phone: { type: "string" },
-                  address: { type: "string" },
-                  avatar: { type: "string", format: "uri" },
+                  phone: { type: "string" as const },
+                  address: { type: "string" as const },
+                  avatar: { type: "string" as const, format: "uri" },
                 },
               },
             },
@@ -186,11 +186,11 @@ export default function LaravelGeneratorDemo() {
       content: {
         "application/json": {
           schema: {
-            type: "object",
+            type: "object" as const,
             required: ["status"],
             properties: {
               status: {
-                type: "string",
+                type: "string" as const,
                 enum: [
                   "pending",
                   "confirmed",
@@ -200,15 +200,15 @@ export default function LaravelGeneratorDemo() {
                   "cancelled",
                 ],
               },
-              notes: { type: "string", maxLength: 1000 },
-              notify_customer: { type: "boolean", default: true },
+              notes: { type: "string" as const, maxLength: 1000 },
+              notify_customer: { type: "boolean" as const, default: true },
               tracking_info: {
-                type: "object",
+                type: "object" as const,
                 properties: {
-                  carrier: { type: "string" },
-                  tracking_number: { type: "string" },
+                  carrier: { type: "string" as const },
+                  tracking_number: { type: "string" as const },
                   estimated_delivery: {
-                    type: "string",
+                    type: "string" as const,
                     format: "date",
                   },
                 },
@@ -269,18 +269,18 @@ export default function LaravelGeneratorDemo() {
       content: {
         "multipart/form-data": {
           schema: {
-            type: "object",
+            type: "object" as const,
             required: ["file"],
             properties: {
-              file: { type: "string", format: "binary" },
-              alt_text: { type: "string", maxLength: 255 },
-              caption: { type: "string", maxLength: 500 },
+              file: { type: "string" as const, format: "binary" },
+              alt_text: { type: "string" as const, maxLength: 255 },
+              caption: { type: "string" as const, maxLength: 500 },
               metadata: {
-                type: "object",
+                type: "object" as const,
                 properties: {
-                  category: { type: "string" },
-                  product_id: { type: "string" },
-                  is_featured: { type: "boolean" },
+                  category: { type: "string" as const },
+                  product_id: { type: "string" as const },
+                  is_featured: { type: "boolean" as const },
                 },
               },
             },
@@ -348,11 +348,11 @@ export default function LaravelGeneratorDemo() {
       content: {
         "application/json": {
           schema: {
-            type: "object",
+            type: "object" as const,
             required: ["report_type", "date_range"],
             properties: {
               report_type: {
-                type: "string",
+                type: "string" as const,
                 enum: [
                   "sales_summary",
                   "user_activity",
@@ -361,45 +361,45 @@ export default function LaravelGeneratorDemo() {
                 ],
               },
               date_range: {
-                type: "object",
+                type: "object" as const,
                 required: ["start_date", "end_date"],
                 properties: {
                   start_date: {
-                    type: "string",
+                    type: "string" as const,
                     format: "date",
                   },
                   end_date: {
-                    type: "string",
+                    type: "string" as const,
                     format: "date",
                   },
                 },
               },
               filters: {
-                type: "object",
+                type: "object" as const,
                 properties: {
                   status: {
-                    type: "array",
-                    items: { type: "string" },
+                    type: "array" as const,
+                    items: { type: "string" as const },
                   },
                   category_ids: {
-                    type: "array",
-                    items: { type: "integer" },
+                    type: "array" as const,
+                    items: { type: "integer" as const },
                   },
-                  min_amount: { type: "number" },
+                  min_amount: { type: "number" as const },
                 },
               },
               columns: {
-                type: "array",
-                items: { type: "string" },
+                type: "array" as const,
+                items: { type: "string" as const },
               },
               options: {
-                type: "object",
+                type: "object" as const,
                 properties: {
-                  include_headers: { type: "boolean", default: true },
-                  group_by: { type: "string" },
-                  sort_by: { type: "string" },
+                  include_headers: { type: "boolean" as const, default: true },
+                  group_by: { type: "string" as const },
+                  sort_by: { type: "string" as const },
                   sort_order: {
-                    type: "string",
+                    type: "string" as const,
                     enum: ["asc", "desc"],
                   },
                 },

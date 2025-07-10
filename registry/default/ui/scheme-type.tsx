@@ -15,7 +15,6 @@ const schemeColors: Record<OpenAPIV3.SecuritySchemeObject["type"], string> = {
     "bg-green-100 dark:bg-green-900/50 text-green-800 dark:text-green-300",
   openIdConnect:
     "bg-purple-100 dark:bg-purple-900/50 text-purple-800 dark:text-purple-300",
-  mutualTLS: "bg-red-100 dark:bg-red-900/50 text-red-800 dark:text-red-300",
 };
 
 const SchemeType = React.forwardRef<HTMLSpanElement, SchemeTypeProps>(

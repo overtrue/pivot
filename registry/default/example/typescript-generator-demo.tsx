@@ -1,10 +1,11 @@
 import { TypeScriptGenerator } from "@/registry/default/ui/typescript-generator";
+import { OpenAPIV3 } from "openapi-types";
 
 export default function TypescriptGeneratorDemo() {
   // 用户创建 API 示例
   const createUserParams = {
     endpoint: "https://api.example.com/v1/users",
-    method: "POST" as const,
+    method: OpenAPIV3.HttpMethods.POST,
     parameters: [
       {
         name: "X-API-Key",
@@ -50,7 +51,7 @@ export default function TypescriptGeneratorDemo() {
   // 用户列表查询 API 示例
   const getUsersParams = {
     endpoint: "https://api.example.com/v1/users",
-    method: "GET" as const,
+    method: OpenAPIV3.HttpMethods.GET,
     parameters: [
       {
         name: "page",
@@ -101,7 +102,7 @@ export default function TypescriptGeneratorDemo() {
   // 文件上传 API 示例
   const uploadFileParams = {
     endpoint: "https://api.example.com/v1/files",
-    method: "POST" as const,
+    method: OpenAPIV3.HttpMethods.POST,
     parameters: [
       {
         name: "folderId",
@@ -149,7 +150,7 @@ export default function TypescriptGeneratorDemo() {
   // 用户更新 API 示例
   const updateUserParams = {
     endpoint: "https://api.example.com/v1/users/{userId}",
-    method: "PATCH" as const,
+    method: OpenAPIV3.HttpMethods.PATCH,
     parameters: [
       {
         name: "userId",
@@ -192,7 +193,7 @@ export default function TypescriptGeneratorDemo() {
   // 批量删除 API 示例
   const batchDeleteParams = {
     endpoint: "https://api.example.com/v1/users/batch",
-    method: "DELETE" as const,
+    method: OpenAPIV3.HttpMethods.DELETE,
     parameters: [
       {
         name: "Authorization",

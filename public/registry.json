@@ -2398,6 +2398,9 @@
     {
       "name": "php-generator-demo",
       "type": "registry:example",
+      "dependencies": [
+        "openapi-types"
+      ],
       "registryDependencies": [
         "https://pivotkit.vercel.app/r/php-generator.json"
       ],
@@ -2412,6 +2415,9 @@
     {
       "name": "python-generator-demo",
       "type": "registry:example",
+      "dependencies": [
+        "openapi-types"
+      ],
       "registryDependencies": [
         "https://pivotkit.vercel.app/r/python-generator.json"
       ],
@@ -2861,6 +2867,9 @@
     {
       "name": "typescript-generator-demo",
       "type": "registry:example",
+      "dependencies": [
+        "openapi-types"
+      ],
       "registryDependencies": [
         "https://pivotkit.vercel.app/r/typescript-generator.json"
       ],

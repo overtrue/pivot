@@ -36,14 +36,6 @@ export default function SchemeTypeDemo() {
       </div>
 
       <div>
-        <h4 className="text-sm font-medium mb-3">企业级 TLS 认证类型</h4>
-        <p className="text-xs text-neutral-600 dark:text-neutral-400 mb-3">
-          企业环境中常用的高安全级别认证方案
-        </p>
-        <SchemeType type="mutualTLS" />
-      </div>
-
-      <div>
         <h4 className="text-sm font-medium mb-3">企业级 API 密钥认证</h4>
         <p className="text-xs text-neutral-600 dark:text-neutral-400 mb-3">
           企业级应用中常用的 API 密钥认证方案

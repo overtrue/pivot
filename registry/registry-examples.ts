@@ -798,6 +798,9 @@ export const registry_examples: Registry["items"] = [
         "target": "components/example/php-generator-demo.tsx"
       }
     ],
+    "dependencies": [
+      "openapi-types"
+    ],
     "registryDependencies": [
       "https://pivotkit.vercel.app/r/php-generator.json"
     ]
@@ -811,6 +814,9 @@ export const registry_examples: Registry["items"] = [
         "type": "registry:example",
         "target": "components/example/python-generator-demo.tsx"
       }
+    ],
+    "dependencies": [
+      "openapi-types"
     ],
     "registryDependencies": [
       "https://pivotkit.vercel.app/r/python-generator.json"
@@ -1260,6 +1266,9 @@ export const registry_examples: Registry["items"] = [
         "type": "registry:example",
         "target": "components/example/typescript-generator-demo.tsx"
       }
+    ],
+    "dependencies": [
+      "openapi-types"
     ],
     "registryDependencies": [
       "https://pivotkit.vercel.app/r/typescript-generator.json"
