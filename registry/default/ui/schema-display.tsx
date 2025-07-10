@@ -10,7 +10,7 @@ import { EnumValuesDisplay } from "@/registry/default/ui/enum-values-display";
 import { FormatBadge } from "@/registry/default/ui/format-badge";
 import { RequiredBadge } from "@/registry/default/ui/required-badge";
 import { SchemaCompositionDisplay } from "@/registry/default/ui/schema-composition-display";
-import { TypeIndicator } from "@/registry/default/ui/type-indicator";
+import { TypeIndicator, type DataType } from "@/registry/default/ui/type-indicator";
 import type { OpenAPIV3 } from "openapi-types";
 import React, { useState } from "react";
 
@@ -209,7 +209,7 @@ const PropertyDisplay: React.FC<{
 
             {/* Type and other badges */}
             <div className="flex gap-1 items-center">
-              <TypeIndicator type={displayTypeString}>
+              <TypeIndicator type={displayTypeString as DataType}>
                 {displayTypeString}
               </TypeIndicator>
               {format && <FormatBadge format={format} />}

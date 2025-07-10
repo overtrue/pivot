@@ -47,8 +47,8 @@ const ParametersSection = React.forwardRef<
           if (!parameter) {
             const refString =
               paramOrRef &&
-              typeof paramOrRef === "object" &&
-              "$ref" in paramOrRef
+                typeof paramOrRef === "object" &&
+                "$ref" in paramOrRef
                 ? (paramOrRef as OpenAPIV3.ReferenceObject).$ref
                 : `[invalid parameter at index ${index}]`;
             return (
@@ -77,7 +77,6 @@ const ParametersSection = React.forwardRef<
               style={parameter.style as StyleType}
               explode={parameter.explode}
               examples={parameter.examples}
-              components={components}
               expanded={expanded}
             />
           );

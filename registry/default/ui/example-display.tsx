@@ -58,12 +58,12 @@ const ExampleDisplay = React.forwardRef<HTMLDivElement, ExampleDisplayProps>(
                 if (value === null || value === undefined) {
                   xml += `\n  <${key}/>`;
                 } else if (typeof value === "object" && !Array.isArray(value)) {
-                  xml += `\n  <${key}>${objectToXml(value, "")}</${key}>`;
+                  xml += `\n  <${key}>${objectToXml(value as Record<string, unknown>, "")}</${key}>`;
                 } else if (Array.isArray(value)) {
                   xml += `\n  <${key}>`;
                   value.forEach((item) => {
                     if (typeof item === "object") {
-                      xml += `\n    <item>${objectToXml(item, "")}</item>`;
+                      xml += `\n    <item>${objectToXml(item as Record<string, unknown>, "")}</item>`;
                     } else {
                       xml += `\n    <item>${item}</item>`;
                     }
@@ -77,7 +77,9 @@ const ExampleDisplay = React.forwardRef<HTMLDivElement, ExampleDisplayProps>(
               return rootName ? `${xml}\n</${rootName}>` : xml;
             };
 
-            return objectToXml(example, "data");
+            return typeof example === "object" && example !== null && !Array.isArray(example)
+              ? objectToXml(example as Record<string, unknown>, "data")
+              : String(example);
           } catch (error) {
             console.error(t("XML formatting failed:"), error);
             return JSON.stringify(example, null, 2); // 失败时回退到JSON
