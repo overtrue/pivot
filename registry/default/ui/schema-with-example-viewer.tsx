@@ -10,7 +10,7 @@ import { DescriptionDisplay } from "@/registry/default/ui/description-display";
 import { ExampleDisplay } from "@/registry/default/ui/example-display";
 import { MediaTypeSelector } from "@/registry/default/ui/media-type-selector";
 import { SchemaDisplay } from "@/registry/default/ui/schema-display";
-import React, { useEffect, useState, useMemo } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 
 // Define view modes
 type ViewMode = "schema" | "example";
@@ -54,13 +54,6 @@ const SchemaExampleView = React.forwardRef<
 
     // Get schema
     const schema = mediaType.schema;
-    if (!schema) {
-      return (
-        <div className="text-yellow-500 dark:text-yellow-400">
-          {t("Schema not defined")}
-        </div>
-      );
-    }
 
     // Get example data
     const hasExamples = !!(
@@ -79,6 +72,15 @@ const SchemaExampleView = React.forwardRef<
         }
       }
     }, [hasExamples, selectedExample, examplesKeys]);
+
+    // Early return after all hooks
+    if (!schema) {
+      return (
+        <div className="text-yellow-500 dark:text-yellow-400">
+          {t("Schema not defined")}
+        </div>
+      );
+    }
 
     // Get current selected example
     const currentExample =

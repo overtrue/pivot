@@ -1,7 +1,7 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import React, { useState } from "react";
+import React from "react";
 import { ValueDisplay } from "@/registry/default/ui/value-display";
 
 interface EnumValuesProps {
