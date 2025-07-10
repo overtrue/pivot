@@ -2,7 +2,7 @@ import { cn } from "@/lib/utils";
 import React from "react";
 
 interface ValueDisplayProps {
-  value: any;
+  value: unknown;
   className?: string;
 }
 

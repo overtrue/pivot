@@ -6,7 +6,7 @@ import { CodeMarkdown } from "@/registry/default/ui/code-markdown";
 import React from "react";
 
 interface ExampleDisplayProps {
-  example: any;
+  example: unknown;
   className?: string;
   language?: string; // 支持指定语言
   title?: string; // 添加标题选项
@@ -50,7 +50,7 @@ const ExampleDisplay = React.forwardRef<HTMLDivElement, ExampleDisplayProps>(
           // 如果example是对象但需要显示为XML，尝试转换为XML格式字符串
           try {
             // 简单的对象到XML字符串转换
-            const objectToXml = (obj: any, rootName = "root") => {
+            const objectToXml = (obj: Record<string, unknown>, rootName = "root") => {
               let xml = `<?xml version="1.0" encoding="UTF-8"?>\n<${rootName}>`;
 
               for (const key in obj) {

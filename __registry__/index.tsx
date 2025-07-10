@@ -1515,7 +1515,7 @@ export const Index: Record<string, any> = {
     title: "type-indicator",
     description: "",
     type: "registry:ui",
-    registryDependencies: ["https://pivotkit.vercel.app/r/lib.json"],
+    registryDependencies: undefined,
     files: [{
       path: "registry/default/ui/type-indicator.tsx",
       type: "registry:ui",

@@ -19,7 +19,7 @@ interface RequestBodySectionProps {
 const RequestBodySection = React.forwardRef<
   HTMLDivElement,
   RequestBodySectionProps
->(({ requestBody, components, spec, className = "", titleClassName }, ref) => {
+>(({ requestBody, components, className = "", titleClassName }, ref) => {
   const { t } = useI18n();
 
   // 简化的解析逻辑，如果没有 useOpenApi hook 可用

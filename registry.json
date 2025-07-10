@@ -1518,9 +1518,6 @@
       "dependencies": [
         "react"
       ],
-      "registryDependencies": [
-        "https://pivotkit.vercel.app/r/lib.json"
-      ],
       "files": [
         {
           "path": "registry/default/ui/type-indicator.tsx",

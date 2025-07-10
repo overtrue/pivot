@@ -1510,9 +1510,6 @@ export const registry_ui: Registry["items"] = [
     ],
     "dependencies": [
       "react"
-    ],
-    "registryDependencies": [
-      "https://pivotkit.vercel.app/r/lib.json"
     ]
   },
   {

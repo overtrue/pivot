@@ -46,7 +46,7 @@ const OperationDetailedLayout = React.forwardRef<
       className,
       showCodegen = true,
       showTryPanel = true,
-      navigationWidth = "320px",
+
     },
     ref,
   ) => {
@@ -78,7 +78,7 @@ const OperationDetailedLayout = React.forwardRef<
         for (const [path, pathItem] of Object.entries(spec.paths || {})) {
           const methods = ["get", "post", "put", "delete", "patch", "options", "head"];
           for (const method of methods) {
-            const operation = (pathItem as any)?.[method];
+            const operation = (pathItem as OpenAPIV3.PathItemObject)?.[method as keyof OpenAPIV3.PathItemObject];
             if (operation && typeof operation === "object" && "responses" in operation) {
               setLocalSelectedPath(path);
               setLocalSelectedMethod(method);
@@ -88,7 +88,7 @@ const OperationDetailedLayout = React.forwardRef<
           }
         }
       }
-    }, [spec, selectedPath, selectedMethod, onSelectOperation]); // 添加 selectedPath 和 selectedMethod 依赖
+    }, [spec, selectedPath, selectedMethod, onSelectOperation, localSelectedPath, localSelectedMethod]); // 添加 selectedPath 和 selectedMethod 依赖
 
     // 操作选择处理
     const handleSelectOperation = (

@@ -1,5 +1,5 @@
-import type { OpenAPIV3 } from "openapi-types";
 import { cn } from "@/lib/utils";
+import type { OpenAPIV3 } from "openapi-types";
 
 import React from "react";
 
@@ -25,7 +25,7 @@ const extractRefName = (ref: string): string | null => {
 const SchemaCompositionDisplay = React.forwardRef<
   HTMLDivElement,
   SchemaCompositionDisplayProps
->(({ keyword, subschemas, components, currentDepth, className }, ref) => {
+>(({ keyword, subschemas, className }, ref) => {
   if (!subschemas || subschemas.length === 0) {
     return null;
   }
@@ -98,5 +98,6 @@ SchemaCompositionDisplay.displayName = "SchemaCompositionDisplay";
 export {
   SchemaCompositionDisplay,
   type SchemaCompositionDisplayProps,
-  type SchemaCompositionKeyword,
+  type SchemaCompositionKeyword
 };
+

@@ -19,12 +19,12 @@ interface ResponsesSectionProps {
 const ResponsesSection = React.forwardRef<
   HTMLDivElement,
   ResponsesSectionProps
->(({ responses, components, spec, className = "" }, ref) => {
+>(({ responses, components, className = "" }, ref) => {
   const { t } = useI18n();
   const [activeStatus, setActiveStatus] = useState<string | null>(null);
 
   // 简化的解析逻辑，如果没有 useOpenApi hook 可用
-  const resolveResponse = (response: any): OpenAPIV3.ResponseObject | null => {
+  const resolveResponse = (response: OpenAPIV3.ResponseObject | OpenAPIV3.ReferenceObject): OpenAPIV3.ResponseObject | null => {
     if (!response) return null;
 
     // 如果是引用对象，尝试解析

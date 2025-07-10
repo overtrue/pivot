@@ -22,7 +22,7 @@ export function generateExample(
     includeReadOnly?: boolean;
     includeWriteOnly?: boolean;
   } = {},
-): any {
+): unknown {
   // 默认选项
   const {
     maxDepth = 3,
@@ -436,7 +436,7 @@ export function generateExample(
     case "object":
     default: {
       // 对于对象或未指定类型但有properties的情况
-      const result: Record<string, any> = {};
+      const result: Record<string, unknown> = {};
 
       if (resolvedSchema.properties) {
         // 遍历所有属性

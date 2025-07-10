@@ -10,7 +10,7 @@ import { DescriptionDisplay } from "@/registry/default/ui/description-display";
 import { ExampleDisplay } from "@/registry/default/ui/example-display";
 import { MediaTypeSelector } from "@/registry/default/ui/media-type-selector";
 import { SchemaDisplay } from "@/registry/default/ui/schema-display";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 
 // Define view modes
 type ViewMode = "schema" | "example";
@@ -63,13 +63,12 @@ const SchemaExampleView = React.forwardRef<
     }
 
     // Get example data
-    const hasExample = !!mediaType.example;
     const hasExamples = !!(
       mediaType.examples && Object.keys(mediaType.examples || {}).length > 0
     );
-    const examplesKeys = hasExamples
-      ? Object.keys(mediaType.examples || {})
-      : [];
+    const examplesKeys = useMemo(() => {
+      return hasExamples ? Object.keys(mediaType.examples || {}) : [];
+    }, [hasExamples, mediaType.examples]);
 
     // Ensure an example is selected
     useEffect(() => {
@@ -85,10 +84,10 @@ const SchemaExampleView = React.forwardRef<
     const currentExample =
       selectedExample && hasExamples
         ? resolveRef<OpenAPIV3.ExampleObject>(
-            mediaType.examples![selectedExample],
-            components,
-            "examples",
-          )
+          mediaType.examples![selectedExample],
+          components,
+          "examples",
+        )
         : null;
 
     // Example display content - prefer provided example, otherwise generate from schema
@@ -225,10 +224,10 @@ SchemaExampleView.displayName = "SchemaExampleView";
 interface SchemaWithExampleViewerProps {
   // Content can be a request body or response body
   content:
-    | OpenAPIV3.RequestBodyObject
-    | OpenAPIV3.ReferenceObject
-    | OpenAPIV3.ResponseObject
-    | Record<string, OpenAPIV3.MediaTypeObject>;
+  | OpenAPIV3.RequestBodyObject
+  | OpenAPIV3.ReferenceObject
+  | OpenAPIV3.ResponseObject
+  | Record<string, OpenAPIV3.MediaTypeObject>;
   components?: OpenAPIV3.ComponentsObject;
   className?: string;
   title?: string;
@@ -408,5 +407,6 @@ SchemaWithExampleViewer.displayName = "SchemaWithExampleViewer";
 export {
   SchemaExampleView,
   SchemaWithExampleViewer,
-  type SchemaWithExampleViewerProps,
+  type SchemaWithExampleViewerProps
 };
+

@@ -31,7 +31,6 @@ interface ParameterItemProps {
     string,
     OpenAPIV3.ExampleObject | OpenAPIV3.ReferenceObject
   >;
-  components?: OpenAPIV3.ComponentsObject;
   className?: string;
   expanded?: boolean;
 }
@@ -48,7 +47,6 @@ const ParameterItem = React.forwardRef<HTMLDivElement, ParameterItemProps>(
       style,
       explode = false,
       examples,
-      components,
       className,
       expanded = false,
     },

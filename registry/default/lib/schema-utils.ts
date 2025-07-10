@@ -1,21 +1,21 @@
 /**
  * Check if a schema is a reference object
  */
-export function isReferenceObject(obj: any): obj is { $ref: string } {
+export function isReferenceObject(obj: unknown): obj is { $ref: string } {
   return obj && typeof obj === "object" && "$ref" in obj;
 }
 
 /**
  * Check if a schema is a schema object
  */
-export function isSchemaObjectNotRef(obj: any): boolean {
+export function isSchemaObjectNotRef(obj: unknown): boolean {
   return obj && typeof obj === "object" && !("$ref" in obj);
 }
 
 /**
  * Get the type of a schema
  */
-export function getSchemaType(schema: any): string {
+export function getSchemaType(schema: Record<string, unknown>): string {
   if (schema.type) {
     return schema.type;
   }
@@ -34,6 +34,6 @@ export function getSchemaType(schema: any): string {
 /**
  * Check if a property is required in a schema
  */
-export function isPropertyRequired(schema: any, propertyName: string): boolean {
+export function isPropertyRequired(schema: Record<string, unknown>, propertyName: string): boolean {
   return schema.required?.includes(propertyName) || false;
 }

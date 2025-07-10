@@ -13,7 +13,7 @@ const ConstraintDisplay = React.forwardRef<
   HTMLDivElement,
   ConstraintDisplayProps
 >(({ schema, className }, ref) => {
-  const constraints: Array<{ label: string; value: any }> = [];
+  const constraints: Array<{ label: string; value: string | number | boolean }> = [];
 
   // 数字约束
   if (schema.minimum !== undefined) {

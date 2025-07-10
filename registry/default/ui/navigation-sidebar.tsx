@@ -28,7 +28,7 @@ interface NavigationSidebarProps {
   spec: OpenAPIV3.Document;
   activePath?: string | null;
   activeMethod?: string | null;
-  onSelectOperation?: (path: string, method: string, operation: any) => void;
+  onSelectOperation?: (path: string, method: string, operation: OpenAPIV3.OperationObject) => void;
   className?: string;
   collapsible?: "offcanvas" | "icon" | "none";
   groupByTags?: boolean; // 新增：控制是否按标签分组
@@ -68,7 +68,7 @@ const NavigationSidebar = React.forwardRef<
           const methods = ["get", "post", "put", "delete", "patch", "options", "head"];
 
           methods.forEach((method) => {
-            const operation = (pathItem as any)?.[method];
+            const operation = (pathItem as OpenAPIV3.PathItemObject)?.[method as keyof OpenAPIV3.PathItemObject];
             if (
               operation &&
               typeof operation === "object" &&
@@ -158,7 +158,7 @@ const NavigationSidebar = React.forwardRef<
     };
 
     // 渲染操作项
-    const renderOperationItem = (path: string, method: string, operation: any) => {
+    const renderOperationItem = (path: string, method: string, operation: OpenAPIV3.OperationObject) => {
       const isActive =
         activePath === path &&
         activeMethod !== null &&
@@ -194,7 +194,7 @@ const NavigationSidebar = React.forwardRef<
     // 渲染按标签分组的内容
     const renderGroupedContent = () => {
       const validTags = Object.entries(operationsByTag)
-        .filter(([_, operations]) => operations.length > 0)
+        .filter(([, operations]) => operations.length > 0)
         .sort(([a], [b]) => {
           // "Other" 组放在最后
           if (a === "Other") return 1;

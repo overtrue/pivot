@@ -240,7 +240,7 @@ const Codegen: React.FC<CodegenProps> = ({
 
   // 点击外部关闭下拉菜单
   React.useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
+    const handleClickOutside = () => {
       if (dropdownOpen) {
         setDropdownOpen(false);
       }

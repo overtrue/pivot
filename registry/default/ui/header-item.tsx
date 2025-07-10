@@ -113,10 +113,10 @@ const HeaderItem = React.forwardRef<HTMLDivElement, HeaderItemProps>(
             {required && <RequiredBadge />}
             {deprecated && <DeprecatedBadge />}
             {schema && isSchemaObject(schema) && schema.type && (
-              <TypeIndicator type={schema.type as any} />
+              <TypeIndicator type={schema.type} />
             )}
             {schema && isSchemaObject(schema) && schema.format && (
-              <FormatBadge format={schema.format as any} />
+              <FormatBadge format={schema.format} />
             )}
             {style && (
               <span className="bg-blue-100 text-blue-800 dark:bg-blue-700 dark:text-blue-200 px-2 py-0.5 text-xs rounded">

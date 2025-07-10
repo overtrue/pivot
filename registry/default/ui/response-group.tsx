@@ -21,7 +21,7 @@ interface ResponseGroupProps {
 }
 
 const ResponseGroup = React.forwardRef<HTMLDivElement, ResponseGroupProps>(
-  ({ status, response, components, className }, ref) => {
+  ({ response, components, className }, ref) => {
     const { t } = useI18n();
 
     // 预处理内容类型

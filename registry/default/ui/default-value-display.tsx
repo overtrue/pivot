@@ -1,9 +1,9 @@
 import { cn } from "@/lib/utils";
-import React from "react";
 import { ValueDisplay } from "@/registry/default/ui/value-display";
+import React from "react";
 
 interface DefaultValueDisplayProps {
-  value: any;
+  value: unknown;
   className?: string;
 }
 

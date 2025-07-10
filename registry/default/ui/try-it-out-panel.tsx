@@ -282,7 +282,7 @@ const TryItOutPanel = React.forwardRef<HTMLDivElement, TryItOutPanelProps>(
 
     const addAuthQueryParams = (url: string) => {
       const securitySchemes = resolveSecuritySchemes();
-      let updatedUrl = url;
+      const updatedUrl = url;
       const urlObj = new URL(updatedUrl, window.location.origin);
 
       securitySchemes.forEach(({ name, scheme }) => {
@@ -315,7 +315,7 @@ const TryItOutPanel = React.forwardRef<HTMLDivElement, TryItOutPanelProps>(
           try {
             JSON.parse(requestBodyValue);
             body = requestBodyValue;
-          } catch (e) {
+          } catch {
             setError("请求体不是有效的JSON");
             setIsLoading(false);
             return;
@@ -599,7 +599,7 @@ const TryItOutPanel = React.forwardRef<HTMLDivElement, TryItOutPanelProps>(
         >
           <div className="flex items-center min-w-0">
             <MethodLabel
-              method={method.toUpperCase() as any}
+              method={method.toUpperCase() as "GET" | "POST" | "PUT" | "DELETE" | "PATCH" | "OPTIONS" | "HEAD"}
               className="mr-2 flex-shrink-0"
             />
             <div className="text-sm text-neutral-800 dark:text-neutral-200 font-mono truncate overflow-hidden">
@@ -774,8 +774,8 @@ const TryItOutPanel = React.forwardRef<HTMLDivElement, TryItOutPanelProps>(
                 onClick={sendRequest}
                 disabled={isLoading}
                 className={`px-3 py-1.5 rounded-md text-white text-sm font-medium inline-flex items-center ${isLoading
-                    ? "bg-blue-400 dark:bg-blue-500/50 cursor-not-allowed"
-                    : "bg-blue-600 hover:bg-blue-700 dark:bg-blue-600 dark:hover:bg-blue-500"
+                  ? "bg-blue-400 dark:bg-blue-500/50 cursor-not-allowed"
+                  : "bg-blue-600 hover:bg-blue-700 dark:bg-blue-600 dark:hover:bg-blue-500"
                   } transition-colors`}
               >
                 <Send size={14} className="mr-1.5" />

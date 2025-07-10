@@ -209,10 +209,10 @@ const PropertyDisplay: React.FC<{
 
             {/* Type and other badges */}
             <div className="flex gap-1 items-center">
-              <TypeIndicator type={displayTypeString as any}>
+              <TypeIndicator type={displayTypeString}>
                 {displayTypeString}
               </TypeIndicator>
-              {format && <FormatBadge format={format as any} />}
+              {format && <FormatBadge format={format} />}
               {deprecated && <DeprecatedBadge />}
               {isRequired && (
                 <div className="flex-shrink-0 flex items-center">
@@ -332,7 +332,6 @@ const SchemaDisplay = React.forwardRef<HTMLDivElement, SchemaDisplayProps>(
       anyOf,
       oneOf,
       not,
-      ...otherConstraints
     } = resolvedSchema;
 
     // Access items safely
@@ -406,8 +405,8 @@ const SchemaDisplay = React.forwardRef<HTMLDivElement, SchemaDisplayProps>(
             )}
           >
             <div className="flex items-center gap-2 mb-1 flex-wrap">
-              {type && <TypeIndicator type={type as any} />}
-              {format && <FormatBadge format={format as any} />}
+              {type && <TypeIndicator type={type} />}
+              {format && <FormatBadge format={format} />}
               {deprecated && <DeprecatedBadge />}
             </div>
             {description && (
@@ -531,7 +530,7 @@ const SchemaDisplay = React.forwardRef<HTMLDivElement, SchemaDisplayProps>(
               </div>
             ) : (
               <div className="mt-1 text-xs text-orange-500 dark:text-orange-400 ml-1">
-                Array 'items' definition is missing.
+                Array &apos;items&apos; definition is missing.
               </div>
             )}
           </div>

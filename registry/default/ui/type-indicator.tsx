@@ -1,7 +1,6 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { useI18n } from "@/registry/default/lib/i18n";
 import React from "react";
 
 // Define theme names for data types
@@ -65,7 +64,6 @@ const getThemeForDataType = (type: DataType): DataTypeTheme => {
 
 const TypeIndicator = React.forwardRef<HTMLSpanElement, TypeIndicatorProps>(
   ({ type, theme = "auto", className, children }, ref) => {
-    const { t } = useI18n();
 
     // Determine the final theme name
     const finalTheme = theme === "auto" ? getThemeForDataType(type) : theme;

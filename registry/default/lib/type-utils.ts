@@ -2,31 +2,31 @@
  * Type guards and utility functions for OpenAPI types
  */
 
-export function isParameterObject(obj: any): boolean {
+export function isParameterObject(obj: unknown): boolean {
   return obj && typeof obj === "object" && "name" in obj && "in" in obj;
 }
 
-export function isRequestBodyObject(obj: any): boolean {
+export function isRequestBodyObject(obj: unknown): boolean {
   return obj && typeof obj === "object" && "content" in obj;
 }
 
-export function isResponseObject(obj: any): boolean {
+export function isResponseObject(obj: unknown): boolean {
   return obj && typeof obj === "object" && "description" in obj;
 }
 
-export function isHeaderObject(obj: any): boolean {
+export function isHeaderObject(obj: unknown): boolean {
   return obj && typeof obj === "object" && !("name" in obj) && !("in" in obj);
 }
 
-export function isSchemaObject(obj: any): boolean {
+export function isSchemaObject(obj: unknown): boolean {
   return obj && typeof obj === "object" && "type" in obj;
 }
 
-export function isComponentObject(obj: any): boolean {
+export function isComponentObject(obj: unknown): boolean {
   return obj && typeof obj === "object" && !("$ref" in obj) && !("type" in obj);
 }
 
-export function isLinkObject(obj: any): boolean {
+export function isLinkObject(obj: unknown): boolean {
   return (
     obj &&
     typeof obj === "object" &&
@@ -34,7 +34,7 @@ export function isLinkObject(obj: any): boolean {
   );
 }
 
-export function isExampleObject(obj: any): boolean {
+export function isExampleObject(obj: unknown): boolean {
   return (
     obj && typeof obj === "object" && ("value" in obj || "externalValue" in obj)
   );

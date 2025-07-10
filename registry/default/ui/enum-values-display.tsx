@@ -3,7 +3,7 @@ import React from "react";
 import { EnumValues } from "@/registry/default/ui/enum-values";
 
 interface EnumValuesDisplayProps {
-  values: any[];
+  values: unknown[];
   className?: string;
 }
 
