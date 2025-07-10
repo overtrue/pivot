@@ -132,7 +132,7 @@ const NavigationSidebar = React.forwardRef<
 
       // 分组操作
       filteredOperations.forEach(operation => {
-        if (operation.tags.length > 0) {
+        if (operation.tags && operation.tags.length > 0) {
           operation.tags.forEach(tag => {
             if (grouped[tag]) {
               grouped[tag].push(operation);
