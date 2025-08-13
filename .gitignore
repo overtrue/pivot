@@ -41,3 +41,4 @@ yarn-error.log*
 .content-collections
 .content-collections
 example-app
+/.docs/
