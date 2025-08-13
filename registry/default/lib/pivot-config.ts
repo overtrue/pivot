@@ -1,10 +1,10 @@
 import type { OpenAPIV3 } from 'openapi-types';
 
 /**
- * Pivot 组件库配置接口
+ * Pivot component library configuration interface
  */
 export interface PivotConfig {
-  // 主题配置
+  // Theme configuration
   theme?: {
     mode?: 'light' | 'dark' | 'system';
     colors?: {
@@ -18,7 +18,7 @@ export interface PivotConfig {
     fontSize?: 'xs' | 'sm' | 'base' | 'lg' | 'xl';
   };
   
-  // 功能配置
+  // Feature toggles
   features?: {
     tryItOut?: boolean;
     codeGeneration?: boolean;
@@ -30,20 +30,20 @@ export interface PivotConfig {
     versioning?: boolean;
   };
   
-  // 语言配置
+  // Localization configuration
   locale?: 'en' | 'zh' | 'ja' | 'es' | 'fr' | 'de';
   translations?: Record<string, string>;
   
-  // 样式配置
+  // Styling configuration
   styling?: {
-    prefix?: string;           // Tailwind 类名前缀
-    container?: string;         // 容器类名
-    isolated?: boolean;         // 是否隔离样式
-    customCSS?: string;        // 自定义 CSS
-    cssVariables?: Record<string, string>; // CSS 变量
+    prefix?: string;           // Tailwind class prefix
+    container?: string;         // Container class name
+    isolated?: boolean;         // Style isolation
+    customCSS?: string;        // Custom CSS
+    cssVariables?: Record<string, string>; // CSS variables
   };
   
-  // 数据配置
+  // Data resolver configuration
   resolver?: {
     cache?: boolean;
     maxCacheSize?: number;
@@ -52,16 +52,16 @@ export interface PivotConfig {
     headers?: Record<string, string>;
   };
   
-  // 渲染配置
+  // Rendering configuration
   rendering?: {
-    virtual?: boolean;          // 虚拟滚动
-    lazy?: boolean;            // 懒加载
-    maxItems?: number;         // 最大显示项数
-    defaultExpanded?: boolean; // 默认展开状态
-    animations?: boolean;      // 动画效果
+    virtual?: boolean;          // Virtual scrolling
+    lazy?: boolean;            // Lazy loading
+    maxItems?: number;         // Max display items
+    defaultExpanded?: boolean; // Default expanded state
+    animations?: boolean;      // Animation effects
   };
   
-  // 布局配置
+  // Layout configuration
   layout?: {
     type?: 'documentation' | 'portal' | 'compact' | 'embedded' | 'custom';
     sidebar?: boolean;
@@ -70,14 +70,14 @@ export interface PivotConfig {
     navigation?: 'sidebar' | 'tabs' | 'none';
   };
   
-  // 代码生成配置
+  // Code generation configuration
   codeGeneration?: {
     languages?: string[];
     defaultLanguage?: string;
     templates?: Record<string, string>;
   };
   
-  // 回调函数
+  // Callback functions
   callbacks?: {
     onOperationSelect?: (operation: OperationInfo) => void;
     onTryItOut?: (request: RequestInfo) => void;
@@ -87,7 +87,7 @@ export interface PivotConfig {
 }
 
 /**
- * 操作信息接口
+ * Operation information interface
  */
 export interface OperationInfo {
   path: string;
@@ -96,7 +96,7 @@ export interface OperationInfo {
 }
 
 /**
- * 请求信息接口
+ * Request information interface
  */
 export interface RequestInfo {
   url: string;
@@ -107,7 +107,7 @@ export interface RequestInfo {
 }
 
 /**
- * 默认配置
+ * Default configuration
  */
 export const defaultConfig: Required<PivotConfig> = {
   theme: {
@@ -176,7 +176,7 @@ export const defaultConfig: Required<PivotConfig> = {
 };
 
 /**
- * 合并配置
+ * Merge configurations
  */
 export function mergeConfig(
   userConfig: Partial<PivotConfig>,
@@ -197,22 +197,22 @@ export function mergeConfig(
 }
 
 /**
- * 验证配置
+ * Validate configuration
  */
 export function validateConfig(config: PivotConfig): string[] {
   const errors: string[] = [];
   
-  // 验证主题
+  // Validate theme
   if (config.theme?.mode && !['light', 'dark', 'system'].includes(config.theme.mode)) {
     errors.push(`Invalid theme mode: ${config.theme.mode}`);
   }
   
-  // 验证语言
+  // Validate locale
   if (config.locale && !['en', 'zh', 'ja', 'es', 'fr', 'de'].includes(config.locale)) {
     errors.push(`Unsupported locale: ${config.locale}`);
   }
   
-  // 验证布局
+  // Validate layout
   if (config.layout?.type && !['documentation', 'portal', 'compact', 'embedded', 'custom'].includes(config.layout.type)) {
     errors.push(`Invalid layout type: ${config.layout.type}`);
   }
