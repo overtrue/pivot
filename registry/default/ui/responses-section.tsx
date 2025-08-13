@@ -4,6 +4,7 @@ import { cn } from "@/lib/utils";
 import { useI18n } from "@/registry/default/lib/i18n";
 import type { OpenAPIV3 } from "openapi-types";
 
+import { resolveRef } from "@/registry/default/lib/resolve-ref";
 import { ResponseGroup } from "@/registry/default/ui/response-group";
 import { SectionTitle } from "@/registry/default/ui/section-title";
 import { StatusCode } from "@/registry/default/ui/status-code";
@@ -23,17 +24,12 @@ const ResponsesSection = React.forwardRef<
   const { t } = useI18n();
   const [activeStatus, setActiveStatus] = useState<string | null>(null);
 
-  // 简化的解析逻辑，如果没有 useOpenApi hook 可用
+  // 使用正确的引用解析函数
   const resolveResponse = (response: OpenAPIV3.ResponseObject | OpenAPIV3.ReferenceObject): OpenAPIV3.ResponseObject | null => {
     if (!response) return null;
-
-    // 如果是引用对象，尝试解析
-    if (typeof response === "object" && "$ref" in response) {
-      // 简化的引用解析
-      return null; // 在实际应用中需要完整的引用解析
-    }
-
-    return response as OpenAPIV3.ResponseObject;
+    
+    // 使用 resolveRef 工具函数来解析引用
+    return resolveRef<OpenAPIV3.ResponseObject>(response, components, "responses");
   };
 
   // 对状态码进行分组
