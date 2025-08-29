@@ -227,7 +227,7 @@ export const OpenAPIViewer = React.forwardRef<HTMLDivElement, OpenAPIViewerProps
     
     return (
       <div ref={ref} className={cn("pivot-viewer", className)} style={style}>
-        <I18nProvider locale={config.locale}>
+        <I18nProvider locale={config.locale === "zh" ? "zh" : "en"}>
           <OpenAPIErrorBoundary>
             {config.resolver?.cache ? (
               <OpenAPIProvider spec={null}>
@@ -276,7 +276,7 @@ export const ResponseViewer: React.FC<{
   const ResponsesSection = React.lazy(() => import('./responses-section').then(m => ({ default: m.ResponsesSection })));
   
   return (
-    <I18nProvider locale={config.locale}>
+    <I18nProvider locale={config.locale === "zh" ? "zh" : "en"}>
       <React.Suspense fallback={<div>Loading...</div>}>
         <ResponsesSection 
           responses={responses} 
@@ -303,7 +303,7 @@ export const OperationViewer: React.FC<{
   const OperationDetail = React.lazy(() => import('./operation-detail').then(m => ({ default: m.OperationDetail })));
   
   return (
-    <I18nProvider locale={config.locale}>
+    <I18nProvider locale={config.locale === "zh" ? "zh" : "en"}>
       <React.Suspense fallback={<div>Loading...</div>}>
         <OperationDetail
           operation={operation}
