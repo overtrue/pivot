@@ -718,6 +718,24 @@ export const Index: Record<string, any> = {
     }),
     meta: undefined,
   },
+  "openapi-viewer": {
+    name: "openapi-viewer",
+    title: "openapi-viewer",
+    description: "",
+    type: "registry:ui",
+    registryDependencies: ["https://pivotkit.vercel.app/r/error-boundary.json","https://pivotkit.vercel.app/r/openapi-context.json","https://pivotkit.vercel.app/r/hooks.json","https://pivotkit.vercel.app/r/lib.json","https://pivotkit.vercel.app/r/operation-detailed-layout.json","https://pivotkit.vercel.app/r/operation-list-layout.json"],
+    files: [{
+      path: "registry/default/ui/openapi-viewer.tsx",
+      type: "registry:ui",
+      target: "components/pivot/openapi-viewer.tsx"
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/default/ui/openapi-viewer.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    meta: undefined,
+  },
   "operation-box": {
     name: "operation-box",
     title: "operation-box",
@@ -2356,6 +2374,24 @@ export const Index: Record<string, any> = {
     }),
     meta: undefined,
   },
+  "openapi-viewer-demo": {
+    name: "openapi-viewer-demo",
+    title: "openapi-viewer-demo",
+    description: "",
+    type: "registry:example",
+    registryDependencies: ["https://pivotkit.vercel.app/r/openapi-viewer.json"],
+    files: [{
+      path: "registry/default/example/openapi-viewer-demo.tsx",
+      type: "registry:example",
+      target: "components/example/openapi-viewer-demo.tsx"
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/default/example/openapi-viewer-demo.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    meta: undefined,
+  },
   "operation-box-demo": {
     name: "operation-box-demo",
     title: "operation-box-demo",
@@ -3229,6 +3265,14 @@ export const Index: Record<string, any> = {
       type: "registry:lib",
       target: "lib/i18n/locales/zh.ts"
     },{
+      path: "registry/default/lib/pivot-config.ts",
+      type: "registry:lib",
+      target: "lib/pivot-config.ts"
+    },{
+      path: "registry/default/lib/ref-resolver.ts",
+      type: "registry:lib",
+      target: "lib/ref-resolver.ts"
+    },{
       path: "registry/default/lib/resolve-ref.ts",
       type: "registry:lib",
       target: "lib/resolve-ref.ts"
@@ -3236,6 +3280,10 @@ export const Index: Record<string, any> = {
       path: "registry/default/lib/schema-utils.ts",
       type: "registry:lib",
       target: "lib/schema-utils.ts"
+    },{
+      path: "registry/default/lib/type-guards.ts",
+      type: "registry:lib",
+      target: "lib/type-guards.ts"
     },{
       path: "registry/default/lib/type-utils.ts",
       type: "registry:lib",

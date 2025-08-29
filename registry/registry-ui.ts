@@ -679,6 +679,29 @@ export const registry_ui: Registry["items"] = [
     ]
   },
   {
+    "name": "openapi-viewer",
+    "type": "registry:ui",
+    "files": [
+      {
+        "path": "registry/default/ui/openapi-viewer.tsx",
+        "type": "registry:ui",
+        "target": "components/pivot/openapi-viewer.tsx"
+      }
+    ],
+    "dependencies": [
+      "openapi-types",
+      "react"
+    ],
+    "registryDependencies": [
+      "https://pivotkit.vercel.app/r/error-boundary.json",
+      "https://pivotkit.vercel.app/r/openapi-context.json",
+      "https://pivotkit.vercel.app/r/hooks.json",
+      "https://pivotkit.vercel.app/r/lib.json",
+      "https://pivotkit.vercel.app/r/operation-detailed-layout.json",
+      "https://pivotkit.vercel.app/r/operation-list-layout.json"
+    ]
+  },
+  {
     "name": "operation-box",
     "type": "registry:ui",
     "files": [

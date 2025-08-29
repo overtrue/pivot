@@ -44,7 +44,7 @@ interface OpenAPIProviderProps {
 }
 
 export function OpenAPIProvider({ children, spec }: OpenAPIProviderProps) {
-  const resolverRef = useRef<RefResolver>();
+  const resolverRef = useRef<RefResolver | null>(null);
   const [selectedOperation, setSelectedOperationAtom] = useAtom(selectedOperationAtom);
 
   // 创建或获取解析器实例

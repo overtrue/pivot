@@ -153,7 +153,7 @@ export function withErrorBoundary<P extends object>(
   const WrappedComponent = React.forwardRef<any, P>((props, ref) => {
     return (
       <ErrorBoundary fallback={fallback} onError={onError}>
-        <Component {...props} ref={ref} />
+        <Component {...(props as any)} ref={ref} />
       </ErrorBoundary>
     );
   });

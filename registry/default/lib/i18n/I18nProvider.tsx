@@ -15,10 +15,11 @@ interface I18nContextProps {
 
 const I18nContext = createContext<I18nContextProps | undefined>(undefined);
 
-export const I18nProvider: React.FC<{ children: React.ReactNode }> = ({
+export const I18nProvider: React.FC<{ children: React.ReactNode; locale?: "en" | "zh" }> = ({
   children,
+  locale: initialLocale = "en",
 }) => {
-  const [locale, setLocale] = useState<"en" | "zh">("en");
+  const [locale, setLocale] = useState<"en" | "zh">(initialLocale);
 
   const t = (key: string): string => {
     // 直接使用扁平结构查找，如果未找到则返回原key

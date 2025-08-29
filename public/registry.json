@@ -693,6 +693,29 @@
       ]
     },
     {
+      "name": "openapi-viewer",
+      "type": "registry:ui",
+      "dependencies": [
+        "openapi-types",
+        "react"
+      ],
+      "registryDependencies": [
+        "https://pivotkit.vercel.app/r/error-boundary.json",
+        "https://pivotkit.vercel.app/r/openapi-context.json",
+        "https://pivotkit.vercel.app/r/hooks.json",
+        "https://pivotkit.vercel.app/r/lib.json",
+        "https://pivotkit.vercel.app/r/operation-detailed-layout.json",
+        "https://pivotkit.vercel.app/r/operation-list-layout.json"
+      ],
+      "files": [
+        {
+          "path": "registry/default/ui/openapi-viewer.tsx",
+          "type": "registry:ui",
+          "target": "components/pivot/openapi-viewer.tsx"
+        }
+      ]
+    },
+    {
       "name": "operation-box",
       "type": "registry:ui",
       "dependencies": [
@@ -2227,6 +2250,23 @@
       ]
     },
     {
+      "name": "openapi-viewer-demo",
+      "type": "registry:example",
+      "dependencies": [
+        "openapi-types"
+      ],
+      "registryDependencies": [
+        "https://pivotkit.vercel.app/r/openapi-viewer.json"
+      ],
+      "files": [
+        {
+          "path": "registry/default/example/openapi-viewer-demo.tsx",
+          "type": "registry:example",
+          "target": "components/example/openapi-viewer-demo.tsx"
+        }
+      ]
+    },
+    {
       "name": "operation-box-demo",
       "type": "registry:example",
       "dependencies": [
@@ -2959,6 +2999,16 @@
           "target": "lib/i18n/locales/zh.ts"
         },
         {
+          "path": "registry/default/lib/pivot-config.ts",
+          "type": "registry:lib",
+          "target": "lib/pivot-config.ts"
+        },
+        {
+          "path": "registry/default/lib/ref-resolver.ts",
+          "type": "registry:lib",
+          "target": "lib/ref-resolver.ts"
+        },
+        {
           "path": "registry/default/lib/resolve-ref.ts",
           "type": "registry:lib",
           "target": "lib/resolve-ref.ts"
@@ -2967,6 +3017,11 @@
           "path": "registry/default/lib/schema-utils.ts",
           "type": "registry:lib",
           "target": "lib/schema-utils.ts"
+        },
+        {
+          "path": "registry/default/lib/type-guards.ts",
+          "type": "registry:lib",
+          "target": "lib/type-guards.ts"
         },
         {
           "path": "registry/default/lib/type-utils.ts",

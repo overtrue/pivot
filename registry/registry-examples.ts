@@ -620,6 +620,23 @@ export const registry_examples: Registry["items"] = [
     ]
   },
   {
+    "name": "openapi-viewer-demo",
+    "type": "registry:example",
+    "files": [
+      {
+        "path": "registry/default/example/openapi-viewer-demo.tsx",
+        "type": "registry:example",
+        "target": "components/example/openapi-viewer-demo.tsx"
+      }
+    ],
+    "dependencies": [
+      "openapi-types"
+    ],
+    "registryDependencies": [
+      "https://pivotkit.vercel.app/r/openapi-viewer.json"
+    ]
+  },
+  {
     "name": "operation-box-demo",
     "type": "registry:example",
     "files": [
