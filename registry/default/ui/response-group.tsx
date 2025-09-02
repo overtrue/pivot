@@ -12,11 +12,6 @@ interface ResponseGroupProps {
   status: string;
   response: OpenAPIV3.ResponseObject;
   components?: OpenAPIV3.ComponentsObject;
-  statusCodeProps?: {
-    size?: "small" | "medium";
-    className?: string;
-    show?: boolean;
-  };
   className?: string;
 }
 
@@ -24,38 +19,36 @@ const ResponseGroup = React.forwardRef<HTMLDivElement, ResponseGroupProps>(
   ({ response, components, className }, ref) => {
     const { t } = useI18n();
 
-    // 预处理内容类型
-    const contentTypes = response.content ? Object.keys(response.content) : [];
-    const hasContent = contentTypes.length > 0;
+    const hasContent = response.content && Object.keys(response.content).length > 0;
+    const hasHeaders = response.headers && Object.keys(response.headers).length > 0;
 
     return (
       <div ref={ref} className={cn("space-y-4", className)}>
-        <div className="flex items-center space-x-2">
-          {response.description && (
+        {/* 响应描述 */}
+        {response.description && (
+          <div className="flex items-center space-x-2">
             <span className="text-neutral-700 dark:text-neutral-300 text-sm">
               {response.description}
             </span>
-          )}
-        </div>
-
-        {/* 使用ResponseContentSection展示内容和示例 */}
-        {hasContent && (
-          <div className="space-y-3">
-            <ResponseContentSection
-              content={response.content!}
-              components={components}
-            />
           </div>
         )}
 
-        {/* 头部信息 */}
-        {response.headers && Object.keys(response.headers).length > 0 && (
+        {/* 响应内容 */}
+        {hasContent && (
+          <ResponseContentSection
+            content={response.content!}
+            components={components}
+          />
+        )}
+
+        {/* 响应头部 */}
+        {hasHeaders && (
           <div>
             <h4 className="text-sm font-semibold uppercase text-neutral-500 dark:text-neutral-400 mb-2">
               {t("Response Headers")}
             </h4>
             <ResponseHeadersTable
-              headers={response.headers}
+              headers={response.headers!}
               components={components}
             />
           </div>

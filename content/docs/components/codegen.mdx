@@ -1,10 +1,10 @@
 ---
 title: Codegen
-description: 用于代码生成的组件。
+description: 多语言代码生成器组件，支持 cURL、Python、TypeScript、PHP、Laravel 等多种编程语言。
 component: true
 ---
 
-用于代码生成的组件。
+Codegen 是一个功能强大的代码生成器组件，它可以根据 OpenAPI 操作定义自动生成多种编程语言的客户端代码。组件支持 cURL、Python、TypeScript、PHP、Laravel 等主流编程语言，为开发者提供便捷的代码生成体验。
 
 <ComponentPreview name="codegen-demo" />
 
@@ -18,10 +18,27 @@ npx shadcn@latest add https://pivotkit.vercel.app/r/codegen.json
 
 ```tsx
 import { Codegen } from "@/components/pivot/codegen";
-```
+import type { OpenAPIV3 } from "openapi-types";
 
-```tsx
-<Codegen />
+// 基本用法
+<Codegen
+  endpoint="https://api.example.com/users/{id}"
+  method="GET"
+  parameters={parameters}
+  requestBody={requestBody}
+  components={components}
+/>
+
+// 可折叠模式
+<Codegen
+  endpoint="https://api.example.com/users"
+  method="POST"
+  parameters={parameters}
+  requestBody={requestBody}
+  components={components}
+  collapsible={true}
+  className="h-full"
+/>
 ```
 
 ## 示例
@@ -29,13 +46,293 @@ import { Codegen } from "@/components/pivot/codegen";
 ### 基本用法
 
 ```tsx
-<Codegen />
+import { Codegen } from "@/components/pivot/codegen";
+
+const parameters = [
+  {
+    name: "id",
+    in: "path",
+    required: true,
+    schema: { type: "integer" },
+    description: "用户ID"
+  },
+  {
+    name: "include",
+    in: "query",
+    required: false,
+    schema: { type: "string" },
+    description: "包含的字段"
+  }
+];
+
+const requestBody = {
+  required: true,
+  content: {
+    "application/json": {
+      schema: {
+        type: "object",
+        properties: {
+          name: { type: "string" },
+          email: { type: "string" }
+        }
+      }
+    }
+  }
+};
+
+<Codegen
+  endpoint="https://api.example.com/users/{id}"
+  method="PUT"
+  parameters={parameters}
+  requestBody={requestBody}
+  components={components}
+/>
+```
+
+### 在布局中使用
+
+```tsx
+import { OperationDetailedLayout } from "@/components/pivot/operation-detailed-layout";
+
+// Codegen 会自动集成到 OperationDetailedLayout 中
+<OperationDetailedLayout
+  spec={openApiSpec}
+  selectedPath="/api/users/{id}"
+  selectedMethod="GET"
+/>
+```
+
+### 自定义代码生成器
+
+```tsx
+// 你可以扩展 Codegen 组件以支持更多语言
+class GoGenerator implements CodeGenerator {
+  id = "go";
+  label = "Go";
+
+  getIcon() {
+    return <Code2 size={16} />;
+  }
+
+  generateCode(params: CodeGeneratorParams): string {
+    // 实现 Go 语言代码生成逻辑
+    return `package main
+
+import (
+    "fmt"
+    "net/http"
+    "bytes"
+    "encoding/json"
+)
+
+func main() {
+    url := "${params.endpoint}"
+    // ... 更多代码
+}`;
+  }
+}
 ```
 
 ## API 参考
 
 ### Props
 
-| 属性        | 类型     | 默认值 | 描述            |
-| ----------- | -------- | ------ | --------------- |
-| `className` | `string` | -      | 额外的 CSS 类名 |
+| 属性          | 类型                        | 默认值 | 描述                                    |
+| ------------- | --------------------------- | ------ | --------------------------------------- |
+| `endpoint`    | `string`                    | -      | API 端点 URL（必需）                     |
+| `method`      | `string`                    | -      | HTTP 方法（必需）                       |
+| `parameters`  | `OpenAPIV3.ParameterObject[]` | -      | 操作参数列表                           |
+| `requestBody` | `OpenAPIV3.RequestBodyObject` | -      | 请求体定义                             |
+| `components`  | `OpenAPIV3.ComponentsObject` | -      | OpenAPI 组件定义                       |
+| `className`   | `string`                    | -      | 额外的 CSS 类名                        |
+| `collapsible` | `boolean`                   | `false` | 是否可折叠                            |
+
+### 支持的编程语言
+
+组件内置支持以下编程语言：
+
+1. **cURL** - 命令行 HTTP 请求工具
+2. **Python** - 使用 requests 库的 Python 代码
+3. **TypeScript** - 使用 fetch API 的 TypeScript 代码
+4. **PHP** - 使用 cURL 扩展的 PHP 代码
+5. **Laravel** - Laravel HTTP 客户端的 PHP 代码
+
+## 功能特性
+
+### 智能参数处理
+
+- **路径参数** - 自动识别和替换路径中的参数占位符
+- **查询参数** - 生成查询字符串参数
+- **头部参数** - 生成自定义请求头部
+- **Cookie 参数** - 生成 Cookie 设置代码
+
+### 请求体生成
+
+- **JSON 格式** - 根据 OpenAPI 模式生成示例 JSON
+- **类型安全** - 生成符合模式定义的请求体
+- **嵌套对象** - 支持复杂的嵌套对象结构
+- **数组支持** - 支持数组类型的请求体
+
+### 代码质量
+
+- **语法正确** - 生成的代码符合各语言的语法规范
+- **最佳实践** - 遵循各语言的编码最佳实践
+- **错误处理** - 包含基本的错误处理逻辑
+- **注释说明** - 添加必要的代码注释
+
+## 代码生成器架构
+
+Codegen 组件采用插件化架构，每个代码生成器都实现 `CodeGenerator` 接口：
+
+```tsx
+interface CodeGenerator {
+  id: string;           // 唯一标识符
+  label: string;        // 显示标签
+  getIcon(): React.ReactNode;  // 图标组件
+  generateCode(params: CodeGeneratorParams): string;  // 代码生成逻辑
+}
+```
+
+### 内置生成器
+
+1. **CurlGenerator** - 生成 cURL 命令
+2. **PythonGenerator** - 生成 Python 代码
+3. **TypeScriptGenerator** - 生成 TypeScript 代码
+4. **PhpGenerator** - 生成 PHP 代码
+5. **LaravelGenerator** - 生成 Laravel 代码
+
+## 最佳实践
+
+### 1. 提供完整的组件定义
+
+```tsx
+// 推荐：提供完整的组件定义以支持引用解析
+<Codegen
+  endpoint="https://api.example.com/users/{id}"
+  method="GET"
+  parameters={parameters}
+  components={{
+    parameters: {
+      UserId: {
+        name: "id",
+        in: "path",
+        required: true,
+        schema: { type: "integer" }
+      }
+    }
+  }}
+/>
+
+// 不推荐：缺少组件定义
+<Codegen
+  endpoint="https://api.example.com/users/{id}"
+  method="GET"
+  parameters={parameters}
+/>
+```
+
+### 2. 处理复杂参数
+
+```tsx
+const complexParameters = [
+  {
+    name: "filters",
+    in: "query",
+    required: false,
+    schema: {
+      type: "object",
+      properties: {
+        status: { type: "string", enum: ["active", "inactive"] },
+        age: { type: "integer", minimum: 0 },
+        tags: { type: "array", items: { type: "string" } }
+      }
+    }
+  }
+];
+
+<Codegen
+  endpoint="https://api.example.com/users"
+  method="GET"
+  parameters={complexParameters}
+  components={components}
+/>
+```
+
+### 3. 自定义样式和布局
+
+```tsx
+<Codegen
+  endpoint="https://api.example.com/users"
+  method="POST"
+  parameters={parameters}
+  requestBody={requestBody}
+  className="border-2 border-blue-200 rounded-lg p-4"
+  style={{
+    '--codegen-bg': 'var(--color-blue-50)',
+    '--codegen-border': 'var(--color-blue-200)'
+  }}
+/>
+```
+
+## 扩展性
+
+### 添加新的代码生成器
+
+```tsx
+// 1. 实现 CodeGenerator 接口
+class RustGenerator implements CodeGenerator {
+  id = "rust";
+  label = "Rust";
+
+  getIcon() {
+    return <Code2 size={16} />;
+  }
+
+  generateCode(params: CodeGeneratorParams): string {
+    // 实现 Rust 代码生成逻辑
+    return `use reqwest::Client;
+use serde_json::Value;
+
+#[tokio::main]
+async fn main() -> Result<(), Box<dyn std::error::Error>> {
+    let client = Client::new();
+    let url = "${params.endpoint}";
+
+    let response = client.${params.method.toLowerCase()}(url)
+        .send()
+        .await?;
+
+    let data: Value = response.json().await?;
+    println!("{:?}", data);
+    Ok(())
+}`;
+  }
+}
+
+// 2. 注册到 Codegen 组件
+const customGenerators = [new RustGenerator()];
+```
+
+## 无障碍性
+
+- 支持键盘导航
+- 屏幕阅读器友好
+- 高对比度主题支持
+- 可访问的代码块
+
+## 性能优化
+
+- 懒加载代码内容
+- 智能参数验证
+- 代码生成缓存
+- 响应式状态管理
+
+## 设计原则
+
+Codegen 组件遵循以下设计原则：
+
+1. **可扩展性** - 支持添加新的代码生成器
+2. **一致性** - 生成的代码遵循各语言的最佳实践
+3. **可读性** - 生成的代码清晰易懂
+4. **实用性** - 生成的代码可以直接使用
+5. **国际化** - 支持多语言界面

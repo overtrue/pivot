@@ -3,6 +3,7 @@
 import { Badge } from "@/components/ui/badge";
 import { Label } from "@/components/ui/label";
 import { cn } from "@/lib/utils";
+import { useOpenApi } from "@/registry/default/hooks/use-openapi";
 import { useI18n } from "@/registry/default/lib/i18n";
 import { DeprecatedBadge } from "@/registry/default/ui/deprecated-badge";
 import { DescriptionDisplay } from "@/registry/default/ui/description-display";
@@ -14,23 +15,70 @@ import { RequestBodySection } from "@/registry/default/ui/request-body-section";
 import { ResponsesSection } from "@/registry/default/ui/responses-section";
 import { SecurityRequirementsSection } from "@/registry/default/ui/security-requirements-section";
 import type { OpenAPIV3 } from "openapi-types";
-import React from "react";
-
-// Import types from the centralized types file
+import React, { useMemo } from "react";
 
 interface OperationDetailProps {
-  operation: OpenAPIV3.OperationObject;
+  // Support multiple input formats for operation
+  operation:
+    | OpenAPIV3.OperationObject
+    | OpenAPIV3.ReferenceObject
+    | Partial<OpenAPIV3.OperationObject>;
+
   path: string;
   method: string;
+
+  // Optional for standalone mode
   components?: OpenAPIV3.ComponentsObject;
+  spec?: OpenAPIV3.Document;
+
   className?: string;
 }
 
 export const OperationDetail = React.forwardRef<
   HTMLDivElement,
   OperationDetailProps
->(({ operation, path, method, components, className }, ref) => {
+>(({ operation, path, method, components, spec, className }, ref) => {
   const { t } = useI18n();
+
+  // Use OpenAPI hook for intelligent data access
+  const openapi = useOpenApi(spec || null, components);
+
+  // Adapt operation to standard format
+  const adaptedOperation = useMemo(() => {
+    if (typeof operation === 'object' && !('$ref' in operation)) {
+      return operation as OpenAPIV3.OperationObject;
+    }
+    return operation;
+  }, [operation]);
+
+  // Resolve operation using context or fallback
+  const resolvedOperation = openapi.resolve<OpenAPIV3.OperationObject>(
+    adaptedOperation,
+    "operations"
+  );
+
+  // Error handling for unresolved references
+  if (!resolvedOperation && adaptedOperation && '$ref' in adaptedOperation) {
+    const refString = (adaptedOperation as OpenAPIV3.ReferenceObject).$ref;
+    return (
+      <div ref={ref} className={cn("border rounded p-4", "bg-yellow-50 dark:bg-yellow-900/20", "border-yellow-200 dark:border-yellow-800", className)}>
+        <div className="flex items-center gap-2 text-sm mb-2">
+          <MethodLabel method={method.toUpperCase() as any} />
+          <OperationPath path={path} className="text-lg font-mono" />
+        </div>
+        <div className="text-yellow-700 dark:text-yellow-400">
+          Could not resolve operation reference: {refString}
+        </div>
+        {!openapi.hasComponents && (
+          <div className="text-xs text-yellow-600 dark:text-yellow-500 mt-2">
+            💡 Tip: Provide components or wrap with OpenAPIProvider
+          </div>
+        )}
+      </div>
+    );
+  }
+
+  const effectiveOperation = resolvedOperation || adaptedOperation as OpenAPIV3.OperationObject;
 
   // 确保 method 是有效的 HTTP 方法
   const normalizedMethod = method.toUpperCase() as
@@ -42,11 +90,11 @@ export const OperationDetail = React.forwardRef<
     | "OPTIONS"
     | "HEAD";
 
-  const parameters = operation.parameters;
-  const requestBody = operation.requestBody;
-  const responses = operation.responses;
-  const security = operation.security;
-  const externalDocs = operation.externalDocs;
+  const parameters = effectiveOperation.parameters;
+  const requestBody = effectiveOperation.requestBody;
+  const responses = effectiveOperation.responses;
+  const security = effectiveOperation.security;
+  const externalDocs = effectiveOperation.externalDocs;
 
   return (
     <div ref={ref} className={cn("space-y-6", className)}>
@@ -56,20 +104,20 @@ export const OperationDetail = React.forwardRef<
         <div className="flex items-center gap-3 flex-wrap">
           <MethodLabel method={normalizedMethod} />
           <OperationPath path={path} className="text-lg font-mono" />
-          {operation.deprecated && <DeprecatedBadge />}
+          {effectiveOperation.deprecated && <DeprecatedBadge />}
         </div>
 
         {/* 摘要 */}
-        {operation.summary && (
+        {effectiveOperation.summary && (
           <h1 className="text-2xl font-semibold text-foreground">
-            {operation.summary}
+            {effectiveOperation.summary}
           </h1>
         )}
 
         {/* 描述 */}
-        {operation.description && (
+        {effectiveOperation.description && (
           <DescriptionDisplay
-            description={operation.description}
+            description={effectiveOperation.description}
             className="text-muted-foreground prose dark:prose-invert max-w-none"
           />
         )}
@@ -81,13 +129,13 @@ export const OperationDetail = React.forwardRef<
       </div>
 
       {/* 标签和操作ID */}
-      {(operation.tags || operation.operationId) && (
+      {(effectiveOperation.tags || effectiveOperation.operationId) && (
         <div className="flex flex-wrap gap-4">
-          {operation.tags && operation.tags.length > 0 && (
+          {effectiveOperation.tags && effectiveOperation.tags.length > 0 && (
             <div className="space-y-2">
               <Label className="text-sm font-medium">{t("Tags")}</Label>
               <div className="flex flex-wrap gap-2">
-                {operation.tags.map((tag: string) => (
+                {effectiveOperation.tags.map((tag: string) => (
                   <Badge key={tag} variant="secondary">
                     {tag}
                   </Badge>
@@ -96,12 +144,14 @@ export const OperationDetail = React.forwardRef<
             </div>
           )}
 
-          {operation.operationId && (
+          {effectiveOperation.operationId && (
             <div className="space-y-2">
               <Label className="text-sm font-medium">{t("Operation ID")}</Label>
-              <code className="text-sm bg-muted px-2 py-1 rounded font-mono">
-                {operation.operationId}
-              </code>
+              <div className="flex flex-wrap gap-2">
+                <Badge variant="secondary" className="font-mono">
+                  {effectiveOperation.operationId}
+                </Badge>
+              </div>
             </div>
           )}
         </div>
@@ -111,19 +161,26 @@ export const OperationDetail = React.forwardRef<
       {parameters && parameters.length > 0 && (
         <ParametersSection
           parameters={parameters}
-          components={components}
+          components={openapi.components}
           expanded={true}
         />
       )}
 
       {/* 请求体部分 */}
       {requestBody && (
-        <RequestBodySection requestBody={requestBody} components={components} />
+        <RequestBodySection
+          requestBody={requestBody}
+          components={openapi.components}
+        />
       )}
 
       {/* 响应部分 */}
       {responses && (
-        <ResponsesSection responses={responses} components={components} />
+        <ResponsesSection
+          responses={responses}
+          components={openapi.components}
+          spec={openapi.spec || undefined}
+        />
       )}
 
       {/* 安全要求部分 */}

@@ -2,7 +2,6 @@
 
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { cn } from "@/lib/utils";
-import { useOpenAPILoader } from "@/registry/default/hooks/use-openapi-loader";
 import { useI18n } from "@/registry/default/lib/i18n";
 import { Codegen } from "@/registry/default/ui/codegen";
 import { LanguageSwitcher } from "@/registry/default/ui/language-switcher";
@@ -27,9 +26,6 @@ interface OperationDetailedLayoutProps {
     operation: OpenAPIV3.OperationObject,
   ) => void;
   className?: string;
-  // 新增开关控制
-  showCodegen?: boolean;
-  showTryPanel?: boolean;
   navigationWidth?: string;
 }
 
@@ -44,9 +40,7 @@ const OperationDetailedLayout = React.forwardRef<
       selectedMethod = null,
       onSelectOperation = () => { },
       className,
-      showCodegen = true,
-      showTryPanel = true,
-
+      navigationWidth,
     },
     ref,
   ) => {
@@ -58,9 +52,8 @@ const OperationDetailedLayout = React.forwardRef<
       string | null
     >(selectedMethod);
 
-    // 使用统一的数据加载器（支持智能判断输入类型）
-    const { spec, loading, error } =
-      useOpenAPILoader(inputSpec);
+    // 直接使用传入的 spec 参数
+    const spec = inputSpec;
 
     // 同步外部状态变化
     useEffect(() => {
@@ -73,7 +66,7 @@ const OperationDetailedLayout = React.forwardRef<
 
     // 自动选择第一个操作
     useEffect(() => {
-      if (spec && !localSelectedPath && !localSelectedMethod && !selectedPath && !selectedMethod) {
+      if (spec && typeof spec === 'object' && !localSelectedPath && !localSelectedMethod && !selectedPath && !selectedMethod) {
         // 找到第一个可用的操作
         for (const [path, pathItem] of Object.entries(spec.paths || {})) {
           const methods = ["get", "post", "put", "delete", "patch", "options", "head"];
@@ -103,7 +96,7 @@ const OperationDetailedLayout = React.forwardRef<
 
     // 获取当前选择的操作
     const currentOperation = useMemo(() => {
-      if (!spec || !localSelectedPath || !localSelectedMethod) return null;
+      if (!spec || typeof spec !== 'object' || !localSelectedPath || !localSelectedMethod) return null;
 
       const pathItem = spec.paths?.[localSelectedPath];
       if (!pathItem) return null;
@@ -118,40 +111,12 @@ const OperationDetailedLayout = React.forwardRef<
 
     // 构建服务器 URL
     const baseUrl = useMemo(() => {
-      if (!spec?.servers || spec.servers.length === 0) return "";
+      if (!spec || typeof spec !== 'object' || !spec.servers || spec.servers.length === 0) return "";
       return spec.servers[0]?.url || "";
     }, [spec]);
 
-    // 错误状态
-    if (error) {
-      return (
-        <div className="flex items-center justify-center h-64">
-          <div className="text-center">
-            <h3 className="text-lg font-medium text-destructive mb-2">
-              {t("Error loading OpenAPI specification")}
-            </h3>
-            <p className="text-sm text-muted-foreground">{error}</p>
-          </div>
-        </div>
-      );
-    }
-
-    // 加载状态
-    if (loading) {
-      return (
-        <div className="flex items-center justify-center h-64">
-          <div className="text-center">
-            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto mb-2"></div>
-            <p className="text-sm text-muted-foreground">
-              {t("Loading OpenAPI specification...")}
-            </p>
-          </div>
-        </div>
-      );
-    }
-
     // 无数据状态
-    if (!spec) {
+    if (!spec || typeof spec !== 'object') {
       return (
         <div className="flex items-center justify-center h-64">
           <div className="text-center">
@@ -167,7 +132,7 @@ const OperationDetailedLayout = React.forwardRef<
     }
 
     // 计算布局类名
-    const showRightPanel = showCodegen || showTryPanel;
+    const showRightPanel = true; // Always show right panel for now
 
     return (
       <SidebarProvider defaultOpen={true}>
@@ -219,6 +184,7 @@ const OperationDetailedLayout = React.forwardRef<
                   operation={currentOperation}
                   path={localSelectedPath}
                   method={localSelectedMethod}
+                  spec={spec as OpenAPIV3.Document}
                   components={spec.components}
                   className="h-full"
                 />
@@ -242,7 +208,7 @@ const OperationDetailedLayout = React.forwardRef<
             {showRightPanel && (
               <div className="w-1/3 max-w-128 flex flex-col items-start p-4 gap-6">
                 {/* 代码生成面板 */}
-                {showCodegen && (
+                {true && (
                   <div className="w-full">
                     {currentOperation && localSelectedPath && localSelectedMethod ? (
                       <Codegen
@@ -259,7 +225,7 @@ const OperationDetailedLayout = React.forwardRef<
                         }
                         parameters={currentOperation.parameters}
                         requestBody={currentOperation.requestBody}
-                        components={spec.components}
+                        components={(spec as OpenAPIV3.Document).components}
                         collapsible={false}
                       />
                     ) : (
@@ -273,7 +239,7 @@ const OperationDetailedLayout = React.forwardRef<
                 )}
 
                 {/* 试用面板 */}
-                {showTryPanel && (
+                {true && (
                   <div className="">
                     {currentOperation && localSelectedPath && localSelectedMethod ? (
                       <TryItOutPanel
@@ -281,8 +247,7 @@ const OperationDetailedLayout = React.forwardRef<
                         path={localSelectedPath}
                         method={localSelectedMethod}
                         baseUrl={baseUrl}
-                        components={spec.components}
-                        collapsible={false}
+                        components={(spec as OpenAPIV3.Document).components}
                         className="h-full"
                       />
                     ) : (

@@ -2,13 +2,13 @@ import { cn } from "@/lib/utils";
 import React from "react";
 
 interface MethodLabelProps {
-  method: "GET" | "POST" | "PUT" | "DELETE" | "PATCH" | "OPTIONS" | "HEAD";
+  method: "GET" | "POST" | "PUT" | "DELETE" | "PATCH" | "OPTIONS" | "HEAD" | string;
   variant?: "default" | "compact";
   className?: string;
 }
 
 const methodColors: Record<
-  MethodLabelProps["method"],
+  "GET" | "POST" | "PUT" | "DELETE" | "PATCH" | "OPTIONS" | "HEAD",
   { text: string; bg: string; darkText: string; darkBg: string }
 > = {
   GET: {
@@ -57,14 +57,20 @@ const methodColors: Record<
 
 const MethodLabel = React.forwardRef<HTMLSpanElement, MethodLabelProps>(
   ({ method, variant = "default", className }, ref) => {
+    // 标准化方法名，确保是大写
+    const normalizedMethod = method.toUpperCase() as keyof typeof methodColors;
+
+    // 获取颜色配置，如果方法不存在则使用默认的 OPTIONS 样式
+    const colors = methodColors[normalizedMethod] || methodColors.OPTIONS;
+
     const compactStyles =
       variant === "compact"
-        ? `${methodColors[method].text} ${methodColors[method].darkText} font-semibold text-xs`
-        : `${methodColors[method].text} ${methodColors[method].darkText} ${methodColors[method].bg} ${methodColors[method].darkBg} px-2 py-1 text-xs font-semibold rounded`;
+        ? `${colors.text} ${colors.darkText} font-semibold text-xs`
+        : `${colors.text} ${colors.darkText} ${colors.bg} ${colors.darkBg} px-2 py-1 text-xs font-semibold rounded`;
 
     return (
       <span ref={ref} className={cn(compactStyles, className)}>
-        {method}
+        {normalizedMethod}
       </span>
     );
   },

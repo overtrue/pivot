@@ -31,14 +31,9 @@ export class LaravelGeneratorClass implements CodeGenerator {
   generateCode(params: CodeGeneratorParams): string {
     const { endpoint, method, requestBodyExample, requestBody } = params;
 
-    // 生成格式化后的PHP数组表示
-    const formattedRequestBody = JSON.stringify(requestBodyExample, null, 2)
-      .replace(/"/g, "'")
-      .replace(/\n/g, "\n        ");
-
-    const guzzleRequestBody = JSON.stringify(requestBodyExample, null, 2)
-      .replace(/"/g, "'")
-      .replace(/\n/g, "\n            ");
+    // 生成格式化后的PHP数组表示，使用较小的缩进
+    const formattedRequestBody = this.convertToPhpArray(requestBodyExample, 4);
+    const guzzleRequestBody = this.convertToPhpArray(requestBodyExample, 8);
 
     return `<?php
 // 使用 Laravel HTTP 客户端
@@ -78,6 +73,32 @@ public function call_${method.toLowerCase()}_guzzle()
     return json_decode($response->getBody(), true);
 }`;
   }
+
+  // 将 JSON 对象转换为 PHP 数组格式，优化宽度
+  private convertToPhpArray(obj: unknown, indent: number = 0): string {
+    if (obj === null) return 'null';
+    if (typeof obj === 'string') return `'${obj.replace(/'/g, "\\'")}'`;
+    if (typeof obj === 'number') return obj.toString();
+    if (typeof obj === 'boolean') return obj ? 'true' : 'false';
+
+    if (Array.isArray(obj)) {
+      if (obj.length === 0) return '[]';
+      const items = obj.map(item => this.convertToPhpArray(item, indent + 2));
+      return `[\n${' '.repeat(indent + 2)}${items.join(",\n" + ' '.repeat(indent + 2))}\n${' '.repeat(indent)}]`;
+    }
+
+    if (typeof obj === 'object' && obj !== null) {
+      const entries = Object.entries(obj as Record<string, unknown>);
+      if (entries.length === 0) return '[]';
+
+      const items = entries.map(([key, value]) =>
+        `'${key}' => ${this.convertToPhpArray(value, indent + 2)}`
+      );
+      return `[\n${' '.repeat(indent + 2)}${items.join(",\n" + ' '.repeat(indent + 2))}\n${' '.repeat(indent)}]`;
+    }
+
+    return 'null';
+  }
 }
 
 // React component wrapper
@@ -113,9 +134,11 @@ const LaravelGeneratorComponent = React.forwardRef<
         {generator.getIcon()}
         <span className="font-medium">{generator.label}</span>
       </div>
-      <pre className="bg-neutral-100 dark:bg-neutral-800 p-4 rounded-md overflow-x-auto">
-        <code className="text-sm language-php">{code}</code>
-      </pre>
+      <div className="bg-neutral-100 dark:bg-neutral-800 rounded-md overflow-hidden w-full">
+        <pre className="p-4 overflow-x-auto w-full max-w-full" style={{ wordBreak: 'break-all', whiteSpace: 'pre-wrap', maxWidth: '100%' }}>
+          <code className="text-sm language-php" style={{ maxWidth: '100%', display: 'block' }}>{code}</code>
+        </pre>
+      </div>
     </div>
   );
 });

@@ -1,17 +1,25 @@
 "use client";
 
 import { cn } from "@/lib/utils";
+import { useOpenApi } from "@/registry/default/hooks/use-openapi";
 import { useI18n } from "@/registry/default/lib/i18n";
 import type { OpenAPIV3 } from "openapi-types";
 
 import { SchemaWithExampleViewer } from "@/registry/default/ui/schema-with-example-viewer";
 import { SectionTitle } from "@/registry/default/ui/section-title";
-import React from "react";
+import React, { useMemo } from "react";
 
 interface RequestBodySectionProps {
-  requestBody: OpenAPIV3.RequestBodyObject | OpenAPIV3.ReferenceObject;
+  // Support multiple input formats
+  requestBody:
+    | OpenAPIV3.RequestBodyObject
+    | OpenAPIV3.ReferenceObject
+    | Partial<OpenAPIV3.RequestBodyObject>;
+
+  // Optional for standalone mode
   components?: OpenAPIV3.ComponentsObject;
-  spec?: OpenAPIV3.Document; // 可选，如果提供则使用完整的OpenAPI规范
+  spec?: OpenAPIV3.Document;
+
   className?: string;
   titleClassName?: string;
 }
@@ -19,28 +27,50 @@ interface RequestBodySectionProps {
 const RequestBodySection = React.forwardRef<
   HTMLDivElement,
   RequestBodySectionProps
->(({ requestBody, components, className = "", titleClassName }, ref) => {
+>(({ requestBody, components, spec, className = "", titleClassName }, ref) => {
   const { t } = useI18n();
 
-  // 简化的解析逻辑，如果没有 useOpenApi hook 可用
-  const resolveRequestBody = (
-    body: OpenAPIV3.RequestBodyObject | OpenAPIV3.ReferenceObject,
-  ): OpenAPIV3.RequestBodyObject | null => {
-    if (!body) return null;
+  // Use OpenAPI hook for intelligent data access
+  const openapi = useOpenApi(spec || null, components);
 
-    // 如果是引用对象，尝试解析
-    if (typeof body === "object" && "$ref" in body) {
-      // 简化的引用解析
-      return null; // 在实际应用中需要完整的引用解析
+  // Adapt request body to standard format
+  const adaptedRequestBody = useMemo(() => {
+    if (typeof requestBody === 'object' && !('$ref' in requestBody)) {
+      return requestBody as OpenAPIV3.RequestBodyObject;
     }
+    return requestBody;
+  }, [requestBody]);
 
-    return body as OpenAPIV3.RequestBodyObject;
-  };
+  // Resolve request body using context or fallback
+  const resolvedBody = openapi.resolve<OpenAPIV3.RequestBodyObject>(
+    adaptedRequestBody,
+    "requestBodies"
+  );
 
-  // 解析引用对象
-  const resolvedBody = resolveRequestBody(requestBody);
+  // Error handling for unresolved references
+  if (!resolvedBody && adaptedRequestBody && '$ref' in adaptedRequestBody) {
+    const refString = (adaptedRequestBody as OpenAPIV3.ReferenceObject).$ref;
+    return (
+      <div ref={ref} className={cn("border rounded p-4", "bg-yellow-50 dark:bg-yellow-900/20", "border-yellow-200 dark:border-yellow-800", className)}>
+        <SectionTitle
+          title={t("Request Body")}
+          className={cn("text-lg font-medium mb-3", titleClassName)}
+        />
+        <div className="text-yellow-700 dark:text-yellow-400">
+          {t("Could not resolve request body reference:")} {refString}
+        </div>
+        {!openapi.hasComponents && (
+          <div className="text-xs text-yellow-600 dark:text-yellow-500 mt-2">
+            💡 {t("Tip: Provide components or wrap with OpenAPIProvider")}
+          </div>
+        )}
+      </div>
+    );
+  }
 
-  if (!resolvedBody) {
+  const effectiveBody = resolvedBody || adaptedRequestBody as OpenAPIV3.RequestBodyObject;
+
+  if (!effectiveBody) {
     return (
       <div
         ref={ref}
@@ -52,7 +82,7 @@ const RequestBodySection = React.forwardRef<
   }
 
   // 获取内容
-  const content = resolvedBody.content;
+  const content = effectiveBody.content;
   if (!content) {
     return (
       <div
@@ -69,7 +99,7 @@ const RequestBodySection = React.forwardRef<
     return (
       <>
         {/* Required indicator */}
-        {resolvedBody.required && (
+        {effectiveBody.required && (
           <div className="mb-2">
             <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200">
               {t("Required")}
@@ -88,8 +118,8 @@ const RequestBodySection = React.forwardRef<
       />
 
       <SchemaWithExampleViewer
-        content={requestBody}
-        components={components}
+        content={effectiveBody}
+        components={openapi.components}
         contentType="requestBody"
         renderHeader={renderHeader}
       />

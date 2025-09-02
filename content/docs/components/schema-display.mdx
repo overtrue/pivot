@@ -97,7 +97,152 @@ const orderSchema = {
 
 ### Props
 
-| 属性        | 类型     | 默认值 | 描述             |
-| ----------- | -------- | ------ | ---------------- |
-| `schema`    | `object` | -      | JSON Schema 对象 |
-| `className` | `string` | -      | 额外的 CSS 类名  |
+| 属性           | 类型                                                                                    | 默认值 | 描述                                    |
+| -------------- | --------------------------------------------------------------------------------------- | ------ | --------------------------------------- |
+| `schema`       | `OpenAPIV3.SchemaObject \| OpenAPIV3.ReferenceObject`                                  | -      | OpenAPI Schema 对象或引用（必需）        |
+| `components`   | `OpenAPIV3.ComponentsObject`                                                            | -      | OpenAPI 组件定义，用于解析引用           |
+| `currentDepth` | `number`                                                                                | `0`    | 当前嵌套深度                            |
+| `maxDepth`     | `number`                                                                                | `10`   | 最大嵌套深度，防止无限循环               |
+| `className`    | `string`                                                                                | -      | 额外的 CSS 类名                         |
+
+### 支持的 Schema 类型
+
+组件支持以下 OpenAPI Schema 类型：
+
+1. **基本类型** - `string`, `integer`, `number`, `boolean`, `null`
+2. **复杂类型** - `object`, `array`
+3. **组合类型** - `allOf`, `anyOf`, `oneOf`, `not`
+4. **引用类型** - `$ref` 引用其他 Schema
+
+## 功能特性
+
+### 智能引用解析
+
+- **自动解析** - 自动解析 `$ref` 引用
+- **循环检测** - 防止无限递归循环
+- **深度限制** - 可配置的最大嵌套深度
+- **错误处理** - 优雅处理无法解析的引用
+
+### 丰富的类型展示
+
+- **类型指示器** - 清晰显示数据类型
+- **格式标识** - 显示特殊格式（如 uuid、email、date-time）
+- **约束信息** - 显示最小值、最大值、模式等约束
+- **枚举值** - 展示可选的枚举值
+
+### 交互式界面
+
+- **可折叠** - 支持展开/折叠复杂结构
+- **渐进式** - 按需加载深层内容
+- **响应式** - 适配不同屏幕尺寸
+- **主题支持** - 支持明暗主题切换
+
+## 组件结构
+
+Schema Display 包含以下主要部分：
+
+1. **类型指示器** (`TypeIndicator`)
+   - 显示数据类型
+   - 支持基本类型和复杂类型
+   - 颜色编码区分不同类型
+
+2. **属性展示** (`PropertyDisplay`)
+   - 显示对象属性
+   - 支持嵌套结构
+   - 可折叠的展开/收起
+
+3. **约束显示** (`ConstraintDisplay`)
+   - 显示数值约束
+   - 显示字符串模式
+   - 显示数组约束
+
+4. **枚举值** (`EnumValuesDisplay`)
+   - 显示可选值列表
+   - 支持复杂枚举结构
+   - 格式化显示
+
+## 最佳实践
+
+### 1. 提供完整的组件定义
+
+```tsx
+// 推荐：提供完整的组件定义以支持引用解析
+<SchemaDisplay
+  schema={userSchema}
+  components={{
+    schemas: {
+      User: userSchema,
+      Address: addressSchema
+    }
+  }}
+/>
+
+// 不推荐：缺少组件定义
+<SchemaDisplay schema={userSchema} />
+```
+
+### 2. 控制嵌套深度
+
+```tsx
+// 限制最大嵌套深度，避免过于复杂的展示
+<SchemaDisplay
+  schema={complexSchema}
+  maxDepth={5}
+  components={components}
+/>
+
+// 从特定深度开始展示
+<SchemaDisplay
+  schema={nestedSchema}
+  currentDepth={2}
+  maxDepth={8}
+  components={components}
+/>
+```
+
+### 3. 处理复杂 Schema
+
+```tsx
+// 对于复杂的组合 Schema，组件会自动处理
+const complexSchema = {
+  allOf: [
+    { $ref: "#/components/schemas/BaseUser" },
+    {
+      type: "object",
+      properties: {
+        role: { type: "string", enum: ["admin", "user"] }
+      }
+    }
+  ]
+};
+
+<SchemaDisplay
+  schema={complexSchema}
+  components={components}
+  maxDepth={6}
+/>
+```
+
+## 无障碍性
+
+- 支持键盘导航
+- 屏幕阅读器友好
+- 高对比度主题支持
+- 可访问的折叠控件
+
+## 性能优化
+
+- 懒加载深层内容
+- 智能引用解析
+- 深度限制防止无限循环
+- 响应式状态管理
+
+## 设计原则
+
+Schema Display 组件遵循以下设计原则：
+
+1. **清晰性** - 清晰展示复杂的数据结构
+2. **一致性** - 与整个 OpenAPI 组件库保持一致的设计语言
+3. **可访问性** - 确保所有用户都能访问 Schema 信息
+4. **性能** - 高效处理大型和复杂的 Schema
+5. **可扩展性** - 支持新的 Schema 类型和特性

@@ -1,10 +1,10 @@
 ---
 title: Navigation Sidebar
-description: 用于导航的侧边栏组件。
+description: 智能的 OpenAPI 导航侧边栏组件，支持按标签分组、搜索过滤和操作选择。
 component: true
 ---
 
-用于导航的侧边栏组件。
+Navigation Sidebar 是一个功能完整的 OpenAPI 导航侧边栏组件，它提供了智能的操作分组、搜索过滤和交互式操作选择功能。组件支持按标签分组、路径分组等多种组织方式，为开发者提供直观的 API 导航体验。
 
 <ComponentPreview name="navigation-sidebar-demo" />
 
@@ -18,10 +18,31 @@ npx shadcn@latest add https://pivotkit.vercel.app/r/navigation-sidebar.json
 
 ```tsx
 import { NavigationSidebar } from "@/components/pivot/navigation-sidebar";
-```
+import type { OpenAPIV3 } from "openapi-types";
 
-```tsx
-<NavigationSidebar />
+// 基本用法
+<NavigationSidebar
+  spec={openApiSpec}
+  onSelectOperation={(path, method, operation) => {
+    console.log(`Selected: ${method} ${path}`);
+  }}
+/>
+
+// 预选操作
+<NavigationSidebar
+  spec={openApiSpec}
+  activePath="/api/users/{id}"
+  activeMethod="GET"
+  onSelectOperation={handleOperationSelect}
+/>
+
+// 自定义分组和折叠行为
+<NavigationSidebar
+  spec={openApiSpec}
+  groupByTags={true}
+  collapsible="icon"
+  onSelectOperation={handleOperationSelect}
+/>
 ```
 
 ## 示例
@@ -29,13 +50,256 @@ import { NavigationSidebar } from "@/components/pivot/navigation-sidebar";
 ### 基本用法
 
 ```tsx
-<NavigationSidebar />
+import { NavigationSidebar } from "@/components/pivot/navigation-sidebar";
+
+const openApiSpec = {
+  openapi: "3.0.0",
+  info: { title: "User API", version: "1.0.0" },
+  paths: {
+    "/users": {
+      get: {
+        operationId: "getUsers",
+        summary: "获取用户列表",
+        tags: ["Users"]
+      },
+      post: {
+        operationId: "createUser",
+        summary: "创建用户",
+        tags: ["Users"]
+      }
+    },
+    "/users/{id}": {
+      get: {
+        operationId: "getUserById",
+        summary: "获取用户详情",
+        tags: ["Users"]
+      }
+    }
+  },
+  tags: [
+    { name: "Users", description: "用户管理相关操作" }
+  ]
+};
+
+<NavigationSidebar
+  spec={openApiSpec}
+  onSelectOperation={(path, method, operation) => {
+    console.log(`Selected operation: ${method} ${path}`);
+    console.log('Operation details:', operation);
+  }}
+/>
+```
+
+### 在布局中使用
+
+```tsx
+import { OperationDetailedLayout } from "@/components/pivot/operation-detailed-layout";
+
+// NavigationSidebar 会自动集成到 OperationDetailedLayout 中
+<OperationDetailedLayout
+  spec={openApiSpec}
+  selectedPath="/api/users/{id}"
+  selectedMethod="GET"
+/>
+```
+
+### 自定义分组行为
+
+```tsx
+// 按标签分组（默认）
+<NavigationSidebar
+  spec={openApiSpec}
+  groupByTags={true}
+  onSelectOperation={handleOperationSelect}
+/>
+
+// 按路径分组
+<NavigationSidebar
+  spec={openApiSpec}
+  groupByTags={false}
+  onSelectOperation={handleOperationSelect}
+/>
+```
+
+### 不同的折叠模式
+
+```tsx
+// 图标模式 - 只显示图标
+<NavigationSidebar
+  spec={openApiSpec}
+  collapsible="icon"
+  onSelectOperation={handleOperationSelect}
+/>
+
+// 侧边栏模式 - 完全隐藏
+<NavigationSidebar
+  spec={openApiSpec}
+  collapsible="offcanvas"
+  onSelectOperation={handleOperationSelect}
+/>
+
+// 不折叠
+<NavigationSidebar
+  spec={openApiSpec}
+  collapsible="none"
+  onSelectOperation={handleOperationSelect}
+/>
 ```
 
 ## API 参考
 
 ### Props
 
-| 属性        | 类型     | 默认值 | 描述            |
-| ----------- | -------- | ------ | --------------- |
-| `className` | `string` | -      | 额外的 CSS 类名 |
+| 属性                | 类型                                                                                    | 默认值      | 描述                                    |
+| ------------------- | --------------------------------------------------------------------------------------- | ----------- | --------------------------------------- |
+| `spec`              | `OpenAPIV3.Document`                                                                    | -           | OpenAPI 规范对象（必需）                 |
+| `activePath`        | `string \| null`                                                                        | `null`      | 当前激活的操作路径                      |
+| `activeMethod`      | `string \| null`                                                                        | `null`      | 当前激活的 HTTP 方法                    |
+| `onSelectOperation` | `(path: string, method: string, operation: OpenAPIV3.OperationObject) => void` | `() => {}`  | 操作选择回调函数                        |
+| `className`         | `string`                                                                                | -           | 额外的 CSS 类名                         |
+| `collapsible`       | `"offcanvas" \| "icon" \| "none"`                                                      | `"offcanvas"` | 侧边栏折叠模式                          |
+| `groupByTags`       | `boolean`                                                                               | `true`      | 是否按标签分组                          |
+
+### 折叠模式说明
+
+- **`"offcanvas"`** - 侧边栏完全隐藏，显示触发器按钮
+- **`"icon"`** - 侧边栏收缩为图标模式，只显示图标和标签
+- **`"none"`** - 侧边栏不可折叠，始终显示完整内容
+
+## 功能特性
+
+### 智能操作分组
+
+- **标签分组** - 按 OpenAPI 标签自动分组操作
+- **路径分组** - 按 API 路径组织操作
+- **动态分组** - 根据规范内容自动调整分组
+- **可折叠组** - 支持展开/折叠操作组
+
+### 强大的搜索功能
+
+- **实时搜索** - 输入时即时过滤结果
+- **多字段搜索** - 支持路径、方法、摘要、标签搜索
+- **高亮显示** - 搜索结果高亮显示匹配内容
+- **智能排序** - 搜索结果按相关性排序
+
+### 交互式操作选择
+
+- **操作高亮** - 当前选中的操作高亮显示
+- **状态同步** - 支持外部状态控制
+- **回调通知** - 操作选择时通知父组件
+- **键盘导航** - 支持键盘导航和快捷键
+
+### 响应式设计
+
+- **自适应宽度** - 根据内容自动调整宽度
+- **移动端支持** - 在小屏幕设备上优化显示
+- **触摸友好** - 支持触摸手势操作
+- **主题适配** - 自动适配明暗主题
+
+## 组件结构
+
+Navigation Sidebar 包含以下主要部分：
+
+1. **搜索栏**
+   - 实时搜索输入框
+   - 搜索过滤功能
+   - 清空搜索按钮
+
+2. **操作组**
+   - 按标签或路径分组的操作
+   - 可折叠的组标题
+   - 操作列表项
+
+3. **操作项**
+   - HTTP 方法标签
+   - 操作路径
+   - 操作摘要
+   - 操作标签
+
+4. **折叠控制**
+   - 侧边栏折叠触发器
+   - 组内容折叠控制
+   - 响应式折叠行为
+
+## 最佳实践
+
+### 1. 提供完整的 OpenAPI 规范
+
+```tsx
+// 推荐：提供完整的规范对象
+<NavigationSidebar
+  spec={completeOpenApiSpec}
+  onSelectOperation={handleOperationSelect}
+/>
+
+// 不推荐：提供不完整的规范
+<NavigationSidebar
+  spec={partialSpec}
+  onSelectOperation={handleOperationSelect}
+/>
+```
+
+### 2. 处理操作选择事件
+
+```tsx
+<NavigationSidebar
+  spec={openApiSpec}
+  onSelectOperation={(path, method, operation) => {
+    // 更新 URL 参数
+    router.push(`/docs/api?path=${path}&method=${method}`);
+
+    // 更新页面标题
+    document.title = `${method} ${path} - API Documentation`;
+
+    // 发送分析事件
+    analytics.track('operation_selected', { path, method });
+
+    // 更新本地状态
+    setSelectedOperation({ path, method, operation });
+  }}
+/>
+```
+
+### 3. 自定义分组策略
+
+```tsx
+// 根据业务需求自定义分组
+const customGroupedSpec = {
+  ...openApiSpec,
+  tags: [
+    { name: "Authentication", description: "认证相关" },
+    { name: "User Management", description: "用户管理" },
+    { name: "Data Operations", description: "数据操作" }
+  ]
+};
+
+<NavigationSidebar
+  spec={customGroupedSpec}
+  groupByTags={true}
+  onSelectOperation={handleOperationSelect}
+/>
+```
+
+## 无障碍性
+
+- 支持键盘导航
+- 屏幕阅读器友好
+- 高对比度主题支持
+- 可访问的折叠控件
+
+## 性能优化
+
+- 懒加载操作内容
+- 智能搜索过滤
+- 虚拟化长列表
+- 响应式状态管理
+
+## 设计原则
+
+Navigation Sidebar 组件遵循以下设计原则：
+
+1. **直观性** - 提供清晰直观的 API 导航
+2. **一致性** - 与整个 OpenAPI 组件库保持一致的设计语言
+3. **可访问性** - 确保所有用户都能访问导航功能
+4. **性能** - 高效处理大型 API 规范
+5. **可扩展性** - 支持新的分组和过滤策略

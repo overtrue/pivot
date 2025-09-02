@@ -4,6 +4,7 @@ import { cn } from "@/lib/utils";
 import { useI18n } from "@/registry/default/lib/i18n";
 import { resolveRef } from "@/registry/default/lib/resolve-ref";
 import { MethodLabel } from "@/registry/default/ui/method-label";
+import type { ResponseData } from "@/types/project";
 import { ChevronDown, ChevronUp, Send } from "lucide-react";
 import type { OpenAPIV3 } from "openapi-types";
 import React, { useState } from "react";
@@ -24,8 +25,6 @@ interface TryItOutPanelProps {
   path: string;
   baseUrl?: string;
   components?: OpenAPIV3.ComponentsObject;
-  collapsible?: boolean;
-  defaultCollapsed?: boolean;
   className?: string;
 }
 
@@ -37,8 +36,6 @@ const TryItOutPanel = React.forwardRef<HTMLDivElement, TryItOutPanelProps>(
       path,
       baseUrl = "",
       components,
-      collapsible = false,
-      defaultCollapsed = false,
       className,
     },
     ref,
@@ -49,18 +46,12 @@ const TryItOutPanel = React.forwardRef<HTMLDivElement, TryItOutPanelProps>(
     const [paramValues, setParamValues] = useState<Record<string, string>>({});
     const [requestBodyValue, setRequestBodyValue] = useState<string>("");
     const [isLoading, setIsLoading] = useState<boolean>(false);
-    const [response, setResponse] = useState<{
-      status: number;
-      statusText: string;
-      headers: Record<string, string>;
-      data: unknown;
-      time: number;
-    } | null>(null);
+    const [response, setResponse] = useState<ResponseData | null>(null);
     const [headers, setHeaders] = useState<Record<string, string>>({
       "Content-Type": "application/json",
     });
     const [error, setError] = useState<string | null>(null);
-    const [collapsed, setCollapsed] = useState<boolean>(defaultCollapsed);
+    const [collapsed, setCollapsed] = useState<boolean>(false);
     const [authState, setAuthState] = useState<AuthState>({});
     const [activeSecurityScheme, setActiveSecurityScheme] = useState<
       string | null
@@ -68,9 +59,7 @@ const TryItOutPanel = React.forwardRef<HTMLDivElement, TryItOutPanelProps>(
 
     // Helper functions
     const toggleCollapse = () => {
-      if (collapsible) {
-        setCollapsed(!collapsed);
-      }
+      setCollapsed(!collapsed);
     };
 
     const resolveParameters = () => {
@@ -366,7 +355,7 @@ const TryItOutPanel = React.forwardRef<HTMLDivElement, TryItOutPanelProps>(
           statusText: response.statusText,
           headers: responseHeaders,
           data: responseBody,
-          time: duration,
+          duration: duration,
         });
       } catch (err) {
         console.error(t("Request error") + ":", err);
@@ -599,23 +588,25 @@ const TryItOutPanel = React.forwardRef<HTMLDivElement, TryItOutPanelProps>(
         )}
       >
         <div
-          className={`bg-neutral-50 dark:bg-neutral-800/70 px-4 py-3 flex items-center justify-between ${collapsible ? "cursor-pointer" : ""}`}
-          onClick={collapsible ? toggleCollapse : undefined}
+          className="bg-neutral-50 dark:bg-neutral-800/70 px-4 py-3 flex items-center justify-between cursor-pointer"
+          onClick={toggleCollapse}
         >
           <div className="flex items-center min-w-0">
-            <MethodLabel
-              method={method.toUpperCase() as "GET" | "POST" | "PUT" | "DELETE" | "PATCH" | "OPTIONS" | "HEAD"}
-              className="mr-2 flex-shrink-0"
-            />
-            <div className="text-sm text-neutral-800 dark:text-neutral-200 font-mono truncate overflow-hidden">
-              {path}
+            <MethodLabel method={method} className="mr-3" />
+            <div className="min-w-0">
+              <div className="font-mono text-sm text-neutral-900 dark:text-white truncate">
+                {path}
+              </div>
+              {operation.summary && (
+                <div className="text-xs text-neutral-600 dark:text-neutral-400 truncate mt-1">
+                  {operation.summary}
+                </div>
+              )}
             </div>
           </div>
-          {collapsible && (
-            <div className="text-neutral-500 dark:text-neutral-400 flex-shrink-0 ml-2">
-              {collapsed ? <ChevronDown size={18} /> : <ChevronUp size={18} />}
-            </div>
-          )}
+          <div className="text-neutral-500 dark:text-neutral-400 flex-shrink-0 ml-2">
+            {collapsed ? <ChevronDown size={18} /> : <ChevronUp size={18} />}
+          </div>
         </div>
 
         {!collapsed && (
@@ -807,7 +798,7 @@ const TryItOutPanel = React.forwardRef<HTMLDivElement, TryItOutPanelProps>(
                       {response.status} {response.statusText}
                     </span>
                     <span className="ml-2 text-sm text-neutral-600 dark:text-neutral-400">
-                      {response.time}ms
+                      {response.duration}ms
                     </span>
                   </div>
                 </div>
@@ -833,7 +824,7 @@ const TryItOutPanel = React.forwardRef<HTMLDivElement, TryItOutPanelProps>(
                     </h4>
                     <div className="bg-neutral-900 text-neutral-100 p-3 rounded-md overflow-x-auto">
                       <pre className="text-xs font-mono whitespace-pre-wrap">
-                        {typeof response.data === 'string' ? response.data : JSON.stringify(response.data, null, 2)}
+                        {response.data}
                       </pre>
                     </div>
                   </div>

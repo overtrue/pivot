@@ -1,16 +1,8 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { OpenAPIErrorBoundary } from "@/registry/default/components/error-boundary";
-import { OpenAPIProvider } from "@/registry/default/contexts/openapi-context";
 import { useOpenAPILoader } from "@/registry/default/hooks/use-openapi-loader";
 import { I18nProvider } from "@/registry/default/lib/i18n";
-import { 
-  PivotConfig, 
-  defaultConfig, 
-  mergeConfig, 
-  validateConfig 
-} from "@/registry/default/lib/pivot-config";
 import { OperationDetailedLayout } from "@/registry/default/ui/operation-detailed-layout";
 import { OperationListLayout } from "@/registry/default/ui/operation-list-layout";
 import type { OpenAPIV3 } from "openapi-types";
@@ -23,17 +15,14 @@ export interface OpenAPIViewerProps {
   // Data source - can be URL, JSON string, or OpenAPI object
   spec?: string | OpenAPIV3.Document;
   url?: string;
-  
-  // Configuration
-  config?: Partial<PivotConfig>;
-  
+
   // Layout type
   layout?: 'detail' | 'list' | 'auto';
-  
+
   // Style
   className?: string;
   style?: React.CSSProperties;
-  
+
   // Callbacks
   onReady?: (spec: OpenAPIV3.Document) => void;
   onError?: (error: Error) => void;
@@ -45,18 +34,16 @@ export interface OpenAPIViewerProps {
  */
 const OpenAPIViewerContent: React.FC<{
   spec: string | OpenAPIV3.Document | undefined;
-  config: PivotConfig;
   layout: 'detail' | 'list' | 'auto';
   className?: string;
   style?: React.CSSProperties;
   onReady?: (spec: OpenAPIV3.Document) => void;
   onError?: (error: Error) => void;
   onOperationSelect?: (path: string, method: string, operation: OpenAPIV3.OperationObject) => void;
-}> = ({ 
-  spec: inputSpec, 
-  config, 
-  layout, 
-  className, 
+}> = ({
+  spec: inputSpec,
+  layout,
+  className,
   style,
   onReady,
   onError,
@@ -65,7 +52,7 @@ const OpenAPIViewerContent: React.FC<{
   const { spec, loading, error } = useOpenAPILoader(inputSpec);
   const [selectedPath, setSelectedPath] = useState<string | null>(null);
   const [selectedMethod, setSelectedMethod] = useState<string | null>(null);
-  
+
   // Determine actual layout
   const actualLayout = useMemo(() => {
     if (layout === 'auto') {
@@ -75,21 +62,21 @@ const OpenAPIViewerContent: React.FC<{
     }
     return layout;
   }, [layout, spec]);
-  
+
   // Handle ready callback
   useEffect(() => {
     if (spec && onReady) {
       onReady(spec);
     }
   }, [spec, onReady]);
-  
+
   // Handle error callback
   useEffect(() => {
     if (error && onError) {
       onError(new Error(error));
     }
   }, [error, onError]);
-  
+
   // Handle operation selection
   const handleOperationSelect = (path: string, method: string, operation: OpenAPIV3.OperationObject) => {
     setSelectedPath(path);
@@ -97,11 +84,8 @@ const OpenAPIViewerContent: React.FC<{
     if (onOperationSelect) {
       onOperationSelect(path, method, operation);
     }
-    if (config.callbacks?.onOperationSelect) {
-      config.callbacks.onOperationSelect({ path, method, operation });
-    }
   };
-  
+
   // Loading state
   if (loading) {
     return (
@@ -113,7 +97,7 @@ const OpenAPIViewerContent: React.FC<{
       </div>
     );
   }
-  
+
   // Error state
   if (error) {
     return (
@@ -130,7 +114,7 @@ const OpenAPIViewerContent: React.FC<{
       </div>
     );
   }
-  
+
   // No spec state
   if (!spec) {
     return (
@@ -142,7 +126,7 @@ const OpenAPIViewerContent: React.FC<{
       </div>
     );
   }
-  
+
   // Render based on layout
   return (
     <div className={cn("h-full", className)} style={style}>
@@ -159,8 +143,6 @@ const OpenAPIViewerContent: React.FC<{
           selectedPath={selectedPath}
           selectedMethod={selectedMethod}
           onSelectOperation={handleOperationSelect}
-          showCodegen={config.features?.codeGeneration}
-          showTryPanel={config.features?.tryItOut}
         />
       )}
     </div>
@@ -170,30 +152,20 @@ const OpenAPIViewerContent: React.FC<{
 /**
  * Main OpenAPIViewer component
  * A standalone, easy-to-use component for displaying OpenAPI specifications
- * 
+ *
  * @example
  * ```tsx
  * // Simple usage with URL
  * <OpenAPIViewer url="https://api.example.com/openapi.json" />
- * 
- * // With configuration
- * <OpenAPIViewer 
- *   url="https://api.example.com/openapi.json"
- *   config={{
- *     theme: { mode: 'dark' },
- *     features: { tryItOut: false }
- *   }}
- * />
- * 
+ *
  * // With OpenAPI object
  * <OpenAPIViewer spec={openAPIDocument} layout="list" />
  * ```
  */
 export const OpenAPIViewer = React.forwardRef<HTMLDivElement, OpenAPIViewerProps>(
-  ({ 
-    spec, 
-    url, 
-    config: userConfig, 
+  ({
+    spec,
+    url,
     layout = 'auto',
     className,
     style,
@@ -201,19 +173,9 @@ export const OpenAPIViewer = React.forwardRef<HTMLDivElement, OpenAPIViewerProps
     onError,
     onOperationSelect
   }, ref) => {
-    // Merge configuration
-    const config = useMemo(() => {
-      const merged = mergeConfig(userConfig || {});
-      const errors = validateConfig(merged);
-      if (errors.length > 0) {
-        console.warn('OpenAPIViewer configuration warnings:', errors);
-      }
-      return merged;
-    }, [userConfig]);
-    
     // Determine spec source
     const specSource = spec || url;
-    
+
     if (!specSource) {
       return (
         <div className={cn("flex items-center justify-center min-h-[400px]", className)} style={style}>
@@ -224,33 +186,17 @@ export const OpenAPIViewer = React.forwardRef<HTMLDivElement, OpenAPIViewerProps
         </div>
       );
     }
-    
+
     return (
       <div ref={ref} className={cn("pivot-viewer", className)} style={style}>
-        <I18nProvider locale={config.locale === "zh" ? "zh" : "en"}>
-          <OpenAPIErrorBoundary>
-            {config.resolver?.cache ? (
-              <OpenAPIProvider spec={null}>
-                <OpenAPIViewerContent
-                  spec={specSource}
-                  config={config}
-                  layout={layout}
-                  onReady={onReady}
-                  onError={onError}
-                  onOperationSelect={onOperationSelect}
-                />
-              </OpenAPIProvider>
-            ) : (
-              <OpenAPIViewerContent
-                spec={specSource}
-                config={config}
-                layout={layout}
-                onReady={onReady}
-                onError={onError}
-                onOperationSelect={onOperationSelect}
-              />
-            )}
-          </OpenAPIErrorBoundary>
+        <I18nProvider>
+          <OpenAPIViewerContent
+            spec={specSource}
+            layout={layout}
+            onReady={onReady}
+            onError={onError}
+            onOperationSelect={onOperationSelect}
+          />
         </I18nProvider>
       </div>
     );
@@ -267,19 +213,16 @@ OpenAPIViewer.displayName = "OpenAPIViewer";
 export const ResponseViewer: React.FC<{
   responses: OpenAPIV3.ResponsesObject;
   components?: OpenAPIV3.ComponentsObject;
-  config?: Partial<PivotConfig>;
   className?: string;
-}> = ({ responses, components, config: userConfig, className }) => {
-  const config = mergeConfig(userConfig || {});
-  
+}> = ({ responses, components, className }) => {
   // Lazy load the ResponsesSection component
   const ResponsesSection = React.lazy(() => import('./responses-section').then(m => ({ default: m.ResponsesSection })));
-  
+
   return (
-    <I18nProvider locale={config.locale === "zh" ? "zh" : "en"}>
+    <I18nProvider>
       <React.Suspense fallback={<div>Loading...</div>}>
-        <ResponsesSection 
-          responses={responses} 
+        <ResponsesSection
+          responses={responses}
           components={components}
           className={className}
         />
@@ -294,16 +237,13 @@ export const OperationViewer: React.FC<{
   path: string;
   method: string;
   components?: OpenAPIV3.ComponentsObject;
-  config?: Partial<PivotConfig>;
   className?: string;
-}> = ({ operation, path, method, components, config: userConfig, className }) => {
-  const config = mergeConfig(userConfig || {});
-  
+}> = ({ operation, path, method, components, className }) => {
   // Lazy load the OperationDetail component
   const OperationDetail = React.lazy(() => import('./operation-detail').then(m => ({ default: m.OperationDetail })));
-  
+
   return (
-    <I18nProvider locale={config.locale === "zh" ? "zh" : "en"}>
+    <I18nProvider>
       <React.Suspense fallback={<div>Loading...</div>}>
         <OperationDetail
           operation={operation}

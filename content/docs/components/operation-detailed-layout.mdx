@@ -1,10 +1,10 @@
 ---
 title: Operation Detailed Layout
-description: 操作详情布局组件，专注于单个 API 端点的详细信息。
+description: 完整的 OpenAPI 操作详情布局组件，提供导航、详情展示、代码生成和试用功能。
 component: true
 ---
 
-操作详情布局组件，专注于单个 API 端点的详细信息，包含代码生成和测试面板。
+Operation Detailed Layout 是一个功能完整的 OpenAPI 文档布局组件，它集成了导航侧边栏、操作详情展示、代码生成器和试用面板，为用户提供完整的 API 文档体验。
 
 <ComponentPreview name="operation-detailed-layout-demo" />
 
@@ -18,10 +18,20 @@ npx shadcn@latest add https://pivotkit.vercel.app/r/operation-detailed-layout.js
 
 ```tsx
 import { OperationDetailedLayout } from "@/components/pivot/operation-detailed-layout";
-```
+import type { OpenAPIV3 } from "openapi-types";
 
-```tsx
-<OperationDetailedLayout />
+// 基本用法
+<OperationDetailedLayout spec={openApiSpec} />
+
+// 预选操作
+<OperationDetailedLayout
+  spec={openApiSpec}
+  selectedPath="/api/users/{id}"
+  selectedMethod="GET"
+  onSelectOperation={(path, method, operation) => {
+    console.log(`Selected: ${method} ${path}`);
+  }}
+/>
 ```
 
 ## 示例
@@ -29,64 +39,171 @@ import { OperationDetailedLayout } from "@/components/pivot/operation-detailed-l
 ### 基本用法
 
 ```tsx
-<OperationDetailedLayout />
+import { OperationDetailedLayout } from "@/components/pivot/operation-detailed-layout";
+
+// 最简单的用法，传入 OpenAPI 规范
+<OperationDetailedLayout spec={openApiSpec} />
+```
+
+### 预选操作
+
+```tsx
+<OperationDetailedLayout
+  spec={openApiSpec}
+  selectedPath="/api/users/{id}"
+  selectedMethod="GET"
+/>
+```
+
+### 监听操作选择
+
+```tsx
+<OperationDetailedLayout
+  spec={openApiSpec}
+  onSelectOperation={(path, method, operation) => {
+    // 处理操作选择事件
+    console.log(`Selected operation: ${method} ${path}`);
+    console.log('Operation details:', operation);
+
+    // 可以用于路由更新、状态管理、分析等
+    analytics.track('operation_selected', { path, method });
+  }}
+/>
+```
+
+### 自定义导航宽度
+
+```tsx
+<OperationDetailedLayout
+  spec={openApiSpec}
+  navigationWidth="w-80" // 自定义侧边栏宽度
+  className="h-screen"   // 自定义容器高度
+/>
+```
+
+## API 参考
+
+### Props
+
+| 属性                | 类型                                                                                    | 默认值 | 描述                                    |
+| ------------------- | --------------------------------------------------------------------------------------- | ------ | --------------------------------------- |
+| `spec`              | `OpenAPIV3.Document \| string \| null`                                                 | -      | OpenAPI 规范，支持对象、JSON 字符串或 null |
+| `selectedPath`      | `string \| null`                                                                        | `null` | 预选的操作路径                          |
+| `selectedMethod`    | `string \| null`                                                                        | `null` | 预选的 HTTP 方法                        |
+| `onSelectOperation` | `(path: string, method: string, operation: OpenAPIV3.OperationObject) => void` | `() => {}` | 操作选择回调函数                        |
+| `className`         | `string`                                                                                | -      | 额外的 CSS 类名                         |
+| `navigationWidth`   | `string`                                                                                | -      | 导航侧边栏宽度                          |
+
+### 支持的输入格式
+
+组件支持多种 OpenAPI 规范输入格式：
+
+1. **OpenAPI 对象** - 直接传入解析后的 OpenAPI 规范对象
+2. **JSON 字符串** - 传入 JSON 格式的规范字符串
+3. **null** - 显示无数据状态
+
+## 功能特性
+
+### 智能操作选择
+
+- **自动选择** - 如果没有预选操作，自动选择第一个可用操作
+- **状态同步** - 支持外部状态控制，自动同步选择状态
+- **操作验证** - 确保选择的操作包含必要的响应信息
+
+### 响应式布局
+
+- **侧边栏导航** - 可折叠的导航侧边栏，支持移动端
+- **主内容区** - 操作详情展示区域
+- **右侧面板** - 代码生成和试用功能
+- **自适应宽度** - 根据内容自动调整布局
+
+### 集成功能
+
+- **代码生成** - 集成代码生成器，支持多种编程语言
+- **试用面板** - 内置 API 试用功能，可直接测试端点
+- **主题切换** - 支持明暗主题切换
+- **语言切换** - 支持多语言界面
+
+## 组件结构
+
+Operation Detailed Layout 包含以下主要部分：
+
+1. **导航侧边栏** (`NavigationSidebar`)
+   - 显示所有可用的 API 操作
+   - 支持按标签、路径等方法组织
+   - 高亮当前选中的操作
+
+2. **顶部工具栏**
+   - 侧边栏触发器
+   - 当前操作信息显示
+   - 语言和主题切换
+
+3. **主内容区域**
+   - 操作详情展示 (`OperationDetail`)
+   - 支持多种操作格式
+   - 自动处理引用解析
+
+4. **右侧功能面板**
+   - 代码生成器 (`Codegen`)
+   - 试用面板 (`TryItOutPanel`)
+   - 可折叠设计
+
+## 最佳实践
+
+### 1. 提供完整的 OpenAPI 规范
+
+```tsx
+// 推荐：提供完整的规范对象
+<OperationDetailedLayout spec={completeOpenApiSpec} />
+
+// 不推荐：提供不完整的规范
+<OperationDetailedLayout spec={partialSpec} />
+```
+
+### 2. 处理操作选择事件
+
+```tsx
+<OperationDetailedLayout
+  spec={openApiSpec}
+  onSelectOperation={(path, method, operation) => {
+    // 更新 URL 参数
+    router.push(`/docs/api?path=${path}&method=${method}`);
+
+    // 更新页面标题
+    document.title = `${method} ${path} - API Documentation`;
+
+    // 发送分析事件
+    analytics.track('operation_viewed', { path, method });
+  }}
+/>
+```
+
+### 3. 错误处理和加载状态
+
+```tsx
+function ApiDocumentationPage() {
+  const [spec, setSpec] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    fetchOpenApiSpec()
+      .then(setSpec)
+      .catch(setError)
+      .finally(() => setLoading(false));
+  }, []);
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error.message}</div>;
+  if (!spec) return <div>No specification available</div>;
+
+  return <OperationDetailedLayout spec={spec} />;
+}
 ```
 
 ## 在文档中使用 iframe
 
 如果您需要在文档页面中嵌入组件演示，可以使用 iframe 指向专门的演示路由：
-
-### 方法 1：直接使用 iframe
-
-```tsx
-export default function MyDocumentationPage() {
-  return (
-    <div>
-      <h1>API 文档</h1>
-      <p>这是一个操作详情布局的演示：</p>
-
-      {/* 使用 iframe 嵌入组件演示 */}
-      <div className="w-full h-96 rounded-lg border overflow-hidden">
-        <iframe
-          src="/demo/operation-detailed-layout"
-          className="w-full h-full border-0"
-          title="Operation Detailed Layout Demo"
-        />
-      </div>
-    </div>
-  );
-}
-```
-
-### 方法 2：创建可复用的 Demo 容器组件
-
-```tsx
-// components/demo-container.tsx
-interface DemoContainerProps {
-  component: string;
-  height?: string;
-  title?: string;
-}
-
-export function DemoContainer({
-  component,
-  height = "h-96",
-  title = `${component} Demo`,
-}: DemoContainerProps) {
-  return (
-    <div className={`w-full ${height} rounded-lg border overflow-hidden`}>
-      <iframe
-        src={`/demo/${component}`}
-        className="w-full h-full border-0"
-        title={title}
-      />
-    </div>
-  );
-}
-
-// 使用方式
-<DemoContainer component="operation-detailed-layout" height="h-screen" />;
-```
 
 ### 支持的组件
 

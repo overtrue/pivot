@@ -176,8 +176,7 @@ export default function OperationDetailedLayoutDemo() {
           setSelectedMethod(method);
           console.log("Selected operation:", path, method, operation);
         }}
-        showCodegen={false}
-        showTryPanel={false}
+
       />
     </div>
   );

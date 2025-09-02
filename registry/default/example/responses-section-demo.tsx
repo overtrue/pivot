@@ -1,3 +1,4 @@
+import { I18nProvider } from "@/registry/default/lib/i18n";
 import { ResponsesSection } from "@/registry/default/ui/responses-section";
 
 export default function ResponsesSectionDemo() {
@@ -323,30 +324,32 @@ export default function ResponsesSectionDemo() {
   };
 
   return (
-    <div className="space-y-8 min-w-md">
-      <div>
-        <h4 className="text-sm font-medium mb-3">用户管理 API 响应</h4>
-        <p className="text-xs text-neutral-600 dark:text-neutral-400 mb-3">
-          包含成功响应和各种错误情况的完整响应定义
-        </p>
-        <ResponsesSection responses={userApiResponses as any} />
-      </div>
+    <I18nProvider>
+      <div className="space-y-8 min-w-md">
+        <div>
+          <h4 className="text-sm font-medium mb-3">用户管理 API 响应</h4>
+          <p className="text-xs text-neutral-600 dark:text-neutral-400 mb-3">
+            包含成功响应和各种错误情况的完整响应定义
+          </p>
+          <ResponsesSection responses={userApiResponses as any} />
+        </div>
 
-      <div>
-        <h4 className="text-sm font-medium mb-3">文件上传 API 响应</h4>
-        <p className="text-xs text-neutral-600 dark:text-neutral-400 mb-3">
-          文件上传接口的响应，包含文件信息和错误处理
-        </p>
-        <ResponsesSection responses={fileUploadResponses as any} />
-      </div>
+        <div>
+          <h4 className="text-sm font-medium mb-3">文件上传 API 响应</h4>
+          <p className="text-xs text-neutral-600 dark:text-neutral-400 mb-3">
+            文件上传接口的响应，包含文件信息和错误处理
+          </p>
+          <ResponsesSection responses={fileUploadResponses as any} />
+        </div>
 
-      <div>
-        <h4 className="text-sm font-medium mb-3">分页列表 API 响应</h4>
-        <p className="text-xs text-neutral-600 dark:text-neutral-400 mb-3">
-          带分页信息的列表数据响应格式
-        </p>
-        <ResponsesSection responses={paginatedListResponses as any} />
+        <div>
+          <h4 className="text-sm font-medium mb-3">分页列表 API 响应</h4>
+          <p className="text-xs text-neutral-600 dark:text-neutral-400 mb-3">
+            带分页信息的列表数据响应格式
+          </p>
+          <ResponsesSection responses={paginatedListResponses as any} />
+        </div>
       </div>
-    </div>
+    </I18nProvider>
   );
 }

@@ -1,4 +1,4 @@
-import { OpenAPIViewer, ResponseViewer, OperationViewer } from "@/registry/default/ui/openapi-viewer";
+import { OpenAPIViewer, OperationViewer, ResponseViewer } from "@/registry/default/ui/openapi-viewer";
 import type { OpenAPIV3 } from "openapi-types";
 
 /**
@@ -6,8 +6,8 @@ import type { OpenAPIV3 } from "openapi-types";
  */
 export function BasicExample() {
   return (
-    <OpenAPIViewer 
-      url="https://petstore3.swagger.io/api/v3/openapi.json" 
+    <OpenAPIViewer
+      url="https://petstore3.swagger.io/api/v3/openapi.json"
     />
   );
 }
@@ -19,15 +19,6 @@ export function ConfiguredExample() {
   return (
     <OpenAPIViewer
       url="https://petstore3.swagger.io/api/v3/openapi.json"
-      config={{
-        theme: { mode: 'dark' },
-        features: {
-          tryItOut: true,
-          codeGeneration: true,
-          search: true,
-        },
-        locale: 'en',
-      }}
       layout="detail"
       onOperationSelect={(path, method, operation) => {
         console.log('Selected:', path, method, operation.summary);
@@ -85,17 +76,7 @@ export function EmbeddedExample() {
     <div style={{ height: '600px', border: '1px solid #e5e5e5' }}>
       <OpenAPIViewer
         url="https://petstore3.swagger.io/api/v3/openapi.json"
-        config={{
-          layout: {
-            type: 'embedded',
-            sidebar: false,
-            header: false,
-          },
-          features: {
-            tryItOut: false,
-            codeGeneration: true,
-          },
-        }}
+        layout="detail"
       />
     </div>
   );
@@ -125,12 +106,9 @@ export function ResponseViewerExample() {
   };
 
   return (
-    <ResponseViewer 
-      responses={responses}
-      config={{
-        theme: { mode: 'light' },
-      }}
-    />
+            <ResponseViewer
+          responses={responses}
+        />
   );
 }
 
@@ -164,16 +142,11 @@ export function OperationViewerExample() {
   };
 
   return (
-    <OperationViewer
-      operation={operation}
-      path="/users"
-      method="POST"
-      config={{
-        features: {
-          tryItOut: true,
-        },
-      }}
-    />
+            <OperationViewer
+          operation={operation}
+          path="/users"
+          method="POST"
+        />
   );
 }
 
@@ -215,14 +188,6 @@ export function CustomStyleExample() {
       style={{
         fontFamily: 'Monaco, monospace',
         backgroundColor: '#f5f5f5',
-      }}
-      config={{
-        styling: {
-          cssVariables: {
-            '--pivot-primary': '#ff6b6b',
-            '--pivot-primary-bg': '#ffe0e0',
-          },
-        },
       }}
     />
   );

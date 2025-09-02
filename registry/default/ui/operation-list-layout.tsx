@@ -412,8 +412,6 @@ const OperationListLayout = React.forwardRef<
                     path={localSelectedPath}
                     baseUrl={baseUrl}
                     components={spec?.components}
-                    collapsible={true}
-                    defaultCollapsed={false}
                   />
                 </div>
               </aside>
@@ -546,8 +544,6 @@ const OperationListLayout = React.forwardRef<
                     path={localSelectedPath}
                     baseUrl={baseUrl}
                     components={spec?.components}
-                    collapsible={true}
-                    defaultCollapsed={false}
                     className="h-full"
                   />
                 </div>

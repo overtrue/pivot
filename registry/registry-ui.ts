@@ -168,9 +168,6 @@ export const registry_ui: Registry["items"] = [
     ],
     "dependencies": [
       "react"
-    ],
-    "registryDependencies": [
-      "https://pivotkit.vercel.app/r/copy-button.json"
     ]
   },
   {
@@ -426,15 +423,15 @@ export const registry_ui: Registry["items"] = [
       "react"
     ],
     "registryDependencies": [
+      "https://pivotkit.vercel.app/r/default-value-display.json",
       "https://pivotkit.vercel.app/r/deprecated-badge.json",
       "https://pivotkit.vercel.app/r/description-display.json",
       "https://pivotkit.vercel.app/r/enum-values-display.json",
+      "https://pivotkit.vercel.app/r/examples-display.json",
+      "https://pivotkit.vercel.app/r/expand-collapse.json",
       "https://pivotkit.vercel.app/r/format-badge.json",
       "https://pivotkit.vercel.app/r/required-badge.json",
-      "https://pivotkit.vercel.app/r/type-indicator.json",
-      "https://pivotkit.vercel.app/r/default-value-display.json",
-      "https://pivotkit.vercel.app/r/examples-display.json",
-      "https://pivotkit.vercel.app/r/expand-collapse.json"
+      "https://pivotkit.vercel.app/r/type-indicator.json"
     ]
   },
   {
@@ -693,8 +690,6 @@ export const registry_ui: Registry["items"] = [
       "react"
     ],
     "registryDependencies": [
-      "https://pivotkit.vercel.app/r/error-boundary.json",
-      "https://pivotkit.vercel.app/r/openapi-context.json",
       "https://pivotkit.vercel.app/r/hooks.json",
       "https://pivotkit.vercel.app/r/lib.json",
       "https://pivotkit.vercel.app/r/operation-detailed-layout.json",
@@ -746,6 +741,7 @@ export const registry_ui: Registry["items"] = [
     "registryDependencies": [
       "badge",
       "label",
+      "https://pivotkit.vercel.app/r/hooks.json",
       "https://pivotkit.vercel.app/r/lib.json",
       "https://pivotkit.vercel.app/r/deprecated-badge.json",
       "https://pivotkit.vercel.app/r/description-display.json",
@@ -774,7 +770,6 @@ export const registry_ui: Registry["items"] = [
     ],
     "registryDependencies": [
       "sidebar",
-      "https://pivotkit.vercel.app/r/hooks.json",
       "https://pivotkit.vercel.app/r/lib.json",
       "https://pivotkit.vercel.app/r/codegen.json",
       "https://pivotkit.vercel.app/r/language-switcher.json",
@@ -878,14 +873,14 @@ export const registry_ui: Registry["items"] = [
       "https://pivotkit.vercel.app/r/default-value-display.json",
       "https://pivotkit.vercel.app/r/deprecated-badge.json",
       "https://pivotkit.vercel.app/r/enum-values-display.json",
+      "https://pivotkit.vercel.app/r/example-display.json",
+      "https://pivotkit.vercel.app/r/expand-collapse.json",
       "https://pivotkit.vercel.app/r/format-badge.json",
       "https://pivotkit.vercel.app/r/in-label.json",
       "https://pivotkit.vercel.app/r/parameter-description.json",
       "https://pivotkit.vercel.app/r/parameter-name.json",
       "https://pivotkit.vercel.app/r/style-badge.json",
-      "https://pivotkit.vercel.app/r/type-indicator.json",
-      "https://pivotkit.vercel.app/r/example-display.json",
-      "https://pivotkit.vercel.app/r/expand-collapse.json"
+      "https://pivotkit.vercel.app/r/type-indicator.json"
     ]
   },
   {
@@ -917,6 +912,7 @@ export const registry_ui: Registry["items"] = [
       "react"
     ],
     "registryDependencies": [
+      "https://pivotkit.vercel.app/r/hooks.json",
       "https://pivotkit.vercel.app/r/lib.json",
       "https://pivotkit.vercel.app/r/parameter-item.json",
       "https://pivotkit.vercel.app/r/section-title.json",
@@ -1003,6 +999,7 @@ export const registry_ui: Registry["items"] = [
       "react"
     ],
     "registryDependencies": [
+      "https://pivotkit.vercel.app/r/hooks.json",
       "https://pivotkit.vercel.app/r/lib.json",
       "https://pivotkit.vercel.app/r/schema-with-example-viewer.json",
       "https://pivotkit.vercel.app/r/section-title.json"
@@ -1146,6 +1143,7 @@ export const registry_ui: Registry["items"] = [
       "react"
     ],
     "registryDependencies": [
+      "https://pivotkit.vercel.app/r/hooks.json",
       "https://pivotkit.vercel.app/r/lib.json",
       "https://pivotkit.vercel.app/r/response-group.json",
       "https://pivotkit.vercel.app/r/section-title.json",
@@ -1210,7 +1208,6 @@ export const registry_ui: Registry["items"] = [
     ],
     "registryDependencies": [
       "https://pivotkit.vercel.app/r/lib.json",
-      "https://pivotkit.vercel.app/r/description-display.json",
       "https://pivotkit.vercel.app/r/example-display.json",
       "https://pivotkit.vercel.app/r/media-type-selector.json",
       "https://pivotkit.vercel.app/r/schema-display.json"

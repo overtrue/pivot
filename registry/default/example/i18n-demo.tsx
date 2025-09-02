@@ -140,8 +140,6 @@ const ComponentWithProvider = () => {
                 },
               },
             }}
-            collapsible={true}
-            defaultCollapsed={false}
           />
         </div>
       </CardContent>

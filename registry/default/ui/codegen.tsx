@@ -1,6 +1,11 @@
 "use client";
 
 import { cn } from "@/lib/utils";
+import type {
+  CodeGenerator,
+  CodeGeneratorParams,
+  HttpMethod,
+} from "@/types/project";
 import type { OpenAPIV3 } from "openapi-types";
 
 import { generateExample } from "@/registry/default/lib/generate-example";
@@ -8,23 +13,6 @@ import { resolveRef } from "@/registry/default/lib/resolve-ref";
 import { CodeMarkdown } from "@/registry/default/ui/code-markdown";
 import { Braces, ChevronDown, Code2, Terminal } from "lucide-react";
 import React, { useState } from "react";
-
-// 代码生成器参数
-interface CodeGeneratorParams {
-  endpoint: string;
-  method: OpenAPIV3.HttpMethods;
-  parameters: OpenAPIV3.ParameterObject[];
-  requestBody?: OpenAPIV3.RequestBodyObject;
-  requestBodyExample: unknown;
-}
-
-// 代码生成器接口
-interface CodeGenerator {
-  id: string;
-  label: string;
-  getIcon(): React.ReactNode;
-  generateCode(params: CodeGeneratorParams): string;
-}
 
 // Code Generators
 class CurlGenerator implements CodeGenerator {
@@ -319,7 +307,7 @@ const Codegen: React.FC<CodegenProps> = ({
 
     return generator.generateCode({
       endpoint,
-      method: method.toUpperCase() as OpenAPIV3.HttpMethods,
+      method: method.toUpperCase() as HttpMethod,
       parameters: resolvedParameters,
       requestBody: resolvedRequestBody || undefined,
       requestBodyExample,

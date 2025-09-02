@@ -1,6 +1,5 @@
 import { cn } from "@/lib/utils";
 import React from "react";
-// import { CopyButton } from "@/registry/default/interactive/copy-button";
 
 interface ConstValueProps {
   value: any;
@@ -16,7 +15,6 @@ const ConstValue = React.forwardRef<HTMLDivElement, ConstValueProps>(
         <span className="font-mono text-sm bg-neutral-100 dark:bg-neutral-800 text-neutral-900 dark:text-neutral-100 px-2 py-1 rounded">
           const: {stringValue}
         </span>
-        {/* <CopyButton text={stringValue} /> */}
       </div>
     );
   },

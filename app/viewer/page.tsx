@@ -7,11 +7,11 @@ import { Button } from "@/components/ui/button";
 import { Drawer, DrawerClose, DrawerContent, DrawerHeader, DrawerTitle, DrawerTrigger } from "@/components/ui/drawer";
 import { Input } from "@/components/ui/input";
 import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
 } from "@/components/ui/select";
 import { siteConfig } from "@/config/site";
 import { useOpenAPILoader } from "@/registry/default/hooks/use-openapi-loader";
@@ -22,7 +22,7 @@ import { OperationListLayout } from "@/registry/default/ui/operation-list-layout
 import { Github, Layout, LayoutTemplate, Settings, X } from "lucide-react";
 import Link from "next/link";
 import type { OpenAPIV3 } from "openapi-types";
-import { useEffect, useState } from "react";
+import { useLayoutEffect, useState } from "react";
 
 // 预定义的API示例列表
 interface ApiExample {
@@ -68,24 +68,30 @@ export default function ViewerPage() {
   >("operationDetail");
   const [selectedPath, setSelectedPath] = useState<string | null>(null);
   const [selectedMethod, setSelectedMethod] = useState<string | null>(null);
-  const [isClient, setIsClient] = useState(false);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
-  // 客户端初始化：从 localStorage 加载保存的 URL
-  useEffect(() => {
-    setIsClient(true);
-    const savedUrl = localStorage.getItem("pivot-openapi-spec-url");
-    if (savedUrl) {
-      setSpecUrl(savedUrl);
+  // 使用 useLayoutEffect 来避免水合错误
+  useLayoutEffect(() => {
+    try {
+      const savedUrl = localStorage.getItem("pivot-openapi-spec-url");
+      if (savedUrl) {
+        setSpecUrl(savedUrl);
+      }
+    } catch (error) {
+      console.warn("Failed to load URL from localStorage:", error);
     }
   }, []);
 
   // 保存 URL 到 localStorage
-  useEffect(() => {
-    if (isClient && specUrl) {
-      localStorage.setItem("pivot-openapi-spec-url", specUrl);
+  useLayoutEffect(() => {
+    if (specUrl) {
+      try {
+        localStorage.setItem("pivot-openapi-spec-url", specUrl);
+      } catch (error) {
+        console.warn("Failed to save URL to localStorage:", error);
+      }
     }
-  }, [specUrl, isClient]);
+  }, [specUrl]);
 
   // 使用 OpenAPI Loader hook 来加载数据（支持智能判断输入类型）
   const { spec } = useOpenAPILoader(specUrl);
@@ -201,80 +207,71 @@ export default function ViewerPage() {
                 </div>
               </div>
 
-              {/* 设置选项 */}
+              {/* 语言切换 */}
               <div className="space-y-3">
-                <h3 className="text-sm font-medium text-foreground">设置</h3>
-                <div className="space-y-2">
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm">语言</span>
-                    <LanguageSwitcher />
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm">主题</span>
-                    <ModeToggle />
-                  </div>
-                </div>
+                <h3 className="text-sm font-medium text-foreground">语言设置</h3>
+                <LanguageSwitcher />
               </div>
 
-              {/* 链接 */}
+              {/* 主题切换 */}
               <div className="space-y-3">
-                <h3 className="text-sm font-medium text-foreground">链接</h3>
-                <div className="space-y-2">
-                  <Button variant="outline" className="w-full justify-start" asChild>
-                    <Link href="/">
-                      <Icons.logo className="w-4 h-4 mr-2" />
-                      返回主页
-                    </Link>
-                  </Button>
-                  <Button variant="outline" className="w-full justify-start" asChild>
-                    <Link href="https://github.com/overtrue/pivot" target="_blank">
-                      <Github className="w-4 h-4 mr-2" />
-                      GitHub 仓库
-                    </Link>
-                  </Button>
-                </div>
+                <h3 className="text-sm font-medium text-foreground">主题设置</h3>
+                <ModeToggle />
               </div>
-
-              {/* 当前状态 */}
-              {(selectedPath && selectedMethod) && (
-                <div className="space-y-3">
-                  <h3 className="text-sm font-medium text-foreground">当前选择</h3>
-                  <div className="space-y-2">
-                    <div className="text-xs">
-                      <span className="text-muted-foreground">路径: </span>
-                      <code className="bg-muted px-1 rounded text-foreground">
-                        {selectedPath}
-                      </code>
-                    </div>
-                    <div className="text-xs">
-                      <span className="text-muted-foreground">方法: </span>
-                      <code className="bg-muted px-1 rounded text-foreground">
-                        {selectedMethod}
-                      </code>
-                    </div>
-                  </div>
-                </div>
-              )}
             </div>
           </DrawerContent>
         </Drawer>
 
+        {/* 顶部导航栏 */}
+        <header className="bg-background border-b border-border sticky top-0 z-40">
+          <div className="container mx-auto px-4 py-3">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center space-x-4">
+                <Link href="/" className="flex items-center space-x-2">
+                  <Icons.logo className="size-6" />
+                  <span className="text-xl font-bold">{siteConfig.name}</span>
+                </Link>
+                <span className="text-muted-foreground">OpenAPI 查看器</span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <LanguageSwitcher />
+                <ModeToggle />
+                <Button variant="outline" size="sm" asChild>
+                  <Link href="https://github.com/your-org/pivot" target="_blank">
+                    <Github className="h-4 w-4 mr-2" />
+                    GitHub
+                  </Link>
+                </Button>
+              </div>
+            </div>
+          </div>
+        </header>
+
         {/* 主要内容区域 */}
-        <main className="h-screen">
-          {layoutType === "operationList" ? (
-            <OperationListLayout
-              spec={spec}
-              selectedPath={selectedPath}
-              selectedMethod={selectedMethod}
-              onSelectOperation={handleSelectOperation}
-            />
+        <main className="flex-1">
+          {spec ? (
+            layoutType === "operationDetail" ? (
+              <OperationDetailedLayout
+                spec={spec}
+                selectedPath={selectedPath}
+                selectedMethod={selectedMethod}
+                onSelectOperation={handleSelectOperation}
+              />
+            ) : (
+              <OperationListLayout
+                spec={spec}
+                onSelectOperation={handleSelectOperation}
+              />
+            )
           ) : (
-            <OperationDetailedLayout
-              spec={specUrl}
-              selectedPath={selectedPath}
-              selectedMethod={selectedMethod}
-              onSelectOperation={handleSelectOperation}
-            />
+            <div className="flex items-center justify-center min-h-[400px]">
+              <div className="text-center space-y-4">
+                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto"></div>
+                <p className="text-muted-foreground">
+                  正在加载 OpenAPI 规范...
+                </p>
+              </div>
+            </div>
           )}
         </main>
       </div>

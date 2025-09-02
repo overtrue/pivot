@@ -1,19 +1,41 @@
 import type { OpenAPIV3 } from "openapi-types";
 
+// Configuration for resolver behavior
+export interface RefResolverConfig {
+  maxDepth?: number;
+  enableDeepResolve?: boolean;
+  enableLogging?: boolean;
+  cacheKeyPrefix?: string;
+}
+
 /**
- * 带缓存的 OpenAPI 引用解析器
- * 解决性能问题和循环引用问题
+ * Enhanced OpenAPI reference resolver with intelligent caching
+ * Handles circular references, performance optimization, and error recovery
  */
 export class RefResolver {
   private cache = new Map<string, any>();
   private resolving = new Set<string>();
+  private config: RefResolverConfig;
+  private resolveDepth = 0;
+  private maxDepth = 10;
+
+  constructor(config: RefResolverConfig = {}) {
+    this.config = {
+      maxDepth: 10,
+      enableDeepResolve: false, // Disabled by default for performance
+      enableLogging: process.env.NODE_ENV === 'development',
+      cacheKeyPrefix: '',
+      ...config
+    };
+    this.maxDepth = this.config.maxDepth || 10;
+  }
 
   /**
-   * 解析引用对象
-   * @param obj 可能是引用对象的数据
-   * @param components OpenAPI组件定义
-   * @param category 可选的组件类别(schemas, parameters等)
-   * @returns 解析后的对象或原始对象
+   * Resolve references with intelligent caching and circular reference detection
+   * @param obj - Object that might contain references
+   * @param components - OpenAPI components for resolution
+   * @param category - Optional component category for validation
+   * @returns Resolved object or null
    */
   resolve<T>(
     obj: T | OpenAPIV3.ReferenceObject | undefined,
@@ -22,108 +44,173 @@ export class RefResolver {
   ): T | null {
     if (!obj) return null;
 
-    // 如果不是对象，直接返回
+    // Primitive types pass through
     if (typeof obj !== "object" || obj === null) {
       return obj as T;
     }
 
-    // 检查是否是引用对象
-    if ("$ref" in obj) {
-      const refObj = obj as OpenAPIV3.ReferenceObject;
-      const refPath = refObj.$ref;
+    // Check if it's a reference object
+    if (this.isReference(obj)) {
+      return this.resolveReference(obj as OpenAPIV3.ReferenceObject, components, category) as T | null;
+    }
 
-      // 检查缓存
-      if (this.cache.has(refPath)) {
-        return this.cache.get(refPath);
+    // Deep resolution is optional for performance
+    if (!this.config.enableDeepResolve) {
+      return obj as T;
+    }
+
+    // Prevent infinite recursion
+    if (this.resolveDepth >= this.maxDepth) {
+      if (this.config.enableLogging) {
+        console.warn(`Max resolve depth ${this.maxDepth} reached`);
+      }
+      return obj as T;
+    }
+
+    this.resolveDepth++;
+    try {
+      // Handle arrays
+      if (Array.isArray(obj)) {
+        return obj.map(item => this.resolve(item, components, category)) as T;
       }
 
-      // 检查循环引用
-      if (this.resolving.has(refPath)) {
-        console.warn(`循环引用检测到: ${refPath}`);
-        return null;
-      }
-
-      // 标记正在解析
-      this.resolving.add(refPath);
-
-      try {
-        // 解析引用
-        const resolved = this.resolveReference(refPath, components, category);
-        
-        if (resolved) {
-          // 缓存结果
-          this.cache.set(refPath, resolved);
+      // Handle objects - selective property resolution
+      const resolved: any = {};
+      for (const [key, value] of Object.entries(obj)) {
+        // Only resolve if value might contain references
+        if (this.mightContainReference(value)) {
+          resolved[key] = this.resolve(value, components, category);
+        } else {
+          resolved[key] = value;
         }
-
-        return resolved as T | null;
-      } finally {
-        // 清除解析标记
-        this.resolving.delete(refPath);
       }
+      return resolved as T;
+    } finally {
+      this.resolveDepth--;
     }
-
-    // 深度解析对象属性中的引用
-    if (Array.isArray(obj)) {
-      return obj.map(item => this.resolve(item, components, category)) as T;
-    }
-
-    // 对于普通对象，递归解析其属性
-    const resolved: any = {};
-    for (const [key, value] of Object.entries(obj)) {
-      resolved[key] = this.resolve(value, components, category);
-    }
-    return resolved as T;
   }
 
   /**
-   * 解析引用路径
+   * Check if an object is a reference
+   */
+  private isReference(obj: any): obj is OpenAPIV3.ReferenceObject {
+    return obj && typeof obj === 'object' && '$ref' in obj && typeof obj.$ref === 'string';
+  }
+
+  /**
+   * Quick check if value might contain references
+   */
+  private mightContainReference(value: any): boolean {
+    if (!value || typeof value !== 'object') return false;
+    if (this.isReference(value)) return true;
+    if (Array.isArray(value)) return value.some(item => this.mightContainReference(item));
+    return Object.values(value).some(v => this.isReference(v));
+  }
+
+  /**
+   * Resolve a reference object
    */
   private resolveReference(
+    refObj: OpenAPIV3.ReferenceObject,
+    components?: OpenAPIV3.ComponentsObject,
+    expectedCategory?: string
+  ): any {
+    const refPath = refObj.$ref;
+
+    // Generate cache key with context
+    const cacheKey = this.config.cacheKeyPrefix + refPath;
+
+    // Check cache first
+    if (this.cache.has(cacheKey)) {
+      return this.cache.get(cacheKey);
+    }
+
+    // Detect circular references
+    if (this.resolving.has(refPath)) {
+      if (this.config.enableLogging) {
+        console.warn(`Circular reference detected: ${refPath}`);
+      }
+      return null;
+    }
+
+    // Mark as resolving
+    this.resolving.add(refPath);
+
+    try {
+      // Parse reference path
+      const resolved = this.parseAndResolveReference(refPath, components, expectedCategory);
+
+      if (resolved !== null) {
+        // Cache successful resolution
+        this.cache.set(cacheKey, resolved);
+      }
+
+      return resolved;
+    } finally {
+      // Always clean up
+      this.resolving.delete(refPath);
+    }
+  }
+
+  /**
+   * Parse and resolve reference path
+   */
+  private parseAndResolveReference(
     refPath: string,
     components?: OpenAPIV3.ComponentsObject,
     expectedCategory?: string
   ): any {
-    // 处理标准格式的引用 #/components/{category}/{name}
+    // Support standard OpenAPI reference format: #/components/{category}/{name}
     const refMatch = refPath.match(/^#\/components\/([^/]+)\/(.+)$/);
 
     if (!refMatch || !components) {
-      console.warn(`无法解析引用: ${refPath}`);
+      if (this.config.enableLogging) {
+        console.warn(`Unable to resolve reference: ${refPath}`);
+      }
       return null;
     }
 
     const [, refCategory, refName] = refMatch;
 
     if (!refName) {
-      console.warn(`引用名称为空: ${refPath}`);
+      if (this.config.enableLogging) {
+        console.warn(`Empty reference name: ${refPath}`);
+      }
       return null;
     }
 
-    // 如果指定了类别，并且与引用类别不一致，则发出警告
+    // Validate category if specified
     if (expectedCategory && refCategory !== expectedCategory) {
-      console.warn(
-        `引用类别 ${refCategory} 与期望类别 ${expectedCategory} 不一致`
-      );
+      if (this.config.enableLogging) {
+        console.warn(
+          `Reference category mismatch: expected ${expectedCategory}, got ${refCategory}`
+        );
+      }
     }
 
-    // 根据类别获取组件集合
+    // Get component collection by category
     const componentCollection =
       components[refCategory as keyof OpenAPIV3.ComponentsObject];
 
     if (!componentCollection || typeof componentCollection !== "object") {
-      console.warn(`找不到组件集合: ${refCategory}`);
+      if (this.config.enableLogging) {
+        console.warn(`Component collection not found: ${refCategory}`);
+      }
       return null;
     }
 
-    // 获取引用的对象
+    // Get the referenced object
     const resolved = componentCollection[refName];
 
     if (!resolved) {
-      console.warn(`找不到引用: ${refPath}`);
+      if (this.config.enableLogging) {
+        console.warn(`Reference not found: ${refPath}`);
+      }
       return null;
     }
 
-    // 如果解析的结果还是引用，递归解析
-    if (typeof resolved === "object" && resolved !== null && "$ref" in resolved) {
+    // Handle nested references
+    if (this.isReference(resolved)) {
       return this.resolve(resolved as OpenAPIV3.ReferenceObject, components, expectedCategory);
     }
 
@@ -131,39 +218,101 @@ export class RefResolver {
   }
 
   /**
-   * 清除缓存
+   * Clear all cache entries
    */
   clearCache(): void {
     this.cache.clear();
     this.resolving.clear();
+    this.resolveDepth = 0;
   }
 
   /**
-   * 获取缓存统计信息
+   * Clear cache entries matching a pattern
    */
-  getCacheStats(): { size: number; keys: string[] } {
+  invalidateCache(pattern?: string): void {
+    if (!pattern) {
+      this.clearCache();
+      return;
+    }
+
+    const keysToDelete: string[] = [];
+    for (const key of this.cache.keys()) {
+      if (key.includes(pattern)) {
+        keysToDelete.push(key);
+      }
+    }
+
+    keysToDelete.forEach(key => this.cache.delete(key));
+  }
+
+  /**
+   * Get cache statistics for debugging
+   */
+  getCacheStats(): {
+    size: number;
+    keys: string[];
+    resolving: string[];
+    config: RefResolverConfig;
+  } {
     return {
       size: this.cache.size,
-      keys: Array.from(this.cache.keys())
+      keys: Array.from(this.cache.keys()),
+      resolving: Array.from(this.resolving),
+      config: this.config
     };
+  }
+
+  /**
+   * Preload references for better performance
+   */
+  preloadReferences(
+    refs: string[],
+    components?: OpenAPIV3.ComponentsObject
+  ): void {
+    refs.forEach(ref => {
+      const refObj: OpenAPIV3.ReferenceObject = { $ref: ref };
+      this.resolve(refObj, components);
+    });
+  }
+
+  /**
+   * Update configuration
+   */
+  updateConfig(config: Partial<RefResolverConfig>): void {
+    this.config = { ...this.config, ...config };
+    if (config.maxDepth !== undefined) {
+      this.maxDepth = config.maxDepth;
+    }
   }
 }
 
-// 创建单例实例
+// Global resolver instance management
 let globalResolver: RefResolver | null = null;
 
 /**
- * 获取全局引用解析器实例
+ * Get global resolver instance with optional configuration
  */
-export function getGlobalResolver(): RefResolver {
+export function getGlobalResolver(config?: RefResolverConfig): RefResolver {
   if (!globalResolver) {
-    globalResolver = new RefResolver();
+    globalResolver = new RefResolver(config);
+  } else if (config) {
+    globalResolver.updateConfig(config);
   }
   return globalResolver;
 }
 
 /**
- * 便捷的解析函数，使用全局解析器
+ * Reset global resolver
+ */
+export function resetGlobalResolver(): void {
+  if (globalResolver) {
+    globalResolver.clearCache();
+  }
+  globalResolver = null;
+}
+
+/**
+ * Convenient resolve function using global resolver
  */
 export function resolveRefWithCache<T>(
   obj: T | OpenAPIV3.ReferenceObject | undefined,
@@ -171,4 +320,14 @@ export function resolveRefWithCache<T>(
   category?: string
 ): T | null {
   return getGlobalResolver().resolve(obj, components, category);
+}
+
+/**
+ * Debug function to inspect resolver state
+ */
+export function getResolverDebugInfo(): any {
+  if (!globalResolver) {
+    return { message: 'No global resolver initialized' };
+  }
+  return globalResolver.getCacheStats();
 }

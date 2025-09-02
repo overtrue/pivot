@@ -952,6 +952,7 @@ export const registry_examples: Registry["items"] = [
       }
     ],
     "registryDependencies": [
+      "https://pivotkit.vercel.app/r/lib.json",
       "https://pivotkit.vercel.app/r/responses-section.json"
     ]
   },

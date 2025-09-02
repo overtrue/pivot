@@ -34,11 +34,6 @@ export const registry_lib: Registry["items"] = [
         "target": "lib/i18n/locales/zh.ts"
       },
       {
-        "path": "registry/default/lib/pivot-config.ts",
-        "type": "registry:lib",
-        "target": "lib/pivot-config.ts"
-      },
-      {
         "path": "registry/default/lib/ref-resolver.ts",
         "type": "registry:lib",
         "target": "lib/ref-resolver.ts"

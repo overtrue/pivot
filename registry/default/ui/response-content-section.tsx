@@ -12,6 +12,47 @@ interface ResponseContentSectionProps {
   className?: string;
 }
 
+// 提取编码属性显示组件
+const EncodingProperty = ({
+  label,
+  value
+}: {
+  label: string;
+  value: any
+}) => (
+  <>
+    <div className="text-neutral-600 dark:text-neutral-400">
+      {label}
+    </div>
+    <div className="font-mono">{typeof value === 'object' ? JSON.stringify(value) : value.toString()}</div>
+  </>
+);
+
+// 提取编码信息渲染组件
+const MediaTypeEncoding = ({ encoding }: { encoding: OpenAPIV3.EncodingObject }) => {
+  const { t } = useI18n();
+
+  const encodingInfo = [
+    { key: 'contentType', label: t("Content Type") },
+    { key: 'style', label: t("Style") },
+    { key: 'explode', label: t("Explode") },
+    { key: 'allowReserved', label: t("Allow Reserved") }
+  ];
+
+  return (
+    <div className="grid grid-cols-[max-content_1fr] gap-x-2 gap-y-1 text-xs">
+      {encodingInfo.map(({ key, label }) => {
+        const value = encoding[key as keyof OpenAPIV3.EncodingObject];
+        if (value === undefined) return null;
+
+        return (
+          <EncodingProperty key={key} label={label} value={value} />
+        );
+      })}
+    </div>
+  );
+};
+
 const ResponseContentSection = React.forwardRef<
   HTMLDivElement,
   ResponseContentSectionProps
@@ -28,56 +69,17 @@ const ResponseContentSection = React.forwardRef<
       <div className="mt-4">
         <h5 className="text-sm font-medium mb-2">{t("Encoding")}</h5>
         <div className="space-y-2">
-          {Object.entries(mediaType.encoding).map(
-            ([property, encoding]: [string, OpenAPIV3.EncodingObject]) => (
-              <div
-                key={property}
-                className="border rounded p-2 bg-white dark:bg-neutral-800"
-              >
-                <div className="font-mono text-sm mb-1 font-medium">
-                  {property}
-                </div>
-                <div className="grid grid-cols-[max-content_1fr] gap-x-2 gap-y-1 text-xs">
-                  {encoding.contentType && (
-                    <>
-                      <div className="text-neutral-600 dark:text-neutral-400">
-                        {t("Content Type")}
-                      </div>
-                      <div className="font-mono">{encoding.contentType}</div>
-                    </>
-                  )}
-                  {encoding.style && (
-                    <>
-                      <div className="text-neutral-600 dark:text-neutral-400">
-                        {t("Style")}
-                      </div>
-                      <div className="font-mono">{encoding.style}</div>
-                    </>
-                  )}
-                  {encoding.explode !== undefined && (
-                    <>
-                      <div className="text-neutral-600 dark:text-neutral-400">
-                        {t("Explode")}
-                      </div>
-                      <div className="font-mono">
-                        {encoding.explode.toString()}
-                      </div>
-                    </>
-                  )}
-                  {encoding.allowReserved !== undefined && (
-                    <>
-                      <div className="text-neutral-600 dark:text-neutral-400">
-                        {t("Allow Reserved")}
-                      </div>
-                      <div className="font-mono">
-                        {encoding.allowReserved.toString()}
-                      </div>
-                    </>
-                  )}
-                </div>
+          {Object.entries(mediaType.encoding).map(([property, encoding]) => (
+            <div
+              key={property}
+              className="border rounded p-2 bg-white dark:bg-neutral-800"
+            >
+              <div className="font-mono text-sm mb-1 font-medium">
+                {property}
               </div>
-            ),
-          )}
+              <MediaTypeEncoding encoding={encoding} />
+            </div>
+          ))}
         </div>
       </div>
     );
