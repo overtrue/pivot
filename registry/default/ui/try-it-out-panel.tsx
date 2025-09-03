@@ -4,10 +4,18 @@ import { cn } from "@/lib/utils";
 import { useI18n } from "@/registry/default/lib/i18n";
 import { resolveRef } from "@/registry/default/lib/resolve-ref";
 import { MethodLabel } from "@/registry/default/ui/method-label";
-import type { ResponseData } from "@/types/project";
 import { ChevronDown, ChevronUp, Send } from "lucide-react";
 import type { OpenAPIV3 } from "openapi-types";
 import React, { useState } from "react";
+
+// 内联类型定义
+interface ResponseData {
+  status: number;
+  statusText: string;
+  headers: Record<string, string>;
+  data: any;
+  duration: number;
+}
 
 // Import types from the centralized types file
 

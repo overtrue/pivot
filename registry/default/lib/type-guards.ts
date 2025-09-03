@@ -4,22 +4,22 @@ import type { OpenAPIV3 } from "openapi-types";
  * 检查对象是否为引用对象
  */
 export function isReferenceObject(
-  obj: any
+  obj: unknown
 ): obj is OpenAPIV3.ReferenceObject {
-  return obj && typeof obj === "object" && "$ref" in obj && typeof obj.$ref === "string";
+  return obj !== null && typeof obj === "object" && "$ref" in obj && typeof (obj as Record<string, unknown>).$ref === "string";
 }
 
 /**
  * 检查对象是否为响应对象
  */
 export function isResponseObject(
-  obj: any
+  obj: unknown
 ): obj is OpenAPIV3.ResponseObject {
   return (
-    obj &&
+    obj !== null &&
     typeof obj === "object" &&
     "description" in obj &&
-    typeof obj.description === "string"
+    typeof (obj as Record<string, unknown>).description === "string"
   );
 }
 
@@ -27,24 +27,24 @@ export function isResponseObject(
  * 检查对象是否为操作对象
  */
 export function isOperationObject(
-  obj: any
+  obj: unknown
 ): obj is OpenAPIV3.OperationObject {
-  return obj && typeof obj === "object" && "responses" in obj;
+  return obj !== null && typeof obj === "object" && "responses" in obj;
 }
 
 /**
  * 检查对象是否为参数对象
  */
 export function isParameterObject(
-  obj: any
+  obj: unknown
 ): obj is OpenAPIV3.ParameterObject {
   return (
-    obj &&
+    obj !== null &&
     typeof obj === "object" &&
     "name" in obj &&
     "in" in obj &&
-    typeof obj.name === "string" &&
-    typeof obj.in === "string"
+    typeof (obj as Record<string, unknown>).name === "string" &&
+    typeof (obj as Record<string, unknown>).in === "string"
   );
 }
 
@@ -52,32 +52,30 @@ export function isParameterObject(
  * 检查对象是否为请求体对象
  */
 export function isRequestBodyObject(
-  obj: any
+  obj: unknown
 ): obj is OpenAPIV3.RequestBodyObject {
-  return obj && typeof obj === "object" && "content" in obj;
+  return obj !== null && typeof obj === "object" && "content" in obj;
 }
 
 /**
  * 检查对象是否为媒体类型对象
  */
 export function isMediaTypeObject(
-  obj: any
+  obj: unknown
 ): obj is OpenAPIV3.MediaTypeObject {
-  return (
-    obj &&
-    typeof obj === "object" &&
-    (obj.schema || obj.example || obj.examples || obj.encoding)
-  );
+  if (obj === null || typeof obj !== "object") return false;
+  const record = obj as Record<string, unknown>;
+  return !!(record.schema || record.example || record.examples || record.encoding);
 }
 
 /**
  * 检查对象是否为 Schema 对象
  */
 export function isSchemaObject(
-  obj: any
+  obj: unknown
 ): obj is OpenAPIV3.SchemaObject {
   if (!obj || typeof obj !== "object") return false;
-  
+
   // Schema 对象可能有多种属性，检查常见的
   const schemaKeys = [
     "type",
@@ -94,7 +92,7 @@ export function isSchemaObject(
     "pattern",
     "required"
   ];
-  
+
   return schemaKeys.some(key => key in obj);
 }
 
@@ -106,10 +104,10 @@ export function safeGetResponse(
   statusCode: string
 ): OpenAPIV3.ResponseObject | OpenAPIV3.ReferenceObject | null {
   if (!responses) return null;
-  
+
   const response = responses[statusCode];
   if (!response) return null;
-  
+
   return response;
 }
 
@@ -121,14 +119,14 @@ export function safeGetOperation(
   method: string
 ): OpenAPIV3.OperationObject | null {
   if (!pathItem) return null;
-  
+
   const normalizedMethod = method.toLowerCase();
   const operation = pathItem[normalizedMethod as keyof OpenAPIV3.PathItemObject];
-  
+
   if (!operation || !isOperationObject(operation)) {
     return null;
   }
-  
+
   return operation;
 }
 

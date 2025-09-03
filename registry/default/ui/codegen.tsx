@@ -1,12 +1,25 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import type {
-  CodeGenerator,
-  CodeGeneratorParams,
-  HttpMethod,
-} from "@/types/project";
 import type { OpenAPIV3 } from "openapi-types";
+
+// 内联类型定义
+interface CodeGenerator {
+  id: string;
+  label: string;
+  getIcon(): React.ReactNode;
+  generateCode(params: CodeGeneratorParams): string;
+}
+
+interface CodeGeneratorParams {
+  endpoint: string;
+  method: string;
+  parameters: OpenAPIV3.ParameterObject[];
+  requestBody?: OpenAPIV3.RequestBodyObject;
+  requestBodyExample?: any;
+}
+
+type HttpMethod = "GET" | "POST" | "PUT" | "DELETE" | "PATCH" | "OPTIONS" | "HEAD";
 
 import { generateExample } from "@/registry/default/lib/generate-example";
 import { resolveRef } from "@/registry/default/lib/resolve-ref";

@@ -1,6 +1,18 @@
 import { cn } from "@/lib/utils";
-import type { ComponentType } from "@/types/project";
 import type { OpenAPIV3 } from "openapi-types";
+
+// 内联类型定义
+type ComponentType =
+  | "schemas"
+  | "responses"
+  | "parameters"
+  | "examples"
+  | "requestBodies"
+  | "headers"
+  | "securitySchemes"
+  | "links"
+  | "callbacks"
+  | "webhooks";
 
 import { resolveRef } from "@/registry/default/lib/resolve-ref";
 import { CallbackDisplay } from "@/registry/default/ui/callback-display";
