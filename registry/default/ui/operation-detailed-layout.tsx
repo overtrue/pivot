@@ -29,6 +29,9 @@ interface OperationDetailedLayoutProps {
   ) => void;
   className?: string;
   navigationWidth?: string;
+  // 面板控制
+  showCodegen?: boolean;
+  showTryItOut?: boolean;
 }
 
 const OperationDetailedLayout = React.forwardRef<
@@ -44,6 +47,8 @@ const OperationDetailedLayout = React.forwardRef<
       onSelectOperation = () => { },
       className,
       navigationWidth,
+      showCodegen = true,
+      showTryItOut = true,
     },
     ref,
   ) => {
@@ -164,7 +169,7 @@ const OperationDetailedLayout = React.forwardRef<
     }
 
     // 计算布局类名
-    const showRightPanel = true; // Always show right panel for now
+    const showRightPanel = showCodegen || showTryItOut;
 
     return (
       <SidebarProvider defaultOpen={true}>
@@ -240,7 +245,7 @@ const OperationDetailedLayout = React.forwardRef<
             {showRightPanel && (
               <div className="w-1/3 max-w-128 flex flex-col items-start p-4 gap-6">
                 {/* 代码生成面板 */}
-                {true && (
+                {showCodegen && (
                   <div className="w-full">
                     {currentOperation && localSelectedPath && localSelectedMethod ? (
                       <Codegen
@@ -271,7 +276,7 @@ const OperationDetailedLayout = React.forwardRef<
                 )}
 
                 {/* 试用面板 */}
-                {true && (
+                {showTryItOut && (
                   <div className="">
                     {currentOperation && localSelectedPath && localSelectedMethod ? (
                       <TryItOutPanel
