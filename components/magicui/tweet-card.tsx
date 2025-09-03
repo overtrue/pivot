@@ -1,13 +1,14 @@
 import { Suspense } from "react";
 import {
-  enrichTweet,
-  type EnrichedTweet,
-  type TweetProps,
-  type TwitterComponents,
+    enrichTweet,
+    type EnrichedTweet,
+    type TweetProps,
+    type TwitterComponents,
 } from "react-tweet";
 import { getTweet, type Tweet } from "react-tweet/api";
 
 import { cn } from "@/lib/utils";
+import Image from "next/image";
 
 interface TwitterIconProps {
   className?: string;
@@ -103,7 +104,7 @@ export const TweetHeader = ({ tweet }: { tweet: EnrichedTweet }) => (
   <div className="flex flex-row justify-between tracking-tight">
     <div className="flex items-center space-x-2">
       <a href={tweet.user.url} target="_blank" rel="noreferrer">
-        <img
+        <Image
           title={`Profile picture of ${tweet.user.name}`}
           alt={tweet.user.screen_name}
           height={48}
@@ -197,11 +198,13 @@ export const TweetMedia = ({ tweet }: { tweet: EnrichedTweet }) => {
         <div className="relative flex transform-gpu snap-x snap-mandatory gap-4 overflow-x-auto">
           <div className="shrink-0 snap-center sm:w-2" />
           {tweet.photos.map((photo) => (
-            <img
+            <Image
               key={photo.url}
               src={photo.url}
               title={"Photo by " + tweet.user.name}
               alt={tweet.text}
+              width={400}
+              height={256}
               className="h-64 w-5/6 shrink-0 snap-center snap-always rounded-xl border object-cover shadow-sm"
             />
           ))}
@@ -212,11 +215,13 @@ export const TweetMedia = ({ tweet }: { tweet: EnrichedTweet }) => {
         !tweet.photos &&
         // @ts-expect-error - card structure is dynamic and not fully typed
         tweet?.card?.binding_values?.thumbnail_image_large?.image_value.url && (
-          <img
+          <Image
             src={
               // @ts-expect-error - card structure is dynamic and not fully typed
               tweet.card.binding_values.thumbnail_image_large.image_value.url
             }
+            width={400}
+            height={200}
             className="h-64 rounded-xl border object-cover shadow-sm"
             alt={tweet.text}
           />
