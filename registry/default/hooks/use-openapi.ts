@@ -25,6 +25,46 @@ export function useOpenApi(spec: OpenAPIV3.Document | null, components?: OpenAPI
     };
   }, [effectiveComponents]);
 
+  // 按标签分组获取操作
+  const getOperationsByTag = useMemo(() => {
+    return () => {
+      if (!spec?.paths) return {};
+
+      const operations: Record<string, Array<{
+        path: string;
+        method: string;
+        operation: OpenAPIV3.OperationObject;
+      }>> = {};
+
+      const HTTP_METHODS = ["get", "post", "put", "delete", "patch", "head", "options", "trace"] as const;
+
+      Object.entries(spec.paths).forEach(([path, pathItem]) => {
+        if (!pathItem || typeof pathItem !== "object") return;
+
+        HTTP_METHODS.forEach((method) => {
+          const operation = pathItem[method];
+          if (operation && typeof operation === "object" && "responses" in operation) {
+            const operationObj = operation as OpenAPIV3.OperationObject;
+            const tags = operationObj.tags || ["未分类"];
+
+            tags.forEach((tag) => {
+              if (!operations[tag]) {
+                operations[tag] = [];
+              }
+              operations[tag].push({
+                path,
+                method,
+                operation: operationObj,
+              });
+            });
+          }
+        });
+      });
+
+      return operations;
+    };
+  }, [spec]);
+
   return useMemo(() => ({
     // 原始数据
     spec,
@@ -35,5 +75,8 @@ export function useOpenApi(spec: OpenAPIV3.Document | null, components?: OpenAPI
 
     // 解析函数
     resolve,
-  }), [spec, effectiveComponents, resolve]);
+
+    // 操作处理
+    getOperationsByTag,
+  }), [spec, effectiveComponents, resolve, getOperationsByTag]);
 }
