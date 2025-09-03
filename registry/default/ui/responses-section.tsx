@@ -74,11 +74,21 @@ const ResponsesSection = React.forwardRef<
   // 简化的状态管理
   const sortedStatusCodes = useMemo(() => getSortedStatusCodes(responses), [responses]);
   const initialStatus = defaultActiveStatus || getDefaultStatus(sortedStatusCodes);
-  const [activeStatus, setActiveStatus] = useState<string | null>(initialStatus);
+  const [userSelectedStatus, setUserSelectedStatus] = useState<string | null>(null);
+
+  // 同步计算 activeStatus，避免闪烁
+  const activeStatus = useMemo(() => {
+    // 如果用户手动选择了状态码，且该状态码在当前 responses 中存在，则使用用户选择
+    if (userSelectedStatus && responses[userSelectedStatus]) {
+      return userSelectedStatus;
+    }
+    // 否则使用计算出的初始状态码
+    return initialStatus;
+  }, [userSelectedStatus, initialStatus, responses]);
 
   // 简化的状态选择处理
   const handleStatusSelect = (status: string) => {
-    setActiveStatus(status);
+    setUserSelectedStatus(status);
     onStatusSelect?.(status);
   };
 
@@ -88,14 +98,8 @@ const ResponsesSection = React.forwardRef<
     const response = responses[activeStatus];
     if (!response) return null;
 
-    // 检查是否是引用对象
-    if (typeof response === "object" && response !== null && "$ref" in response) {
-      // 如果有引用，尝试解析
-      return openapi.resolve<OpenAPIV3.ResponseObject>(response, "responses");
-    } else {
-      // 如果没有引用，直接使用原始数据
-      return response as OpenAPIV3.ResponseObject;
-    }
+    // resolveRef 已经处理了所有情况（包括 $ref 和直接对象）
+    return openapi.resolve<OpenAPIV3.ResponseObject>(response, "responses");
   }, [activeStatus, responses, openapi]);
 
   // 如果没有响应定义

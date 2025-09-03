@@ -7,14 +7,13 @@ import { Button } from "@/components/ui/button";
 import { Drawer, DrawerClose, DrawerContent, DrawerHeader, DrawerTitle, DrawerTrigger } from "@/components/ui/drawer";
 import { Input } from "@/components/ui/input";
 import {
-    Select,
-    SelectContent,
-    SelectItem,
-    SelectTrigger,
-    SelectValue,
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
 } from "@/components/ui/select";
 import { siteConfig } from "@/config/site";
-import { useOpenAPILoader } from "@/registry/default/hooks/use-openapi-loader";
 import { I18nProvider } from "@/registry/default/lib/i18n";
 import { LanguageSwitcher } from "@/registry/default/ui/language-switcher";
 import { OperationDetailedLayout } from "@/registry/default/ui/operation-detailed-layout";
@@ -92,9 +91,6 @@ export default function ViewerPage() {
       }
     }
   }, [specUrl]);
-
-  // 使用 OpenAPI Loader hook 来加载数据（支持智能判断输入类型）
-  const { spec } = useOpenAPILoader(specUrl);
 
   const handleSelectOperation = (
     path: string,
@@ -249,17 +245,17 @@ export default function ViewerPage() {
 
         {/* 主要内容区域 */}
         <main className="flex-1">
-          {spec ? (
+          {specUrl ? (
             layoutType === "operationDetail" ? (
               <OperationDetailedLayout
-                spec={spec}
+                spec={specUrl}
                 selectedPath={selectedPath}
                 selectedMethod={selectedMethod}
                 onSelectOperation={handleSelectOperation}
               />
             ) : (
               <OperationListLayout
-                spec={spec}
+                spec={specUrl}
                 onSelectOperation={handleSelectOperation}
               />
             )
