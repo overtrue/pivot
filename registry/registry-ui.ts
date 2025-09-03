@@ -770,6 +770,7 @@ export const registry_ui: Registry["items"] = [
     ],
     "registryDependencies": [
       "sidebar",
+      "https://pivotkit.vercel.app/r/hooks.json",
       "https://pivotkit.vercel.app/r/lib.json",
       "https://pivotkit.vercel.app/r/codegen.json",
       "https://pivotkit.vercel.app/r/language-switcher.json",

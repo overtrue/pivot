@@ -2,6 +2,7 @@
 
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { cn } from "@/lib/utils";
+import { useOpenAPILoader } from "@/registry/default/hooks/use-openapi-loader";
 import { useI18n } from "@/registry/default/lib/i18n";
 import { Codegen } from "@/registry/default/ui/codegen";
 import { LanguageSwitcher } from "@/registry/default/ui/language-switcher";
@@ -18,6 +19,7 @@ import React, { useEffect, useMemo, useState } from "react";
 interface OperationDetailedLayoutProps {
   // 支持多种输入方式 - 自动检测 URL、JSON 字符串或对象
   spec?: OpenAPIV3.Document | string | null;
+  url?: string;
   selectedPath?: string | null;
   selectedMethod?: string | null;
   onSelectOperation?: (
@@ -36,6 +38,7 @@ const OperationDetailedLayout = React.forwardRef<
   (
     {
       spec: inputSpec,
+      url,
       selectedPath = null,
       selectedMethod = null,
       onSelectOperation = () => { },
@@ -52,8 +55,9 @@ const OperationDetailedLayout = React.forwardRef<
       string | null
     >(selectedMethod);
 
-    // 直接使用传入的 spec 参数
-    const spec = inputSpec;
+    // 使用统一的数据加载器（支持智能判断输入类型）
+    // 优先使用 url，然后使用 inputSpec
+    const { spec, loading, error } = useOpenAPILoader(url || inputSpec);
 
     // 同步外部状态变化
     useEffect(() => {
@@ -114,6 +118,34 @@ const OperationDetailedLayout = React.forwardRef<
       if (!spec || typeof spec !== 'object' || !spec.servers || spec.servers.length === 0) return "";
       return spec.servers[0]?.url || "";
     }, [spec]);
+
+    // 错误状态
+    if (error) {
+      return (
+        <div className="flex items-center justify-center h-64">
+          <div className="text-center">
+            <h3 className="text-lg font-medium text-destructive mb-2">
+              {t("Error loading OpenAPI specification")}
+            </h3>
+            <p className="text-sm text-muted-foreground">{error}</p>
+          </div>
+        </div>
+      );
+    }
+
+    // 加载状态
+    if (loading) {
+      return (
+        <div className="flex items-center justify-center h-64">
+          <div className="text-center">
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto mb-2"></div>
+            <p className="text-sm text-muted-foreground">
+              {t("Loading OpenAPI specification...")}
+            </p>
+          </div>
+        </div>
+      );
+    }
 
     // 无数据状态
     if (!spec || typeof spec !== 'object') {
